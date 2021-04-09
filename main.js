@@ -6,7 +6,9 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, 'preload.js'),
+           nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has toe be set to true
+           contextIsolation: false //set to true by default. False if want to use node api in renderer process
         }
     })
 
