@@ -1,0 +1,111 @@
+# Downloads in App
+
+$ npm
+
+
+
+
+
+
+# Prior to rollback on April 15, 2021
+# RobotJS
+
+$ npm install robotjs
+    robotjs on April 13, 2021
+    version: robotjs: 0.6.0
+
+Had to "rebuild robotjs" package and mac notifier package:
+
+npm install --save-dev electron-rebuild
+npx electron-rebuild -f -m node_modules/node-mac-notifier
+npx electron-rebuild -f -m node_modules/robotjs
+***
+These didn't work. From docs, then tried:
+
+$ npm rebuild --runtime=electron --target=12.0.2 --disturl=https://atom.io/download/atom-shell --abi=83
+
+but got gyp error.
+
+# Node Abi Version 
+
+$ npm install node-abi-version --save
+--to get the abi version of node
+--https://www.npmjs.com/package/node-abi-version
+
+--April 15, 2021: removed as part of returning everything to prior git commit (because of issues in trying to get robotjs and nutjs to work)
+
+# Electron get selected text
+
+$ npm install electron-selected-text
+    April 14, 2021
+    UNINSTALLED April 14, 2021
+
+
+# Nut.js
+
+## BOTTOM LINE: 
+--This looked promising as a way of controlling mouse actions outside of window. for example, being able to automatically copy text that is highlighted in another window.
+
+--BUT: 
+1. This is not updated for most recent versions of electron
+2. It is a big package--and it seemed like overkill for this straightforward and specific use case. To get it to work, I'd have to download packages that are very large and take a long time to install.
+2a. It might be heavily using robotjs, which is not being maintained
+3. I just could't get it to work. I entered a git issue here: https://github.com/nut-tree/nut.js/issues/221, but all of a sudden I was going down a rabbit hole of re-installing, rebuilding, and doing lots of stuff that got things very bogged down.
+
+So I decide 
+## attempts
+
+  attempt to control keyboard. From: https://github.com/nut-tree/nut.js
+
+$ npm i @nut-tree/nut-js
+
+$ npm  add -D electron-rebuild
+
+package.json:
+    scripts
+        "rebuild": "electron-rebuild"
+
+then 
+
+$ npm run rebuild
+
+***
+didn't work. so tried 
+$ npm i electron-rebuild
+
+go error about can't find opencv4nodejs, so tried
+
+$ npm install opencv4nodejs
+
+didn't work.
+
+tried to run:
+
+$ xcode-select --install
+
+then it installed some software from xcode
+
+Then, ran 
+
+$ npm run rebuild again.
+
+still error: 
+
+
+Error: node-gyp failed to rebuild '/Users/.../node_modules/opencv4nodejs'.
+Error: `make` failed with exit code: 2
+
+I tried to install gyp directly:
+
+$ npm install node-gyp
+
+Then tried to run:
+
+$ npm run rebuild 
+
+again
+
+still got error:
+
+An unhandled error occurred inside electron-rebuild
+node-gyp failed to rebuild

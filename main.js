@@ -1,5 +1,8 @@
-const { app, BrowserWindow } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
+const { app, BrowserWindow, globalShortcut } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
+
+const { keyboard, Key, mouse, left, right, up, down, screen, clipboard } = require("@nut-tree/nut-js");
+const { domainToUnicode } = require('url');
 
 function createWindow() { 
     const win = new BrowserWindow({ //creates a new browser window
@@ -16,7 +19,14 @@ function createWindow() {
 }
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
+    app.allowRendererProcessReuse = false  //to allow nutjs
+
     console.log('ROCKING!')
+    const ret = globalShortcut.register('CommandOrControl+I', () => {
+        console.log('CommandOrControl+I is pressed again')
+        enterKey()
+    })
+
     createWindow()
 
     app.on('activate', () => {
@@ -25,6 +35,28 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
         }
     })
 })
+
+async function enterKey(){
+    keyboard.config.autoDelayMs = 50;
+    // this takes in a string and types it out using the Key. method rather than by string
+    
+    const hackFix = async (string) => {
+        string.split("").forEach(async (char) => {
+            const character = char.toUpperCase()
+            await keyboard.type(Key[character])
+        });
+    }
+    
+  
+    try {
+        await keyboard.type(Key.LeftSuper, Key.C);//opens mac spotlight
+        await keyboard.type("calculator"); // 
+        //await hackFix("CALCULATOR") // this works
+
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 app.on('window-all-closed', () => { //quit the application when it no longer has any open windows. This is a no-op on MacOS bc of MacOS window management behavior 
     if (process.platform !== 'darwin') {
