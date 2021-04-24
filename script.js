@@ -1,6 +1,6 @@
 const { shell } = require('electron')
 
-const { exec } = require("child_process");
+//const { exec } = require("child_process");
 //const { keyboard, Key } = require("@nut-tree/nut-js");
 
 window.onload = function () {
@@ -18,8 +18,14 @@ async function enterKey() {
 }
 */
 
-function checkDirectory(){
-   exec("git log", (error, stdout, stderr) => {
+
+/*
+
+
+function checkDirectory() {
+    exec('pwd', {
+        cwd: '/home/user/directory'
+    }, function ("git log", stdout, stderr) {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
@@ -33,5 +39,8 @@ function checkDirectory(){
 }
 
 
+
+
+*/
 
 
