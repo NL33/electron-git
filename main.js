@@ -67,10 +67,9 @@ let tray = null
 app.whenReady().then(() => {
     tray = new Tray('mountains-icon.jpg')
     const contextMenu = Menu.buildFromTemplate([
-        { label: 'Copy the text', type: 'radio' },
-        { label: 'Item2', type: 'radio' },
-        { label: 'Item3', type: 'radio', checked: true },
-        { label: 'Item4', type: 'radio' }
+        { label: 'Commit', type: 'radio' },
+        { label: 'Revert', type: 'radio' },
+        { label: 'Show Old Version', type: 'radio', checked: true },
     ])
     tray.setToolTip('This is my application.')
     tray.setContextMenu(contextMenu)
