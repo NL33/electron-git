@@ -17,6 +17,7 @@
     "electron-reloader": "^1.2.0"
   },
   "dependencies": {
-    "@nut-tree/nut-js": "^1.6.1-next.20210408195718"
+    "@nut-tree/nut-js": "^1.6.1-next.20210408195718",
+    "nodegit": "^0.27.0"
   }
 }
