@@ -1,7 +1,10 @@
 # Downloads in App
 
 $ npm install nodegit
-    -April 26, 2021
+    -April 26, 2021. UNINSTALLED April 26, 2021, because not updated for electron 12
+
+$ npm install simple-git
+    --April 26, 2021
 
 
 

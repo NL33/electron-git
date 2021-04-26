@@ -1,7 +1,10 @@
-const { shell } = require('electron')
-
+const { ipcRenderer } = require("electron")
+//const { shell } = require('electron')
 //const { exec } = require("child_process");
 //const { keyboard, Key } = require("@nut-tree/nut-js");
+
+const simpleGit = require('simple-git')
+const git = simpleGit()
 
 window.onload = function () {
     var element = document.getElementById("helloEl")
@@ -11,36 +14,39 @@ window.onload = function () {
       //  enterKey()
     })
 }
-/*
-async function enterKey() {
-    await keyboard.pressKey(Key.CapsLock)
-    console.log('do the calc')
+
+ipcRenderer.on("git-commands", function(event, data){
+    gitCommands()
+})
+
+
+async function gitCommands() {
+
+    const homeDir = require('os').homedir();
+    const desktopDir = `${homeDir}/Desktop`;
+    var folderG = desktopDir + '/git-tester'
+    //sets up directory at: /Users/sean/Desktop/git-tester
+    try {
+        await git.cwd(folderG).then(result => {
+            console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+        await git.init().then(result => {
+            console.log('init result = ' + JSON.stringify(result))
+        })
+
+        await git.add('.').then(result => {
+            console.log('add result = ' + JSON.stringify(result))
+        })
+
+        await git.commit('this is the fourth commit').then(result => {
+            console.log('fourth commit result = ' + JSON.stringify(result))
+        })
+
+    }
+    catch (e) {
+        console.log('error = ' + e)
+    }
 }
-*/
-
-
-/*
-
-
-function checkDirectory() {
-    exec('pwd', {
-        cwd: '/home/user/directory'
-    }, function ("git log", stdout, stderr) {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`); //lists all files in current directory
-    });
-}
-
-
-
-
-*/
 
 
