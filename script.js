@@ -16,29 +16,19 @@ window.onload = function () {
     })
 }
 
-ipcRenderer.on("git-commands", function(event, data){
-    //gitCommands()
-    getTheWindow()
-    
+ipcRenderer.on("save-new-version", function(event, data){
+    gitSaveNew() 
 })
 
-async function getTheWindow(){
-    //await Window.
-    // var foregroundWindow = await getActiveWindow()
-    //await foregroundWindow.title.then(result => {
-    //    console.log('active win = ' + result)
-    //})
-   // console.log('Hi' + JSON.stringify(windowTitle))
-    //alert('window = ' + JSON.stringify(windowTitle))
-    /*
-    await getActiveWindow().title.then(result => {
-        console.log('active win = ' + JSON.stringify(result))
-    })
-    */
+ipcRenderer.on("view-old-version", function (event, data) {
+    gitViewOld()
+})
 
-}
+ipcRenderer.on("revert-to-old-version", function (event, data) {
+    gitRevertToOld()
+})
 
-async function gitCommands() {
+async function gitSaveNew() {
     const homeDir = require('os').homedir();
     const desktopDir = `${homeDir}/Desktop`;
     var folderG = desktopDir + '/git-tester'
@@ -64,6 +54,14 @@ async function gitCommands() {
     catch (e) {
         console.log('error = ' + e)
     }
+}
+
+async function gitViewOld(){
+
+}
+
+async function gitRevertToOld(){
+
 }
 
 

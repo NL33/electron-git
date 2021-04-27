@@ -1,8 +1,6 @@
 const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
-const { keyboard, Key, getActiveWindow, Window } = require("@nut-tree/nut-js")
-
-const { domainToUnicode } = require('url');
+const { keyboard, Key } = require("@nut-tree/nut-js")
 
 var win
 
@@ -36,21 +34,29 @@ let tray = null
 function menuApp() {
     tray = new Tray('mountains-icon.jpg')
     const contextMenu = Menu.buildFromTemplate([
-        { label: 'Commit', click() { gitCommands() } },
-        { label: 'Revert', click() { newFunction() } },
-        { label: 'Show Old Version', type: 'radio', checked: true },
+        { label: 'Save New Version', click() { saveNewVersion() } },
+        { label: 'View Old Version', click() { viewOldVersion() } },
+        { label: 'Revert to Old Version', revertToOldVersion() },
     ])
     tray.setToolTip('This is my application.')
     tray.setContextMenu(contextMenu)
 }
 
-async function gitCommands() {
-    win.webContents.send('git-commands', 'cool')
+async function saveNewVersion() {
+    win.webContents.send('save-new-version', 'cool')
 }
 
+async function viewOldVersion(){
+    win.webContents.send('view-old-version', 'cool')
+}
+
+async function revertToOldVersion(){
+    win.webContents.send('revert-to-old-version', 'cool')
+}
+
+
 /*
-async function gitCommands(){
-    //win.webContents.send('git-commands', 'cool')
+async function getWindow(){
     //var foregroundWindow = await getActiveWindow()
     //console.log('window = ' + foregroundWindow)
     await Window.getActiveWindow().then(result => {
@@ -58,8 +64,6 @@ async function gitCommands(){
     })
 }
 */
-
-
 
 
 app.on('window-all-closed', () => { //quit the application when it no longer has any open windows. This is a no-op on MacOS bc of MacOS window management behavior 
