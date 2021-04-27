@@ -7,9 +7,8 @@
 # Next for git-side:
 
 -create renderer window. DONE.
--add input into renderer window
--add save button in renderer window
--update to new version with git
+-add save button in renderer window. DONE
+-update to new version with git. DONE.
 -show message back
 -confirm the directory you want to update
 

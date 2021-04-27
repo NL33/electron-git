@@ -37,12 +37,29 @@
             background-color: #32cd53;
             color: white
         }
+
+        #ifNoNewVersion {
+            display: none;
+            margin-top: 15px
+        }
+
+        #ifNewVersionSaved {
+            display: none;
+            margin-top: 15px
+        }
     </style>
     <title>Save New Version</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
 <div id="header">Save New Version</div></br>
 <div id="saveNote" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
-<div id="saveButton">Save</div>
+<div id="saveButton">Save</div></br>
+<div id="ifNoNewVersion">
+    <div>There are no changes, so a new version has not been saved.</div>
+</div>
+<div id="ifNewVersionSaved">
+    <div id="commitResult">New Version Saved</div>
+    <div id="showResults"></div>
+</div>
 
 </html>

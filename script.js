@@ -24,18 +24,30 @@ async function gitSaveNew() {
     //sets up directory at: /Users/sean/Desktop/git-tester
     try {
         await git.cwd(folderG).then(result => {
-            console.log('cwd resultss' + JSON.stringify(result))
+           // console.log('cwd resultss' + JSON.stringify(result))
         })
 
         await git.init().then(result => {
-            console.log('init result = ' + JSON.stringify(result))
+            //console.log('init result = ' + JSON.stringify(result))
         })
 
         await git.add('.').then(result => {
-            console.log('add result = ' + JSON.stringify(result))
+            //console.log('add result = ' + JSON.stringify(result))
         })
 
         await git.commit(text).then(result => {
+            var overviewS = document.getElementById("ifNewVersionSaved")
+            var overviewN = document.getElementById("ifNoNewVersion")
+            var showResults = document.getElementById("showResults")
+            if (result.summary.changes != "0") {
+                overviewN.style.display = "none"
+                showResults.textContent = JSON.stringify(result.summary)
+                overviewS.style.display = "inline-block"
+            } else {
+                overviewS.style.display = "none"
+                showResults.textContent = ""
+                overviewN.style.display = "inline-block"
+            }
             console.log('fourth commit result = ' + JSON.stringify(result))
         })
 
