@@ -7,6 +7,13 @@ $ npm install simple-git
     --April 26, 2021
 
 
+$ npm install nutjs
+    --approx April 20, 2021
+
+$ npm install active-win
+    --April 27, 2021
+
+
 
 
 # Prior to rollback on April 15, 2021
