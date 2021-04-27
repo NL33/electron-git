@@ -26,7 +26,7 @@ function saveNewVersionWindow() {
         height: 300,
         x: width - 605,
         y: 0,
-        alwaysOnTop: true,
+        //alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process
@@ -47,7 +47,7 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
    // createWindow()
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) { //create a new browswer window only if app has no visible windows after being activated, such as when launching the app for the first time or relaunching the already running app
-            createWindow()
+           // createWindow()
         }
     })
 })

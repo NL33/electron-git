@@ -8,17 +8,16 @@ const git = simpleGit()
 var element
 
 window.onload = function () {
-    element = document.getElementById("header")
+    element = document.getElementById("saveButton")
 
     element.addEventListener("click", () => {
-        checkDirectory()
+        gitSaveNew()
       //  enterKey()
     })
 }
 
-
-
 async function gitSaveNew() {
+    var text = document.getElementById('saveNote').textContent
     const homeDir = require('os').homedir();
     const desktopDir = `${homeDir}/Desktop`;
     var folderG = desktopDir + '/git-tester'
@@ -36,7 +35,7 @@ async function gitSaveNew() {
             console.log('add result = ' + JSON.stringify(result))
         })
 
-        await git.commit('this is the fourth commit').then(result => {
+        await git.commit(text).then(result => {
             console.log('fourth commit result = ' + JSON.stringify(result))
         })
 
