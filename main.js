@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
+const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
 const { keyboard, Key } = require("@nut-tree/nut-js")
 /*
@@ -18,9 +18,15 @@ function createWindow() {
 }
 */
 function saveNewVersionWindow() {
+    let display = screen.getPrimaryDisplay();
+    let width = display.bounds.width
+    let height = display.bounds.height
     var newVersionWindow = new BrowserWindow({
-        width: 530,
-        height: 690,
+        width: 600,
+        height: 300,
+        x: width - 605,
+        y: 0,
+        alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process

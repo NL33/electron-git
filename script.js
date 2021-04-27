@@ -1,4 +1,4 @@
-//const { ipcRenderer } = require("electron")
+const { ipcRenderer } = require("electron")
 //const { shell } = require('electron')
 //const { exec } = require("child_process");
 //const { keyboard, Key, getActiveWindow } = require("@nut-tree/nut-js");
@@ -8,7 +8,7 @@ const git = simpleGit()
 var element
 
 window.onload = function () {
-    element = document.getElementById("helloEl")
+    element = document.getElementById("header")
 
     element.addEventListener("click", () => {
         checkDirectory()
@@ -16,17 +16,7 @@ window.onload = function () {
     })
 }
 
-ipcRenderer.on("save-new-version", function(event, data){
-    gitSaveNew() 
-})
 
-ipcRenderer.on("view-old-version", function (event, data) {
-    gitViewOld()
-})
-
-ipcRenderer.on("revert-to-old-version", function (event, data) {
-    gitRevertToOld()
-})
 
 async function gitSaveNew() {
     const homeDir = require('os').homedir();
