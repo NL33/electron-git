@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "@nut-tree/nut-js": "^1.6.1-next.20210408195718",
-    "active-win": "^7.1.0",
     "save-dev": "0.0.1-security",
     "simple-git": "^2.38.0"
   }

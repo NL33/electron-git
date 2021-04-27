@@ -1,7 +1,6 @@
 const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
 const { keyboard, Key, getActiveWindow, Window } = require("@nut-tree/nut-js")
-const activeWin = require('active-win')
 
 const { domainToUnicode } = require('url');
 
@@ -46,8 +45,7 @@ function menuApp() {
 }
 
 async function gitCommands() {
-    console.log('active window = ')
-    console.log(await activeWin());
+    win.webContents.send('git-commands', 'cool')
 }
 
 /*
