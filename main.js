@@ -1,28 +1,39 @@
 const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
 const { keyboard, Key } = require("@nut-tree/nut-js")
-
-var win
-
+/*
 function createWindow() { 
-    win = new BrowserWindow({ //creates a new browser window
+   const win = new BrowserWindow({ //creates a new browser window
         width: 400,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
-           nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has toe be set to true
+           preload: path.join(__dirname, 'preload.js'),
+           nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
            contextIsolation: false //set to true by default. False if want to use node api in renderer process
         }
     })
 
     win.loadFile('index.html') //and loads index.html into that browser window
 }
+*/
+function saveNewVersionWindow() {
+    var newVersionWindow = new BrowserWindow({
+        width: 530,
+        height: 690,
+    })
+    newVersionWindow.loadURL('file://' + __dirname + '/views/save-new-version.html');
+    /*
+    newVersionWindow.webContents.on('did-finish-load', function () {
+        newVersionWindow.show();
+    })
+    */
+}
 
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
     app.allowRendererProcessReuse = false  //to allow nutjs
     menuApp()
-    createWindow()
+   // createWindow()
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) { //create a new browswer window only if app has no visible windows after being activated, such as when launching the app for the first time or relaunching the already running app
             createWindow()
@@ -34,7 +45,7 @@ let tray = null
 function menuApp() {
     tray = new Tray('mountains-icon.jpg')
     const contextMenu = Menu.buildFromTemplate([
-        { label: 'Save New Version', click() { saveNewVersion() } },
+        { label: 'Save New Version', click() { saveNewVersionWindow() } },
         { label: 'View Old Version', click() { viewOldVersion() } },
         { label: 'Revert to Old Version', click() { revertToOldVersion() } },
     ])
@@ -42,9 +53,6 @@ function menuApp() {
     tray.setContextMenu(contextMenu)
 }
 
-async function saveNewVersion() {
-    win.webContents.send('save-new-version', 'cool')
-}
 
 async function viewOldVersion(){
     win.webContents.send('view-old-version', 'cool')
