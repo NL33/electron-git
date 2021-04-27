@@ -4,12 +4,13 @@ const { keyboard, Key } = require("@nut-tree/nut-js")
 /*
 function createWindow() { 
    const win = new BrowserWindow({ //creates a new browser window
-        width: 400,
-        height: 600,
+       width: 530,
+       height: 690,
         webPreferences: {
            preload: path.join(__dirname, 'preload.js'),
            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
-           contextIsolation: false //set to true by default. False if want to use node api in renderer process
+           contextIsolation: false, //set to true by default. False if want to use node api in renderer process
+           enableRemoteModule: true
         }
     })
 
@@ -20,6 +21,10 @@ function saveNewVersionWindow() {
     var newVersionWindow = new BrowserWindow({
         width: 530,
         height: 690,
+        webPreferences: {
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process
+        }
     })
     newVersionWindow.loadURL('file://' + __dirname + '/views/save-new-version.html');
     /*

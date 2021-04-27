@@ -1,4 +1,4 @@
-const { ipcRenderer } = require("electron")
+//const { ipcRenderer } = require("electron")
 //const { shell } = require('electron')
 //const { exec } = require("child_process");
 //const { keyboard, Key, getActiveWindow } = require("@nut-tree/nut-js");

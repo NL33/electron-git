@@ -6,7 +6,7 @@
 
 # Next for git-side:
 
--create renderer window
+-create renderer window. DONE.
 -add input into renderer window
 -add save button in renderer window
 -update to new version with git
