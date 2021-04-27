@@ -10,6 +10,47 @@
             color: #778899;
         }
 
+        #folderOverview {
+            margin-bottom: 10px
+        }
+
+        #directory {
+            font-weight: bold
+        }
+
+        #file-input {
+            margin-top: 10px;
+            display: none;
+        }
+
+        input[type='file'] {
+            /*opacity:0 */    
+        }
+
+        #changeFolder{
+            display: inline-block;
+            font-size: 11pt;
+            border: 1px solid #d4eff7;
+            border-radius: 15px;
+            padding: 2px;
+            padding-left: 8px;
+            padding-right: 8px;
+            cursor: pointer;
+            margin-left: 15px
+        }
+
+         #closeChoose{
+            display: none;
+            font-size: 11pt;
+            border: 1px solid red;
+            border-radius: 15px;
+            padding: 2px;
+            padding-left: 8px;
+            padding-right: 8px;
+            cursor: pointer;
+            margin-left: 15px
+        }
+
         #saveNote {
             border: 1px solid black;
             border-radius: 10px;
@@ -51,7 +92,18 @@
     <title>Save New Version</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
-<div id="header">Save New Version</div></br>
+<div id="folderOverview">
+    <span style="margin-bottom: 10px">
+        <span">Current folder:</span>
+        <span id="directory"></span>
+        <span id="changeFolder">change folder</span>
+        <span id="closeChoose">close "Choose File"</span>
+    </span></br>
+     <input type="file" id="file-input"/>
+</div>
+
+
+</br>
 <div id="saveNote" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
 <div id="saveButton">Save</div></br>
 <div id="ifNoNewVersion">

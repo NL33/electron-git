@@ -9,7 +9,7 @@
 -create renderer window. DONE.
 -add save button in renderer window. DONE
 -update to new version with git. DONE.
--show message back
+-show message back. DONE.
 -confirm the directory you want to update
 
 
