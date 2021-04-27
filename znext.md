@@ -2,21 +2,23 @@
 
 # Just Completed
 
-I just added a tray icon to the app
-
-I just made it work to click the tray icon and copy whatever text is highlighted in the app
-
 
 
 # Next for git-side:
 
--set up simple directory as test
+-create renderer window
+-add input into renderer window
+-add save button in renderer window
+-update to new version with git
+-show message back
+-confirm the directory you want to update
 
--click icon, and have it update git repo
 
---click icon and have it revert repo
 
---click icon and have it show old version
+
+
+
+
 
 # Next For Github-side:
 

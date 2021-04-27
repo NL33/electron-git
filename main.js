@@ -36,7 +36,7 @@ function menuApp() {
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Save New Version', click() { saveNewVersion() } },
         { label: 'View Old Version', click() { viewOldVersion() } },
-        { label: 'Revert to Old Version', revertToOldVersion() },
+        { label: 'Revert to Old Version', click() { revertToOldVersion() } },
     ])
     tray.setToolTip('This is my application.')
     tray.setContextMenu(contextMenu)
