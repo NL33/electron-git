@@ -1,15 +1,26 @@
 const path = require('path');
 const fs = require('fs');
-const { ipcRenderer } = require('electron')
+const { ipcRenderer, clipboard } = require('electron')
 
 window.onload = function () {
     var save = document.getElementById('saveFileButton');
     save.addEventListener('click', (event) => {
-        ipcRenderer.send('open-dialog', '')
+        //ipcRenderer.send('open-dialog', '')
         //showDialog()
         // Resolves to a Promise<Object>
+        saveFile()
     })
 } //end window onload function
+
+
+function saveFile(){
+    let fileData = clipboard.readText()
+    let filePath = '/Users/sean/Desktop/electron-tester/apple-note.txt'
+    fs.writeFile(filePath, fileData,(err)=>{
+        if (err) throw err;
+        console.log('Saved!');
+    })
+}
 
 ipcRenderer.on('file-selected', (event, file) => {
     // Stating whether dialog operation was cancelled or not.
@@ -28,6 +39,8 @@ ipcRenderer.on('file-selected', (event, file) => {
             });
     }
 })
+
+
 
 /*
  var filePath = file.filePath.toString()

@@ -1,9 +1,6 @@
 const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
 const { keyboard, Key } = require("@nut-tree/nut-js")
-const fs = require('fs');
-
-
 
 var newVersionWindow
 /*
