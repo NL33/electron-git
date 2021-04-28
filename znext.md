@@ -1,16 +1,28 @@
 **Next in the Electron Git App**
 
 # Just Completed
-
+working git save for directory on your computer that you choose
 
 
 # Next for git-side:
+making it work for apple notes: 
+plan: user will create a folder to put all items about a certain topic. will have the option with a button to add note to folder or see existing folders.
+can then save new versions in that folder
+ultimately, app will have decent looking file to display what goes there. (maybe use froala for that)
+folder will be saved on user's computer.
+can copy old versions of notes so can past them into progam you want
 
--create renderer window. DONE.
--add save button in renderer window. DONE
--update to new version with git. DONE.
--show message back. DONE.
--confirm the directory you want to update
+Note: don't get wrapped up in creating a big folder structure with electron. The goal is to have version control for apple notes, and to be able to have a record of the changes you make. Not a new place to store your documents.
+
+to start:
+-create a folder manually
+-add a file to that folder with electron (see save-file-locally notes)
+-create a file with electron
+-add text from an apple note to that file
+-create a directory
+
+
+
 
 
 

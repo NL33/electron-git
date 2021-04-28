@@ -18,6 +18,9 @@ function createWindow() {
 }
 */
 function saveNewVersionWindow() {
+    let currentDirectory = app.getAppPath()
+    console.log('current directory = ' )
+    console.log(currentDirectory)
     let display = screen.getPrimaryDisplay();
     let width = display.bounds.width
     let height = display.bounds.height
