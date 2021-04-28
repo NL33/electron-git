@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="../script.js"></script>
     <style>
         [contenteditable]:empty:before {
             content: attr(data-placeholder);
@@ -24,10 +23,10 @@
         }
 
         input[type='file'] {
-            /*opacity:0 */    
+            /*opacity:0 */
         }
 
-        #changeFolder{
+        #changeFolder {
             display: inline-block;
             font-size: 11pt;
             border: 1px solid #d4eff7;
@@ -39,7 +38,7 @@
             margin-left: 15px
         }
 
-         #closeChoose{
+        #closeChoose {
             display: none;
             font-size: 11pt;
             border: 1px solid red;
@@ -70,12 +69,33 @@
             border: 2px solid #32cd53;
             outline: none;
             margin-top: 15px;
-           /* margin-left: 35px;
+            /* margin-left: 35px;
             vertical-align: 20%;*/
         }
 
         #saveButton:hover {
             background-color: #32cd53;
+            color: white
+        }
+
+
+        #saveFileButton {
+            /*display: none;*/
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+            /*font-size: 10pt;*/
+            border-radius: 8px;
+            padding: 5px;
+            border: 2px solid #3399FF;
+            outline: none;
+            margin-top: 15px;
+            /* margin-left: 35px;
+            vertical-align: 20%;*/
+        }
+
+        #saveFileButton:hover {
+            background-color: #3399FF;
             color: white
         }
 
@@ -92,26 +112,37 @@
     <title>Save New Version</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
-<div id="folderOverview">
-    <span style="margin-bottom: 10px">
-        <span">Current folder:</span>
+
+<body>
+    <div id="folderOverview">
+        <span style="margin-bottom: 10px">
+            <span">Current folder:
+        </span>
         <span id="directory"></span>
         <span id="changeFolder">change folder</span>
         <span id="closeChoose">close "Choose File"</span>
-    </span></br>
-     <input type="file" id="file-input"/>
-</div>
+        </span></br>
+        <input type="file" id="file-input" />
+    </div>
 
 
-</br>
-<div id="saveNote" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
-<div id="saveButton">Save</div></br>
-<div id="ifNoNewVersion">
-    <div>There are no changes, so a new version has not been saved.</div>
-</div>
-<div id="ifNewVersionSaved">
-    <div id="commitResult">New Version Saved</div>
-    <div id="showResults"></div>
-</div>
+    </br>
+    <div id="saveNote" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
+    <div id="saveButton">Save</div></br>
+    <div id="ifNoNewVersion">
+        <div>There are no changes, so a new version has not been saved.</div>
+    </div>
+    <div id="ifNewVersionSaved">
+        <div id="commitResult">New Version Saved</div>
+        <div id="showResults"></div>
+    </div>
+
+    </br>
+    <div id="saveFileButton">Save File</div>
+
+    <script src="../script.js"></script>
+    <script src="../save-local-file.js"></script>
+
+</body>
 
 </html>

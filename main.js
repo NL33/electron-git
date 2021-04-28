@@ -1,6 +1,11 @@
-const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
+const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
 const { keyboard, Key } = require("@nut-tree/nut-js")
+const fs = require('fs');
+
+
+
+var newVersionWindow
 /*
 function createWindow() { 
    const win = new BrowserWindow({ //creates a new browser window
@@ -18,13 +23,10 @@ function createWindow() {
 }
 */
 function saveNewVersionWindow() {
-    let currentDirectory = app.getAppPath()
-    console.log('current directory = ' )
-    console.log(currentDirectory)
     let display = screen.getPrimaryDisplay();
     let width = display.bounds.width
     let height = display.bounds.height
-    var newVersionWindow = new BrowserWindow({
+    newVersionWindow = new BrowserWindow({
         width: 600,
         height: 300,
         x: width - 605,
@@ -32,10 +34,11 @@ function saveNewVersionWindow() {
         //alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
-            contextIsolation: false, //set to true by default. False if want to use node api in renderer process
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
         }
     })
     newVersionWindow.loadURL('file://' + __dirname + '/views/save-new-version.html');
+    newVersionWindow.openDevTools()
     /*
     newVersionWindow.webContents.on('did-finish-load', function () {
         newVersionWindow.show();
@@ -66,6 +69,33 @@ function menuApp() {
     tray.setToolTip('This is my application.')
     tray.setContextMenu(contextMenu)
 }
+
+ipcMain.on('open-dialog', (event, args)=>{
+    showDialog()
+})
+
+function showDialog() {
+    console.log('clicked show dialog')
+    dialog.showSaveDialog({
+        title: 'Select the File Path to save',
+        //defaultPath: path.join(__dirname, '../assets/sample.txt'),
+        //defaultPath: path.join(__dirname, '../assets/'),
+        buttonLabel: 'Save',
+        // Restricting the user to only Text Files.
+        filters: [
+            {
+                name: 'Text Files',
+                extensions: ['txt', 'docx']
+            },],
+        properties: []
+    }).then(file => {
+        console.log('now in file step')
+        newVersionWindow.webContents.send('file-selected', file)
+        console.log('file step 3')
+    })
+}
+
+
 
 
 async function viewOldVersion(){

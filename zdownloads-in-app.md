@@ -27,7 +27,7 @@ Had to "rebuild robotjs" package and mac notifier package:
 
 npm install --save-dev electron-rebuild
 npx electron-rebuild -f -m node_modules/node-mac-notifier
-npx electron-rebuild -f -m node_modules/robotjs
+npx elec  tron-rebuild -f -m node_modules/robotjs
 ***
 These didn't work. From docs, then tried:
 
