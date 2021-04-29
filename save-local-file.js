@@ -1,20 +1,37 @@
 const path = require('path');
 const fs = require('fs');
 const { ipcRenderer, clipboard } = require('electron')
+var wordPath = '/Users/sean/Desktop/companycd/electron-git/znext.md'
+
+var newDirectory = '/Users/sean/Desktop/electron-tester/big-plans'
 
 window.onload = function () {
     var save = document.getElementById('saveFileButton');
     save.addEventListener('click', (event) => {
         //ipcRenderer.send('open-dialog', '')
         //showDialog()
-        // Resolves to a Promise<Object>
-        saveFile()
+       // addToFile()
+       createDirectory()
     })
 } //end window onload function
 
 
+function createDirectory(){
+    if (!fs.existsSync(newDirectory)) {
+        fs.mkdirSync(newDirectory);
+    }
+}
+
+function addToFile(){
+    var code = '******4hn8tjanfw1*****'
+    fs.appendFile(wordPath,code, (err)=>{
+        if (err) throw err;
+        console.log('added!');
+    })
+}
+
 function saveFile(){
-    let fileData = clipboard.readText()
+    let fileData = clipboard.readHTML()
     let filePath = '/Users/sean/Desktop/electron-tester/apple-note.txt'
     fs.writeFile(filePath, fileData,(err)=>{
         if (err) throw err;
