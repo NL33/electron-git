@@ -4,6 +4,8 @@
 working git save for directory on your computer that you choose
 
 # Big Points
+Replicate code experience, but for non-code projects.
+
 go by projects. So each directory is a project. And in that directory can be docs ofany kind.
 
 files saved onto the computer--the whole folder goes into the directory
@@ -12,7 +14,29 @@ single files (email, apple notes, etc)--added doc by doc. You give the doc a tit
 
 if a doc is read only (and threfore no code added)--that is fine. you are not updating it anyway.
 
-just like an idea--a single place for all your work related to a project. Get version control, searchability in a single spot (across all doc types--recall that mac can't search apple notes)
+just like an idea--a single place for all your work related to a project. Get version control, searchability in a single spot (across all doc types--recall that mac can't search apple notes--actually it can).
+
+organized by your overview notes (commit notes) so you cn see what changed across the project.
+
+# steps 
+
+Projects can span folders and documents. 
+
+Projects can be saved anywhere. user selects the projects. 
+
+They can include microsoft word, logic pro, power point, excel, apple notes, gmail text, etc.
+
+Ultimately, you have different projects, with version control notes attached to them
+***
+When create a project, you can add an existing folder or create a new folder for the project.
+
+Then, can save docs directly to the project and commit changes with notes.
+
+So when go to update project, the app shows you the project the file is a part of, and you can update changes. (remember, more likely you'll be working on one file at a time for these items)
+
+Or you can add it to another project or create a new project based on it. 
+
+
 
 
 

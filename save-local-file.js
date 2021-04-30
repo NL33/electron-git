@@ -11,10 +11,61 @@ window.onload = function () {
         //ipcRenderer.send('open-dialog', '')
         //showDialog()
        // addToFile()
-       createDirectory()
+       //createDirectory()
+       //getTheWindow()
+       getFormatAndStore()
+       
     })
 } //end window onload function
 
+
+function getFormatAndStore(){
+    let formats = clipboard.availableFormats()
+    console.log('formats = ' + formats)
+    if (formats.includes("text/rtf")){
+        console.log('includes RTF')
+        let fileData = clipboard.readRTF()
+        localStorage.setItem("copiedText", fileData);
+        let storageResult = localStorage.getItem("copiedText")
+        clipboard.writeRTF(storageResult)
+        console.log('saved rtf to clipboard')
+    } else if (formats.includes("text/html")) {
+        console.log('includes html')
+        let fileData = clipboard.readHTML()
+        localStorage.setItem("copiedText", fileData);
+        let storageResult = localStorage.getItem("copiedText")
+        clipboard.writeHTML(storageResult)
+        console.log('saved html to clipboard')
+    } else {
+        console.log('includes text')
+        let fileData = clipboard.readText()
+        localStorage.setItem("copiedText", fileData);
+        let storageResult = localStorage.getItem("copiedText")
+        clipboard.writeText(storageResult)
+        console.log('saved text to clipboard')
+    }
+}
+
+function storeItemLocalStorage(){
+    let fileData = clipboard.readHTML()
+    localStorage.setItem("copiedText", fileData);
+    console.log('local storage saved')
+    let storageResult = localStorage.getItem("copiedText")
+    console.log('local storage result = ')
+    clipboard.writeHTML(storageResult)
+    console.log('saved to clipboard')
+}
+
+function openFile(){
+    var doc = '/Users/sean/Desktop/word-convert-test.docx'
+    fs.open(doc, (err)=>{
+        if (err) {
+            console.log(err)
+        } else {
+            console.log('opened')
+        }
+    })
+}
 
 function createDirectory(){
     if (!fs.existsSync(newDirectory)) {
@@ -31,8 +82,8 @@ function addToFile(){
 }
 
 function saveFile(){
-    let fileData = clipboard.readHTML()
-    let filePath = '/Users/sean/Desktop/electron-tester/apple-note.txt'
+    let fileData = clipboard.readRTF()
+    let filePath = '/Users/sean/Desktop/word-convert-test-folder/word-convert-test.txt'
     fs.writeFile(filePath, fileData,(err)=>{
         if (err) throw err;
         console.log('Saved!');

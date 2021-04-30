@@ -2,6 +2,8 @@ const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog 
 const path = require('path') //import the path package which provides utility functions for the file paths
 const { keyboard, Key } = require("@nut-tree/nut-js")
 
+
+
 var newVersionWindow
 /*
 function createWindow() { 
