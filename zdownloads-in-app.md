@@ -13,7 +13,9 @@ $ npm install nutjs
 $ npm install active-win
     --April 27, 2021. REMOVED April 27, 2021 (not the functionality I wanted)
 
-
+$ npm install axios --save
+    --May 1, 2021
+    to allow rest api calls
 
 
 # Prior to rollback on April 15, 2021
