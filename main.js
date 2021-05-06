@@ -37,6 +37,7 @@ function saveNewVersionWindow() {
         }
     })
     newVersionWindow.loadURL('file://' + __dirname + '/views/save-new-version.html');
+    //newVersionWindow.loadURL('/Users/sean/Desktop/word-convert-test-folder/word-convert-test.txt')
     newVersionWindow.openDevTools()
     /*
     newVersionWindow.webContents.on('did-finish-load', function () {

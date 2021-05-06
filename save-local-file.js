@@ -16,6 +16,9 @@ window.onload = function () {
     })
     var save = document.getElementById('saveFileButton');
     save.addEventListener('click', (event) => {
+        let stuff = clipboard.readBuffer()
+        console.log(stuff)
+        clipboard.writeBuffer(stuff)
         //ipcRenderer.send('open-dialog', '')
         //showDialog()
        // addToFile()
@@ -23,8 +26,8 @@ window.onload = function () {
        //getTheWindow()
        //getFormatAndStore()
      // getDiscourseStuff()
-        //getFormatAndStore()
-        getFormatAndStoreHTML()
+      //  getFormatAndStore()
+       // getFormatAndStoreHTML()
     })
     
 } //end window onload function
@@ -35,7 +38,8 @@ function getFormatAndStoreHTML() {
     if (formats.includes("text/html")) {
         console.log('includes html')
         let storageResult = clipboard.readHTML()
-        writeFile(storageResult)
+        clipboard.writeHTML(storageResult)
+      //  writeFile(storageResult)
         //localStorage.setItem("copiedText", fileData);
        // let storageResult = localStorage.getItem("copiedText")
        // writeFile(storageResult)
