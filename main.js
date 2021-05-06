@@ -21,6 +21,7 @@ function createWindow() {
     win.loadFile('index.html') //and loads index.html into that browser window
 }
 */
+
 function saveNewVersionWindow() {
     let display = screen.getPrimaryDisplay();
     let width = display.bounds.width
@@ -44,6 +45,7 @@ function saveNewVersionWindow() {
         newVersionWindow.show();
     })
     */
+
 }
 
 

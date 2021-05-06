@@ -6,6 +6,8 @@ const scriptJS = require('../script.js')
 var wordPath = '/Users/sean/Desktop/companycd/electron-git/znext.md'
 
 var newDirectory = '/Users/sean/Desktop/electron-tester/big-plans'
+
+var openDoc = '/Users/sean/Desktop/word-convert-test.docx'
 const axios = require('axios');
 const { brotliDecompressSync } = require('zlib');
 
