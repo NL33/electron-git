@@ -116,6 +116,7 @@ copy text to clipboard, read as text, write to text file
 
 showing doc on electron: no formatting at all.
 git diff looks good.
+git is able to show it ok--keeps spacing.
 
 word doc (50 page) = 49kb
 txt doc = 127 kb
