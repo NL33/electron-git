@@ -17,6 +17,14 @@ $ npm install axios --save
     --May 1, 2021
     to allow rest api calls
 
+$ npm install mammoth 
+    --May 6, 2021
+    to convert word to html 
+
+$ npm install turndown
+    --May 7, 2021
+    to convert html to markdown.
+
 
 # Prior to rollback on April 15, 2021
 # RobotJS

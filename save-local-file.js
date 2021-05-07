@@ -10,6 +10,9 @@ var newDirectory = '/Users/sean/Desktop/electron-tester/big-plans'
 var openDoc = '/Users/sean/Desktop/word-convert-test.docx'
 const axios = require('axios');
 const { brotliDecompressSync } = require('zlib');
+var mammoth = require("mammoth")
+var TurndownService = require('turndown')
+var turndownService = new TurndownService()
 
 window.onload = function () {
     var saveCommit = document.getElementById('saveButton')
@@ -18,22 +21,149 @@ window.onload = function () {
     })
     var save = document.getElementById('saveFileButton');
     save.addEventListener('click', (event) => {
-        let stuff = clipboard.readBuffer()
-        console.log(stuff)
-        clipboard.writeBuffer(stuff)
         //ipcRenderer.send('open-dialog', '')
         //showDialog()
        // addToFile()
        //createDirectory()
        //getTheWindow()
        //getFormatAndStore()
-     // getDiscourseStuff()
+      //getDiscourseStuff()
       //  getFormatAndStore()
        // getFormatAndStoreHTML()
+       //convertToMarkdown()
+       //convertToPlainText()
+      // readMarkDown()
+      // readWord()
+      //convertWord()
+      saveAsText()
     })
     
 } //end window onload function
 
+
+function saveAsHTML(){
+    console.log('click')
+    var data = clipboard.readHTML()
+    var doc = '/Users/sean/desktop/clipboard-test/html-test.html'
+    writeNewFile(doc, data)
+}
+
+
+function saveAsText() {
+    console.log('click')
+    var data = clipboard.readText()
+    var doc = '/Users/sean/desktop/clipboard-text-test/html-test.txt'
+    writeNewFile(doc, data)
+}
+
+function writeNewFile(doc, data) {
+    fs.writeFile(doc, data, (err) => {
+        if (err) throw err;
+        console.log('added to doc!');
+        readFileFunction(doc)
+    })
+}
+
+function readFileFunction(doc) {
+    console.log('in read file function')
+    fs.readFile(doc, 'utf8', function (err, data) {
+        console.log('in read file 1')
+        let body = document.getElementById("bodyId")
+        body.innerHTML = data
+
+        //clipboard.writeHTML(data)
+        console.log('done')
+    })
+}
+
+
+
+function convertWord(){
+    mammoth.convertToHtml({path: '/Users/sean/Desktop/word-convert-test.docx'}).then(function(result){
+        var hv = result.value;
+        var mv = turndownService.turndown(hv)
+       // var messages = result.messages
+        var doc = '/Users/sean/Desktop/mammoth-test/word-convert-test.html'
+        fs.writeFile(doc, hv, (err) => {
+            if (err) throw err;
+            console.log('added to doc!');
+            readFileFunction(doc)
+        })
+        
+    })
+}
+
+
+
+
+
+function readMarkDown(){
+    var doc = '/Users/sean/Desktop/markdown-test.txt'
+    fs.readFile(doc, 'utf8', function (err, data) {
+        console.log('in read file')
+        let stuff = data
+        
+        let body = document.getElementById("bodyId")
+        body.innerHTML = stuff
+
+        //clipboard.writeHTML(data)
+        console.log('write html--done')
+    })
+}
+
+function localStorageSave(){
+    let data = clipboard.readText()
+    localStorage.setItem("copiedText", data);
+    let data1 = localStorage.getItem("copiedText")
+    let body = document.getElementById("bodyId")
+    body.innerHTML = data1
+}
+
+function readWord(){
+    var doc = 'Users/sean/Desktop/word-convert-test.docx'
+    fs.readFile(doc, 'utf8', function (err, data) {
+        console.log('data = ')
+        console.log(data)
+    })
+}
+
+function convertToMarkdown(){
+    let data1 = clipboard.readText()
+    var doc = '/Users/sean/Desktop/markdown-test/markdown-test.md'
+    fs.writeFile(doc, data1, (err) => {
+        if (err) throw err;
+        console.log('added to doc!');
+    })
+    fs.readFile(doc, 'utf8', function (err, data) {
+        console.log('in read file')
+        let stuff = data
+         let body = document.getElementById("bodyId")
+         body.innerHTML = stuff
+
+        //clipboard.writeHTML(data)
+        console.log('write html--done')
+    })
+}
+
+function convertToPlainText() {
+    let data11 = clipboard.readHTML()
+    var doc = '/Users/sean/Desktop/text-test/text-test.txt'
+   // localStorage.setItem("copiedText", data1Start);
+    //let data1 = localStorage.getItem("copiedText")
+    fs.writeFile(doc, data1, (err) => {
+        if (err) throw err;
+        console.log('added to doc!');
+    })
+    fs.readFile(doc, 'utf8', function (err, data) {
+        console.log('in read file')
+        let stuff = data
+        let body = document.getElementById("bodyId")
+        body.innerHTML = stuff
+
+        //clipboard.writeHTML(data)
+        console.log('write plain text--done')
+    })
+}
 
 function getFormatAndStoreHTML() {
     let formats = clipboard.availableFormats()
@@ -183,8 +313,8 @@ function getDiscourseStuff() {
     console.log('in get discourse stuff')
     //let url = 'https://community.racetosaturn.com/posts/562/revisions/4.json'
     //to get revision data: response.data.data.body_changes.inline 
-   // let url = 'https://go.racetosaturn.com/t/406.json?include_raw=true'
-    let url = 'https://go.racetosaturn.com/raw/411'
+    let url = 'https://go.racetosaturn.com/t/416.json?include_raw=true'
+    //let url = 'https://go.racetosaturn.com/raw/416'
     //to get text = response.data.post_stream.posts[0].cooked
     axios.get(url, {
         params: {
@@ -193,10 +323,11 @@ function getDiscourseStuff() {
         .then(function (response) {
             console.log('response = ')
             console.log(response)
-            let data = response.data
+            let data = response.data.post_stream.posts[0].cooked
+            //let data = response.data
             let body = document.getElementById("bodyId")
             body.innerHTML = data
-            clipboard.writeHTML(data)
+            writeNewFile(data)
             /*
             let data = response.data.post_stream.posts[0].raw
             // let data = response.data.body_changes.side_by_side

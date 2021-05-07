@@ -1,7 +1,8 @@
-const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
+const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
-const { keyboard, Key } = require("@nut-tree/nut-js")
-
+const { keyboard, Key} = require("@nut-tree/nut-js")
+var mammoth = require("mammoth")
+const fs = require('fs');
 
 
 var newVersionWindow
@@ -45,9 +46,33 @@ function saveNewVersionWindow() {
         newVersionWindow.show();
     })
     */
-
+   // convertWord()
 }
 
+function convertWord() {
+    mammoth.convertToHtml({ path: '/Users/sean/Desktop/word-convert-test.docx' }).then(function (result) {
+        var htmlVersion = result.value;
+        //var markdownVersion = turndownService.turndown(htmlVersion)
+        var messages = result.messages
+        console.log('messages = ')
+        console.log(messages)
+        var doc = '/Users/sean/Desktop/mammoth-test/markdown-turndown.md'
+        fs.writeFile(doc, htmlVersion, (err) => {
+            if (err) throw err;
+            console.log('added to doc!');
+        })
+        fs.readFile(doc, 'utf8', function (err, data) {
+            console.log('in read file')
+            clipboard.readHTML(data)
+           // let stuff = data
+            //let body = document.getElementById("bodyId")
+            //body.innerHTML = stuff
+
+            //clipboard.writeHTML(data)
+           // console.log(stuff)
+        })
+    })
+}
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
     app.allowRendererProcessReuse = false  //to allow nutjs

@@ -1,0 +1,994 @@
+
+
+Okokokookokk. Cool.
+
+And here is another change. And more changes and more changes and more stuff and more stuff and more stuff and more stuff and more stuff.
+
+What about now and anow and now and now and now and other stuff and now and now and other stuff.
+
+Does it look good?
+And some other stuff here.
+Super fun.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table 
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	New Box 4 text. Hope it looks good.
+
+No Image for now.
+
+This is version 3 of this micro word doc.
+
+And Added some text over here. How does it look?
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
+****
+This is a Test of Microsoft Word. Now there is a change.
+
+I am adding this new text in. And here is new text
+
+I deleted some old text.
+
+With a post from a16z.com. Does this show in the next version?
+
+And here is Version again for md. 
+***
+Here is a table (now with box 5 removed):
+
+Box 1	Box 2	Box 3	Box 4
+Aaadaa 	And some other text	And ad some text	Adad texter
+
+Here is an image:
+
+This is version 3 of this micro word doc.
+
+		
+Very fun.Still about current. Just added this text
+
+Write up of not first base, but Current. Now 3 pages:
+
+Part 1
+
+The traditional banking system in the U.S. is broken, especially for the third of Americans living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less are unserved or underserved by their existing banks, which charge high, unpredictable fees, offer irrelevant and inaccessible products, don’t extend credit to low-FICO customers, and rely on deposits to make money. 
+
+There is no other consumer-facing industry with such a mismatch between consumer demand and existing products on the market. In the U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four banks have a combined value of $1.1 trillion. Yet, they consistently have negative NPS scores, among the lowest of any industry. 
+
+Part 2
+
+We believe there is going to be a seismic change in the next 10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused banks to consumer-first banks powered by technology. Traditional banks have a massive retail footprint of ~80k branches across the U.S., but gone are the days when consumers selected their bank based on physical proximity. Millennials, in particular, have shown they don’t want to bank in physical branches, they want technology that resembles the non-financial consumer social apps they use, which are mobile-first, beautifully designed, and built for their personal needs. 
+
+Today, we are announcing our investment in Current, which we believe is building the bank for the next generation. Current offers modern banking products and services — instant cash deposits, faster direct deposits, better visibility and control of money — for its members, almost half of whom have never had a bank account before. These features, along with those on the roadmap, are tailored to the specific needs of their target customer base and have been rolled out at a rapid pace. They have built their core banking infrastructure in-house, which not only improves margins, but allows the company to offer products no one else does, such as rewards points for up to 10% cash back at merchants, and instant gas hold crediting. 
+
+Part 3
+We’ve gotten to know Stuart since the early days of the company — he’s an ambitious CEO who has built a brand and product customers love. Premium users who are signed up for direct deposit use the card close to 40 times per month, and Current also sports an NPS of 85, which is on par with some of the most loved consumer products across all industries. Current’s partnerships in the influencer space have also set a standard in the fintech industry. They’re providing a platform for creators to produce engaging content and collaborate with some of the most relevant stars of this generation, including a long-term, exclusive partnership with MrBeast, one of YouTube’s most viewed creators and philanthropists.
+
+Current has grown rapidly at more than 4x year-over-year, reaching close to 3 million active users in just over 3 years. This is a customer base that will grow with Current as they accumulate wealth, and will turn to Current for the full lifecycle of their banking needs. 
+Today, Current is announcing a Series D raise of $220 million, and we are thrilled to be leading the round. I am very excited to join the board and work with Stuart and team as they build an iconic bank for the next generation!  
+ 
+* * *
+The views expressed here are those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or its affiliates. Certain information contained in here has been obtained from third-party sources, including from portfolio companies of funds managed by a16z. While taken from sources believed to be reliable, a16z has not independently verified such information and makes no representations about the enduring accuracy of the information or its appropriateness for a given situation. In addition, this content may include third-party advertisements; a16z has not reviewed such advertisements and does not endorse any advertising content contained therein.
+This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisers as to those matters. References to any securities or digital assets are for illustrative purposes only, and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making a decision to invest in any fund managed by a16z. (An offering to invest in an a16z fund will be made only by the private placement memorandum, subscription agreement, and other relevant documentation of any such fund and should be read in their entirety.) Any investments or portfolio companies mentioned, referred to, or described are not representative of all investments in vehicles managed by a16z, and there can be no assurance that the investments will be profitable or that other investments made in the future will have similar characteristics or results. A list of investments made by funds managed by Andreessen Horowitz (excluding investments for which the issuer has not provided permission for a16z to disclose publicly as well as unannounced investments in publicly traded digital assets) is available at https://a16z.com/investments/.
+
