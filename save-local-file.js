@@ -55,9 +55,7 @@ function readFileFunction(doc) {
     fs.readFile(doc, 'utf8', function (err, data) {
         console.log('in read file 1')
         let body = document.getElementById("bodyId")
-        //body.innerHTML = marked(data)
-        body.innerHTML = data
-        //clipboard.writeHTML(data)
+        body.innerHTML = marked(data) //get markdown data and show in markdown
         console.log('done')
     })
 }
@@ -66,16 +64,17 @@ function readFileFunction(doc) {
 function saveAsHTML(){
     console.log('click')
     var data1 = clipboard.readHTML()
-   // var data = turndownService.turndown(data1)
-    var doc = '/Users/sean/desktop/text-test/word-test.md'
-    writeNewFile(doc, data1)
+    var data = turndownService.turndown(data1) //convert to markdown
+    var doc = '/Users/sean/desktop/markdown-docs/wordtest-markdown.md'
+    writeNewFile(doc, data)
 }
 
 
 function saveAsText() {
     console.log('click')
     var data = clipboard.readText()
-    var doc = '/Users/sean/desktop/text-test/html-test.txt'
+    //var data = turndownService.turndown(data1)
+    var doc = '/Users/sean/desktop/txt-docs/converttest-test.txt'
     writeNewFile(doc, data)
 }
 
