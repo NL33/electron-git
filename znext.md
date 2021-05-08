@@ -99,11 +99,21 @@ this seems ok to start and something people can get used to.
 -run git, and have it save that version in a way you can view: html, or rtf
 -compare prior versions: plain text comparison.
 
+# What about if could get back as a document the discourse version?
+
+electron show: looks great
+shows up as html, with simple tags added in.
+could potentially turn to markdown for github upload
+
+file sizes:
+140 kb
+
 # Clipboard HTML
 copy text to clipboard, read as html, write to html file.
 
 showing doc on electron: looks great, even tables.
 pasting back into word from electron: looks good, though changes font size.
+Github: doesn't look good. shows the big intro
 
 word doc (50 pages) = 49kb
 html doc = 281 kb
@@ -111,18 +121,24 @@ git first commit: 67kb
 git second commit (changed just a few lines): able to track changes: 94kb
 git third commit (added a few lines): tracks changes, 129kb
 
+TOTAL AFTER 3 COMMITS (html doc + 3 commits) = 410kb
+
+Note: if had just saved the word doc with git, that would have been = 150kb
+
 # Clipboard Text
 copy text to clipboard, read as text, write to text file
 
 showing doc on electron: no formatting at all.
 git diff looks good.
-git is able to show it ok--keeps spacing.
+git is able to show it ok--keeps spacing. (no formatting, but readable)
 
 word doc (50 page) = 49kb
 txt doc = 127 kb
 git first commit: 47 kb
 git second commit: 61kb
 git third commit: 69kb
+
+Total after 3 Commits (txt doc + git file) = 196kb
 
 # Clipboard text
 

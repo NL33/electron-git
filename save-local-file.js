@@ -13,7 +13,7 @@ const { brotliDecompressSync } = require('zlib');
 var mammoth = require("mammoth")
 var TurndownService = require('turndown')
 var turndownService = new TurndownService()
-
+var marked = require('marked')
 window.onload = function () {
     var saveCommit = document.getElementById('saveButton')
     saveCommit.addEventListener('click', (event) => {
@@ -35,26 +35,12 @@ window.onload = function () {
       // readMarkDown()
       // readWord()
       //convertWord()
-      saveAsText()
+      //saveAsText()
+      saveAsHTML()
+        //readFileFunction('/Users/sean/desktop/text-test/html-test-apple.html')
     })
     
 } //end window onload function
-
-
-function saveAsHTML(){
-    console.log('click')
-    var data = clipboard.readHTML()
-    var doc = '/Users/sean/desktop/clipboard-test/html-test.html'
-    writeNewFile(doc, data)
-}
-
-
-function saveAsText() {
-    console.log('click')
-    var data = clipboard.readText()
-    var doc = '/Users/sean/desktop/clipboard-text-test/html-test.txt'
-    writeNewFile(doc, data)
-}
 
 function writeNewFile(doc, data) {
     fs.writeFile(doc, data, (err) => {
@@ -69,12 +55,69 @@ function readFileFunction(doc) {
     fs.readFile(doc, 'utf8', function (err, data) {
         console.log('in read file 1')
         let body = document.getElementById("bodyId")
-        body.innerHTML = data
+        body.innerHTML = marked(data)
 
         //clipboard.writeHTML(data)
         console.log('done')
     })
 }
+
+
+function saveAsHTML(){
+    console.log('click')
+    var data1 = clipboard.readHTML()
+    var data = turndownService.turndown(data1)
+    var doc = '/Users/sean/desktop/text-test/word-test.md'
+    writeNewFile(doc, data)
+}
+
+
+function saveAsText() {
+    console.log('click')
+    var data = clipboard.readText()
+    var doc = '/Users/sean/desktop/clipboard-text-test/html-test.txt'
+    writeNewFile(doc, data)
+}
+
+function getDiscourseStuff() {
+    // topic id = 397
+    //post_id = 562
+    console.log('in get discourse stuff')
+    //let url = 'https://community.racetosaturn.com/posts/562/revisions/4.json'
+    //to get revision data: response.data.data.body_changes.inline 
+    let url = 'https://go.racetosaturn.com/t/416.json?include_raw=true'
+    //let url = 'https://go.racetosaturn.com/raw/416'
+    //to get text = response.data.post_stream.posts[0].cooked
+    axios.get(url, {
+        params: {
+        }
+    })
+        .then(function (response) {
+            console.log('response = ')
+            console.log(response)
+            let data = response.data.post_stream.posts[0].cooked
+            //let data = response.data
+            let body = document.getElementById("bodyId")
+            body.innerHTML = data
+            doc = '/Users/sean/desktop/clipboard-text-test/discourse-test.md'
+            writeNewFile(doc, data)
+            /*
+            let data = response.data.post_stream.posts[0].raw
+            // let data = response.data.body_changes.side_by_side
+            console.log('data = ' + data)
+            let body = document.getElementById("bodyId")
+            body.innerHTML = data
+            */
+            //  clipboard.writeHTML(response)
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+        .then(function () {
+            //always executed
+        })
+}
+
 
 
 
@@ -307,43 +350,7 @@ function writeRTFFile(data) {
 }
 
 
-function getDiscourseStuff() {
-    // topic id = 397
-    //post_id = 562
-    console.log('in get discourse stuff')
-    //let url = 'https://community.racetosaturn.com/posts/562/revisions/4.json'
-    //to get revision data: response.data.data.body_changes.inline 
-    let url = 'https://go.racetosaturn.com/t/416.json?include_raw=true'
-    //let url = 'https://go.racetosaturn.com/raw/416'
-    //to get text = response.data.post_stream.posts[0].cooked
-    axios.get(url, {
-        params: {
-        }
-    })
-        .then(function (response) {
-            console.log('response = ')
-            console.log(response)
-            let data = response.data.post_stream.posts[0].cooked
-            //let data = response.data
-            let body = document.getElementById("bodyId")
-            body.innerHTML = data
-            writeNewFile(data)
-            /*
-            let data = response.data.post_stream.posts[0].raw
-            // let data = response.data.body_changes.side_by_side
-            console.log('data = ' + data)
-            let body = document.getElementById("bodyId")
-            body.innerHTML = data
-            */
-          //  clipboard.writeHTML(response)
-        })
-        .catch(function (error) {
-            console.log(error)
-        })
-        .then(function () {
-            //always executed
-        })
-}
+
 
 
 function storeItemLocalStorage(){
