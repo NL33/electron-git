@@ -66,9 +66,9 @@ function readFileFunction(doc) {
 function saveAsHTML(){
     console.log('click')
     var data1 = clipboard.readHTML()
-    var data = turndownService.turndown(data1)
+   // var data = turndownService.turndown(data1)
     var doc = '/Users/sean/desktop/text-test/word-test.md'
-    writeNewFile(doc, data)
+    writeNewFile(doc, data1)
 }
 
 

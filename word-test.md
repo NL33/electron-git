@@ -1,899 +1,5030 @@
-**COMPANY, INC.**
-
-**Amd here is text at the top**
-
-**And here is text at the side.**
-
-**STOCKHOLDERS AGREEMENT**
-
-**Here is a change. I’m moving the first paragraph to the left, and deleting recitals**
-
-THIS STOCKHOLDERS AGREEMENT (this “**_Agreement_**”) is made and entered into effective as of DATE (the “**_Effective Date_**”), by and among COMPANY, Inc., a Delaware corporation (the “**_Company_**”), and those holders of the Class B Common Stock, $0.0001 par value per share (the “**_Class B_** **_Common Stock_**”), identified on the signature pages hereto (individually, a “**_Holder_**,” collectively, the “**_Holders_**”).
-
-And here are some additional changes. How about that?
-
-THIS STOCKHOLDERS AGREEMENT (this “**_Agreement_**”) is made and entered into effective as of DATE (the “**_Effective Date_**”), by and among COMPANY, Inc., a Delaware corporation (the “**_Company_**”), and those holders of the Class B Common Stock, $0.0001 par value per share (the “**_Class B_** **_Common Stock_**”), identified on the signature pages hereto (individually, a “**_Holder_**,” collectively, the “**_Holders_**”).
-
-THIS STOCKHOLDERS AGREEMENT (this “**_Agreement_**”) is made and entered into effective as of DATE (the “**_Effective Date_**”), by and among COMPANY, Inc., a Delaware corporation (the “**_Company_**”), and those holders of the Class B Common Stock, $0.0001 par value per share (the “**_Class B_** **_Common Stock_**”), identified on the signature pages hereto (individually, a “**_Holder_**,” collectively, the “**_Holders_**”).
-
-THIS STOCKHOLDERS AGREEMENT (this “**_Agreement_**”) is made and entered into effective as of DATE (the “**_Effective Date_**”), by and among COMPANY, Inc., a Delaware corporation (the “**_Company_**”), and those holders of the Class B Common Stock, $0.0001 par value per share (the “**_Class B_** **_Common Stock_**”), identified on the signature pages hereto (individually, a “**_Holder_**,” collectively, the “**_Holders_**”).
-
-And here are some additional changes. How about that?
-
-THIS STOCKHOLDERS AGREEMENT (this “**_Agreement_**”) is made and entered into effective as of DATE (the “**_Effective Date_**”), by and among COMPANY, Inc., a Delaware corporation (the “**_Company_**”), and those holders of the Class B Common Stock, $0.0001 par value per share (the “**_Class B_** **_Common Stock_**”), identified on the signature pages hereto (individually, a “**_Holder_**,” collectively, the “**_Holders_**”).
-
-THIS STOCKHOLDERS AGREEMENT (this “**_Agreement_**”) is made and entered into effective as of DATE (the “**_Effective Date_**”), by and among COMPANY, Inc., a Delaware corporation (the “**_Company_**”), and those holders of the Class B Common Stock, $0.0001 par value per share (the “**_Class B_** **_Common Stock_**”), identified on the signature pages hereto (individually, a “**_Holder_**,” collectively, the “**_Holders_**”).
-
-And here are some additional changes. How about that?
-
-THIS STOCKHOLDERS AGREEMENT (this “**_Agreement_**”) is made and entered into effective as of DATE (the “**_Effective Date_**”), by and among COMPANY, Inc., a Delaware corporation (the “**_Company_**”), and those holders of the Class B Common Stock, $0.0001 par value per share (the “**_Class B_** **_Common Stock_**”), identified on the signature pages hereto (individually, a “**_Holder_**,” collectively, the “**_Holders_**”).
-
-AGREEMENT
-
-NOW, THEREFORE, in consideration of the foregoing, the mutual covenants herein contained and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties hereby agree as follows:
-
-1. Restrictions on Transfer of Shares.  Except as otherwise provided in this Agreement and except in compliance with the Company’s Amended and Restated Certificate of Incorporation (the “**_Certificate of Incorporation_**”), the Purchase Agreement and applicable federal and state securities laws, the Holders will not sell, assign, transfer, pledge, hypothecate or otherwise encumber or dispose of in any way (“**_Transfer_**”), all or any part of or any interest in Equity Securities (as that term is defined in Section 2.1) now or hereafter owned or held by such Holders, provided that in no event shall a Holder Transfer any Equity Securities prior to eighteen (18) months from the date hereof (the “**_18 Month Requirement_**”).  Any Transfer not made in conformance with this Agreement, shall be null and void, shall not be recorded on the books of the Company and shall not be recognized by the Company.
-
-2. Agreements Among the Company, and the Holders.
-
-2.1 Definitions.
-
-(a) Holders.  For purposes of this Section 2, the term “**_Holders_**” shall mean each Holder (other than a Selling Holder (as defined below)) or their transferees or assignees who have received such shares of Class A Common Stock or Class B Common Stock, as the case may be, in compliance with the terms of this Agreement.
-
-(b) Equity Securities.  For purposes of this Agreement, the term “**_Equity Securities_**” shall mean Class B Common Stock and any other securities including the shares of Class A Common Stock, as defined below, whether now owned or hereafter owned, having voting rights in the election of the Board of Directors of the Company not contingent upon default, or any securities evidencing an ownership interest in the Company, or any securities convertible into or exercisable for any shares of the foregoing, or any agreement or commitment to issue any of the foregoing.
-
-(c) For the purposes of this Agreement, the term “**_Immediate Family_**” shall mean lineal descendant or antecedent, spouse (or spouse’s antecedents), father, mother, brother or sister (or their descendants), stepchild (or their antecedents or descendants), aunt or uncle (or their antecedents or descendants), brother-in-law or sister-in-law (or their antecedents or descendants) and shall include adoptive relationships, or any person sharing Holder’s household (other than a tenant or an employee). In the case of any Holder that is a Nevada limited liability limited partnership (“**_Nevada LLLP_**”), Immediate Family shall be determined as if the Holder of such Nevada LLLP’s shares is such Nevada LLLP’s Managing Limited Partner or any successor thereto.
-
-2.2 Right of Refusal.
-
-(a) Transfer Notice.  Except as otherwise provided herein, if at any time any Holder proposes to Transfer any Equity Securities (the “**_Offered Securities_**”), then such Holder (the “**_Selling Holder_**”) shall give each Holder written notice of the Selling Holder’s intention to make the Transfer (the “**_Holder Transfer Notice_**”), which Transfer Notice shall include (i) a description of the Offered Securities (or rights therein) to be transferred, (ii) the identity of the prospective transferee(s) and (iii) the consideration and the material terms and conditions upon which the proposed Transfer is to be made. The Holder Transfer Notice shall certify that the Selling Holder has received a bona fide offer from the prospective transferee(s) and in good faith believes a binding agreement for the Transfer is obtainable on the terms set forth in the Holder Transfer Notice. The Holder Transfer Notice shall also include a copy of any written proposal, term sheet or letter of intent or other agreement relating to the proposed Transfer.
-
-(b) Holders’ Option.  The Holders as a group shall have an option for a period of forty-five (45) days from receipt of the Holder Transfer Notice (the “**_Notice Period_**”) to elect to purchase all or any portion of the Offered Securities at the same price and subject to the same material terms and conditions as described in the Holder Transfer Notice.  Each Holder, other than the Co–Sale Holder, as defined below, may exercise such purchase option and, thereby, purchase all or any portion of its pro rata share (with any re-allotments as provided below) of the Offered Securities by notifying the Selling Holder in writing before expiration of the Notice Period as to the amount of such Offered Securities which he, she or it wishes to purchase (including any re-allotment).  Each Holder’s pro rata share of the Offered Securities shall be a fraction of the Offered Securities, of which the number of shares of Equity Securities owned by such Holder on the date of the Holder Transfer Notice shall be the numerator and the total number of shares of Equity Securities held by all Holders on the date of the Holder Transfer Notice shall be the denominator.  Each Holder shall have a right of re-allotment such that, if any other Holder fails to exercise the right to purchase its full pro rata share of the Offered Securities, the other participating Holders may exercise an additional right to purchase, on a pro rata basis, the Offered Securities not previously purchased.  If the Holders give the Selling Holder notice that they desire to purchase the Offered Securities, then payment for the Offered Securities shall be by check or wire transfer, against delivery of the Offered Securities to be purchased at a place agreed upon between the parties and at the time of the scheduled closing therefor, which shall be no later than forty-five (45) days after the Holders’ receipt of the Holder Transfer Notice, unless the Holder Transfer Notice contemplated a later closing with the prospective third party transferee(s) or unless the value of the purchase price has not yet been established pursuant to this Section 2.2(b).
-
-(c) Valuation of Property.  Should the purchase price specified in the Holder Transfer Notice be payable in property other than cash or evidences of indebtedness, the Company and any Holders who have elected to purchase the Offered Securities pursuant to this Section 2.2 (the “**_Purchasing Parties_**”) shall pay the purchase price in the form of cash equal in amount to the fair market value of the Offered Securities. If the Selling Holder and the Purchasing Parties cannot agree on such cash value within ten (10) days after the Purchasing Parties’ receipt of the Holder Transfer Notice, the valuation shall be reasonably determined in good faith by the Board of Directors. If the time for the closing of the Purchasing Parties’ purchase has expired but for the determination of the value of the purchase price offered by the prospective transferee(s), then such closing shall be held on or prior to the fifth (5th) business day after such valuation shall have been made pursuant to this Section 2.2(c).
-
-(d) Exception for Certain Family Transfers. Anything to the contrary contained in this Section 2.2 notwithstanding, the Transfer of any or all of the Equity Securities during Holder’s lifetime or on Holder’s death by will or intestacy to Holder’s Immediate Family or to a trust for the benefit of Holder or Holder’s Immediate Family shall be exempt from the 18 Month Requirement, right of refusal, and right of co-sale. In such case, the transferee or other recipient shall receive and hold the Equity Securities so transferred subject to the provisions of this Agreement, and there shall be no further Transfer of such Equity Securities except in accordance with the terms of this Agreement.
-
-(e) Conversion of Class B Shares.  Each share of Class B Common Stock shall be automatically, without further action by the Holder, converted into one (1) fully paid and non-assessable share of Class A Common Stock, par value $0.0001 per share (“**_Class A Common Stock_**”), upon the occurrence of a Transfer, in accordance with the Certificate of Incorporation.
-
-2.3 Right of Co-Sale.
-
-(a) If the Holders do not exercise their available right of refusal as to the Offered Securities pursuant to Section 2.2, then each Holder which notifies the Selling Holder in writing within the Notice Period (each a “**_Co-Sale Holder_**” and collectively the “**_Co-Sale Holders_**”) shall have the right to participate in such Transfer of Equity Securities on the same terms and conditions as specified in the Holder Transfer Notice.  Each Co-Sale Holder’s notice to the Selling Holder shall indicate the number of Equity Securities the Selling Holder wishes to Transfer under his, her or its right to participate.  To the extent one (1) or more of the Co–Sale Holders exercises such right of participation in accordance with the terms and conditions set forth below, the number of Offered Securities that the Selling Holder may Transfer  shall be correspondingly reduced.
-
-(b) Each Co-Sale Holder may Transfer all or any part of that number of Equity Securities equal to the product obtained by multiplying (i) the aggregate number of Equity Securities by (ii) a fraction, the numerator of which is the number of shares of Equity Securities owned by the Co-Sale Holder on the date of the Holder Transfer Notice and the denominator of which is the total number of shares of Equity Securities owned on the date of the Holder Transfer Notice by the Selling Holder and the Co-Sale Holders.  The aggregate amount of stock Transferred by a Co-Sale Holder or Co-Sale Holders, as the case may be, shall not exceed stuff of the shares proposed to be Transferred pursuant to such Holder Transfer Notice.
-
-(c) Each Co-Sale Holder shall effect its participation in the Transfer by delivering within twenty (20) days after the expiration of the Notice Period to the Selling Holder for transfer to the prospective purchaser instructions of transfer representing the number of shares of Equity Securities which such Co-Sale Holder elects to Transfer.
-
-(d) The shares of Equity Securities delivered to the Selling Holder pursuant to Section 2.3(c) shall be transferred to the prospective purchaser in consummation of the Transfer of the securities pursuant to the terms and conditions specified in the Holder Transfer Notice, and the Selling Holder shall concurrently therewith remit to such Co-Sale Holder that portion of the proceeds to which such Co-Sale Holder is entitled by reason of its participation in such sale.  To the extent that any prospective purchaser or purchasers prohibits such Transfer or otherwise refuses to purchase shares or other securities from a Co-Sale Holder exercising its rights of co-sale hereunder, the Selling Holder shall not Transfer to such prospective purchaser or purchasers any securities unless and until, simultaneously with such Transfer, the Selling Holder shall purchase such shares or other securities from such Co-Sale Holder for the same consideration and on the same terms and conditions as the proposed Transfer described in the Holder Transfer Notice.
-
-2.4 Prohibited Transfers.
-
-(a) In the event any Selling Holder should Transfer any Equity Securities in contravention of the co-sale rights of the Co-Sale Holders under Section 2.3 (a “**_Prohibited Transfer_**”), to the extent such Transfer is valid and recorded on the books of and recognized by the Company pursuant to Section 1, the Co-Sale Holders, in addition to such other remedies as may be available at law, in equity or hereunder, shall have the put option provided below, and such Selling Holder shall be bound by the applicable provisions of such option.
-
-(b) In the event of a Prohibited Transfer, each Co-Sale Holder shall have the right to Transfer to the Selling Holder the type and number of shares of Equity Securities equal to the number of shares each Co-Sale Holder would have been entitled to Transfer to the Selling Holder, or transfer to the third-party transferee(s), under Section 2.3 above had the Prohibited Transfer been effected pursuant to and in compliance with the terms hereof. Such Transfer shall be made on the following terms and conditions:
-
-(i)        The price per share at which the shares are to be sold to the Co-Sale Holder shall be equal to the price per share paid by the third-party transferee(s) to the Selling Holder in the Prohibited Transfer.
-
-(ii)       Within sixty (60) days after the later of the dates on which the Co-Sale Holder (A) received notice of the Prohibited Transfer or (B) otherwise becomes aware of the Prohibited Transfer, each Co-Sale Holder shall, if exercising the option created hereby, deliver to the Selling Holder instructions of transfer for the shares of Equity Securities to be sold.
-
-(iii)      The Selling Holder shall, upon receipt of instructions of transfer for the shares to be sold by a Co-Sale Holder, pursuant to this Section 2.4, pay the aggregate purchase price therefor, as specified in subparagraph 2.4(b)(i), in cash or by other means acceptable to the Co-Sale Holder.
-
-(iv)      Notwithstanding the foregoing, this Section 2.4 does not in any way limit the restrictions on Transfer provided for in Section 1.
-
-2.5 Non-Exercise of Rights. 
-
-To the extent that the Holders have not exercised their rights to purchase the Offered Shares within the time periods specified in Section 2.2 and the Co-Sale Holder have not exercised their rights to participate in the Transfer of the Offered Shares within the time periods specified in Section 2.3, the Selling Holder shall have a period of ten (10) days from the expiration of such rights in which to Transfer the Offered Shares upon the terms and conditions (including the purchase price) no more favorable than those specified in the Holder Transfer Notice to the third-party transferee(s) identified in the Holder Transfer Notice.  In the event the Selling Holder does not consummate the Transfer of the Offered Shares within the ten (10) day period from the expiration of these rights, the Holders’ first refusal rights and Co-Sale Holders co-sale rights shall continue to be applicable to any subsequent disposition of the Offered Shares by the Selling Holder until such right lapses in accordance with the terms of this Agreement.  Furthermore, the exercise or non-exercise of the rights of the Holders under this Section 2 to purchase Equity Securities from the Selling Holder or for the Co-Sale Holders to participate in Transfers of Equity Securities by the Selling Holder shall not adversely affect their rights to make subsequent purchases from the Selling Holder of Equity Securities or subsequently participate in Transfers of Equity Securities by the Selling Holder.
-
-2.6 Limitations to Rights of Refusal and Co-Sale.
-
-Notwithstanding the provisions of Section 2 of this Agreement, and subject to any rights, restrictions or obligations of the Holder or other third party in any other agreement to which the Holder is a party, a Holder may Transfer, with or without consideration, Equity Securities to any spouse or member of a Holder’s Immediate Family, or to a custodian, trustee (including a trustee of a voting trust), executor (including executor of an estate), or other fiduciary in each case for the account of a Holder’s spouse or members of a Holder’s Immediate family, or to a trust for a Holder’s own self, or a charitable remainder trust, provided that each such transferee or assignee, prior to the completion of the Transfer, shall have executed documents assuming the obligations of a Holder under this Agreement with respect to the transferred securities. If a Transfer to a spouse of a Holder by reason of divorce occurs, the right of refusal and co-sale shall not pass to such spouse.
-
-2.7 Each New Holder Required to Become a Party to this Agreement. 
-
-Any party that purchases or receives Equity Securities pursuant to a Transfer, that is not a Prohibited Transfer, shall be required to, within five (5) days of receiving the Equity Securities (i) become a party to this Agreement, as it may be amended from time to time, and (ii) become a party to that certain voting agreement of even date herewith, executed by all of the parties to this Agreement, as it may be amended from time to time. Failure to comply with this provisions shall nullify the Transfer.
-
-2.8 Board of Directors.
-
- During the term of this Agreement, each Holder agrees to vote all shares in such manner as may be necessary to elect (and maintain in office) as members of the Company’s Board of Directors the following individuals: Person A. Person and Person Person.  The size of Board may only be increased or decreased upon an affirmative vote of two-thirds in voting power of the shares of Class B common Stock of the Company.
-
-3. Exculpation and Indemnification. No director or officer in his capacity as such and no director or officer who is or was serving at the request of the Company as a member, manager, director, officer, partner, venturer, proprietor, trustee, employee, authorized person, agent, or similar functionary of another foreign or domestic limited liability company, corporation, partnership, joint venture, sole proprietorship, trust, employee benefit plan or other enterprise (each, an **_“Indemnified Person”_**) shall be liable to the Company for monetary damages arising from any actions taken, or actions failed to be taken, in his or her capacity as such except for (a) liability for acts that involve fraud, willful misconduct or bad faith and (b) liability with respect to any transaction from which such Person derived a personal benefit in violation of this Agreement, in each case described in clauses (a) and (b) preceding, as determined by a final, nonappealable order of a court of competent jurisdiction or arbitrator.  Notwithstanding anything to the contrary in this Agreement, to the maximum extent permitted by the Delaware General Corporation Law, the Company, as applicable, shall bear the burden of establishing a prima facie case that a director or officer breached the standard of care set forth above in this Section 3.  Each person who was or is made a party or is threatened to be made a party to or is involved in any threatened, pending or completed action, suit or proceeding, whether civil, criminal, administrative, arbitrative or investigative (hereinafter a **_“Proceeding”_**), or any appeal in such a Proceeding or any inquiry or investigation that could lead to such a Proceeding, by reason of the fact that it, or a person of whom it is the legal representative, is or was a director or while an officer or director is or was serving at the request of the Company as a member, manager, director, officer, partner, venturer, proprietor, trustee, employee, authorized person, agent, or similar functionary of another foreign or domestic limited liability company, corporation, partnership, joint venture, sole proprietorship, trust, employee benefit plan or other enterprise shall be, except as permitted below in this Section 3, indemnified by the Company to the fullest extent permitted by the Delaware General Corporation Law, as the same exists or may hereafter be amended (but, in the case of any such amendment, only to the extent that such amendment permits the Company to provide broader indemnification rights than said law permitted the Company to provide prior to such amendment) against judgments, penalties (including excise and similar taxes and punitive damages), fines, settlements and reasonable expenses (including reasonable attorneys’ fees) actually incurred by such person in connection with such Proceeding, and indemnification under this Section 3 shall continue as to a person who has ceased to serve in the capacity which initially entitled such person to indemnity hereunder.  Notwithstanding anything to the contrary in this Section 3, a person shall not be entitled to indemnification hereunder if it is determined by a nonappealable order of a court of competent jurisdiction or arbitrator that, with respect to the matter for which such person seeks indemnification, such person did not act in good faith and in a manner he reasonably believed to be in or not opposed to the best interests of the Company, that such person’s actions constituted fraud, willful misconduct or bad faith or, with respect to any criminal action or proceeding, had reasonable cause to believe that his conduct was unlawful; provided, however, that such person’s compliance with their respective fiduciary duties, by itself, will not be deemed to limit such person’s entitlement to indemnification hereunder.  The termination of any action, suit or proceeding by judgment, order, settlement, conviction, or upon a plea of nolo contendere or its equivalent, shall not, of itself, create a presumption that the person did not act in good faith and in a manner which he reasonably believed to be in or not opposed to the best interests of the Company and, with respect to any criminal action or proceeding, had reasonable cause to believe that his conduct was unlawful.  The right to indemnification conferred to directors and officers in this Section 3 shall include the right to be paid or reimbursed by the Company the reasonable expenses incurred by a person entitled to be indemnified under this Section 3 who was, is or is threatened to be made a named defendant or respondent in a Proceeding in advance of the final disposition of the Proceeding and without any determination as to the Person’s ultimate entitlement to indemnification; provided, however, that the payment of such expenses incurred by any such person in advance of the final disposition of a Proceeding shall be made only upon delivery to the Company of a written affirmation by such person of its good faith belief that it has met the standard of conduct necessary for indemnification under this Section 3 and a written undertaking, by such person, to repay all amounts so advanced if it shall ultimately be determined that such indemnified person is not entitled to be indemnified under this Section 3 or otherwise.
-
-4. Stock Dividends.  If, from time to time, there is any stock dividend, stock split or other change in the character or amount of any of the outstanding stock of the Company, then in such event any and all new substituted or additional securities to which the Holder is entitled by reason of the Holder’s ownership of the shares subject to this Agreement shall be considered shares and shall be immediately subject to all terms of this Agreement with the same force and effect as the shares subject to the terms of this Agreement immediately before such event.
-
-5. Legend.  Each existing or replacement certificate representing any shares of Equity Securities now owned or hereafter acquired by the Holders shall have endorsed thereon the following legend (together with any other legends required by applicable law):
-
-THE SHARES REPRESENTED BY THIS CERTIFICATE ARE SUBJECT TO CERTAIN RIGHTS IN FAVOR OF THE COMPANY AND CERTAIN OTHER HOLDERS OF STOCK OF THE COMPANY SET FORTH IN A STOCKHOLDERS AGREEMENT BETWEEN THE COMPANY, SUCH HOLDERS, AND THE REGISTERED HOLDER, OR HIS OR HER PREDECESSOR IN INTEREST, A COPY OF WHICH IS ON FILE AT THE PRINCIPAL OFFICE OF THIS COMPANY.
-
-6. Effect of Change in Company’s Capital Structure.  Appropriate adjustments shall be made in the number and class of shares in the event of a stock dividend, stock split, reverse stock split, combination, reclassification or like change in the capital structure of the Company.
-
-7. Notices.  Any notice required or permitted by any provision of this Agreement shall be given in writing and shall be delivered personally or by courier, or by registered or certified mail, postage prepaid, or by fax addressed (i) if to the Company: to the address of its principal office or any registered agent, with a copy to Norton Rose Fulbright US L.L.P., 1301 McKinney, Suite 5100, Houston, Texas 77010, Fax: (713) 651-5246, Attention: Charles D. Powell; (ii) if to a Holder: to the most recent address for such Holder set forth in the Company’s books and records, which address such Holder may change from time to time by written notice to the Company; and (iii) in the case of any permitted transferee of a party to this Agreement or its transferee, to such transferee at its address as designated in writing by such transferee to the Company from time to time.  Notices that are mailed or sent by courier or overnight delivery shall be deemed received two (2) days after deposit in the United States mail or after they have been so sent.  Notices that are sent by fax shall be deemed received upon confirmation of successful transmission.
-
-8. Further Instruments and Actions.  The parties agree to execute such further instruments and to take such further action as may reasonably be necessary to carry out the intent of this Agreement.  Each party hereto agrees to cooperate affirmatively with all other parties hereto, to the extent reasonably requested by the such parties, to enforce rights and obligations herein provided.
-
-9. Specific Performance.  The rights of the parties under this Agreement are unique and, accordingly, the parties shall have the right, in addition to such other remedies as may be available to any of them at law or in equity, to enforce their rights hereunder by actions for specific performance in addition to any other legal or equitable remedies they might have to the extent permitted by law.
-
-10. Term.  This Agreement shall terminate upon the earlier to occur of (i) the closing of a firm commitment underwritten public offering pursuant to an effective registration statement under the Securities Act of 1933, as amended, covering the offer and sale of the Company’s Equity Securities and an aggregate offering price of not less than $20,000,000; (ii) the Transfer of greater than fifty percent (50%) of the voting power of the Company to an entity that is not affiliated with the Company, or (iii) the written consent of the Company and Holders holding at least two-thirds of the outstanding Class B Common Stock then held by Holders.
-
-11. Amendments and Waivers.  Any term of this Agreement may be amended and the observance of any term of this Agreement may be waived (either generally or in a particular instance and either retroactively or prospectively), only with the written consent of the Company and the written consent of Holders holding two-thirds of the outstanding shares of Class B Common Stock then held by the Holders. Any amendment or waiver effected in accordance with this paragraph shall be binding upon the Company and each Holder and their respective successors and assigns.
-
-12. Assignment; Successors and Assigns.  This Agreement shall be binding upon and shall inure to the benefit of the parties hereto and their respective heirs, executors, legal representatives, successors and permitted transferees, except as may be expressly provided otherwise herein.
-
-13. Severability.  Whenever possible, each provision of this Agreement shall be interpreted in such manner as to be effective and valid under applicable law, but if one or more provisions of or obligations under this Agreement are held to be invalid, illegal, or unenforceable under applicable law, then such provision or obligation shall be excluded from this Agreement, and the remaining provisions of and obligations under this Agreement shall be enforceable in full in accordance with their terms.
-
-14. Attorneys’ Fees.  In the event that any dispute among the parties to this Agreement should result in litigation, the prevailing party in such dispute shall be entitled to recover from the losing party all fees, costs and expenses of enforcing any right of such prevailing party under or with respect to this Agreement, including, without limitation, such reasonable fees and expenses of attorneys and accountants, which shall include, without limitation, all fees, costs and expenses of appeal.
-
-15. Counterparts/Facsimile Signatures.  This Agreement may be executed in two (2) or more counterparts, each of which shall be deemed an original, but all of which together shall constitute one (1) and the same instrument.  Signatures transmitted via facsimile shall be deemed originals for purposes of this Agreement.
-
-16. Section Headings.  The headings contained in this Agreement are for reference purposes only and shall not in any way affect the meaning or interpretation of this Agreement.
-
-17. Governing Law.  This Agreement shall be governed by and construed and enforced in accordance with the laws of the State of Delaware, without regard to conflicts of laws.
-
-_\[Signature Page Follows\]_
-
-  
-
-IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.
-
-**COMPANY:**
-
-**COMPANY, INC.**
-
-a Delaware corporation
-
-  
-By: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
-  
-Name: Person Person  
-Title:  Chief Executive Officer
-
-  
-
-IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.
-
-**HOLDERS:**
-
-**Person A. Person**
-
-No. of Shares: 
-
-**Person Person**
-
-No. of Shares: 
-
-**Person Person**
-
-No. of Shares: 
-
-**Org LLLP**
-
-a Nevada limited liability limited partnership  
-  
-By:   
-Name: Person  
-Title: 
-
-No. of Shares: 
-
-**COMPANY, INC.**
-
-**STOCKHOLDERS AGREEMENT**
-
-THIS STOCKHOLDERS AGREEMENT (this “**_Agreement_**”) is made and entered into effective as of DATE (the “**_Effective Date_**”), by and among COMPANY, Inc., a Delaware corporation (the “**_Company_**”), and those holders of the Class B Common Stock, $0.0001 par value per share (the “**_Class B_** **_Common Stock_**”), identified on the signature pages hereto (individually, a “**_Holder_**,” collectively, the “**_Holders_**”).
-
-RECITALS
-
-WHEREAS, each Holder is an owner of the number of shares of Class B Common Stock set forth opposite his or its name on the signature pages hereto and is also a party to a Founder’s Purchase Agreement (“**_Purchase Agreement_**”) entered into by and between each Holder and the Company.
-
-AGREEMENT
-
-NOW, THEREFORE, in consideration of the foregoing, the mutual covenants herein contained and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties hereby agree as follows:
-
-1. Restrictions on Transfer of Shares.  Except as otherwise provided in this Agreement and except in compliance with the Company’s Amended and Restated Certificate of Incorporation (the “_Certificate of Incorporation_”), the Purchase Agreement and applicable federal and state securities laws, the Holders will not sell, assign, transfer, pledge, hypothecate or otherwise encumber or dispose of in any way (“_Transfer_”), all or any part of or any interest in Equity Securities (as that term is defined in Section 2.1) now or hereafter owned or held by such Holders, provided that in no event shall a Holder Transfer any Equity Securities prior to eighteen (18) months from the date hereof (the “_18 Month Requirement_”).  Any Transfer not made in conformance with this Agreement, shall be null and void, shall not be recorded on the books of the Company and shall not be recognized by the Company.
-==================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-2. Agreements Among the Company, and the Holders.
-=================================================
-
-2.1 Definitions.
-----------------
-
-### (a) Holders.  For purposes of this Section 2, the term “_Holders_” shall mean each Holder (other than a Selling Holder (as defined below)) or their transferees or assignees who have received such shares of Class A Common Stock or Class B Common Stock, as the case may be, in compliance with the terms of this Agreement.
-
-### (b) Equity Securities.  For purposes of this Agreement, the term “_Equity Securities_” shall mean Class B Common Stock and any other securities including the shares of Class A Common Stock, as defined below, whether now owned or hereafter owned, having voting rights in the election of the Board of Directors of the Company not contingent upon default, or any securities evidencing an ownership interest in the Company, or any securities convertible into or exercisable for any shares of the foregoing, or any agreement or commitment to issue any of the foregoing.
-
-### (c) For the purposes of this Agreement, the term “_Immediate Family_” shall mean lineal descendant or antecedent, spouse (or spouse’s antecedents), father, mother, brother or sister (or their descendants), stepchild (or their antecedents or descendants), aunt or uncle (or their antecedents or descendants), brother-in-law or sister-in-law (or their antecedents or descendants) and shall include adoptive relationships, or any person sharing Holder’s household (other than a tenant or an employee). In the case of any Holder that is a Nevada limited liability limited partnership (“_Nevada LLLP_”), Immediate Family shall be determined as if the Holder of such Nevada LLLP’s shares is such Nevada LLLP’s Managing Limited Partner or any successor thereto.
-
-2.2 Right of Refusal.
----------------------
-
-### (a) Transfer Notice.  Except as otherwise provided herein, if at any time any Holder proposes to Transfer any Equity Securities (the “_Offered Securities_”), then such Holder (the “_Selling Holder_”) shall give each Holder written notice of the Selling Holder’s intention to make the Transfer (the “_Holder Transfer Notice_”), which Transfer Notice shall include (i) a description of the Offered Securities (or rights therein) to be transferred, (ii) the identity of the prospective transferee(s) and (iii) the consideration and the material terms and conditions upon which the proposed Transfer is to be made. The Holder Transfer Notice shall certify that the Selling Holder has received a bona fide offer from the prospective transferee(s) and in good faith believes a binding agreement for the Transfer is obtainable on the terms set forth in the Holder Transfer Notice. The Holder Transfer Notice shall also include a copy of any written proposal, term sheet or letter of intent or other agreement relating to the proposed Transfer.
-
-### (b) Holders’ Option.  The Holders as a group shall have an option for a period of forty-five (45) days from receipt of the Holder Transfer Notice (the “_Notice Period_”) to elect to purchase all or any portion of the Offered Securities at the same price and subject to the same material terms and conditions as described in the Holder Transfer Notice.  Each Holder, other than the Co–Sale Holder, as defined below, may exercise such purchase option and, thereby, purchase all or any portion of its pro rata share (with any re-allotments as provided below) of the Offered Securities by notifying the Selling Holder in writing before expiration of the Notice Period as to the amount of such Offered Securities which he, she or it wishes to purchase (including any re-allotment).  Each Holder’s pro rata share of the Offered Securities shall be a fraction of the Offered Securities, of which the number of shares of Equity Securities owned by such Holder on the date of the Holder Transfer Notice shall be the numerator and the total number of shares of Equity Securities held by all Holders on the date of the Holder Transfer Notice shall be the denominator.  Each Holder shall have a right of re-allotment such that, if any other Holder fails to exercise the right to purchase its full pro rata share of the Offered Securities, the other participating Holders may exercise an additional right to purchase, on a pro rata basis, the Offered Securities not previously purchased.  If the Holders give the Selling Holder notice that they desire to purchase the Offered Securities, then payment for the Offered Securities shall be by check or wire transfer, against delivery of the Offered Securities to be purchased at a place agreed upon between the parties and at the time of the scheduled closing therefor, which shall be no later than forty-five (45) days after the Holders’ receipt of the Holder Transfer Notice, unless the Holder Transfer Notice contemplated a later closing with the prospective third party transferee(s) or unless the value of the purchase price has not yet been established pursuant to this Section 2.2(b).
-
-### (c) Valuation of Property.  Should the purchase price specified in the Holder Transfer Notice be payable in property other than cash or evidences of indebtedness, the Company and any Holders who have elected to purchase the Offered Securities pursuant to this Section 2.2 (the “_Purchasing Parties_”) shall pay the purchase price in the form of cash equal in amount to the fair market value of the Offered Securities. If the Selling Holder and the Purchasing Parties cannot agree on such cash value within ten (10) days after the Purchasing Parties’ receipt of the Holder Transfer Notice, the valuation shall be reasonably determined in good faith by the Board of Directors. If the time for the closing of the Purchasing Parties’ purchase has expired but for the determination of the value of the purchase price offered by the prospective transferee(s), then such closing shall be held on or prior to the fifth (5th) business day after such valuation shall have been made pursuant to this Section 2.2(c).
-
-### (d) Exception for Certain Family Transfers. Anything to the contrary contained in this Section 2.2 notwithstanding, the Transfer of any or all of the Equity Securities during Holder’s lifetime or on Holder’s death by will or intestacy to Holder’s Immediate Family or to a trust for the benefit of Holder or Holder’s Immediate Family shall be exempt from the 18 Month Requirement, right of refusal, and right of co-sale. In such case, the transferee or other recipient shall receive and hold the Equity Securities so transferred subject to the provisions of this Agreement, and there shall be no further Transfer of such Equity Securities except in accordance with the terms of this Agreement.
-
-### (e) Conversion of Class B Shares.  Each share of Class B Common Stock shall be automatically, without further action by the Holder, converted into one (1) fully paid and non-assessable share of Class A Common Stock, par value $0.0001 per share (“_Class A Common Stock_”), upon the occurrence of a Transfer, in accordance with the Certificate of Incorporation.
-
-2.3 Right of Co-Sale.
----------------------
-
-### (a) If the Holders do not exercise their available right of refusal as to the Offered Securities pursuant to Section 2.2, then each Holder which notifies the Selling Holder in writing within the Notice Period (each a “_Co-Sale Holder_” and collectively the “_Co-Sale Holders_”) shall have the right to participate in such Transfer of Equity Securities on the same terms and conditions as specified in the Holder Transfer Notice.  Each Co-Sale Holder’s notice to the Selling Holder shall indicate the number of Equity Securities the Selling Holder wishes to Transfer under his, her or its right to participate.  To the extent one (1) or more of the Co–Sale Holders exercises such right of participation in accordance with the terms and conditions set forth below, the number of Offered Securities that the Selling Holder may Transfer  shall be correspondingly reduced.
-
-### (b) Each Co-Sale Holder may Transfer all or any part of that number of Equity Securities equal to the product obtained by multiplying (i) the aggregate number of Equity Securities by (ii) a fraction, the numerator of which is the number of shares of Equity Securities owned by the Co-Sale Holder on the date of the Holder Transfer Notice and the denominator of which is the total number of shares of Equity Securities owned on the date of the Holder Transfer Notice by the Selling Holder and the Co-Sale Holders.  The aggregate amount of stock Transferred by a Co-Sale Holder or Co-Sale Holders, as the case may be, shall not exceed 70% of the shares proposed to be Transferred pursuant to such Holder Transfer Notice.
-
-### (c) Each Co-Sale Holder shall effect its participation in the Transfer by delivering within twenty (20) days after the expiration of the Notice Period to the Selling Holder for transfer to the prospective purchaser instructions of transfer representing the number of shares of Equity Securities which such Co-Sale Holder elects to Transfer.
-
-### (d) The shares of Equity Securities delivered to the Selling Holder pursuant to Section 2.3(c) shall be transferred to the prospective purchaser in consummation of the Transfer of the securities pursuant to the terms and conditions specified in the Holder Transfer Notice, and the Selling Holder shall concurrently therewith remit to such Co-Sale Holder that portion of the proceeds to which such Co-Sale Holder is entitled by reason of its participation in such sale.  To the extent that any prospective purchaser or purchasers prohibits such Transfer or otherwise refuses to purchase shares or other securities from a Co-Sale Holder exercising its rights of co-sale hereunder, the Selling Holder shall not Transfer to such prospective purchaser or purchasers any securities unless and until, simultaneously with such Transfer, the Selling Holder shall purchase such shares or other securities from such Co-Sale Holder for the same consideration and on the same terms and conditions as the proposed Transfer described in the Holder Transfer Notice.
-
-2.4 Prohibited Transfers.
--------------------------
-
-### (a) In the event any Selling Holder should Transfer any Equity Securities in contravention of the co-sale rights of the Co-Sale Holders under Section 2.3 (a “_Prohibited Transfer_”), to the extent such Transfer is valid and recorded on the books of and recognized by the Company pursuant to Section 1, the Co-Sale Holders, in addition to such other remedies as may be available at law, in equity or hereunder, shall have the put option provided below, and such Selling Holder shall be bound by the applicable provisions of such option.
-
-### (b) In the event of a Prohibited Transfer, each Co-Sale Holder shall have the right to Transfer to the Selling Holder the type and number of shares of Equity Securities equal to the number of shares each Co-Sale Holder would have been entitled to Transfer to the Selling Holder, or transfer to the third-party transferee(s), under Section 2.3 above had the Prohibited Transfer been effected pursuant to and in compliance with the terms hereof. Such Transfer shall be made on the following terms and conditions:
-
-(i)        The price per share at which the shares are to be sold to the Co-Sale Holder shall be equal to the price per share paid by the third-party transferee(s) to the Selling Holder in the Prohibited Transfer.
-
-(ii)       Within sixty (60) days after the later of the dates on which the Co-Sale Holder (A) received notice of the Prohibited Transfer or (B) otherwise becomes aware of the Prohibited Transfer, each Co-Sale Holder shall, if exercising the option created hereby, deliver to the Selling Holder instructions of transfer for the shares of Equity Securities to be sold.
-
-(iii)      The Selling Holder shall, upon receipt of instructions of transfer for the shares to be sold by a Co-Sale Holder, pursuant to this Section 2.4, pay the aggregate purchase price therefor, as specified in subparagraph 2.4(b)(i), in cash or by other means acceptable to the Co-Sale Holder.
-
-(iv)      Notwithstanding the foregoing, this Section 2.4 does not in any way limit the restrictions on Transfer provided for in Section 1.
-
-2.5 Non-Exercise of Rights. 
-----------------------------
-
-To the extent that the Holders have not exercised their rights to purchase the Offered Shares within the time periods specified in Section 2.2 and the Co-Sale Holder have not exercised their rights to participate in the Transfer of the Offered Shares within the time periods specified in Section 2.3, the Selling Holder shall have a period of ten (10) days from the expiration of such rights in which to Transfer the Offered Shares upon the terms and conditions (including the purchase price) no more favorable than those specified in the Holder Transfer Notice to the third-party transferee(s) identified in the Holder Transfer Notice.  In the event the Selling Holder does not consummate the Transfer of the Offered Shares within the ten (10) day period from the expiration of these rights, the Holders’ first refusal rights and Co-Sale Holders co-sale rights shall continue to be applicable to any subsequent disposition of the Offered Shares by the Selling Holder until such right lapses in accordance with the terms of this Agreement.  Furthermore, the exercise or non-exercise of the rights of the Holders under this Section 2 to purchase Equity Securities from the Selling Holder or for the Co-Sale Holders to participate in Transfers of Equity Securities by the Selling Holder shall not adversely affect their rights to make subsequent purchases from the Selling Holder of Equity Securities or subsequently participate in Transfers of Equity Securities by the Selling Holder.
-
-2.6 Limitations to Rights of Refusal and Co-Sale.
--------------------------------------------------
-
-Notwithstanding the provisions of Section 2 of this Agreement, and subject to any rights, restrictions or obligations of the Holder or other third party in any other agreement to which the Holder is a party, a Holder may Transfer, with or without consideration, Equity Securities to any spouse or member of a Holder’s Immediate Family, or to a custodian, trustee (including a trustee of a voting trust), executor (including executor of an estate), or other fiduciary in each case for the account of a Holder’s spouse or members of a Holder’s Immediate family, or to a trust for a Holder’s own self, or a charitable remainder trust, provided that each such transferee or assignee, prior to the completion of the Transfer, shall have executed documents assuming the obligations of a Holder under this Agreement with respect to the transferred securities. If a Transfer to a spouse of a Holder by reason of divorce occurs, the right of refusal and co-sale shall not pass to such spouse.
-
-2.7 Each New Holder Required to Become a Party to this Agreement. 
-------------------------------------------------------------------
-
-Any party that purchases or receives Equity Securities pursuant to a Transfer, that is not a Prohibited Transfer, shall be required to, within five (5) days of receiving the Equity Securities (i) become a party to this Agreement, as it may be amended from time to time, and (ii) become a party to that certain voting agreement of even date herewith, executed by all of the parties to this Agreement, as it may be amended from time to time. Failure to comply with this provisions shall nullify the Transfer.
-
-2.8 Board of Directors.
------------------------
-
- During the term of this Agreement, each Holder agrees to vote all shares in such manner as may be necessary to elect (and maintain in office) as members of the Company’s Board of Directors the following individuals: Person A. Person and Person Person.  The size of Board may only be increased or decreased upon an affirmative vote of two-thirds in voting power of the shares of Class B common Stock of the Company.
-
-3. Exculpation and Indemnification. No director or officer in his capacity as such and no director or officer who is or was serving at the request of the Company as a member, manager, director, officer, partner, venturer, proprietor, trustee, employee, authorized person, agent, or similar functionary of another foreign or domestic limited liability company, corporation, partnership, joint venture, sole proprietorship, trust, employee benefit plan or other enterprise (each, an _“Indemnified Person”_) shall be liable to the Company for monetary damages arising from any actions taken, or actions failed to be taken, in his or her capacity as such except for (a) liability for acts that involve fraud, willful misconduct or bad faith and (b) liability with respect to any transaction from which such Person derived a personal benefit in violation of this Agreement, in each case described in clauses (a) and (b) preceding, as determined by a final, nonappealable order of a court of competent jurisdiction or arbitrator.  Notwithstanding anything to the contrary in this Agreement, to the maximum extent permitted by the Delaware General Corporation Law, the Company, as applicable, shall bear the burden of establishing a prima facie case that a director or officer breached the standard of care set forth above in this Section 3.  Each person who was or is made a party or is threatened to be made a party to or is involved in any threatened, pending or completed action, suit or proceeding, whether civil, criminal, administrative, arbitrative or investigative (hereinafter a _“Proceeding”_), or any appeal in such a Proceeding or any inquiry or investigation that could lead to such a Proceeding, by reason of the fact that it, or a person of whom it is the legal representative, is or was a director or while an officer or director is or was serving at the request of the Company as a member, manager, director, officer, partner, venturer, proprietor, trustee, employee, authorized person, agent, or similar functionary of another foreign or domestic limited liability company, corporation, partnership, joint venture, sole proprietorship, trust, employee benefit plan or other enterprise shall be, except as permitted below in this Section 3, indemnified by the Company to the fullest extent permitted by the Delaware General Corporation Law, as the same exists or may hereafter be amended (but, in the case of any such amendment, only to the extent that such amendment permits the Company to provide broader indemnification rights than said law permitted the Company to provide prior to such amendment) against judgments, penalties (including excise and similar taxes and punitive damages), fines, settlements and reasonable expenses (including reasonable attorneys’ fees) actually incurred by such person in connection with such Proceeding, and indemnification under this Section 3 shall continue as to a person who has ceased to serve in the capacity which initially entitled such person to indemnity hereunder.  Notwithstanding anything to the contrary in this Section 3, a person shall not be entitled to indemnification hereunder if it is determined by a nonappealable order of a court of competent jurisdiction or arbitrator that, with respect to the matter for which such person seeks indemnification, such person did not act in good faith and in a manner he reasonably believed to be in or not opposed to the best interests of the Company, that such person’s actions constituted fraud, willful misconduct or bad faith or, with respect to any criminal action or proceeding, had reasonable cause to believe that his conduct was unlawful; provided, however, that such person’s compliance with their respective fiduciary duties, by itself, will not be deemed to limit such person’s entitlement to indemnification hereunder.  The termination of any action, suit or proceeding by judgment, order, settlement, conviction, or upon a plea of nolo contendere or its equivalent, shall not, of itself, create a presumption that the person did not act in good faith and in a manner which he reasonably believed to be in or not opposed to the best interests of the Company and, with respect to any criminal action or proceeding, had reasonable cause to believe that his conduct was unlawful.  The right to indemnification conferred to directors and officers in this Section 3 shall include the right to be paid or reimbursed by the Company the reasonable expenses incurred by a person entitled to be indemnified under this Section 3 who was, is or is threatened to be made a named defendant or respondent in a Proceeding in advance of the final disposition of the Proceeding and without any determination as to the Person’s ultimate entitlement to indemnification; provided, however, that the payment of such expenses incurred by any such person in advance of the final disposition of a Proceeding shall be made only upon delivery to the Company of a written affirmation by such person of its good faith belief that it has met the standard of conduct necessary for indemnification under this Section 3 and a written undertaking, by such person, to repay all amounts so advanced if it shall ultimately be determined that such indemnified person is not entitled to be indemnified under this Section 3 or otherwise.
-====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-4. Stock Dividends.  If, from time to time, there is any stock dividend, stock split or other change in the character or amount of any of the outstanding stock of the Company, then in such event any and all new substituted or additional securities to which the Holder is entitled by reason of the Holder’s ownership of the shares subject to this Agreement shall be considered shares and shall be immediately subject to all terms of this Agreement with the same force and effect as the shares subject to the terms of this Agreement immediately before such event.
-=================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-5. Legend.  Each existing or replacement certificate representing any shares of Equity Securities now owned or hereafter acquired by the Holders shall have endorsed thereon the following legend (together with any other legends required by applicable law):
-===============================================================================================================================================================================================================================================================
-
-THE SHARES REPRESENTED BY THIS CERTIFICATE ARE SUBJECT TO CERTAIN RIGHTS IN FAVOR OF THE COMPANY AND CERTAIN OTHER HOLDERS OF STOCK OF THE COMPANY SET FORTH IN A STOCKHOLDERS AGREEMENT BETWEEN THE COMPANY, SUCH HOLDERS, AND THE REGISTERED HOLDER, OR HIS OR HER PREDECESSOR IN INTEREST, A COPY OF WHICH IS ON FILE AT THE PRINCIPAL OFFICE OF THIS COMPANY.
-
-6. Effect of Change in Company’s Capital Structure.  Appropriate adjustments shall be made in the number and class of shares in the event of a stock dividend, stock split, reverse stock split, combination, reclassification or like change in the capital structure of the Company.
-======================================================================================================================================================================================================================================================================================
-
-7. Notices.  Any notice required or permitted by any provision of this Agreement shall be given in writing and shall be delivered personally or by courier, or by registered or certified mail, postage prepaid, or by fax addressed (i) if to the Company: to the address of its principal office or any registered agent, with a copy to Norton Rose Fulbright US L.L.P., 1301 McKinney, Suite 5100, Houston, Texas 77010, Fax: (713) 651-5246, Attention: Charles D. Powell; (ii) if to a Holder: to the most recent address for such Holder set forth in the Company’s books and records, which address such Holder may change from time to time by written notice to the Company; and (iii) in the case of any permitted transferee of a party to this Agreement or its transferee, to such transferee at its address as designated in writing by such transferee to the Company from time to time.  Notices that are mailed or sent by courier or overnight delivery shall be deemed received two (2) days after deposit in the United States mail or after they have been so sent.  Notices that are sent by fax shall be deemed received upon confirmation of successful transmission.
-==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-8. Further Instruments and Actions.  The parties agree to execute such further instruments and to take such further action as may reasonably be necessary to carry out the intent of this Agreement.  Each party hereto agrees to cooperate affirmatively with all other parties hereto, to the extent reasonably requested by the such parties, to enforce rights and obligations herein provided.
-===================================================================================================================================================================================================================================================================================================================================================================================================
-
-9. Specific Performance.  The rights of the parties under this Agreement are unique and, accordingly, the parties shall have the right, in addition to such other remedies as may be available to any of them at law or in equity, to enforce their rights hereunder by actions for specific performance in addition to any other legal or equitable remedies they might have to the extent permitted by law.
-=============================================================================================================================================================================================================================================================================================================================================================================================================
-
-10. Term.  This Agreement shall terminate upon the earlier to occur of (i) the closing of a firm commitment underwritten public offering pursuant to an effective registration statement under the Securities Act of 1933, as amended, covering the offer and sale of the Company’s Equity Securities and an aggregate offering price of not less than $20,000,000; (ii) the Transfer of greater than fifty percent (50%) of the voting power of the Company to an entity that is not affiliated with the Company, or (iii) the written consent of the Company and Holders holding at least two-thirds of the outstanding Class B Common Stock then held by Holders.
-====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-11. Amendments and Waivers.  Any term of this Agreement may be amended and the observance of any term of this Agreement may be waived (either generally or in a particular instance and either retroactively or prospectively), only with the written consent of the Company and the written consent of Holders holding two-thirds of the outstanding shares of Class B Common Stock then held by the Holders. Any amendment or waiver effected in accordance with this paragraph shall be binding upon the Company and each Holder and their respective successors and assigns.
-================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-12. Assignment; Successors and Assigns.  This Agreement shall be binding upon and shall inure to the benefit of the parties hereto and their respective heirs, executors, legal representatives, successors and permitted transferees, except as may be expressly provided otherwise herein.
-============================================================================================================================================================================================================================================================================================
-
-13. Severability.  Whenever possible, each provision of this Agreement shall be interpreted in such manner as to be effective and valid under applicable law, but if one or more provisions of or obligations under this Agreement are held to be invalid, illegal, or unenforceable under applicable law, then such provision or obligation shall be excluded from this Agreement, and the remaining provisions of and obligations under this Agreement shall be enforceable in full in accordance with their terms.
-=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-14. Attorneys’ Fees.  In the event that any dispute among the parties to this Agreement should result in litigation, the prevailing party in such dispute shall be entitled to recover from the losing party all fees, costs and expenses of enforcing any right of such prevailing party under or with respect to this Agreement, including, without limitation, such reasonable fees and expenses of attorneys and accountants, which shall include, without limitation, all fees, costs and expenses of appeal.
-==================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-15. Counterparts/Facsimile Signatures.  This Agreement may be executed in two (2) or more counterparts, each of which shall be deemed an original, but all of which together shall constitute one (1) and the same instrument.  Signatures transmitted via facsimile shall be deemed originals for purposes of this Agreement.
-==============================================================================================================================================================================================================================================================================================================================
-
-16. Section Headings.  The headings contained in this Agreement are for reference purposes only and shall not in any way affect the meaning or interpretation of this Agreement.
-================================================================================================================================================================================
-
-17. Governing Law.  This Agreement shall be governed by and construed and enforced in accordance with the laws of the State of Delaware, without regard to conflicts of laws.
-=============================================================================================================================================================================
-
-_\[Signature Page Follows\]_
-
-  
-
-IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.
-
-**COMPANY:**
-
-**COMPANY, INC.**
-
-a Delaware corporation
-
-  
-By: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
-  
-Name: Person Person  
-Title:  Chief Executive Officer
-
-  
-
-IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.
-
-**HOLDERS:**
-
-**Person A. Person**
-
-No. of Shares: 404,000
-
-**Person Person**
-
-No. of Shares: 396,000
-
-**Person Person**
-
-No. of Shares: 100,000
-
-**Org LLLP**
-
-a Nevada limited liability limited partnership  
-  
-By:   
-Name: Person  
-Title:  Managing Limited Partner
-
-No. of Shares: 100,000
-
-**COMPANY, INC.**
-
-**STOCKHOLDERS AGREEMENT**
-
-THIS STOCKHOLDERS AGREEMENT (this “**_Agreement_**”) is made and entered into effective as of DATE (the “**_Effective Date_**”), by and among COMPANY, Inc., a Delaware corporation (the “**_Company_**”), and those holders of the Class B Common Stock, $0.0001 par value per share (the “**_Class B_** **_Common Stock_**”), identified on the signature pages hereto (individually, a “**_Holder_**,” collectively, the “**_Holders_**”).
-
-RECITALS
-
-WHEREAS, each Holder is an owner of the number of shares of Class B Common Stock set forth opposite his or its name on the signature pages hereto and is also a party to a Founder’s Purchase Agreement (“**_Purchase Agreement_**”) entered into by and between each Holder and the Company.
-
-AGREEMENT
-
-NOW, THEREFORE, in consideration of the foregoing, the mutual covenants herein contained and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties hereby agree as follows:
-
-1. Restrictions on Transfer of Shares.  Except as otherwise provided in this Agreement and except in compliance with the Company’s Amended and Restated Certificate of Incorporation (the “_Certificate of Incorporation_”), the Purchase Agreement and applicable federal and state securities laws, the Holders will not sell, assign, transfer, pledge, hypothecate or otherwise encumber or dispose of in any way (“_Transfer_”), all or any part of or any interest in Equity Securities (as that term is defined in Section 2.1) now or hereafter owned or held by such Holders, provided that in no event shall a Holder Transfer any Equity Securities prior to eighteen (18) months from the date hereof (the “_18 Month Requirement_”).  Any Transfer not made in conformance with this Agreement, shall be null and void, shall not be recorded on the books of the Company and shall not be recognized by the Company.
-==================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-2. Agreements Among the Company, and the Holders.
-=================================================
-
-2.1 Definitions.
-----------------
-
-### (a) Holders.  For purposes of this Section 2, the term “_Holders_” shall mean each Holder (other than a Selling Holder (as defined below)) or their transferees or assignees who have received such shares of Class A Common Stock or Class B Common Stock, as the case may be, in compliance with the terms of this Agreement.
-
-### (b) Equity Securities.  For purposes of this Agreement, the term “_Equity Securities_” shall mean Class B Common Stock and any other securities including the shares of Class A Common Stock, as defined below, whether now owned or hereafter owned, having voting rights in the election of the Board of Directors of the Company not contingent upon default, or any securities evidencing an ownership interest in the Company, or any securities convertible into or exercisable for any shares of the foregoing, or any agreement or commitment to issue any of the foregoing.
-
-### (c) For the purposes of this Agreement, the term “_Immediate Family_” shall mean lineal descendant or antecedent, spouse (or spouse’s antecedents), father, mother, brother or sister (or their descendants), stepchild (or their antecedents or descendants), aunt or uncle (or their antecedents or descendants), brother-in-law or sister-in-law (or their antecedents or descendants) and shall include adoptive relationships, or any person sharing Holder’s household (other than a tenant or an employee). In the case of any Holder that is a Nevada limited liability limited partnership (“_Nevada LLLP_”), Immediate Family shall be determined as if the Holder of such Nevada LLLP’s shares is such Nevada LLLP’s Managing Limited Partner or any successor thereto.
-
-2.2 Right of Refusal.
----------------------
-
-### (a) Transfer Notice.  Except as otherwise provided herein, if at any time any Holder proposes to Transfer any Equity Securities (the “_Offered Securities_”), then such Holder (the “_Selling Holder_”) shall give each Holder written notice of the Selling Holder’s intention to make the Transfer (the “_Holder Transfer Notice_”), which Transfer Notice shall include (i) a description of the Offered Securities (or rights therein) to be transferred, (ii) the identity of the prospective transferee(s) and (iii) the consideration and the material terms and conditions upon which the proposed Transfer is to be made. The Holder Transfer Notice shall certify that the Selling Holder has received a bona fide offer from the prospective transferee(s) and in good faith believes a binding agreement for the Transfer is obtainable on the terms set forth in the Holder Transfer Notice. The Holder Transfer Notice shall also include a copy of any written proposal, term sheet or letter of intent or other agreement relating to the proposed Transfer.
-
-### (b) Holders’ Option.  The Holders as a group shall have an option for a period of forty-five (45) days from receipt of the Holder Transfer Notice (the “_Notice Period_”) to elect to purchase all or any portion of the Offered Securities at the same price and subject to the same material terms and conditions as described in the Holder Transfer Notice.  Each Holder, other than the Co–Sale Holder, as defined below, may exercise such purchase option and, thereby, purchase all or any portion of its pro rata share (with any re-allotments as provided below) of the Offered Securities by notifying the Selling Holder in writing before expiration of the Notice Period as to the amount of such Offered Securities which he, she or it wishes to purchase (including any re-allotment).  Each Holder’s pro rata share of the Offered Securities shall be a fraction of the Offered Securities, of which the number of shares of Equity Securities owned by such Holder on the date of the Holder Transfer Notice shall be the numerator and the total number of shares of Equity Securities held by all Holders on the date of the Holder Transfer Notice shall be the denominator.  Each Holder shall have a right of re-allotment such that, if any other Holder fails to exercise the right to purchase its full pro rata share of the Offered Securities, the other participating Holders may exercise an additional right to purchase, on a pro rata basis, the Offered Securities not previously purchased.  If the Holders give the Selling Holder notice that they desire to purchase the Offered Securities, then payment for the Offered Securities shall be by check or wire transfer, against delivery of the Offered Securities to be purchased at a place agreed upon between the parties and at the time of the scheduled closing therefor, which shall be no later than forty-five (45) days after the Holders’ receipt of the Holder Transfer Notice, unless the Holder Transfer Notice contemplated a later closing with the prospective third party transferee(s) or unless the value of the purchase price has not yet been established pursuant to this Section 2.2(b).
-
-### (c) Valuation of Property.  Should the purchase price specified in the Holder Transfer Notice be payable in property other than cash or evidences of indebtedness, the Company and any Holders who have elected to purchase the Offered Securities pursuant to this Section 2.2 (the “_Purchasing Parties_”) shall pay the purchase price in the form of cash equal in amount to the fair market value of the Offered Securities. If the Selling Holder and the Purchasing Parties cannot agree on such cash value within ten (10) days after the Purchasing Parties’ receipt of the Holder Transfer Notice, the valuation shall be reasonably determined in good faith by the Board of Directors. If the time for the closing of the Purchasing Parties’ purchase has expired but for the determination of the value of the purchase price offered by the prospective transferee(s), then such closing shall be held on or prior to the fifth (5th) business day after such valuation shall have been made pursuant to this Section 2.2(c).
-
-### (d) Exception for Certain Family Transfers. Anything to the contrary contained in this Section 2.2 notwithstanding, the Transfer of any or all of the Equity Securities during Holder’s lifetime or on Holder’s death by will or intestacy to Holder’s Immediate Family or to a trust for the benefit of Holder or Holder’s Immediate Family shall be exempt from the 18 Month Requirement, right of refusal, and right of co-sale. In such case, the transferee or other recipient shall receive and hold the Equity Securities so transferred subject to the provisions of this Agreement, and there shall be no further Transfer of such Equity Securities except in accordance with the terms of this Agreement.
-
-### (e) Conversion of Class B Shares.  Each share of Class B Common Stock shall be automatically, without further action by the Holder, converted into one (1) fully paid and non-assessable share of Class A Common Stock, par value $0.0001 per share (“_Class A Common Stock_”), upon the occurrence of a Transfer, in accordance with the Certificate of Incorporation.
-
-2.3 Right of Co-Sale.
----------------------
-
-### (a) If the Holders do not exercise their available right of refusal as to the Offered Securities pursuant to Section 2.2, then each Holder which notifies the Selling Holder in writing within the Notice Period (each a “_Co-Sale Holder_” and collectively the “_Co-Sale Holders_”) shall have the right to participate in such Transfer of Equity Securities on the same terms and conditions as specified in the Holder Transfer Notice.  Each Co-Sale Holder’s notice to the Selling Holder shall indicate the number of Equity Securities the Selling Holder wishes to Transfer under his, her or its right to participate.  To the extent one (1) or more of the Co–Sale Holders exercises such right of participation in accordance with the terms and conditions set forth below, the number of Offered Securities that the Selling Holder may Transfer  shall be correspondingly reduced.
-
-### (b) Each Co-Sale Holder may Transfer all or any part of that number of Equity Securities equal to the product obtained by multiplying (i) the aggregate number of Equity Securities by (ii) a fraction, the numerator of which is the number of shares of Equity Securities owned by the Co-Sale Holder on the date of the Holder Transfer Notice and the denominator of which is the total number of shares of Equity Securities owned on the date of the Holder Transfer Notice by the Selling Holder and the Co-Sale Holders.  The aggregate amount of stock Transferred by a Co-Sale Holder or Co-Sale Holders, as the case may be, shall not exceed 70% of the shares proposed to be Transferred pursuant to such Holder Transfer Notice.
-
-### (c) Each Co-Sale Holder shall effect its participation in the Transfer by delivering within twenty (20) days after the expiration of the Notice Period to the Selling Holder for transfer to the prospective purchaser instructions of transfer representing the number of shares of Equity Securities which such Co-Sale Holder elects to Transfer.
-
-### (d) The shares of Equity Securities delivered to the Selling Holder pursuant to Section 2.3(c) shall be transferred to the prospective purchaser in consummation of the Transfer of the securities pursuant to the terms and conditions specified in the Holder Transfer Notice, and the Selling Holder shall concurrently therewith remit to such Co-Sale Holder that portion of the proceeds to which such Co-Sale Holder is entitled by reason of its participation in such sale.  To the extent that any prospective purchaser or purchasers prohibits such Transfer or otherwise refuses to purchase shares or other securities from a Co-Sale Holder exercising its rights of co-sale hereunder, the Selling Holder shall not Transfer to such prospective purchaser or purchasers any securities unless and until, simultaneously with such Transfer, the Selling Holder shall purchase such shares or other securities from such Co-Sale Holder for the same consideration and on the same terms and conditions as the proposed Transfer described in the Holder Transfer Notice.
-
-2.4 Prohibited Transfers.
--------------------------
-
-### (a) In the event any Selling Holder should Transfer any Equity Securities in contravention of the co-sale rights of the Co-Sale Holders under Section 2.3 (a “_Prohibited Transfer_”), to the extent such Transfer is valid and recorded on the books of and recognized by the Company pursuant to Section 1, the Co-Sale Holders, in addition to such other remedies as may be available at law, in equity or hereunder, shall have the put option provided below, and such Selling Holder shall be bound by the applicable provisions of such option.
-
-### (b) In the event of a Prohibited Transfer, each Co-Sale Holder shall have the right to Transfer to the Selling Holder the type and number of shares of Equity Securities equal to the number of shares each Co-Sale Holder would have been entitled to Transfer to the Selling Holder, or transfer to the third-party transferee(s), under Section 2.3 above had the Prohibited Transfer been effected pursuant to and in compliance with the terms hereof. Such Transfer shall be made on the following terms and conditions:
-
-(i)        The price per share at which the shares are to be sold to the Co-Sale Holder shall be equal to the price per share paid by the third-party transferee(s) to the Selling Holder in the Prohibited Transfer.
-
-(ii)       Within sixty (60) days after the later of the dates on which the Co-Sale Holder (A) received notice of the Prohibited Transfer or (B) otherwise becomes aware of the Prohibited Transfer, each Co-Sale Holder shall, if exercising the option created hereby, deliver to the Selling Holder instructions of transfer for the shares of Equity Securities to be sold.
-
-(iii)      The Selling Holder shall, upon receipt of instructions of transfer for the shares to be sold by a Co-Sale Holder, pursuant to this Section 2.4, pay the aggregate purchase price therefor, as specified in subparagraph 2.4(b)(i), in cash or by other means acceptable to the Co-Sale Holder.
-
-(iv)      Notwithstanding the foregoing, this Section 2.4 does not in any way limit the restrictions on Transfer provided for in Section 1.
-
-2.5 Non-Exercise of Rights. 
-----------------------------
-
-To the extent that the Holders have not exercised their rights to purchase the Offered Shares within the time periods specified in Section 2.2 and the Co-Sale Holder have not exercised their rights to participate in the Transfer of the Offered Shares within the time periods specified in Section 2.3, the Selling Holder shall have a period of ten (10) days from the expiration of such rights in which to Transfer the Offered Shares upon the terms and conditions (including the purchase price) no more favorable than those specified in the Holder Transfer Notice to the third-party transferee(s) identified in the Holder Transfer Notice.  In the event the Selling Holder does not consummate the Transfer of the Offered Shares within the ten (10) day period from the expiration of these rights, the Holders’ first refusal rights and Co-Sale Holders co-sale rights shall continue to be applicable to any subsequent disposition of the Offered Shares by the Selling Holder until such right lapses in accordance with the terms of this Agreement.  Furthermore, the exercise or non-exercise of the rights of the Holders under this Section 2 to purchase Equity Securities from the Selling Holder or for the Co-Sale Holders to participate in Transfers of Equity Securities by the Selling Holder shall not adversely affect their rights to make subsequent purchases from the Selling Holder of Equity Securities or subsequently participate in Transfers of Equity Securities by the Selling Holder.
-
-2.6 Limitations to Rights of Refusal and Co-Sale.
--------------------------------------------------
-
-Notwithstanding the provisions of Section 2 of this Agreement, and subject to any rights, restrictions or obligations of the Holder or other third party in any other agreement to which the Holder is a party, a Holder may Transfer, with or without consideration, Equity Securities to any spouse or member of a Holder’s Immediate Family, or to a custodian, trustee (including a trustee of a voting trust), executor (including executor of an estate), or other fiduciary in each case for the account of a Holder’s spouse or members of a Holder’s Immediate family, or to a trust for a Holder’s own self, or a charitable remainder trust, provided that each such transferee or assignee, prior to the completion of the Transfer, shall have executed documents assuming the obligations of a Holder under this Agreement with respect to the transferred securities. If a Transfer to a spouse of a Holder by reason of divorce occurs, the right of refusal and co-sale shall not pass to such spouse.
-
-2.7 Each New Holder Required to Become a Party to this Agreement. 
-------------------------------------------------------------------
-
-Any party that purchases or receives Equity Securities pursuant to a Transfer, that is not a Prohibited Transfer, shall be required to, within five (5) days of receiving the Equity Securities (i) become a party to this Agreement, as it may be amended from time to time, and (ii) become a party to that certain voting agreement of even date herewith, executed by all of the parties to this Agreement, as it may be amended from time to time. Failure to comply with this provisions shall nullify the Transfer.
-
-2.8 Board of Directors.
------------------------
-
- During the term of this Agreement, each Holder agrees to vote all shares in such manner as may be necessary to elect (and maintain in office) as members of the Company’s Board of Directors the following individuals: Person A. Person and Person Person.  The size of Board may only be increased or decreased upon an affirmative vote of two-thirds in voting power of the shares of Class B common Stock of the Company.
-
-3. Exculpation and Indemnification. No director or officer in his capacity as such and no director or officer who is or was serving at the request of the Company as a member, manager, director, officer, partner, venturer, proprietor, trustee, employee, authorized person, agent, or similar functionary of another foreign or domestic limited liability company, corporation, partnership, joint venture, sole proprietorship, trust, employee benefit plan or other enterprise (each, an _“Indemnified Person”_) shall be liable to the Company for monetary damages arising from any actions taken, or actions failed to be taken, in his or her capacity as such except for (a) liability for acts that involve fraud, willful misconduct or bad faith and (b) liability with respect to any transaction from which such Person derived a personal benefit in violation of this Agreement, in each case described in clauses (a) and (b) preceding, as determined by a final, nonappealable order of a court of competent jurisdiction or arbitrator.  Notwithstanding anything to the contrary in this Agreement, to the maximum extent permitted by the Delaware General Corporation Law, the Company, as applicable, shall bear the burden of establishing a prima facie case that a director or officer breached the standard of care set forth above in this Section 3.  Each person who was or is made a party or is threatened to be made a party to or is involved in any threatened, pending or completed action, suit or proceeding, whether civil, criminal, administrative, arbitrative or investigative (hereinafter a _“Proceeding”_), or any appeal in such a Proceeding or any inquiry or investigation that could lead to such a Proceeding, by reason of the fact that it, or a person of whom it is the legal representative, is or was a director or while an officer or director is or was serving at the request of the Company as a member, manager, director, officer, partner, venturer, proprietor, trustee, employee, authorized person, agent, or similar functionary of another foreign or domestic limited liability company, corporation, partnership, joint venture, sole proprietorship, trust, employee benefit plan or other enterprise shall be, except as permitted below in this Section 3, indemnified by the Company to the fullest extent permitted by the Delaware General Corporation Law, as the same exists or may hereafter be amended (but, in the case of any such amendment, only to the extent that such amendment permits the Company to provide broader indemnification rights than said law permitted the Company to provide prior to such amendment) against judgments, penalties (including excise and similar taxes and punitive damages), fines, settlements and reasonable expenses (including reasonable attorneys’ fees) actually incurred by such person in connection with such Proceeding, and indemnification under this Section 3 shall continue as to a person who has ceased to serve in the capacity which initially entitled such person to indemnity hereunder.  Notwithstanding anything to the contrary in this Section 3, a person shall not be entitled to indemnification hereunder if it is determined by a nonappealable order of a court of competent jurisdiction or arbitrator that, with respect to the matter for which such person seeks indemnification, such person did not act in good faith and in a manner he reasonably believed to be in or not opposed to the best interests of the Company, that such person’s actions constituted fraud, willful misconduct or bad faith or, with respect to any criminal action or proceeding, had reasonable cause to believe that his conduct was unlawful; provided, however, that such person’s compliance with their respective fiduciary duties, by itself, will not be deemed to limit such person’s entitlement to indemnification hereunder.  The termination of any action, suit or proceeding by judgment, order, settlement, conviction, or upon a plea of nolo contendere or its equivalent, shall not, of itself, create a presumption that the person did not act in good faith and in a manner which he reasonably believed to be in or not opposed to the best interests of the Company and, with respect to any criminal action or proceeding, had reasonable cause to believe that his conduct was unlawful.  The right to indemnification conferred to directors and officers in this Section 3 shall include the right to be paid or reimbursed by the Company the reasonable expenses incurred by a person entitled to be indemnified under this Section 3 who was, is or is threatened to be made a named defendant or respondent in a Proceeding in advance of the final disposition of the Proceeding and without any determination as to the Person’s ultimate entitlement to indemnification; provided, however, that the payment of such expenses incurred by any such person in advance of the final disposition of a Proceeding shall be made only upon delivery to the Company of a written affirmation by such person of its good faith belief that it has met the standard of conduct necessary for indemnification under this Section 3 and a written undertaking, by such person, to repay all amounts so advanced if it shall ultimately be determined that such indemnified person is not entitled to be indemnified under this Section 3 or otherwise.
-====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-4. Stock Dividends.  If, from time to time, there is any stock dividend, stock split or other change in the character or amount of any of the outstanding stock of the Company, then in such event any and all new substituted or additional securities to which the Holder is entitled by reason of the Holder’s ownership of the shares subject to this Agreement shall be considered shares and shall be immediately subject to all terms of this Agreement with the same force and effect as the shares subject to the terms of this Agreement immediately before such event.
-=================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-5. Legend.  Each existing or replacement certificate representing any shares of Equity Securities now owned or hereafter acquired by the Holders shall have endorsed thereon the following legend (together with any other legends required by applicable law):
-===============================================================================================================================================================================================================================================================
-
-THE SHARES REPRESENTED BY THIS CERTIFICATE ARE SUBJECT TO CERTAIN RIGHTS IN FAVOR OF THE COMPANY AND CERTAIN OTHER HOLDERS OF STOCK OF THE COMPANY SET FORTH IN A STOCKHOLDERS AGREEMENT BETWEEN THE COMPANY, SUCH HOLDERS, AND THE REGISTERED HOLDER, OR HIS OR HER PREDECESSOR IN INTEREST, A COPY OF WHICH IS ON FILE AT THE PRINCIPAL OFFICE OF THIS COMPANY.
-
-6. Effect of Change in Company’s Capital Structure.  Appropriate adjustments shall be made in the number and class of shares in the event of a stock dividend, stock split, reverse stock split, combination, reclassification or like change in the capital structure of the Company.
-======================================================================================================================================================================================================================================================================================
-
-7. Notices.  Any notice required or permitted by any provision of this Agreement shall be given in writing and shall be delivered personally or by courier, or by registered or certified mail, postage prepaid, or by fax addressed (i) if to the Company: to the address of its principal office or any registered agent, with a copy to Norton Rose Fulbright US L.L.P., 1301 McKinney, Suite 5100, Houston, Texas 77010, Fax: (713) 651-5246, Attention: Charles D. Powell; (ii) if to a Holder: to the most recent address for such Holder set forth in the Company’s books and records, which address such Holder may change from time to time by written notice to the Company; and (iii) in the case of any permitted transferee of a party to this Agreement or its transferee, to such transferee at its address as designated in writing by such transferee to the Company from time to time.  Notices that are mailed or sent by courier or overnight delivery shall be deemed received two (2) days after deposit in the United States mail or after they have been so sent.  Notices that are sent by fax shall be deemed received upon confirmation of successful transmission.
-==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-8. Further Instruments and Actions.  The parties agree to execute such further instruments and to take such further action as may reasonably be necessary to carry out the intent of this Agreement.  Each party hereto agrees to cooperate affirmatively with all other parties hereto, to the extent reasonably requested by the such parties, to enforce rights and obligations herein provided.
-===================================================================================================================================================================================================================================================================================================================================================================================================
-
-9. Specific Performance.  The rights of the parties under this Agreement are unique and, accordingly, the parties shall have the right, in addition to such other remedies as may be available to any of them at law or in equity, to enforce their rights hereunder by actions for specific performance in addition to any other legal or equitable remedies they might have to the extent permitted by law.
-=============================================================================================================================================================================================================================================================================================================================================================================================================
-
-10. Term.  This Agreement shall terminate upon the earlier to occur of (i) the closing of a firm commitment underwritten public offering pursuant to an effective registration statement under the Securities Act of 1933, as amended, covering the offer and sale of the Company’s Equity Securities and an aggregate offering price of not less than $20,000,000; (ii) the Transfer of greater than fifty percent (50%) of the voting power of the Company to an entity that is not affiliated with the Company, or (iii) the written consent of the Company and Holders holding at least two-thirds of the outstanding Class B Common Stock then held by Holders.
-====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-11. Amendments and Waivers.  Any term of this Agreement may be amended and the observance of any term of this Agreement may be waived (either generally or in a particular instance and either retroactively or prospectively), only with the written consent of the Company and the written consent of Holders holding two-thirds of the outstanding shares of Class B Common Stock then held by the Holders. Any amendment or waiver effected in accordance with this paragraph shall be binding upon the Company and each Holder and their respective successors and assigns.
-================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-12. Assignment; Successors and Assigns.  This Agreement shall be binding upon and shall inure to the benefit of the parties hereto and their respective heirs, executors, legal representatives, successors and permitted transferees, except as may be expressly provided otherwise herein.
-============================================================================================================================================================================================================================================================================================
-
-13. Severability.  Whenever possible, each provision of this Agreement shall be interpreted in such manner as to be effective and valid under applicable law, but if one or more provisions of or obligations under this Agreement are held to be invalid, illegal, or unenforceable under applicable law, then such provision or obligation shall be excluded from this Agreement, and the remaining provisions of and obligations under this Agreement shall be enforceable in full in accordance with their terms.
-=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-14. Attorneys’ Fees.  In the event that any dispute among the parties to this Agreement should result in litigation, the prevailing party in such dispute shall be entitled to recover from the losing party all fees, costs and expenses of enforcing any right of such prevailing party under or with respect to this Agreement, including, without limitation, such reasonable fees and expenses of attorneys and accountants, which shall include, without limitation, all fees, costs and expenses of appeal.
-==================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-15. Counterparts/Facsimile Signatures.  This Agreement may be executed in two (2) or more counterparts, each of which shall be deemed an original, but all of which together shall constitute one (1) and the same instrument.  Signatures transmitted via facsimile shall be deemed originals for purposes of this Agreement.
-==============================================================================================================================================================================================================================================================================================================================
-
-16. Section Headings.  The headings contained in this Agreement are for reference purposes only and shall not in any way affect the meaning or interpretation of this Agreement.
-================================================================================================================================================================================
-
-17. Governing Law.  This Agreement shall be governed by and construed and enforced in accordance with the laws of the State of Delaware, without regard to conflicts of laws.
-=============================================================================================================================================================================
-
-_\[Signature Page Follows\]_
-
-  
-
-IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.
-
-**COMPANY:**
-
-**COMPANY, INC.**
-
-a Delaware corporation
-
-  
-By: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
-  
-Name: Person Person  
-Title:  Chief Executive Officer
-
-  
-
-IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.
-
-**HOLDERS:**
-
-**Person A. Person**
-
-No. of Shares: 404,000
-
-**Person Person**
-
-No. of Shares: 396,000
-
-**Person Person**
-
-No. of Shares: 100,000
-
-**Org LLLP**
-
-a Nevada limited liability limited partnership  
-  
-By:   
-Name: Person  
-Title:  Managing Limited Partner
-
-No. of Shares: 100,000
-
-**COMPANY, INC.**
-
-**STOCKHOLDERS AGREEMENT**
-
-THIS STOCKHOLDERS AGREEMENT (this “**_Agreement_**”) is made and entered into effective as of DATE (the “**_Effective Date_**”), by and among COMPANY, Inc., a Delaware corporation (the “**_Company_**”), and those holders of the Class B Common Stock, $0.0001 par value per share (the “**_Class B_** **_Common Stock_**”), identified on the signature pages hereto (individually, a “**_Holder_**,” collectively, the “**_Holders_**”).
-
-RECITALS
-
-WHEREAS, each Holder is an owner of the number of shares of Class B Common Stock set forth opposite his or its name on the signature pages hereto and is also a party to a Founder’s Purchase Agreement (“**_Purchase Agreement_**”) entered into by and between each Holder and the Company.
-
-AGREEMENT
-
-NOW, THEREFORE, in consideration of the foregoing, the mutual covenants herein contained and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties hereby agree as follows:
-
-1. Restrictions on Transfer of Shares.  Except as otherwise provided in this Agreement and except in compliance with the Company’s Amended and Restated Certificate of Incorporation (the “_Certificate of Incorporation_”), the Purchase Agreement and applicable federal and state securities laws, the Holders will not sell, assign, transfer, pledge, hypothecate or otherwise encumber or dispose of in any way (“_Transfer_”), all or any part of or any interest in Equity Securities (as that term is defined in Section 2.1) now or hereafter owned or held by such Holders, provided that in no event shall a Holder Transfer any Equity Securities prior to eighteen (18) months from the date hereof (the “_18 Month Requirement_”).  Any Transfer not made in conformance with this Agreement, shall be null and void, shall not be recorded on the books of the Company and shall not be recognized by the Company.
-==================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-2. Agreements Among the Company, and the Holders.
-=================================================
-
-2.1 Definitions.
-----------------
-
-### (a) Holders.  For purposes of this Section 2, the term “_Holders_” shall mean each Holder (other than a Selling Holder (as defined below)) or their transferees or assignees who have received such shares of Class A Common Stock or Class B Common Stock, as the case may be, in compliance with the terms of this Agreement.
-
-### (b) Equity Securities.  For purposes of this Agreement, the term “_Equity Securities_” shall mean Class B Common Stock and any other securities including the shares of Class A Common Stock, as defined below, whether now owned or hereafter owned, having voting rights in the election of the Board of Directors of the Company not contingent upon default, or any securities evidencing an ownership interest in the Company, or any securities convertible into or exercisable for any shares of the foregoing, or any agreement or commitment to issue any of the foregoing.
-
-### (c) For the purposes of this Agreement, the term “_Immediate Family_” shall mean lineal descendant or antecedent, spouse (or spouse’s antecedents), father, mother, brother or sister (or their descendants), stepchild (or their antecedents or descendants), aunt or uncle (or their antecedents or descendants), brother-in-law or sister-in-law (or their antecedents or descendants) and shall include adoptive relationships, or any person sharing Holder’s household (other than a tenant or an employee). In the case of any Holder that is a Nevada limited liability limited partnership (“_Nevada LLLP_”), Immediate Family shall be determined as if the Holder of such Nevada LLLP’s shares is such Nevada LLLP’s Managing Limited Partner or any successor thereto.
-
-2.2 Right of Refusal.
----------------------
-
-### (a) Transfer Notice.  Except as otherwise provided herein, if at any time any Holder proposes to Transfer any Equity Securities (the “_Offered Securities_”), then such Holder (the “_Selling Holder_”) shall give each Holder written notice of the Selling Holder’s intention to make the Transfer (the “_Holder Transfer Notice_”), which Transfer Notice shall include (i) a description of the Offered Securities (or rights therein) to be transferred, (ii) the identity of the prospective transferee(s) and (iii) the consideration and the material terms and conditions upon which the proposed Transfer is to be made. The Holder Transfer Notice shall certify that the Selling Holder has received a bona fide offer from the prospective transferee(s) and in good faith believes a binding agreement for the Transfer is obtainable on the terms set forth in the Holder Transfer Notice. The Holder Transfer Notice shall also include a copy of any written proposal, term sheet or letter of intent or other agreement relating to the proposed Transfer.
-
-### (b) Holders’ Option.  The Holders as a group shall have an option for a period of forty-five (45) days from receipt of the Holder Transfer Notice (the “_Notice Period_”) to elect to purchase all or any portion of the Offered Securities at the same price and subject to the same material terms and conditions as described in the Holder Transfer Notice.  Each Holder, other than the Co–Sale Holder, as defined below, may ethe xercise such purchase option and, thereby, purchase all or any portion of its pro rata share (with any re-allotments as provided below) of the Offered Securities by notifying the Selling Holder in writing before expiration of the Notice Period as to the amount of such Offered Securities which he, she or it wishes to purchase (including any re-allotment).  Each Holder’s pro rata share of the Offered Securities shall be a fraction of the Offered Securities, of which the number of shares of Equity Securities owned by such Holder on the date of the Holder Transfer Notice shall be the numerator and the total number of shares of Equity Securities held by all Holders on the date of the Holder Transfer Notice shall be the denominator.  Each Holder shall have a right of re-allotment such that, if any other Holder fails to exercise the right to purchase its full pro rata share of the Offered Securities, the other participating Holders may exercise an additional right to purchase, on a pro rata basis, the Offered Securities not previously purchased.  If the Holders give the Selling Holder notice that they desire to purchase the Offered Securities, then payment for the Offered Securities shall be by check or wire transfer, against delivery of the Offered Securities to be purchased at a place agreed upon between the parties and at the time of the scheduled closing therefor, which shall be no later than forty-five (45) days after the Holders’ receipt of the Holder Transfer Notice, unless the Holder Transfer Notice contemplated a later closing with the prospective third party transferee(s) or unless the value of the purchase price has not yet been established pursuant to this Section 2.2(b).
-
-### (c) Valuation of Property.  Should the purchase price specified in the Holder Transfer Notice be payable in property other than cash or evidences of indebtedness, the Company and any Holders who have elected to purchase the Offered Securities pursuant to this Section 2.2 (the “_Purchasing Parties_”) shall pay the purchase price in the form of cash equal in amount to the fair market value of the Offered Securities. If the Selling Holder and the Purchasing Parties cannot agree on such cash value within ten (10) days after the Purchasing Parties’ receipt of the Holder Transfer Notice, the valuation shall be reasonably determined in good faith by the Board of Directors. If the time for the closing of the Purchasing Parties’ purchase has expired but for the determination of the value of the purchase price offered by the prospective transferee(s), then such closing shall be held on or prior to the fifth (5th) business day after such valuation shall have been made pursuant to this Section 2.2(c).
-
-### (d) Exception for Certain Family Transfers. Anything to the contrary contained in this Section 2.2 notwithstanding, the Transfer of any or all of the Equity Securities during Holder’s lifetime or on Holder’s death by will or intestacy to Holder’s Immediate Family or to a trust for the benefit of Holder or Holder’s Immediate Family shall be exempt from the 18 Month Requirement, right of refusal, and right of co-sale. In such case, the transferee or other recipient shall receive and hold the Equity Securities so transferred subject to the provisions of this Agreement, and there shall be no further Transfer of such Equity Securities except in accordance with the terms of this Agreement.
-
-### (e) Conversion of Class B Shares.  Each share of Class B Common Stock shall be automatically, without further action by the Holder, converted into one (1) fully paid and non-assessable share of Class A Common Stock, par value $0.0001 per share (“_Class A Common Stock_”), upon the occurrence of a Transfer, in accordance with the Certificate of Incorporation.
-
-2.3 Right of Co-Sale.
----------------------
-
-### (a) If the Holders do not exercise their available right of refusal as to the Offered Securities pursuant to Section 2.2, then each Holder which notifies the Selling Holder in writing within the Notice Period (each a “_Co-Sale Holder_” and collectively the “_Co-Sale Holders_”) shall have the right to participate in such Transfer of Equity Securities on the same terms and conditions as specified in the Holder Transfer Notice.  Each Co-Sale Holder’s notice to the Selling Holder shall indicate the number of Equity Securities the Selling Holder wishes to Transfer under his, her or its right to participate.  To the extent one (1) or more of the Co–Sale Holders exercises such right of participation in accordance with the terms and conditions set forth below, the number of Offered Securities that the Selling Holder may Transfer  shall be correspondingly reduced.
-
-### (b) Each Co-Sale Holder may Transfer all or any part of that number of Equity Securities equal to the product obtained by multiplying (i) the aggregate number of Equity Securities by (ii) a fraction, the numerator of which is the number of shares of Equity Securities owned by the Co-Sale Holder on the date of the Holder Transfer Notice and the denominator of which is the total number of shares of Equity Securities owned on the date of the Holder Transfer Notice by the Selling Holder and the Co-Sale Holders.  The aggregate amount of stock Transferred by a Co-Sale Holder or Co-Sale Holders, as the case may be, shall not exceed 70% of the shares proposed to be Transferred pursuant to such Holder Transfer Notice.
-
-### (c) Each Co-Sale Holder shall effect its participation in the Transfer by delivering within twenty (20) days after the expiration of the Notice Period to the Selling Holder for transfer to the prospective purchaser instructions of transfer representing the number of shares of Equity Securities which such Co-Sale Holder elects to Transfer.
-
-### (d) The shares of Equity Securities delivered to the Selling Holder pursuant to Section 2.3(c) shall be transferred to the prospective purchaser in consummation of the Transfer of the securities pursuant to the terms and conditions specified in the Holder Transfer Notice, and the Selling Holder shall concurrently therewith remit to such Co-Sale Holder that portion of the proceeds to which such Co-Sale Holder is entitled by reason of its participation in such sale.  To the extent that any prospective purchaser or purchasers prohibits such Transfer or otherwise refuses to purchase shares or other securities from a Co-Sale Holder exercising its rights of co-sale hereunder, the Selling Holder shall not Transfer to such prospective purchaser or purchasers any securities unless and until, simultaneously with such Transfer, the Selling Holder shall purchase such shares or other securities from such Co-Sale Holder for the same consideration and on the same terms and conditions as the proposed Transfer described in the Holder Transfer Notice.
-
-2.4 Prohibited Transfers.
--------------------------
-
-### (a) In the event any Selling Holder should Transfer any Equity Securities in contravention of the co-sale rights of the Co-Sale Holders under Section 2.3 (a “_Prohibited Transfer_”), to the extent such Transfer is valid and recorded on the books of and recognized by the Company pursuant to Section 1, the Co-Sale Holders, in addition to such other remedies as may be available at law, in equity or hereunder, shall have the put option provided below, and such Selling Holder shall be bound by the applicable provisions of such option.
-
-### (b) In the event of a Prohibited Transfer, each Co-Sale Holder shall have the right to Transfer to the Selling Holder the type and number of shares of Equity Securities equal to the number of shares each Co-Sale Holder would have been entitled to Transfer to the Selling Holder, or transfer to the third-party transferee(s), under Section 2.3 above had the Prohibited Transfer been effected pursuant to and in compliance with the terms hereof. Such Transfer shall be made on the following terms and conditions:
-
-(i)        The price per share at which the shares are to be sold to the Co-Sale Holder shall be equal to the price per share paid by the third-party transferee(s) to the Selling Holder in the Prohibited Transfer.
-
-(ii)       Within sixty (60) days after the later of the dates on which the Co-Sale Holder (A) received notice of the Prohibited Transfer or (B) otherwise becomes aware of the Prohibited Transfer, each Co-Sale Holder shall, if exercising the option created hereby, deliver to the Selling Holder instructions of transfer for the shares of Equity Securities to be sold.
-
-(iii)      The Selling Holder shall, upon receipt of instructions of transfer for the shares to be sold by a Co-Sale Holder, pursuant to this Section 2.4, pay the aggregate purchase price therefor, as specified in subparagraph 2.4(b)(i), in cash or by other means acceptable to the Co-Sale Holder.
-
-(iv)      Notwithstanding the foregoing, this Section 2.4 does not in any way limit the restrictions on Transfer provided for in Section 1.
-
-2.5 Non-Exercise of Rights. 
-----------------------------
-
-To the extent that the Holders have not exercised their rights to purchase the Offered Shares within the time periods specified in Section 2.2 and the Co-Sale Holder have not exercised their rights to participate in the Transfer of the Offered Shares within the time periods specified in Section 2.3, the Selling Holder shall have a period of ten (10) days from the expiration of such rights in which to Transfer the Offered Shares upon the terms and conditions (including the purchase price) no more favorable than those specified in the Holder Transfer Notice to the third-party transferee(s) identified in the Holder Transfer Notice.  In the event the Selling Holder does not consummate the Transfer of the Offered Shares within the ten (10) day period from the expiration of these rights, the Holders’ first refusal rights and Co-Sale Holders co-sale rights shall continue to be applicable to any subsequent disposition of the Offered Shares by the Selling Holder until such right lapses in accordance with the terms of this Agreement.  Furthermore, the exercise or non-exercise of the rights of the Holders under this Section 2 to purchase Equity Securities from the Selling Holder or for the Co-Sale Holders to participate in Transfers of Equity Securities by the Selling Holder shall not adversely affect their rights to make subsequent purchases from the Selling Holder of Equity Securities or subsequently participate in Transfers of Equity Securities by the Selling Holder.
-
-2.6 Limitations to Rights of Refusal and Co-Sale.
--------------------------------------------------
-
-Notwithstanding the provisions of Section 2 of this Agreement, and subject to any rights, restrictions or obligations of the Holder or other third party in any other agreement to which the Holder is a party, a Holder may Transfer, with or without consideration, Equity Securities to any spouse or member of a Holder’s Immediate Family, or to a custodian, trustee (including a trustee of a voting trust), executor (including executor of an estate), or other fiduciary in each case for the account of a Holder’s spouse or members of a Holder’s Immediate family, or to a trust for a Holder’s own self, or a charitable remainder trust, provided that each such transferee or assignee, prior to the completion of the Transfer, shall have executed documents assuming the obligations of a Holder under this Agreement with respect to the transferred securities. If a Transfer to a spouse of a Holder by reason of divorce occurs, the right of refusal and co-sale shall not pass to such spouse.
-
-2.7 Each New Holder Required to Become a Party to this Agreement. 
-------------------------------------------------------------------
-
-Any party that purchases or receives Equity Securities pursuant to a Transfer, that is not a Prohibited Transfer, shall be required to, within five (5) days of receiving the Equity Securities (i) become a party to this Agreement, as it may be amended from time to time, and (ii) become a party to that certain voting agreement of even date herewith, executed by all of the parties to this Agreement, as it may be amended from time to time. Failure to comply with this provisions shall nullify the Transfer.
-
-2.8 Board of Directors.
------------------------
-
- During the term of this Agreement, each Holder agrees to vote all shares in such manner as may be necessary to elect (and maintain in office) as members of the Company’s Board of Directors the following individuals: Person A. Person and Person Person.  The size of Board may only be increased or decreased upon an affirmative vote of two-thirds in voting power of the shares of Class B common Stock of the Company.
-
-3. Exculpation and Indemnification. No director or officer in his capacity as such and no director or officer who is or was serving at the request of the Company as a member, manager, director, officer, partner, venturer, proprietor, trustee, employee, authorized person, agent, or similar functionary of another foreign or domestic limited liability company, corporation, partnership, joint venture, sole proprietorship, trust, employee benefit plan or other enterprise (each, an _“Indemnified Person”_) shall be liable to the Company for monetary damages arising from any actions taken, or actions failed to be taken, in his or her capacity as such except for (a) liability for acts that involve fraud, willful misconduct or bad faith and (b) liability with respect to any transaction from which such Person derived a personal benefit in violation of this Agreement, in each case described in clauses (a) and (b) preceding, as determined by a final, nonappealable order of a court of competent jurisdiction or arbitrator.  Notwithstanding anything to the contrary in this Agreement, to the maximum extent permitted by the Delaware General Corporation Law, the Company, as applicable, shall bear the burden of establishing a prima facie case that a director or officer breached the standard of care set forth above in this Section 3.  Each person who was or is made a party or is threatened to be made a party to or is involved in any threatened, pending or completed action, suit or proceeding, whether civil, criminal, administrative, arbitrative or investigative (hereinafter a _“Proceeding”_), or any appeal in such a Proceeding or any inquiry or investigation that could lead to such a Proceeding, by reason of the fact that it, or a person of whom it is the legal representative, is or was a director or while an officer or director is or was serving at the request of the Company as a member, manager, director, officer, partner, venturer, proprietor, trustee, employee, authorized person, agent, or similar functionary of another foreign or domestic limited liability company, corporation, partnership, joint venture, sole proprietorship, trust, employee benefit plan or other enterprise shall be, except as permitted below in this Section 3, indemnified by the Company to the fullest extent permitted by the Delaware General Corporation Law, as the same exists or may hereafter be amended (but, in the case of any such amendment, only to the extent that such amendment permits the Company to provide broader indemnification rights than said law permitted the Company to provide prior to such amendment) against judgments, penalties (including excise and similar taxes and punitive damages), fines, settlements and reasonable expenses (including reasonable attorneys’ fees) actually incurred by such person in connection with such Proceeding, and indemnification under this Section 3 shall continue as to a person who has ceased to serve in the capacity which initially entitled such person to indemnity hereunder.  Notwithstanding anything to the contrary in this Section 3, a person shall not be entitled to indemnification hereunder if it is determined by a nonappealable order of a court of competent jurisdiction or arbitrator that, with respect to the matter for which such person seeks indemnification, such person did not act in good faith and in a manner he reasonably believed to be in or not opposed to the best interests of the Company, that such person’s actions constituted fraud, willful misconduct or bad faith or, with respect to any criminal action or proceeding, had reasonable cause to believe that his conduct was unlawful; provided, however, that such person’s compliance with their respective fiduciary duties, by itself, will not be deemed to limit such person’s entitlement to indemnification hereunder.  The termination of any action, suit or proceeding by judgment, order, settlement, conviction, or upon a plea of nolo contendere or its equivalent, shall not, of itself, create a presumption that the person did not act in good faith and in a manner which he reasonably believed to be in or not opposed to the best interests of the Company and, with respect to any criminal action or proceeding, had reasonable cause to believe that his conduct was unlawful.  The right to indemnification conferred to directors and officers in this Section 3 shall include the right to be paid or reimbursed by the Company the reasonable expenses incurred by a person entitled to be indemnified under this Section 3 who was, is or is threatened to be made a named defendant or respondent in a Proceeding in advance of the final disposition of the Proceeding and without any determination as to the Person’s ultimate entitlement to indemnification; provided, however, that the payment of such expenses incurred by any such person in advance of the final disposition of a Proceeding shall be made only upon delivery to the Company of a written affirmation by such person of its good faith belief that it has met the standard of conduct necessary for indemnification under this Section 3 and a written undertaking, by such person, to repay all amounts so advanced if it shall ultimately be determined that such indemnified person is not entitled to be indemnified under this Section 3 or otherwise.
-====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-4. Stock Dividends.  If, from time to time, there is any stock dividend, stock split or other change in the character or amount of any of the outstanding stock of the Company, then in such event any and all new substituted or additional securities to which the Holder is entitled by reason of the Holder’s ownership of the shares subject to this Agreement shall be considered shares and shall be immediately subject to all terms of this Agreement with the same force and effect as the shares subject to the terms of this Agreement immediately before such event.
-=================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-5. Legend.  Each existing or replacement certificate representing any shares of Equity Securities now owned or hereafter acquired by the Holders shall have endorsed thereon the following legend (together with any other legends required by applicable law):
-===============================================================================================================================================================================================================================================================
-
-THE SHARES REPRESENTED BY THIS CERTIFICATE ARE SUBJECT TO CERTAIN RIGHTS IN FAVOR OF THE COMPANY AND CERTAIN OTHER HOLDERS OF STOCK OF THE COMPANY SET FORTH IN A STOCKHOLDERS AGREEMENT BETWEEN THE COMPANY, SUCH HOLDERS, AND THE REGISTERED HOLDER, OR HIS OR HER PREDECESSOR IN INTEREST, A COPY OF WHICH IS ON FILE AT THE PRINCIPAL OFFICE OF THIS COMPANY.
-
-6. Effect of Change in Company’s Capital Structure.  Appropriate adjustments shall be made in the number and class of shares in the event of a stock dividend, stock split, reverse stock split, combination, reclassification or like change in the capital structure of the Company.
-======================================================================================================================================================================================================================================================================================
-
-7. Notices.  Any notice required or permitted by any provision of this Agreement shall be given in writing and shall be delivered personally or by courier, or by registered or certified mail, postage prepaid, or by fax addressed (i) if to the Company: to the address of its principal office or any registered agent, with a copy to Norton Rose Fulbright US L.L.P., 1301 McKinney, Suite 5100, Houston, Texas 77010, Fax: (713) 651-5246, Attention: Charles D. Powell; (ii) if to a Holder: to the most recent address for such Holder set forth in the Company’s books and records, which address such Holder may change from time to time by written notice to the Company; and (iii) in the case of any permitted transferee of a party to this Agreement or its transferee, to such transferee at its address as designated in writing by such transferee to the Company from time to time.  Notices that are mailed or sent by courier or overnight delivery shall be deemed received two (2) days after deposit in the United States mail or after they have been so sent.  Notices that are sent by fax shall be deemed received upon confirmation of successful transmission.
-==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-8. Further Instruments and Actions.  The parties agree to execute such further instruments and to take such further action as may reasonably be necessary to carry out the intent of this Agreement.  Each party hereto agrees to cooperate affirmatively with all other parties hereto, to the extent reasonably requested by the such parties, to enforce rights and obligations herein provided.
-===================================================================================================================================================================================================================================================================================================================================================================================================
-
-9. Specific Performance.  The rights of the parties under this Agreement are unique and, accordingly, the parties shall have the right, in addition to such other remedies as may be available to any of them at law or in equity, to enforce their rights hereunder by actions for specific performance in addition to any other legal or equitable remedies they might have to the extent permitted by law.
-=============================================================================================================================================================================================================================================================================================================================================================================================================
-
-10. Term.  This Agreement shall terminate upon the earlier to occur of (i) the closing of a firm commitment underwritten public offering pursuant to an effective registration statement under the Securities Act of 1933, as amended, covering the offer and sale of the Company’s Equity Securities and an aggregate offering price of not less than $20,000,000; (ii) the Transfer of greater than fifty percent (50%) of the voting power of the Company to an entity that is not affiliated with the Company, or (iii) the written consent of the Company and Holders holding at least two-thirds of the outstanding Class B Common Stock then held by Holders.
-====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-11. Amendments and Waivers.  Any term of this Agreement may be amended and the observance of any term of this Agreement may be waived (either generally or in a particular instance and either retroactively or prospectively), only with the written consent of the Company and the written consent of Holders holding two-thirds of the outstanding shares of Class B Common Stock then held by the Holders. Any amendment or waiver effected in accordance with this paragraph shall be binding upon the Company and each Holder and their respective successors and assigns.
-================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-12. Assignment; Successors and Assigns.  This Agreement shall be binding upon and shall inure to the benefit of the parties hereto and their respective heirs, executors, legal representatives, successors and permitted transferees, except as may be expressly provided otherwise herein.
-============================================================================================================================================================================================================================================================================================
-
-13. Severability.  Whenever possible, each provision of this Agreement shall be interpreted in such manner as to be effective and valid under applicable law, but if one or more provisions of or obligations under this Agreement are held to be invalid, illegal, or unenforceable under applicable law, then such provision or obligation shall be excluded from this Agreement, and the remaining provisions of and obligations under this Agreement shall be enforceable in full in accordance with their terms.
-=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-14. Attorneys’ Fees.  In the event that any dispute among the parties to this Agreement should result in litigation, the prevailing party in such dispute shall be entitled to recover from the losing party all fees, costs and expenses of enforcing any right of such prevailing party under or with respect to this Agreement, including, without limitation, such reasonable fees and expenses of attorneys and accountants, which shall include, without limitation, all fees, costs and expenses of appeal.
-==================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-15. Counterparts/Facsimile Signatures.  This Agreement may be executed in two (2) or more counterparts, each of which shall be deemed an original, but all of which together shall constitute one (1) and the same instrument.  Signatures transmitted via facsimile shall be deemed originals for purposes of this Agreement.
-==============================================================================================================================================================================================================================================================================================================================
-
-16. Section Headings.  The headings contained in this Agreement are for reference purposes only and shall not in any way affect the meaning or interpretation of this Agreement.
-================================================================================================================================================================================
-
-17. Governing Law.  This Agreement shall be governed by and construed and enforced in accordance with the laws of the State of Delaware, without regard to conflicts of laws.
-=============================================================================================================================================================================
-
-_\[Signature Page Follows\]_
-
-  
-
-IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.
-
-**COMPANY:**
-
-**COMPANY, INC.**
-
-a Delaware corporation
-
-  
-By: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
-  
-Name: Person Person  
-Title:  Chief Executive Officer
-
-  
-
-IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.
-
-**HOLDERS:**
-
-**Person A. Person**
-
-No. of Shares: 404,000
-
-**Person Person**
-
-No. of Shares: 396,000
-
-**Person Person**
-
-No. of Shares: 100,000
-
-**Org LLLP**
-
-a Nevada limited liability limited partnership  
-  
-By:   
-Name: Person  
-Title:  Managing Limited Partner
-
-No. of Shares: 100,000
-
-**COMPANY, INC.**
-
-**STOCKHOLDERS AGREEMENT**
-
-THIS STOCKHOLDERS AGREEMENT (this “**_Agreement_**”) is made and entered into effective as of DATE (the “**_Effective Date_**”), by and among COMPANY, Inc., a Delaware corporation (the “**_Company_**”), and those holders of the Class B Common Stock, $0.0001 par value per share (the “**_Class B_** **_Common Stock_**”), identified on the signature pages hereto (individually, a “**_Holder_**,” collectively, the “**_Holders_**”).
-
-RECITALS
-
-WHEREAS, each Holder is an owner of the number of shares of Class B Common Stock set forth opposite his or its name on the signature pages hereto and is also a party to a Founder’s Purchase Agreement (“**_Purchase Agreement_**”) entered into by and between each Holder and the Company.
-
-AGREEMENT
-
-NOW, THEREFORE, in consideration of the foregoing, the mutual covenants herein contained and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties hereby agree as follows:
-
-1. Restrictions on Transfer of Shares.  Except as otherwise provided in this Agreement and except in compliance with the Company’s Amended and Restated Certificate of Incorporation (the “_Certificate of Incorporation_”), the Purchase Agreement and applicable federal and state securities laws, the Holders will not sell, assign, transfer, pledge, hypothecate or otherwise encumber or dispose of in any way (“_Transfer_”), all or any part of or any interest in Equity Securities (as that term is defined in Section 2.1) now or hereafter owned or held by such Holders, provided that in no event shall a Holder Transfer any Equity Securities prior to eighteen (18) months from the date hereof (the “_18 Month Requirement_”).  Any Transfer not made in conformance with this Agreement, shall be null and void, shall not be recorded on the books of the Company and shall not be recognized by the Company.
-==================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-2. Agreements Among the Company, and the Holders.
-=================================================
-
-2.1 Definitions.
-----------------
-
-### (a) Holders.  For purposes of this Section 2, the term “_Holders_” shall mean each Holder (other than a Selling Holder (as defined below)) or their transferees or assignees who have received such shares of Class A Common Stock or Class B Common Stock, as the case may be, in compliance with the terms of this Agreement.
-
-### (b) Equity Securities.  For purposes of this Agreement, the term “_Equity Securities_” shall mean Class B Common Stock and any other securities including the shares of Class A Common Stock, as defined below, whether now owned or hereafter owned, having voting rights in the election of the Board of Directors of the Company not contingent upon default, or any securities evidencing an ownership interest in the Company, or any securities convertible into or exercisable for any shares of the foregoing, or any agreement or commitment to issue any of the foregoing.
-
-### (c) For the purposes of this Agreement, the term “_Immediate Family_” shall mean lineal descendant or antecedent, spouse (or spouse’s antecedents), father, mother, brother or sister (or their descendants), stepchild (or their antecedents or descendants), aunt or uncle (or their antecedents or descendants), brother-in-law or sister-in-law (or their antecedents or descendants) and shall include adoptive relationships, or any person sharing Holder’s household (other than a tenant or an employee). In the case of any Holder that is a Nevada limited liability limited partnership (“_Nevada LLLP_”), Immediate Family shall be determined as if the Holder of such Nevada LLLP’s shares is such Nevada LLLP’s Managing Limited Partner or any successor thereto.
-
-2.2 Right of Refusal.
----------------------
-
-### (a) Transfer Notice.  Except as otherwise provided herein, if at any time any Holder proposes to Transfer any Equity Securities (the “_Offered Securities_”), then such Holder (the “_Selling Holder_”) shall give each Holder written notice of the Selling Holder’s intention to make the Transfer (the “_Holder Transfer Notice_”), which Transfer Notice shall include (i) a description of the Offered Securities (or rights therein) to be transferred, (ii) the identity of the prospective transferee(s) and (iii) the consideration and the material terms and conditions upon which the proposed Transfer is to be made. The Holder Transfer Notice shall certify that the Selling Holder has received a bona fide offer from the prospective transferee(s) and in good faith believes a binding agreement for the Transfer is obtainable on the terms set forth in the Holder Transfer Notice. The Holder Transfer Notice shall also include a copy of any written proposal, term sheet or letter of intent or other agreement relating to the proposed Transfer.
-
-### (b) Holders’ Option.  The Holders as a group shall have an option for a period of forty-five (45) days from receipt of the Holder Transfer Notice (the “_Notice Period_”) to elect to purchase all or any portion of the Offered Securities at the same price and subject to the same material terms and conditions as described in the Holder Transfer Notice.  Each Holder, other than the Co–Sale Holder, as defined below, may exercise such purchase option and, thereby, purchase all or any portion of its pro rata share (with any re-allotments as provided below) of the Offered Securities by notifying the Selling Holder in writing before expiration of the Notice Period as to the amount of such Offered Securities which he, she or it wishes to purchase (including any re-allotment).  Each Holder’s pro rata share of the Offered Securities shall be a fraction of the Offered Securities, of which the number of shares of Equity Securities owned by such Holder on the date of the Holder Transfer Notice shall be the numerator and the total number of shares of Equity Securities held by all Holders on the date of the Holder Transfer Notice shall be the denominator.  Each Holder shall have a right of re-allotment such that, if any other Holder fails to exercise the right to purchase its full pro rata share of the Offered Securities, the other participating Holders may exercise an additional right to purchase, on a pro rata basis, the Offered Securities not previously purchased.  If the Holders give the Selling Holder notice that they desire to purchase the Offered Securities, then payment for the Offered Securities shall be by check or wire transfer, against delivery of the Offered Securities to be purchased at a place agreed upon between the parties and at the time of the scheduled closing therefor, which shall be no later than forty-five (45) days after the Holders’ receipt of the Holder Transfer Notice, unless the Holder Transfer Notice contemplated a later closing with the prospective third party transferee(s) or unless the value of the purchase price has not yet been established pursuant to this Section 2.2(b).
-
-### (c) Valuation of Property.  Should the purchase price specified in the Holder Transfer Notice be payable in property other than cash or evidences of indebtedness, the Company and any Holders who have elected to purchase the Offered Securities pursuant to this Section 2.2 (the “_Purchasing Parties_”) shall pay the purchase price in the form of cash equal in amount to the fair market value of the Offered Securities. If the Selling Holder and the Purchasing Parties cannot agree on such cash value within ten (10) days after the Purchasing Parties’ receipt of the Holder Transfer Notice, the valuation shall be reasonably determined in good faith by the Board of Directors. If the time for the closing of the Purchasing Parties’ purchase has expired but for the determination of the value of the purchase price offered by the prospective transferee(s), then such closing shall be held on or prior to the fifth (5th) business day after such valuation shall have been made pursuant to this Section 2.2(c).
-
-### (d) Exception for Certain Family Transfers. Anything to the contrary contained in this Section 2.2 notwithstanding, the Transfer of any or all of the Equity Securities during Holder’s lifetime or on Holder’s death by will or intestacy to Holder’s Immediate Family or to a trust for the benefit of Holder or Holder’s Immediate Family shall be exempt from the 18 Month Requirement, right of refusal, and right of co-sale. In such case, the transferee or other recipient shall receive and hold the Equity Securities so transferred subject to the provisions of this Agreement, and there shall be no further Transfer of such Equity Securities except in accordance with the terms of this Agreement.
-
-### (e) Conversion of Class B Shares.  Each share of Class B Common Stock shall be automatically, without further action by the Holder, converted into one (1) fully paid and non-assessable share of Class A Common Stock, par value $0.0001 per share (“_Class A Common Stock_”), upon the occurrence of a Transfer, in accordance with the Certificate of Incorporation.
-
-2.3 Right of Co-Sale.
----------------------
-
-### (a) If the Holders do not exercise their available right of refusal as to the Offered Securities pursuant to Section 2.2, then each Holder which notifies the Selling Holder in writing within the Notice Period (each a “_Co-Sale Holder_” and collectively the “_Co-Sale Holders_”) shall have the right to participate in such Transfer of Equity Securities on the same terms and conditions as specified in the Holder Transfer Notice.  Each Co-Sale Holder’s notice to the Selling Holder shall indicate the number of Equity Securities the Selling Holder wishes to Transfer under his, her or its right to participate.  To the extent one (1) or more of the Co–Sale Holders exercises such right of participation in accordance with the terms and conditions set forth below, the number of Offered Securities that the Selling Holder may Transfer  shall be correspondingly reduced.
-
-### (b) Each Co-Sale Holder may Transfer all or any part of that number of Equity Securities equal to the product obtained by multiplying (i) the aggregate number of Equity Securities by (ii) a fraction, the numerator of which is the number of shares of Equity Securities owned by the Co-Sale Holder on the date of the Holder Transfer Notice and the denominator of which is the total number of shares of Equity Securities owned on the date of the Holder Transfer Notice by the Selling Holder and the Co-Sale Holders.  The aggregate amount of stock Transferred by a Co-Sale Holder or Co-Sale Holders, as the case may be, shall not exceed 70% of the shares proposed to be Transferred pursuant to such Holder Transfer Notice.
-
-### (c) Each Co-Sale Holder shall effect its participation in the Transfer by delivering within twenty (20) days after the expiration of the Notice Period to the Selling Holder for transfer to the prospective purchaser instructions of transfer representing the number of shares of Equity Securities which such Co-Sale Holder elects to Transfer.
-
-### (d) The shares of Equity Securities delivered to the Selling Holder pursuant to Section 2.3(c) shall be transferred to the prospective purchaser in consummation of the Transfer of the securities pursuant to the terms and conditions specified in the Holder Transfer Notice, and the Selling Holder shall concurrently therewith remit to such Co-Sale Holder that portion of the proceeds to which such Co-Sale Holder is entitled by reason of its participation in such sale.  To the extent that any prospective purchaser or purchasers prohibits such Transfer or otherwise refuses to purchase shares or other securities from a Co-Sale Holder exercising its rights of co-sale hereunder, the Selling Holder shall not Transfer to such prospective purchaser or purchasers any securities unless and until, simultaneously with such Transfer, the Selling Holder shall purchase such shares or other securities from such Co-Sale Holder for the same consideration and on the same terms and conditions as the proposed Transfer described in the Holder Transfer Notice.
-
-2.4 Prohibited Transfers.
--------------------------
-
-### (a) In the event any Selling Holder should Transfer any Equity Securities in contravention of the co-sale rights of the Co-Sale Holders under Section 2.3 (a “_Prohibited Transfer_”), to the extent such Transfer is valid and recorded on the books of and recognized by the Company pursuant to Section 1, the Co-Sale Holders, in addition to such other remedies as may be available at law, in equity or hereunder, shall have the put option provided below, and such Selling Holder shall be bound by the applicable provisions of such option.
-
-### (b) In the event of a Prohibited Transfer, each Co-Sale Holder shall have the right to Transfer to the Selling Holder the type and number of shares of Equity Securities equal to the number of shares each Co-Sale Holder would have been entitled to Transfer to the Selling Holder, or transfer to the third-party transferee(s), under Section 2.3 above had the Prohibited Transfer been effected pursuant to and in compliance with the terms hereof. Such Transfer shall be made on the following terms and conditions:
-
-(i)        The price per share at which the shares are to be sold to the Co-Sale Holder shall be equal to the price per share paid by the third-party transferee(s) to the Selling Holder in the Prohibited Transfer.
-
-(ii)       Within sixty (60) days after the later of the dates on which the Co-Sale Holder (A) received notice of the Prohibited Transfer or (B) otherwise becomes aware of the Prohibited Transfer, each Co-Sale Holder shall, if exercising the option created hereby, deliver to the Selling Holder instructions of transfer for the shares of Equity Securities to be sold.
-
-(iii)      The Selling Holder shall, upon receipt of instructions of transfer for the shares to be sold by a Co-Sale Holder, pursuant to this Section 2.4, pay the aggregate purchase price therefor, as specified in subparagraph 2.4(b)(i), in cash or by other means acceptable to the Co-Sale Holder.
-
-(iv)      Notwithstanding the foregoing, this Section 2.4 does not in any way limit the restrictions on Transfer provided for in Section 1.
-
-2.5 Non-Exercise of Rights. 
-----------------------------
-
-To the extent that the Holders have not exercised their rights to purchase the Offered Shares within the time periods specified in Section 2.2 and the Co-Sale Holder have not exercised their rights to participate in the Transfer of the Offered Shares within the time periods specified in Section 2.3, the Selling Holder shall have a period of ten (10) days from the expiration of such rights in which to Transfer the Offered Shares upon the terms and conditions (including the purchase price) no more favorable than those specified in the Holder Transfer Notice to the third-party transferee(s) identified in the Holder Transfer Notice.  In the event the Selling Holder does not consummate the Transfer of the Offered Shares within the ten (10) day period from the expiration of these rights, the Holders’ first refusal rights and Co-Sale Holders co-sale rights shall continue to be applicable to any subsequent disposition of the Offered Shares by the Selling Holder until such right lapses in accordance with the terms of this Agreement.  Furthermore, the exercise or non-exercise of the rights of the Holders under this Section 2 to purchase Equity Securities from the Selling Holder or for the Co-Sale Holders to participate in Transfers of Equity Securities by the Selling Holder shall not adversely affect their rights to make subsequent purchases from the Selling Holder of Equity Securities or subsequently participate in Transfers of Equity Securities by the Selling Holder.
-
-2.6 Limitations to Rights of Refusal and Co-Sale.
--------------------------------------------------
-
-Notwithstanding the provisions of Section 2 of this Agreement, and subject to any rights, restrictions or obligations of the Holder or other third party in any other agreement to which the Holder is a party, a Holder may Transfer, with or without consideration, Equity Securities to any spouse or member of a Holder’s Immediate Family, or to a custodian, trustee (including a trustee of a voting trust), executor (including executor of an estate), or other fiduciary in each case for the account of a Holder’s spouse or members of a Holder’s Immediate family, or to a trust for a Holder’s own self, or a charitable remainder trust, provided that each such transferee or assignee, prior to the completion of the Transfer, shall have executed documents assuming the obligations of a Holder under this Agreement with respect to the transferred securities. If a Transfer to a spouse of a Holder by reason of divorce occurs, the right of refusal and co-sale shall not pass to such spouse.
-
-2.7 Each New Holder Required to Become a Party to this Agreement. 
-------------------------------------------------------------------
-
-Any party that purchases or receives Equity Securities pursuant to a Transfer, that is not a Prohibited Transfer, shall be required to, within five (5) days of receiving the Equity Securities (i) become a party to this Agreement, as it may be amended from time to time, and (ii) become a party to that certain voting agreement of even date herewith, executed by all of the parties to this Agreement, as it may be amended from time to time. Failure to comply with this provisions shall nullify the Transfer.
-
-2.8 Board of Directors.
------------------------
-
- During the term of this Agreement, each Holder agrees to vote all shares in such manner as may be necessary to elect (and maintain in office) as members of the Company’s Board of Directors the following individuals: Person A. Person and Person Person.  The size of Board may only be increased or decreased upon an affirmative vote of two-thirds in voting power of the shares of Class B common Stock of the Company.
-
-3. Exculpation and Indemnification. No director or officer in his capacity as such and no director or officer who is or was serving at the request of the Company as a member, manager, director, officer, partner, venturer, proprietor, trustee, employee, authorized person, agent, or similar functionary of another foreign or domestic limited liability company, corporation, partnership, joint venture, sole proprietorship, trust, employee benefit plan or other enterprise (each, an _“Indemnified Person”_) shall be liable to the Company for monetary damages arising from any actions taken, or actions failed to be taken, in his or her capacity as such except for (a) liability for acts that involve fraud, willful misconduct or bad faith and (b) liability with respect to any transaction from which such Person derived a personal benefit in violation of this Agreement, in each case described in clauses (a) and (b) preceding, as determined by a final, nonappealable order of a court of competent jurisdiction or arbitrator.  Notwithstanding anything to the contrary in this Agreement, to the maximum extent permitted by the Delaware General Corporation Law, the Company, as applicable, shall bear the burden of establishing a prima facie case that a director or officer breached the standard of care set forth above in this Section 3.  Each person who was or is made a party or is threatened to be made a party to or is involved in any threatened, pending or completed action, suit or proceeding, whether civil, criminal, administrative, arbitrative or investigative (hereinafter a _“Proceeding”_), or any appeal in such a Proceeding or any inquiry or investigation that could lead to such a Proceeding, by reason of the fact that it, or a person of whom it is the legal representative, is or was a director or while an officer or director is or was serving at the request of the Company as a member, manager, director, officer, partner, venturer, proprietor, trustee, employee, authorized person, agent, or similar functionary of another foreign or domestic limited liability company, corporation, partnership, joint venture, sole proprietorship, trust, employee benefit plan or other enterprise shall be, except as permitted below in this Section 3, indemnified by the Company to the fullest extent permitted by the Delaware General Corporation Law, as the same exists or may hereafter be amended (but, in the case of any such amendment, only to the extent that such amendment permits the Company to provide broader indemnification rights than said law permitted the Company to provide prior to such amendment) against judgments, penalties (including excise and similar taxes and punitive damages), fines, settlements and reasonable expenses (including reasonable attorneys’ fees) actually incurred by such person in connection with such Proceeding, and indemnification under this Section 3 shall continue as to a person who has ceased to serve in the capacity which initially entitled such person to indemnity hereunder.  Notwithstanding anything to the contrary in this Section 3, a person shall not be entitled to indemnification hereunder if it is determined by a nonappealable order of a court of competent jurisdiction or arbitrator that, with respect to the matter for which such person seeks indemnification, such person did not act in good faith and in a manner he reasonably believed to be in or not opposed to the best interests of the Company, that such person’s actions constituted fraud, willful misconduct or bad faith or, with respect to any criminal action or proceeding, had reasonable cause to believe that his conduct was unlawful; provided, however, that such person’s compliance with their respective fiduciary duties, by itself, will not be deemed to limit such person’s entitlement to indemnification hereunder.  The termination of any action, suit or proceeding by judgment, order, settlement, conviction, or upon a plea of nolo contendere or its equivalent, shall not, of itself, create a presumption that the person did not act in good faith and in a manner which he reasonably believed to be in or not opposed to the best interests of the Company and, with respect to any criminal action or proceeding, had reasonable cause to believe that his conduct was unlawful.  The right to indemnification conferred to directors and officers in this Section 3 shall include the right to be paid or reimbursed by the Company the reasonable expenses incurred by a person entitled to be indemnified under this Section 3 who was, is or is threatened to be made a named defendant or respondent in a Proceeding in advance of the final disposition of the Proceeding and without any determination as to the Person’s ultimate entitlement to indemnification; provided, however, that the payment of such expenses incurred by any such person in advance of the final disposition of a Proceeding shall be made only upon delivery to the Company of a written affirmation by such person of its good faith belief that it has met the standard of conduct necessary for indemnification under this Section 3 and a written undertaking, by such person, to repay all amounts so advanced if it shall ultimately be determined that such indemnified person is not entitled to be indemnified under this Section 3 or otherwise.
-====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-4. Stock Dividends.  If, from time to time, there is any stock dividend, stock split or other change in the character or amount of any of the outstanding stock of the Company, then in such event any and all new substituted or additional securities to which the Holder is entitled by reason of the Holder’s ownership of the shares subject to this Agreement shall be considered shares and shall be immediately subject to all terms of this Agreement with the same force and effect as the shares subject to the terms of this Agreement immediately before such event.
-=================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-5. Legend.  Each existing or replacement certificate representing any shares of Equity Securities now owned or hereafter acquired by the Holders shall have endorsed thereon the following legend (together with any other legends required by applicable law):
-===============================================================================================================================================================================================================================================================
-
-THE SHARES REPRESENTED BY THIS CERTIFICATE ARE SUBJECT TO CERTAIN RIGHTS IN FAVOR OF THE COMPANY AND CERTAIN OTHER HOLDERS OF STOCK OF THE COMPANY SET FORTH IN A STOCKHOLDERS AGREEMENT BETWEEN THE COMPANY, SUCH HOLDERS, AND THE REGISTERED HOLDER, OR HIS OR HER PREDECESSOR IN INTEREST, A COPY OF WHICH IS ON FILE AT THE PRINCIPAL OFFICE OF THIS COMPANY.
-
-6. Effect of Change in Company’s Capital Structure.  Appropriate adjustments shall be made in the number and class of shares in the event of a stock dividend, stock split, reverse stock split, combination, reclassification or like change in the capital structure of the Company.
-======================================================================================================================================================================================================================================================================================
-
-7. Notices.  Any notice required or permitted by any provision of this Agreement shall be given in writing and shall be delivered personally or by courier, or by registered or certified mail, postage prepaid, or by fax addressed (i) if to the Company: to the address of its principal office or any registered agent, with a copy to Norton Rose Fulbright US L.L.P., 1301 McKinney, Suite 5100, Houston, Texas 77010, Fax: (713) 651-5246, Attention: Charles D. Powell; (ii) if to a Holder: to the most recent address for such Holder set forth in the Company’s books and records, which address such Holder may change from time to time by written notice to the Company; and (iii) in the case of any permitted transferee of a party to this Agreement or its transferee, to such transferee at its address as designated in writing by such transferee to the Company from time to time.  Notices that are mailed or sent by courier or overnight delivery shall be deemed received two (2) days after deposit in the United States mail or after they have been so sent.  Notices that are sent by fax shall be deemed received upon confirmation of successful transmission.
-==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-8. Further Instruments and Actions.  The parties agree to execute such further instruments and to take such further action as may reasonably be necessary to carry out the intent of this Agreement.  Each party hereto agrees to cooperate affirmatively with all other parties hereto, to the extent reasonably requested by the such parties, to enforce rights and obligations herein provided.
-===================================================================================================================================================================================================================================================================================================================================================================================================
-
-9. Specific Performance.  The rights of the parties under this Agreement are unique and, accordingly, the parties shall have the right, in addition to such other remedies as may be available to any of them at law or in equity, to enforce their rights hereunder by actions for specific performance in addition to any other legal or equitable remedies they might have to the extent permitted by law.
-=============================================================================================================================================================================================================================================================================================================================================================================================================
-
-10. Term.  This Agreement shall terminate upon the earlier to occur of (i) the closing of a firm commitment underwritten public offering pursuant to an effective registration statement under the Securities Act of 1933, as amended, covering the offer and sale of the Company’s Equity Securities and an aggregate offering price of not less than $20,000,000; (ii) the Transfer of greater than fifty percent (50%) of the voting power of the Company to an entity that is not affiliated with the Company, or (iii) the written consent of the Company and Holders holding at least two-thirds of the outstanding Class B Common Stock then held by Holders.
-====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-11. Amendments and Waivers.  Any term of this Agreement may be amended and the observance of any term of this Agreement may be waived (either generally or in a particular instance and either retroactively or prospectively), only with the written consent of the Company and the written consent of Holders holding two-thirds of the outstanding shares of Class B Common Stock then held by the Holders. Any amendment or waiver effected in accordance with this paragraph shall be binding upon the Company and each Holder and their respective successors and assigns.
-================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-12. Assignment; Successors and Assigns.  This Agreement shall be binding upon and shall inure to the benefit of the parties hereto and their respective heirs, executors, legal representatives, successors and permitted transferees, except as may be expressly provided otherwise herein.
-============================================================================================================================================================================================================================================================================================
-
-13. Severability.  Whenever possible, each provision of this Agreement shall be interpreted in such manner as to be effective and valid under applicable law, but if one or more provisions of or obligations under this Agreement are held to be invalid, illegal, or unenforceable under applicable law, then such provision or obligation shall be excluded from this Agreement, and the remaining provisions of and obligations under this Agreement shall be enforceable in full in accordance with their terms.
-=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-14. Attorneys’ Fees.  In the event that any dispute among the parties to this Agreement should result in litigation, the prevailing party in such dispute shall be entitled to recover from the losing party all fees, costs and expenses of enforcing any right of such prevailing party under or with respect to this Agreement, including, without limitation, such reasonable fees and expenses of attorneys and accountants, which shall include, without limitation, all fees, costs and expenses of appeal.
-==================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-15. Counterparts/Facsimile Signatures.  This Agreement may be executed in two (2) or more counterparts, each of which shall be deemed an original, but all of which together shall constitute one (1) and the same instrument.  Signatures transmitted via facsimile shall be deemed originals for purposes of this Agreement.
-==============================================================================================================================================================================================================================================================================================================================
-
-16. Section Headings.  The headings contained in this Agreement are for reference purposes only and shall not in any way affect the meaning or interpretation of this Agreement.
-================================================================================================================================================================================
-
-17. Governing Law.  This Agreement shall be governed by and construed and enforced in accordance with the laws of the State of Delaware, without regard to conflicts of laws.
-=============================================================================================================================================================================
-
-_\[Signature Page Follows\]_
-
-  
-
-IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.
-
-**COMPANY:**
-
-**COMPANY, INC.**
-
-a Delaware corporation
-
-  
-By: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
-  
-Name: Person Person  
-Title:  Chief Executive Officer
-
-  
-
-IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the date first above written.
-
-**HOLDERS:**
-
-**Person A. Person**
-
-No. of Shares: 404,000
-
-**Person Person**
-
-No. of Shares: 396,000
-
-**Person Person**
-
-No. of Shares: 100,000
-
-**Org LLLP**
-
-a Nevada limited liability limited partnership  
-  
-By:   
-Name: Person  
-Title:  Managing Limited Partner
-
-No. of Shares: 100,000
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 15">
+<meta name=Originator content="Microsoft Word 15">
+<link rel=File-List
+href="file:////Users/sean/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_filelist.xml">
+<!--[if gte mso 9]><xml>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<link rel=themeData
+href="file:////Users/sean/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_themedata.thmx">
+<link rel=colorSchemeMapping
+href="file:////Users/sean/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_colorschememapping.xml">
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870145 1107305727 0 0 415 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-536859905 -1073732485 9 0 511 0;}
+@font-face
+	{font-family:"Avenir Book";
+	panose-1:2 0 5 3 2 0 0 2 0 3;
+	mso-font-alt:"Avenir Book";
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-2147483473 1342185546 0 0 155 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-priority:99;
+	mso-style-link:"Footer Char";
+	margin:0in;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.25in right 6.5in;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	mso-themecolor:hyperlink;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:#954F72;
+	mso-themecolor:followedhyperlink;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:Footer;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-family:"Calibri",sans-serif;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1 1 -1 -1 -1 -1 -1 -1 -1 -1;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:•;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level3
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level4
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level5
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level6
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level7
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level8
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level9
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l1
+	{mso-list-id:2;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2 101 -1 -1 -1 -1 -1 -1 -1 -1;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:◦;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level2
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l1:level3
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l1:level4
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l1:level5
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l1:level6
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l1:level7
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l1:level8
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l1:level9
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l2
+	{mso-list-id:3;
+	mso-list-type:hybrid;
+	mso-list-template-ids:3 201 -1 -1 -1 -1 -1 -1 -1 -1;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:✓;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level2
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l2:level3
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l2:level4
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l2:level5
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l2:level6
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l2:level7
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l2:level8
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l2:level9
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l3
+	{mso-list-id:4;
+	mso-list-type:hybrid;
+	mso-list-template-ids:4 301 -1 -1 -1 -1 -1 -1 -1 -1;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:⁃;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level2
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l3:level3
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l3:level4
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l3:level5
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l3:level6
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l3:level7
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l3:level8
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l3:level9
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l4
+	{mso-list-id:5;
+	mso-list-type:hybrid;
+	mso-list-template-ids:5 401 -1 -1 -1 -1 -1 -1 -1 -1;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:⁃;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level2
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l4:level3
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l4:level4
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l4:level5
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l4:level6
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l4:level7
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l4:level8
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l4:level9
+	{mso-level-start-at:0;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link="#0563C1" vlink="#954F72" style='tab-interval:.5in;
+word-wrap:break-word'>
+<!--StartFragment-->
+
+<p class=MsoNormal><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>Okokokookokk. Cool.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>And here is another change.
+And more changes and more changes and more stuff and more stuff and more stuff
+and more stuff and more stuff.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>What about now and anow and
+now and now and now and other stuff and now and now and other stuff.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>Does it look good?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>And some other stuff here.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>Super fun.<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table <o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>New Box 4 text. Hope it looks good.<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>No Image for now.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And Added some text over here. How does it look?<o:p></o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal style='text-align:justify'><i>The views expressed here are
+those of the individual AH Capital Management, L.L.C. (“a16z”) personnel quoted
+and are not the views of a16z or its affiliates. Certain information contained
+in here has been obtained from third-party sources, including from portfolio
+companies of funds managed by a16z. While taken from sources believed to be
+reliable, a16z has not independently verified such information and makes no
+representations about the enduring accuracy of the information or its
+appropriateness for a given situation. In addition, this content may include
+third-party advertisements; a16z has not reviewed such advertisements and does
+not endorse any advertising content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal style='text-align:justify'><i>This content is provided for
+informational purposes only, and should not be relied upon as legal, business,
+investment, or tax advice. You should consult your own advisers as to those
+matters. References to any securities or digital assets are for illustrative
+purposes only, and do not constitute an investment recommendation or offer to
+provide investment advisory services. Furthermore, this content is not directed
+at nor intended for use by any investors or prospective investors, and may not
+under any circumstances be relied upon when making a decision to invest in any
+fund managed by a16z. (An offering to invest in an a16z fund will be made only
+by the private placement memorandum, subscription agreement, and other relevant
+documentation of any such fund and should be read in their entirety.) Any
+investments or portfolio companies mentioned, referred to, or described are not
+representative of all investments in vehicles managed by a16z, and there can be
+no assurance that the investments will be profitable or that other investments
+made in the future will have similar characteristics or results. A list of investments
+made by funds managed by Andreessen Horowitz (excluding investments for which
+the issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in physical
+branches, they want technology that resembles the non-financial consumer social
+apps they use, which are mobile-first, beautifully designed, and built for
+their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the company
+— he’s an ambitious CEO who has built a brand and product customers love.
+Premium users who are signed up for direct deposit use the card close to 40
+times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not constitute
+an investment recommendation or offer to provide investment advisory services.
+Furthermore, this content is not directed at nor intended for use by any
+investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused
+banks to consumer-first banks powered by technology. Traditional banks have a
+massive retail footprint of ~80k branches across the U.S., but gone are the
+days when consumers selected their bank based on physical proximity.
+Millennials, in particular, have shown they don’t want to bank in physical
+branches, they want technology that resembles the non-financial consumer social
+apps they use, which are mobile-first, beautifully designed, and built for
+their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio companies
+mentioned, referred to, or described are not representative of all investments
+in vehicles managed by a16z, and there can be no assurance that the investments
+will be profitable or that other investments made in the future will have
+similar characteristics or results. A list of investments made by funds managed
+by Andreessen Horowitz (excluding investments for which the issuer has not
+provided permission for a16z to disclose publicly as well as unannounced
+investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans living
+paycheck to paycheck. any of the 130 million U.S. adults who earn $75k or less
+are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical proximity.
+Millennials, in particular, have shown they don’t want to bank in physical
+branches, they want technology that resembles the non-financial consumer social
+apps they use, which are mobile-first, beautifully designed, and built for
+their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any securities
+or digital assets are for illustrative purposes only, and do not constitute an
+investment recommendation or offer to provide investment advisory services.
+Furthermore, this content is not directed at nor intended for use by any
+investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH Capital
+Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or
+its affiliates. Certain information contained in here has been obtained from
+third-party sources, including from portfolio companies of funds managed by
+a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as unannounced
+investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a rapid
+pace. They have built their core banking infrastructure in-house, which not
+only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the enduring
+accuracy of the information or its appropriateness for a given situation. In
+addition, this content may include third-party advertisements; a16z has not
+reviewed such advertisements and does not endorse any advertising content
+contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z
+or its affiliates. Certain information contained in here has been obtained from
+third-party sources, including from portfolio companies of funds managed by
+a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH Capital
+Management, L.L.C. (“a16z”) personnel quoted and are not the views of a16z or
+its affiliates. Certain information contained in here has been obtained from
+third-party sources, including from portfolio companies of funds managed by
+a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any securities
+or digital assets are for illustrative purposes only, and do not constitute an
+investment recommendation or offer to provide investment advisory services.
+Furthermore, this content is not directed at nor intended for use by any
+investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement memorandum,
+subscription agreement, and other relevant documentation of any such fund and
+should be read in their entirety.) Any investments or portfolio companies
+mentioned, referred to, or described are not representative of all investments
+in vehicles managed by a16z, and there can be no assurance that the investments
+will be profitable or that other investments made in the future will have
+similar characteristics or results. A list of investments made by funds managed
+by Andreessen Horowitz (excluding investments for which the issuer has not
+provided permission for a16z to disclose publicly as well as unannounced
+investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy, retail-focused
+banks to consumer-first banks powered by technology. Traditional banks have a
+massive retail footprint of ~80k branches across the U.S., but gone are the
+days when consumers selected their bank based on physical proximity.
+Millennials, in particular, have shown they don’t want to bank in physical
+branches, they want technology that resembles the non-financial consumer social
+apps they use, which are mobile-first, beautifully designed, and built for
+their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed, and
+built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not independently
+verified such information and makes no representations about the enduring
+accuracy of the information or its appropriateness for a given situation. In
+addition, this content may include third-party advertisements; a16z has not
+reviewed such advertisements and does not endorse any advertising content
+contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt'>****<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>This is a Test of
+Microsoft Word. Now there is a change.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I am adding this new text
+in. And here is new text<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>I deleted some old text.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>With a post from a16z.com. Does this show in the next
+version?<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>And here is Version again for md. <o:p></o:p></p>
+
+<p class=MsoNormal>***<o:p></o:p></p>
+
+<p class=MsoNormal>Here is a table (now with box 5 removed):<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 1<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 2<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 3<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Box 4<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=125 valign=top style='width:93.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Aaadaa <o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And some other text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>And ad some text<o:p></o:p></p>
+  </td>
+  <td width=125 valign=top style='width:93.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal>Adad texter<o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Here is an image:<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This is version 3 of this micro word doc.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal style='tab-stops:114.2pt 145.25pt'><span style='mso-tab-count:
+2'>                                                </span><o:p></o:p></p>
+
+<p class=MsoNormal>Very fun.Still about current. Just added this text<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Write up of not first base, but Current. Now 3 pages:<o:p></o:p></p>
+
+<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+
+<p class=MsoNormal><b>Part 1<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Avenir Book"'>The traditional
+banking system in the U.S. is broken, especially for the third of Americans
+living paycheck to paycheck. any of the 130 million U.S. adults who earn $75k
+or less are unserved or underserved by their existing banks, which charge high,
+unpredictable fees, offer irrelevant and inaccessible products, don’t extend
+credit to low-FICO customers, and rely on deposits to make money.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>There is no other consumer-facing industry with such a
+mismatch between consumer demand and existing products on the market. In the
+U.S. alone, the top 100 consumer banks are worth $2.5 trillion and the top four
+banks have a combined value of $1.1 trillion. Yet, they consistently have
+negative NPS scores, among the lowest of any industry.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><i>Part 2<o:p></o:p></i></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We believe there is going to be a seismic change in the next
+10-20 years, as consumers — especially younger ones — shift from legacy,
+retail-focused banks to consumer-first banks powered by technology. Traditional
+banks have a massive retail footprint of ~80k branches across the U.S., but
+gone are the days when consumers selected their bank based on physical
+proximity. Millennials, in particular, have shown they don’t want to bank in
+physical branches, they want technology that resembles the non-financial
+consumer social apps they use, which are mobile-first, beautifully designed,
+and built for their personal needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Today, we are announcing our investment in&nbsp;<a
+href="https://current.com/">Current</a>, which we believe is building the bank
+for the next generation. Current offers modern banking products and services —
+instant cash deposits, faster direct deposits, better visibility and control of
+money — for its members, almost half of whom have never had a bank account
+before. These features, along with those on the roadmap, are tailored to the
+specific needs of their target customer base and have been rolled out at a
+rapid pace. They have built their core banking infrastructure in-house, which
+not only improves margins, but allows the company to offer products no one else
+does, such as rewards points for up to 10% cash back at merchants, and instant
+gas hold crediting.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b>Part 3<o:p></o:p></b></p>
+
+<p class=MsoNormal>We’ve gotten to know Stuart since the early days of the
+company — he’s an ambitious CEO who has built a brand and product customers
+love. Premium users who are signed up for direct deposit use the card close to
+40 times per month, and Current also sports an NPS of 85, which is on par with
+some of the most loved consumer products across all industries. Current’s
+partnerships in the influencer space have also set a standard in the fintech
+industry. They’re providing a platform for creators to produce engaging content
+and collaborate with some of the most relevant stars of this generation,
+including a long-term, exclusive partnership with MrBeast, one of YouTube’s
+most viewed creators and philanthropists.<o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Current has grown rapidly at more than 4x year-over-year,
+reaching close to&nbsp;<a
+href="https://www.prnewswire.com/news-releases/current-triples-valuation-to-2-2-billion-raises-220-million-in-series-d-funding-301277610.html">3
+million active</a>&nbsp;users in just over 3 years. This is a customer base
+that will grow with Current as they accumulate wealth, and will turn to Current
+for the full lifecycle of their banking needs.&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>Today, Current is announcing a Series D raise of $220
+million, and we are thrilled to be leading the round. I am very excited to join
+the board and work with Stuart and team as they build an iconic bank for the
+next generation!&nbsp;&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=MsoNormal>* * *<o:p></o:p></p>
+
+<p class=MsoNormal><i>The views expressed here are those of the individual AH
+Capital Management, L.L.C. (“a16z”) personnel quoted and are not the views of
+a16z or its affiliates. Certain information contained in here has been obtained
+from third-party sources, including from portfolio companies of funds managed
+by a16z. While taken from sources believed to be reliable, a16z has not
+independently verified such information and makes no representations about the
+enduring accuracy of the information or its appropriateness for a given
+situation. In addition, this content may include third-party advertisements;
+a16z has not reviewed such advertisements and does not endorse any advertising
+content contained therein.</i><o:p></o:p></p>
+
+<p class=MsoNormal><i>This content is provided for informational purposes only,
+and should not be relied upon as legal, business, investment, or tax advice.
+You should consult your own advisers as to those matters. References to any
+securities or digital assets are for illustrative purposes only, and do not
+constitute an investment recommendation or offer to provide investment advisory
+services. Furthermore, this content is not directed at nor intended for use by
+any investors or prospective investors, and may not under any circumstances be
+relied upon when making a decision to invest in any fund managed by a16z. (An
+offering to invest in an a16z fund will be made only by the private placement
+memorandum, subscription agreement, and other relevant documentation of any
+such fund and should be read in their entirety.) Any investments or portfolio
+companies mentioned, referred to, or described are not representative of all
+investments in vehicles managed by a16z, and there can be no assurance that the
+investments will be profitable or that other investments made in the future
+will have similar characteristics or results. A list of investments made by
+funds managed by Andreessen Horowitz (excluding investments for which the
+issuer has not provided permission for a16z to disclose publicly as well as
+unannounced investments in publicly traded digital assets) is available at
+https://a16z.com/investments/.</i><o:p></o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<!--EndFragment-->
+</body>
+
+</html>
