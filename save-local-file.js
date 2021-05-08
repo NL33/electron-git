@@ -35,8 +35,8 @@ window.onload = function () {
       // readMarkDown()
       // readWord()
       //convertWord()
-      //saveAsText()
-      saveAsHTML()
+      saveAsText()
+      //saveAsHTML()
         //readFileFunction('/Users/sean/desktop/text-test/html-test-apple.html')
     })
     
@@ -55,8 +55,8 @@ function readFileFunction(doc) {
     fs.readFile(doc, 'utf8', function (err, data) {
         console.log('in read file 1')
         let body = document.getElementById("bodyId")
-        body.innerHTML = marked(data)
-
+        //body.innerHTML = marked(data)
+        body.innerHTML = data
         //clipboard.writeHTML(data)
         console.log('done')
     })
@@ -75,7 +75,7 @@ function saveAsHTML(){
 function saveAsText() {
     console.log('click')
     var data = clipboard.readText()
-    var doc = '/Users/sean/desktop/clipboard-text-test/html-test.txt'
+    var doc = '/Users/sean/desktop/text-test/html-test.txt'
     writeNewFile(doc, data)
 }
 
