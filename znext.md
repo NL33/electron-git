@@ -1,14 +1,15 @@
 **Next in the Electron Git App**
+remember focus is projects--like a project that combines research with writing. Don't get distracted by tracking random notes.
 
 # Just Completed
-working git save for directory on your computer that you choose
+Just went through possibilities. And decided that for now will go forward with converting to html, then saving as markdown. Not perfect, but try that moving forward
 
 # Next
-straight text works well, except for showing it on electron. 
-
-test out file size for:
---apple notes: txt v html
---micro word: if you strip a lot of the html away, how is the file size?
+start building in earnest. 
+--set up project through electron app
+--save doc to project
+--perform git on project
+--use electron app to make it easy to navigate between docs
 
 ## IDE: easy to set up project and organize your windows
 start with example: script for printing press. And make it work for microsoft word. Then make it work for apple notes (just make it work as well as possible)
@@ -48,6 +49,11 @@ Best structure to seek: for ALL doc types:
 7. The electron app makes it easy to show files (like an IDE like VS Code)
 8. Tracking files: have the project open when save
    --word docs are saved to the folders themselves. just put a doc and docx exception into the gitignore.
+9. if save a doc, then leave and later come back, how do you know it will update the right doc
+    --each doc is linked to a project. so you can see your projects, and search them to find the right file one to update.
+    --also, can help by showing you the last 5 docs you updated.
+    --for microsoft word, should just be in the folder itself, and maybe can read the doc title. 
+    --can also have people be clear about their titles--like apple notes, the first lines of the doc are the title. Then, when you save it, we can parse those first lines.
 
 
 
