@@ -20,10 +20,16 @@ $ npm install axios --save
 $ npm install mammoth 
     --May 6, 2021
     to convert word to html 
+    REMOVED: May 8, 2021
 
 $ npm install turndown
     --May 7, 2021
     to convert html to markdown.
+
+$ npm install marked
+    --May 8, 2021
+    --read markdown in html
+
 
 
 # Prior to rollback on April 15, 2021
