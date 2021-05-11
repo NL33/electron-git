@@ -1,7 +1,6 @@
 const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
 const { keyboard, Key} = require("@nut-tree/nut-js")
-var mammoth = require("mammoth")
 const fs = require('fs');
 
 
@@ -49,30 +48,33 @@ function saveNewVersionWindow() {
    // convertWord()
 }
 
-function convertWord() {
-    mammoth.convertToHtml({ path: '/Users/sean/Desktop/word-convert-test.docx' }).then(function (result) {
-        var htmlVersion = result.value;
-        //var markdownVersion = turndownService.turndown(htmlVersion)
-        var messages = result.messages
-        console.log('messages = ')
-        console.log(messages)
-        var doc = '/Users/sean/Desktop/mammoth-test/markdown-turndown.md'
-        fs.writeFile(doc, htmlVersion, (err) => {
-            if (err) throw err;
-            console.log('added to doc!');
-        })
-        fs.readFile(doc, 'utf8', function (err, data) {
-            console.log('in read file')
-            clipboard.readHTML(data)
-           // let stuff = data
-            //let body = document.getElementById("bodyId")
-            //body.innerHTML = stuff
-
-            //clipboard.writeHTML(data)
-           // console.log(stuff)
-        })
+function folderWindowFunction() {
+    let display = screen.getPrimaryDisplay();
+    let width = display.bounds.width
+    let height = display.bounds.height
+    folderWindow = new BrowserWindow({
+        width: 600,
+        height: 300,
+        x: width - 5,
+        y: 0,
+        //alwaysOnTop: true,
+        webPreferences: {
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+        }
     })
+    folderWindow.loadURL('file://' + __dirname + '/views/folder-view.html');
+    //newVersionWindow.loadURL('/Users/sean/Desktop/word-convert-test-folder/word-convert-test.txt')
+    folderWindow.openDevTools()
+    /*
+    newVersionWindow.webContents.on('did-finish-load', function () {
+        newVersionWindow.show();
+    })
+    */
+    // convertWord()
 }
+
+
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
     app.allowRendererProcessReuse = false  //to allow nutjs
@@ -90,7 +92,7 @@ function menuApp() {
     tray = new Tray('mountains-icon.jpg')
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Save New Version', click() { saveNewVersionWindow() } },
-        { label: 'View Old Version', click() { viewOldVersion() } },
+        { label: 'Folders', click() { folderWindowFunction() } },
         { label: 'Revert to Old Version', click() { revertToOldVersion() } },
     ])
     tray.setToolTip('This is my application.')

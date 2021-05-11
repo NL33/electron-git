@@ -61,7 +61,7 @@ Best structure to seek: for ALL doc types:
 
 bottom line: 
 --HTML looks the best. But it takes up a lot of storage, including with GIT. (bigger than git as word doc. file about 4 times the size)
---save as html, then convert to markdown on save. Looks decent on electron, and better for storage. (file is about 2.75 times). Looks good on github too. Not perfect--but still get to see bold and italics and spacing. ***Leading contender***
+--save as html, then convert to markdown on save. Looks decent on electron, and better for storage. (file is about 2.75 times). Looks good on github too. Not perfect--but still get to see bold and italics and spacing. And will be helpful to have all docs in a single storage type. ***Leading contender***
 --save as text. Display on electron with markdown converter. Looks ok, but lose formatting. Very good for storage.
 
 --for microsoft word: just save the docs into git. BUT: you get to return the old docs exactly. storage concern, but then also can't send to github, and can't diff. 

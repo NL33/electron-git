@@ -10,7 +10,7 @@ var newDirectory = '/Users/sean/Desktop/electron-tester/big-plans'
 var openDoc = '/Users/sean/Desktop/word-convert-test.docx'
 const axios = require('axios');
 const { brotliDecompressSync } = require('zlib');
-var mammoth = require("mammoth")
+//var mammoth = require("mammoth")
 var TurndownService = require('turndown')
 var turndownService = new TurndownService()
 var marked = require('marked')
@@ -347,8 +347,6 @@ function writeRTFFile(data) {
     })
 
 }
-
-
 
 
 
