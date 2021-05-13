@@ -10,6 +10,7 @@ var showDirectory
 var selectedPath
 
 window.onload = function () {
+    console.log('loaded')
     const homeDir = require('os').homedir();
     const desktopDir = `${homeDir}/Desktop`;
     
@@ -32,6 +33,7 @@ window.onload = function () {
     });
 
     document.getElementById("changeFolder").addEventListener('click', function() {
+        console.log('clicked')
         document.getElementById("file-input").style.display = "inline"
         document.getElementById("changeFolder").style.display = "none"
         document.getElementById("closeChoose").style.display = "inline-block"

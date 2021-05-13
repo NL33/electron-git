@@ -5,22 +5,6 @@ const fs = require('fs');
 
 
 var newVersionWindow
-/*
-function createWindow() { 
-   const win = new BrowserWindow({ //creates a new browser window
-       width: 530,
-       height: 690,
-        webPreferences: {
-           preload: path.join(__dirname, 'preload.js'),
-           nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
-           contextIsolation: false, //set to true by default. False if want to use node api in renderer process
-           enableRemoteModule: true
-        }
-    })
-
-    win.loadFile('index.html') //and loads index.html into that browser window
-}
-*/
 
 function saveNewVersionWindow() {
     let display = screen.getPrimaryDisplay();
@@ -102,6 +86,7 @@ function menuApp() {
 ipcMain.on('open-dialog', (event, args)=>{
     showDialog()
 })
+
 
 function showDialog() {
     console.log('clicked show dialog')

@@ -2,9 +2,11 @@
 remember focus is projects--like a project that combines research with writing. Don't get distracted by tracking random notes.
 
 # Just Completed
-Just went through possibilities. And decided that for now will go forward with converting to html, then saving as markdown. Not perfect, but try that moving forward
+Learned about opening folder
 
 # Next
+use dialog to open and select a direcotry. start with this resource: https://jaketrent.com/post/select-directory-in-electron
+
 start building in earnest. 
 --set up project through electron app
 --save doc to project
