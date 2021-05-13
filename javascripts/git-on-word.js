@@ -17,9 +17,43 @@ window.onload = function () {
 function saveFile(){
     var data1 = clipboard.readHTML()
     var data = turndownService.turndown(data1)
+    //#get first 6 words of first line to propose as possible file name:
+
+    //## clear out <!--  ... --> text in beginning, which is there in microsoft word docs
     var dataCleaned = data.replace(/<!--.*?-->/s, "");
-    console.log('first linesa = ')
-    console.log(dataCleaned)
+    //## get first line
+    var dataArray = dataCleaned.split('\n')
+    var firstLine = 'none'
+    var i
+    for (i = 0; i < 6; i++){ //loop through first six lines to be sure there is text there
+        if (dataArray[i].trim().length > 0) { 
+            console.log('there is a value at ' + i)
+            firstLine = dataArray[i].trim()
+            break; //stop loop if have text in the line
+        } 
+    }
+    //## isolate first 6 words of the first line
+    if (firstLine != 'none') {
+        console.log('first line = ')
+        console.log(firstLine)
+        var lineArray = firstLine.split(" ")
+        var n
+        var firstLineSum = ''
+        for (n = 0; n < 6; n++){
+            if (n < 1){
+                firstLineSum = lineArray[0]
+            } else {
+                firstLineSum+= ' '
+                firstLineSum+= lineArray[n]
+            }
+        }
+    console.log('first 6 words of first line = ')
+    console.log(firstLineSum)
+    } else {
+        console.log('no first line')
+    }
+//end get first line
+
    // fs.writeFile()
    // saveVersion()
 }

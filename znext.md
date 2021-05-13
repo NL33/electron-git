@@ -2,11 +2,13 @@
 remember focus is projects--like a project that combines research with writing. Don't get distracted by tracking random notes.
 
 # Just Completed
-Learned about opening folder
+got regex working to remove the beginning code from word docs in git-on-word.js
 
 # Next
 
-have microsoft word doc, and build functionality to perform version control on it.
+get regex to get the first line of the doc. This will be used to offer a potential name for the file for the user to confirm.
+then, save version to app-versions folder
+--not clear whether will use a basic app-version folder or a full directory, but for now just make saving and later viewing old versions work, and then deal with directory issue
 
 
 
