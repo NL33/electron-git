@@ -5,13 +5,10 @@ remember focus is projects--like a project that combines research with writing. 
 Learned about opening folder
 
 # Next
-use dialog to open and select a direcotry. start with this resource: https://jaketrent.com/post/select-directory-in-electron
 
-start building in earnest. 
---set up project through electron app
---save doc to project
---perform git on project
---use electron app to make it easy to navigate between docs
+have microsoft word doc, and build functionality to perform version control on it.
+
+
 
 ## IDE: easy to set up project and organize your windows
 start with example: script for printing press. And make it work for microsoft word. Then make it work for apple notes (just make it work as well as possible)

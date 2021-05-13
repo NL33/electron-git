@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+         [contenteditable]:empty:before {
+            content: attr(data-placeholder);
+            color: #778899;
+        }
+
+        #saveNote {
+            border: 1px solid black;
+            border-radius: 7px;
+            padding: 7px;
+            outline: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+
+        #saveButton {
+            /*display: none;*/
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+            /*font-size: 10pt;*/
+            border-radius: 8px;
+            padding: 5px;
+            border: 2px solid #32cd53;
+            outline: none;
+            margin-top: 15px;
+            /* margin-left: 35px;
+            vertical-align: 20%;*/
+        }
+
+        #saveButton:hover {
+            background-color: #32cd53;
+            color: white
+        }
+
+    </style>
+    <title>Save Version</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+
+<body id="bodyId">
+    <div id="saveNote" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
+    </br>
+    <div id="saveButton">Save Version</div>
+
+
+
+    <script src="../javascripts/git-on-word.js"></script>
+</body>
+
+</html>

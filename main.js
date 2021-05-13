@@ -4,13 +4,30 @@ const { keyboard, Key} = require("@nut-tree/nut-js")
 const fs = require('fs');
 
 
-var newVersionWindow
+let tray = null
+function menuApp() {
+    tray = new Tray('mountains-icon.jpg')
+    const contextMenu = Menu.buildFromTemplate([
+        { label: 'Save New Version', click() { saveNewVersionWindow() } },
+        { label: 'Folders', click() { folderWindowFunction() } },
+        { label: 'Revert to Old Version', click() { revertToOldVersion() } },
+    ])
+    tray.setToolTip('This is my application.')
+    tray.setContextMenu(contextMenu)
+}
+
+ipcMain.on('open-dialog', (event, args) => {
+    showDialog()
+})
+
+/* **** GIT ON WORD ********/
+
 
 function saveNewVersionWindow() {
     let display = screen.getPrimaryDisplay();
     let width = display.bounds.width
     let height = display.bounds.height
-    newVersionWindow = new BrowserWindow({
+    let newVersionWindow = new BrowserWindow({
         width: 600,
         height: 300,
         x: width - 605,
@@ -21,7 +38,7 @@ function saveNewVersionWindow() {
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
         }
     })
-    newVersionWindow.loadURL('file://' + __dirname + '/views/save-new-version.html');
+    newVersionWindow.loadURL('file://' + __dirname + '/views/git-on-word.html');
     //newVersionWindow.loadURL('/Users/sean/Desktop/word-convert-test-folder/word-convert-test.txt')
     newVersionWindow.openDevTools()
     /*
@@ -31,6 +48,10 @@ function saveNewVersionWindow() {
     */
    // convertWord()
 }
+
+
+/***END GIT ON WORD ******/
+
 
 function folderWindowFunction() {
     let display = screen.getPrimaryDisplay();
@@ -70,23 +91,6 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
         }
     })
 })
-
-let tray = null
-function menuApp() {
-    tray = new Tray('mountains-icon.jpg')
-    const contextMenu = Menu.buildFromTemplate([
-        { label: 'Save New Version', click() { saveNewVersionWindow() } },
-        { label: 'Folders', click() { folderWindowFunction() } },
-        { label: 'Revert to Old Version', click() { revertToOldVersion() } },
-    ])
-    tray.setToolTip('This is my application.')
-    tray.setContextMenu(contextMenu)
-}
-
-ipcMain.on('open-dialog', (event, args)=>{
-    showDialog()
-})
-
 
 function showDialog() {
     console.log('clicked show dialog')
