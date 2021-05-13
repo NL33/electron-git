@@ -2,13 +2,15 @@
 remember focus is projects--like a project that combines research with writing. Don't get distracted by tracking random notes.
 
 # Just Completed
-got regex working to remove the beginning code from word docs in git-on-word.js
+got code to get first 6 words of copied text
 
 # Next
 
-get regex to get the first line of the doc. This will be used to offer a potential name for the file for the user to confirm.
-then, save version to app-versions folder
---not clear whether will use a basic app-version folder or a full directory, but for now just make saving and later viewing old versions work, and then deal with directory issue
+offer to save file as the first 6 words of first line.
+give chance to change title.
+save md file with that name
+once md file saved, run git on it
+
 
 
 
