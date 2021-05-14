@@ -1,18 +1,34 @@
-const {clipboard} = require('electron')
+const {ipcRenderer, clipboard} = require('electron')
 const simpleGit = require('simple-git')
 const git = simpleGit()
-const homeDir = require('os').homedir();
-const desktopDir = `${homeDir}/Desktop`;
-var appFolder = desktopDir + '/app-versions'
 var TurndownService = require('turndown')
 var turndownService = new TurndownService()
 
+const homeDir = require('os').homedir();
+const desktopDir = `${homeDir}/Desktop`;
+var appFolder = desktopDir + '/app-versions'
+
+
 window.onload = function () {
+    var changeFolderButton = document.getElementById('changeFolder')
+    changeFolderButton.addEventListener('click', () => {
+        changeFolder()
+    })
     var saveButton = document.getElementById('saveButton')
     saveButton.addEventListener('click', () =>{
         saveFile() 
     })  
 }
+
+/************FOLDER ACTIONS **********/
+
+function changeFolder() {
+    ipcRenderer.send('open-folder-dialog', '')
+}
+
+
+
+/********GIT ACTIONS*************** */
 
 function saveFile(){
     var data1 = clipboard.readHTML()

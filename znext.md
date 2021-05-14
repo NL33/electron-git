@@ -1,16 +1,23 @@
 **Next in the Electron Git App**
 remember focus is projects--like a project that combines research with writing. Don't get distracted by tracking random notes.
 
+# project folder 
+
+think of how I actually use git. The doc and the git directory are separate on my computer. 
+
+you could just in the app show the directory (ie, project name). There can be a button to save latest version with this doc, or just save latest version to update the project.
+
+just like in terminal--you separately go into the directory from the terminal. Difference here--the doc is not already saved into that project. So just need a button to save the doc into the project. 
+
 # Just Completed
 got code to get first 6 words of copied text
 
 # Next
 
-offer to save file as the first 6 words of first line.
-give chance to change title.
-save md file with that name
-once md file saved, run git on it
-
+add ability to select project folder
+commit changes to folder
+  --add doc to folder 
+  --commit changes.
 
 
 

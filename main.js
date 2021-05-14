@@ -16,18 +16,13 @@ function menuApp() {
     tray.setContextMenu(contextMenu)
 }
 
-ipcMain.on('open-dialog', (event, args) => {
-    showDialog()
-})
-
-/* **** GIT ON WORD ********/
-
-
+/* **** #GIT ON WORD ********/
+var saveNewVersionWindow
 function saveNewVersionWindow() {
     let display = screen.getPrimaryDisplay();
     let width = display.bounds.width
     let height = display.bounds.height
-    let newVersionWindow = new BrowserWindow({
+    newVersionWindow = new BrowserWindow({
         width: 600,
         height: 300,
         x: width - 605,
@@ -50,7 +45,64 @@ function saveNewVersionWindow() {
 }
 
 
-/***END GIT ON WORD ******/
+/*****## OPEN DIALOG TO SELECT FOLDER ******/
+
+ipcMain.on('open-folder-dialog', (event, args) => {
+    console.log('received opens folder message')
+    showDialog()
+})
+
+function showDialog(save){
+    dialog.showOpenDialog({
+        properties: ['openDirectory'],
+       title: "Select Your Project Folder",
+       buttonLabel: "Select",
+    }).then(result => {
+        console.log('file path = ')
+        console.log(result.filePaths)
+    }).catch(err => {
+        console.log(err)
+    })
+}
+
+
+function showDialogSave() {
+    console.log('clicked show dialog')
+    dialog.showSaveDialog({
+        title: 'Select the File Path to save',
+        //defaultPath: path.join(__dirname, '../assets/sample.txt'),
+        //defaultPath: path.join(__dirname, '../assets/'),
+        buttonLabel: 'Save',
+        // Restricting the user to only Text Files.
+        filters: [
+            {
+                name: 'Text Files',
+                extensions: ['txt', 'docx']
+            },],
+        properties: []
+    }).then(file => {
+        console.log('now in file step')
+        newVersionWindow.webContents.send('file-selected', file)
+        console.log('file step 3')
+    })
+}
+
+
+async function viewOldVersion() {
+    win.webContents.send('view-old-version', 'cool')
+}
+
+async function revertToOldVersion() {
+    win.webContents.send('revert-to-old-version', 'cool')
+}
+
+
+
+
+
+
+
+/***END #GIT ON WORD ******/
 
 
 function folderWindowFunction() {
@@ -81,6 +133,8 @@ function folderWindowFunction() {
 
 
 
+/*******BASIC SETUP**** */
+
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
     app.allowRendererProcessReuse = false  //to allow nutjs
     menuApp()
@@ -91,38 +145,6 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
         }
     })
 })
-
-function showDialog() {
-    console.log('clicked show dialog')
-    dialog.showSaveDialog({
-        title: 'Select the File Path to save',
-        //defaultPath: path.join(__dirname, '../assets/sample.txt'),
-        //defaultPath: path.join(__dirname, '../assets/'),
-        buttonLabel: 'Save',
-        // Restricting the user to only Text Files.
-        filters: [
-            {
-                name: 'Text Files',
-                extensions: ['txt', 'docx']
-            },],
-        properties: []
-    }).then(file => {
-        console.log('now in file step')
-        newVersionWindow.webContents.send('file-selected', file)
-        console.log('file step 3')
-    })
-}
-
-
-
-
-async function viewOldVersion(){
-    win.webContents.send('view-old-version', 'cool')
-}
-
-async function revertToOldVersion(){
-    win.webContents.send('revert-to-old-version', 'cool')
-}
 
 
 /*
