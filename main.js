@@ -17,7 +17,7 @@ function menuApp() {
 }
 
 /* **** #GIT ON WORD ********/
-var saveNewVersionWindow
+var newVersionWindow
 function saveNewVersionWindow() {
     let display = screen.getPrimaryDisplay();
     let width = display.bounds.width
@@ -48,56 +48,31 @@ function saveNewVersionWindow() {
 /*****## OPEN DIALOG TO SELECT FOLDER ******/
 
 ipcMain.on('open-folder-dialog', (event, args) => {
-    console.log('received opens folder message')
     showDialog()
 })
 
-function showDialog(save){
-    dialog.showOpenDialog({
+function showDialog(){
+    dialog.showOpenDialog(newVersionWindow, {
         properties: ['openDirectory'],
-       title: "Select Your Project Folder",
-       buttonLabel: "Select",
+        title: "Select Your Project Folder",
+        buttonLabel: "Select",
     }).then(result => {
-        console.log('file path = ')
-        console.log(result.filePaths)
+        if (!result.canceled) {
+         newVersionWindow.webContents.send('selected-folder', result.filePaths)
+        }
     }).catch(err => {
         console.log(err)
     })
 }
 
 
-function showDialogSave() {
-    console.log('clicked show dialog')
-    dialog.showSaveDialog({
-        title: 'Select the File Path to save',
-        //defaultPath: path.join(__dirname, '../assets/sample.txt'),
-        //defaultPath: path.join(__dirname, '../assets/'),
-        buttonLabel: 'Save',
-        // Restricting the user to only Text Files.
-        filters: [
-            {
-                name: 'Text Files',
-                extensions: ['txt', 'docx']
-            },],
-        properties: []
-    }).then(file => {
-        console.log('now in file step')
-        newVersionWindow.webContents.send('file-selected', file)
-        console.log('file step 3')
-    })
-}
-
-
 async function viewOldVersion() {
-    win.webContents.send('view-old-version', 'cool')
+    newVersionWindow.webContents.send('view-old-version', 'cool')
 }
 
 async function revertToOldVersion() {
     win.webContents.send('revert-to-old-version', 'cool')
 }
-
-
-
 
 
 

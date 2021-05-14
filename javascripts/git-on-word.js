@@ -8,8 +8,18 @@ const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
 
+var folderPath 
+var folderName
 
 window.onload = function () {
+    if (localStorage.getItem('lastProjectFolder')) {
+        let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
+        if (folderArray){
+            folderPath = folderArray[0]
+            folderName = folderArray[1]
+            document.getElementById('directory').textContent = folderName
+        }
+    }
     var changeFolderButton = document.getElementById('changeFolder')
     changeFolderButton.addEventListener('click', () => {
         changeFolder()
@@ -26,6 +36,16 @@ function changeFolder() {
     ipcRenderer.send('open-folder-dialog', '')
 }
 
+ipcRenderer.on('selected-folder', (event, folderPath) => {
+    folderPath = folderPath.toString()
+    let dataArray = folderPath.split("/")
+    folderName = dataArray[dataArray.length - 1]
+    document.getElementById('directory').textContent = folderName
+    if (folderParth.length > 0){ //should always be true, but adding a doublecheck
+        let array = [folderPath, folderName]
+        localStorage.setItem('lastProjectFolder', JSON.stringify(array))
+    }
+})
 
 
 /********GIT ACTIONS*************** */

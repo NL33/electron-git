@@ -10,11 +10,11 @@ you could just in the app show the directory (ie, project name). There can be a 
 just like in terminal--you separately go into the directory from the terminal. Difference here--the doc is not already saved into that project. So just need a button to save the doc into the project. 
 
 # Just Completed
-got code to get first 6 words of copied text
+open dialog and select file
 
 # Next
 
-add ability to select project folder
+get path of folder, and display it on app
 commit changes to folder
   --add doc to folder 
   --commit changes.
