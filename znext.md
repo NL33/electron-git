@@ -10,11 +10,10 @@ you could just in the app show the directory (ie, project name). There can be a 
 just like in terminal--you separately go into the directory from the terminal. Difference here--the doc is not already saved into that project. So just need a button to save the doc into the project. 
 
 # Just Completed
-open dialog and select file
+got title of doc and display it in window.
 
 # Next
 
-get path of folder, and display it on app
 commit changes to folder
   --add doc to folder 
   --commit changes.

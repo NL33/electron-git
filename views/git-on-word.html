@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <style>
-
+        #bodyId {
+            padding: 10px
+        }
         /*****SELECTING FOLDER****/
           #folderOverview {
             margin-bottom: 10px
@@ -49,19 +51,42 @@
             color: #778899;
         }
 
-        #saveNote {
+        #noteForSave {
             border: 1px solid black;
             border-radius: 7px;
-            padding: 7px;
+            padding: 10px;
             outline: none;
-            cursor: pointer;
+            font-size: 13pt;
             margin-top: 15px;
         }
 
+        #selectedDoc{
+            font-size: 14pt
+        }
+
+        #addProjectButton {
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+            /*font-size: 10pt;*/
+            border-radius: 12px;
+            padding: 7px;
+            border: 2px solid #3399FF;
+            outline: none;
+            margin-top: 15px; 
+        }
+
+        #addProjectButton:hover {
+            background-color:#3399FF;
+            color: white;
+            border: 3px solid #3399FF;
+        }
+
+       .saveProjectItems {
+           display: none
+       }
 
         #saveButton {
-            /*display: none;*/
-            display: inline-block;
             cursor: pointer;
             text-align: center;
             /*font-size: 10pt;*/
@@ -88,17 +113,23 @@
 
 <body id="bodyId">
     <div id="folderOverview">
-        <span style="margin-bottom: 10px">
+        <span style="margin-bottom: 10px; font-size: 14pt">
             <span">Project Folder:
         </span>
         <span id="directory"></span>
         <span id="changeFolder">change folder</span>
-        <span id="closeChoose">close "Choose Files"</span>
         </span></br>
     </div>
-    <div id="saveNote" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
-    </br>
-    <div id="saveButton">Save Version</div>
+    <div>
+        <span style="margin-right: 10px">Doc to update:</span><span id="selectedDoc"></span>
+    </div>
+    <div id="addProjectButton">Add File</div>  
+    <div class="saveProjectItems">
+        <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
+        </br>
+        
+        <div id="saveButton">Save Project Version</div>
+    </div>
 
 
     <script src="../javascripts/git-on-word.js"></script>

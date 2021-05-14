@@ -1,14 +1,15 @@
-const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
+const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, webContents } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
 const { keyboard, Key} = require("@nut-tree/nut-js")
 const fs = require('fs');
-
-
+const { getActiveWindow } = require("@nut-tree/nut-js");
 let tray = null
+
+var mainWindow 
 function menuApp() {
     tray = new Tray('mountains-icon.jpg')
     const contextMenu = Menu.buildFromTemplate([
-        { label: 'Save New Version', click() { saveNewVersionWindow() } },
+        { label: 'Save New Version', click() { getTheWindow() } },
         { label: 'Folders', click() { folderWindowFunction() } },
         { label: 'Revert to Old Version', click() { revertToOldVersion() } },
     ])
@@ -16,9 +17,21 @@ function menuApp() {
     tray.setContextMenu(contextMenu)
 }
 
+async function getTheWindow() {
+    var mainWindow = new BrowserWindow({
+        width: 800,
+        height: 800,
+        show: false
+    })
+    const foregroundWindow = await getActiveWindow()
+    const windowTitle = await foregroundWindow.title
+
+    saveNewVersionWindow(windowTitle)
+}
+
 /* **** #GIT ON WORD ********/
 var newVersionWindow
-function saveNewVersionWindow() {
+async function saveNewVersionWindow(windowTitle) {
     let display = screen.getPrimaryDisplay();
     let width = display.bounds.width
     let height = display.bounds.height
@@ -33,9 +46,12 @@ function saveNewVersionWindow() {
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
         }
     })
+    
     newVersionWindow.loadURL('file://' + __dirname + '/views/git-on-word.html');
     //newVersionWindow.loadURL('/Users/sean/Desktop/word-convert-test-folder/word-convert-test.txt')
     newVersionWindow.openDevTools()
+    newVersionWindow.webContents.send('window-title', windowTitle)
+    
     /*
     newVersionWindow.webContents.on('did-finish-load', function () {
         newVersionWindow.show();

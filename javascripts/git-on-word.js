@@ -10,8 +10,15 @@ var appFolder = desktopDir + '/app-versions'
 
 var folderPath 
 var folderName
+var currentWindow
+
 
 window.onload = function () {
+    ipcRenderer.on('window-title', (event, data) => {
+        console.log('got data')
+        document.getElementById('selectedDoc').textContent = data
+    })
+    var currentWindow = localStorage.getItem('current-window')
     if (localStorage.getItem('lastProjectFolder')) {
         let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
         if (folderArray){
@@ -24,10 +31,9 @@ window.onload = function () {
     changeFolderButton.addEventListener('click', () => {
         changeFolder()
     })
-    var saveButton = document.getElementById('saveButton')
-    saveButton.addEventListener('click', () =>{
-        saveFile() 
-    })  
+    document.getElementById('addProjectButton').addEventListener('click', ()=>{
+       addFile()
+    })
 }
 
 /************FOLDER ACTIONS **********/
@@ -50,7 +56,7 @@ ipcRenderer.on('selected-folder', (event, folderPath) => {
 
 /********GIT ACTIONS*************** */
 
-function saveFile(){
+function addFile(){ //get the text of the file and the first line of the file
     var data1 = clipboard.readHTML()
     var data = turndownService.turndown(data1)
     //#get first 6 words of first line to propose as possible file name:
@@ -96,7 +102,7 @@ function saveFile(){
 
 async function saveVersion(){
     console.log('in save version')
-    var text = document.getElementById('saveNote').textContent
+    var text = document.getElementById('noteForSave').textContent
     try {
         await git.cwd(appFolder).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
