@@ -10,15 +10,18 @@ you could just in the app show the directory (ie, project name). There can be a 
 just like in terminal--you separately go into the directory from the terminal. Difference here--the doc is not already saved into that project. So just need a button to save the doc into the project. 
 
 # Just Completed
-got title of doc and display it in window.
+just got it working to: 1. identify the right project folder. 2. identify the name of the word file to save. 3. hit save button, and it creates the file in the project folder. 4. And then it creates and tracks git versins.
 
 # Next
 
-commit changes to folder
-  --add doc to folder 
-  --commit changes.
+--add gitignore to remove .doc and .docx files--currently, they are getting saved in the git repo, so the size is getting too big. Try using the file system to write the gitignore file, and put in .doc and docx in there. And maybe others.
+--remove commit message in the view after saving is done.
+--view changes (prior commits)
 
+# Questions
 
+-right now, a word doc could be in the subfolder of the project folder. I can identify the project folder--user selects that manually. But not the subfolder (no way right now to get the subfolder the word doc is in). So where should I put the copy of the word doc? Right now, I am just putting it in the main project folder. This is good enough for saving versions. But would be better if I could put it in the correct subfolder. That would allow me to link it to the app being a place where you can control what files are open. And also you being able to send the whole project to a remote git repo in an organized way. But how to do that?
+--one alternative is to entirely separate the folder where I keep the saved versions. In this way, the app would truly be for just keeping track of versions, and not full github functionaloty. 
 
 ## IDE: easy to set up project and organize your windows
 start with example: script for printing press. And make it work for microsoft word. Then make it work for apple notes (just make it work as well as possible)
