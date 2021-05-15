@@ -9,8 +9,8 @@ var mainWindow
 function menuApp() {
     tray = new Tray('mountains-icon.jpg')
     const contextMenu = Menu.buildFromTemplate([
-        { label: 'Save New Version', click() { getTheWindow() } },
-        { label: 'Folders', click() { folderWindowFunction() } },
+        { label: 'Save New Version', click() { saveNewVersionWindow() } },
+        { label: 'Get the Window', click() { sendTheWindow() } },
         { label: 'Revert to Old Version', click() { revertToOldVersion() } },
     ])
     tray.setToolTip('This is my application.')
@@ -18,15 +18,15 @@ function menuApp() {
 }
 
 async function getTheWindow() {
-    var mainWindow = new BrowserWindow({
-        width: 800,
-        height: 800,
-        show: false
-    })
     const foregroundWindow = await getActiveWindow()
     const windowTitle = await foregroundWindow.title
-
     saveNewVersionWindow(windowTitle)
+}
+
+async function sendTheWindow(){
+    const foregroundWindow = await getActiveWindow()
+    const windowTitle = await foregroundWindow.title
+    newVersionWindow.webContents.send('window-title', windowTitle)
 }
 
 /* **** #GIT ON WORD ********/
@@ -40,7 +40,7 @@ async function saveNewVersionWindow(windowTitle) {
         height: 300,
         x: width - 605,
         y: 0,
-        //alwaysOnTop: true,
+        alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
@@ -50,7 +50,7 @@ async function saveNewVersionWindow(windowTitle) {
     newVersionWindow.loadURL('file://' + __dirname + '/views/git-on-word.html');
     //newVersionWindow.loadURL('/Users/sean/Desktop/word-convert-test-folder/word-convert-test.txt')
     newVersionWindow.openDevTools()
-    newVersionWindow.webContents.send('window-title', windowTitle)
+    sendTheWindow()
     
     /*
     newVersionWindow.webContents.on('did-finish-load', function () {

@@ -1,4 +1,5 @@
 const {ipcRenderer, clipboard} = require('electron')
+const { writeFile, fstat } = require('fs')
 const simpleGit = require('simple-git')
 const git = simpleGit()
 var TurndownService = require('turndown')
@@ -10,6 +11,7 @@ var appFolder = desktopDir + '/app-versions'
 
 var folderPath 
 var folderName
+var fileName
 var currentWindow
 
 
@@ -17,6 +19,7 @@ window.onload = function () {
     ipcRenderer.on('window-title', (event, data) => {
         console.log('got data')
         document.getElementById('selectedDoc').textContent = data
+        fileName = data
     })
     var currentWindow = localStorage.getItem('current-window')
     if (localStorage.getItem('lastProjectFolder')) {
@@ -31,7 +34,8 @@ window.onload = function () {
     changeFolderButton.addEventListener('click', () => {
         changeFolder()
     })
-    document.getElementById('addProjectButton').addEventListener('click', ()=>{
+
+    document.getElementById('saveButton').addEventListener('click', ()=>{
        addFile()
     })
 }
@@ -42,12 +46,12 @@ function changeFolder() {
     ipcRenderer.send('open-folder-dialog', '')
 }
 
-ipcRenderer.on('selected-folder', (event, folderPath) => {
-    folderPath = folderPath.toString()
+ipcRenderer.on('selected-folder', (event, pathToFolder) => {
+    folderPath = pathToFolder.toString()
     let dataArray = folderPath.split("/")
     folderName = dataArray[dataArray.length - 1]
     document.getElementById('directory').textContent = folderName
-    if (folderParth.length > 0){ //should always be true, but adding a doublecheck
+    if (folderPath.length > 0){ //should always be true, but adding a doublecheck
         let array = [folderPath, folderName]
         localStorage.setItem('lastProjectFolder', JSON.stringify(array))
     }
@@ -95,16 +99,25 @@ function addFile(){ //get the text of the file and the first line of the file
         console.log('no first line')
     }
 //end get first line
-
+   writeFileFunction(dataCleaned)
    // fs.writeFile()
    // saveVersion()
+}
+
+function writeFileFunction(dataCleaned){
+    var filePath = folderPath + '/' + fileName + '.md'
+    console.log('filepath = ' + filePath)
+    writeFile(filePath, dataCleaned, (err) => {
+      if (err) throw err;
+      saveVersion()  
+    } )
 }
 
 async function saveVersion(){
     console.log('in save version')
     var text = document.getElementById('noteForSave').textContent
     try {
-        await git.cwd(appFolder).then(result => {
+        await git.cwd(folderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
 
@@ -117,6 +130,7 @@ async function saveVersion(){
         })
 
         await git.commit(text).then(result => {
+            /*
             var overviewS = document.getElementById("ifNewVersionSaved")
             var overviewN = document.getElementById("ifNoNewVersion")
             var showResults = document.getElementById("showResults")
@@ -129,6 +143,7 @@ async function saveVersion(){
                 showResults.textContent = ""
                 overviewN.style.display = "inline-block"
             }
+            */
             console.log('commit result = ' + JSON.stringify(result))
         })
 
