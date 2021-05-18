@@ -1,6 +1,12 @@
 **Next in the Electron Git App**
 remember focus is projects--like a project that combines research with writing. Don't get distracted by tracking random notes.
 
+Core functionality is replicating how the terminal and git work  = easily saving versions and comparing versions.
+
+From there, look at how VS code works. Goal: a single side toolbar that can control opening your files in a project, easily allwing you to open different windows at once in a controlled environment (intead of having to minize windows to go find another doc to open). One seamless experience for opening docs, and navigating between docs. And then being able to do git on the project.
+
+And then being able to share the project. At first, potentially link up with dropbox and github as separate storage places that also allow you to share. That might be enough. But can also replicate full github functionality on my own to make it easier and friendlier for non-tech people.
+
 # project folder 
 
 think of how I actually use git. The doc and the git directory are separate on my computer. 
