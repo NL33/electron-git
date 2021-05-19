@@ -59,40 +59,50 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
     let dataArray = folderPath.split("/")
     folderName = dataArray[dataArray.length - 1]
     document.getElementById('directory').textContent = folderName
-    showFolderContents(folderPath)
+    showFolderContents('n/a', folderPath, 0)
     if (folderPath.length > 0) { //should always be true, but adding a doublecheck
         let array = [folderPath, folderName]
         localStorage.setItem('lastProjectFolder', JSON.stringify(array))
     }
 })
 
-/******Loop through contents of Project Folder and display results************* */
+/******Loop through contents of Selected Folder and display results************* */
 
-async function showFolderContents(mainPath) {
-    var contentArray = []
-    try {
-        contentArray = fs.readdirSync(mainPath)       
-    } catch (e) {
-        console.log(e)
+async function showFolderContents(event, mainPath, indent) {
+    console.log(mainPath)
+    var stats = fs.statSync(mainPath)
+    if (stats.isDirectory() === true) { //determine if a directory (instead of file). 
+        //show folder contents
+        var contentArray = []
+        try {
+            contentArray = fs.readdirSync(mainPath)       
+        } catch (e) {
+            console.log(e)
+        } 
+        var contents = ""
+        var newIndent = indent + 15
+        contentArray.forEach((item)=>{
+            if ((item != '.DS_Store') && (item != ".git")){
+                var fullPath = mainPath + '/' + item
+                contents += `<p class='subFolder' style='margin-left: ${indent}px' onclick='showFolderContents(event, "${fullPath}", "${newIndent}")'>` + item + `</p>`
+            }
+            if (event != "n/a"){
+                var contentsDiv = event.target
+                contentsDiv.insertAdjacentHTML("afterEnd", contents) 
+            } else {
+                var contentsDiv = document.getElementById('folderContents')
+                contentsDiv.innerHTML = contents
+            }
+        })
+    } else {
+        openDoc(mainPath)
     }
-    var contentsDiv = document.getElementById('folderContents')
-    var contents = ""
-    contentArray.forEach((item)=>{
-        if ((item != '.DS_Store') && (item != ".git")){
-            var fullPath = mainPath + '/' + item
-            contents += `<p class='subFolder' onclick='subFolderContents("${fullPath}", "${item}")'>` + item + `</p>`
-        }
-        contentsDiv.innerHTML = contents
-    })
 }
 
-/*******Click on SubFolder to show contents of subfolder******/
-
-async function subFolderContents(path, item){
-    console.log(path)
-    console.log(item)
-    
+function openDoc(path){
+    shell.openPath(path)
 }
+
 
 /*****Open Doc***** */
 var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'
