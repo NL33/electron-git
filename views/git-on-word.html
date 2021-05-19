@@ -44,6 +44,26 @@
         }
 
 
+        /****Folder Contents****/
+
+
+        .subFolder {
+            cursor: pointer;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+
+        .subFolder:hover {
+            background-color: #EFF9FC
+        }
+
+        .parentDiv {
+            border: 2px solid red
+        }
 
         /***COMMIT MESSAGE****/
          [contenteditable]:empty:before {
@@ -113,18 +133,30 @@
 </head>
 
 <body id="bodyId">
+    <!------Select Project Folder------>
     <div id="folderOverview">
         <span style="margin-bottom: 10px; font-size: 14pt">
             <span">Project Folder:
         </span>
         <span id="directory"></span>
-        <span id="changeFolder">change folder</span>
+        <span id="changeFolder">change project folder</span>
         </span></br>
     </div>
+    
+    <!------List out contents of the folder------>
+    <div id="folderContents">
+
+
+    </div>
+
+
+    <!-------Display Doc to Update-------->
     <div>
         <span style="margin-right: 10px">Doc to update:</span><span id="selectedDoc"></span>
     </div>
     <div id="addProjectButton">Add File</div>  
+
+    <!-----Git: Save Version----->
     <div class="saveProjectItems">
         <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
         </br>

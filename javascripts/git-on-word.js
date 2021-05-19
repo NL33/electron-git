@@ -17,6 +17,9 @@ var currentWindow
 
 let spawn = require("child_process").spawn
 var cp = require("child_process");
+
+
+/*****Button Set Up *****/
 window.onload = function () {
     ipcRenderer.on('window-title', (event, data) => {
         console.log('got data')
@@ -34,10 +37,9 @@ window.onload = function () {
     }
     var changeFolderButton = document.getElementById('changeFolder')
     changeFolderButton.addEventListener('click', () => {
-        //changeFolder()
+        changeFolder()
         //openDocFunction()
         //openDocSpawn()
-        getSubPaths()
     })
 
     document.getElementById('saveButton').addEventListener('click', ()=>{
@@ -45,17 +47,52 @@ window.onload = function () {
     })
 }
 
-/***SubPaths */
-async function getSubPaths(){
-    var dirToCheck = '/Users/sean/Desktop/word-test'
+
+/******Select Project Folder*******/
+
+function changeFolder() {
+    ipcRenderer.send('open-folder-dialog', '')
+}
+
+ipcRenderer.on('selected-folder', (event, pathToFolder) => {
+    folderPath = pathToFolder.toString()
+    let dataArray = folderPath.split("/")
+    folderName = dataArray[dataArray.length - 1]
+    document.getElementById('directory').textContent = folderName
+    showFolderContents(folderPath)
+    if (folderPath.length > 0) { //should always be true, but adding a doublecheck
+        let array = [folderPath, folderName]
+        localStorage.setItem('lastProjectFolder', JSON.stringify(array))
+    }
+})
+
+/******Loop through contents of Project Folder and display results************* */
+
+async function showFolderContents(mainPath) {
+    var contentArray = []
     try {
-        const arrayOfFiles = fs.readdirSync(dirToCheck)
-        console.log(arrayOfFiles)
+        contentArray = fs.readdirSync(mainPath)       
     } catch (e) {
         console.log(e)
     }
+    var contentsDiv = document.getElementById('folderContents')
+    var contents = ""
+    contentArray.forEach((item)=>{
+        if ((item != '.DS_Store') && (item != ".git")){
+            var fullPath = mainPath + '/' + item
+            contents += `<p class='subFolder' onclick='subFolderContents("${fullPath}", "${item}")'>` + item + `</p>`
+        }
+        contentsDiv.innerHTML = contents
+    })
 }
 
+/*******Click on SubFolder to show contents of subfolder******/
+
+async function subFolderContents(path, item){
+    console.log(path)
+    console.log(item)
+    
+}
 
 /*****Open Doc***** */
 var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'
@@ -80,20 +117,6 @@ function openDocSpawn(){
 
 /************FOLDER ACTIONS **********/
 
-function changeFolder() {
-    ipcRenderer.send('open-folder-dialog', '')
-}
-
-ipcRenderer.on('selected-folder', (event, pathToFolder) => {
-    folderPath = pathToFolder.toString()
-    let dataArray = folderPath.split("/")
-    folderName = dataArray[dataArray.length - 1]
-    document.getElementById('directory').textContent = folderName
-    if (folderPath.length > 0){ //should always be true, but adding a doublecheck
-        let array = [folderPath, folderName]
-        localStorage.setItem('lastProjectFolder', JSON.stringify(array))
-    }
-})
 
 
 /********GIT ACTIONS*************** */
