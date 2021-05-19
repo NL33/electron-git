@@ -103,6 +103,19 @@ function openDoc(path){
     shell.openPath(path)
 }
 
+/***********Create a Directory*****/
+//https://coderrocketfuel.com/article/create-a-new-directory-in-node-js
+function addDirectory(){
+    fs.mkdir("./new-directory-name", function (err) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log("New directory successfully created.")
+        }
+    })
+}
+
+
 
 /*****Open Doc***** */
 var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'

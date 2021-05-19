@@ -18,22 +18,33 @@ you could just in the app show the directory (ie, project name). There can be a 
 just like in terminal--you separately go into the directory from the terminal. Difference here--the doc is not already saved into that project. So just need a button to save the doc into the project. 
 
 # Just Completed
-just got it working to: 1. identify the right project folder. 2. identify the name of the word file to save. 3. hit save button, and it creates the file in the project folder. 4. And then it creates and tracks git versins.
-
-I also just:
-figured out how to get a list of directories, files and subdirectories
-figured out how to open a file 
-potentially use spawn to place a file.
+Just got ability to list out folders and files in a project and open docs.
 
 # Next
-setup left hand toolbar where you can view folders in a project
-create a folder 
-create a file (use the extension, if don't put in extension, had md be default
-use this system to create subdirectories )--it's ok to start with a project that's already created 
-run git on the project
+create word doc in the project from the lefthand bar
+create folder in a project
+create other docs--md, txt
+
+click save version on toolbar, and save the version with git. NOTE:
+
+To save a copy of the word doc to the right location with GIT system:
+--when you open the doc from the app, record that it is opened in the app, including the file paths. (maybe to local storage or a file system file)
+--when hit the save project button, update the md files at the given paths.
+--keep track of what files are open in the app. But, what about if a user closes microsoft word doc? Is there a way to track that? If not, that's ok, because you can use nutjs to see open windows, and for each update the version (using the title of the doc, linked to the path of opened docs saved on the system )
+--then just some edge cases, like what if two docs with same title in same project? could just require to give each doc its own title 
+
 --add gitignore to remove .doc and .docx files--currently, they are getting saved in the git repo, so the size is getting too big. Try using the file system to write the gitignore file, and put in .doc and docx in there. And maybe others.
 --remove commit message in the view after saving is done.
 --view changes (prior commits)
+
+
+This should get it working well with word.
+Next after that:
+--can you open word docs in app windows, so can be like VS code
+--docs with urls, like notion and roam
+--apple notes. maybe use apple script. Remember there are good vid tutorials for that
+--remember that its ok if certain types of formats don't give you the same functionality
+--link the projects to places you can share, like dropbox and github
 
 # Questions
 
