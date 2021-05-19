@@ -1,5 +1,6 @@
-const {ipcRenderer, clipboard} = require('electron')
+const {ipcRenderer, clipboard, shell } = require('electron')
 const { writeFile, fstat } = require('fs')
+const fs = require("fs")
 const simpleGit = require('simple-git')
 const git = simpleGit()
 var TurndownService = require('turndown')
@@ -14,7 +15,8 @@ var folderName
 var fileName
 var currentWindow
 
-
+let spawn = require("child_process").spawn
+var cp = require("child_process");
 window.onload = function () {
     ipcRenderer.on('window-title', (event, data) => {
         console.log('got data')
@@ -32,12 +34,48 @@ window.onload = function () {
     }
     var changeFolderButton = document.getElementById('changeFolder')
     changeFolderButton.addEventListener('click', () => {
-        changeFolder()
+        //changeFolder()
+        //openDocFunction()
+        //openDocSpawn()
+        getSubPaths()
     })
 
     document.getElementById('saveButton').addEventListener('click', ()=>{
        addFile()
     })
+}
+
+/***SubPaths */
+async function getSubPaths(){
+    var dirToCheck = '/Users/sean/Desktop/word-test'
+    try {
+        const arrayOfFiles = fs.readdirSync(dirToCheck)
+        console.log(arrayOfFiles)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+
+/*****Open Doc***** */
+var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'
+var wordDoc = '/Users/sean/Desktop/word-test/word-convert-test1.docx'
+var txtDoc = '/Users/sean/Desktop/txt-docs/converttest-test.txt'
+var appleDoc = 'https://www.icloud.com/notes/0hZOhxE5di_MSCv7bX-hYHY8w#Contribution_is_the_Focus'
+var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
+function openDocFunction(){
+    
+    shell.openPath(wordDoc,'', 'x=10, y=10').then((result)=>{
+        console.log(result)
+    })
+    
+    //window.open(txtDoc, '_blank','top=300, left=600')
+}
+
+function openDocSpawn(){
+    spawn(txtDoc, function(error, stdout, stderr){
+        console.log('done.')
+    }) 
 }
 
 /************FOLDER ACTIONS **********/

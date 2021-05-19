@@ -48,7 +48,7 @@ async function saveNewVersionWindow(windowTitle) {
     })
     
     newVersionWindow.loadURL('file://' + __dirname + '/views/git-on-word.html');
-    //newVersionWindow.loadURL('/Users/sean/Desktop/word-convert-test-folder/word-convert-test.txt')
+   // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
     newVersionWindow.openDevTools()
     sendTheWindow()
     

@@ -5,6 +5,8 @@ Core functionality is replicating how the terminal and git work  = easily saving
 
 From there, look at how VS code works. Goal: a single side toolbar that can control opening your files in a project, easily allwing you to open different windows at once in a controlled environment (intead of having to minize windows to go find another doc to open). One seamless experience for opening docs, and navigating between docs. And then being able to do git on the project.
 
+To start, it is not necessary to be able to open the docs in the window. It would still be helpful to have a navigation toolbar that allows you to open docs without having to minimize windows.
+
 And then being able to share the project. At first, potentially link up with dropbox and github as separate storage places that also allow you to share. That might be enough. But can also replicate full github functionality on my own to make it easier and friendlier for non-tech people.
 
 # project folder 
@@ -18,8 +20,17 @@ just like in terminal--you separately go into the directory from the terminal. D
 # Just Completed
 just got it working to: 1. identify the right project folder. 2. identify the name of the word file to save. 3. hit save button, and it creates the file in the project folder. 4. And then it creates and tracks git versins.
 
-# Next
+I also just:
+figured out how to get a list of directories, files and subdirectories
+figured out how to open a file 
+potentially use spawn to place a file.
 
+# Next
+setup left hand toolbar where you can view folders in a project
+create a folder 
+create a file (use the extension, if don't put in extension, had md be default
+use this system to create subdirectories )--it's ok to start with a project that's already created 
+run git on the project
 --add gitignore to remove .doc and .docx files--currently, they are getting saved in the git repo, so the size is getting too big. Try using the file system to write the gitignore file, and put in .doc and docx in there. And maybe others.
 --remove commit message in the view after saving is done.
 --view changes (prior commits)
