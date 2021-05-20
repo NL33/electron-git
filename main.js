@@ -36,9 +36,9 @@ async function saveNewVersionWindow(windowTitle) {
     let width = display.bounds.width
     let height = display.bounds.height
     newVersionWindow = new BrowserWindow({
-        width: 600,
-        height: 300,
-        x: width - 605,
+        width: 320,
+        height: 620,
+        x: 0,
         y: 0,
        // alwaysOnTop: true,
         webPreferences: {

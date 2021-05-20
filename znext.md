@@ -21,8 +21,8 @@ just like in terminal--you separately go into the directory from the terminal. D
 Just got ability to list out folders and files in a project and open docs.
 
 # Next
-create word doc in the project from the lefthand bar
-create folder in a project
+create word doc in the project from the lefthand bar (use create-docs file in code overview project)
+create folder in a project [remember you can use getElementById().focus()]
 create other docs--md, txt
 
 click save version on toolbar, and save the version with git. NOTE:
@@ -41,6 +41,8 @@ To save a copy of the word doc to the right location with GIT system:
 This should get it working well with word.
 Next after that:
 --can you open word docs in app windows, so can be like VS code
+     https://dev.to/aurelkurtula/creating-a-text-editor-in-electron-part-2---writing-files-l80
+     https://livebook.manning.com/book/electron-in-action/chapter-6/11
 --docs with urls, like notion and roam
 --apple notes. maybe use apple script. Remember there are good vid tutorials for that
 --remember that its ok if certain types of formats don't give you the same functionality

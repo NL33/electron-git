@@ -18,7 +18,6 @@ var currentWindow
 let spawn = require("child_process").spawn
 var cp = require("child_process");
 
-
 /*****Button Set Up *****/
 window.onload = function () {
     ipcRenderer.on('window-title', (event, data) => {
@@ -40,10 +39,23 @@ window.onload = function () {
         changeFolder()
         //openDocFunction()
         //openDocSpawn()
+       // wordExps()
     })
 
     document.getElementById('saveButton').addEventListener('click', ()=>{
        addFile()
+    })
+}
+
+/*****Experiments with Micro Word ********/
+
+function wordExps() {
+    fs.writeFile('/Users/sean/Desktop/word-test/crazy-doc1.docx', '', (err)=>{
+       if (err){
+           console.log('error = ' + err)
+       } else {
+           console.log('doc saved')
+       }
     })
 }
 

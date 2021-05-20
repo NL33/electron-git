@@ -30,7 +30,10 @@ $ npm install marked
     --May 8, 2021
     --read markdown in html
 
-
+$ npm install --save docx
+    --May 20, 2021
+    --open microsoft word docs from the app.
+    --REMOVED on May 20, 2021. Doesn't have required functionality for now.
 
 # Prior to rollback on April 15, 2021
 # RobotJS

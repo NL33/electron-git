@@ -5,17 +5,18 @@
     <meta charset="UTF-8">
     <style>
         #bodyId {
-            padding: 10px
+            padding: 10px;
+            padding-top: 5px
         }
+
         /*****SELECTING FOLDER****/
-          #folderOverview {
-            margin-bottom: 10px
+        #folderOverview {
+            margin-bottom: 0px
         }
 
         #directory {
             font-weight: bold;
-            margin-left: 10px;
-            margin-right: 20px;
+            margin-right: 10px;
             font-size: 14pt
         }
 
@@ -52,7 +53,7 @@
             margin-bottom: 5px;
             margin-top: 5px;
             border-radius: 5px;
-            padding-left: 10px;
+            padding-left: 5px;
             padding-top: 4px;
             padding-bottom: 4px;
         }
@@ -66,7 +67,7 @@
         }
 
         /***COMMIT MESSAGE****/
-         [contenteditable]:empty:before {
+        [contenteditable]:empty:before {
             content: attr(data-placeholder);
             color: #778899;
         }
@@ -80,7 +81,7 @@
             margin-top: 15px;
         }
 
-        #selectedDoc{
+        #selectedDoc {
             font-size: 14pt
         }
 
@@ -93,18 +94,18 @@
             padding: 7px;
             border: 2px solid #3399FF;
             outline: none;
-            margin-top: 15px; 
+            margin-top: 15px;
         }
 
         #addProjectButton:hover {
-            background-color:#3399FF;
+            background-color: #3399FF;
             color: white;
             border: 3px solid #3399FF;
         }
 
-       .saveProjectItems {
-           /*display: none*/
-       }
+        .saveProjectItems {
+            /*display: none*/
+        }
 
         #saveButton {
             display: inline-block;
@@ -126,41 +127,40 @@
             background-color: #32cd53;
             color: white
         }
-
     </style>
-    <title>Save Version</title>
+    <title>Your Project</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
 
 <body id="bodyId">
     <!------Select Project Folder------>
     <div id="folderOverview">
-        <span style="margin-bottom: 10px; font-size: 14pt">
-            <span">Project Folder:
-        </span>
-        <span id="directory"></span>
-        <span id="changeFolder">change project folder</span>
-        </span></br>
+        <div style="text-align: right; margin-bottom: 10px">
+            <div id="changeFolder">change project folder</div>
+        </div>
+        <div>    
+            <span id="directory"></span>
+            <span">(project folder)</span>
+        </div>
     </div>
-    
+
     <!------List out contents of the folder------>
-    <div id="folderContents">
-
-
-    </div>
+    <div id="folderContents"></div>
 
 
     <!-------Display Doc to Update-------->
-    <div>
+ 
+    <div style="margin-top: 25px">
+        <hr style="width: 70%; border: 1px solid  #f5f5f5">
         <span style="margin-right: 10px">Doc to update:</span><span id="selectedDoc"></span>
     </div>
-    <div id="addProjectButton">Add File</div>  
+    <div id="addProjectButton">Add File</div>
 
     <!-----Git: Save Version----->
     <div class="saveProjectItems">
         <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
         </br>
-        
+
         <div id="saveButton">Save Project Version</div>
     </div>
 
