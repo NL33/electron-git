@@ -32,8 +32,9 @@ window.onload = function () {
         if (folderArray) {
             folderPath = folderArray[0]
             folderName = folderArray[1]
-            document.getElementById('directory').textContent = folderName
-            showFolderContents('projectStart', folderPath, 0)
+            document.getElementById('projectDirectory').textContent = folderName
+            var divId = "projectDirectory"
+            showFolderContents(divId, folderPath, 0)
             //getContents(folderPath)
         }
     }
@@ -77,8 +78,9 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
     folderPath = pathToFolder.toString()
     let dataArray = folderPath.split("/")
     folderName = dataArray[dataArray.length - 1]
-    document.getElementById('directory').textContent = folderName
-    showFolderContents('n/a', folderPath, 0)
+    document.getElementById('projectDirectory').textContent = folderName
+    var divId = "projectDirectory"
+    showFolderContents(divId, folderPath, 0)
     if (folderPath.length > 0) { //should always be true, but adding a doublecheck
         let array = [folderPath, folderName]
         localStorage.setItem('lastProjectFolder', JSON.stringify(array))
@@ -102,7 +104,10 @@ function menuFunction() {
             const menuItem = new MenuItem({
                 label: "New Folder",
                 click: () => {
-                    addFolder(e, thePath, indent)
+                   // addFolder(e, thePath, indent)
+                   localStorage.setItem('clickedElement', JSON.stringify(e))
+                    enterNewFolder(e, thePath, indent)
+                    
                 }
             })
             contextMenu.clear() //remove prior menuItem
@@ -114,39 +119,52 @@ function menuFunction() {
 
 
 /***********Create a Folder****/
-function addFolder(e, path, indent) {
-    var folderName = 'go'
+function addFolder(divId, path, indent, folderName) {
     var newPath = path + '/' + folderName
     var newIndent = parseInt(indent) + 15
+    var element = document.getElementById(divId)
     fs.mkdir(newPath, function (err) {
         if (err) {
             console.log(err)
         } else {
-            var newItems = e.target.nextElementSibling
+            //var newItems = div.nextElementSibling
             // newItems.innerHTML = ''
             //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
-            if (e.target.classList.contains('clicked')){
+            if (element.classList.contains('clicked')){
                 //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                showNewFolder(e, path, newPath, folderName, newIndent)
+                showNewFolder(divId, path, newPath, folderName, newIndent)
             } else {
                 //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
-                showFolderContents(e, path, newIndent)
+                showFolderContents(divId, path, newIndent)
             }
             
         }
     })
 }
 
+/****ENTER NEW FOLDER ********* */
+
+function enterNewFolder(event, mainPath, indent){
+    var name = 'test'
+    var divId = event.target.id
+    contents = `<input id="nameEntry" data-placeholder="folder name">
+    <button onclick='addFolder("${divId}", "${mainPath}", "${indent}", "${name}")'>enter</button>`
+    /*
+    contents = `<input id="nameEntry" data-placeholder="folder name">
+    <button onclick="hi()">enter</button>`
+    */
+    var newItems = event.target.nextElementSibling  //gets "newItems" div
+    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+}
+
+function hi(){
+    console.log('hi')
+}
+
 /**************** showNewFolder  *******************/
 
-function showNewFolder(event, mainPath, newPath, folderName, indent) {
-    var stats = fs.statSync(mainPath)
-    var contentArray = []
-    try {
-        contentArray = fs.readdirSync(mainPath)
-    } catch (e) {
-        console.log(e)
-    }
+function showNewFolder(divId, mainPath, newPath, folderName, indent) {
+    var element = document.getElementById(divId)
     var contents = ""
     var newIndent = parseInt(indent) + 15
     var fullPath = newPath
@@ -154,7 +172,7 @@ function showNewFolder(event, mainPath, newPath, folderName, indent) {
                 <div class='subFolder' style='margin-left: ${indent}px' id="**is-directory**^^^${fullPath}^^^${indent}" onclick='showFolderContents(event, "${fullPath}", "${newIndent}")'>` + folderName + `</div>
                 <div class="newItems"></div>
                 </div>`
-    var newItems = event.target.nextElementSibling  //gets "newItems" div
+    var newItems = element.nextElementSibling  //gets "newItems" div
     newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
     // event.target.classList.add('clicked') //add clicked class so don't run this again if click again
 }
@@ -163,8 +181,9 @@ function showNewFolder(event, mainPath, newPath, folderName, indent) {
 
 /******Loop through contents of Selected Folder and display results************* */
 
-async function showFolderContents(event, mainPath, indent) {
-    if ((event === 'projectStart') || (!(event.target.classList.contains('clicked')))) {
+async function showFolderContents(divId, mainPath, indent) {
+    var element = document.getElementById(divId)
+    if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
         var stats = fs.statSync(mainPath)
         if (stats.isDirectory() === true) { //determine if a directory (instead of file). 
             //show folder contents
@@ -184,10 +203,10 @@ async function showFolderContents(event, mainPath, indent) {
                 <div class="newItems"></div>
                 </div>`
                 }
-                if (event != "projectStart") {
-                    var newItems = event.target.nextElementSibling  //gets "newItems" div
+                if (divId !== "projectDirectory") {
+                    var newItems = element.nextElementSibling  //gets "newItems" div
                     newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
-                    event.target.classList.add('clicked') //add clicked class so don't run this again if click again
+                    element.classList.add('clicked') //add clicked class so don't run this again if click again
                 } else {
                     var contentsDiv = document.getElementById('folderContents')
                     contentsDiv.insertAdjacentHTML("beforeEnd", contents)
@@ -197,8 +216,8 @@ async function showFolderContents(event, mainPath, indent) {
             openDoc(mainPath)
         }
     } else { //if not projectstart and DO have clicked (so a folder that is already open)
-        event.target.classList.remove('clicked')
-        var newItems = event.target.nextElementSibling
+        element.classList.remove('clicked')
+        var newItems = element.nextElementSibling
         newItems.innerHTML = '' //remove items in newItems
     }
 }

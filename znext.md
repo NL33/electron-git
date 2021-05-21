@@ -18,12 +18,12 @@ you could just in the app show the directory (ie, project name). There can be a 
 just like in terminal--you separately go into the directory from the terminal. Difference here--the doc is not already saved into that project. So just need a button to save the doc into the project. 
 
 # Just Completed
-adding folders and subfolders successfully
-now know how to create any type of doc
-working right click menu item to add folder--almost there, but not quite
+can show and hide folders. and show new folders
 
 # Next
-get it to work to show and hide subfolders
+choose folder name
+create new main folder under project
+create doc
 
 create word doc in the project from the lefthand bar (use create-docs file in code overview project)
 create folder in a project [remember you can use getElementById().focus()]
