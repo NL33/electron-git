@@ -127,7 +127,7 @@ function enterNewFolder(divId, mainPath, indent) {
     <button onclick="hi()">enter</button>`
     */
     var newItems = element.nextElementSibling  //gets "newItems" div
-    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+    newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
 }
 
 /***********Create a Folder****/
@@ -170,7 +170,7 @@ function showNewFolder(divId, mainPath, newPath, folderName, indent) {
                 <div class="newItems"></div>
                 </div>`
     var newItems = element.nextElementSibling  //gets "newItems" div
-    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+    newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
     // event.target.classList.add('clicked') //add clicked class so don't run this again if click again
 }
 
