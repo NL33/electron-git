@@ -105,9 +105,8 @@ function menuFunction() {
                 label: "New Folder",
                 click: () => {
                    // addFolder(e, thePath, indent)
-                   localStorage.setItem('clickedElement', JSON.stringify(e))
-                    enterNewFolder(e, thePath, indent)
-                    
+                   var divId = fullId  
+                   enterNewFolder(divId, thePath, indent) 
                 }
             })
             contextMenu.clear() //remove prior menuItem
@@ -119,21 +118,21 @@ function menuFunction() {
 
 /****ENTER NEW FOLDER ********* */
 
-function enterNewFolder(event, mainPath, indent) {
-    var name = 'test'
-    var divId = event.target.id
+function enterNewFolder(divId, mainPath, indent) {
+    var element = document.getElementById(divId)
     contents = `<input id="nameEntry" data-placeholder="folder name">
-    <button id="addButton" onclick='addFolder("${divId}", "${mainPath}", "${indent}", "${name}")'>enter</button>`
+    <button id="addButton" onclick='addFolder("${divId}", "${mainPath}", "${indent}")'>enter</button>`
     /*
     contents = `<input id="nameEntry" data-placeholder="folder name">
     <button onclick="hi()">enter</button>`
     */
-    var newItems = event.target.nextElementSibling  //gets "newItems" div
+    var newItems = element.nextElementSibling  //gets "newItems" div
     newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
 }
 
 /***********Create a Folder****/
-function addFolder(divId, path, indent, folderName) {
+function addFolder(divId, path, indent) {
+    var folderName = document.getElementById('nameEntry').value
     document.getElementById('nameEntry').remove()
     document.getElementById('addButton').remove()
     var newPath = path + '/' + folderName
@@ -165,8 +164,9 @@ function showNewFolder(divId, mainPath, newPath, folderName, indent) {
     var contents = ""
     var newIndent = parseInt(indent) + 15
     var fullPath = newPath
+    var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
     contents = `<div >
-                <div class='subFolder' style='margin-left: ${indent}px' id="**is-directory**^^^${fullPath}^^^${indent}" onclick='showFolderContents(event, "${fullPath}", "${newIndent}")'>` + folderName + `</div>
+                <div class='subFolder' style='margin-left: ${indent}px' id=${newId} onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
                 <div class="newItems"></div>
                 </div>`
     var newItems = element.nextElementSibling  //gets "newItems" div
@@ -195,8 +195,9 @@ async function showFolderContents(divId, mainPath, indent) {
             contentArray.forEach((item) => {
                 if ((item != '.DS_Store') && (item != ".git")) {
                     var fullPath = mainPath + '/' + item
+                    var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
                     contents = `<div >
-                <div class='subFolder' style='margin-left: ${indent}px' id="**is-directory**^^^${fullPath}^^^${indent}" onclick='showFolderContents(event, "${fullPath}", "${newIndent}")'>` + item + `</div>
+                <div class='subFolder' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
                 <div class="newItems"></div>
                 </div>`
                 }
