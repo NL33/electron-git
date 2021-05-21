@@ -121,12 +121,18 @@ function menuFunction() {
 function enterNewFolder(divId, mainPath, indent) {
     var newIndent = parseInt(indent) + 17
     var element = document.getElementById(divId)
-    contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px;" onsubmit='addFolder("${divId}", "${mainPath}", "${indent}")'>
-                <input type="text" id="nameEntry" data-placeholder="folder name" name="txt" />
+    contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px" onsubmit='addFolder("${divId}", "${mainPath}", "${indent}")'>
+                <input type="text" id="nameEntry" data-placeholder="folder name" onblur="newFolderNoFocus()" style="padding: 2px; padding-left: 4px" name="txt" />
                 </form>
                 `
     var newItems = element.nextElementSibling  //gets "newItems" div
     newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
+    document.getElementById('nameEntry').focus()
+}
+
+function newFolderNoFocus(){
+    console.log('blurred')
+    document.getElementById('addForm').remove()
 }
 
 /***********Create a Folder****/
