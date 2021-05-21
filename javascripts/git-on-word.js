@@ -129,26 +129,6 @@ function addFolder(e, path, indent) {
 
 /**************Create a Doc ***********/
 
-/*********Get Folder Contents********/
-
-function getContents(folderPath) {
-    const getAllFiles = function (dirPath, arrayOfFiles) {
-        files = fs.readdirSync(dirPath)
-
-        // arrayOfFiles = []
-
-        files.forEach((file) => {
-            if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-                arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
-            } else {
-                arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
-            }
-        })
-
-        return arrayOfFiles
-    }
-}
-
 
 /******Loop through contents of Selected Folder and display results************* */
 
@@ -168,66 +148,31 @@ async function showFolderContents(event, mainPath, indent) {
             contentArray.forEach((item) => {
                 if ((item != '.DS_Store') && (item != ".git")) {
                     var fullPath = mainPath + '/' + item
-                    contents = `<div id="**is-directory**^^^${fullPath}^^^${indent}">
-                <div class='subFolder' style='margin-left: ${indent}px' onclick='showFolderContents(event, "${fullPath}", "${newIndent}")'>` + item + `</div>
+                    contents = `<div >
+                <div class='subFolder' style='margin-left: ${indent}px' id="**is-directory**^^^${fullPath}^^^${indent}" onclick='showFolderContents(event, "${fullPath}", "${newIndent}")'>` + item + `</div>
                 <div class="newItems"></div>
                 </div>`
                 }
                 if (event != "projectStart") {
                     var newItems = event.target.nextElementSibling  //gets "newItems" div
                     newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
-                    event.target.classList.add('clicked')
+                    event.target.classList.add('clicked') //add clicked class so don't run this again if click again
                 } else {
                     var contentsDiv = document.getElementById('folderContents')
                     contentsDiv.insertAdjacentHTML("beforeEnd", contents)
                 }
             })
         } else {  //if not a directory
-            //   openDoc(mainPath)
+            openDoc(mainPath)
         }
-    } else { //if not projectstart and DO have clicked 
+    } else { //if not projectstart and DO have clicked (so a folder that is already open)
         event.target.classList.remove('clicked')
         var newItems = event.target.nextElementSibling
         newItems.innerHTML = '' //remove items in newItems
     }
 }
 
-/*
-async function showFolderContents(description, startPath, indent) {
-        var stats = fs.statSync(startPath)
-        if (stats.isDirectory() === true) { //determine if a directory (instead of file). 
-            //show folder contents
-            var contentArray = []
-            try {
-                contentArray = fs.readdirSync(startPath)       
-            } catch (e) {
-                console.log(e)
-            } 
-            var contents = ""
-            var newIndent = indent + 15
-            var fullPath
-            contentArray.forEach((item)=>{
-                if ((item != '.DS_Store') && (item != ".git")){
-                    fullPath = startPath + '/' + item
-                    contents += `<div class='subFolder' id="**is-directory**^^^${fullPath}^^^${indent}" style='margin-left: ${indent}px' onclick='showFolderContents(event, "${fullPath}", "${newIndent}")'><p>` + item + `</p></div>`
-                }
 
-                if (description != 'projectStart'){
-                    console.log('contents = ' + contents)
-                    var contentsDiv = document.getElementById("**is-directory**^^^"+startPath+"^^^"+indent)
-                    contentsDiv.appendChild(contents) //appends contents to contentsDiv
-                } else {
-                    console.log('project loop')
-                    var contentsDiv = document.getElementById('folderContents')
-                    contentsDiv.innerHTML = contents
-                }
-                showFolderContents('partOfProject', fullPath, newIndent)
-            })
-        } else {
-            //openDoc(mainPath)
-        }
-}
-*/
 function openDoc(path) {
     shell.openPath(path)
 }
