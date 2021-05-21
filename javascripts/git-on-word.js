@@ -154,41 +154,41 @@ function getContents(folderPath) {
 
 async function showFolderContents(event, mainPath, indent) {
     if ((event === 'projectStart') || (!(event.target.classList.contains('clicked')))) {
-    var stats = fs.statSync(mainPath)
-    if (stats.isDirectory() === true) { //determine if a directory (instead of file). 
-        //show folder contents
-        var contentArray = []
-        try {
-            contentArray = fs.readdirSync(mainPath)
-        } catch (e) {
-            console.log(e)
-        }
-        var contents = ""
-        var newIndent = parseInt(indent) + 15
-        contentArray.forEach((item) => {
-            if ((item != '.DS_Store') && (item != ".git")) {
-                var fullPath = mainPath + '/' + item
-                contents = `<div id="**is-directory**^^^${fullPath}^^^${indent}">
+        var stats = fs.statSync(mainPath)
+        if (stats.isDirectory() === true) { //determine if a directory (instead of file). 
+            //show folder contents
+            var contentArray = []
+            try {
+                contentArray = fs.readdirSync(mainPath)
+            } catch (e) {
+                console.log(e)
+            }
+            var contents = ""
+            var newIndent = parseInt(indent) + 15
+            contentArray.forEach((item) => {
+                if ((item != '.DS_Store') && (item != ".git")) {
+                    var fullPath = mainPath + '/' + item
+                    contents = `<div id="**is-directory**^^^${fullPath}^^^${indent}">
                 <div class='subFolder' style='margin-left: ${indent}px' onclick='showFolderContents(event, "${fullPath}", "${newIndent}")'>` + item + `</div>
-                <div class="newItems></div>
+                <div class="newItems"></div>
                 </div>`
-            }
-            if (event != "projectStart") {           
-                var contentsDivParent = event.target.parentNode
-              //  console.log(contentsDivParent)
-                 contentsDivParent.insertAdjacentHTML("beforeEnd", contents)  /***TRYING TO MAKE THIS WORK */
-                event.target.classList.add('clicked')
-            } else {
-                var contentsDiv = document.getElementById('folderContents')
-                contentsDiv.insertAdjacentHTML("beforeEnd", contents)
-            }
-        })
-    } else {  //if not a directory
-     //   openDoc(mainPath)
-    }
-    }  else { //if not projectstart and DO have clicked 
+                }
+                if (event != "projectStart") {
+                    var newItems = event.target.nextElementSibling  //gets "newItems" div
+                    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+                    event.target.classList.add('clicked')
+                } else {
+                    var contentsDiv = document.getElementById('folderContents')
+                    contentsDiv.insertAdjacentHTML("beforeEnd", contents)
+                }
+            })
+        } else {  //if not a directory
+            //   openDoc(mainPath)
+        }
+    } else { //if not projectstart and DO have clicked 
         event.target.classList.remove('clicked')
-        event.target.parentElement[1].innerHTML = '' /***TRYING TO MAKE THIS WORK**** */
+        var newItems = event.target.nextElementSibling
+        newItems.innerHTML = '' //remove items in newItems
     }
 }
 
