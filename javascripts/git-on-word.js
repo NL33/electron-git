@@ -104,9 +104,9 @@ function menuFunction() {
             const menuItem = new MenuItem({
                 label: "New Folder",
                 click: () => {
-                   // addFolder(e, thePath, indent)
-                   var divId = fullId  
-                   enterNewFolder(divId, thePath, indent) 
+                    // addFolder(e, thePath, indent)
+                    var divId = fullId
+                    enterNewFolder(divId, thePath, indent)
                 }
             })
             contextMenu.clear() //remove prior menuItem
@@ -119,13 +119,12 @@ function menuFunction() {
 /****ENTER NEW FOLDER ********* */
 
 function enterNewFolder(divId, mainPath, indent) {
+    var newIndent = parseInt(indent) + 17
     var element = document.getElementById(divId)
-    contents = `<input id="nameEntry" data-placeholder="folder name">
-    <button id="addButton" onclick='addFolder("${divId}", "${mainPath}", "${indent}")'>enter</button>`
-    /*
-    contents = `<input id="nameEntry" data-placeholder="folder name">
-    <button onclick="hi()">enter</button>`
-    */
+    contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px;" onsubmit='addFolder("${divId}", "${mainPath}", "${indent}")'>
+                <input type="text" id="nameEntry" data-placeholder="folder name" name="txt" />
+                </form>
+                `
     var newItems = element.nextElementSibling  //gets "newItems" div
     newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
 }
@@ -133,8 +132,8 @@ function enterNewFolder(divId, mainPath, indent) {
 /***********Create a Folder****/
 function addFolder(divId, path, indent) {
     var folderName = document.getElementById('nameEntry').value
-    document.getElementById('nameEntry').remove()
-    document.getElementById('addButton').remove()
+    // document.getElementById('nameEntry').remove()
+    document.getElementById('addForm').remove()
     var newPath = path + '/' + folderName
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
@@ -145,14 +144,14 @@ function addFolder(divId, path, indent) {
             //var newItems = div.nextElementSibling
             // newItems.innerHTML = ''
             //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
-            if (element.classList.contains('clicked')){
+            if (element.classList.contains('clicked')) {
                 //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
                 showNewFolder(divId, path, newPath, folderName, newIndent)
             } else {
                 //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
                 showFolderContents(divId, path, newIndent)
             }
-            
+
         }
     })
 }
