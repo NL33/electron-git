@@ -117,9 +117,25 @@ function menuFunction() {
     }, false);
 }
 
+/****ENTER NEW FOLDER ********* */
+
+function enterNewFolder(event, mainPath, indent) {
+    var name = 'test'
+    var divId = event.target.id
+    contents = `<input id="nameEntry" data-placeholder="folder name">
+    <button id="addButton" onclick='addFolder("${divId}", "${mainPath}", "${indent}", "${name}")'>enter</button>`
+    /*
+    contents = `<input id="nameEntry" data-placeholder="folder name">
+    <button onclick="hi()">enter</button>`
+    */
+    var newItems = event.target.nextElementSibling  //gets "newItems" div
+    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+}
 
 /***********Create a Folder****/
 function addFolder(divId, path, indent, folderName) {
+    document.getElementById('nameEntry').remove()
+    document.getElementById('addButton').remove()
     var newPath = path + '/' + folderName
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
@@ -140,25 +156,6 @@ function addFolder(divId, path, indent, folderName) {
             
         }
     })
-}
-
-/****ENTER NEW FOLDER ********* */
-
-function enterNewFolder(event, mainPath, indent){
-    var name = 'test'
-    var divId = event.target.id
-    contents = `<input id="nameEntry" data-placeholder="folder name">
-    <button onclick='addFolder("${divId}", "${mainPath}", "${indent}", "${name}")'>enter</button>`
-    /*
-    contents = `<input id="nameEntry" data-placeholder="folder name">
-    <button onclick="hi()">enter</button>`
-    */
-    var newItems = event.target.nextElementSibling  //gets "newItems" div
-    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
-}
-
-function hi(){
-    console.log('hi')
 }
 
 /**************** showNewFolder  *******************/
