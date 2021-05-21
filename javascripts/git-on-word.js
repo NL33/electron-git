@@ -122,7 +122,7 @@ function enterNewFolder(divId, mainPath, indent) {
     var newIndent = parseInt(indent) + 17
     var element = document.getElementById(divId)
     contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px" onsubmit='addFolder("${divId}", "${mainPath}", "${indent}")'>
-                <input type="text" id="nameEntry" data-placeholder="folder name" onblur="newFolderNoFocus()" style="padding: 2px; padding-left: 4px" name="txt" />
+                <input type="text" id="nameEntry" data-placeholder="folder name" onblur="newFolderNoFocus()" style="padding: 2px; padding-left: 2px" name="txt" /><span onclick="newFolderNoFocus()" style="color: #778899; cursor: pointer; margin-left: 4px; padding: 4px; vertical-align: super">x</span>
                 </form>
                 `
     var newItems = element.nextElementSibling  //gets "newItems" div
@@ -131,7 +131,6 @@ function enterNewFolder(divId, mainPath, indent) {
 }
 
 function newFolderNoFocus(){
-    console.log('blurred')
     document.getElementById('addForm').remove()
 }
 
