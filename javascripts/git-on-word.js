@@ -115,20 +115,51 @@ function menuFunction() {
 
 /***********Create a Folder****/
 function addFolder(e, path, indent) {
-    var newPath = path + '/' + 'go'
-    var newIndent = indent + 5
+    var folderName = 'go'
+    var newPath = path + '/' + folderName
+    var newIndent = parseInt(indent) + 15
     fs.mkdir(newPath, function (err) {
         if (err) {
             console.log(err)
         } else {
-            console.log("New directory successfully created.")
-            showFolderContents(e, path, newIndent)
+            var newItems = e.target.nextElementSibling
+            // newItems.innerHTML = ''
+            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
+            if (e.target.classList.contains('clicked')){
+                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
+                showNewFolder(e, path, newPath, folderName, newIndent)
+            } else {
+                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
+                showFolderContents(e, path, newIndent)
+            }
+            
         }
     })
 }
 
-/**************Create a Doc ***********/
+/**************** showNewFolder  *******************/
 
+function showNewFolder(event, mainPath, newPath, folderName, indent) {
+    var stats = fs.statSync(mainPath)
+    var contentArray = []
+    try {
+        contentArray = fs.readdirSync(mainPath)
+    } catch (e) {
+        console.log(e)
+    }
+    var contents = ""
+    var newIndent = parseInt(indent) + 15
+    var fullPath = newPath
+    contents = `<div >
+                <div class='subFolder' style='margin-left: ${indent}px' id="**is-directory**^^^${fullPath}^^^${indent}" onclick='showFolderContents(event, "${fullPath}", "${newIndent}")'>` + folderName + `</div>
+                <div class="newItems"></div>
+                </div>`
+    var newItems = event.target.nextElementSibling  //gets "newItems" div
+    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+    // event.target.classList.add('clicked') //add clicked class so don't run this again if click again
+}
+
+/**************Create a Doc ***********/
 
 /******Loop through contents of Selected Folder and display results************* */
 
