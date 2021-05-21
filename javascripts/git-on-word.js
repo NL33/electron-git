@@ -166,15 +166,17 @@ async function showFolderContents(event, mainPath, indent) {
         var contents = ""
         var newIndent = parseInt(indent) + 15
         contentArray.forEach((item) => {
-            console.log('in item')
             if ((item != '.DS_Store') && (item != ".git")) {
                 var fullPath = mainPath + '/' + item
-                contents = `<div id="**is-directory**^^^${fullPath}^^^${indent}"><p class='subFolder' style='margin-left: ${indent}px' onclick='showFolderContents(event, "${fullPath}", "${newIndent}")'>` + item + `</p><div class="newItems></div></div>`
+                contents = `<div id="**is-directory**^^^${fullPath}^^^${indent}">
+                <div class='subFolder' style='margin-left: ${indent}px' onclick='showFolderContents(event, "${fullPath}", "${newIndent}")'>` + item + `</div>
+                <div class="newItems></div>
+                </div>`
             }
             if (event != "projectStart") {           
-                var contentsDivParent = event.target.parentElement
-                contentsDiv = contentsDivParent.children[0]
-                contentsDiv.insertAdjacentHTML("beforeEnd", contents)  /***TRYING TO MAKE THIS WORK */
+                var contentsDivParent = event.target.parentNode
+              //  console.log(contentsDivParent)
+                 contentsDivParent.insertAdjacentHTML("beforeEnd", contents)  /***TRYING TO MAKE THIS WORK */
                 event.target.classList.add('clicked')
             } else {
                 var contentsDiv = document.getElementById('folderContents')
