@@ -35,6 +35,23 @@ $ npm install --save docx
     --open microsoft word docs from the app.
     --REMOVED on May 20, 2021. Doesn't have required functionality for now.
 
+$ npm install chokidar
+    --May 24, 2021
+    --to watch chenges of files and folders.
+    --uninstalled on May 24, 2021, because I found out I can use fs.stat.mtime to determine when a change last occured.
+
+$ npm install del
+    -May 24 2021
+    -to be able to delete any kind of directory (incuding non-empty ones)
+    -Uninstalled on May 24, 2021. Because I wanted to send folders/files to trash, not delete permanently like this does. Trash package seems to do it the way I want
+
+$ npm install trash
+    -May 24, 2021
+    -move file/folders to trash
+    note, according to repo, support for linux is not very good
+
+
+
 # Prior to rollback on April 15, 2021
 # RobotJS
 

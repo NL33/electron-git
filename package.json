@@ -22,6 +22,7 @@
     "marked": "^2.0.3",
     "save-dev": "0.0.1-security",
     "simple-git": "^2.38.0",
+    "trash": "^7.1.1",
     "turndown": "^7.0.0"
   }
 }

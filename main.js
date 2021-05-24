@@ -4,7 +4,6 @@ const { keyboard, Key} = require("@nut-tree/nut-js")
 const fs = require('fs');
 const { getActiveWindow } = require("@nut-tree/nut-js");
 let tray = null
-
 var mainWindow 
 function menuApp() {
     tray = new Tray('mountains-icon.jpg')
@@ -160,3 +159,5 @@ app.on('window-all-closed', () => { //quit the application when it no longer has
 try {
     require('electron-reloader')(module)
 } catch (_) { }
+
+

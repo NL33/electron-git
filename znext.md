@@ -18,16 +18,15 @@ you could just in the app show the directory (ie, project name). There can be a 
 just like in terminal--you separately go into the directory from the terminal. Difference here--the doc is not already saved into that project. So just need a button to save the doc into the project. 
 
 # Just Completed
-can show and hide folders. and show new folders
+with menu right click can add a folder. just added that for project directory too.
 
 # Next
-choose folder name
-create new main folder under project
-create doc
 
-create word doc in the project from the lefthand bar (use create-docs file in code overview project)
-create folder in a project [remember you can use getElementById().focus()]
-create other docs--md, txt
+-delete a folder
+-right click menu: only comes up on second click--fix that
+-I removed the "onblur" function because it was doing wierd things. Add it again: if creating a folder and click outside of entry window, window should go away
+-create doc (word, txt, md)
+
 
 click save version on toolbar, and save the version with git. NOTE:
 
@@ -51,6 +50,9 @@ Next after that:
 --apple notes. maybe use apple script. Remember there are good vid tutorials for that
 --remember that its ok if certain types of formats don't give you the same functionality
 --link the projects to places you can share, like dropbox and github
+
+# Later
+-when add a new folder (especially in the main project directory), insert the new folder in alphabetical order. meaning go through the titles of the directory, and insert it after he one with proper alphabetical order
 
 # Questions
 

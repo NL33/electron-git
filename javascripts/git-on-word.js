@@ -7,9 +7,14 @@ const git = simpleGit()
 var TurndownService = require('turndown')
 var turndownService = new TurndownService()
 
+const trash = require('trash');
+
+
 const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
+
+
 
 var folderPath
 var folderName
@@ -51,24 +56,24 @@ window.onload = function () {
     })
 
     menuFunction()
+    deleteFolder()
+    //seeWhichFilesChangedFunction()
 
 }
 
 
-/*****Experiments with Micro Word ********/
+/*********Watch Files***************/
 
-function wordExps() {
-    fs.writeFile('/Users/sean/Desktop/word-test/crazy-doc1.docx', '', (err) => {
-        if (err) {
-            console.log('error = ' + err)
-        } else {
-            console.log('doc saved')
-        }
+function seeWhichFilesChangedFunction(){
+    path = '/Users/sean/Desktop/word-test/'
+    fs.stat(path, (err, stats) => {
+        if (err) throw err;
+        console.log('last update = ' + stats.mtime)
     })
 }
+//when go to save new version, identify which files have changed since last save. Then update those prior to save.
 
-
-/******Select Project Folder*******/
+/******Select Project Folder to show folder contents*******/
 
 function changeFolder() {
     ipcRenderer.send('open-folder-dialog', '')
@@ -86,99 +91,6 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
         localStorage.setItem('lastProjectFolder', JSON.stringify(array))
     }
 })
-
-/************Menu Function****************/
-
-function menuFunction() {
-    const contextMenu = new Menu();
-
-    window.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        contextMenu.popup(remote.getCurrentWindow());
-        var fullId = e.target.id
-        if (fullId.includes('**is-directory**')) { //show this menu only if a directory
-            var idArray = fullId.split("^^^")
-            var thePath = idArray[1]
-            var indent = idArray[2]
-            console.log('indent = ' + indent)
-            const menuItem = new MenuItem({
-                label: "New Folder",
-                click: () => {
-                    // addFolder(e, thePath, indent)
-                    var divId = fullId
-                    enterNewFolder(divId, thePath, indent)
-                }
-            })
-            contextMenu.clear() //remove prior menuItem
-            contextMenu.append(menuItem)
-        }
-
-    }, false);
-}
-
-/****ENTER NEW FOLDER ********* */
-
-function enterNewFolder(divId, mainPath, indent) {
-    var newIndent = parseInt(indent) + 17
-    var element = document.getElementById(divId)
-    contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px" onsubmit='addFolder("${divId}", "${mainPath}", "${indent}")'>
-                <input type="text" id="nameEntry" data-placeholder="folder name" onblur="newFolderNoFocus()" style="padding: 2px; padding-left: 2px" name="txt" /><span onclick="newFolderNoFocus()" style="color: #778899; cursor: pointer; margin-left: 4px; padding: 4px; vertical-align: super">x</span>
-                </form>
-                `
-    var newItems = element.nextElementSibling  //gets "newItems" div
-    newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
-    document.getElementById('nameEntry').focus()
-}
-
-function newFolderNoFocus(){
-    document.getElementById('addForm').remove()
-}
-
-/***********Create a Folder****/
-function addFolder(divId, path, indent) {
-    var folderName = document.getElementById('nameEntry').value
-    // document.getElementById('nameEntry').remove()
-    document.getElementById('addForm').remove()
-    var newPath = path + '/' + folderName
-    var newIndent = parseInt(indent) + 15
-    var element = document.getElementById(divId)
-    fs.mkdir(newPath, function (err) {
-        if (err) {
-            console.log(err)
-        } else {
-            //var newItems = div.nextElementSibling
-            // newItems.innerHTML = ''
-            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
-            if (element.classList.contains('clicked')) {
-                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                showNewFolder(divId, path, newPath, folderName, newIndent)
-            } else {
-                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
-                showFolderContents(divId, path, newIndent)
-            }
-
-        }
-    })
-}
-
-/**************** showNewFolder  *******************/
-
-function showNewFolder(divId, mainPath, newPath, folderName, indent) {
-    var element = document.getElementById(divId)
-    var contents = ""
-    var newIndent = parseInt(indent) + 15
-    var fullPath = newPath
-    var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
-    contents = `<div >
-                <div class='subFolder' style='margin-left: ${indent}px' id=${newId} onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
-                <div class="newItems"></div>
-                </div>`
-    var newItems = element.nextElementSibling  //gets "newItems" div
-    newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
-    // event.target.classList.add('clicked') //add clicked class so don't run this again if click again
-}
-
-/**************Create a Doc ***********/
 
 /******Loop through contents of Selected Folder and display results************* */
 
@@ -229,6 +141,115 @@ function openDoc(path) {
     shell.openPath(path)
 }
 
+/************Menu Function****************/
+
+function menuFunction() {
+    const contextMenu = new Menu();
+
+    window.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        contextMenu.popup(remote.getCurrentWindow());
+        var fullId = e.target.id
+        if (fullId.includes('**is-directory**')) { //show this menu only if a directory
+            var idArray = fullId.split("^^^")
+            var thePath = idArray[1]
+            var indent = idArray[2]
+            console.log('indent = ' + indent)
+            const menuItem = new MenuItem({
+                label: "New Folder",
+                click: () => {
+                    // addFolder(e, thePath, indent)
+                    var divId = fullId
+                    enterNewFolder(divId, thePath, indent)
+                }
+            })
+            contextMenu.clear() //remove prior menuItem
+            contextMenu.append(menuItem)
+        } else if (fullId === "projectDirectory") { //clicking new folder for project folder
+            const menuItem = new MenuItem({
+                label: "New Folder",
+                click: () => {
+                    // addFolder(e, thePath, indent)
+                    var divId = fullId
+                    enterNewFolder(divId, folderPath, indent)
+                }
+            })
+            contextMenu.clear() //remove prior menuItem
+            contextMenu.append(menuItem)
+        }
+    }, false);
+}
+
+/*old code: onblur="newFolderNoFocus()"*/
+/****ENTER NEW FOLDER ********* */
+/* Steps of creating new folder:
+1. enterNewFolder function: adds entry box. When click return in the box, goes to addFolder function
+2. add folder does mkdir code., then goes to
+3. showNewFolder or showFolderContents to show the new folder
+*/
+
+function enterNewFolder(divId, mainPath, indent) {
+    var newIndent = parseInt(indent) + 17
+    var element = document.getElementById(divId)
+    contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px" onsubmit='addFolder("${divId}", "${mainPath}", "${indent}")'>
+                <input type="text" id="nameEntry" data-placeholder="folder name"  style="padding: 2px; padding-left: 2px" name="txt" /><span onclick="newFolderNoFocus()" style="color: #778899; cursor: pointer; margin-left: 4px; padding: 4px; vertical-align: super">x</span>
+                </form>
+                `
+    var newItems = element.nextElementSibling  //gets "newItems" div
+    newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
+    document.getElementById('nameEntry').focus()
+}
+
+function newFolderNoFocus(){
+    document.getElementById('addForm').remove()
+}
+
+/***********Create a Folder****/
+function addFolder(divId, path, indent) {
+    var folderName = document.getElementById('nameEntry').value
+    document.getElementById('addForm').remove()
+    var newPath = path + '/' + folderName
+    var newIndent = parseInt(indent) + 15
+    var element = document.getElementById(divId)
+    fs.mkdir(newPath, function (err) {
+        if (err) {
+            console.log(err)
+        } else {
+            //var newItems = div.nextElementSibling
+            // newItems.innerHTML = ''
+            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
+            if ((element.classList.contains('clicked')) || (divId==="projectDirectory")) {
+                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
+                showNewFolder(divId, path, newPath, folderName, newIndent)
+            } else {
+                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
+                showFolderContents(divId, path, newIndent)
+            }
+
+        }
+    })
+}
+
+/**************** showNewFolder  *******************/
+
+function showNewFolder(divId, mainPath, newPath, folderName, indent) {
+    //note: right now, this inserts the folder in the view at the top of the view (not alphabetical order)
+    var element = document.getElementById(divId)
+    var contents = ""
+    var newIndent = parseInt(indent) + 15
+    var fullPath = newPath
+    var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+    contents = `<div >
+                <div class='subFolder' style='margin-left: ${indent}px' id=${newId} onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
+                <div class="newItems"></div>
+                </div>`
+    var newItems = element.nextElementSibling  //gets "newItems" div
+    newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
+    // event.target.classList.add('clicked') //add clicked class so don't run this again if click again
+}
+
+/**************Create a Doc ***********/
+
 
 
 /*****Open Doc***** */
@@ -252,7 +273,14 @@ function openDocSpawn() {
     })
 }
 
-/************FOLDER ACTIONS **********/
+/************DELETE A FOLDER***************/
+
+async function deleteFolder(){
+    var thePath = '/Users/sean/Desktop/word-test/sample-folder'
+    await trash([thePath]).then(()=>{
+        console.log('folder trashed')
+    });
+}
 
 
 
