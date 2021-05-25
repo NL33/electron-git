@@ -56,7 +56,6 @@ window.onload = function () {
     })
 
     menuFunction()
-    deleteFolder()
     //seeWhichFilesChangedFunction()
 
 }
@@ -111,11 +110,19 @@ async function showFolderContents(divId, mainPath, indent) {
             contentArray.forEach((item) => {
                 if ((item != '.DS_Store') && (item != ".git")) {
                     var fullPath = mainPath + '/' + item
-                    var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
-                    contents = `<div >
-                <div class='subFolder' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
-                <div class="newItems"></div>
-                </div>`
+                    var subStats = fs.statSync(fullPath)
+                    if (subStats.isDirectory() === true){
+                        var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+                        contents = `<div >
+                        <div class='subFolder' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        <div class="newItems"></div>
+                        </div>`
+                    } else {
+                        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
+                        contents = `<div >
+                        <div class='subFolder' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        </div>`
+                    }
                 }
                 if (divId !== "projectDirectory") {
                     var newItems = element.nextElementSibling  //gets "newItems" div
@@ -147,13 +154,14 @@ function menuFunction() {
     const contextMenu = new Menu();
 
     window.addEventListener('contextmenu', (e) => {
+        contextMenu.clear() //remove prior menuItem
         e.preventDefault();
         
         var fullId = e.target.id
         const genMenu = new MenuItem({
             label: "Move to Trash",
             click: () => {
-                // addFolder(e, thePath, indent)
+               deleteItem(e)
                console.log('move to trash')
             }
         })       
@@ -161,9 +169,8 @@ function menuFunction() {
             var idArray = fullId.split("^^^")
             var thePath = idArray[1]
             var indent = idArray[2]
-            console.log('indent = ' + indent)
             const menuItem = new MenuItem({
-                label: "New Folder",
+                label: "New Foldera",
                 click: () => {
                     // addFolder(e, thePath, indent)
                     var divId = fullId
@@ -171,18 +178,16 @@ function menuFunction() {
                 }
             })
             //genMenu.append(menuItem)
-            contextMenu.clear() //remove prior menuItem
             contextMenu.append(menuItem)
         } else if (fullId === "projectDirectory") { //clicking new folder for project folder
             const menuItem = new MenuItem({
-                label: "New Folder",
+                label: "New Folderb",
                 click: () => {
                     // addFolder(e, thePath, indent)
                     var divId = fullId
                     enterNewFolder(divId, folderPath, indent)
                 }
             })
-            contextMenu.clear() //remove prior menuItem
             contextMenu.append(menuItem)
         }
         contextMenu.append(genMenu)
@@ -284,10 +289,13 @@ function openDocSpawn() {
 
 /************DELETE A FOLDER***************/
 
-async function deleteFolder(){
-    var thePath = '/Users/sean/Desktop/word-test/sample-folder'
+async function deleteItem(e){
+    var fullId = e.target.id
+    var item = document.getElementById(fullId)
+    var idArray = fullId.split("^^^")
+    var thePath = idArray[1]
     await trash([thePath]).then(()=>{
-        console.log('folder trashed')
+        item.remove()
     });
 }
 
