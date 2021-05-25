@@ -77,6 +77,7 @@ function changeFolder() {
 }
 
 ipcRenderer.on('selected-folder', (event, pathToFolder) => {
+    document.getElementById('folderContents').innerHTML = ''
     folderPath = pathToFolder.toString()
     let dataArray = folderPath.split("/")
     folderName = dataArray[dataArray.length - 1]
@@ -157,12 +158,7 @@ function menuFunction() {
             var fullId = e.target.id
             contextMenu.clear() //remove prior menuItem
             e.preventDefault();
-            const genMenu = new MenuItem({
-                label: "Move to Trash",
-                click: () => {
-                    deleteItem(e)
-                }
-            })
+           
             if (fullId.includes('**is-directory**')) { //show this menu only if a directory
                 var idArray = fullId.split("^^^")
                 var thePath = idArray[1]
@@ -171,33 +167,45 @@ function menuFunction() {
                 var thePath = folderPath
                 var indent = -15
             }
-            contextMenu.append(new MenuItem({
-                label: "New Folder",
-                click: () => {
-                    // addFolder(e, thePath, indent)
-                    var divId = fullId
-                    enterNewFolder(divId, thePath, indent)
-                }
-            }))
-            contextMenu.append(new MenuItem({
-                label: "New File",
-                click: () => {
-                    // addFolder(e, thePath, indent)
-                    var divId = fullId
-                    enterNewFile(divId, thePath, indent)
-                }
-            }))
-            contextMenu.append(genMenu)
+            if ((fullId.includes('**is-directory**')) || (fullId==='projectDirectory')){ 
+                contextMenu.append(new MenuItem({
+                    label: "New Folder",
+                    click: () => {
+                        // addFolder(e, thePath, indent)
+                        var divId = fullId
+                        enterNewFolder(divId, thePath, indent)
+                    }
+                }))
+                contextMenu.append(new MenuItem({
+                    label: "New File",
+                    click: () => {
+                        // addFolder(e, thePath, indent)
+                        var divId = fullId
+                        enterNewFile(divId, thePath, indent)
+                    }
+                }))
+            }
+
+            if (fullId !== 'projectDirectory') {
+                const genMenu = new MenuItem({
+                    label: "Move to Trash",
+                    click: () => {
+                        deleteItem(e)
+                    }
+                })
+                contextMenu.append(genMenu)
+            }
+      
             contextMenu.popup(remote.getCurrentWindow());
         } //end if contains docOrDirectory
     }, false);
 }
 /*old code: onblur="newFolderNoFocus()"*/
-/****ENTER NEW FOLDER ********* */
+/****INPUT TO ENTER NEW FOLDER AND FILE ********* */
 /* Steps of creating new folder:
 1. enterNewFolder function: adds entry box. When click return in the box, goes to addFolder function
 2. add folder does mkdir code., then goes to
-3. showNewFolder or showFolderContents to show the new folder
+3. showNewFolderOrDoc or showFolderContents to show the new folder
 */
 
 function enterNewFolder(divId, mainPath, indent) {
@@ -228,7 +236,7 @@ function newFolderNoFocus() {
     document.getElementById('addForm').remove()
 }
 
-/***********Create a Folder****/
+/***********CREATE A FOLDER ********/
 function addFolder(divId, path, indent) {
     var folderName = document.getElementById('nameEntry').value
     document.getElementById('addForm').remove()
@@ -244,7 +252,7 @@ function addFolder(divId, path, indent) {
             //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
             if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
                 //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                showNewFolder(divId, path, newPath, folderName, newIndent)
+                showNewFolderOrDoc(divId, path, newPath, folderName, newIndent)
             } else {
                 //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
                 showFolderContents(divId, path, newIndent)
@@ -271,7 +279,7 @@ function createFile(divId, path, indent) {
             //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
             if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
                 //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                showNewFolder(divId, path, newPath, fileName, newIndent)
+                showNewFolderOrDoc(divId, path, newPath, fileName, newIndent)
             } else {
                 //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
                 showFolderContents(divId, path, newIndent)
@@ -281,9 +289,9 @@ function createFile(divId, path, indent) {
     })
 }
 
-/**************** showNewFolder  *******************/
-/***START HERE: WORKING EXCEPT INDENT: WHERE DOES INDENT COME FROM FOR PROJECT FOLDER? */
-function showNewFolder(divId, mainPath, newPath, folderName, indent) {
+/**************** showNewFolder ANd new Doc *******************/
+
+function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
     //note: right now, this inserts the folder in the view at the top of the view (not alphabetical order)
     var element = document.getElementById(divId)
     var contents = ""
@@ -307,12 +315,7 @@ function showNewFolder(divId, mainPath, newPath, folderName, indent) {
         newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
     }
     
-    // event.target.classList.add('clicked') //add clicked class so don't run this again if click again
 }
-
-/**************Create a Doc ***********/
-
-
 
 /*****Open Doc***** */
 var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'
