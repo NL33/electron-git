@@ -21,8 +21,10 @@ just like in terminal--you separately go into the directory from the terminal. D
 right click and send to trash
 
 # Next
--I removed the "onblur" function because it was doing wierd things. Add it again: if creating a folder and click outside of entry window, window should go away
--create doc (word, txt, md)
+
+-rename file option in right-click folder
+-when creating a new folder or file, prevent the same file name or folder name within a directory from being used twice
+-when deleting a folder with the right click menu, you should also delete its subfolders. Should be description at "trash" package, or related "del" package for how to do that.
 
 
 click save version on toolbar, and save the version with git. NOTE:
@@ -53,6 +55,7 @@ Next after that:
 --add warning before deleting a folder/file. 
 -move to main process: menu creation currently in git-on-word.js. 
 -add context menu package to main.js: https://github.com/sindresorhus/electron-context-menu
+-right-click rename file and folder
 
 # Questions
 

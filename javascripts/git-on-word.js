@@ -153,7 +153,6 @@ function menuFunction() {
 
     window.addEventListener('contextmenu', (e) => {
 
-
         if ((e.target.id) && (e.target.classList.contains('docOrDirectory'))) {
             var fullId = e.target.id
             contextMenu.clear() //remove prior menuItem
@@ -168,35 +167,26 @@ function menuFunction() {
                 var idArray = fullId.split("^^^")
                 var thePath = idArray[1]
                 var indent = idArray[2]
-                contextMenu.append(new MenuItem({
-                    label: "New Folder",
-                    click: () => {
-                        // addFolder(e, thePath, indent)
-                        var divId = fullId
-                        enterNewFolder(divId, thePath, indent)
-                    }
-                }))
-                contextMenu.append(new MenuItem({
-                    label: "New File",
-                    click: () => {
-                        // addFolder(e, thePath, indent)
-                        var divId = fullId
-                        enterNewFile(divId, thePath, indent)
-                    }
-                }))
-                //genMenu.append(menuItem)
-                //contextMenu.append(menuItem)
-            } else if (fullId === "projectDirectory") { //clicking new folder for project folder
-                const menuItem = new MenuItem({
-                    label: "New Folder",
-                    click: () => {
-                        // addFolder(e, thePath, indent)
-                        var divId = fullId
-                        enterNewFolder(divId, folderPath, indent)
-                    }
-                })
-                contextMenu.append(menuItem)
+            } else if (fullId === "projectDirectory") {
+                var thePath = folderPath
+                var indent = -15
             }
+            contextMenu.append(new MenuItem({
+                label: "New Folder",
+                click: () => {
+                    // addFolder(e, thePath, indent)
+                    var divId = fullId
+                    enterNewFolder(divId, thePath, indent)
+                }
+            }))
+            contextMenu.append(new MenuItem({
+                label: "New File",
+                click: () => {
+                    // addFolder(e, thePath, indent)
+                    var divId = fullId
+                    enterNewFile(divId, thePath, indent)
+                }
+            }))
             contextMenu.append(genMenu)
             contextMenu.popup(remote.getCurrentWindow());
         } //end if contains docOrDirectory
@@ -272,7 +262,7 @@ function createFile(divId, path, indent) {
     var newPath = path + '/' + fileName
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
-    fs.writeFile(newPath,'', function (err) {
+    fs.writeFile(newPath, '', function (err) {
         if (err) {
             console.log(err)
         } else {
@@ -284,7 +274,7 @@ function createFile(divId, path, indent) {
                 showNewFolder(divId, path, newPath, fileName, newIndent)
             } else {
                 //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
-               showFolderContents(divId, path, newIndent)
+                showFolderContents(divId, path, newIndent)
             }
 
         }
@@ -292,20 +282,31 @@ function createFile(divId, path, indent) {
 }
 
 /**************** showNewFolder  *******************/
-
+/***START HERE: WORKING EXCEPT INDENT: WHERE DOES INDENT COME FROM FOR PROJECT FOLDER? */
 function showNewFolder(divId, mainPath, newPath, folderName, indent) {
     //note: right now, this inserts the folder in the view at the top of the view (not alphabetical order)
     var element = document.getElementById(divId)
     var contents = ""
     var newIndent = parseInt(indent) + 15
     var fullPath = newPath
-    var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
-    contents = `<div >
-                <div class='subFolder folderOrDocItem' style='margin-left: ${indent}px' id=${newId} onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
+    var statsHere = fs.statSync(fullPath)
+    if (statsHere.isDirectory() === true) {
+      var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+    } else {
+        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
+    }
+    contents = `<div>
+                <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id=${newId} onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
                 <div class="newItems"></div>
                 </div>`
-    var newItems = element.nextElementSibling  //gets "newItems" div
-    newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
+    if (divId === 'projectDirectory') { //its the project folder
+        var contentsDiv = document.getElementById('folderContents')
+        contentsDiv.insertAdjacentHTML("afterBegin", contents)
+    } else { //else its a subfolder
+        var newItems = element.nextElementSibling  //gets "newItems" div
+        newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
+    }
+    
     // event.target.classList.add('clicked') //add clicked class so don't run this again if click again
 }
 
