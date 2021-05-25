@@ -18,12 +18,9 @@ you could just in the app show the directory (ie, project name). There can be a 
 just like in terminal--you separately go into the directory from the terminal. Difference here--the doc is not already saved into that project. So just need a button to save the doc into the project. 
 
 # Just Completed
-figured out how to send a folder to trash
+right click and send to trash
 
 # Next
-
--delete a folder or file: right click on item, have delete option, and delete. then update view
--right click menu: only comes up on second click--fix that
 -I removed the "onblur" function because it was doing wierd things. Add it again: if creating a folder and click outside of entry window, window should go away
 -create doc (word, txt, md)
 

@@ -63,7 +63,7 @@ window.onload = function () {
 
 /*********Watch Files***************/
 
-function seeWhichFilesChangedFunction(){
+function seeWhichFilesChangedFunction() {
     path = '/Users/sean/Desktop/word-test/'
     fs.stat(path, (err, stats) => {
         if (err) throw err;
@@ -111,16 +111,16 @@ async function showFolderContents(divId, mainPath, indent) {
                 if ((item != '.DS_Store') && (item != ".git")) {
                     var fullPath = mainPath + '/' + item
                     var subStats = fs.statSync(fullPath)
-                    if (subStats.isDirectory() === true){
+                    if (subStats.isDirectory() === true) {
                         var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
                         contents = `<div >
-                        <div class='subFolder' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
                         <div class="newItems"></div>
                         </div>`
                     } else {
                         var newId = "**is-document**^^^" + fullPath + "^^^" + indent
                         contents = `<div >
-                        <div class='subFolder' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
                         </div>`
                     }
                 }
@@ -154,44 +154,46 @@ function menuFunction() {
     const contextMenu = new Menu();
 
     window.addEventListener('contextmenu', (e) => {
-        contextMenu.clear() //remove prior menuItem
-        e.preventDefault();
-        
-        var fullId = e.target.id
-        const genMenu = new MenuItem({
-            label: "Move to Trash",
-            click: () => {
-               deleteItem(e)
-               console.log('move to trash')
+
+
+        if ((e.target.id) && (e.target.classList.contains('docOrDirectory'))) {
+            var fullId = e.target.id
+            contextMenu.clear() //remove prior menuItem
+            e.preventDefault();
+            const genMenu = new MenuItem({
+                label: "Move to Trash",
+                click: () => {
+                    deleteItem(e)
+                }
+            })
+            if (fullId.includes('**is-directory**')) { //show this menu only if a directory
+                var idArray = fullId.split("^^^")
+                var thePath = idArray[1]
+                var indent = idArray[2]
+                const menuItem = new MenuItem({
+                    label: "New Folder",
+                    click: () => {
+                        // addFolder(e, thePath, indent)
+                        var divId = fullId
+                        enterNewFolder(divId, thePath, indent)
+                    }
+                })
+                //genMenu.append(menuItem)
+                contextMenu.append(menuItem)
+            } else if (fullId === "projectDirectory") { //clicking new folder for project folder
+                const menuItem = new MenuItem({
+                    label: "New Folder",
+                    click: () => {
+                        // addFolder(e, thePath, indent)
+                        var divId = fullId
+                        enterNewFolder(divId, folderPath, indent)
+                    }
+                })
+                contextMenu.append(menuItem)
             }
-        })       
-        if (fullId.includes('**is-directory**')) { //show this menu only if a directory
-            var idArray = fullId.split("^^^")
-            var thePath = idArray[1]
-            var indent = idArray[2]
-            const menuItem = new MenuItem({
-                label: "New Foldera",
-                click: () => {
-                    // addFolder(e, thePath, indent)
-                    var divId = fullId
-                    enterNewFolder(divId, thePath, indent)
-                }
-            })
-            //genMenu.append(menuItem)
-            contextMenu.append(menuItem)
-        } else if (fullId === "projectDirectory") { //clicking new folder for project folder
-            const menuItem = new MenuItem({
-                label: "New Folderb",
-                click: () => {
-                    // addFolder(e, thePath, indent)
-                    var divId = fullId
-                    enterNewFolder(divId, folderPath, indent)
-                }
-            })
-            contextMenu.append(menuItem)
-        }
-        contextMenu.append(genMenu)
-        contextMenu.popup(remote.getCurrentWindow());
+            contextMenu.append(genMenu)
+            contextMenu.popup(remote.getCurrentWindow());
+        } //end if contains docOrDirectory
     }, false);
 }
 /*old code: onblur="newFolderNoFocus()"*/
@@ -206,7 +208,7 @@ function enterNewFolder(divId, mainPath, indent) {
     var newIndent = parseInt(indent) + 17
     var element = document.getElementById(divId)
     contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px" onsubmit='addFolder("${divId}", "${mainPath}", "${indent}")'>
-                <input type="text" id="nameEntry" data-placeholder="folder name"  style="padding: 2px; padding-left: 2px" name="txt" /><span onclick="newFolderNoFocus()" style="color: #778899; cursor: pointer; margin-left: 4px; padding: 4px; vertical-align: super">x</span>
+                <input type="text" class="docOrDirectory"  id="nameEntry" data-placeholder="folder name"  style="padding: 2px; padding-left: 2px" name="txt" /><span onclick="newFolderNoFocus()" style="color: #778899; cursor: pointer; margin-left: 4px; padding: 4px; vertical-align: super">x</span>
                 </form>
                 `
     var newItems = element.nextElementSibling  //gets "newItems" div
@@ -214,7 +216,7 @@ function enterNewFolder(divId, mainPath, indent) {
     document.getElementById('nameEntry').focus()
 }
 
-function newFolderNoFocus(){
+function newFolderNoFocus() {
     document.getElementById('addForm').remove()
 }
 
@@ -232,7 +234,7 @@ function addFolder(divId, path, indent) {
             //var newItems = div.nextElementSibling
             // newItems.innerHTML = ''
             //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
-            if ((element.classList.contains('clicked')) || (divId==="projectDirectory")) {
+            if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
                 //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
                 showNewFolder(divId, path, newPath, folderName, newIndent)
             } else {
@@ -289,12 +291,12 @@ function openDocSpawn() {
 
 /************DELETE A FOLDER***************/
 
-async function deleteItem(e){
+async function deleteItem(e) {
     var fullId = e.target.id
     var item = document.getElementById(fullId)
     var idArray = fullId.split("^^^")
     var thePath = idArray[1]
-    await trash([thePath]).then(()=>{
+    await trash([thePath]).then(() => {
         item.remove()
     });
 }
