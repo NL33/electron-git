@@ -148,8 +148,15 @@ function menuFunction() {
 
     window.addEventListener('contextmenu', (e) => {
         e.preventDefault();
-        contextMenu.popup(remote.getCurrentWindow());
+        
         var fullId = e.target.id
+        const genMenu = new MenuItem({
+            label: "Move to Trash",
+            click: () => {
+                // addFolder(e, thePath, indent)
+               console.log('move to trash')
+            }
+        })       
         if (fullId.includes('**is-directory**')) { //show this menu only if a directory
             var idArray = fullId.split("^^^")
             var thePath = idArray[1]
@@ -163,6 +170,7 @@ function menuFunction() {
                     enterNewFolder(divId, thePath, indent)
                 }
             })
+            //genMenu.append(menuItem)
             contextMenu.clear() //remove prior menuItem
             contextMenu.append(menuItem)
         } else if (fullId === "projectDirectory") { //clicking new folder for project folder
@@ -177,9 +185,10 @@ function menuFunction() {
             contextMenu.clear() //remove prior menuItem
             contextMenu.append(menuItem)
         }
+        contextMenu.append(genMenu)
+        contextMenu.popup(remote.getCurrentWindow());
     }, false);
 }
-
 /*old code: onblur="newFolderNoFocus()"*/
 /****ENTER NEW FOLDER ********* */
 /* Steps of creating new folder:
@@ -240,7 +249,7 @@ function showNewFolder(divId, mainPath, newPath, folderName, indent) {
     var fullPath = newPath
     var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
     contents = `<div >
-                <div class='subFolder' style='margin-left: ${indent}px' id=${newId} onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
+                <div class='subFolder folderOrDocItem' style='margin-left: ${indent}px' id=${newId} onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
                 <div class="newItems"></div>
                 </div>`
     var newItems = element.nextElementSibling  //gets "newItems" div

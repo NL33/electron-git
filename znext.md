@@ -18,11 +18,11 @@ you could just in the app show the directory (ie, project name). There can be a 
 just like in terminal--you separately go into the directory from the terminal. Difference here--the doc is not already saved into that project. So just need a button to save the doc into the project. 
 
 # Just Completed
-with menu right click can add a folder. just added that for project directory too.
+figured out how to send a folder to trash
 
 # Next
 
--delete a folder
+-delete a folder or file: right click on item, have delete option, and delete. then update view
 -right click menu: only comes up on second click--fix that
 -I removed the "onblur" function because it was doing wierd things. Add it again: if creating a folder and click outside of entry window, window should go away
 -create doc (word, txt, md)
@@ -53,6 +53,7 @@ Next after that:
 
 # Later
 -when add a new folder (especially in the main project directory), insert the new folder in alphabetical order. meaning go through the titles of the directory, and insert it after he one with proper alphabetical order
+--add warning before deleting a folder/file. 
 
 # Questions
 
