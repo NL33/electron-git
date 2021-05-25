@@ -2,6 +2,7 @@ const { ipcRenderer, clipboard, shell, remote } = require('electron')
 const { Menu, MenuItem } = remote
 const { writeFile, fstat } = require('fs')
 const fs = require("fs")
+var path = require('path')
 const simpleGit = require('simple-git')
 const git = simpleGit()
 var TurndownService = require('turndown')
@@ -50,7 +51,7 @@ window.onload = function () {
     })
 
     document.getElementById('saveButton').addEventListener('click', () => {
-        addFile()
+        saveProjectVersionFunction()
     })
 
     menuFunction()
@@ -353,6 +354,95 @@ async function deleteItem(e) {
 
 
 /********GIT ACTIONS*************** */
+
+
+function checkChangesFunction(projectFolder) {
+    //if a doc is md, txt, html, etc.--> then I don't need to create a copy of it.
+    //if a doc is a word doc (and specific others), then I need to create a copy of it.
+    //so one strategy is to find all the word docs in a project, and then see if they have been updated, and then update the copy if they have
+    var lastSaveTime = 'last time file saved'
+    projectContents = fs.readdirSync(projectFolder)  //gets the top level
+    for (var i = 0; i < projectContents.length; i++) {
+        var filePath = path.join(projectFolder, projectContents[i]); //get full path of item in the project we're focused on
+        fs.stat(filePath, (err, stats)=>{  //gets stats then
+            if (err) throw err;
+            let timeModified = stats.mtime //get modified time of item
+            if (timeModified > lastSaveTime){ //has it been modified since the last git save? If so, we need to look closer.
+                if (fs.statSync(filePath).isDirectory === true){ //if a directory, then run this again, until you get to a document
+                    checkChangesFunction(filePath)
+                } else { //if it's a file, then see if a word doc. If so, perform magic. If not, then no action necessary cause git can handle file as is.    /************START HERE*********** */
+                    var extension = path.extname(filePath)
+                    if (extension.includes('doc')){
+                        console.log('pathname = ' + pathname + ', extension = ' + extension)
+                        //it is a microsoft word doc, so perform word magic on it
+                    }
+                }
+
+
+            }   
+
+
+
+        })
+
+        var stat = fs.lstatSync(filename);
+        if (stat.isDirectory()) {
+            fromDir(filename, filter); //recurse
+        }
+        else if (filename.indexOf(filter) >= 0) {
+            console.log('-- found: ', filename);
+        };
+    };
+    if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
+        var stats = fs.statSync(mainPath)
+        if (stats.isDirectory() === true) { //determine if a directory (instead of file). 
+            //show folder contents
+            var contentArray = []
+            try {
+                contentArray = fs.readdirSync(mainPath)
+            } catch (e) {
+                console.log(e)
+            }
+            var contents = ""
+            var newIndent = parseInt(indent) + 15
+            contentArray.forEach((item) => {
+                if ((item != '.DS_Store') && (item != ".git")) {
+                    var fullPath = mainPath + '/' + item
+                    var subStats = fs.statSync(fullPath)
+                    if (subStats.isDirectory() === true) {
+                        var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+                        contents = `<div >
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        <div class="newItems"></div>
+                        </div>`
+                    } else {
+                        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
+                        contents = `<div >
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        </div>`
+                    }
+                }
+                if (divId !== "projectDirectory") {
+                    var newItems = element.nextElementSibling  //gets "newItems" div
+                    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+                    element.classList.add('clicked') //add clicked class so don't run this again if click again
+                } else {
+                    var contentsDiv = document.getElementById('folderContents')
+                    contentsDiv.insertAdjacentHTML("beforeEnd", contents)
+                }
+            })
+        } else {  //if not a directory
+            openDoc(mainPath)
+        }
+    } else { //if not projectstart and DO have clicked (so a folder that is already open)
+        element.classList.remove('clicked')
+        var newItems = element.nextElementSibling
+        newItems.innerHTML = '' //remove items in newItems
+    }
+
+
+
+}
 
 function addFile() { //get the text of the file and the first line of the file
     var data1 = clipboard.readHTML()

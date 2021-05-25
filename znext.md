@@ -5,7 +5,6 @@ Core functionality is replicating how the terminal and git work  = easily saving
 
 From there, look at how VS code works. Goal: a single side toolbar that can control opening your files in a project, easily allwing you to open different windows at once in a controlled environment (intead of having to minize windows to go find another doc to open). One seamless experience for opening docs, and navigating between docs. And then being able to do git on the project.
 
-To start, it is not necessary to be able to open the docs in the window. It would still be helpful to have a navigation toolbar that allows you to open docs without having to minimize windows.
 
 And then being able to share the project. At first, potentially link up with dropbox and github as separate storage places that also allow you to share. That might be enough. But can also replicate full github functionality on my own to make it easier and friendlier for non-tech people.
 
@@ -21,10 +20,19 @@ just like in terminal--you separately go into the directory from the terminal. D
 right click and send to trash
 
 # Next
+GIT saving
+--identify which docs have changed since last save
+--if doc is word doc, identify if copy already exists of it (use the path)
 
+
+
+
+
+Right Click Menu:
 -rename file option in right-click folder
 -when creating a new folder or file, prevent the same file name or folder name within a directory from being used twice
 -when deleting a folder with the right click menu, you should also delete its subfolders. Should be description at "trash" package, or related "del" package for how to do that.
+-add icons next to folders to show that you can open them (caret for when open and closed)
 
 
 click save version on toolbar, and save the version with git. NOTE:
