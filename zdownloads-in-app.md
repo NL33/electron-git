@@ -50,7 +50,9 @@ $ npm install trash
     -move file/folders to trash
     note, according to repo, support for linux is not very good
 
-
+$ npm install electron-context-menu
+    -May 25, 2021
+    -installs a default and then easily customizable contextmenu (ie, right click menu)
 
 # Prior to rollback on April 15, 2021
 # RobotJS

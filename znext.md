@@ -51,6 +51,8 @@ Next after that:
 # Later
 -when add a new folder (especially in the main project directory), insert the new folder in alphabetical order. meaning go through the titles of the directory, and insert it after he one with proper alphabetical order
 --add warning before deleting a folder/file. 
+-move to main process: menu creation currently in git-on-word.js. 
+-add context menu package to main.js: https://github.com/sindresorhus/electron-context-menu
 
 # Questions
 

@@ -9,11 +9,9 @@ var turndownService = new TurndownService()
 
 const trash = require('trash');
 
-
 const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
-
 
 
 var folderPath
@@ -170,16 +168,24 @@ function menuFunction() {
                 var idArray = fullId.split("^^^")
                 var thePath = idArray[1]
                 var indent = idArray[2]
-                const menuItem = new MenuItem({
+                contextMenu.append(new MenuItem({
                     label: "New Folder",
                     click: () => {
                         // addFolder(e, thePath, indent)
                         var divId = fullId
                         enterNewFolder(divId, thePath, indent)
                     }
-                })
+                }))
+                contextMenu.append(new MenuItem({
+                    label: "New File",
+                    click: () => {
+                        // addFolder(e, thePath, indent)
+                        var divId = fullId
+                        enterNewFile(divId, thePath, indent)
+                    }
+                }))
                 //genMenu.append(menuItem)
-                contextMenu.append(menuItem)
+                //contextMenu.append(menuItem)
             } else if (fullId === "projectDirectory") { //clicking new folder for project folder
                 const menuItem = new MenuItem({
                     label: "New Folder",
@@ -216,6 +222,18 @@ function enterNewFolder(divId, mainPath, indent) {
     document.getElementById('nameEntry').focus()
 }
 
+function enterNewFile(divId, mainPath, indent) {
+    var newIndent = parseInt(indent) + 17
+    var element = document.getElementById(divId)
+    contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px" onsubmit='createFile("${divId}", "${mainPath}", "${indent}")'>
+                <input type="text" class="docOrDirectory"  id="nameEntry" data-placeholder="folder name"  style="padding: 2px; padding-left: 2px" name="txt" /><span onclick="newFolderNoFocus()" style="color: #778899; cursor: pointer; margin-left: 4px; padding: 4px; vertical-align: super">x</span>
+                </form>
+                `
+    var newItems = element.nextElementSibling  //gets "newItems" div
+    newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
+    document.getElementById('nameEntry').focus()
+}
+
 function newFolderNoFocus() {
     document.getElementById('addForm').remove()
 }
@@ -240,6 +258,33 @@ function addFolder(divId, path, indent) {
             } else {
                 //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
                 showFolderContents(divId, path, newIndent)
+            }
+
+        }
+    })
+}
+
+/******* CREATE A FILE ************/
+
+function createFile(divId, path, indent) {
+    var fileName = document.getElementById('nameEntry').value
+    document.getElementById('addForm').remove()
+    var newPath = path + '/' + fileName
+    var newIndent = parseInt(indent) + 15
+    var element = document.getElementById(divId)
+    fs.writeFile(newPath,'', function (err) {
+        if (err) {
+            console.log(err)
+        } else {
+            //var newItems = div.nextElementSibling
+            // newItems.innerHTML = ''
+            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
+            if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
+                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
+                showNewFolder(divId, path, newPath, fileName, newIndent)
+            } else {
+                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
+               showFolderContents(divId, path, newIndent)
             }
 
         }
