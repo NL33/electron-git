@@ -42,7 +42,7 @@ window.onload = function () {
             var divId = "projectDirectory"
             showFolderContents(divId, folderPath, 0)
 
-            checkChangesFunction(folderPath)
+            checkGitChangeTime(folderPath)
             //getContents(folderPath)
         }
     }
@@ -359,54 +359,67 @@ async function deleteItem(e) {
 
 /********GIT ACTIONS*************** */
 
-async function checkChangesFunction(theFilePath) {
+async function checkGitChangeTime(theFilePath) { //check the last time the git file was created
     var newStat = promisify(fs.stat)
-    console.log('check changes function')
+    console.log('a. check changes function')
     //if a doc is md, txt, html, etc.--> then I don't need to create a copy of it.
     //if a doc is a word doc (and specific others), then I need to create a copy of it.
     //so one strategy is to find all the word docs in a project, and then see if they have been updated, and then update the copy if they have
-    var lastSaveTime = 2
+    var lastSaveTime 
+    var gitFile = theFilePath + '/.git'
+    if (gitFile) {
+        await newStat(gitFile).then((stats, err) => {
+            lastSaveTime = stats.mtime
+            console.log('b. last save time = ' + lastSaveTime)
+            return checkChangesFunction(theFilePath, lastSaveTime)
+        }).catch((e)=>{
+            console.log('error')
+        })
+    } else {
+        lastSaveTime = 0
+    }
+}
+
+async function checkChangesFunction(theFilePath, lastSaveTime){
+    var newStat = promisify(fs.stat)
     var projectFolder = theFilePath
     var projectContents = await fs.readdirSync(projectFolder)
     //gets the top level
-    for (var i = 0; i < projectContents.length; i++) {
-        
+    for (var i = 0; i < projectContents.length; i++) {     
         if ((projectContents[i] != ".DS_Store") && (projectContents[i] != ".git")) {
             var filePath = path.join(projectFolder, projectContents[i]); //get full path of item in the project we're focused on
-            console.log('filepath = ' + filePath)
-          
-            //try {
+            console.log('1. loop again')
+            console.log('2. filepath = ' + filePath)
             await newStat(filePath).then((stats, err) => {  //gets stats then. and convert fs.stat to a promise that resolves to be sure: 1. it does the analysis of the relevant file before moving on the loop and 2. it resolves, so it does move on when it's done
-                    console.log('in stat')
+                    console.log('3. in stat for ' + projectContents[i])
                     if (err){
                         throw (err)
                     }
                     let timeModified = stats.mtime //get modified time of item
-                    console.log('time modified = ' + timeModified)
-                    if (timeModified !== 'helloo') { //has it been modified since the last git save? If so, we need to look closer.
+                    console.log('4. time modified = ' + timeModified)
+                    if (timeModified > 0) { //has it been modified since the last git save? If so, we need to look closer.
                         if (fs.statSync(filePath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
-                            console.log('file path = ' + filePath + ", **is a directory")
-                            checkChangesFunction(filePath)
+                            console.log('5a. file path = ' + filePath + ", **is a directory")
+                            checkChangesFunction(filePath, lastSaveTime)
                         } else { //if it's a file, then see if a word doc. If so, perform magic. If not, then no action necessary cause git can handle file as is.
                             //console.log('in a document')
                               var extension = path.extname(filePath)
                                 if (extension.includes('doc')){
-                                console.log('pathname = ' + filePath + ', extension = ' + extension)
+                                console.log('5b. pathname = ' + filePath + ', extension = ' + extension)
                             //it is a microsoft word doc, so perform word magic on it
                               }
                         }
-                    }                   
+                    } else {
+                        console.log('4b. Not greater than zero')
+                    }                 
                    return 'done'
                 }).catch((e)=> {
                     console.log('error = ' + JSON.stringify(e))
                 })  //end stat
         } //end if not ds_store or git
-    } //end projectCOntents loop
+    } //end projectContents loop
 } //end check Changes Function
 
-function promiseFunction(){
-    console.log('done')
-}
 
 function addFile() { //get the text of the file and the first line of the file
     var data1 = clipboard.readHTML()
