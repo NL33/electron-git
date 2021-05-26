@@ -404,9 +404,14 @@ async function checkChangesFunction(theFilePath, lastSaveTime) {
                         var extension = path.extname(filePath)
                         if (extension.includes('doc')) {
                             console.log('2b. pathname = ' + filePath + ', extension = ' + extension)
-                            convertWord(filePath)
-                            return 'done'
-                            //it is a microsoft word doc, so perform word magic on it
+                            //  try {
+                            mammoth.convertToHtml({ path: filePath }).then((result, err) => {
+                                if (err) {
+                                    throw (err)
+                                }
+                                var htmlWord = result.value
+                                console.log(htmlWord)
+                                })
                         } else {
                             return 'done'
                         }
@@ -416,22 +421,72 @@ async function checkChangesFunction(theFilePath, lastSaveTime) {
                 }
 
             }).catch((e) => {
-                console.log('error = ' + JSON.stringify(e))
+                console.log('error hereo= ' + JSON.stringify(e))
             })  //end stat
         } //end if not ds_store or git
     } //end projectContents loop
 } //end check Changes Function
 
-
-function convertWord(wordPath) { //get the text of the file and the first line of the file
-   mammoth.convertToHtml({path: wordPath}).then((result)=>{
-       console.log('result = ')
-       console.log(result.value)
-       console.log(result.messages)
-   })
+function convertWord(wordPath) {
+    console.log('got called')
+    // var newMammoth = promisify(mammoth) //get the text of the file and the first line of the file
+    // return new Promise((resolve, reject)=>{
+    //return await new Promise((resolve, reject) => {
+    try {
+         mammoth.convertToHtml({ path: wordPath }).then((result, err) => {
+          if (err) {
+           throw (err)
+        }
+        var htmlWord = result.value
+        //return 'done'
+        return convertTheDataToMarkdown(wordPath, htmlWord)
+    }).catch((e) => {
+        console.log('error here  = ' + e)
+    })
+} catch (e){
+    console.log('e')
 }
 
-function anotherConvertFunction(){
+    //convertTheDataToMarkdown(wordPath, result.value)
+
+
+    /*
+    .then(function(result) {
+             var wordHTMLData = result.value
+             console.log('just did mammoth')
+             //resolve('done')
+         }).catch(e=>{
+             console.log(e)
+         })
+         */
+
+    // })
+}
+
+
+async function convertTheDataToMarkdown(wordPath, htmlData) {
+    try {
+        console.log('now do turndown')
+        var data = await turndownService.turndown(htmlData)
+        var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
+        var removeExt = wordPath.replace(/\.[^/.]+$/, "")
+        console.log('#*#&#&#&#&#&#&#&#&#remove ext = ' + removeExt)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+/*
+var markdownFilePath = folderPath + '/' + fileName + '.md'
+console.log('filepath = ' + filePath)
+writeFile(filePath, dataCleaned, (err) => {
+    if (err) throw err;
+    saveVersion()
+})
+*/
+
+
+function anotherConvertFunction() {
     var data1 = clipboard.readHTML()
     var data = turndownService.turndown(data1)
     //#get first 6 words of first line to propose as possible file name:
