@@ -380,11 +380,22 @@ async function checkGitChangeTime(theFilePath) { //check the last time the git f
     }
 }
 
+
+/**THe below function runs a loop. When it analyzes and converts a word doc, that goes on a different track and happens slower. That is ok
+ the question is: how to call the next stage (git actions), only once all word docs have been addressed?
+ Potential Answer:
+ in the first loop, don't do the asynchronous work. use that work to get all the filePaths for word docs that need to be worked on.
+ Then, for all those filepaths, do the asynchronous magic work.
+ once you've done so for all the paths in the word array, then and only then call the git function
+ /******START HERE********* */
+ 
+
 async function checkChangesFunction(theFilePath, lastSaveTime) {
     var newStat = promisify(fs.stat)
     var projectFolder = theFilePath
     var projectContents = await fs.readdirSync(projectFolder)
     //gets the top level
+    try {
     for (var i = 0; i < projectContents.length; i++) {
         if ((projectContents[i] != ".DS_Store") && (projectContents[i] != ".git")) {
             var filePath = path.join(projectFolder, projectContents[i]); //get full path of item in the project we're focused on
@@ -403,15 +414,7 @@ async function checkChangesFunction(theFilePath, lastSaveTime) {
                         //console.log('in a document')
                         var extension = path.extname(filePath)
                         if (extension.includes('doc')) {
-                            console.log('2b. pathname = ' + filePath + ', extension = ' + extension)
-                            //  try {
-                            mammoth.convertToHtml({ path: filePath }).then((result, err) => {
-                                if (err) {
-                                    throw (err)
-                                }
-                                var htmlWord = result.value
-                                console.log(htmlWord)
-                                })
+                            convertWord(filePath)
                         } else {
                             return 'done'
                         }
@@ -425,42 +428,21 @@ async function checkChangesFunction(theFilePath, lastSaveTime) {
             })  //end stat
         } //end if not ds_store or git
     } //end projectContents loop
+} catch (e){
+
+}
+console.log("AALLLL DONNE!")
 } //end check Changes Function
 
 function convertWord(wordPath) {
     console.log('got called')
-    // var newMammoth = promisify(mammoth) //get the text of the file and the first line of the file
-    // return new Promise((resolve, reject)=>{
-    //return await new Promise((resolve, reject) => {
-    try {
-         mammoth.convertToHtml({ path: wordPath }).then((result, err) => {
-          if (err) {
-           throw (err)
-        }
+    mammoth.convertToHtml({ path: wordPath }).then((result, err) => {
         var htmlWord = result.value
         //return 'done'
-        return convertTheDataToMarkdown(wordPath, htmlWord)
+        convertTheDataToMarkdown(wordPath, htmlWord)
     }).catch((e) => {
         console.log('error here  = ' + e)
     })
-} catch (e){
-    console.log('e')
-}
-
-    //convertTheDataToMarkdown(wordPath, result.value)
-
-
-    /*
-    .then(function(result) {
-             var wordHTMLData = result.value
-             console.log('just did mammoth')
-             //resolve('done')
-         }).catch(e=>{
-             console.log(e)
-         })
-         */
-
-    // })
 }
 
 
