@@ -19,6 +19,7 @@
   "dependencies": {
     "@nut-tree/nut-js": "^1.6.1-next.20210408195718",
     "axios": "^0.21.1",
+    "mammoth": "^1.4.17",
     "marked": "^2.0.3",
     "save-dev": "0.0.1-security",
     "simple-git": "^2.38.0",
