@@ -22,6 +22,8 @@ var currentWindow
 
 let spawn = require("child_process").spawn
 var cp = require("child_process");
+const { promisify } = require('util')
+const { resolve } = require('path')
 
 /*****Button Set Up *****/
 window.onload = function () {
@@ -39,6 +41,8 @@ window.onload = function () {
             document.getElementById('projectDirectory').textContent = folderName
             var divId = "projectDirectory"
             showFolderContents(divId, folderPath, 0)
+
+            checkChangesFunction(folderPath)
             //getContents(folderPath)
         }
     }
@@ -159,7 +163,7 @@ function menuFunction() {
             var fullId = e.target.id
             contextMenu.clear() //remove prior menuItem
             e.preventDefault();
-           
+
             if (fullId.includes('**is-directory**')) { //show this menu only if a directory
                 var idArray = fullId.split("^^^")
                 var thePath = idArray[1]
@@ -168,7 +172,7 @@ function menuFunction() {
                 var thePath = folderPath
                 var indent = -15
             }
-            if ((fullId.includes('**is-directory**')) || (fullId==='projectDirectory')){ 
+            if ((fullId.includes('**is-directory**')) || (fullId === 'projectDirectory')) {
                 contextMenu.append(new MenuItem({
                     label: "New Folder",
                     click: () => {
@@ -196,7 +200,7 @@ function menuFunction() {
                 })
                 contextMenu.append(genMenu)
             }
-      
+
             contextMenu.popup(remote.getCurrentWindow());
         } //end if contains docOrDirectory
     }, false);
@@ -300,7 +304,7 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
     var fullPath = newPath
     var statsHere = fs.statSync(fullPath)
     if (statsHere.isDirectory() === true) {
-      var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+        var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
     } else {
         var newId = "**is-document**^^^" + fullPath + "^^^" + indent
     }
@@ -315,7 +319,7 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
         var newItems = element.nextElementSibling  //gets "newItems" div
         newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
     }
-    
+
 }
 
 /*****Open Doc***** */
@@ -355,93 +359,53 @@ async function deleteItem(e) {
 
 /********GIT ACTIONS*************** */
 
-
-function checkChangesFunction(projectFolder) {
+async function checkChangesFunction(theFilePath) {
+    var newStat = promisify(fs.stat)
+    console.log('check changes function')
     //if a doc is md, txt, html, etc.--> then I don't need to create a copy of it.
     //if a doc is a word doc (and specific others), then I need to create a copy of it.
     //so one strategy is to find all the word docs in a project, and then see if they have been updated, and then update the copy if they have
-    var lastSaveTime = 'last time file saved'
-    projectContents = fs.readdirSync(projectFolder)  //gets the top level
+    var lastSaveTime = 2
+    var projectFolder = theFilePath
+    var projectContents = await fs.readdirSync(projectFolder)
+    //gets the top level
     for (var i = 0; i < projectContents.length; i++) {
-        var filePath = path.join(projectFolder, projectContents[i]); //get full path of item in the project we're focused on
-        fs.stat(filePath, (err, stats)=>{  //gets stats then
-            if (err) throw err;
-            let timeModified = stats.mtime //get modified time of item
-            if (timeModified > lastSaveTime){ //has it been modified since the last git save? If so, we need to look closer.
-                if (fs.statSync(filePath).isDirectory === true){ //if a directory, then run this again, until you get to a document
-                    checkChangesFunction(filePath)
-                } else { //if it's a file, then see if a word doc. If so, perform magic. If not, then no action necessary cause git can handle file as is.    /************START HERE*********** */
-                    var extension = path.extname(filePath)
-                    if (extension.includes('doc')){
-                        console.log('pathname = ' + pathname + ', extension = ' + extension)
-                        //it is a microsoft word doc, so perform word magic on it
+        
+        if ((projectContents[i] != ".DS_Store") && (projectContents[i] != ".git")) {
+            var filePath = path.join(projectFolder, projectContents[i]); //get full path of item in the project we're focused on
+            console.log('filepath = ' + filePath)
+          
+            //try {
+            await newStat(filePath).then((stats, err) => {  //gets stats then. and convert fs.stat to a promise that resolves to be sure: 1. it does the analysis of the relevant file before moving on the loop and 2. it resolves, so it does move on when it's done
+                    console.log('in stat')
+                    if (err){
+                        throw (err)
                     }
-                }
+                    let timeModified = stats.mtime //get modified time of item
+                    console.log('time modified = ' + timeModified)
+                    if (timeModified !== 'helloo') { //has it been modified since the last git save? If so, we need to look closer.
+                        if (fs.statSync(filePath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
+                            console.log('file path = ' + filePath + ", **is a directory")
+                            checkChangesFunction(filePath)
+                        } else { //if it's a file, then see if a word doc. If so, perform magic. If not, then no action necessary cause git can handle file as is.
+                            //console.log('in a document')
+                              var extension = path.extname(filePath)
+                                if (extension.includes('doc')){
+                                console.log('pathname = ' + filePath + ', extension = ' + extension)
+                            //it is a microsoft word doc, so perform word magic on it
+                              }
+                        }
+                    }                   
+                   return 'done'
+                }).catch((e)=> {
+                    console.log('error = ' + JSON.stringify(e))
+                })  //end stat
+        } //end if not ds_store or git
+    } //end projectCOntents loop
+} //end check Changes Function
 
-
-            }   
-
-
-
-        })
-
-        var stat = fs.lstatSync(filename);
-        if (stat.isDirectory()) {
-            fromDir(filename, filter); //recurse
-        }
-        else if (filename.indexOf(filter) >= 0) {
-            console.log('-- found: ', filename);
-        };
-    };
-    if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
-        var stats = fs.statSync(mainPath)
-        if (stats.isDirectory() === true) { //determine if a directory (instead of file). 
-            //show folder contents
-            var contentArray = []
-            try {
-                contentArray = fs.readdirSync(mainPath)
-            } catch (e) {
-                console.log(e)
-            }
-            var contents = ""
-            var newIndent = parseInt(indent) + 15
-            contentArray.forEach((item) => {
-                if ((item != '.DS_Store') && (item != ".git")) {
-                    var fullPath = mainPath + '/' + item
-                    var subStats = fs.statSync(fullPath)
-                    if (subStats.isDirectory() === true) {
-                        var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
-                        contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
-                        <div class="newItems"></div>
-                        </div>`
-                    } else {
-                        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
-                        contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
-                        </div>`
-                    }
-                }
-                if (divId !== "projectDirectory") {
-                    var newItems = element.nextElementSibling  //gets "newItems" div
-                    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
-                    element.classList.add('clicked') //add clicked class so don't run this again if click again
-                } else {
-                    var contentsDiv = document.getElementById('folderContents')
-                    contentsDiv.insertAdjacentHTML("beforeEnd", contents)
-                }
-            })
-        } else {  //if not a directory
-            openDoc(mainPath)
-        }
-    } else { //if not projectstart and DO have clicked (so a folder that is already open)
-        element.classList.remove('clicked')
-        var newItems = element.nextElementSibling
-        newItems.innerHTML = '' //remove items in newItems
-    }
-
-
-
+function promiseFunction(){
+    console.log('done')
 }
 
 function addFile() { //get the text of the file and the first line of the file
