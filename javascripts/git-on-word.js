@@ -24,6 +24,7 @@ let spawn = require("child_process").spawn
 var cp = require("child_process");
 const { promisify } = require('util')
 const { resolve } = require('path')
+const { O_DIRECTORY } = require('constants')
 
 /*****Button Set Up *****/
 window.onload = function () {
@@ -371,12 +372,13 @@ async function checkGitChangeTime(theFilePath) { //check the last time the git f
         await newStat(gitFile).then((stats, err) => {
             lastSaveTime = stats.mtime
             console.log('b. last save time = ' + lastSaveTime)
-            return checkChangesFunction(theFilePath, lastSaveTime)
+            return checkChangesFunction(theFilePath, lastSaveTime) //once have the last updated time, run the function to see what folders have changed since then
         }).catch((e) => {
             console.log('error')
         })
     } else {
         lastSaveTime = 0
+        return checkChangesFunction(theFilePath, lastSaveTime) //once have the last updated time, run the function to see what folders have changed since then
     }
 }
 
@@ -388,16 +390,20 @@ async function checkGitChangeTime(theFilePath) { //check the last time the git f
  Then, for all those filepaths, do the asynchronous magic work.
  once you've done so for all the paths in the word array, then and only then call the git function
  /******START HERE********* */
- 
-
+var wordDocs = []
+var count = 0
 async function checkChangesFunction(theFilePath, lastSaveTime) {
     var newStat = promisify(fs.stat)
     var projectFolder = theFilePath
     var projectContents = await fs.readdirSync(projectFolder)
-    //gets the top level
-    try {
+    count++
+    if (count === 1) { //only do this the first time you run through this array, so only do this for the top line of the directory. This will add a fake name at the end of the project contents (not actually adding a file--just for purposes of the loop below). It's a way to know when we've reached the end of the project contents
+        var fakeFileName = 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g'
+        projectContents.push(fakeFileName)
+    }
     for (var i = 0; i < projectContents.length; i++) {
-        if ((projectContents[i] != ".DS_Store") && (projectContents[i] != ".git")) {
+
+        if ((projectContents[i] != 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g') && (projectContents[i] != ".DS_Store") && (projectContents[i] != ".git")) {
             var filePath = path.join(projectFolder, projectContents[i]); //get full path of item in the project we're focused on
             console.log('1. filepath = ' + filePath)
             await newStat(filePath).then((stats, err) => {  //gets stats then. and convert fs.stat to a promise that resolves to be sure: 1. it does the analysis of the relevant file before moving on the loop and 2. it resolves, so it does move on when it's done
@@ -414,25 +420,31 @@ async function checkChangesFunction(theFilePath, lastSaveTime) {
                         //console.log('in a document')
                         var extension = path.extname(filePath)
                         if (extension.includes('doc')) {
-                            convertWord(filePath)
+                            wordDocs.push(filePath)
+                            console.log('2.b word doc = ' + filePath)
+                            return 'done'
                         } else {
+                            console.log('2ba. doc but not word doc ')
                             return 'done'
                         }
                     }
                 } else { //if it has not been modified since the last git save, then we are done with this item in the loop
                     console.log('2c. has not been modified since last git save')
+                    return 'done'
                 }
 
             }).catch((e) => {
                 console.log('error hereo= ' + JSON.stringify(e))
             })  //end stat
-        } //end if not ds_store or git
-    } //end projectContents loop
-} catch (e){
 
-}
-console.log("AALLLL DONNE!")
+        } else if (projectContents[i] === 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g') {
+            console.log('^^^^^^^^^^END LOOP THROUGH PROJECT CONTENTS************')
+            console.log('word doc = ' + wordDocs)
+        }//end if not ds_store or git
+    } //end projectContents loop
 } //end check Changes Function
+
+
 
 function convertWord(wordPath) {
     console.log('got called')
