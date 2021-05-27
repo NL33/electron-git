@@ -65,6 +65,63 @@ Next after that:
 -add context menu package to main.js: https://github.com/sindresorhus/electron-context-menu
 -right-click rename file and folder
 
+# Tracking changes to word docs.
+
+original plan: when go to save the git version, go through the folder, find any word docs that had been updated since the last git save, and convert those to MD. Works well, except starts going slowly as you get more docs. Testing: 64 docs, about 58 of which were 50 pages. WOuld take about 50 seconds to go through and do conversion of all. During that time, app was not useuable. This approach was in effect as of May 30, 2021, 1:30pm EST.
+
+10 docs of 50 pages, took about 12 secs
+20 docs of 50 pages. took about 23 secs
+
+[these were prior to creating a new MD File].
+
+For creating a new MD file for every doc, didn't seem to add too much time. 64 word docs, about 60 of which were 50 pages (81kb), took 50 seconds.
+
+Note: this will only pick up docs that have been updated since the last save. So even if a folder has 60 docs, in any given time it is likely that there will be less than 10 to convert. 
+
+further cut this down (to minimize the conversions that have to happen at the time of git save): update docs as you go:
+
+
+Potential Steps:
+
+1. watch docs as user works on them. If save a doc and it is a word doc, run mammoth -> md -> md doc conversion then.
+2. when user goes to do a new git save, go through the folders, identifying any folders and subfolders that have been updated since last git save (if not updated, then don't need to address)
+3. for any word docs that have been updated since last git save: compare last change time to the last change time of the md equivalent. If word doc changed since then, do the mammoth -> md -> md doc conversion.
+4. why necessary to still do the conversion check at this stage, if have been watching for changes as we go? There could have been changes that happened when the app was not open (example: user could have opened word doc directly to the system and saved it without app being there)
+
+Update, May 27, 2021, at 3:32:
+
+For now, I have left it as is, with doing the operation 1 time for all word docs, comparing to see which changed since last save. Why?
+--step 3 of the above method seems to raise the chance of missing some docs. If you convert a doc, there could be a little time lag. What if user does another save during that process? Could there be a chance that when comparing updated word doc to latest MD equivalent, that it would say the last md was later (so no need to update), but in fact the word doc was later because of this? Seems possible. To address, Would have to know that: 1. the package for tracking changes to the folder can still work if there are multiple saves very close together (probably does) and 2. I can be sure that all save conversion are done prior to running the git save action (also possible)
+
+--performance seems probably ok in the current method for now. as a test: 10 docs of 50 pages to update, full conversion process including new md docs, took about 10 seconds. That seems the upper bounds of most performance issues for now.
+
+--concrned about performance of constantly watching a folder, and doing a conversion action on every save. This may not end up being a concern
+
+--still would be ideal to be able to use the app while the update is happening. Right now, the whole app waits for the process to be done. 
+
+***size: 
+5.2 mb before md copies (60 docs)
+affter md copies (60 new docs):
+15.6 mbs.
+
+
+
+
+alternative: watch the word docs for changes when they are opened. Anytime there is a save, do the conversion then.
+
+This works well, but can only pick up saves for docs that are opened by the app itself, and while the app is opened.
+
+what about: saves that happen for docs opened directly from folder (not app), or when app is not opened?
+
+to address:
+1. when app is open, watch for changes in the relevant folder. Note: the watcher watches changes in a folder, does not have to be only in docs that the folder opened
+2. for docs that were opened and saved when app was not opened, when hit save version: go through the process of identifying word docs since last change, and converting them then. 
+3. in fact, what you need to know is that the app has the most updatedversion of the folder as of the git save event. You don't need to track since last git save, just since last update version the app tracked
+
+when hit git save, go through process of finding word docs to update.
+
+but identify the ones that are already updated
+
 # Questions
 
 -right now, a word doc could be in the subfolder of the project folder. I can identify the project folder--user selects that manually. But not the subfolder (no way right now to get the subfolder the word doc is in). So where should I put the copy of the word doc? Right now, I am just putting it in the main project folder. This is good enough for saving versions. But would be better if I could put it in the correct subfolder. That would allow me to link it to the app being a place where you can control what files are open. And also you being able to send the whole project to a remote git repo in an organized way. But how to do that?

@@ -15,7 +15,7 @@ const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
 
 
-var folderPath
+var projectFolderPath
 var folderName
 var fileName
 var currentWindow
@@ -37,14 +37,11 @@ window.onload = function () {
     if (localStorage.getItem('lastProjectFolder')) {
         let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
         if (folderArray) {
-            folderPath = folderArray[0]
+            projectFolderPath = folderArray[0]
             folderName = folderArray[1]
             document.getElementById('projectDirectory').textContent = folderName
             var divId = "projectDirectory"
-            showFolderContents(divId, folderPath, 0)
-
-            checkGitChangeTime(folderPath)
-            //getContents(folderPath)
+            showFolderContents(divId, projectFolderPath, 0)
         }
     }
     var changeFolderButton = document.getElementById('changeFolder')
@@ -56,7 +53,7 @@ window.onload = function () {
     })
 
     document.getElementById('saveButton').addEventListener('click', () => {
-        saveProjectVersionFunction()
+        checkGitChangeTime(projectFolderPath) //this starts the process to save the git version
     })
 
     menuFunction()
@@ -84,14 +81,14 @@ function changeFolder() {
 
 ipcRenderer.on('selected-folder', (event, pathToFolder) => {
     document.getElementById('folderContents').innerHTML = ''
-    folderPath = pathToFolder.toString()
+    projectFolderPath = pathToFolder.toString()
     let dataArray = folderPath.split("/")
     folderName = dataArray[dataArray.length - 1]
     document.getElementById('projectDirectory').textContent = folderName
     var divId = "projectDirectory"
-    showFolderContents(divId, folderPath, 0)
-    if (folderPath.length > 0) { //should always be true, but adding a doublecheck
-        let array = [folderPath, folderName]
+    showFolderContents(divId, projectFolderPath, 0)
+    if (projectFolderPath.length > 0) { //should always be true, but adding a doublecheck
+        let array = [projectFolder, folderName]
         localStorage.setItem('lastProjectFolder', JSON.stringify(array))
     }
 })
@@ -170,7 +167,7 @@ function menuFunction() {
                 var thePath = idArray[1]
                 var indent = idArray[2]
             } else if (fullId === "projectDirectory") {
-                var thePath = folderPath
+                var thePath = projectFolderPath
                 var indent = -15
             }
             if ((fullId.includes('**is-directory**')) || (fullId === 'projectDirectory')) {
@@ -444,129 +441,45 @@ async function checkChangesFunction(theFilePath, lastSaveTime) {
             let promises = []
             for (let i = 0; i < wordDocs.length; i++) {
                 promises.push(mammothFunction(wordDocs[i]))
+                //mammothFunction(wordDocs[i])
             }
-            //console.log('promises all = ')
-            //console.log(Promise.all(promises))
+
+            
             Promise.all(promises).then(function (result) {
-                console.log('promise all result = ')
-                console.log(result)
+                console.log('*&*&*&*&*&*& promise all done *&*&*&*&*&*&*&*&*&*&*&*&*&*&')
+                saveGitVersion()
             })
+            
 
         }//end if not ds_store or git
     } //end projectContents loop
 } //end check Changes Function
 
-
-
-function convertWord(wordDocs) {
-    let promises = []
-    for (let i = 0; i < wordDocs.length; i++) {
-        promises.push(mammothFunction(wordDocs[i]))
-    }
-    //console.log('promises all = ')
-    //console.log(Promise.all(promises))
-    Promise.all(promises).then(result => {
-        console.log('promise all result = ')
-        console.log(result)
-    })
-}
-
 function mammothFunction(wordDocPath) {
     return new Promise((resolve, reject) => {
         mammoth.convertToHtml({ path: wordDocPath }).then(function (result) {
             var htmlWord = result.value
-            console.log('%%%%%%%%%%%%%%DONE WITH MAMMOTH%%%%%%%%%%%%%%%%%')
             var data = turndownService.turndown(htmlWord)
-            console.log('222222222Done WIth Turndown 222222222222')
             var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
-            console.log('4444444444444 DONE WITH DATA CLEANED 44444444444444')
-            resolve(dataCleaned)
+            var removeDocExtension = wordDocPath.replace(/\.[^/.]+$/, "")
+            var markDownPath = removeDocExtension + '.md'
+            writeFile(markDownPath, dataCleaned, (err)=>{
+                if (err){
+                    console.log('error = ' + err)
+                } else {
+                    resolve(dataCleaned)   //completed the conversion for the doc. sends it back to promise.all(promises)
+                }
+            })
         })
     })
 }
 
 
-
-async function convertTheDataToMarkdown(wordPath, htmlData) {
-    try {
-        console.log('now do turndown')
-        var data = await turndownService.turndown(htmlData)
-        var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
-        var removeExt = wordPath.replace(/\.[^/.]+$/, "")
-        console.log('#*#&#&#&#&#&#&#&#&#remove ext = ' + removeExt)
-    } catch (e) {
-        console.log(e)
-    }
-}
-
-/*
-var markdownFilePath = folderPath + '/' + fileName + '.md'
-console.log('filepath = ' + filePath)
-writeFile(filePath, dataCleaned, (err) => {
-    if (err) throw err;
-    saveVersion()
-})
-*/
-
-
-function anotherConvertFunction() {
-    var data1 = clipboard.readHTML()
-    var data = turndownService.turndown(data1)
-    //#get first 6 words of first line to propose as possible file name:
-
-    //## clear out <!--  ... --> text in beginning, which is there in microsoft word docs
-    var dataCleaned = data.replace(/<!--.*?-->/s, "");
-    //## get first line
-    var dataArray = dataCleaned.split('\n')
-    var firstLine = 'none'
-    var i
-    for (i = 0; i < 6; i++) { //loop through first six lines to be sure there is text there
-        if (dataArray[i].trim().length > 0) {
-            console.log('there is a value at ' + i)
-            firstLine = dataArray[i].trim()
-            break; //stop loop if have text in the line
-        }
-    }
-    //## isolate first 6 words of the first line
-    if (firstLine != 'none') {
-        console.log('first line = ')
-        console.log(firstLine)
-        var lineArray = firstLine.split(" ")
-        var n
-        var firstLineSum = ''
-        for (n = 0; n < 6; n++) {
-            if (n < 1) {
-                firstLineSum = lineArray[0]
-            } else {
-                firstLineSum += ' '
-                firstLineSum += lineArray[n]
-            }
-        }
-        console.log('first 6 words of first line = ')
-        console.log(firstLineSum)
-    } else {
-        console.log('no first line')
-    }
-    //end get first line
-    writeFileFunction(dataCleaned)
-    // fs.writeFile()
-    // saveVersion()
-}
-
-function writeFileFunction(dataCleaned) {
-    var filePath = folderPath + '/' + fileName + '.md'
-    console.log('filepath = ' + filePath)
-    writeFile(filePath, dataCleaned, (err) => {
-        if (err) throw err;
-        saveVersion()
-    })
-}
-
-async function saveVersion() {
+async function saveGitVersion() {
     console.log('in save version')
     var text = document.getElementById('noteForSave').textContent
     try {
-        await git.cwd(folderPath).then(result => {
+        await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
 
