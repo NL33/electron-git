@@ -373,8 +373,8 @@ async function checkGitChangeTime(theFilePath) { //check the last time the git f
             lastSaveTime = stats.mtime
             console.log('b. last save time = ' + lastSaveTime)
             return checkChangesFunction(theFilePath, lastSaveTime) //once have the last updated time, run the function to see what folders have changed since then
-        }).catch((e) => {
-            console.log('error')
+            // }).catch((e) => {
+            //   console.log('error = ' + e)
         })
     } else {
         lastSaveTime = 0
@@ -439,23 +439,52 @@ async function checkChangesFunction(theFilePath, lastSaveTime) {
 
         } else if (projectContents[i] === 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g') {
             console.log('^^^^^^^^^^END LOOP THROUGH PROJECT CONTENTS************')
-            console.log('word doc = ' + wordDocs)
+            console.log('word doc lenght = ')
+            console.log(wordDocs.length)
+            let promises = []
+            for (let i = 0; i < wordDocs.length; i++) {
+                promises.push(mammothFunction(wordDocs[i]))
+            }
+            //console.log('promises all = ')
+            //console.log(Promise.all(promises))
+            Promise.all(promises).then(function (result) {
+                console.log('promise all result = ')
+                console.log(result)
+            })
+
         }//end if not ds_store or git
     } //end projectContents loop
 } //end check Changes Function
 
 
 
-function convertWord(wordPath) {
-    console.log('got called')
-    mammoth.convertToHtml({ path: wordPath }).then((result, err) => {
-        var htmlWord = result.value
-        //return 'done'
-        convertTheDataToMarkdown(wordPath, htmlWord)
-    }).catch((e) => {
-        console.log('error here  = ' + e)
+function convertWord(wordDocs) {
+    let promises = []
+    for (let i = 0; i < wordDocs.length; i++) {
+        promises.push(mammothFunction(wordDocs[i]))
+    }
+    //console.log('promises all = ')
+    //console.log(Promise.all(promises))
+    Promise.all(promises).then(result => {
+        console.log('promise all result = ')
+        console.log(result)
     })
 }
+
+function mammothFunction(wordDocPath) {
+    return new Promise((resolve, reject) => {
+        mammoth.convertToHtml({ path: wordDocPath }).then(function (result) {
+            var htmlWord = result.value
+            console.log('%%%%%%%%%%%%%%DONE WITH MAMMOTH%%%%%%%%%%%%%%%%%')
+            var data = turndownService.turndown(htmlWord)
+            console.log('222222222Done WIth Turndown 222222222222')
+            var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
+            console.log('4444444444444 DONE WITH DATA CLEANED 44444444444444')
+            resolve(dataCleaned)
+        })
+    })
+}
+
 
 
 async function convertTheDataToMarkdown(wordPath, htmlData) {
