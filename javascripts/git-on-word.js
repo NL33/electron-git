@@ -438,6 +438,7 @@ async function checkChangesFunction(theFilePath, lastSaveTime) {
             console.log('^^^^^^^^^^END LOOP THROUGH PROJECT CONTENTS************')
             console.log('word doc lenght = ')
             console.log(wordDocs.length)
+            
             let promises = []
             for (let i = 0; i < wordDocs.length; i++) {
                 promises.push(mammothFunction(wordDocs[i]))
