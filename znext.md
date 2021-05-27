@@ -105,22 +105,55 @@ affter md copies (60 new docs):
 15.6 mbs.
 
 
+# Word doc v MD Doc, git size, ultimate comparison
+
+****Conclusion: the md version adds more bc there is a 2.5x-sized doc copy for each word doc. The git file is smaller, but still grows a fair bit. Example: adding 2 paragraphs to a 217kb mb file (equivalent of 81kb word file) grew the git folder by 56kb. Nearly as much as adding a full size of the word file to it. 
+
+When adding the slower growing word file + increased raw doc size (MD versions), versus faster growing word file + lower raw doc size (word version), it's a close call.
+
+In the end, the word versions are probably at least slightly more size intensive. However, the ultimate size of the folders is still in the single to double digits MBs in most cases, which is not significant. And keeping the word files have notable advantages--for example, getting the old files back. 
+
+Test: one folder with 3 word docs, 50 pages each. one folder with 3 MD docs that are the equivalent (having done the full conversion)
+
+****Word Folder (3 docs) starting size: 250kb
+Initial Git size: 119kb
+Changes:
+change all 3 docs (added paragraph to all 3). Git size: 362kb (went up 250--size of the docs) 
+change all 3 docs (removed paragraph from all 3). Git size: 598kb
+
+After commits (changing all docs twice). Total = 849kb.
+
+Then change just 1 doc. Git file for word = 677kb
+
+****MD Folder (3 docs) starting size: 646kb
+Initial Git size: 95kb
+
+changes:
+change all 3 docs (added paragraph to all 3). Git size: 212kb.
+change all 3 docs (remove para from each): git size: 324kb.
+
+After 2 commits (of changing all docs twice). total = 646 + 324 = 970. But also have to add original word doc size too, bc that would be there in the convert to md method. so = 970 + 250 = 1220 kb.
 
 
-alternative: watch the word docs for changes when they are opened. Anytime there is a save, do the conversion then.
+Then change just 1 doc: git file for MD = 380kb
 
-This works well, but can only pick up saves for docs that are opened by the app itself, and while the app is opened.
+change all 3 again (add para, remove some sentences) = 540kb  (difference: added 160)
 
-what about: saves that happen for docs opened directly from folder (not app), or when app is not opened?
+****Conclusions:
 
-to address:
-1. when app is open, watch for changes in the relevant folder. Note: the watcher watches changes in a folder, does not have to be only in docs that the folder opened
-2. for docs that were opened and saved when app was not opened, when hit save version: go through the process of identifying word docs since last change, and converting them then. 
-3. in fact, what you need to know is that the app has the most updatedversion of the folder as of the git save event. You don't need to track since last git save, just since last update version the app tracked
+the more word docs you have, the less efficient it becomes to convert to MD. 
+Unless:
+you are doing a lot of commits. At a certain point, the commits with word become too high.
 
-when hit git save, go through process of finding word docs to update.
+Running these numbers out to 20 commits:
 
-but identify the ones that are already updated
+MD (assuming 150 on average per commit): 20*150 = git file = 3000 kb. MD docs = 646kb. Word too = 250kb. Total: 3896. In other words: 3.896 mb.
+
+But what if 12 docs, not 3. multiply the doc size by 4 = (646+250)*4=3584 (versus 1000 for the word file)
+
+Word (assuming 250 on after per commit): 20*250 = git file = 5000 kb. MD docs = 0. Word docs = 250. Total: 5250. in other words: 5.250 mb.
+
+
 
 # Questions
 

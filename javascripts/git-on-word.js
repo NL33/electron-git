@@ -478,6 +478,7 @@ function mammothFunction(wordDocPath) {
 async function saveGitVersion() {
     console.log('in save version')
     var text = document.getElementById('noteForSave').textContent
+    document.getElementById('saveButton').style.display = "none"
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
@@ -506,6 +507,8 @@ async function saveGitVersion() {
                 overviewN.style.display = "inline-block"
             }
             */
+            document.getElementById('noteForSave').textContent = ''
+            document.getElementById('saveButton').style.display = "inline-block"
             console.log('commit result = ' + JSON.stringify(result))
         })
 
