@@ -14,6 +14,7 @@ const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
 
+const runJxa = require('run-jxa')
 
 var projectFolderPath
 var folderName
@@ -53,7 +54,9 @@ window.onload = function () {
     })
 
     document.getElementById('saveButton').addEventListener('click', () => {
-        checkGitChangeTime(projectFolderPath) //this starts the process to save the git version
+        //checkGitChangeTime(projectFolderPath) //this starts the process to save the git version
+        //openDocSpawn()
+        controlTheWindow()
     })
 
     menuFunction()
@@ -62,16 +65,68 @@ window.onload = function () {
 }
 
 
-/*********Watch Files***************/
+/*****Open Doc***** */
+var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'
+var wordDoc = '/Users/sean/Desktop/word-versions/test-stockholders-agreement-1.docx'
+var txtDoc = '/Users/sean/Desktop/txt-docs/converttest-test.txt'
+var appleDoc = 'https://www.icloud.com/notes/0hZOhxE5di_MSCv7bX-hYHY8w#Contribution_is_the_Focus'
+var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
 
-function seeWhichFilesChangedFunction() {
-    path = '/Users/sean/Desktop/word-test/'
-    fs.stat(path, (err, stats) => {
-        if (err) throw err;
-        console.log('last update = ' + stats.mtime)
-    })
+
+async function controlTheWindow() {
+    await runJxa(`
+     const wordApp = Application("Microsoft Word")
+    //wordDoc.activate()
+    wordApp.windows[0].bounds = {
+      "x": 2, 
+      "y": 4, 
+      "width": 200, 
+      "height": 200
+    }
+  `)
 }
-//when go to save new version, identify which files have changed since last save. Then update those prior to save.
+
+/* working function
+async function controlTheWindow() {
+    await runJxa(`
+     const wordApp = Application("Microsoft Word")
+    //wordDoc.activate()
+    wordApp.windows[0].bounds = {
+      "x": 2,
+      "y": 4,
+      "width": 200,
+      "height": 200
+    }
+  `)
+}
+
+*/
+
+
+
+function openDocFunction() {
+
+    shell.openPath(wordDoc, '', 'x=10, y=10').then((result) => {
+        console.log(result)
+    })
+
+    //window.open(txtDoc, '_blank','top=300, left=600')
+}
+
+
+function openDocSpawn() {
+
+    var exec = require('child_process').exec;
+    var command = 'open ' + wordDoc
+    exec(command, function (error, stdout, stderr) {  // 'dir' is for example
+        if (error) {
+            console.error(`exec error: ${error}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+        console.log(`stderr: ${stderr}`);
+    });
+}
 
 /******Select Project Folder to show folder contents*******/
 
@@ -320,26 +375,6 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
 
 }
 
-/*****Open Doc***** */
-var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'
-var wordDoc = '/Users/sean/Desktop/word-test/word-convert-test1.docx'
-var txtDoc = '/Users/sean/Desktop/txt-docs/converttest-test.txt'
-var appleDoc = 'https://www.icloud.com/notes/0hZOhxE5di_MSCv7bX-hYHY8w#Contribution_is_the_Focus'
-var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
-function openDocFunction() {
-
-    shell.openPath(wordDoc, '', 'x=10, y=10').then((result) => {
-        console.log(result)
-    })
-
-    //window.open(txtDoc, '_blank','top=300, left=600')
-}
-
-function openDocSpawn() {
-    spawn(txtDoc, function (error, stdout, stderr) {
-        console.log('done.')
-    })
-}
 
 /************DELETE A FOLDER***************/
 
@@ -438,19 +473,19 @@ async function checkChangesFunction(theFilePath, lastSaveTime) {
             console.log('^^^^^^^^^^END LOOP THROUGH PROJECT CONTENTS************')
             console.log('word doc lenght = ')
             console.log(wordDocs.length)
-            
+
             let promises = []
             for (let i = 0; i < wordDocs.length; i++) {
                 promises.push(mammothFunction(wordDocs[i]))
                 //mammothFunction(wordDocs[i])
             }
 
-            
+
             Promise.all(promises).then(function (result) {
                 console.log('*&*&*&*&*&*& promise all done *&*&*&*&*&*&*&*&*&*&*&*&*&*&')
                 saveGitVersion()
             })
-            
+
 
         }//end if not ds_store or git
     } //end projectContents loop
@@ -464,8 +499,8 @@ function mammothFunction(wordDocPath) {
             var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
             var removeDocExtension = wordDocPath.replace(/\.[^/.]+$/, "")
             var markDownPath = removeDocExtension + '.md'
-            writeFile(markDownPath, dataCleaned, (err)=>{
-                if (err){
+            writeFile(markDownPath, dataCleaned, (err) => {
+                if (err) {
                     console.log('error = ' + err)
                 } else {
                     resolve(dataCleaned)   //completed the conversion for the doc. sends it back to promise.all(promises)

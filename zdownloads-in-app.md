@@ -55,6 +55,10 @@ $ npm install electron-context-menu
     -May 25, 2021
     -installs a default and then easily customizable contextmenu (ie, right click menu)
 
+$ npm install run-jxa
+   -May 28, 2021
+   --to run jxa for Mac. Allows automation. Installed to try to control window size and position.
+
 # Prior to rollback on April 15, 2021
 # RobotJS
 

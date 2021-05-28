@@ -1,12 +1,21 @@
 # Just Completed
-right click and send to trash
+right click and send to trash.
+justfigured out that I will just save the word docs as part of normal git
 
 # Next
 GIT saving
---identify which docs have changed since last save
---if doc is word doc, identify if copy already exists of it (use the path)
+--remove message for git save while saving
+--show saved or done message when save is done
+
+Viewing docs
+--try to set position of word docs. probably using applescript
 
 
+Viewing old git versions (I want to understand how to view docs first, per above, and then get into this, because above strategy will influence how the below works)
+--view list of prior commits with messages
+--click on message, and view the contents of that save
+     --probably using the "working tree" git concept. Just dive in and experiment with that.
+--want to be able to view the old contents and current contents at the same time, while having the old contents clearly marked as the old contents 
 
 
 Right Click Menu:

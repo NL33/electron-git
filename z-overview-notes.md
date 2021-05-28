@@ -28,7 +28,7 @@ Overall: taking the benefits of an IDE (like VS code) and git, and giving them i
 
 original idea was to convert all word docs to MD docs in order to save to git. The main purpose of this was to save space, bc the git file grows by the whole size of the word doc with each commit. However, converting to MD for each doc also has a space issue (a MD equivalent is about 2.5 times the size of the word doc). And saving even small changes from an MD doc to git has a space hit as well (a 250kb md doc, equivalent of an 80 kb word doc, still increases git file by 55 kb with just minor addition to the file). Furthermore, the size issues here are in the kbs and low MBs. Even a very large git file would take a long time to get to more than 50mbs. 
 
-For example, that would be about 45 documents, each 50kb (35-50 pages), each one with 20 git save versions (20*45 = 900 commits (which is a huge amount)). Would = docsize ( 45 * 50=2250) + gitfile ( 50 * 900 = 45000) = total 47,250kb. Or 47.25 mb.
+For example, that would be about 45 documents, each 50kb (35-50 pages), each one with 20 git save versions (20*45 = 900 commits (which is a huge amount)). Would = docsize ( 45 * 50=2250) + gitfile ( 50 * 900 = 45000) = total 47,250kb. Or 47.25 mb. If you did this with the MD conversions, file size would be pretty close (remembering that updating the git file for a save of changes to MD doc still has meaningful size that is close to the word doc size.)
 
 And even 50 mbs is a manageable size. As an example, my git file for the rts.com angular app is over 50 mb.
 

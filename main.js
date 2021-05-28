@@ -2,6 +2,16 @@ const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog,
 const path = require('path') //import the path package which provides utility functions for the file paths
 const { keyboard, Key} = require("@nut-tree/nut-js")
 const fs = require('fs');
+// Main process of the Electron application
+const { systemPreferences } = require('electron')
+
+// Prompt to access System Preferences by setting the prompt "true"
+const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
+
+console.log("Does the client have accessibility permissions?", isTrusted)
+
+
+
 const { getActiveWindow } = require("@nut-tree/nut-js");
 let tray = null
 var mainWindow 
