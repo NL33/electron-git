@@ -9,10 +9,12 @@ From there, look at how VS code works. Goal: a single side toolbar that can cont
 And then being able to share the project. At first, potentially link up with dropbox and github as separate storage places that also allow you to share. That might be enough. But can also replicate full github functionality on my own to make it easier and friendlier for non-tech people.
 
 # Big Benefits of The App
-Overall: taking the benefits of an IDE (like VS code) and git, and giving them in a simple way to non-technical people / for non-technical work.
+Overall: taking the benefits of an IDE (like VS code) and git, and giving them in a simple way to non-technical people / for non-technical work. Basically, all windows within one system that allows you to track your versions of whatever you are working on and share.
 
 1. gives you a VS code experience for non-code work. Be able to navigate through your folders, add folders, and create documents from the app. Instead of the tedious process for minimizing to view docs
+    could even have a way of just opening the internet right into a window (just open the internet side by side with other work)
 2. VS code experience for viewing docs: can see docs side by side and navigate through them, without having to minimize and struggle to find open docs.
+    --for mac, may need to use apple script.
 3. One project control for a variety of doc types: word docs, apple notes, urls, in one place, in one project area.
 4. Version control for word docs, apple notes, and urls.
 5. Comparing versions for word docs, apple notes, and urls.
@@ -24,7 +26,11 @@ Overall: taking the benefits of an IDE (like VS code) and git, and giving them i
 
 ## Saving the Versions:
 
-original idea was to convert all word docs to MD docs in order to save to git. The main purpose of this was to save space, bc the git file grows by the whole size of the word doc with each commit. However, converting to MD for each doc also has a space issue (a MD equivalent is about 2.5 times the size of the word doc). And saving even small changes from an MD doc to git has a space hit as well (a 250kb md doc, equivalent of an 80 kb word doc, still increases git file by 55 kb with just minor addition to the file). Furthermore, the size issues here are in the kbs and low MBs. Even a very large git file would take a long time to get to more than 50mbs.
+original idea was to convert all word docs to MD docs in order to save to git. The main purpose of this was to save space, bc the git file grows by the whole size of the word doc with each commit. However, converting to MD for each doc also has a space issue (a MD equivalent is about 2.5 times the size of the word doc). And saving even small changes from an MD doc to git has a space hit as well (a 250kb md doc, equivalent of an 80 kb word doc, still increases git file by 55 kb with just minor addition to the file). Furthermore, the size issues here are in the kbs and low MBs. Even a very large git file would take a long time to get to more than 50mbs. 
+
+For example, that would be about 45 documents, each 50kb (35-50 pages), each one with 20 git save versions (20*45 = 900 commits (which is a huge amount)). Would = docsize ( 45 * 50=2250) + gitfile ( 50 * 900 = 45000) = total 47,250kb. Or 47.25 mb.
+
+And even 50 mbs is a manageable size. As an example, my git file for the rts.com angular app is over 50 mb.
 
 so for now it appears that converting word docs to md for git commits is not required for space reasons.
 
@@ -108,6 +114,27 @@ When adding the slower growing word file + increased raw doc size (MD versions),
 In the end, the word versions are probably at least slightly more size intensive. However, the ultimate size of the folders is still in the single to double digits MBs in most cases, which is not significant. And keeping the word files have notable advantages--for example, getting the old files back. 
 
 Test: one folder with 3 word docs, 50 pages each. one folder with 3 MD docs that are the equivalent (having done the full conversion)
+
+****Hypo test
+
+Project has 20 word documents, of 50 kb each. And each document has 20 git commit versions. (so there are 20*20 = 400 git commits)
+
+**Word-only version:
+
+doc storage(20 * 50=1000) 
++ git file(400*50=20000) 
+Total= 21000 kb. Or 21mb
+
+
+**MD-only versions:
+
+imagine for each save, git file grows on average 40kb--in my testing it seemed like changing the md file often added about 1/3, or just a little less than the word file.  
+and remember that each MB version seems to be about 2.5x its word equivalent (even after removing initial setup code in word docs)
+doc storage ((2.5 * 50) +50)) * 20  = 3500
++ git file (400*40) = 16000
+Total = 19,500 kb. Or 19.5mb
+
+****Actual Test I ran
 
 ****Word Folder (3 docs) starting size: 250kb
 Initial Git size: 119kb
