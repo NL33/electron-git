@@ -20,7 +20,7 @@ Overall: taking the benefits of an IDE (like VS code) and git, and giving them i
 5. Comparing versions for word docs, apple notes, and urls.
 6. Share whole projects easily (to come)
 
-# How to Handle Word Docs
+*How to Handle Word Docs*
 
 --Code as of May 27, 2021 at 6:00pm, in the file javascripts/git-on-word.js works to have a folder full of word docs, hit "save", go through all files and determine what docs have changed since last git commit, if word doc convert to MD file, and then add all to the git commit.
 
@@ -54,7 +54,7 @@ you can take a project and share it to github and/or dropbox. On github, you can
 one option is to enable the word files to be shared but also convert to txt files to show on a central place like github.
 another option is to focus all the actual activity on people's computers. so the viewing happens on people computers, and there is a central site/server for sharing.
 
-
+*Handling Apple Notes*
 
 # project folder 
 

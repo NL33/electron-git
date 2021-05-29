@@ -72,21 +72,31 @@ var txtDoc = '/Users/sean/Desktop/txt-docs/converttest-test.txt'
 var appleDoc = 'https://www.icloud.com/notes/0hZOhxE5di_MSCv7bX-hYHY8w#Contribution_is_the_Focus'
 var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
 
+function openDoc(path) {
+    shell.openPath(path)
+    controlTheWindow()
+}
+
 
 async function controlTheWindow() {
     await runJxa(`
-     const wordApp = Application("Microsoft Word")
-    //wordDoc.activate()
-    wordApp.windows[0].bounds = {
-      "x": 2, 
-      "y": 4, 
-      "width": 200, 
-      "height": 200
-    }
-  `)
+      	var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();  
+	    var frontApp = Application(frontAppName)
+        var theWindow = frontApp.properties.whose({name: 'test-stockholders-agreement-1'})
+        console.log(theWindow.index)
+        theWindow.position = {
+                x: 2,
+                y: 4
+                }
+        console.log('done')
+    `)
 }
 
 /* working function
+var its = se.processes.byName('iTunes');
+
+
+
 async function controlTheWindow() {
     await runJxa(`
      const wordApp = Application("Microsoft Word")
@@ -99,6 +109,20 @@ async function controlTheWindow() {
     }
   `)
 }
+//this one puts the first window of foreground app in a position:
+   await runJxa(`
+        var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();  //gets the name of the process that is currently in front
+        var frontApp = Application(frontAppName); //gets the application with that name
+        frontApp.windows[0].bounds = {
+        "x": 2,
+        "y": 4,
+        "width": 200,
+        "height": 200
+        }
+    `)
+
+
+
 
 */
 
@@ -201,9 +225,7 @@ async function showFolderContents(divId, mainPath, indent) {
 }
 
 
-function openDoc(path) {
-    shell.openPath(path)
-}
+
 
 /************Menu Function****************/
 

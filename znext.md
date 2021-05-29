@@ -1,11 +1,29 @@
 # Just Completed
-right click and send to trash.
-justfigured out that I will just save the word docs as part of normal git
+for apple notes, with apple script (see overview file "controlling-apple-notes"): figured how to Get a note, then "float selected note", then getting a second note, then minimize main apple notes application, and set the selected notes to a set position 
+
+with JXA: figured out how to snap window of the foreground application to position, asking user where they want it (see script -> jxa snap), and put it in position on given screen 
+
+jxa: get foreground app, and put a given window in a certain position. Issue: only know so far how to select the window by its place in window array (code is in comments in git on word)
+
+apple script: for a given app, get a window with a certain name, and put it in position. Note: right now puts it in position only on main screen. (script -> system-events)
+
 
 # Next
+
+Goal: click on doc from sidebar, ask user where to put it, and then snap it to that position.
+
+Note: Get properties of an object: https://stackoverflow.com/questions/41903800/how-can-i-find-out-all-the-methods-on-a-jxa-object
+
+JXA: can start with identify foreground app. then just need way of identifying a window given the path.  Or can try apple script, using some of the working code I have above.
+
+For apple script plugin to work, see response from sind: https://github.com/sindresorhus/run-applescript/issues/13
+
+
 GIT saving
 --remove message for git save while saving
 --show saved or done message when save is done
+
+--idea--put red bar over old versionwhen retreiving prior version?
 
 Viewing docs
 --try to set position of word docs. probably using applescript
