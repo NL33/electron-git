@@ -117,8 +117,11 @@
             border: 3px solid #3399FF;
         }
 
-        .saveProjectItems {
-            /*display: none*/
+        #savingProgress {
+            display:none;
+            margin-top: 25px;
+            font-style: italic;
+            font-size: 14pt
         }
 
         #saveButton {
@@ -172,11 +175,13 @@
     <div id="addProjectButton">Add File</div>
 
     <!-----Git: Save Version----->
-    <div class="saveProjectItems">
+    <div id="saveProjectItems">
         <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
         </br>
 
         <div id="saveButton">Save Project Version</div>
+    </div>
+    <div id="savingProgress">Saving version...
     </div>
 
 

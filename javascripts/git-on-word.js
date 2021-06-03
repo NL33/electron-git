@@ -368,7 +368,8 @@ async function deleteItem(e) {
 
 async function saveGitVersion() {
     var text = document.getElementById('noteForSave').textContent
-    document.getElementById('saveButton').style.display = "none"
+    document.getElementById('saveProjectItems').style.display = "none"
+    document.getElementById('savingProgress').style.display = "inline-block"
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
@@ -398,7 +399,8 @@ async function saveGitVersion() {
             }
             */
             document.getElementById('noteForSave').textContent = ''
-            document.getElementById('saveButton').style.display = "inline-block"
+            document.getElementById('savingProgress').style.display = "none"
+            document.getElementById('saveProjectItems').style.display = "inline-block"
             console.log('commit result = ' + JSON.stringify(result))
         })
 

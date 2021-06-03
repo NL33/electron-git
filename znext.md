@@ -60,3 +60,4 @@ Next after that:
 -move to main process: menu creation currently in git-on-word.js. 
 -add context menu package to main.js: https://github.com/sindresorhus/electron-context-menu
 -right-click rename file and folder
+--if delete git file accidentally, it will delete all local versions. Add some protection for that.
