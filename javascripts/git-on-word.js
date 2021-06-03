@@ -113,13 +113,13 @@ function changeFolder() {
 ipcRenderer.on('selected-folder', (event, pathToFolder) => {
     document.getElementById('folderContents').innerHTML = ''
     projectFolderPath = pathToFolder.toString()
-    let dataArray = folderPath.split("/")
+    let dataArray = projectFolderPath.split("/")
     folderName = dataArray[dataArray.length - 1]
     document.getElementById('projectDirectory').textContent = folderName
     var divId = "projectDirectory"
     showFolderContents(divId, projectFolderPath, 0)
     if (projectFolderPath.length > 0) { //should always be true, but adding a doublecheck
-        let array = [projectFolder, folderName]
+        let array = [projectFolderPath, folderName]
         localStorage.setItem('lastProjectFolder', JSON.stringify(array))
     }
 })
