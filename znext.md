@@ -1,21 +1,11 @@
 # Just Completed
 asked quesiton on stack overflow for how to get the main window.
 
-Just figured out how to do split screen with electron and applescript. May be possible with JXA too--if can identify the selected window (or maybe just loop through all windows of the forefrong application--jxa can snap windows into place). See strategy at: overview/get-display-bounds-applescript
+just added saving progress and insertion of message if message blank.
 
 
 # Next
 make the git functionality really good. and then do the other stuff.
-
-GIT saving
---remove message for git save while saving
---show saved or done message when save is done
-
---idea--put red bar over old versionwhen retreiving prior version?
-
-Viewing docs
---try to set position of word docs. probably using applescript. Result: almost works. See get display bounds-applescript. Have to just figure out how to use jxa or applescript in app
-
 
 Viewing old git versions (open up old doc, and just have some way to note it as an open doc)
 --view list of prior commits with messages
@@ -55,9 +45,12 @@ Next after that:
 --link the projects to places you can share, like dropbox and github
 
 # Later
+--idea--put red bar over old versionwhen retreiving prior version?
 -when add a new folder (especially in the main project directory), insert the new folder in alphabetical order. meaning go through the titles of the directory, and insert it after he one with proper alphabetical order
+--add username for git messages
 --add warning before deleting a folder/file. 
 -move to main process: menu creation currently in git-on-word.js. 
 -add context menu package to main.js: https://github.com/sindresorhus/electron-context-menu
 -right-click rename file and folder
 --if delete git file accidentally, it will delete all local versions. Add some protection for that.
+--note: git does not track empty folders. So if you add a new folder with nothing in it, git won't track it.
