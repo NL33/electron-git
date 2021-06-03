@@ -1,23 +1,11 @@
 # Just Completed
-for apple notes, with apple script (see overview file "controlling-apple-notes"): figured how to Get a note, then "float selected note", then getting a second note, then minimize main apple notes application, and set the selected notes to a set position 
+asked quesiton on stack overflow for how to get the main window.
 
-with JXA: figured out how to snap window of the foreground application to position, asking user where they want it (see script -> jxa snap), and put it in position on given screen 
-
-jxa: get foreground app, and put a given window in a certain position. Issue: only know so far how to select the window by its place in window array (code is in comments in git on word)
-
-apple script: for a given app, get a window with a certain name, and put it in position. Note: right now puts it in position only on main screen. (script -> system-events)
+Just figured out how to do split screen with electron and applescript. May be possible with JXA too--if can identify the selected window (or maybe just loop through all windows of the forefrong application--jxa can snap windows into place). See strategy at: overview/get-display-bounds-applescript
 
 
 # Next
-
-Goal: click on doc from sidebar, ask user where to put it, and then snap it to that position.
-
-Note: Get properties of an object: https://stackoverflow.com/questions/41903800/how-can-i-find-out-all-the-methods-on-a-jxa-object
-
-JXA: can start with identify foreground app. then just need way of identifying a window given the path.  Or can try apple script, using some of the working code I have above.
-
-For apple script plugin to work, see response from sind: https://github.com/sindresorhus/run-applescript/issues/13
-
+make the git functionality really good. and then do the other stuff.
 
 GIT saving
 --remove message for git save while saving
@@ -26,10 +14,10 @@ GIT saving
 --idea--put red bar over old versionwhen retreiving prior version?
 
 Viewing docs
---try to set position of word docs. probably using applescript
+--try to set position of word docs. probably using applescript. Result: almost works. See get display bounds-applescript. Have to just figure out how to use jxa or applescript in app
 
 
-Viewing old git versions (I want to understand how to view docs first, per above, and then get into this, because above strategy will influence how the below works)
+Viewing old git versions (open up old doc, and just have some way to note it as an open doc)
 --view list of prior commits with messages
 --click on message, and view the contents of that save
      --probably using the "working tree" git concept. Just dive in and experiment with that.

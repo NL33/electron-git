@@ -10,6 +10,8 @@ const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
 
 console.log("Does the client have accessibility permissions?", isTrusted)
 
+//require = require("esm")(module/*, options*/)
+//module.exports = require("./main.js")
 
 
 const { getActiveWindow } = require("@nut-tree/nut-js");

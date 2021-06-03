@@ -2,30 +2,25 @@ const { ipcRenderer, clipboard, shell, remote } = require('electron')
 const { Menu, MenuItem } = remote
 const { writeFile, fstat } = require('fs')
 const fs = require("fs")
-var path = require('path')
 const simpleGit = require('simple-git')
 const git = simpleGit()
 var TurndownService = require('turndown')
 var turndownService = new TurndownService()
-var mammoth = require("mammoth");
+
 const trash = require('trash');
 
 const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
 
-const runJxa = require('run-jxa')
 
-var projectFolderPath
+var folderPath
 var folderName
 var fileName
 var currentWindow
 
 let spawn = require("child_process").spawn
 var cp = require("child_process");
-const { promisify } = require('util')
-const { resolve } = require('path')
-const { O_DIRECTORY } = require('constants')
 
 /*****Button Set Up *****/
 window.onload = function () {
@@ -38,11 +33,12 @@ window.onload = function () {
     if (localStorage.getItem('lastProjectFolder')) {
         let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
         if (folderArray) {
-            projectFolderPath = folderArray[0]
+            folderPath = folderArray[0]
             folderName = folderArray[1]
             document.getElementById('projectDirectory').textContent = folderName
             var divId = "projectDirectory"
-            showFolderContents(divId, projectFolderPath, 0)
+            showFolderContents(divId, folderPath, 0)
+            //getContents(folderPath)
         }
     }
     var changeFolderButton = document.getElementById('changeFolder')
@@ -54,9 +50,7 @@ window.onload = function () {
     })
 
     document.getElementById('saveButton').addEventListener('click', () => {
-        //checkGitChangeTime(projectFolderPath) //this starts the process to save the git version
-        //openDocSpawn()
-        controlTheWindow()
+        addFile()
     })
 
     menuFunction()
@@ -65,92 +59,16 @@ window.onload = function () {
 }
 
 
-/*****Open Doc***** */
-var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'
-var wordDoc = '/Users/sean/Desktop/word-versions/test-stockholders-agreement-1.docx'
-var txtDoc = '/Users/sean/Desktop/txt-docs/converttest-test.txt'
-var appleDoc = 'https://www.icloud.com/notes/0hZOhxE5di_MSCv7bX-hYHY8w#Contribution_is_the_Focus'
-var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
+/*********Watch Files***************/
 
-function openDoc(path) {
-    shell.openPath(path)
-    controlTheWindow()
-}
-
-
-async function controlTheWindow() {
-    await runJxa(`
-      	var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();  
-	    var frontApp = Application(frontAppName)
-        var theWindow = frontApp.properties.whose({name: 'test-stockholders-agreement-1'})
-        console.log(theWindow.index)
-        theWindow.position = {
-                x: 2,
-                y: 4
-                }
-        console.log('done')
-    `)
-}
-
-/* working function
-var its = se.processes.byName('iTunes');
-
-
-
-async function controlTheWindow() {
-    await runJxa(`
-     const wordApp = Application("Microsoft Word")
-    //wordDoc.activate()
-    wordApp.windows[0].bounds = {
-      "x": 2,
-      "y": 4,
-      "width": 200,
-      "height": 200
-    }
-  `)
-}
-//this one puts the first window of foreground app in a position:
-   await runJxa(`
-        var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();  //gets the name of the process that is currently in front
-        var frontApp = Application(frontAppName); //gets the application with that name
-        frontApp.windows[0].bounds = {
-        "x": 2,
-        "y": 4,
-        "width": 200,
-        "height": 200
-        }
-    `)
-
-
-
-
-*/
-
-
-
-function openDocFunction() {
-
-    shell.openPath(wordDoc, '', 'x=10, y=10').then((result) => {
-        console.log(result)
+function seeWhichFilesChangedFunction() {
+    path = '/Users/sean/Desktop/word-test/'
+    fs.stat(path, (err, stats) => {
+        if (err) throw err;
+        console.log('last update = ' + stats.mtime)
     })
-
-    //window.open(txtDoc, '_blank','top=300, left=600')
 }
-
-
-function openDocSpawn() {
-
-    var exec = require('child_process').exec;
-    var command = 'open ' + wordDoc
-    exec(command, function (error, stdout, stderr) {  // 'dir' is for example
-        if (error) {
-            console.error(`exec error: ${error}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-        console.log(`stderr: ${stderr}`);
-    });
-}
+//when go to save new version, identify which files have changed since last save. Then update those prior to save.
 
 /******Select Project Folder to show folder contents*******/
 
@@ -160,14 +78,14 @@ function changeFolder() {
 
 ipcRenderer.on('selected-folder', (event, pathToFolder) => {
     document.getElementById('folderContents').innerHTML = ''
-    projectFolderPath = pathToFolder.toString()
+    folderPath = pathToFolder.toString()
     let dataArray = folderPath.split("/")
     folderName = dataArray[dataArray.length - 1]
     document.getElementById('projectDirectory').textContent = folderName
     var divId = "projectDirectory"
-    showFolderContents(divId, projectFolderPath, 0)
-    if (projectFolderPath.length > 0) { //should always be true, but adding a doublecheck
-        let array = [projectFolder, folderName]
+    showFolderContents(divId, folderPath, 0)
+    if (folderPath.length > 0) { //should always be true, but adding a doublecheck
+        let array = [folderPath, folderName]
         localStorage.setItem('lastProjectFolder', JSON.stringify(array))
     }
 })
@@ -225,7 +143,9 @@ async function showFolderContents(divId, mainPath, indent) {
 }
 
 
-
+function openDoc(path) {
+    shell.openPath(path)
+}
 
 /************Menu Function****************/
 
@@ -244,7 +164,7 @@ function menuFunction() {
                 var thePath = idArray[1]
                 var indent = idArray[2]
             } else if (fullId === "projectDirectory") {
-                var thePath = projectFolderPath
+                var thePath = folderPath
                 var indent = -15
             }
             if ((fullId.includes('**is-directory**')) || (fullId === 'projectDirectory')) {
@@ -397,6 +317,26 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
 
 }
 
+/*****Open Doc***** */
+var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'
+var wordDoc = '/Users/sean/Desktop/word-test/word-convert-test1.docx'
+var txtDoc = '/Users/sean/Desktop/txt-docs/converttest-test.txt'
+var appleDoc = 'https://www.icloud.com/notes/0hZOhxE5di_MSCv7bX-hYHY8w#Contribution_is_the_Focus'
+var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
+function openDocFunction() {
+
+    shell.openPath(wordDoc, '', 'x=10, y=10').then((result) => {
+        console.log(result)
+    })
+
+    //window.open(txtDoc, '_blank','top=300, left=600')
+}
+
+function openDocSpawn() {
+    spawn(txtDoc, function (error, stdout, stderr) {
+        console.log('done.')
+    })
+}
 
 /************DELETE A FOLDER***************/
 
@@ -414,131 +354,64 @@ async function deleteItem(e) {
 
 /********GIT ACTIONS*************** */
 
-async function checkGitChangeTime(theFilePath) { //check the last time the git file was created
-    var newStat = promisify(fs.stat)
-    console.log('a. check changes function')
-    //if a doc is md, txt, html, etc.--> then I don't need to create a copy of it.
-    //if a doc is a word doc (and specific others), then I need to create a copy of it.
-    //so one strategy is to find all the word docs in a project, and then see if they have been updated, and then update the copy if they have
-    var lastSaveTime
-    var gitFile = theFilePath + '/.git'
-    if (gitFile) {
-        await newStat(gitFile).then((stats, err) => {
-            lastSaveTime = stats.mtime
-            console.log('b. last save time = ' + lastSaveTime)
-            return checkChangesFunction(theFilePath, lastSaveTime) //once have the last updated time, run the function to see what folders have changed since then
-            // }).catch((e) => {
-            //   console.log('error = ' + e)
-        })
-    } else {
-        lastSaveTime = 0
-        return checkChangesFunction(theFilePath, lastSaveTime) //once have the last updated time, run the function to see what folders have changed since then
+function addFile() { //get the text of the file and the first line of the file
+    var data1 = clipboard.readHTML()
+    var data = turndownService.turndown(data1)
+    //#get first 6 words of first line to propose as possible file name:
+
+    //## clear out <!--  ... --> text in beginning, which is there in microsoft word docs
+    var dataCleaned = data.replace(/<!--.*?-->/s, "");
+    //## get first line
+    var dataArray = dataCleaned.split('\n')
+    var firstLine = 'none'
+    var i
+    for (i = 0; i < 6; i++) { //loop through first six lines to be sure there is text there
+        if (dataArray[i].trim().length > 0) {
+            console.log('there is a value at ' + i)
+            firstLine = dataArray[i].trim()
+            break; //stop loop if have text in the line
+        }
     }
+    //## isolate first 6 words of the first line
+    if (firstLine != 'none') {
+        console.log('first line = ')
+        console.log(firstLine)
+        var lineArray = firstLine.split(" ")
+        var n
+        var firstLineSum = ''
+        for (n = 0; n < 6; n++) {
+            if (n < 1) {
+                firstLineSum = lineArray[0]
+            } else {
+                firstLineSum += ' '
+                firstLineSum += lineArray[n]
+            }
+        }
+        console.log('first 6 words of first line = ')
+        console.log(firstLineSum)
+    } else {
+        console.log('no first line')
+    }
+    //end get first line
+    writeFileFunction(dataCleaned)
+    // fs.writeFile()
+    // saveVersion()
 }
 
-
-/**THe below function runs a loop. When it analyzes and converts a word doc, that goes on a different track and happens slower. That is ok
- the question is: how to call the next stage (git actions), only once all word docs have been addressed?
- Potential Answer:
- in the first loop, don't do the asynchronous work. use that work to get all the filePaths for word docs that need to be worked on.
- Then, for all those filepaths, do the asynchronous magic work.
- once you've done so for all the paths in the word array, then and only then call the git function
- /******START HERE********* */
-var wordDocs = []
-var count = 0
-async function checkChangesFunction(theFilePath, lastSaveTime) {
-    var newStat = promisify(fs.stat)
-    var projectFolder = theFilePath
-    var projectContents = await fs.readdirSync(projectFolder)
-    count++
-    if (count === 1) { //only do this the first time you run through this array, so only do this for the top line of the directory. This will add a fake name at the end of the project contents (not actually adding a file--just for purposes of the loop below). It's a way to know when we've reached the end of the project contents
-        var fakeFileName = 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g'
-        projectContents.push(fakeFileName)
-    }
-    for (var i = 0; i < projectContents.length; i++) {
-
-        if ((projectContents[i] != 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g') && (projectContents[i] != ".DS_Store") && (projectContents[i] != ".git")) {
-            var filePath = path.join(projectFolder, projectContents[i]); //get full path of item in the project we're focused on
-            console.log('1. filepath = ' + filePath)
-            await newStat(filePath).then((stats, err) => {  //gets stats then. and convert fs.stat to a promise that resolves to be sure: 1. it does the analysis of the relevant file before moving on the loop and 2. it resolves, so it does move on when it's done
-                if (err) {
-                    throw (err)
-                }
-                let timeModified = stats.mtime //get modified time of item
-                if (timeModified > lastSaveTime) { //has it been modified since the last git save? If so, we need to look closer.
-                    if (fs.statSync(filePath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
-                        //note it may not get here aagain if no contents
-                        console.log('2a. file path = ' + filePath + ", **is a directory")
-                        return checkChangesFunction(filePath, lastSaveTime)
-                    } else { //if it's a file, then see if a word doc. If so, perform magic. If not, then no action necessary cause git can handle file as is.
-                        //console.log('in a document')
-                        var extension = path.extname(filePath)
-                        if (extension.includes('doc')) {
-                            wordDocs.push(filePath)
-                            console.log('2.b word doc = ' + filePath)
-                            return 'done'
-                        } else {
-                            console.log('2ba. doc but not word doc ')
-                            return 'done'
-                        }
-                    }
-                } else { //if it has not been modified since the last git save, then we are done with this item in the loop
-                    console.log('2c. has not been modified since last git save')
-                    return 'done'
-                }
-
-            }).catch((e) => {
-                console.log('error hereo= ' + JSON.stringify(e))
-            })  //end stat
-
-        } else if (projectContents[i] === 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g') {
-            console.log('^^^^^^^^^^END LOOP THROUGH PROJECT CONTENTS************')
-            console.log('word doc lenght = ')
-            console.log(wordDocs.length)
-
-            let promises = []
-            for (let i = 0; i < wordDocs.length; i++) {
-                promises.push(mammothFunction(wordDocs[i]))
-                //mammothFunction(wordDocs[i])
-            }
-
-
-            Promise.all(promises).then(function (result) {
-                console.log('*&*&*&*&*&*& promise all done *&*&*&*&*&*&*&*&*&*&*&*&*&*&')
-                saveGitVersion()
-            })
-
-
-        }//end if not ds_store or git
-    } //end projectContents loop
-} //end check Changes Function
-
-function mammothFunction(wordDocPath) {
-    return new Promise((resolve, reject) => {
-        mammoth.convertToHtml({ path: wordDocPath }).then(function (result) {
-            var htmlWord = result.value
-            var data = turndownService.turndown(htmlWord)
-            var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
-            var removeDocExtension = wordDocPath.replace(/\.[^/.]+$/, "")
-            var markDownPath = removeDocExtension + '.md'
-            writeFile(markDownPath, dataCleaned, (err) => {
-                if (err) {
-                    console.log('error = ' + err)
-                } else {
-                    resolve(dataCleaned)   //completed the conversion for the doc. sends it back to promise.all(promises)
-                }
-            })
-        })
+function writeFileFunction(dataCleaned) {
+    var filePath = folderPath + '/' + fileName + '.md'
+    console.log('filepath = ' + filePath)
+    writeFile(filePath, dataCleaned, (err) => {
+        if (err) throw err;
+        saveVersion()
     })
 }
 
-
-async function saveGitVersion() {
+async function saveVersion() {
     console.log('in save version')
     var text = document.getElementById('noteForSave').textContent
-    document.getElementById('saveButton').style.display = "none"
     try {
-        await git.cwd(projectFolderPath).then(result => {
+        await git.cwd(folderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
 
@@ -565,8 +438,6 @@ async function saveGitVersion() {
                 overviewN.style.display = "inline-block"
             }
             */
-            document.getElementById('noteForSave').textContent = ''
-            document.getElementById('saveButton').style.display = "inline-block"
             console.log('commit result = ' + JSON.stringify(result))
         })
 

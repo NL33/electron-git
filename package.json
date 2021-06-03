@@ -21,6 +21,7 @@
     "axios": "^0.21.1",
     "mammoth": "^1.4.17",
     "marked": "^2.0.3",
+    "run-applescript": "^5.0.0",
     "run-jxa": "^2.0.0",
     "save-dev": "0.0.1-security",
     "simple-git": "^2.38.0",

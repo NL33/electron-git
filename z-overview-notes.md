@@ -1,5 +1,15 @@
-**Next in the Electron Git App**
+**Overview Benefits*
+Key Benefits:
+--1. easy Version control for anything, including word, apple notes, music, and more
+--2. all project info in one place. Including emails, articles you read, etc. How? have a relevant email, highlight what you want to add (or copy), click on button on sidebar and it creates a doc with that info, along with url if there is one.
+--3. easy navigate through folders, like an ide. 
+--4. see your screens in split screen mode
+--5. easily link in with places that allow you to store and share this stuff (like dropbox, github). with option to automatically save the git file (where files can get large) to those locations.
+--6. and all of this--using the tools you already like.
+
 remember focus is projects--like a project that combines research with writing. Don't get distracted by tracking random notes.
+
+This is a way to have all your work on a project in one place. Not only your actual work product, but also: your research, your planning, websites you've checked, and emails about your work.
 
 Core functionality is replicating how the terminal and git work  = easily saving versions and comparing versions.
 
