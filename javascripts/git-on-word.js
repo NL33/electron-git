@@ -368,6 +368,9 @@ async function deleteItem(e) {
 
 async function saveGitVersion() {
     var text = document.getElementById('noteForSave').textContent
+    if (text.length < 1){
+        text = "new version saved"
+    }
     document.getElementById('saveProjectItems').style.display = "none"
     document.getElementById('savingProgress').style.display = "inline-block"
     try {
