@@ -25,6 +25,7 @@ var cp = require("child_process");
 const { promisify } = require('util')
 const { resolve } = require('path')
 const { O_DIRECTORY } = require('constants')
+const { shouldRebuildNativeModules } = require('electron-rebuild')
 
 /*****Button Set Up *****/
 window.onload = function () {
@@ -439,6 +440,7 @@ async function viewPriorVersionsFunction() {
                 var dateTime = commit.date
                 var dateObject = new Date(dateTime)
                 var showDate = dateObject.toLocaleDateString('en-us', {
+                    weekday: 'short',
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
@@ -446,12 +448,12 @@ async function viewPriorVersionsFunction() {
                 var showTime = dateObject.toLocaleTimeString('en-us', {
                     timeStyle: 'short'
                 })
-                var cleanedTime = showTime.replace(" AM", "am").replace(" PM", "pm")
+                var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
                 contents = `
                 <div class="versionOverviewClass" >
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumber">Version ${versionNumber}</span>
-                    <span class="versionDateTime">${showDate} ${cleanedTime}</span>
+                    <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
                 </div>   
                 `
                 commitDiv.insertAdjacentHTML("beforeEnd", contents)
