@@ -425,6 +425,7 @@ document.getElementById('viewPriorVersionsButton').addEventListener('click', () 
 
 
 async function viewPriorVersionsFunction() {
+    document.getElementById('showPriorCommits').html = ''
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
@@ -468,8 +469,23 @@ async function viewPriorVersionsFunction() {
     }
 }
 
-function showOldVersion(number){
+async function showOldVersion(number){
     console.log('number = ' + number)
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+        await git.raw('worktree', 'add', 'dree').then(result => {
+            if (result){
+                console.log(result)
+            } else {
+                console.log('error = ')
+            }
+        })
+    } catch (e) {
+        console.log('error = ' + e)
+    }
 }
 
 
