@@ -195,6 +195,13 @@
             padding-right: 10px;
             border-right: 2px solid #2db94b;
         }
+
+        #savedVersionsId {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            margin-left: 3px;
+            font-style: 14pt;
+        }
     </style>
     <title>Your Project</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
@@ -242,13 +249,15 @@
 
     <div style="margin-top: 25px">
         <hr style="width: 70%; margin-bottom: 25px; border: 1px solid  #f5f5f5">
-        <span style="margin-right: 10px" id="viewPriorVersionsButton">view prior versions</span>
+        <span style="margin-right: 10px" id="viewPriorVersionsButton">view saved versions</span>
         <!--<span id="selectedDoc"></span>-->
     </div>
 
+    <div id="savedVersionsOverview" style="margin-top: 25px; display: none">
+        <div id="savedVersionsId">Saved Versions:</div>
+    </div>
     <div id="showPriorCommits" style="margin-top: 10px">
     </div>
-
 
 
     <script src="../javascripts/git-on-word.js"></script>

@@ -8,7 +8,7 @@ just added saving progress and insertion of message if message blank.
 make the git functionality really good. and then do the other stuff.
 
 Viewing old git versions (open up old doc, and just have some way to note it as an open doc)
---view list of prior commits with messages
+
 --click on message, and view the contents of that save
      --probably using the "working tree" git concept. Just dive in and experiment with that.
 --want to be able to view the old contents and current contents at the same time, while having the old contents clearly marked as the old contents 

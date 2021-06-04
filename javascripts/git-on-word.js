@@ -434,10 +434,13 @@ async function viewPriorVersionsFunction() {
             var resultArray = result.all
             var totalNumber = resultArray.length
             var commitDiv = document.getElementById('showPriorCommits')
+            var savedVersionsHeader = document.getElementById('savedVersionsOverview')
+            savedVersionsHeader.style.display = "block"
             resultArray.forEach((commit) => {
                 var versionNumber = totalNumber--
                 var versionMessage = commit.message
                 var dateTime = commit.date
+                var commitNumber = commit.hash
                 var dateObject = new Date(dateTime)
                 var showDate = dateObject.toLocaleDateString('en-us', {
                     weekday: 'short',
@@ -450,7 +453,7 @@ async function viewPriorVersionsFunction() {
                 })
                 var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
                 contents = `
-                <div class="versionOverviewClass" >
+                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}")'>
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumber">Version ${versionNumber}</span>
                     <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
@@ -459,13 +462,15 @@ async function viewPriorVersionsFunction() {
                 commitDiv.insertAdjacentHTML("beforeEnd", contents)
             })
         })
-
     }
     catch (e) {
         console.log('error = ' + e)
     }
 }
 
+function showOldVersion(number){
+    console.log('number = ' + number)
+}
 
 
 
