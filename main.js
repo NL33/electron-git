@@ -21,7 +21,7 @@ function menuApp() {
     tray = new Tray('mountains-icon.jpg')
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Save New Version', click() { saveNewVersionWindow() } },
-        { label: 'Get the Window', click() { sendTheWindow() } },
+        { label: 'Get the Window', click() { sendTheWindow() } }, //getthewindow = get the active window
         { label: 'Revert to Old Version', click() { revertToOldVersion() } },
     ])
     tray.setToolTip('This is my application.')
@@ -34,12 +34,14 @@ async function getTheWindow() {
     saveNewVersionWindow(windowTitle)
 }
 
-async function sendTheWindow(){
+/****SAVING INDIVIDUAL FILES. NOT CURRENTY IN USE */
+/*
+async function sendTheWindow(){  //this is for saving infi
     const foregroundWindow = await getActiveWindow()
     const windowTitle = await foregroundWindow.title
     newVersionWindow.webContents.send('window-title', windowTitle)
 }
-
+*/
 /* **** #GIT ON WORD ********/
 var newVersionWindow
 async function saveNewVersionWindow(windowTitle) {
@@ -62,7 +64,7 @@ async function saveNewVersionWindow(windowTitle) {
     newVersionWindow.loadURL('file://' + __dirname + '/views/git-on-word.html');
    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
     newVersionWindow.openDevTools()
-    sendTheWindow()
+    //sendTheWindow()
     
     /*
     newVersionWindow.webContents.on('did-finish-load', function () {

@@ -28,11 +28,14 @@ const { O_DIRECTORY } = require('constants')
 
 /*****Button Set Up *****/
 window.onload = function () {
-    //receives info from main.js when new window opened
+    /*
+    //SAVING INDIVIDUAL FILES. NOT CURRENTLY IN USE.
+    //receives info from main.js about the active window
     ipcRenderer.on('window-title', (event, data) => {  
         document.getElementById('selectedDoc').textContent = data
         fileName = data
     })
+    */
 
     //get last project folder info
     if (localStorage.getItem('lastProjectFolder')) {
@@ -412,6 +415,64 @@ async function saveGitVersion() {
         console.log('error = ' + e)
     }
 }
+
+/*****************VIEW PRIOR VERSIONS ********************************/
+
+document.getElementById('viewPriorVersionsButton').addEventListener('click', ()=>{
+    viewPriorVersionsFunction()
+})
+
+
+async function viewPriorVersionsFunction(){
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+        await git.log().then(result =>{
+            var resultArray = result.all
+            var totalNumber = resultArray.length
+            resultArray.forEach((commit) =>{
+                var version = totalNumber--
+                var message = commit.message
+                var dateTime = commit.date
+                var dateObject = new Date(dateTime)
+                var showDate = dateObject.toLocaleDateString('en-us', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })
+                var showTime = dateObject.toLocaleTimeString('en-us', {
+                    timeStyle: 'short'
+                })
+                var cleanedTime = showTime.replace(" AM", "am").replace(" PM", "pm")
+                console.log(showDate + ', ' + cleanedTime)
+                console.log(message)
+                console.log(version)
+            })
+
+            console.log(result)
+            document.getElementById('showPriorCommits').textContent = result
+        })
+
+    }
+    catch (e) {
+        console.log('error = ' + e)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************** NOT CURRENTLY IN USE  *************************************/
 
 
 

@@ -1,5 +1,5 @@
 # Just Completed
-asked quesiton on stack overflow for how to get the main window.
+asked question on stack overflow for how to get the main window.
 
 just added saving progress and insertion of message if message blank.
 
@@ -54,3 +54,4 @@ Next after that:
 -right-click rename file and folder
 --if delete git file accidentally, it will delete all local versions. Add some protection for that.
 --note: git does not track empty folders. So if you add a new folder with nothing in it, git won't track it.
+--have a place to enter git commands that you want to enter (like pushing to github, creating fancy branches, etc)

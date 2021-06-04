@@ -1,12 +1,26 @@
 **Overview Benefits*
-Key Benefits:
+# Key Benefits:
 --1. easy Version control for anything, including word, apple notes, music, and more
 --2. all project info in one place. Including emails, articles you read, etc. How? have a relevant email, highlight what you want to add (or copy), click on button on sidebar and it creates a doc with that info, along with url if there is one.
+    --can have set folder in the app (automatic for every folder) that is for emails. not actually part of the desktop until you add stuff to it. if there is a sharing function, this would be excluded by default. but a set place to have this type of info, tailored to it.
 --3. easy navigate through folders, like an ide. 
 --4. see your screens in split screen mode
 --5. easily link in with places that allow you to store and share this stuff (like dropbox, github). with option to automatically save the git file (where files can get large) to those locations.
 --6. and all of this--using the tools you already like.
 
+# Separate approach
+
+this is for version control for everything. And that's the focus. Especially microsoft word, apple notes, logic pro. note--logic pro is used by people like ali abdaal to edit podcasts. probably works for other productive/creative oriented apps as well. other tools for editing podcasts and videos
+
+like the terminal. go into a folder. and save the project version with a note. 
+
+version control for apple notes (and other items that don't create local folders)--you can mark the folder as an "apple notes" folder, and it will take on modified functionality. Like: the folder will be tied to a folder in apple notes itself. and when you do a git save, it will check which notes haven't been saved yet, and it will convert them to md files so they can be saved.
+
+
+
+
+
+# Other Notes
 remember focus is projects--like a project that combines research with writing. Don't get distracted by tracking random notes.
 
 This is a way to have all your work on a project in one place. Not only your actual work product, but also: your research, your planning, websites you've checked, and emails about your work.
