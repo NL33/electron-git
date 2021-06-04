@@ -150,7 +150,7 @@
 
         /*****PRIOR VERSIONS*****/
 
-          #viewPriorVersionsButton {
+        #viewPriorVersionsButton {
             display: inline-block;
             font-size: 12pt;
             border: 3px solid #d4eff7;
@@ -161,10 +161,32 @@
             cursor: pointer;
         }
 
-         #viewPriorVersionsButton:hover {
-            background-color:  #d4eff7;
+        #viewPriorVersionsButton:hover {
+            background-color: #d4eff7;
         }
 
+
+        .versionOverviewClass {
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 2px solid #f5f5f5;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #1a1a1a
+        }
+
+        .versionOverviewClass:hover {
+            background-color: #d4eff7
+        }
+
+        .versionMessage {
+            margin-bottom: 5px;
+            font-size: 13pt
+        }
+
+        .versionNumber {
+            margin-right: 10px
+        }
     </style>
     <title>Your Project</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
@@ -196,7 +218,7 @@
         <!--<span id="selectedDoc"></span>-->
     </div>
 
-   <!--<div id="addProjectButton">Add File</div> from focus on individual files. not in use -->
+    <!--<div id="addProjectButton">Add File</div> from focus on individual files. not in use -->
 
     <!-----Git: Save Version----->
     <div id="saveProjectItems">
@@ -209,16 +231,15 @@
     </div>
 
     <!-------View Prior Versions-------->
-    
+
     <div style="margin-top: 25px">
         <hr style="width: 70%; margin-bottom: 25px; border: 1px solid  #f5f5f5">
-        <span style="margin-right: 10px" id="viewPriorVersionsButton" >view prior versions</span>
+        <span style="margin-right: 10px" id="viewPriorVersionsButton">view prior versions</span>
         <!--<span id="selectedDoc"></span>-->
     </div>
 
-    <div id="showPriorCommits"></div>
-
-
+    <div id="showPriorCommits" style="margin-top: 10px">
+    </div>
 
 
 

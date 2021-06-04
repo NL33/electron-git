@@ -79,7 +79,7 @@ var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
 
 function openDoc(path) {
     shell.openPath(path)
-   // controlTheWindow() //this function is for snapping the doc into place
+    // controlTheWindow() //this function is for snapping the doc into place
 }
 
 
@@ -371,7 +371,7 @@ async function deleteItem(e) {
 
 async function saveGitVersion() {
     var text = document.getElementById('noteForSave').textContent
-    if (text.length < 1){
+    if (text.length < 1) {
         text = "new version saved"
     }
     document.getElementById('saveProjectItems').style.display = "none"
@@ -418,23 +418,24 @@ async function saveGitVersion() {
 
 /*****************VIEW PRIOR VERSIONS ********************************/
 
-document.getElementById('viewPriorVersionsButton').addEventListener('click', ()=>{
+document.getElementById('viewPriorVersionsButton').addEventListener('click', () => {
     viewPriorVersionsFunction()
 })
 
 
-async function viewPriorVersionsFunction(){
+async function viewPriorVersionsFunction() {
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
 
-        await git.log().then(result =>{
+        await git.log().then(result => {
             var resultArray = result.all
             var totalNumber = resultArray.length
-            resultArray.forEach((commit) =>{
-                var version = totalNumber--
-                var message = commit.message
+            var commitDiv = document.getElementById('showPriorCommits')
+            resultArray.forEach((commit) => {
+                var versionNumber = totalNumber--
+                var versionMessage = commit.message
                 var dateTime = commit.date
                 var dateObject = new Date(dateTime)
                 var showDate = dateObject.toLocaleDateString('en-us', {
@@ -446,13 +447,15 @@ async function viewPriorVersionsFunction(){
                     timeStyle: 'short'
                 })
                 var cleanedTime = showTime.replace(" AM", "am").replace(" PM", "pm")
-                console.log(showDate + ', ' + cleanedTime)
-                console.log(message)
-                console.log(version)
+                contents = `
+                <div class="versionOverviewClass" >
+                    <div class="versionMessage">${versionMessage}</div>
+                    <span class="versionNumber">Version ${versionNumber}</span>
+                    <span class="versionDateTime">${cleanedTime}</span>
+                </div>   
+                `
+                commitDiv.insertAdjacentHTML("beforeEnd", contents)
             })
-
-            console.log(result)
-            document.getElementById('showPriorCommits').textContent = result
         })
 
     }
