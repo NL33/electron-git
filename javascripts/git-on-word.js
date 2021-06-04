@@ -451,7 +451,7 @@ async function viewPriorVersionsFunction() {
                 <div class="versionOverviewClass" >
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumber">Version ${versionNumber}</span>
-                    <span class="versionDateTime">${cleanedTime}</span>
+                    <span class="versionDateTime">${showDate} ${cleanedTime}</span>
                 </div>   
                 `
                 commitDiv.insertAdjacentHTML("beforeEnd", contents)
