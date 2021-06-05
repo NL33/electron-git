@@ -1,17 +1,19 @@
 # Just Completed
-asked question on stack overflow for how to get the main window.
-
-just added saving progress and insertion of message if message blank.
+going through view old version. Just created a window to view the old project files in worktree code
 
 
 # Next
-make the git functionality really good. and then do the other stuff.
-
-Viewing old git versions (open up old doc, and just have some way to note it as an open doc)
-
---click on message, and view the contents of that save
-     --probably using the "working tree" git concept. Just dive in and experiment with that.
---want to be able to view the old contents and current contents at the same time, while having the old contents clearly marked as the old contents 
+--fill old version window with project contents of the work tree for the item selected. something like:
+1. click which version you want to see in the old version.
+2. create a worktree of the current project
+3. revert that work tree to the save corresponding to the git version of the selected window.
+4. display the contents of that old version in the old version window
+5. click on file in that old version window, and open the corresponding file in the worktree (now sent to an old version)
+6. is there some way to mark any old versions as in fact being old. Like a red bar around them, or changing their title? 
+     --to change their title, you could with file system go through each doc in the folder and add the word "old" to it. Or add the word old just at the time of clicking. So, click, then add word old to the title, then display the doc. 
+     --or put "old" in paranthetical so that's what you see when you view the files.
+     is there some way to put a red br around the doc? that would be cleanest
+7. when close the old version file (pick up that event with ipc event), delete the worktree
 
 
 Right Click Menu:

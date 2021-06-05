@@ -208,62 +208,16 @@
 </head>
 
 <body id="bodyId" style="border: 3px solid red; margin: 0px; display: block; background-color: white; min-height: 550px; ">
-    <div >
-    <!------Select Project Folder------>
-    <div id="folderOverview">
-        <div style="text-align: right; margin-bottom: 10px">
-            <div id="changeFolder">change project folder</div>
-        </div>
-        <div>
-            <span id="projectDirectory" class="docOrDirectory"></span>
-            <div></div>
-            <!--new folder/doc box goes heret-->
-            <!---- <span style="margin-right: 15px" id="newFolderButton">nf+</span><span id="newDocButton">nd+</span>-->
-        </div>
-    </div>
+
 
     <!------List out contents of the folder------>
-    <div id="folderContents"></div>
+    <div id="folderContents">Add Folders Here</div>
 
 
-    <!-------separator-------->
-
-    <div style="margin-top: 15px">
-        <hr style="width: 70%; border: 1px solid  #f5f5f5">
-        <span style="margin-right: 10px">Save project version:</span>
-        <!--<span id="selectedDoc"></span>-->
-    </div>
-
-    <!--<div id="addProjectButton">Add File</div> from focus on individual files. not in use -->
-
-    <!-----Git: Save Version----->
-    <div id="saveProjectItems">
-        <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
-        </br>
-
-        <div id="saveButton">Save Project Version</div>
-    </div>
-    <div id="savingProgress">Saving version...
-    </div>
-
-    <!-------View Prior Versions-------->
-
-    <div style="margin-top: 25px">
-        <hr style="width: 70%; margin-bottom: 25px; border: 1px solid  #f5f5f5">
-        <span style="margin-right: 10px" id="viewPriorVersionsButton">view saved versions</span>
-        <!--<span id="selectedDoc"></span>-->
-    </div>
-
-    <div id="savedVersionsOverview" style="margin-top: 25px; display: none">
-        <div id="savedVersionsId">Saved Versions:</div>
-    </div>
-    <div id="showPriorCommits" style="margin-top: 10px">
-    </div>
 
 
     <script src="../javascripts/old-version-project.js"></script>
 
-</div>
 </body>
 
 </html>
