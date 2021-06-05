@@ -470,6 +470,7 @@ async function viewPriorVersionsFunction() {
 }
 
 async function showOldVersion(number){
+    ipcRenderer.send('open-old-version-window', '')
     console.log('number = ' + number)
     try {
         await git.cwd(projectFolderPath).then(result => {

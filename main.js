@@ -74,6 +74,26 @@ async function saveNewVersionWindow(windowTitle) {
    // convertWord()
 }
 
+async function oldVersionWindowFunction(){
+    var oldVersionWindow = new BrowserWindow({
+        width: 320,
+        //height: 620,
+      // transparent: true,
+        x: 445,
+        y: 0,
+    })
+    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
+    oldVersionWindow.loadURL('file://' + __dirname + '/views/old-version-project.html')
+}
+
+
+ipcMain.on('open-old-version-window', (event, args) =>{
+    oldVersionWindowFunction()
+})
+
+
+
+
 
 /*****## OPEN DIALOG TO SELECT FOLDER ******/
 
