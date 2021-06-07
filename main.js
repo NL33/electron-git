@@ -74,13 +74,19 @@ async function saveNewVersionWindow(windowTitle) {
    // convertWord()
 }
 
-async function oldVersionWindowFunction(){
+async function oldVersionWindowFunction(receivedPath, receivedName){
     var oldVersionWindow = new BrowserWindow({
         width: 320,
         //height: 620,
       // transparent: true,
         x: 445,
         y: 0,
+        webPreferences: {
+            additionalArguments: [receivedPath, receivedName],
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+            enableRemoteModule: true
+        }
     })
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
     oldVersionWindow.loadURL('file://' + __dirname + '/views/get-old-version.html')
@@ -88,7 +94,10 @@ async function oldVersionWindowFunction(){
 
 
 ipcMain.on('open-old-version-window', (event, args) =>{
-    oldVersionWindowFunction()
+    var receivedInfo = JSON.parse(args)
+    console.log('args = ')
+    console.log(receivedInfo)
+    oldVersionWindowFunction(receivedInfo[0], receivedInfo[1])
 })
 
 
@@ -97,7 +106,7 @@ ipcMain.on('open-old-version-window', (event, args) =>{
 
 /*****## OPEN DIALOG TO SELECT FOLDER ******/
 
-ipcMain.on('open-folder-dialog', (event, args) => {
+ipcMain.on('open-folder-dialog', (event, arg) => {
     showDialog()
 })
 

@@ -12,21 +12,15 @@ const { promisify } = require('util')
 
 /*****Button Set Up *****/
 window.onload = function () {
-    //get last project folder info
-    if (localStorage.getItem('lastProjectFolder')) {
-        let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
-        if (folderArray) {
-            projectFolderPath = folderArray[0]
-            folderName = folderArray[1]
-            document.getElementById('projectDirectory').textContent = folderName
-            var divId = "projectDirectory"
-            showFolderContents(divId, projectFolderPath, 0)
-        }
-    }
-    //set right click menu 
+    console.log(window.process.argv.slice(-2))
+    projectFolderPath = window.process.argv.slice(-2)[0]
+    folderName = window.process.argv.slice(-2)[1]
+    document.getElementById('projectDirectory').textContent = folderName
+    var divId = "projectDirectory"
+    console.log('path = ' + projectFolderPath)
+    console.log('name = ' + folderName)
+    showFolderContents(divId, projectFolderPath, 0)
     menuFunction()
-    //seeWhichFilesChangedFunction()
-
 }
 
 

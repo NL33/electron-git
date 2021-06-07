@@ -515,14 +515,18 @@ async function showOldVersion(number) {
 }
 
 async function revertWorkTree(number, treeName){
+    var theArray = []
     var treePath = projectFolderPath + '/' + treeName
+    theArray.push(treePath)
+    theArray.push(treeName)
+    var infoToSend = JSON.stringify(theArray)
     try {
         await git.cwd(treePath).then(result =>{
         })
 
         await git.checkout(number).then(result =>{
             console.log('checkout result = ' + result)
-            //ipcRenderer.send('open-old-version-window', '')
+            ipcRenderer.send('open-old-version-window', infoToSend)
         })
 
 
