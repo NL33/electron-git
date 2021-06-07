@@ -470,26 +470,67 @@ async function viewPriorVersionsFunction() {
 }
 
 async function showOldVersion(number) {
-    ipcRenderer.send('open-old-version-window', '')
     console.log('number = ' + number)
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
 
-        await git.raw('worktree', 'add', 'dree').then(result => {
+        //prior to creating a new worktree, delete any worktree that's there
+        var folderArray = await fs.readdirSync(projectFolderPath)
+        var removeName = 'n/a'
+        folderArray.forEach((theFolder) =>{
+            if (theFolder.includes('worktree3#&7#&1#&4')){ //if a folder exists that matches the worktree naming convention
+                  removeName = theFolder
+            }
+        })
+
+        if (removeName != 'n/a'){
+            await git.raw('worktree', 'remove', removeName).then((result)=>{
+                console.log('done removing tree')
+                console.log(result)
+            }) //delete that folder
+         
+        }
+        //done removing any existing worktree
+
+        console.log('now move on')
+        //create worktree, with different name then before
+        var randomNumber = Math.floor(Math.random() * 10000)
+        var randomMultiple = Math.floor(Math.random() * 500)
+        var theNumber = randomNumber * randomMultiple
+        var treeName = theNumber.toString() + 'worktree3#&7#&1#&4'
+        await git.raw('worktree', 'add', treeName).then(result => {
             if (result) {
                 console.log(result)
             } else {
                 console.log('error = ')
             }
         })
+        //now should have a folder in the directory that is a copy of the directory, with its own git file.
+        revertWorkTree(number, treeName)
     } catch (e) {
-        console.log('error = ' + e)
+        console.log('error in showOldVersion = ' + e)
     }
 }
 
+async function revertWorkTree(number, treeName){
+    var treePath = projectFolderPath + '/' + treeName
+    try {
+        await git.cwd(treePath).then(result =>{
+        })
 
+        await git.checkout(number).then(result =>{
+            console.log('checkout result = ' + result)
+            //ipcRenderer.send('open-old-version-window', '')
+        })
+
+
+    } catch(e){
+        console.log('error in revert function = ' + e)
+    }
+
+}
 
 
 
