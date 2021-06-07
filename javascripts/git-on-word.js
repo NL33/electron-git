@@ -17,7 +17,7 @@ var appFolder = desktopDir + '/app-versions'
 const runJxa = require('run-jxa')
 
 var projectFolderPath
-var folderName
+var projectFolderName
 var fileName
 
 let spawn = require("child_process").spawn
@@ -43,8 +43,8 @@ window.onload = function () {
         let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
         if (folderArray) {
             projectFolderPath = folderArray[0]
-            folderName = folderArray[1]
-            document.getElementById('projectDirectory').textContent = folderName
+            projectFolderName = folderArray[1]
+            document.getElementById('projectDirectory').textContent = projectFolderName
             var divId = "projectDirectory"
             showFolderContents(divId, projectFolderPath, 0)
         }
@@ -118,12 +118,12 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
     document.getElementById('folderContents').innerHTML = ''
     projectFolderPath = pathToFolder.toString()
     let dataArray = projectFolderPath.split("/")
-    folderName = dataArray[dataArray.length - 1]
-    document.getElementById('projectDirectory').textContent = folderName
+    projectFolderName = dataArray[dataArray.length - 1]
+    document.getElementById('projectDirectory').textContent = projectFolderName
     var divId = "projectDirectory"
     showFolderContents(divId, projectFolderPath, 0)
     if (projectFolderPath.length > 0) { //should always be true, but adding a doublecheck
-        let array = [projectFolderPath, folderName]
+        let array = [projectFolderPath, projectFolderName]
         localStorage.setItem('lastProjectFolder', JSON.stringify(array))
     }
 })
@@ -442,6 +442,7 @@ async function viewPriorVersionsFunction() {
                 var versionMessage = commit.message
                 var dateTime = commit.date
                 var commitNumber = commit.hash
+
                 var dateObject = new Date(dateTime)
                 var showDate = dateObject.toLocaleDateString('en-us', {
                     weekday: 'short',
@@ -454,7 +455,7 @@ async function viewPriorVersionsFunction() {
                 })
                 var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
                 contents = `
-                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}")'>
+                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}", "${versionNumber}")'>
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumber">Version ${versionNumber}</span>
                     <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
@@ -469,8 +470,7 @@ async function viewPriorVersionsFunction() {
     }
 }
 
-async function showOldVersion(number) {
-    console.log('number = ' + number)
+async function showOldVersion(commitNumber, versionNumber) {
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
@@ -508,25 +508,27 @@ async function showOldVersion(number) {
             }
         })
         //now should have a folder in the directory that is a copy of the directory, with its own git file.
-        revertWorkTree(number, treeName)
+        revertWorkTree(commitNumber, versionNumber, treeName)
     } catch (e) {
         console.log('error in showOldVersion = ' + e)
     }
 }
 
-async function revertWorkTree(number, treeName){
+async function revertWorkTree(commitNumber, versionNumber, treeName){
     var theArray = []
     var treePath = projectFolderPath + '/' + treeName
     theArray.push(treePath)
-    theArray.push(treeName)
+    theArray.push(projectFolderName)
+    console.log('project folder name = ' + projectFolderName)
+    theArray.push(versionNumber)
     var infoToSend = JSON.stringify(theArray)
     try {
         await git.cwd(treePath).then(result =>{
         })
 
-        await git.checkout(number).then(result =>{
+        await git.checkout(commitNumber).then(result =>{
             console.log('checkout result = ' + result)
-            ipcRenderer.send('open-old-version-window', infoToSend)
+            //ipcRenderer.send('open-old-version-window', infoToSend)
         })
 
 

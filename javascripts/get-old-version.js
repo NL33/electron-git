@@ -7,14 +7,17 @@ const runJxa = require('run-jxa')
 
 var projectFolderPath
 var folderName
+var versionNumber
 
 const { promisify } = require('util')
 
 /*****Button Set Up *****/
 window.onload = function () {
-    console.log(window.process.argv.slice(-2))
-    projectFolderPath = window.process.argv.slice(-2)[0]
-    folderName = window.process.argv.slice(-2)[1]
+    console.log(window.process.argv.slice(-3))
+    projectFolderPath = window.process.argv.slice(-3)[0]
+    folderName = window.process.argv.slice(-3)[1]
+    versionNumber = window.process.argv.slice(-3)[2]
+    console.log('version number = ' + versionNumber)
     document.getElementById('projectDirectory').textContent = folderName
     var divId = "projectDirectory"
     console.log('path = ' + projectFolderPath)

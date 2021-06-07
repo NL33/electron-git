@@ -3,11 +3,9 @@ going through view old version. Just created a window to view the old project fi
 
 
 # Next
---fill old version window with project contents of the work tree for the item selected. something like:
-1. click which version you want to see in the old version.
-2. create a worktree of the current project
-3. revert that work tree to the save corresponding to the git version of the selected window.
-4. display the contents of that old version in the old version window
+
+4. display the contents of that old version in the old version window.
+     --change the displayed project in old window to the actual project (have to change path param)
 5. click on file in that old version window, and open the corresponding file in the worktree (now sent to an old version)
 6. is there some way to mark any old versions as in fact being old. Like a red bar around them, or changing their title? 
      --to change their title, you could with file system go through each doc in the folder and add the word "old" to it. Or add the word old just at the time of clicking. So, click, then add word old to the title, then display the doc. 
@@ -57,3 +55,4 @@ Next after that:
 --if delete git file accidentally, it will delete all local versions. Add some protection for that.
 --note: git does not track empty folders. So if you add a new folder with nothing in it, git won't track it.
 --have a place to enter git commands that you want to enter (like pushing to github, creating fancy branches, etc)
+--when checking old version from main window--and creating workingtree and reverting to prior version, remove the ability to create a save version then (don't want the new git save to pick up the work tree file)
