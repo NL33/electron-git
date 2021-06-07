@@ -1,43 +1,17 @@
-const { ipcRenderer, clipboard, shell, remote } = require('electron')
-const { Menu, MenuItem } = remote
+const { ipcRenderer, shell } = require('electron')
 const { writeFile, fstat } = require('fs')
 const fs = require("fs")
 var path = require('path')
-const simpleGit = require('simple-git')
-const git = simpleGit()
-var TurndownService = require('turndown')
-var turndownService = new TurndownService()
-var mammoth = require("mammoth");
-const trash = require('trash');
-
-const homeDir = require('os').homedir();
-const desktopDir = `${homeDir}/Desktop`;
-var appFolder = desktopDir + '/app-versions'
 
 const runJxa = require('run-jxa')
 
 var projectFolderPath
 var folderName
-var fileName
 
-let spawn = require("child_process").spawn
-var cp = require("child_process");
 const { promisify } = require('util')
-const { resolve } = require('path')
-const { O_DIRECTORY } = require('constants')
-const { shouldRebuildNativeModules } = require('electron-rebuild')
 
 /*****Button Set Up *****/
 window.onload = function () {
-    /*
-    //SAVING INDIVIDUAL FILES. NOT CURRENTLY IN USE.
-    //receives info from main.js about the active window
-    ipcRenderer.on('window-title', (event, data) => {  
-        document.getElementById('selectedDoc').textContent = data
-        fileName = data
-    })
-    */
-
     //get last project folder info
     if (localStorage.getItem('lastProjectFolder')) {
         let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
@@ -49,21 +23,6 @@ window.onload = function () {
             showFolderContents(divId, projectFolderPath, 0)
         }
     }
-
-    //change project folder button
-    var changeFolderButton = document.getElementById('changeFolder')
-    changeFolderButton.addEventListener('click', () => {
-        changeFolder()
-        //openDocFunction()
-        //openDocSpawn()
-        // wordExps()
-    })
-
-    //click save button
-    document.getElementById('saveButton').addEventListener('click', () => {
-        saveGitVersion()
-    })
-
     //set right click menu 
     menuFunction()
     //seeWhichFilesChangedFunction()
@@ -181,62 +140,13 @@ async function showFolderContents(divId, mainPath, indent) {
 }
 
 
-
-
 /************Menu Function****************/
-
+//removed bc when viewing old versions you should not be able to add or delete files
 function menuFunction() {
-    const contextMenu = new Menu();
 
-    window.addEventListener('contextmenu', (e) => {
-
-        if ((e.target.id) && (e.target.classList.contains('docOrDirectory'))) {
-            var fullId = e.target.id
-            contextMenu.clear() //remove prior menuItem
-            e.preventDefault();
-
-            if (fullId.includes('**is-directory**')) { //show this menu only if a directory
-                var idArray = fullId.split("^^^")
-                var thePath = idArray[1]
-                var indent = idArray[2]
-            } else if (fullId === "projectDirectory") {
-                var thePath = projectFolderPath
-                var indent = -15
-            }
-            if ((fullId.includes('**is-directory**')) || (fullId === 'projectDirectory')) {
-                contextMenu.append(new MenuItem({
-                    label: "New Folder",
-                    click: () => {
-                        // addFolder(e, thePath, indent)
-                        var divId = fullId
-                        enterNewFolder(divId, thePath, indent)
-                    }
-                }))
-                contextMenu.append(new MenuItem({
-                    label: "New File",
-                    click: () => {
-                        // addFolder(e, thePath, indent)
-                        var divId = fullId
-                        enterNewFile(divId, thePath, indent)
-                    }
-                }))
-            }
-
-            if (fullId !== 'projectDirectory') {
-                const genMenu = new MenuItem({
-                    label: "Move to Trash",
-                    click: () => {
-                        deleteItem(e)
-                    }
-                })
-                contextMenu.append(genMenu)
-            }
-
-            contextMenu.popup(remote.getCurrentWindow());
-        } //end if contains docOrDirectory
-    }, false);
 }
-/*old code: onblur="newFolderNoFocus()"*/
+
+
 /****INPUT TO ENTER NEW FOLDER AND FILE ********* */
 /* Steps of creating new folder:
 1. enterNewFolder function: adds entry box. When click return in the box, goes to addFolder function
@@ -272,58 +182,6 @@ function newFolderNoFocus() {
     document.getElementById('addForm').remove()
 }
 
-/***********CREATE A FOLDER ********/
-function addFolder(divId, path, indent) {
-    var folderName = document.getElementById('nameEntry').value
-    document.getElementById('addForm').remove()
-    var newPath = path + '/' + folderName
-    var newIndent = parseInt(indent) + 15
-    var element = document.getElementById(divId)
-    fs.mkdir(newPath, function (err) {
-        if (err) {
-            console.log(err)
-        } else {
-            //var newItems = div.nextElementSibling
-            // newItems.innerHTML = ''
-            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
-            if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
-                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                showNewFolderOrDoc(divId, path, newPath, folderName, newIndent)
-            } else {
-                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
-                showFolderContents(divId, path, newIndent)
-            }
-
-        }
-    })
-}
-
-/******* CREATE A FILE ************/
-
-function createFile(divId, path, indent) {
-    var fileName = document.getElementById('nameEntry').value
-    document.getElementById('addForm').remove()
-    var newPath = path + '/' + fileName
-    var newIndent = parseInt(indent) + 15
-    var element = document.getElementById(divId)
-    fs.writeFile(newPath, '', function (err) {
-        if (err) {
-            console.log(err)
-        } else {
-            //var newItems = div.nextElementSibling
-            // newItems.innerHTML = ''
-            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
-            if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
-                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                showNewFolderOrDoc(divId, path, newPath, fileName, newIndent)
-            } else {
-                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
-                showFolderContents(divId, path, newIndent)
-            }
-
-        }
-    })
-}
 
 /**************** showNewFolder ANd new Doc *******************/
 
@@ -352,149 +210,6 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
     }
 
 }
-
-
-/************DELETE A FOLDER***************/
-
-async function deleteItem(e) {
-    var fullId = e.target.id
-    var item = document.getElementById(fullId)
-    var idArray = fullId.split("^^^")
-    var thePath = idArray[1]
-    await trash([thePath]).then(() => {
-        item.remove()
-    });
-}
-
-
-
-/********GIT ACTIONS*************** */
-
-async function saveGitVersion() {
-    var text = document.getElementById('noteForSave').textContent
-    if (text.length < 1) {
-        text = "new version saved"
-    }
-    document.getElementById('saveProjectItems').style.display = "none"
-    document.getElementById('savingProgress').style.display = "inline-block"
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-
-        await git.init().then(result => {
-            //console.log('init result = ' + JSON.stringify(result))
-        })
-
-        await git.add('.').then(result => {
-            //console.log('add result = ' + JSON.stringify(result))
-        })
-
-        await git.commit(text).then(result => {
-            /*
-            var overviewS = document.getElementById("ifNewVersionSaved")
-            var overviewN = document.getElementById("ifNoNewVersion")
-            var showResults = document.getElementById("showResults")
-            if (result.summary.changes != "0") {
-                overviewN.style.display = "none"
-                showResults.textContent = JSON.stringify(result.summary)
-                overviewS.style.display = "inline-block"
-            } else {
-                overviewS.style.display = "none"
-                showResults.textContent = ""
-                overviewN.style.display = "inline-block"
-            }
-            */
-            document.getElementById('noteForSave').textContent = ''
-            document.getElementById('savingProgress').style.display = "none"
-            document.getElementById('saveProjectItems').style.display = "inline-block"
-            console.log('commit result = ' + JSON.stringify(result))
-        })
-
-    }
-    catch (e) {
-        console.log('error = ' + e)
-    }
-}
-
-/*****************VIEW PRIOR VERSIONS ********************************/
-
-document.getElementById('viewPriorVersionsButton').addEventListener('click', () => {
-    viewPriorVersionsFunction()
-})
-
-
-async function viewPriorVersionsFunction() {
-    document.getElementById('showPriorCommits').html = ''
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-
-        await git.log().then(result => {
-            var resultArray = result.all
-            var totalNumber = resultArray.length
-            var commitDiv = document.getElementById('showPriorCommits')
-            var savedVersionsHeader = document.getElementById('savedVersionsOverview')
-            savedVersionsHeader.style.display = "block"
-            resultArray.forEach((commit) => {
-                var versionNumber = totalNumber--
-                var versionMessage = commit.message
-                var dateTime = commit.date
-                var commitNumber = commit.hash
-                var dateObject = new Date(dateTime)
-                var showDate = dateObject.toLocaleDateString('en-us', {
-                    weekday: 'short',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                })
-                var showTime = dateObject.toLocaleTimeString('en-us', {
-                    timeStyle: 'short'
-                })
-                var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
-                contents = `
-                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}")'>
-                    <div class="versionMessage">${versionMessage}</div>
-                    <span class="versionNumber">Version ${versionNumber}</span>
-                    <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
-                </div>   
-                `
-                commitDiv.insertAdjacentHTML("beforeEnd", contents)
-            })
-        })
-    }
-    catch (e) {
-        console.log('error = ' + e)
-    }
-}
-
-async function showOldVersion(number) {
-    ipcRenderer.send('open-old-version-window', '')
-    console.log('number = ' + number)
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-
-        await git.raw('worktree', 'add', 'dree').then(result => {
-            if (result) {
-                console.log(result)
-            } else {
-                console.log('error = ')
-            }
-        })
-    } catch (e) {
-        console.log('error = ' + e)
-    }
-}
-
-
-
-
-
-
-
 
 
 
