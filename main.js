@@ -74,7 +74,7 @@ async function saveNewVersionWindow(windowTitle) {
    // convertWord()
 }
 
-async function oldVersionWindowFunction(receivedPath, receivedName, versionNumber){
+async function oldVersionWindowFunction(receivedPath, receivedName, versionNumber, time){
     var oldVersionWindow = new BrowserWindow({
         width: 320,
         //height: 620,
@@ -82,7 +82,7 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
         x: 445,
         y: 0,
         webPreferences: {
-            additionalArguments: [receivedPath, receivedName, versionNumber],
+            additionalArguments: [receivedPath, receivedName, versionNumber, time],
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
             enableRemoteModule: true
@@ -97,7 +97,7 @@ ipcMain.on('open-old-version-window', (event, args) =>{
     var receivedInfo = JSON.parse(args)
     console.log('args = ')
     console.log(receivedInfo)
-    oldVersionWindowFunction(receivedInfo[0], receivedInfo[1], receivedInfo[2])
+    oldVersionWindowFunction(receivedInfo[0], receivedInfo[1], receivedInfo[2], receivedInfo[3])
 })
 
 

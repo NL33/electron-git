@@ -8,20 +8,19 @@ const runJxa = require('run-jxa')
 var projectFolderPath
 var folderName
 var versionNumber
+var versionTime
 
 const { promisify } = require('util')
 
 /*****Button Set Up *****/
 window.onload = function () {
-    console.log(window.process.argv.slice(-3))
-    projectFolderPath = window.process.argv.slice(-3)[0]
-    folderName = window.process.argv.slice(-3)[1]
-    versionNumber = window.process.argv.slice(-3)[2]
-    console.log('version number = ' + versionNumber)
+    projectFolderPath = window.process.argv.slice(-4)[0]
+    folderName = window.process.argv.slice(-4)[1]
+    versionNumber = window.process.argv.slice(-4)[2]
+    versionTime = window.process.argv.slice(-4)[3]
     document.getElementById('projectDirectory').textContent = folderName
     var divId = "projectDirectory"
-    console.log('path = ' + projectFolderPath)
-    console.log('name = ' + folderName)
+    //START HERE: add version number and time to view
     showFolderContents(divId, projectFolderPath, 0)
     menuFunction()
 }

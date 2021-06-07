@@ -455,7 +455,7 @@ async function viewPriorVersionsFunction() {
                 })
                 var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
                 contents = `
-                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}", "${versionNumber}")'>
+                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}", "${versionNumber}", "${cleanedTime}")'>
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumber">Version ${versionNumber}</span>
                     <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
@@ -470,7 +470,7 @@ async function viewPriorVersionsFunction() {
     }
 }
 
-async function showOldVersion(commitNumber, versionNumber) {
+async function showOldVersion(commitNumber, versionNumber, time) {
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
@@ -508,19 +508,19 @@ async function showOldVersion(commitNumber, versionNumber) {
             }
         })
         //now should have a folder in the directory that is a copy of the directory, with its own git file.
-        revertWorkTree(commitNumber, versionNumber, treeName)
+        revertWorkTree(commitNumber, versionNumber, treeName, time)
     } catch (e) {
         console.log('error in showOldVersion = ' + e)
     }
 }
 
-async function revertWorkTree(commitNumber, versionNumber, treeName){
+async function revertWorkTree(commitNumber, versionNumber, treeName, time){
     var theArray = []
     var treePath = projectFolderPath + '/' + treeName
     theArray.push(treePath)
     theArray.push(projectFolderName)
-    console.log('project folder name = ' + projectFolderName)
     theArray.push(versionNumber)
+    theArray.push(time)
     var infoToSend = JSON.stringify(theArray)
     try {
         await git.cwd(treePath).then(result =>{
@@ -528,7 +528,7 @@ async function revertWorkTree(commitNumber, versionNumber, treeName){
 
         await git.checkout(commitNumber).then(result =>{
             console.log('checkout result = ' + result)
-            //ipcRenderer.send('open-old-version-window', infoToSend)
+            ipcRenderer.send('open-old-version-window', infoToSend)
         })
 
 
