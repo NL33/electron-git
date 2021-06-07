@@ -83,7 +83,7 @@ async function oldVersionWindowFunction(){
         y: 0,
     })
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
-    oldVersionWindow.loadURL('file://' + __dirname + '/views/old-version-project.html')
+    oldVersionWindow.loadURL('file://' + __dirname + '/views/get-old-version.html')
 }
 
 
