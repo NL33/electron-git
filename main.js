@@ -88,6 +88,9 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
             enableRemoteModule: true
         }
     })
+    oldVersionWindow.on('close', function(){
+        newVersionWindow.webContents.send('close-worktree', receivedPath)
+    })
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
     oldVersionWindow.loadURL('file://' + __dirname + '/views/get-old-version.html')
 }

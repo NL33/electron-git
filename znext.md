@@ -55,3 +55,4 @@ Next after that:
 --note: git does not track empty folders. So if you add a new folder with nothing in it, git won't track it.
 --have a place to enter git commands that you want to enter (like pushing to github, creating fancy branches, etc)
 --when checking old version from main window--and creating workingtree and reverting to prior version, remove the ability to create a save version then (don't want the new git save to pick up the work tree file)
+--when viewing prior version, it creates a worktree. You want to delete the work tree when no longer viewing the prior version. So, delete worktree if close the prior version window. 

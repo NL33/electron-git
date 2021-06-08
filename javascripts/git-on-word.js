@@ -1,4 +1,4 @@
-const { ipcRenderer, clipboard, shell, remote } = require('electron')
+const { ipcRenderer, ipcMain, clipboard, shell, remote } = require('electron')
 const { Menu, MenuItem } = remote
 const { writeFile, fstat } = require('fs')
 const fs = require("fs")
@@ -137,10 +137,10 @@ async function showFolderContents(divId, mainPath, indent) {
     if (extension) {
         hasExtension = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
         console.log('it has extension = ' + extension)
-    } 
+    }
     if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
         var stats = fs.statSync(mainPath)
-        if ((stats.isDirectory() === true) && (hasExtension === false)){ //determine if a directory (instead of file). 
+        if ((stats.isDirectory() === true) && (hasExtension === false)) { //determine if a directory (instead of file). 
             //show folder contents
             var contentArray = []
             try {
@@ -475,7 +475,7 @@ async function viewPriorVersionsFunction() {
         console.log('error = ' + e)
     }
 }
-
+var treeName = 'n/a'
 async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
     try {
         await git.cwd(projectFolderPath).then(result => {
@@ -484,28 +484,29 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
 
         //prior to creating a new worktree, delete any worktree that's there
         var folderArray = await fs.readdirSync(projectFolderPath)
-        var removeName = 'n/a'
-        folderArray.forEach((theFolder) =>{
-            if (theFolder.includes('worktree3#&7#&1#&4')){ //if a folder exists that matches the worktree naming convention
-                  removeName = theFolder
+        removeName = 'n/a'
+        folderArray.forEach((theFolder) => {
+            if (theFolder.includes('worktree3#&7#&1#&4')) { //if a folder exists that matches the worktree naming convention
+                removeName = theFolder
             }
         })
-
-        if (removeName != 'n/a'){
-            await git.raw('worktree', 'remove', removeName).then((result)=>{
+      /*
+        if (removeName != 'n/a') {
+            await git.raw('worktree', 'remove', removeName).then((result) => {
                 console.log('done removing tree')
                 console.log(result)
             }) //delete that folder
-         
+
         }
         //done removing any existing worktree
+   */
 
         console.log('now move on')
         //create worktree, with different name then before
         var randomNumber = Math.floor(Math.random() * 10000)
         var randomMultiple = Math.floor(Math.random() * 500)
         var theNumber = randomNumber * randomMultiple
-        var treeName = theNumber.toString() + 'worktree3#&7#&1#&4'
+        treeName = theNumber.toString() + 'worktree3#&7#&1#&4'
         await git.raw('worktree', 'add', treeName).then(result => {
             if (result) {
                 console.log(result)
@@ -520,7 +521,30 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
     }
 }
 
-async function revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes){
+ipcRenderer.on('close-worktree', (event, arg) => {
+    removeWorkTree(arg)
+})
+
+async function removeWorkTree(treePath){
+    var thisTreeName = path.basename(treePath)
+    console.log('inremove tree. name = ')
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+        if (thisTreeName) {
+            await git.raw('worktree', 'remove', thisTreeName).then((result) => {
+                console.log('remove tree after close')
+                console.log(result)
+            }) //delete that folder
+
+        }
+    } catch (e) {
+        console.log('error in showOldVersion = ' + e)
+    }
+}
+
+async function revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes) {
     var theArray = []
     var treePath = projectFolderPath + '/' + treeName
     theArray.push(treePath)
@@ -531,16 +555,16 @@ async function revertWorkTree(commitNumber, versionNumber, treeName, date, time,
     theArray.push(notes)
     var infoToSend = JSON.stringify(theArray)
     try {
-        await git.cwd(treePath).then(result =>{
+        await git.cwd(treePath).then(result => {
         })
 
-        await git.checkout(commitNumber).then(result =>{
+        await git.checkout(commitNumber).then(result => {
             console.log('checkout result = ' + result)
             ipcRenderer.send('open-old-version-window', infoToSend)
         })
 
 
-    } catch(e){
+    } catch (e) {
         console.log('error in revert function = ' + e)
     }
 
