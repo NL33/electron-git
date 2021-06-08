@@ -4,7 +4,6 @@ const { keyboard, Key} = require("@nut-tree/nut-js")
 const fs = require('fs');
 // Main process of the Electron application
 const { systemPreferences } = require('electron')
-
 // Prompt to access System Preferences by setting the prompt "true"
 const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
 
@@ -175,12 +174,12 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
     menuApp()
    // createWindow()
     app.on('activate', () => {
+       
         if (BrowserWindow.getAllWindows().length === 0) { //create a new browswer window only if app has no visible windows after being activated, such as when launching the app for the first time or relaunching the already running app
            // createWindow()
         }
     })
 })
-
 
 /*
 async function getWindow(){
@@ -197,6 +196,7 @@ app.on('window-all-closed', () => { //quit the application when it no longer has
     if (process.platform !== 'darwin') {
         app.quit()
     }
+    console.log('all windows are closed')
 })
 
 //for hot reloading (ie, auto-reloading):

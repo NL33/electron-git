@@ -56,3 +56,14 @@ Next after that:
 --have a place to enter git commands that you want to enter (like pushing to github, creating fancy branches, etc)
 --when checking old version from main window--and creating workingtree and reverting to prior version, remove the ability to create a save version then (don't want the new git save to pick up the work tree file)
 --when viewing prior version, it creates a worktree. You want to delete the work tree when no longer viewing the prior version. So, delete worktree if close the prior version window. 
+     --what if worktrees created, but not removed becuase the app shut down incorrectly? in that case, maybe have a script run on startup to check if any worktrees there and remove them, like this:
+                              /*
+               if (localStorage.getItem('working-trees-present')) {
+                    let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+                    treeArray.forEach((treePath) => {
+                         removeWorkTree(treePath)
+                    })
+               }
+               */
+     --currently saved in git-on-word.js. But this won't work well--this means that every time someone opens up a project window, it will remove the work trees. What if they are viewing old versions, and then open up a new project window. This will remove the trees for those old versions. That will cause an error.
+     --this should be associated with any time the app starts up. For this, create an invisible window on startup, run this script, then close the window when its done.

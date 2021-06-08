@@ -29,6 +29,21 @@ const { shouldRebuildNativeModules } = require('electron-rebuild')
 
 /*****Button Set Up *****/
 window.onload = function () {
+    console.log('in activate')
+  /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
+    if (localStorage.getItem('working-trees-present')) {
+        let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+        if (treeArray.length > 0) {
+            treeArray.forEach((treePath) => {
+                if (treePath.length){
+                    removeSavedWorkTree(treePath)
+                }
+            })
+        }
+    }
+
+
+
     /*
     //SAVING INDIVIDUAL FILES. NOT CURRENTLY IN USE.
     //receives info from main.js about the active window
@@ -70,7 +85,25 @@ window.onload = function () {
 
 }
 
+/******FUNCTION TO REMOVE ANY WORK TREES CREATED BY THE APP************ */
 
+async function removeSavedWorkTree(treePath) {
+    console.log('in remove tree')
+    await trash([treePath]).then((error) => {
+        console.log('removed work tree = ' + treePath)
+        if (error){
+            console.log(error)
+        } else {
+        let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+        let index = treeArray.indexOf(treePath)
+        if (index > -1) {
+            treeArray.splice(index, 1)
+            localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
+            console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
+        }
+     }
+    })
+}
 /*****Open Doc***** */
 var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'
 var wordDoc = '/Users/sean/Desktop/word-versions/test-stockholders-agreement-1.docx'
@@ -490,16 +523,16 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
                 removeName = theFolder
             }
         })
-      /*
-        if (removeName != 'n/a') {
-            await git.raw('worktree', 'remove', removeName).then((result) => {
-                console.log('done removing tree')
-                console.log(result)
-            }) //delete that folder
-
-        }
-        //done removing any existing worktree
-   */
+        /* This code was to remove any existing worktree in the project. prior to creating a new one. The problem was you could not view two old versions at once with this. So I have removed this for now. The idea now is to remove the worktree when no longer  viewing an old version.
+          if (removeName != 'n/a') {
+              await git.raw('worktree', 'remove', removeName).then((result) => {
+                  console.log('done removing tree')
+                  console.log(result)
+              }) //delete that folder
+  
+          }
+          //done removing any existing worktree
+     */
 
         console.log('now move on')
         //create worktree, with different name then before
@@ -510,6 +543,17 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
         await git.raw('worktree', 'add', treeName).then(result => {
             if (result) {
                 console.log(result)
+                if (localStorage.getItem('working-trees-present')) {  //local storage array is to keep track of worktrees created, so as to delete them in the case the app is not shut down properly (they would be deleted on startup)
+                    let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+                    treeArray.push(projectFolderPath + '/' + treeName)
+                    localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
+                    console.log('trees exist')
+                } else {
+                    let treeArray = []
+                    treeArray.push(projectFolderPath + '/' + treeName)
+                    localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
+                    console.log('trees didnt exist yet')
+                }
             } else {
                 console.log('error = ')
             }
@@ -525,7 +569,7 @@ ipcRenderer.on('close-worktree', (event, arg) => {
     removeWorkTree(arg)
 })
 
-async function removeWorkTree(treePath){
+async function removeWorkTree(treePath) {
     var thisTreeName = path.basename(treePath)
     console.log('inremove tree. name = ')
     try {
@@ -535,9 +579,19 @@ async function removeWorkTree(treePath){
         if (thisTreeName) {
             await git.raw('worktree', 'remove', thisTreeName).then((result) => {
                 console.log('remove tree after close')
-                console.log(result)
+                if (localStorage.getItem('working-trees-present')) {  //local storage array is to keep track of worktrees created, so as to delete them in the case the app is not shut down properly (they would be deleted on startup)
+                    let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+                    let theTreePath = projectFolderPath + '/' + thisTreeName
+                    let index = treeArray.indexOf(theTreePath)
+                    if (index > -1) {
+                        treeArray.splice(index, 1)
+                        localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
+                        console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
+                    }
+                }
             }) //delete that folder
-
+            await git.raw('worktree', 'prune', thisTreeName).then((result) => {
+            })
         }
     } catch (e) {
         console.log('error in showOldVersion = ' + e)
