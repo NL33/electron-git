@@ -95,9 +95,15 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 
 async function showFolderContents(divId, mainPath, indent) {
     var element = document.getElementById(divId)
+    var extension = path.extname(mainPath)
+    var hasExtension = false
+    if (extension) {
+        hasExtension = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
+        console.log('it has extension = ' + extension)
+    }
     if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
         var stats = fs.statSync(mainPath)
-        if (stats.isDirectory() === true) { //determine if a directory (instead of file). 
+        if ((stats.isDirectory() === true) && (hasExtension === false)){ //determine if a directory (instead of file).
             //show folder contents
             var contentArray = []
             try {

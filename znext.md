@@ -3,9 +3,6 @@ going through view old version. Just created a window to view the old project fi
 
 
 # Next
-3. show notes for older version
-4. style older version window
-5. click on file in that old version window, and open the corresponding file in the worktree (now sent to an old version)
 6. is there some way to mark any old versions as in fact being old. Like a red bar around them, or changing their title? 
      --to change their title, you could with file system go through each doc in the folder and add the word "old" to it. Or add the word old just at the time of clicking. So, click, then add word old to the title, then display the doc. 
      --or put "old" in paranthetical so that's what you see when you view the files.
