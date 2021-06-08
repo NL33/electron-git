@@ -108,7 +108,7 @@ async function showFolderContents(divId, mainPath, indent) {
             var contents = ""
             var newIndent = parseInt(indent) + 15
             contentArray.forEach((item) => {
-                if ((item != '.DS_Store') && (item != ".git")) {
+                if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
                     var fullPath = mainPath + '/' + item
                     var subStats = fs.statSync(fullPath)
                     if (subStats.isDirectory() === true) {
