@@ -425,7 +425,7 @@ document.getElementById('viewPriorVersionsButton').addEventListener('click', () 
 
 
 async function viewPriorVersionsFunction() {
-    document.getElementById('showPriorCommits').html = ''
+    document.getElementById('showPriorCommits').innerHTML = ''
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
