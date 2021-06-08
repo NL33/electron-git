@@ -455,7 +455,7 @@ async function viewPriorVersionsFunction() {
                 })
                 var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
                 contents = `
-                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}")'>
+                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}", "${versionMessage}")'>
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumber">Version ${versionNumber}</span>
                     <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
@@ -470,7 +470,7 @@ async function viewPriorVersionsFunction() {
     }
 }
 
-async function showOldVersion(commitNumber, versionNumber, date, time) {
+async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
@@ -508,13 +508,13 @@ async function showOldVersion(commitNumber, versionNumber, date, time) {
             }
         })
         //now should have a folder in the directory that is a copy of the directory, with its own git file.
-        revertWorkTree(commitNumber, versionNumber, treeName, date, time)
+        revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes)
     } catch (e) {
         console.log('error in showOldVersion = ' + e)
     }
 }
 
-async function revertWorkTree(commitNumber, versionNumber, treeName, date, time){
+async function revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes){
     var theArray = []
     var treePath = projectFolderPath + '/' + treeName
     theArray.push(treePath)
@@ -522,6 +522,7 @@ async function revertWorkTree(commitNumber, versionNumber, treeName, date, time)
     theArray.push(versionNumber)
     theArray.push(date)
     theArray.push(time)
+    theArray.push(notes)
     var infoToSend = JSON.stringify(theArray)
     try {
         await git.cwd(treePath).then(result =>{

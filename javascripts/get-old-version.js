@@ -9,22 +9,25 @@ var projectFolderPath
 var folderName
 var versionNumber
 var versionTime
+var versionNotes
 
 const { promisify } = require('util')
 
 /*****Button Set Up *****/
 window.onload = function () {
     /****START HERE AND MAKE THIS WORK */
-    projectFolderPath = window.process.argv.slice(-5)[0]
-    folderName = window.process.argv.slice(-5)[1]
-    versionNumber = window.process.argv.slice(-5)[2]
-    versionDate = window.process.argv.slice(-5)[3]
-    versionTime = window.process.argv.slice(-5)[4]
+    projectFolderPath = window.process.argv.slice(-6)[0]
+    folderName = window.process.argv.slice(-6)[1]
+    versionNumber = window.process.argv.slice(-6)[2]
+    versionDate = window.process.argv.slice(-6)[3]
+    versionTime = window.process.argv.slice(-6)[4]
+    versionNotes = window.process.argv.slice(-6)[5]
     document.getElementById('projectDirectory').textContent = folderName
     var divId = "projectDirectory"
-    document.getElementById('versionNumber').textContent = versionNumber
-    document.getElementById('versionDate').textContent = versionDate
-    document.getElementById('versionTime').textContent = versionTime
+    document.getElementById('versionMessageId').textContent = versionNotes
+    document.getElementById('versionNumberId').textContent = versionNumber
+    document.getElementById('versionDateId').textContent = versionDate
+    document.getElementById('versionTimeId').textContent = versionTime
     //START HERE: add version number and time to view
     showFolderContents(divId, projectFolderPath, 0)
     menuFunction()
