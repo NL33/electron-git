@@ -14,12 +14,17 @@ const { promisify } = require('util')
 
 /*****Button Set Up *****/
 window.onload = function () {
-    projectFolderPath = window.process.argv.slice(-4)[0]
-    folderName = window.process.argv.slice(-4)[1]
-    versionNumber = window.process.argv.slice(-4)[2]
-    versionTime = window.process.argv.slice(-4)[3]
+    /****START HERE AND MAKE THIS WORK */
+    projectFolderPath = window.process.argv.slice(-5)[0]
+    folderName = window.process.argv.slice(-5)[1]
+    versionNumber = window.process.argv.slice(-5)[2]
+    versionDate = window.process.argv.slice(-5)[3]
+    versionTime = window.process.argv.slice(-5)[4]
     document.getElementById('projectDirectory').textContent = folderName
     var divId = "projectDirectory"
+    document.getElementById('versionNumber').textContent = versionNumber
+    document.getElementById('versionDate').textContent = versionDate
+    document.getElementById('versionTime').textContent = versionTime
     //START HERE: add version number and time to view
     showFolderContents(divId, projectFolderPath, 0)
     menuFunction()

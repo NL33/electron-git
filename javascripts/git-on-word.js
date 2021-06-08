@@ -455,7 +455,7 @@ async function viewPriorVersionsFunction() {
                 })
                 var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
                 contents = `
-                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}", "${versionNumber}", "${cleanedTime}")'>
+                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}")'>
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumber">Version ${versionNumber}</span>
                     <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
@@ -470,7 +470,7 @@ async function viewPriorVersionsFunction() {
     }
 }
 
-async function showOldVersion(commitNumber, versionNumber, time) {
+async function showOldVersion(commitNumber, versionNumber, date, time) {
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
@@ -508,18 +508,19 @@ async function showOldVersion(commitNumber, versionNumber, time) {
             }
         })
         //now should have a folder in the directory that is a copy of the directory, with its own git file.
-        revertWorkTree(commitNumber, versionNumber, treeName, time)
+        revertWorkTree(commitNumber, versionNumber, treeName, date, time)
     } catch (e) {
         console.log('error in showOldVersion = ' + e)
     }
 }
 
-async function revertWorkTree(commitNumber, versionNumber, treeName, time){
+async function revertWorkTree(commitNumber, versionNumber, treeName, date, time){
     var theArray = []
     var treePath = projectFolderPath + '/' + treeName
     theArray.push(treePath)
     theArray.push(projectFolderName)
     theArray.push(versionNumber)
+    theArray.push(date)
     theArray.push(time)
     var infoToSend = JSON.stringify(theArray)
     try {
