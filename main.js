@@ -79,7 +79,7 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
         width: 320,
         //height: 620,
       // transparent: true,
-        x: 445,
+        x: 415,
         y: 0,
         webPreferences: {
             additionalArguments: [receivedPath, receivedName, versionNumber, date, time, notes],
@@ -95,8 +95,6 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
 
 ipcMain.on('open-old-version-window', (event, args) =>{
     var receivedInfo = JSON.parse(args)
-    console.log('args = ')
-    console.log(receivedInfo)
     oldVersionWindowFunction(receivedInfo[0], receivedInfo[1], receivedInfo[2], receivedInfo[3], receivedInfo[4], receivedInfo[5])
 })
 
