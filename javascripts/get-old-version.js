@@ -15,7 +15,6 @@ const { promisify } = require('util')
 
 /*****Button Set Up *****/
 window.onload = function () {
-    /****START HERE AND MAKE THIS WORK */
     projectFolderPath = window.process.argv.slice(-6)[0]
     folderName = window.process.argv.slice(-6)[1]
     versionNumber = window.process.argv.slice(-6)[2]
@@ -28,7 +27,6 @@ window.onload = function () {
     document.getElementById('versionNumberId').textContent = versionNumber
     document.getElementById('versionDateId').textContent = versionDate
     document.getElementById('versionTimeId').textContent = versionTime
-    //START HERE: add version number and time to view
     showFolderContents(divId, projectFolderPath, 0)
     menuFunction()
 }
@@ -46,30 +44,6 @@ function openDoc(path) {
     // controlTheWindow() //this function is for snapping the doc into place
 }
 
-
-function openDocFunction() {
-
-    shell.openPath(wordDoc, '', 'x=10, y=10').then((result) => {
-        console.log(result)
-    })
-
-    //window.open(txtDoc, '_blank','top=300, left=600')
-}
-
-
-function openDocSpawn() {
-
-    var exec = require('child_process').exec;
-    var command = 'open ' + wordDoc
-    exec(command, function (error, stdout, stderr) {  // 'dir' is for example
-        if (error) {
-            console.error(`exec error: ${error}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-        console.log(`stderr: ${stderr}`);
-    });
-}
 
 /******Select Project Folder to show folder contents*******/
 
@@ -95,9 +69,7 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 
 async function showFolderContents(divId, mainPath, indent) {
     var element = document.getElementById(divId)
-    console.log('div id = ' + divId)
-    
-    
+
     var extension = path.extname(mainPath)
     var hasExtension = false
 
@@ -107,29 +79,11 @@ async function showFolderContents(divId, mainPath, indent) {
     }
     /*
     //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
-
-        //NOTE: this code is not perfect. It will successfully change an extension to having "***OLD***" in the front of the name. But: 1. the extension name change is asynchronous. Sometimes, the code will move on to opening the doc before it's done changing. 2. If you open a doc. then try to open it again after the name has been changed (but refreshing the view), it will be an error, because it will try to open the doc under the old name, and won't find it.
-
-        console.log('it has extension = ' + extension)
-        var fileName = path.basename(mainPath)
-        var basePath = mainPath.replace(fileName, '')
-        console.log('basepath = ' + basePath)
-        var theName = path.basename(mainPath)
-        if (!(theName.includes('*OLD*'))){
-            newName = basePath + '*OLD*' + theName
-            fs.rename(mainPath, newName, function (err) {
-                if (err) console.log('error = ' + err)
-               // element.textContent = '*OLD*' + theName
-                console.log('in function')
-            })
-        }    
-    }
     */
-    console.log('**Updated Main Path = ' + mainPath)
     if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
         var stats = fs.statSync(mainPath)
-       
-        if ((stats.isDirectory() === true) && (hasExtension === false)){ //determine if a directory (instead of file).
+
+        if ((stats.isDirectory() === true) && (hasExtension === false)) { //determine if a directory (instead of file).
             //show folder contents
             var contentArray = []
             try {
@@ -143,7 +97,8 @@ async function showFolderContents(divId, mainPath, indent) {
                 if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
                     var fullPath = mainPath + '/' + item
                     var subStats = fs.statSync(fullPath)
-                    if (subStats.isDirectory() === true) {
+                    var itemExtension = path.extname(fullPath)
+                    if ((subStats.isDirectory() === true) && (!(itemExtension))) {  //item extension is to pick up times when fs doesn't show a directory but it has an extension, like logicx docs
                         var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
                         contents = `<div >
                         <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
@@ -151,19 +106,19 @@ async function showFolderContents(divId, mainPath, indent) {
                         </div>`
                     } else {
                         var newNamePath = fullPath
+                        var theName = item
                         if (!(item.includes('*OLD*'))) {
                             var currentFullPath = mainPath + '/' + item
                             var newNamePath = mainPath + '/*OLD*' + item
+                            theName = '*OLD*' + item
                             fs.rename(currentFullPath, newNamePath, function (err) {
                                 if (err) console.log('error = ' + err)
-                                // element.textContent = '*OLD*' + theName
-                                console.log('in function')
                             })
                         }
-                        
+
                         var newId = "**is-document**^^^" + newNamePath + "^^^" + indent
                         contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${newNamePath}", "${newIndent}")'>*OLD*` + item + `</div>
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${newNamePath}", "${newIndent}")'>` + theName + `</div>
                         </div>`
                     }
                 }
@@ -176,10 +131,9 @@ async function showFolderContents(divId, mainPath, indent) {
                     contentsDiv.insertAdjacentHTML("beforeEnd", contents)
                 }
             })
-        } else {  //if not a directory
-            console.log('open the doc')
-           openDoc(mainPath)
-            
+        } else {  //if not a directory. /***START HERE: FOR ITEM THAT IS PICKED UP AS NOT DIRECTORY BUT HAS EXTENSION, ADD the "OLD" TO IT */
+            openDoc(mainPath)
+
         }
     } else { //if not projectstart and DO have clicked (so a folder that is already open)
         element.classList.remove('clicked')
@@ -344,4 +298,3 @@ async function controlTheWindow() {
     `)
 
 */
-

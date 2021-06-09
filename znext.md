@@ -12,6 +12,10 @@ just created work trees, checked for extensions like logic, put "old" on files f
 ***
 view comparisons.
 
+
+***
+storage of large git files
+
 ***
 Right Click Menu:
 -rename file option in right-click folder
@@ -68,3 +72,5 @@ Next after that:
      --currently saved in git-on-word.js. But this won't work well--this means that every time someone opens up a project window, it will remove the work trees. What if they are viewing old versions, and then open up a new project window. This will remove the trees for those old versions. That will cause an error.
      --this should be associated with any time the app starts up. For this, create an invisible window on startup, run this script, then close the window when its done.
 --don't show "view saved versions" on main screen if don't have old versions. So, check if there is a git file in the directory before showing this.
+--if you have main window, then view old version window. and remove main window, can old version window still be there?
+--git doesn't track empty directories. So when view old versions the old files won't be there (worktree won't track them). Info here: https://stackoverflow.com/questions/7229885/what-are-the-differences-between-gitignore-and-gitkeep. Maybe just have to leave as is and provide explanation for now.

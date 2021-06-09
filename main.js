@@ -222,7 +222,6 @@ app.on('window-all-closed', () => { //quit the application when it no longer has
     if (process.platform !== 'darwin') {
         app.quit()
     }
-    console.log('all windows are closed')
 })
 
 //for hot reloading (ie, auto-reloading):

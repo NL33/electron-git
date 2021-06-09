@@ -519,8 +519,9 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
 
         //prior to creating a new worktree, delete any worktree that's there
         var folderArray = await fs.readdirSync(projectFolderPath)
-        /* remove any existing worktree in the project, prior to creating a new one. Note: this means you can't view two different old versions at once. I think that is ok for now.
-       "--force" is included because its necessary if you are deleting a worktree with modified files. In this case, that is required: 1. user could change files (accidentally), 2. by adding a notation like "old" to the front of files you are modifying the folder.*/
+        /* remove any existing worktree in the project, prior to creating a new one. 
+        Note: this means you can't view two different old versions at once. I think that is ok for now.
+        */
         folderArray.forEach((item) => {
             if (item.includes('worktree3#&7#&1#&4')) { //if a folder exists that matches the worktree naming convention
                 removeWorkTree(item)
@@ -576,7 +577,6 @@ async function removeWorkTree(treePath) {
         if (thisTreeName) {
             /*"--force" is included because its necessary if you are deleting a worktree with modified files.In this case, that is required: 1. user could change files(accidentally), 2. by adding a notation like "old" to the front of files you are modifying the folder.*/
             await git.raw('worktree', 'remove', thisTreeName, '--force').then((result) => {
-                console.log('remove tree after close')
                 if (localStorage.getItem('working-trees-present')) {  //local storage array is to keep track of worktrees created, so as to delete them in the case the app is not shut down properly (they would be deleted on startup)
                     let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
                     let theTreePath = projectFolderPath + '/' + thisTreeName
@@ -589,7 +589,6 @@ async function removeWorkTree(treePath) {
                 }
             }) //delete that folder
             await git.raw('worktree', 'prune').then((result) => {
-                console.log('pruned the tree')
             })
         }
     } catch (e) {
