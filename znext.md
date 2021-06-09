@@ -67,3 +67,4 @@ Next after that:
                */
      --currently saved in git-on-word.js. But this won't work well--this means that every time someone opens up a project window, it will remove the work trees. What if they are viewing old versions, and then open up a new project window. This will remove the trees for those old versions. That will cause an error.
      --this should be associated with any time the app starts up. For this, create an invisible window on startup, run this script, then close the window when its done.
+--don't show "view saved versions" on main screen if don't have old versions. So, check if there is a git file in the directory before showing this.

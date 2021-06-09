@@ -520,21 +520,33 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
         //prior to creating a new worktree, delete any worktree that's there
         var folderArray = await fs.readdirSync(projectFolderPath)
         removeName = 'n/a'
-        folderArray.forEach((theFolder) => {
-            if (theFolder.includes('worktree3#&7#&1#&4')) { //if a folder exists that matches the worktree naming convention
-                removeName = theFolder
+        /* remove any existing worktree in the project, prior to creating a new one. Note: this means you can't view two different old versions at once. I think that is ok for now.
+       "--force" is included because its necessary if you are deleting a worktree with modified files. In this case, that is required: 1. user could change files (accidentally), 2. by adding a notation like "old" to the front of files you are modifying the folder.*/
+        folderArray.forEach((item) => {
+            if (item.includes('worktree3#&7#&1#&4')) { //if a folder exists that matches the worktree naming convention
+                removeWorkTree(item)
             }
         })
-        /* This code was to remove any existing worktree in the project. prior to creating a new one. The problem was you could not view two old versions at once with this. So I have removed this for now. The idea now is to remove the worktree when no longer  viewing an old version.
-          if (removeName != 'n/a') {
-              await git.raw('worktree', 'remove', removeName).then((result) => {
+      
+        /*Old code for removing worktree on viewing new window for old version*/
+        /*
+        if (removeName != 'n/a') {
+              await git.raw('worktree', 'remove', removeName, '--force').then((result) => {
                   console.log('done removing tree')
-                  console.log(result)
+                  //delete the just removed worktree from the localstorage record
+                  let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+                  let theTreePath = projectFolderPath + '/' + removeName
+                  let index = treeArray.indexOf(theTreePath)
+                  if (index > -1) {
+                      treeArray.splice(index, 1)
+                      localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
+                      console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
+                  }
               }) //delete that folder
   
           }
+          */
           //done removing any existing worktree
-     */
 
         console.log('now move on')
         //create worktree, with different name then before
@@ -567,20 +579,22 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
     }
 }
 
+/*****REMOVE WORKTREE CREATED IN THE PRIOR VERSION WINDOW WHEN CLOSE THE WINDOW***** */
 ipcRenderer.on('close-worktree', (event, arg) => {
     removeWorkTree(arg)
 })
 
-/*****REMOVE WORKTREE CREATED IN THE PRIOR VERSION WINDOW WHEN CLOSE THE WINDOW***** */
+
 async function removeWorkTree(treePath) {
     var thisTreeName = path.basename(treePath)
-    console.log('inremove tree. name = ')
+    console.log('inremove tree. name = ' + thisTreeName)
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
         if (thisTreeName) {
-            await git.raw('worktree', 'remove', thisTreeName).then((result) => {
+            /*"--force" is included because its necessary if you are deleting a worktree with modified files.In this case, that is required: 1. user could change files(accidentally), 2. by adding a notation like "old" to the front of files you are modifying the folder.*/
+            await git.raw('worktree', 'remove', thisTreeName, '--force').then((result) => {
                 console.log('remove tree after close')
                 if (localStorage.getItem('working-trees-present')) {  //local storage array is to keep track of worktrees created, so as to delete them in the case the app is not shut down properly (they would be deleted on startup)
                     let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
@@ -593,11 +607,12 @@ async function removeWorkTree(treePath) {
                     }
                 }
             }) //delete that folder
-            await git.raw('worktree', 'prune', thisTreeName).then((result) => {
+            await git.raw('worktree', 'prune').then((result) => {
+                console.log('pruned the tree')
             })
         }
     } catch (e) {
-        console.log('error in showOldVersion = ' + e)
+        console.log('error in removework = ' + e)
     }
 }
 

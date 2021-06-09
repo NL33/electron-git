@@ -1,6 +1,6 @@
 const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, webContents } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
-const { keyboard, Key} = require("@nut-tree/nut-js")
+const { keyboard, Key } = require("@nut-tree/nut-js")
 const fs = require('fs');
 // Main process of the Electron application
 const { systemPreferences } = require('electron')
@@ -15,7 +15,7 @@ console.log("Does the client have accessibility permissions?", isTrusted)
 
 const { getActiveWindow } = require("@nut-tree/nut-js");
 let tray = null
-var mainWindow 
+var mainWindow
 function menuApp() {
     tray = new Tray('mountains-icon.jpg')
     const contextMenu = Menu.buildFromTemplate([
@@ -52,32 +52,56 @@ async function saveNewVersionWindow(windowTitle) {
         height: 620,
         x: 0,
         y: 0,
-       // alwaysOnTop: true,
+        // alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
             enableRemoteModule: true
         }
     })
-    
+
     newVersionWindow.loadURL('file://' + __dirname + '/views/git-on-word.html');
-   // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
+    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
     newVersionWindow.openDevTools()
     //sendTheWindow()
-    
+
     /*
     newVersionWindow.webContents.on('did-finish-load', function () {
         newVersionWindow.show();
     })
     */
-   // convertWord()
+    // convertWord()
+}
+function stringifyTheModel(model) {
+    JSON.safeStringify = (obj, indent = 2) => {
+        let cache = [];
+        const retVal = JSON.stringify(
+            obj,
+            (key, value) =>
+                typeof value === "object" && value !== null
+                    ? cache.includes(value)
+                        ? undefined // Duplicate reference found, discard key
+                        : cache.push(value) && value // Store value in our collection
+                    : value,
+            indent
+        );
+        cache = null;
+        return retVal;
+    };
 }
 
-async function oldVersionWindowFunction(receivedPath, receivedName, versionNumber, date, time, notes){
-    var oldVersionWindow = new BrowserWindow({
+var oldVersionWindow
+var oldVersionWindowCreated = false
+async function oldVersionWindowFunction(receivedPath, receivedName, versionNumber, date, time, notes) {
+    if (oldVersionWindowCreated === true) {
+        /**close any existing old version window before opening a new one */
+        oldVersionWindow.destroy()
+     }
+
+    oldVersionWindow = new BrowserWindow({
         width: 320,
         //height: 620,
-      // transparent: true,
+        // transparent: true,
         x: 415,
         y: 0,
         webPreferences: {
@@ -87,15 +111,17 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
             enableRemoteModule: true
         }
     })
-    oldVersionWindow.on('close', function(){
+    oldVersionWindow.on('close', function () {
+        oldVersionWindowCreated = false
         newVersionWindow.webContents.send('close-worktree', receivedPath)
     })
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
+    oldVersionWindowCreated = true
     oldVersionWindow.loadURL('file://' + __dirname + '/views/get-old-version.html')
 }
 
 
-ipcMain.on('open-old-version-window', (event, args) =>{
+ipcMain.on('open-old-version-window', (event, args) => {
     var receivedInfo = JSON.parse(args)
     oldVersionWindowFunction(receivedInfo[0], receivedInfo[1], receivedInfo[2], receivedInfo[3], receivedInfo[4], receivedInfo[5])
 })
@@ -110,14 +136,14 @@ ipcMain.on('open-folder-dialog', (event, arg) => {
     showDialog()
 })
 
-function showDialog(){
+function showDialog() {
     dialog.showOpenDialog(newVersionWindow, {
         properties: ['openDirectory'],
         title: "Select Your Project Folder",
         buttonLabel: "Select",
     }).then(result => {
         if (!result.canceled) {
-         newVersionWindow.webContents.send('selected-folder', result.filePaths)
+            newVersionWindow.webContents.send('selected-folder', result.filePaths)
         }
     }).catch(err => {
         console.log(err)
@@ -172,11 +198,11 @@ function folderWindowFunction() {
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
     app.allowRendererProcessReuse = false  //to allow nutjs
     menuApp()
-   // createWindow()
+    // createWindow()
     app.on('activate', () => {
-       
+
         if (BrowserWindow.getAllWindows().length === 0) { //create a new browswer window only if app has no visible windows after being activated, such as when launching the app for the first time or relaunching the already running app
-           // createWindow()
+            // createWindow()
         }
     })
 })
