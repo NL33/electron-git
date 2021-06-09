@@ -96,29 +96,39 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 async function showFolderContents(divId, mainPath, indent) {
     var element = document.getElementById(divId)
     console.log('div id = ' + divId)
+    
+    
     var extension = path.extname(mainPath)
     var hasExtension = false
+
     var newName = 'n/a'
     if (extension) {
-        hasExtension = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
+        hasExtension = true
+    }
+    /*
+    //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
 
         //NOTE: this code is not perfect. It will successfully change an extension to having "***OLD***" in the front of the name. But: 1. the extension name change is asynchronous. Sometimes, the code will move on to opening the doc before it's done changing. 2. If you open a doc. then try to open it again after the name has been changed (but refreshing the view), it will be an error, because it will try to open the doc under the old name, and won't find it.
+
         console.log('it has extension = ' + extension)
         var fileName = path.basename(mainPath)
         var basePath = mainPath.replace(fileName, '')
         console.log('basepath = ' + basePath)
         var theName = path.basename(mainPath)
-        if (!(theName.includes('***OLD***'))){
-            newName = basePath + '***OLD***' + theName
+        if (!(theName.includes('*OLD*'))){
+            newName = basePath + '*OLD*' + theName
             fs.rename(mainPath, newName, function (err) {
                 if (err) console.log('error = ' + err)
-                element.textContent = '***OLD***' + theName
+               // element.textContent = '*OLD*' + theName
                 console.log('in function')
             })
         }    
     }
+    */
+    console.log('**Updated Main Path = ' + mainPath)
     if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
         var stats = fs.statSync(mainPath)
+       
         if ((stats.isDirectory() === true) && (hasExtension === false)){ //determine if a directory (instead of file).
             //show folder contents
             var contentArray = []
@@ -140,9 +150,20 @@ async function showFolderContents(divId, mainPath, indent) {
                         <div class="newItems"></div>
                         </div>`
                     } else {
-                        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
+                        var newNamePath = fullPath
+                        if (!(item.includes('*OLD*'))) {
+                            var currentFullPath = mainPath + '/' + item
+                            var newNamePath = mainPath + '/*OLD*' + item
+                            fs.rename(currentFullPath, newNamePath, function (err) {
+                                if (err) console.log('error = ' + err)
+                                // element.textContent = '*OLD*' + theName
+                                console.log('in function')
+                            })
+                        }
+                        
+                        var newId = "**is-document**^^^" + newNamePath + "^^^" + indent
                         contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${newNamePath}", "${newIndent}")'>*OLD*` + item + `</div>
                         </div>`
                     }
                 }

@@ -1,9 +1,9 @@
 # Just Completed
-going through view old version. Just created a window to view the old project files in worktree code
+just created work trees, checked for extensions like logic, put "old" on files from prior versions. and got rid of work trees on startup.
 
 
 # Next
-viewing old docs
+
 6. is there some way to mark any old versions as in fact being old. Like a red bar around them, or changing their title? 
      --to change their title, you could with file system go through each doc in the folder and add the word "old" to it. Or add the word old just at the time of clicking. So, click, then add word old to the title, then display the doc. 
      --or put "old" in paranthetical so that's what you see when you view the files.  --to add old to beg of file name, jsut find the last "/", and add "OLD" right after that.

@@ -104,6 +104,8 @@ async function removeSavedWorkTree(treePath) {
      }
     })
 }
+
+
 /*****Open Doc***** */
 var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'
 var wordDoc = '/Users/sean/Desktop/word-versions/test-stockholders-agreement-1.docx'
@@ -569,6 +571,7 @@ ipcRenderer.on('close-worktree', (event, arg) => {
     removeWorkTree(arg)
 })
 
+/*****REMOVE WORKTREE CREATED IN THE PRIOR VERSION WINDOW WHEN CLOSE THE WINDOW***** */
 async function removeWorkTree(treePath) {
     var thisTreeName = path.basename(treePath)
     console.log('inremove tree. name = ')
