@@ -519,7 +519,6 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
 
         //prior to creating a new worktree, delete any worktree that's there
         var folderArray = await fs.readdirSync(projectFolderPath)
-        removeName = 'n/a'
         /* remove any existing worktree in the project, prior to creating a new one. Note: this means you can't view two different old versions at once. I think that is ok for now.
        "--force" is included because its necessary if you are deleting a worktree with modified files. In this case, that is required: 1. user could change files (accidentally), 2. by adding a notation like "old" to the front of files you are modifying the folder.*/
         folderArray.forEach((item) => {
@@ -528,24 +527,6 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
             }
         })
       
-        /*Old code for removing worktree on viewing new window for old version*/
-        /*
-        if (removeName != 'n/a') {
-              await git.raw('worktree', 'remove', removeName, '--force').then((result) => {
-                  console.log('done removing tree')
-                  //delete the just removed worktree from the localstorage record
-                  let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
-                  let theTreePath = projectFolderPath + '/' + removeName
-                  let index = treeArray.indexOf(theTreePath)
-                  if (index > -1) {
-                      treeArray.splice(index, 1)
-                      localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
-                      console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
-                  }
-              }) //delete that folder
-  
-          }
-          */
           //done removing any existing worktree
 
         console.log('now move on')
