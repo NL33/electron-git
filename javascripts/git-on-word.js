@@ -424,7 +424,7 @@ async function gitDiffFunction() {
         await git.diff().then(result => {
             const Diff2html = require('diff2html');
             const diffJson = Diff2html.parse(result);
-            const diffHtml = Diff2html.html(diffJson, { drawFileList: true });
+            const diffHtml = Diff2html.html(diffJson, { drawFileList: true, outputFormat: 'side-by-side' });
             document.getElementById('displayGitDiff').innerHTML = diffHtml
             console.log('diff html = ')
             console.log(diffHtml)

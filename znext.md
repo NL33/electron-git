@@ -1,5 +1,5 @@
 # Just Completed
-just created work trees, checked for extensions like logic, put "old" on files from prior versions. and got rid of work trees on startup.
+just got basic version of showing diffs to work, with creating the diff with simplegit, then showing diff with diff2html. Right now, using the "diff2Html" just shows black and white changes.
 
 
 # Next
@@ -7,6 +7,8 @@ just created work trees, checked for extensions like logic, put "old" on files f
 ***
 view comparisons.
 
+-show color highlighting. Maybe need to use diff2htmlUI for that, and add the required imports. look at the github for "syntax highlighting" to move forward with it. 
+--Also question about whether this can be done with just the diff2Html, without the UI version.
 
 ***
 storage of large git files
