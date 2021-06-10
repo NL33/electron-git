@@ -59,6 +59,10 @@ $ npm install run-jxa
    -May 28, 2021
    --to run jxa for Mac. Allows automation. Installed to try to control window size and position.
 
+$ npm install diff2html
+    --June 10, 2021
+    --to be able to show git comparisons in html
+    --came with 2 severe vulnerabilities. Running npm audit fix seemed to address. Running $ npm i showed no vulnerabilities.
 
 # Prior to rollback on April 15, 2021
 # RobotJS

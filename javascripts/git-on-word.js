@@ -26,7 +26,7 @@ const { promisify } = require('util')
 const { resolve } = require('path')
 const { O_DIRECTORY } = require('constants')
 const { shouldRebuildNativeModules } = require('electron-rebuild')
-
+var diff2html = require("diff2html").Diff2Html
 /*****Button Set Up *****/
 window.onload = function () {
     console.log('in activate')
@@ -407,6 +407,33 @@ async function deleteItem(e) {
     });
 }
 
+
+/********* GIT DIFF TESTING ******* */
+
+document.getElementById('gitDiffTest').addEventListener('click', () => {
+    gitDiffFunction()
+
+})
+
+async function gitDiffFunction() {
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+        await git.diff().then(result => {
+            const Diff2html = require('diff2html');
+            const diffJson = Diff2html.parse(result);
+            const diffHtml = Diff2html.html(diffJson, { drawFileList: true });
+            document.getElementById('displayGitDiff').innerHTML = diffHtml
+            console.log('diff html = ')
+            console.log(diffHtml)
+        })
+    } catch (e) {
+        console.log('error in git diff function = ')
+        console.log(e)
+    }
+}
 
 
 /********GIT ACTIONS*************** */

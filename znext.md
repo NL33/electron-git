@@ -4,11 +4,6 @@ just created work trees, checked for extensions like logic, put "old" on files f
 
 # Next
 
-6. is there some way to mark any old versions as in fact being old. Like a red bar around them, or changing their title? 
-     --to change their title, you could with file system go through each doc in the folder and add the word "old" to it. Or add the word old just at the time of clicking. So, click, then add word old to the title, then display the doc. 
-     --or put "old" in paranthetical so that's what you see when you view the files.  --to add old to beg of file name, jsut find the last "/", and add "OLD" right after that.
-     is there some way to put a red br around the doc? that would be cleanest
-7. when close the old version file (pick up that event with ipc event), delete the worktree
 ***
 view comparisons.
 
@@ -74,3 +69,5 @@ Next after that:
 --don't show "view saved versions" on main screen if don't have old versions. So, check if there is a git file in the directory before showing this.
 --if you have main window, then view old version window. and remove main window, can old version window still be there?
 --git doesn't track empty directories. So when view old versions the old files won't be there (worktree won't track them). Info here: https://stackoverflow.com/questions/7229885/what-are-the-differences-between-gitignore-and-gitkeep. Maybe just have to leave as is and provide explanation for now.
+--if open a project. and then off the app edit the project--like add a new folder or add a new doc, the version displayed in the electron app will be old. and can cause problems if you try to open a doc. fix. how does vs code do it? Simple solution--a refresh button, that reruns the function.
+--icons or some other way to tell folders from docs.
