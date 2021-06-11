@@ -424,7 +424,7 @@ async function gitDiffFunction() {
         await git.diff("--word-diff").then(result => {
             var red = result.replace(/\[-/g, '<del style="color: #c00">')
             var endred = red.replace(/-]/g, '</del>')
-            var green = endred.replace(/{+/g, '<ins style="color: #0c0">')
+            var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')
             var endgreen = green.replace(/\+}/g, '</ins>')
             var data = turndownService.turndown(endgreen)
            document.getElementById('displayGitDiff').innerHTML = endgreen
