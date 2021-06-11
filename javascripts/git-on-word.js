@@ -421,13 +421,32 @@ async function gitDiffFunction() {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
 
-        await git.diff().then(result => {
+        await git.diff("--word-diff").then(result => {
+            var red = result.replace(/\[-/g, '<del style="color: #c00">')
+            var endred = red.replace(/-]/g, '</del>')
+            var green = endred.replace(/{+/g, '<ins style="color: #0c0">')
+            var endgreen = green.replace(/\+}/g, '</ins>')
+            var data = turndownService.turndown(endgreen)
+           document.getElementById('displayGitDiff').innerHTML = endgreen
+           console.log(result)
+           
+  /*
+           //with diffHTML
             const Diff2html = require('diff2html');
             const diffJson = Diff2html.parse(result);
-            const diffHtml = Diff2html.html(diffJson, { drawFileList: true, outputFormat: 'side-by-side' });
+            const diffString = result
+            const diffHtml = Diff2html.html(diffJson, {outputFormat: 'side-by-side',  });
             document.getElementById('displayGitDiff').innerHTML = diffHtml
-            console.log('diff html = ')
-            console.log(diffHtml)
+*/
+            /*
+            //with diff2htmlUI
+            const configuration = { drawFileList: true, matching: 'lines' };
+            const targetElement = document.getElementById('displayGitDiff')
+            const diff2htmlUi = new Diff2HtmlUI(targetElement, diffJson, configuration);
+            diff2htmlUi.draw();
+            diff2htmlUi.highlightCode();
+            */
+            
         })
     } catch (e) {
         console.log('error in git diff function = ')
