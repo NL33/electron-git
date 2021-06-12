@@ -1,14 +1,28 @@
 # Just Completed
-just got basic version of showing diffs to work, with creating the diff with simplegit, then showing diff with diff2html. Right now, using the "diff2Html" just shows black and white changes.
+With git diff, I can now:
+1. show a top over bottom comparison.
+2. show a word by word comparison.
+
+
 
 
 # Next
 
 ***
 view comparisons.
+1. for top over bottom comparison, I want to be able to do word wrap, but also with color highlighting  (potentially the replace method can work for that too).
+     with the diff2html, the structure:
+          td class = d1h-del d2h-change
+               div class=d2h-code-line
+                    <span class=d2h-code-line-prefix>+</span>
+                    <span class="d2h-code-line-ctn">text></span>
 
--show color highlighting. Maybe need to use diff2htmlUI for that, and add the required imports. look at the github for "syntax highlighting" to move forward with it. 
---Also question about whether this can be done with just the diff2Html, without the UI version.
+     so to add the background color, you want to change the background color of the class that is after the prefix.
+     could do it with js: if the prior sibling's textcontent="+", then add green class. If "-", then add red class.
+
+     
+2. for the word by word comparison, I want to be able to first show a summary of any doc that changed, click on the summary, and go to the actual changes.
+3. be able to open a full doc showing the changes.
 
 ***
 storage of large git files

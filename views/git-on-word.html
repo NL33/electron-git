@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />  <!--CSS. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 60kb-->
+
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script><!--Javascripts. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 80kb-->
+
 <head>
     <meta charset="UTF-8">
     <style>
@@ -22,6 +26,10 @@
             font-weight: bold;
             margin-right: 15px;
             font-size: 14pt
+        }
+
+        .tr ins {
+            font-weight: bold
         }
 
         #projectDirectory {
@@ -231,8 +239,12 @@
 
     <!-------separator-------->
 <hr style="width: 70%; border: 1px solid  #f5f5f5">
-    <div id="gitDiffTest" style="border: 2px solid green; cursor: pointer; padding: 3px">Run Git Diff</div>
-   <div id="displayGitDiff" style="white-space: pre-wrap"></div>
+    <div id="gitDiffWord" style="border: 2px solid green; cursor: pointer; padding: 3px; margin-bottom: 15px; ">Run Git Diff Straight</div>
+<div id="gitDiffTop" style="border: 2px solid orange; cursor: pointer; padding: 3px; margin-bottom: 15px">Run Git Diff On top of each other</div>
+
+   <div id="showDiffWord" style="white-space: pre-wrap"></div></br></br>
+
+   <div id="showDiffTop" style=""></div>
 
     <div style="margin-top: 15px">
         <hr style="width: 70%; border: 1px solid  #f5f5f5">
