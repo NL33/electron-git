@@ -27,6 +27,21 @@ view comparisons.
      the way that diff2html does it: takes the file name, and makes it: <a href="#d2h-862593">. An then the actual file in the results is given that id. 
 
 
+diff --git a/first-folder/churchil-doc-1.txt b/first-folder/churchil-doc-1.txt
+index 44a1241..ff4d49f 100644
+--- a/first-folder/churchil-doc-1.txt
++++ b/first-folder/churchil-doc-1.txt
+@@ -1,14 +1,15 @@
+
+
+diff --git a/second-folder/lincoln-doc.txt b/second-folder/lincoln-doc.txt
+index c3d2a6b..8bb7624 100644
+--- a/second-folder/lincoln-doc.txt
++++ b/second-folder/lincoln-doc.txt
+@@ -1,17 +1,22 @@
+
+
+
 3. be able to open a full doc showing the changes.
 
 ***

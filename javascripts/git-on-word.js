@@ -422,21 +422,38 @@ async function gitDiffFunctionWord() {
         })
 
         await git.diffSummary().then(result => {
-            document.getElementById('showDiffWord').innerHTML = JSON.stringify(result)
-            // console.log('cwd resultss' + JSON.stringify(result))
+            console.log('first summary = ' + JSON.stringify(result))
+            var resultArray = result.files
+            result.files.forEach((item)=>{
+                var file = item.file
+                var newId = '#' + file
+                var contents = `<div><a href="${newId}">${file}</a><div>`
+                document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
+            })
+           // document.getElementById('showDiffWord').innerHTML = JSON.stringify(result)
         })
 
-
-        await git.diff("--word-diff", "--name-only").then(result => {
+        await git.diff('--word-diff').then(result => {    
+            //console.log('word diff result = ')
+            //console.log(result)
             var red = result.replace(/\[-/g, '<del style="color: #c00">')
             var endred = red.replace(/-]/g, '</del>')
-            //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')
-            //var green = endred.replace(/{\+/g, '<ins style="color: #009900">')
-            var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')
+            //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
+            //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
+            var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
             var endgreen = green.replace(/\+}/g, '</ins>')
-            var data = turndownService.turndown(endgreen)
-           document.getElementById('showDiffWord').innerHTML = endgreen
-           console.log(result)
+            var resultArray = endgreen.split('diff --git a/')
+            for (var i = 1; i < resultArray.length; i++) {
+                var fileName = resultArray[i].split(" ")[0]
+                var contents = `
+                <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px">
+                <div id=${fileName}>
+                    <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 10px;white-space: pre-wrap">${fileName}</div>
+                     <div style="white-space: pre-wrap">${resultArray[i]}</div>
+                </div>
+                `
+                document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
+            }
         })
     } catch (e) {
         console.log('error in git diff word function = ')
