@@ -433,7 +433,7 @@ async function gitDiffFunctionWord() {
            // document.getElementById('showDiffWord').innerHTML = JSON.stringify(result)
         })
 
-        await git.diff('--word-diff').then(result => {    
+        await git.diff('--word-diff', '--no-index').then(result => {    
             //console.log('word diff result = ')
             //console.log(result)
             var red = result.replace(/\[-/g, '<del style="color: #c00">')

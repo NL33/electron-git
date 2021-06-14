@@ -1,48 +1,18 @@
 # Just Completed
-With git diff, I can now:
-1. show a top over bottom comparison.
-2. show a word by word comparison.
-
-
-
+I just formatted the git diff results, so that:
+1. I can separate out the different files that were changed in the string, so that you can clearly see the differnce and link to the files.
+2. I added coloring to the plain version of diff2html
 
 # Next
 
 ***
-view comparisons.
-1. for top over bottom comparison, I want to be able to do word wrap, but also with color highlighting  (potentially the replace method can work for that too). If you can do word wrap with diff2html, then this is all set. If not, run the diff with diff2html, but without the added files. And then figure out how to color. Possibilies:
-     with the diff2html, the structure:
-          td class = d1h-del d2h-change
-               div class=d2h-code-line
-                    <span class=d2h-code-line-prefix>+</span>
-                    <span class="d2h-code-line-ctn">text></span>
-
-     so to add the background color, you want to change the background color of the class that is after the prefix.
-     could do it with js: if the prior sibling's textcontent="+", then add green class. If "-", then add red class.
-
-     or focus on class above: d2h-code-line. and add class depending on first character.
-
-2. for the word by word comparison, I want to be able to first show a summary of any doc that changed, click on the summary, and go to the actual changes.
-     --could run git summary to show the docs that changed. manipulate so it just shows the files. then add link to the file to go to the actual file itself. 
-     the way that diff2html does it: takes the file name, and makes it: <a href="#d2h-862593">. An then the actual file in the results is given that id. 
-
-
-diff --git a/first-folder/churchil-doc-1.txt b/first-folder/churchil-doc-1.txt
-index 44a1241..ff4d49f 100644
---- a/first-folder/churchil-doc-1.txt
-+++ b/first-folder/churchil-doc-1.txt
-@@ -1,14 +1,15 @@
-
-
-diff --git a/second-folder/lincoln-doc.txt b/second-folder/lincoln-doc.txt
-index c3d2a6b..8bb7624 100644
---- a/second-folder/lincoln-doc.txt
-+++ b/second-folder/lincoln-doc.txt
-@@ -1,17 +1,22 @@
-
-
-
-3. be able to open a full doc showing the changes.
+3. be able to open a full doc showing the changes (to see all changes in the doc).
+     --find the two docs being compared (versiona and versionb).
+     --create a new doc with versona
+     --put it into a repo
+     --replace that doc with version b
+     --run git diff
+     --take results and put them into an html doc
 
 ***
 storage of large git files
