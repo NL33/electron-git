@@ -106,4 +106,12 @@ Next after that:
 --if you have main window, then view old version window. and remove main window, can old version window still be there?
 --git doesn't track empty directories. So when view old versions the old files won't be there (worktree won't track them). Info here: https://stackoverflow.com/questions/7229885/what-are-the-differences-between-gitignore-and-gitkeep. Maybe just have to leave as is and provide explanation for now.
 --if open a project. and then off the app edit the project--like add a new folder or add a new doc, the version displayed in the electron app will be old. and can cause problems if you try to open a doc. fix. how does vs code do it? Simple solution--a refresh button, that reruns the function.
---icons or some other way to tell folders from docs.
+--add icons or some other way to tell folders from docs.
+
+--show summary of changes to pror versions. Right now, I run a word-diff, which returns a string of changes to all files. To parse that string, I look at the first part of each string. Here's an example:
+          diff --git a/second-folder/lincoln-doc.txt b/second-folder/lincoln-doc.txt
+          index c3d2a6b..8bb7624 100644
+          --- a/second-folder/lincoln-doc.txt
+          +++ b/second-folder/lincoln-doc.txt
+          @@ -1,17 +1,22 @@
+to parse this, I split the string by split("diff --git a/"). This works well. But what if someone has that combo in the document itself? If so, it will split the string based on that. What to do? I need a different way of parsing the diff result. diff2html does it somehow, but I haven't been able to determine it yet. If I don't find a solution, then I could still split the string, but don't change any formatting (right now I add a separator and highlight the folder name). Just parse it in order to add a div id with the name of the file, which I use to link to that section from the table of contents. I could still keep the link--so worst case the table of contents link gets messed up, which is not a big deal.
