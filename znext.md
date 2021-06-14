@@ -10,7 +10,7 @@ With git diff, I can now:
 
 ***
 view comparisons.
-1. for top over bottom comparison, I want to be able to do word wrap, but also with color highlighting  (potentially the replace method can work for that too).
+1. for top over bottom comparison, I want to be able to do word wrap, but also with color highlighting  (potentially the replace method can work for that too). If you can do word wrap with diff2html, then this is all set. If not, run the diff with diff2html, but without the added files. And then figure out how to color. Possibilies:
      with the diff2html, the structure:
           td class = d1h-del d2h-change
                div class=d2h-code-line
@@ -20,8 +20,12 @@ view comparisons.
      so to add the background color, you want to change the background color of the class that is after the prefix.
      could do it with js: if the prior sibling's textcontent="+", then add green class. If "-", then add red class.
 
-     
+     or focus on class above: d2h-code-line. and add class depending on first character.
+
 2. for the word by word comparison, I want to be able to first show a summary of any doc that changed, click on the summary, and go to the actual changes.
+     --could run git summary to show the docs that changed. manipulate so it just shows the files. then add link to the file to go to the actual file itself. 
+
+
 3. be able to open a full doc showing the changes.
 
 ***

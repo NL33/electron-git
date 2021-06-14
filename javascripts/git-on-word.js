@@ -454,22 +454,7 @@ async function gitDiffFunctionTop() {
         })
 
         await git.diff().then(result => {
-            //with diffHTML
-            const Diff2html = require('diff2html');
-            const diffJson = Diff2html.parse(result);
-            const diffString = result
-            const diffHtml = Diff2html.html(diffJson, {matching:'words', });
-            document.getElementById('showDiffTop').innerHTML = diffHtml
-
-            /*
-            //with diff2htmlUI
-            const configuration = { drawFileList: true, matching: 'lines' };
-            const targetElement = document.getElementById('displayGitDiff')
-            const diff2htmlUi = new Diff2HtmlUI(targetElement, diffJson, configuration);
-            diff2htmlUi.draw();
-            diff2htmlUi.highlightCode();
-            */
-
+            doTopDiffFunction(result)
         })
     } catch (e) {
         console.log('error in git diff top function = ')
@@ -477,6 +462,39 @@ async function gitDiffFunctionTop() {
     }
 }
 
+async function doTopDiffFunction(result){
+    //with diffHTML
+ try {
+     const Diff2html = require('diff2html');
+    const diffJson = await Diff2html.parse(result);
+     const diffString = result
+     const diffHtml = await Diff2html.html(diffJson, { matching: 'words', });
+     document.getElementById('showDiffTop').innerHTML = await diffHtml
+     var divs = document.getElementsByClassName('d2h-code-line')
+      for  (var i = 0; i < divs.length; i++) {
+         if (divs[i].firstChild.textContent === '+') {
+             console.log('its a plus')
+             divs[i].classList.add("greenBackground")
+         } else if (divs[i].firstChild.textContent === '-') {
+             console.log('its a minus')
+             divs[i].classList.add('redBackground')
+         }
+     }
+            /*
+//with diff2htmlUI
+const configuration = { drawFileList: true, matching: 'lines' };
+const targetElement = document.getElementById('displayGitDiff')
+const diff2htmlUi = new Diff2HtmlUI(targetElement, diffJson, configuration);
+diff2htmlUi.draw();
+diff2htmlUi.highlightCode();
+*/
+
+ } catch (e){
+     console.log('error in doTopDiffFunction = ')
+     console.log(e)
+ }
+
+}
 
 /********GIT ACTIONS*************** */
 
