@@ -24,6 +24,7 @@ view comparisons.
 
 2. for the word by word comparison, I want to be able to first show a summary of any doc that changed, click on the summary, and go to the actual changes.
      --could run git summary to show the docs that changed. manipulate so it just shows the files. then add link to the file to go to the actual file itself. 
+     the way that diff2html does it: takes the file name, and makes it: <a href="#d2h-862593">. An then the actual file in the results is given that id. 
 
 
 3. be able to open a full doc showing the changes.

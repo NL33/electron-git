@@ -430,7 +430,9 @@ async function gitDiffFunctionWord() {
         await git.diff("--word-diff", "--name-only").then(result => {
             var red = result.replace(/\[-/g, '<del style="color: #c00">')
             var endred = red.replace(/-]/g, '</del>')
-            var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')
+            //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')
+            //var green = endred.replace(/{\+/g, '<ins style="color: #009900">')
+            var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')
             var endgreen = green.replace(/\+}/g, '</ins>')
             var data = turndownService.turndown(endgreen)
            document.getElementById('showDiffWord').innerHTML = endgreen
@@ -468,18 +470,9 @@ async function doTopDiffFunction(result){
      const Diff2html = require('diff2html');
     const diffJson = await Diff2html.parse(result);
      const diffString = result
-     const diffHtml = await Diff2html.html(diffJson, { matching: 'words', });
+     const diffHtml = await Diff2html.html(diffJson, { drawFileList: true });
      document.getElementById('showDiffTop').innerHTML = await diffHtml
-     var divs = document.getElementsByClassName('d2h-code-line')
-      for  (var i = 0; i < divs.length; i++) {
-         if (divs[i].firstChild.textContent === '+') {
-             console.log('its a plus')
-             divs[i].classList.add("greenBackground")
-         } else if (divs[i].firstChild.textContent === '-') {
-             console.log('its a minus')
-             divs[i].classList.add('redBackground')
-         }
-     }
+    
             /*
 //with diff2htmlUI
 const configuration = { drawFileList: true, matching: 'lines' };
