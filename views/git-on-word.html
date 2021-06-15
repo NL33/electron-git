@@ -232,8 +232,12 @@
             font-size: 14pt;
         }
 
-        .selectedChangeClass{
+        .selectedChangeClass1{
             background-color: orange
+        }
+
+         .selectedChangeClass2{
+            background-color: green
         }
     </style>
     <title>Your Project</title>
@@ -260,8 +264,6 @@
 
     <!--**********COMPARE CHANGES***********************-->
 
-    <!-------separator-------->
-
     <div style="margin-top: 25px; margin-bottom: 15px">
         <hr style="width: 70%; margin-bottom: 10px; border: 1px solid  #f5f5f5">
         <span
@@ -271,16 +273,24 @@
     </div>
 
     <div style="margin-bottom: 15px">
-        <span>Later Version for Changes: </span><span id="laterVersionForChanges"></span>
+        <span>Later Version for Changes: </span>
+        <span id="laterVersionNumber">
+            <span id="versionWordLater">Version </span>
+            <span id="versionNumberLater">current</span>
+        </span>
     </div>
     <div style="margin-bottom: 15px">
-        <span>Earlier Version for Changes: </span> <span id="earlierVersionForChanges"></span>
+        <span>Earlier Version for Changes: </span> 
+        <span id="earlierVersionNumber">
+            <span id="versionWordEarlier">Version </span>
+            <span id="versionNumberEarlier"></span>
+        </span>
     </div>
 
     <div id="savedVersionsOverview" style="margin-top: 25px; display: none">
         <div id="savedVersionsId">Select versions to compare changes:</div>
     </div>
-    <div class="versionOverviewClass" onclick="selectVersionToViewChanges('current', 'n/a', 'n/a', 'n/a', 'n/a')">
+    <div class="versionOverviewClass" onclick="selectVersionToViewChanges(event, 'current', 'current changes', 'n/a', 'n/a', 'n/a')">
         <div class="versionMessage" id="currentChanges">Current locally saved changes</div>
     </div>
 
