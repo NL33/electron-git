@@ -19,13 +19,14 @@ plan simple structure for viewing two specific versions against each other.
 
 Steps
 
-1. assume user has already selected that they want to compare changes
-2. show prior versions 
+1. assume user has already selected that they want to compare changes. DONE
+2. show prior versions. DONE
 3. have header showing the versions being compared
 4. select prior versions to change what's in the header
 5. have button that says compare changes
 6. click compare changes button to open up separate window that shows the changes
-7. have option for what kind of chnages to see: mixd view (or whatever github calls it--can test by adding a change with prose, or look at readme file) v line by line 
+7. have option for what kind of chnages to see: mixd view (or whatever github calls it--can test by adding a change with prose, or look at readme file) v line by line
+8. have option at bottom of main screen to view changes.  
 
 
 
@@ -83,6 +84,13 @@ Next after that:
 --apple notes. maybe use apple script. Remember there are good vid tutorials for that
 --remember that its ok if certain types of formats don't give you the same functionality
 --link the projects to places you can share, like dropbox and github
+
+
+****
+make it easy to show and hide the main screen
+--icon on the right to show the main screen 
+
+
 
 # Later
 --idea--put red bar over old versionwhen retreiving prior version?

@@ -408,6 +408,80 @@ async function deleteItem(e) {
 }
 
 
+/*************** SELECT OLD VERSIONS TO COMPARE CHANGES ********************/
+//PriorChanges
+document.getElementById('viewPriorVersionsForCompare').addEventListener('click', () => {
+    viewPriorVersionsForCompareFunction()
+})
+
+
+async function viewPriorVersionsForCompareFunction() {
+    document.getElementById('showPriorCommitsForCompare').innerHTML = ''
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+        await git.log().then(result => {
+            var resultArray = result.all
+            var totalNumber = resultArray.length
+            var commitForCompareDiv = document.getElementById('showPriorCommitsForCompare')
+            var savedVersionsHeader = document.getElementById('savedVersionsOverview')
+            savedVersionsHeader.style.display = "block"
+            resultArray.forEach((commit) => {
+                var versionNumber = totalNumber--
+                var versionMessage = commit.message
+                var dateTime = commit.date
+                var commitNumber = commit.hash
+
+                var dateObject = new Date(dateTime)
+                var showDate = dateObject.toLocaleDateString('en-us', {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })
+                var showTime = dateObject.toLocaleTimeString('en-us', {
+                    timeStyle: 'short'
+                })
+                var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
+                contents = `
+                <div class="versionOverviewClass" onclick='selectVersionToViewChanges(event, "${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}", "${versionMessage}")'>
+                    <div class="versionMessage">${versionMessage}</div>
+                    <span class="versionNumber">Version ${versionNumber}</span>
+                    <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
+                </div>   
+                `
+                commitForCompareDiv.insertAdjacentHTML("beforeEnd", contents)
+            })
+        })
+    }
+    catch (e) {
+        console.log('error = ' + e)
+    }
+}
+
+function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate, showTime, versionMessage){
+    if (event.target.classList.contains('versionOverviewClass')){
+        event.target.classList.add('selectedChangeClass')
+    } else {
+        event.target.closest('.versionOverviewClass').classList.add('selectedChangeClass')
+    }
+    
+    var laterChangeDiv = document.getElementById('laterVersionForChanges')
+    var earlierChangeDive = document.getElementById('earlierVersionForChanges')
+    var contents = `
+        <span class="selectedForChangesClass" id="${commitNumber}, ${versionNumber}, ${showDate}, ${showTime}, ${versionMessage}">
+            <span class="laterVersionNumber">Version ${versionNumber}</span>
+            <div class="laterVersionMessage" style="display:none">${versionMessage}</div>       
+            <span class="laterVersionDate" style="display:none">${showDate}</span><span class="laterVersionTime" style="display:none"> ${showTime}</span>
+        </span>   
+        `
+    laterChangeDiv.innerHTML = contents
+
+}
+
+
 /********* GIT DIFF TESTING ******* */
 
 /*

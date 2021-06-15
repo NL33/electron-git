@@ -231,6 +231,10 @@
             margin-left: 3px;
             font-size: 14pt;
         }
+
+        .selectedChangeClass{
+            background-color: orange
+        }
     </style>
     <title>Your Project</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
@@ -258,16 +262,29 @@
 
     <!-------separator-------->
 
-    <div style="margin-top: 25px">
+    <div style="margin-top: 25px; margin-bottom: 15px">
         <hr style="width: 70%; margin-bottom: 10px; border: 1px solid  #f5f5f5">
-        <span style="margin-right: 10px" id="viewPriorVersionsButton">view saved versions</span>
+        <span
+            style="margin-right: 10px; padding: 2px; border: 2px solid green; border-radius: 5px; cursor: pointer; margin-bottom: 15px"
+            id="viewPriorVersionsForCompare">view saved versions</span>
 
+    </div>
+
+    <div style="margin-bottom: 15px">
+        <span>Later Version for Changes: </span><span id="laterVersionForChanges"></span>
+    </div>
+    <div style="margin-bottom: 15px">
+        <span>Earlier Version for Changes: </span> <span id="earlierVersionForChanges"></span>
     </div>
 
     <div id="savedVersionsOverview" style="margin-top: 25px; display: none">
-        <div id="savedVersionsId">Saved Versions:</div>
+        <div id="savedVersionsId">Select versions to compare changes:</div>
     </div>
-    <div id="showPriorCommits" style="margin-top: 10px">
+    <div class="versionOverviewClass" onclick="selectVersionToViewChanges('current', 'n/a', 'n/a', 'n/a', 'n/a')">
+        <div class="versionMessage" id="currentChanges">Current locally saved changes</div>
+    </div>
+
+    <div id="showPriorCommitsForCompare" style="margin-top: 10px">
     </div>
 
 
@@ -301,11 +318,11 @@
     </div>
 
     <!--***************View Prior Versions**************-->
-    <!--
+
     <div style="margin-top: 25px">
         <hr style="width: 70%; margin-bottom: 25px; border: 1px solid  #f5f5f5">
         <span style="margin-right: 10px" id="viewPriorVersionsButton">view saved versions</span>
-        
+
     </div>
 
     <div id="savedVersionsOverview" style="margin-top: 25px; display: none">
@@ -313,7 +330,7 @@
     </div>
     <div id="showPriorCommits" style="margin-top: 10px">
     </div>
--->
+
 
 
 
