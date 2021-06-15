@@ -410,6 +410,7 @@ async function deleteItem(e) {
 
 /********* GIT DIFF TESTING ******* */
 
+/*
 document.getElementById('gitDiffWord').addEventListener('click', () => {
     gitDiffFunctionWord()
 })
@@ -498,14 +499,14 @@ const diff2htmlUi = new Diff2HtmlUI(targetElement, diffJson, configuration);
 diff2htmlUi.draw();
 diff2htmlUi.highlightCode();
 */
-
+/*
  } catch (e){
      console.log('error in doTopDiffFunction = ')
      console.log(e)
  }
 
 }
-
+*/
 /********GIT ACTIONS*************** */
 
 async function saveGitVersion() {

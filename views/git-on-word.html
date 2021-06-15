@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />  <!--CSS. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 60kb-->
+<!--link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />  <!--CSS. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 60kb-->
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script><!--Javascripts. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 80kb-->
+<!--script type="text/javascript" src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script><!--Javascripts. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 80kb-->
 
 <head>
     <meta charset="UTF-8">
     <style>
         /*** COMPARING VERSIONS***/
 
-          .d2h-code-line, .d2h-code-line-ctn {
+        .d2h-code-line,
+        .d2h-code-line-ctn {
             white-space: normal !important;
-        } 
+        }
+
         .d2h-ins {
             background-color: #d6ebd5
         }
 
         .d2h-del {
             background-color: #fbe9ec;
-           // background-color: #fdf0c5  //more of a tannish background color
+            // background-color: #fdf0c5  //more of a tannish background color
         }
 
         tr ins {
@@ -27,8 +29,7 @@
         }
 
         tr del {
-           background-color: #f1a7b3
-
+            background-color: #f1a7b3
         }
 
         /****BODY ***/
@@ -249,44 +250,18 @@
         </div>
     </div>
 
-    <!------List out contents of the folder------>
+    <!--************List out contents of the folder***************-->
     <div id="folderContents"></div>
 
 
+    <!--**********COMPARE CHANGES***********************-->
+
     <!-------separator-------->
-<hr style="width: 70%; border: 1px solid  #f5f5f5">
-    <div id="gitDiffWord" style="border: 2px solid green; cursor: pointer; padding: 3px; margin-bottom: 15px; ">Run Git Diff Straight</div>
-<div id="gitDiffTop" style="border: 2px solid orange; cursor: pointer; padding: 3px; margin-bottom: 15px">Run Git Diff On top of each other</div>
-
-    <div id="diffWordSummary"></div></br></br>
-   <div id="showDiffWord"></div></br></br>
-
-   <div id="showDiffTop" style=""></div>
-
-    <div style="margin-top: 15px">
-        <hr style="width: 70%; border: 1px solid  #f5f5f5">
-        <span style="margin-right: 10px">Save project version:</span>
-        <!--<span id="selectedDoc"></span>-->
-    </div>
-
-    <!--<div id="addProjectButton">Add File</div> from focus on individual files. not in use -->
-
-    <!-----Git: Save Version----->
-    <div id="saveProjectItems">
-        <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
-        </br>
-
-        <div id="saveButton">Save Project Version</div>
-    </div>
-    <div id="savingProgress">Saving version...
-    </div>
-
-    <!-------View Prior Versions-------->
 
     <div style="margin-top: 25px">
-        <hr style="width: 70%; margin-bottom: 25px; border: 1px solid  #f5f5f5">
+        <hr style="width: 70%; margin-bottom: 10px; border: 1px solid  #f5f5f5">
         <span style="margin-right: 10px" id="viewPriorVersionsButton">view saved versions</span>
-        <!--<span id="selectedDoc"></span>-->
+
     </div>
 
     <div id="savedVersionsOverview" style="margin-top: 25px; display: none">
@@ -296,6 +271,53 @@
     </div>
 
 
+
+
+    <!--
+    <div id="gitDiffWord" style="border: 2px solid green; cursor: pointer; padding: 3px; margin-bottom: 15px; ">Run Git Diff Straight</div>
+<div id="gitDiffTop" style="border: 2px solid orange; cursor: pointer; padding: 3px; margin-bottom: 15px">Run Git Diff On top of each other</div>
+
+    <div id="diffWordSummary"></div></br></br>
+   <div id="showDiffWord"></div></br></br>
+
+   <div id="showDiffTop" style=""></div>
+-->
+    <!------*********SAVE PROJECT VERSION******************-->
+    <div style="margin-top: 15px">
+        <hr style="width: 70%; border: 1px solid  #f5f5f5">
+        <span style="margin-right: 10px">Save project version:</span>
+        <!--<span id="selectedDoc"></span>-->
+    </div>
+
+    <!--<div id="addProjectButton">Add File</div> from focus on individual files. not in use -->
+
+    <div id="saveProjectItems">
+        <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
+        </br>
+
+        <div id="saveButton">Save Project Version</div>
+    </div>
+    <div id="savingProgress">Saving version...
+    </div>
+
+    <!--***************View Prior Versions**************-->
+    <!--
+    <div style="margin-top: 25px">
+        <hr style="width: 70%; margin-bottom: 25px; border: 1px solid  #f5f5f5">
+        <span style="margin-right: 10px" id="viewPriorVersionsButton">view saved versions</span>
+        
+    </div>
+
+    <div id="savedVersionsOverview" style="margin-top: 25px; display: none">
+        <div id="savedVersionsId">Saved Versions:</div>
+    </div>
+    <div id="showPriorCommits" style="margin-top: 10px">
+    </div>
+-->
+
+
+
+    <!--*************END OF FILE******************-->
     <script src="../javascripts/git-on-word.js"></script>
 </body>
 

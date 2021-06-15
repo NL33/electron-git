@@ -6,14 +6,50 @@ I just formatted the git diff results, so that:
 # Next
 
 ***
+plan simple structure for viewing two specific versions against each other.
+     -main list there is button to view changes. when hit view changes it opens up another window (just like pattern of view prior versions)
+     -view changes can be an option at the bottom of the screen, that you press to see options.
+     -options:
+          --show saved versions. then click on which ones you want to view. default can be current local changes versus most recent one (which would be simple git diff)
+               at top, show the two options (like, current changes vs. version 3)
+               and separately scroll the old versions.
+     --separate button that says either "mixed view (or something like that--see what github calls it)", "line by line"--can select the other option 
+
+   --comparing specific docs. Remember that you need to 1. select the doc, and 2. select the versions. when choose compare specific documents, show folder options. and select docs from there. and then select the versions like in the above. 
+
+Steps
+
+1. assume user has already selected that they want to compare changes
+2. show prior versions 
+3. have header showing the versions being compared
+4. select prior versions to change what's in the header
+5. have button that says compare changes
+6. click compare changes button to open up separate window that shows the changes
+7. have option for what kind of chnages to see: mixd view (or whatever github calls it--can test by adding a change with prose, or look at readme file) v line by line 
+
+
+
+***
+add option to compare specific docs: git diff -U49999999
 3. be able to open a full doc showing the changes (to see all changes in the doc).
+NOTE: First test this approach to make sure it works. Use two docs and do it manually
+or--maybe there is a way to use git diff and get full context?
+
+git diff -U4999999   (would be cover 499,999 lines. As a test, if a word doc had 100 lines per page (which would be way more than normal), and a doc had 1000 pages (way more than normal), then there would be 100,000 lines)
+
+look here: https://stackoverflow.com/questions/28727424/for-git-diff-is-there-a-uinfinity-option-to-show-the-whole-file
+and here: https://www.reddit.com/r/git/comments/8f8f7a/how_do_i_look_at_an_entire_file_for_the_diffs/
      --find the two docs being compared (versiona and versionb).
      --create a new doc with versona
      --put it into a repo
      --replace that doc with version b
      --run git diff
      --take results and put them into an html doc
+***
+do comparison for word docs.
 
+***
+be able to collapse showing of folders by clicking on the project name (adding carrot icons to show if open or not. and the carrot icons are the indicator if folder or file)
 ***
 storage of large git files
 
@@ -85,3 +121,15 @@ Next after that:
           +++ b/second-folder/lincoln-doc.txt
           @@ -1,17 +1,22 @@
 to parse this, I split the string by split("diff --git a/"). This works well. But what if someone has that combo in the document itself? If so, it will split the string based on that. What to do? I need a different way of parsing the diff result. diff2html does it somehow, but I haven't been able to determine it yet. If I don't find a solution, then I could still split the string, but don't change any formatting (right now I add a separator and highlight the folder name). Just parse it in order to add a div id with the name of the file, which I use to link to that section from the table of contents. I could still keep the link--so worst case the table of contents link gets messed up, which is not a big deal.
+
+could do the split based on more info, like the actual name of the doc, which you get from the original diffsymmary array. Or could do split based on git diff -a/......@....@
+
+
+--add a search box to the app windows so you can search text inside of the window.
+
+--check if git installed on system. 
+--when release, be sure to have way to update the app and provide notices in the app. There's probably some tutorials out there about charging for electron apps
+
+# contact notes
+
+if link it to github, could tell them about it to get their support
