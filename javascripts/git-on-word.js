@@ -409,11 +409,10 @@ async function deleteItem(e) {
 
 
 /*************** SELECT OLD VERSIONS TO COMPARE CHANGES ********************/
-//PriorChanges
+
 document.getElementById('viewPriorVersionsForCompare').addEventListener('click', () => {
     viewPriorVersionsForCompareFunction()
 })
-
 
 async function viewPriorVersionsForCompareFunction() {
     document.getElementById('showPriorCommitsForCompare').innerHTML = ''
@@ -428,6 +427,7 @@ async function viewPriorVersionsForCompareFunction() {
             var commitForCompareDiv = document.getElementById('showPriorCommitsForCompare')
             var savedVersionsHeader = document.getElementById('savedVersionsOverview')
             savedVersionsHeader.style.display = "block"
+            /**Load Current Change info into the prior versions list */
             var currentChangesContent = `
             <div class="versionOverviewClass selectedChangeClass" id="selectedChangeId1"
             onclick="selectVersionToViewChanges(event, 'current', 'Current Changes', 'current', 'n/a', 'n/a')">
@@ -438,6 +438,7 @@ async function viewPriorVersionsForCompareFunction() {
             `
             commitForCompareDiv.insertAdjacentHTML('beforeend', currentChangesContent)
 
+            /***PRIOR VERSIONS LIST: Load all prior versions into the prior versions list** */
             for (var i = 0; i<resultArray.length; i++) {
                 var commit = resultArray[i]
                 var versionNumber = totalNumber--
@@ -465,6 +466,7 @@ async function viewPriorVersionsForCompareFunction() {
                 `
                commitForCompareDiv.insertAdjacentHTML("beforeend", contents)
 
+                /**SUMMARY HEADER: Take the first prior version, and add it to the summary header as the earlier version. The current changes are already listed as the later version */
                 if (i === 0){
                     //this is the insert at the top summary header
                     var headerInsert = `
@@ -489,12 +491,10 @@ async function viewPriorVersionsForCompareFunction() {
 }
 
 function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate, showTime, versionMessage){
-    //idea--when you click, the clicked item of the lower version always is put later
-   //ids = selectedChangeId1, and selectedChangeId2.
-
-   //ids are separate from version later, because it is based on when the user clicks them, not based on which version is later or earlier. selectedChangeId1 starts out as current changes. selectedChangeId2 starts out as the most recent saved commit. When you select a new id, what was Id1 goes to Id2; Id2 loses id; and selected item gets Id1.
+    //Info on how this works:
+   //To keep track of which versions are selected, we give them one of two ids: selectedChangeId1 and selectedChangeId2. The numbers on these ids do NOT correspond to which version is earlier and which is later. The numbers are there to just identify which versions are selected. When a new version is selected, the numbers shift, so that the new selection becomes selectedChangeId1, the prior selectedChangeId1 becomes selectedChangeId2, and the prior selectedChangeId2 loses its selection.
+   //After the selection numbers are sorted out, then there is a separate process to determine which version will be listed as later (newer) and which as earlier(older). This process is redone every time there is a selection.
     
-
     //***MAKE SURE THE ID IS LINKED TO THE OVERVIEW CLASS OF THE ELEMENT (no matter where it was clicked) ********/
     if (event.target.classList.contains('versionOverviewClass')) {
         var selectedDiv = event.target
@@ -515,7 +515,6 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
         var id2 = document.getElementById('selectedChangeId2')
         var id1Version = document.querySelector('#selectedChangeId1 .versionNumber').textContent
         if (id1Version !== 'Current Changes'){
-            console.log('id 1 version Number up top = ' + id1Version)
             var id1VersionNumber = parseInt(id1Version)
         } else {
             var id1VersionNumber = id1Version
@@ -574,7 +573,8 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                 </span>   
                 `
             document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
-        } else if (id2VersionNumber > id1VersionNumber){
+
+        } else if (id2VersionNumber > id1VersionNumber){ //no current changes selected
             var laterHeaderInsert = `
                 <span class="selectedForChangesClass">
                     <span id="laterVersionNumber"><span id="versionWordLater">Version </span><span id="versionNumberLater">${id2VersionNumber}</span></span>
@@ -592,7 +592,8 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                 </span>   
                 `
             document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
-        } else if (id1VersionNumber > id2VersionNumber){
+
+        } else if (id1VersionNumber > id2VersionNumber){ //no current changes selected
             var laterHeaderInsert = `
                 <span class="selectedForChangesClass">
                     <span id="laterVersionNumber"><span id="versionWordLater">Version </span><span id="versionNumberLater">${id1VersionNumber}</span></span>
@@ -613,115 +614,6 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
         }
     }
 
-    /*
-   if ((selectedDiv.id !== 'selectedChangeIdLater') || (selectedDiv.id !== 'selectedChangeIdEarlier')){
-       document.getElementById('selectedChangeIdEarlier').id = ''
-       selectedDiv.id = 'seletedChangeId1'
-       if ((currentVersionLater === 'current') || (thisVersionNumber < parseInt(currentVersionLater))) {
-           var earlierChangeDiv = document.getElementById('earlierVersionOverview')
-           var contents = `
-            <span class="selectedForChangesClass" id="${commitNumber}, ${versionNumber}, ${showDate}, ${showTime}, ${versionMessage}">
-                <span class="laterVersionNumber"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${versionNumber}</span></span>
-                <div class="laterVersionMessage" style="display:none">${versionMessage}</div>       
-                <span class="laterVersionDate" style="display:none">${showDate}</span><span class="laterVersionTime" style="display:none"> ${showTime}</span>
-            </span>   
-            `
-           earlierChangeDiv.innerHTML = contents
-       } else {
-           var laterChangeDiv = document.getElementById('laterVersionOverview')
-           var contents = `
-            <span class="selectedForChangesClass" id="${commitNumber}, ${versionNumber}, ${showDate}, ${showTime}, ${versionMessage}">
-                <span class="laterVersionNumber"><span id="versionWordLater">Version </span><span id="versionNumberLater">${versionNumber}</span></span>
-                <div class="laterVersionMessage" style="display:none">${versionMessage}</div>       
-                <span class="laterVersionDate" style="display:none">${showDate}</span><span class="laterVersionTime" style="display:none"> ${showTime}</span>
-            </span>   
-            `
-           laterChangeDiv.innerHTML = contents
-       }
-   }
-   
-   
-   
-   
-   
-   
-    if (document.getElementById('versionNumberLater')){
-        var currentVersionLater = document.getElementById('versionNumberLater').textContent
-    } else {
-        var currentVersionLater = 'n/a'
-    }
-
-    var thisVersionNumber = parseInt(versionNumber)
-
-    if (event.target.classList.contains('versionOverviewClass')) {
-        var selectedDiv = event.target
-    } else {
-        var selectedDiv = event.target.closest('.versionOverviewClass')
-    }
-
-    if (selectedDiv.classList.contains('selectedChangeClass')){
-        selectedDiv.classList.remove('selectedChangeClass')
-        if (selectedDiv.classList.contains('selectedChangeClassEarlier')){
-            selectedDiv.classList.remove('selectedChangeClassEarlier')
-            document.getElementById('earlierVersionOverview').innerHTML = ''
-        } else {
-            selectedDiv.classList.remove('selectedChangeClassLater')
-            document.getElementById('laterVersionOverview').innerHTML = ''
-        }
-    } else {
-        if ((currentVersionLater === 'current') || (thisVersionNumber < parseInt(currentVersionLater))){
-            var earlierChangeDiv = document.getElementById('earlierVersionOverview')
-            var contents = `
-            <span class="selectedForChangesClass" id="${commitNumber}, ${versionNumber}, ${showDate}, ${showTime}, ${versionMessage}">
-                <span class="laterVersionNumber"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${versionNumber}</span></span>
-                <div class="laterVersionMessage" style="display:none">${versionMessage}</div>       
-                <span class="laterVersionDate" style="display:none">${showDate}</span><span class="laterVersionTime" style="display:none"> ${showTime}</span>
-            </span>   
-            `
-            earlierChangeDiv.innerHTML = contents
-            selectedDiv.classList.add('selectedChangeClass')
-            selectedDiv.classList.add('selectedChangeClassEarlier')
-            
-        } else {
-            var laterChangeDiv = document.getElementById('laterVersionOverview')
-            var contents = `
-            <span class="selectedForChangesClass" id="${commitNumber}, ${versionNumber}, ${showDate}, ${showTime}, ${versionMessage}">
-                <span class="laterVersionNumber"><span id="versionWordLater">Version </span><span id="versionNumberLater">${versionNumber}</span></span>
-                <div class="laterVersionMessage" style="display:none">${versionMessage}</div>       
-                <span class="laterVersionDate" style="display:none">${showDate}</span><span class="laterVersionTime" style="display:none"> ${showTime}</span>
-            </span>   
-            `
-
-            laterChangeDiv.innerHTML = contents
-            selectedDiv.classList.add('selectedChangeClass')
-            selectedDiv.classList.add('selectedChangeLater')
-        }
-    }
-
-    /*
-
-
-
-    if (selectedDiv.classList.contains('selectedChangeClass2')){
-        selectedDiv.classList.remove('selectedChangeClass2')
-    } else if (selectedDiv.classList.contains('selectedChangeClass1')){
-        selectedDiv.classList.remove('selectedChangeClass1')
-        selectedDiv.classList.add('selectedChangeClass2')
-    } else {
-        selectedDiv.classList.add('selectedChangeClass1')
-    }
-    
-    var laterChangeDiv = document.getElementById('laterVersionForChanges')
-    var earlierChangeDive = document.getElementById('earlierVersionForChanges')
-    var contents = `
-        <span class="selectedForChangesClass" id="${commitNumber}, ${versionNumber}, ${showDate}, ${showTime}, ${versionMessage}">
-            <span class="laterVersionNumber"><span id="versionWord1">Version </span><span id="versionNumber1">${versionNumber}</span></span>
-            <div class="laterVersionMessage" style="display:none">${versionMessage}</div>       
-            <span class="laterVersionDate" style="display:none">${showDate}</span><span class="laterVersionTime" style="display:none"> ${showTime}</span>
-        </span>   
-        `
-    laterChangeDiv.innerHTML = contents
-*/
 }
 
 

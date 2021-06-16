@@ -32,7 +32,7 @@ Steps
 1. assume user has already selected that they want to compare changes. DONE
 2. show prior versions. DONE
 3. have header showing the versions being compared. DONE
-4. select prior versions to change what's in the header. Working on this item
+4. select prior versions to change what's in the header. DONE
 5. have button that says compare changes
 6. click compare changes button to open up separate window that shows the changes
 7. have option for what kind of chnages to see: mixd view (or whatever github calls it--can test by adding a change with prose, or look at readme file) v line by line
