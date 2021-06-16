@@ -429,7 +429,7 @@ async function viewPriorVersionsForCompareFunction() {
             var savedVersionsHeader = document.getElementById('savedVersionsOverview')
             savedVersionsHeader.style.display = "block"
             var currentChangesContent = `
-            <div class="versionOverviewClass" id="selectedChangeIdLater"
+            <div class="versionOverviewClass selectedChangeClass" id="selectedChangeId1"
             onclick="selectVersionToViewChanges(event, 'current', 'Current Changes', 'current', 'n/a', 'n/a')">
             <div class="versionMessage" id="currentChanges">Current locally saved changes</div>
             <span class="versionNumber" style="display:none">n/a</span>
@@ -465,6 +465,7 @@ async function viewPriorVersionsForCompareFunction() {
                commitForCompareDiv.insertAdjacentHTML("beforeend", contents)
 
                 if (i === 0){
+                    //this is the insert at the top summary header
                     var headerInsert = `
                     <span class="selectedForChangesClass">
                         <span id="laterVersionNumber"><span id="versionWordLater">Version </span><span id="versionNumberLater">${versionNumber}</span></span>
@@ -473,7 +474,9 @@ async function viewPriorVersionsForCompareFunction() {
                     </span>   
                     `
                     document.getElementById('earlierVersionOverview').innerHTML = headerInsert
-                    document.getElementById('showPriorCommitsForCompare').firstElementChild.id ="selectedChangeId2"
+
+                    //this applies to the items in the list below
+                    document.getElementById('showPriorCommitsForCompare').children[1].id ="selectedChangeId2"
                     document.getElementById('selectedChangeId2').classList.add('selectedChangeClass')
                 }
             }
