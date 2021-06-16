@@ -225,6 +225,10 @@
             border-right: 2px solid #2db94b;
         }
 
+        #earlierVersionOverview, #laterVersionOverview {
+            font-size: 14pt
+        }
+
         #savedVersionsId {
             margin-top: 15px;
             margin-bottom: 10px;
@@ -232,17 +236,9 @@
             font-size: 14pt;
         }
 
-        #selectedChangeId1{
-            background-color: orange
-        }
-
-       #selectedChangeId2{
-            background-color: green
-        } 
-
-        #earlierVersionNumber, #laterVersionNumber {
-            font-size: 14pt
-        }
+       .selectedChangeClass {
+           background-color: orange
+       }
 
     </style>
     <title>Your Project</title>
@@ -301,10 +297,7 @@
     <div id="savedVersionsOverview" style="margin-top: 25px; display: none">
         <div id="savedVersionsId">Select versions to compare changes:</div>
     </div>
-    <div class="versionOverviewClass" id="selectedChangeId1" onclick="selectVersionToViewChanges(event, 'current', 'current changes', 'n/a', 'n/a', 'n/a')">
-        <div class="versionMessage" id="currentChanges">Current locally saved changes</div>
-    </div>
-
+  
     <div id="showPriorCommitsForCompare" style="margin-top: 10px">
     </div>
 

@@ -389,7 +389,7 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
         contentsDiv.insertAdjacentHTML("afterBegin", contents)
     } else { //else its a subfolder
         var newItems = element.nextElementSibling  //gets "newItems" div
-        newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
+        newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
     }
 
 }
@@ -428,6 +428,15 @@ async function viewPriorVersionsForCompareFunction() {
             var commitForCompareDiv = document.getElementById('showPriorCommitsForCompare')
             var savedVersionsHeader = document.getElementById('savedVersionsOverview')
             savedVersionsHeader.style.display = "block"
+            var currentChangesContent = `
+            <div class="versionOverviewClass" id="selectedChangeIdLater"
+            onclick="selectVersionToViewChanges(event, 'current', 'Current Changes', 'current', 'n/a', 'n/a')">
+            <div class="versionMessage" id="currentChanges">Current locally saved changes</div>
+            <span class="versionNumber" style="display:none">n/a</span>
+            <span class="versionDateTime" style="display:none">n/a</span><span style="display:none">n/a</span>
+            </div>
+            `
+            commitForCompareDiv.insertAdjacentHTML('beforeend', currentChangesContent)
             for (var i = 0; i<resultArray.length; i++) {
                 var commit = resultArray[i]
                 var versionNumber = totalNumber--
@@ -450,10 +459,11 @@ async function viewPriorVersionsForCompareFunction() {
                 <div class="versionOverviewClass" onclick='selectVersionToViewChanges(event, "${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}", "${versionMessage}")'>
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumber">Version ${versionNumber}</span>
-                    <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
+                    <span class="versionDateTime versionTime">${showDate}</span><span class="versionTime> ${cleanedTime}</span>
                 </div>   
                 `
-                commitForCompareDiv.insertAdjacentHTML("beforeEnd", contents)
+               commitForCompareDiv.insertAdjacentHTML("beforeend", contents)
+
                 if (i === 0){
                     var headerInsert = `
                     <span class="selectedForChangesClass">
@@ -463,7 +473,8 @@ async function viewPriorVersionsForCompareFunction() {
                     </span>   
                     `
                     document.getElementById('earlierVersionOverview').innerHTML = headerInsert
-                    document.getElementById('showPriorCommitsForCompare').firstElementChild.id="selectedChangeId2"
+                    document.getElementById('showPriorCommitsForCompare').firstElementChild.id ="selectedChangeId2"
+                    document.getElementById('selectedChangeId2').classList.add('selectedChangeClass')
                 }
             }
         })
@@ -476,9 +487,76 @@ async function viewPriorVersionsForCompareFunction() {
 function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate, showTime, versionMessage){
     //idea--when you click, the clicked item of the lower version always is put later
    //ids = selectedChangeId1, and selectedChangeId2.
-   var selectedDiv = event.target
-   if ((selectedDiv.id !== 'selectedChangeId1') || (selectedDiv.id !== 'selectedChangeId2')){
-       document.getElementById('selectedChangeId1').id = ''
+
+   //ids are separate from version later, because it is based on when the user clicks them, not based on which version is later or earlier. selectedChangeId1 starts out as current changes. selectedChangeId2 starts out as the most recent saved commit. When you select a new id, what was Id1 goes to Id2; Id2 loses id; and selected item gets Id1.
+    
+
+    //***MAKE SURE THE ID IS LINKED TO THE OVERVIEW CLASS OF THE ELEMENT (no matter where it was clicked) ********/
+    if (event.target.classList.contains('versionOverviewClass')) {
+        var selectedDiv = event.target
+    } else {
+        var selectedDiv = event.target.closest('.versionOverviewClass')
+    }
+
+   if ((selectedDiv.id !== 'selectedChangeId2') && (selectedDiv.id !== 'selectedChangeId1')) {
+       //********SET THE IDS CORRECTLY ************/
+       document.getElementById('selectedChangeId2').classList.remove('selectedChangeClass')
+       document.getElementById('selectedChangeId2').id = ''
+       document.getElementById('selectedChangeId1').id = 'selectedChangeId2'
+       selectedDiv.id = 'selectedChangeId1'
+       selectedDiv.classList.add('selectedChangeClass')
+
+        //********Get the Version Number of the currently selected versions **************/
+        var id1 = document.getElementById('selectedChangeId1')
+        var id2 = document.getElementById('selectedChangeId2')
+        var id1Version = document.querySelector('#selectedChangeId1 .versionNumber').textContent
+        if (id1Version !== 'n/a'){
+            var id1VersionNumber = parseInt(id1Version)
+        } else {
+            var id1VersionNumber = id1Version
+        }
+       var id2Version = document.querySelector('#selectedChangeId2 .versionNumber').textContent
+       if (id2Version !== 'n/a') {
+           var id2VersionNumber = parseInt(id2Version)
+       } else {
+           var id2VersionNumber = id2Version
+       }
+
+       var id1Message = document.querySelector('#selectedChangeId1 .versionMessage').textContent
+       var id1Date = document.querySelector('#selectedChangeId1 .versionDate').textContent
+       var id1Time = document.querySelector('#selectedChangeId1 .versionTime').textContent
+
+       var id2Message = document.querySelector('#selectedChangeId2 .versionMessage').textContent
+       var id2Date = document.querySelector('#selectedChangeId2 .versionDate').textContent
+       var id2Time = document.querySelector('#selectedChangeId2 .versionTime').textContent
+
+       /***START HERE: GET ALL THE INFO FROM EACH VERSION TO INSERT */
+       //*****COMPARE THE VERSION NUMBERS******* */
+
+        if (id1VersionNumber === 'n/a') { //then the first chosen item is the current changes
+            var earlierHeaderInsert = `
+                <span class="selectedForChangesClass">
+                    <span id="earlierVersionNumber"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id2VersionNumber}</span></span>
+                    <div class="earlierVersionMessage" style="display:none">${id2Message}</div>       
+                    <span class="earlierVersionDate" style="display:none">${id2Date}</span><span class="earlierVersionTime" style="display:none">${id2Time}</span>
+                </span>   
+                `
+            document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
+
+            var laterHeaderInsert = `
+                <span class="selectedForChangesClass">
+                    <span id="laterVersionNumber"><span id="versionWordLater"></span><span id="versionNumberLater">${id1VersionNumber}</span></span>
+                    <div class="laterVersionMessage" style="display:none">${id1Message}</div>       
+                    <span class="laterVersionDate" style="display:none">${id1Date}</span><span class="laterVersionTime" style="display:none">${id1Time}</span>
+                </span>   
+                `
+            document.getElementById('laterVersionOverview').innerHTML = earlierHeaderInsert
+        }
+    }
+
+    /*
+   if ((selectedDiv.id !== 'selectedChangeIdLater') || (selectedDiv.id !== 'selectedChangeIdEarlier')){
+       document.getElementById('selectedChangeIdEarlier').id = ''
        selectedDiv.id = 'seletedChangeId1'
        if ((currentVersionLater === 'current') || (thisVersionNumber < parseInt(currentVersionLater))) {
            var earlierChangeDiv = document.getElementById('earlierVersionOverview')

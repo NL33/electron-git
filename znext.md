@@ -146,7 +146,10 @@ could do the split based on more info, like the actual name of the doc, which yo
 --add a search box to the app windows so you can search text inside of the window.
 
 --check if git installed on system. 
+--if try to save changes but there are no changes, then tell the user that a new version wasn't saved bc of it.
+
 --when release, be sure to have way to update the app and provide notices in the app. There's probably some tutorials out there about charging for electron apps
+
 
 # contact notes
 
