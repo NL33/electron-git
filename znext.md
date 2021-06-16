@@ -1,9 +1,19 @@
 # Just Completed
-I just formatted the git diff results, so that:
-1. I can separate out the different files that were changed in the string, so that you can clearly see the differnce and link to the files.
-2. I added coloring to the plain version of diff2html
+just laid out prior commits in the section on showing prior changes to adjust changes.
+
 
 # Next
+need to separate out when choose the later version and when choose the earlier version.
+
+so have button saying change next to both later version and earlier version.  can just be a button saying "change", next to the later or earlier version.
+
+select change, and then have hader say "select later version" and you select that .
+
+can select change earlier version, and have button say change earlier version.
+
+Then have button saying "Show changes"
+
+can hit either button anytime. 
 
 ***
 plan simple structure for viewing two specific versions against each other.
@@ -21,8 +31,8 @@ Steps
 
 1. assume user has already selected that they want to compare changes. DONE
 2. show prior versions. DONE
-3. have header showing the versions being compared
-4. select prior versions to change what's in the header
+3. have header showing the versions being compared. DONE
+4. select prior versions to change what's in the header. Working on this item
 5. have button that says compare changes
 6. click compare changes button to open up separate window that shows the changes
 7. have option for what kind of chnages to see: mixd view (or whatever github calls it--can test by adding a change with prose, or look at readme file) v line by line
