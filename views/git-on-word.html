@@ -240,6 +240,10 @@
             background-color: green
         } 
 
+        #earlierVersionNumber, #laterVersionNumber {
+            font-size: 14pt
+        }
+
     </style>
     <title>Your Project</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
@@ -274,14 +278,20 @@
     </div>
 
     <div style="margin-bottom: 15px">
-        <span>Later Version for Changes: </span>
+        <span>Later Version: </span>
         <span id="laterVersionOverview">
-            <span id="versionWordLater"></span>
-            <span id="versionNumberLater">current changes</span>
+            <span class="selectedForChangesClass">
+                <span id="laterVersionNumber"><span id="versionWordLater"></span><span
+                        id="versionNumberLater">Current Changes</span></span>
+                <div class="laterVersionMessage" style="display:none">current changes</div>
+                <span class="laterVersionDate" style="display:none">current</span><span class="laterVersionTime"
+                    style="display:none"></span>
+            </span>
         </span>
     </div>
+
     <div style="margin-bottom: 15px">
-        <span>Earlier Version for Changes: </span> 
+        <span>Earlier Version: </span> 
         <span id="earlierVersionOverview">
             <span id="versionWordEarlier">Version </span>
             <span id="versionNumberEarlier"></span>

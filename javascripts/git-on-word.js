@@ -457,7 +457,7 @@ async function viewPriorVersionsForCompareFunction() {
                 if (i === 0){
                     var headerInsert = `
                     <span class="selectedForChangesClass">
-                        <span class="laterVersionNumber"><span id="versionWordLater">Version </span><span id="versionNumberLater">${versionNumber}</span></span>
+                        <span id="laterVersionNumber"><span id="versionWordLater">Version </span><span id="versionNumberLater">${versionNumber}</span></span>
                         <div class="laterVersionMessage" style="display:none">${versionMessage}</div>       
                         <span class="laterVersionDate" style="display:none">${showDate}</span><span class="laterVersionTime" style="display:none"> ${showTime}</span>
                     </span>   
