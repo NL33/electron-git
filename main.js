@@ -13,6 +13,7 @@ console.log("Does the client have accessibility permissions?", isTrusted)
 //module.exports = require("./main.js")
 
 
+/*** TOOLBAR MENU ICON****** */
 const { getActiveWindow } = require("@nut-tree/nut-js");
 let tray = null
 var mainWindow
@@ -41,7 +42,9 @@ async function sendTheWindow(){  //this is for saving infi
     newVersionWindow.webContents.send('window-title', windowTitle)
 }
 */
-/* **** #GIT ON WORD ********/
+
+
+/* **** #OPEN MAIN WINDOW********/
 var newVersionWindow
 async function saveNewVersionWindow(windowTitle) {
     let display = screen.getPrimaryDisplay();
@@ -72,24 +75,39 @@ async function saveNewVersionWindow(windowTitle) {
     */
     // convertWord()
 }
-function stringifyTheModel(model) {
-    JSON.safeStringify = (obj, indent = 2) => {
-        let cache = [];
-        const retVal = JSON.stringify(
-            obj,
-            (key, value) =>
-                typeof value === "object" && value !== null
-                    ? cache.includes(value)
-                        ? undefined // Duplicate reference found, discard key
-                        : cache.push(value) && value // Store value in our collection
-                    : value,
-            indent
-        );
-        cache = null;
-        return retVal;
-    };
+
+
+/*****## OPEN DIALOG TO SELECT FOLDER ******/
+
+ipcMain.on('open-folder-dialog', (event, arg) => {
+    showDialog()
+})
+
+function showDialog() {
+    dialog.showOpenDialog(newVersionWindow, {
+        properties: ['openDirectory'],
+        title: "Select Your Project Folder",
+        buttonLabel: "Select",
+    }).then(result => {
+        if (!result.canceled) {
+            newVersionWindow.webContents.send('selected-folder', result.filePaths)
+        }
+    }).catch(err => {
+        console.log(err)
+    })
 }
 
+
+async function viewOldVersion() {
+    newVersionWindow.webContents.send('view-old-version', 'cool')
+}
+
+async function revertToOldVersion() {
+    win.webContents.send('revert-to-old-version', 'cool')
+}
+
+
+/*********VIEW PRIOR VERSION************* */
 var oldVersionWindow
 var oldVersionWindowCreated = false
 async function oldVersionWindowFunction(receivedPath, receivedName, versionNumber, date, time, notes) {
@@ -126,44 +144,17 @@ ipcMain.on('open-old-version-window', (event, args) => {
     oldVersionWindowFunction(receivedInfo[0], receivedInfo[1], receivedInfo[2], receivedInfo[3], receivedInfo[4], receivedInfo[5])
 })
 
+/******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
 
-
-
-
-/*****## OPEN DIALOG TO SELECT FOLDER ******/
-
-ipcMain.on('open-folder-dialog', (event, arg) => {
-    showDialog()
+ipcMain.on('open-compare-versions-window', (event, args) =>{
+    var receivedInfo = JSON.parse(args)
+    compareVersionWindowFunction()
 })
 
-function showDialog() {
-    dialog.showOpenDialog(newVersionWindow, {
-        properties: ['openDirectory'],
-        title: "Select Your Project Folder",
-        buttonLabel: "Select",
-    }).then(result => {
-        if (!result.canceled) {
-            newVersionWindow.webContents.send('selected-folder', result.filePaths)
-        }
-    }).catch(err => {
-        console.log(err)
-    })
-}
-
-
-async function viewOldVersion() {
-    newVersionWindow.webContents.send('view-old-version', 'cool')
-}
-
-async function revertToOldVersion() {
-    win.webContents.send('revert-to-old-version', 'cool')
-}
 
 
 
-
-/***END #GIT ON WORD ******/
-
+/****FOLDER WINDOW (NOT CURRENTLY IN USE) ********/
 
 function folderWindowFunction() {
     let display = screen.getPrimaryDisplay();

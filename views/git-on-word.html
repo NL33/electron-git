@@ -225,7 +225,8 @@
             border-right: 2px solid #2db94b;
         }
 
-        #earlierVersionOverview, #laterVersionOverview {
+        #earlierVersionOverview,
+        #laterVersionOverview {
             font-size: 14pt
         }
 
@@ -236,10 +237,9 @@
             font-size: 14pt;
         }
 
-       .selectedChangeClass {
-           border: 3px solid green
-       }
-
+        .selectedChangeClass {
+            border: 3px solid green
+        }
     </style>
     <title>Your Project</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
@@ -271,23 +271,26 @@
             style="margin-right: 10px; padding: 2px; border: 2px solid green; border-radius: 5px; cursor: pointer; margin-bottom: 15px"
             id="viewPriorVersionsForCompare">compare changes</span>
 
+        <span
+            style="margin-right: 10px; padding: 2px; border: 2px solid orange; border-radius: 5px; cursor: pointer; margin-bottom: 15px"
+            id="runChanges">run changes</span>
     </div>
 
     <div style="margin-bottom: 15px">
         <span>Newer Version: </span>
         <span id="laterVersionOverview">
-                <span class="selectedForChangesClass">
-                    <span id="laterVersionNumber"><span id="versionWordLater"></span><span
-                            id="versionNumberLater">Current Changes</span></span>
-                    <div class="laterVersionMessage" style="display:none">n/a</div>
-                    <span class="laterVersionDate" style="display:none">n/a</span><span class="laterVersionTime"
-                        style="display:none">n/a</span>
-                </span>
+            <span class="selectedForChangesClass" id="laterVersionforChanges"></span>
+                <span id="laterVersionNumber"><span id="versionWordLater"></span><span id="versionNumberLater">Current
+                        Changes</span></span>
+                <div class="laterVersionMessage" style="display:none">n/a</div>
+                <span class="laterVersionDate" style="display:none">n/a</span><span class="laterVersionTime" style="display:none">n/a</span>
+                <span class="commitNumber" style="display: none">current-changes</span>
+            </span>
         </span>
     </div>
 
     <div style="margin-bottom: 15px">
-        <span>Older Version: </span> 
+        <span>Older Version: </span>
         <span id="earlierVersionOverview">
         </span>
     </div>
@@ -295,7 +298,7 @@
     <div id="savedVersionsOverview" style="margin-top: 25px; display: none">
         <div id="savedVersionsId">Select versions to compare changes:</div>
     </div>
-  
+
     <div id="showPriorCommitsForCompare" style="margin-top: 10px">
     </div>
 
