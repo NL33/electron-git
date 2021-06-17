@@ -131,6 +131,8 @@ to parse this, I split the string by split("diff --git a/"). This works well. Bu
 
 could do the split based on more info, like the actual name of the doc, which you get from the original diffsymmary array. Or could do split based on git diff -a/......@....@
 
+--when running a word diff, I look for certain symbols and replace them: [- , -], {+, +}  . These get stripped out and show up as deletions and additions. But what if the original docs have these in them? How to address that? Would need a way to tell between a deletion from git diff, and a "[-". same with the addition symbol. One possibility: can I change how git diff labels deletions and additions? I can do that on my local system with a config file. Maybe a way to do that in the app?
+
 
 --add a search box to the app windows so you can search text inside of the window.
 
