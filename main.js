@@ -147,8 +147,8 @@ ipcMain.on('open-old-version-window', (event, args) => {
 /******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
 
 ipcMain.on('open-compare-versions-window', (event, arg1, arg2) =>{
-    var receivedInfo = JSON.parse(args)
-    console.log('arg1 = ' + arg1) //start here
+    var laterVersion = JSON.parse(arg1)
+    console.log('arg1 commit number= ' + laterVersion.commitNumber) //start here
     console.log('arg2 = ' + arg2)
    // compareVersionWindowFunction()
 })

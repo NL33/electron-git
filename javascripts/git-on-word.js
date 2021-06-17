@@ -475,9 +475,10 @@ async function viewPriorVersionsForCompareFunction() {
                     //NOTE: the current change selection is already hard-coded as the later change for comparison in the html
                     var headerInsert = `
                     <span class="selectedForChangesClass" id="earlierVersionForChanges">
-                        <span class="versionNumberOverview"><span class="versionWord">Version </span><span class="versionNumberForChanges">${versionNumber}</span></span>
-                        <div class="versionMessage" style="display:none">${versionMessage}</div>       
-                        <span class="versionDate" style="display:none">${showDate}</span><span class="versionTime" style="display:none"> ${showTime}</span>
+                        <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${versionNumber}</span></span>
+                        <div id="versionMessageEarlier" style="display:none">${versionMessage}</div>
+                        <span id="versionDateEarlier" style="display:none">${showDate}</span><span id="versionTimeEarlier" style="display:none"> ${showTime}</span>
+                         <span id="commitNumberEarlier" style="display:none">${commitNumber}</span>
                     </span>   
                     `
                     document.getElementById('earlierVersionOverview').innerHTML = headerInsert
@@ -545,20 +546,20 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
         if (id2VersionNumber === 'Current Changes') { //then the first chosen item is the current changes
             var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
-                    <span class="versionNumberOverview"><span class="versionWord"></span><span class="versionNumberForChanges">${id2VersionNumber}</span></span>
-                    <div class="versionMessage" style="display:none">${id2Message}</div>       
-                    <span class="versionDate" style="display:none">${id2Date}</span><span class="versionTime" style="display:none">${id2Time}</span>
-                    <span class="commitNumber" style="display:none">${id2CommitNumber}</span>
+                    <span class="versionNumberOverview"><span id="versionWordLater"></span><span id="versionNumberLater">${id2VersionNumber}</span></span>
+                    <div id="versionMessageLater" style="display:none">${id2Message}</div>
+                    <span id="versionDateLater" style="display:none">${id2Date}</span><span id="versionTimeLater" style="display:none">${id2Time}</span>
+                    <span id="commitNumberLater" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
             document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
             var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
-                    <span class="versionNumberOverview"><span id="versionWord">Version </span><span class="versionNumberForChanges">${id1VersionNumber}</span></span>
-                    <div class="versionMessage" style="display:none">${id1Message}</div>
-                    <span class="versionersionDate" style="display:none">${id1Date}</span><span class="versionTime" style="display:none">${id1Time}</span>
-                    <span class="commitNumber" style="display:none">${id1CommitNumber}</span>
+                    <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id1VersionNumber}</span></span>
+                    <div id="versionMessageEarlier" style="display:none">${id1Message}</div>
+                    <span id="versionersionDateEarlier" style="display:none">${id1Date}</span><span id="versionTimeEarlier" style="display:none">${id1Time}</span>
+                    <span id="commitNumberEarlier" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
             document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
@@ -566,20 +567,20 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
         } else if (id1VersionNumber === 'Current Changes') {
             var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
-                    <span class="versionNumberOverview"><span class="versionWord"></span><span class="versionNumberForChanges">${id1VersionNumber}</span></span>
-                    <div class="versionMessage" style="display:none">${id1Message}</div>       
-                    <span class="versionDate" style="display:none">${id1Date}</span><span class="versionTime" style="display:none">${id1Time}</span>
-                    <span class="commitNumber" style="display:none">${id1CommitNumber}</span>
+                    <span class="versionNumberOverview"><span id="versionWordLater"></span><span id="versionNumberLater">${id1VersionNumber}</span></span>
+                    <div id="versionMessageLater" style="display:none">${id1Message}</div>
+                    <span id="versionDateLater" style="display:none">${id1Date}</span><span id="versionTimeLater" style="display:none">${id1Time}</span>
+                    <span id="commitNumberLater" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
             document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
             var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
-                    <span class="versionNumberOverview"><span class="versionWord">Version </span><span class="versionNumberForChanges">${id2VersionNumber}</span></span>
-                    <div class="versionMessage" style="display:none">${id2Message}</div>       
-                    <span class="versionDate" style="display:none">${id2Date}</span><span class="versionTime" style="display:none">${id2Time}</span>
-                    <span class="commitNumber" style="display:none">${id2CommitNumber}</span>
+                    <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id2VersionNumber}</span></span>
+                    <div id="versionMessageEarlier" style="display:none">${id2Message}</div>
+                    <span id="versionDateEarlier" style="display:none">${id2Date}</span><span id="versionTimeEarlier" style="display:none">${id2Time}</span>
+                    <span id="commitNumberEarlier" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
             document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
@@ -587,20 +588,20 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
         } else if (id2VersionNumber > id1VersionNumber){ //no current changes selected
             var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
-                    <span class="versionNumberOverview"><span class="versionWord">Version </span><span class="versionNumberForChanges">${id2VersionNumber}</span></span>
-                    <div class="versionMessage" style="display:none">${id2Message}</div>       
-                    <span class="versionDate" style="display:none">${id2Date}</span><span class="versionTime" style="display:none">${id2Time}</span>
-                    <span class="commitNumber" style="display:none">${id2CommitNumber}</span>
+                    <span class="versionNumberOverview"><span id="versionWordLater">Version </span><span id="versionNumberLater">${id2VersionNumber}</span></span>
+                    <div id="versionMessageLater" style="display:none">${id2Message}</div>
+                    <span id="versionDateLater" style="display:none">${id2Date}</span><span id="versionTimeLater" style="display:none">${id2Time}</span>
+                    <span id="commitNumberLater" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
             document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
             var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
-                    <span class="versionNumberOverview"><span id="versionWord">Version </span><span class="versionNumberForChanges">${id1VersionNumber}</span></span>
-                    <div class="versionMessage" style="display:none">${id1Message}</div>       
-                    <span class="versionDate" style="display:none">${id1Date}</span><span class="versionTime" style="display:none">${id1Time}</span>
-                    <span class="commitNumber" style="display:none">${id1CommitNumber}</span>
+                    <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id1VersionNumber}</span></span>
+                    <div id="versionMessageEarlier" style="display:none">${id1Message}</div>
+                    <span id="versionDateEarlier" style="display:none">${id1Date}</span><span id="versionTimeEarlier" style="display:none">${id1Time}</span>
+                    <span id="commitNumberEarlier" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
             document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
@@ -608,20 +609,20 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
         } else if (id1VersionNumber > id2VersionNumber){ //no current changes selected
             var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
-                    <span class="versionNumberOverview"><span class="versionWord">Version </span><span class="versionNumberForChanges">${id1VersionNumber}</span></span>
-                    <div class="versionMessage" style="display:none">${id1Message}</div>       
-                    <span class="versionDate" style="display:none">${id1Date}</span><span class="versionTime" style="display:none">${id1Time}</span>
-                    <span class="commitNumber" style="display:none">${id1CommitNumber}</span>
+                    <span class="versionNumberOverview"><span id="versionWordLater">Version </span><span id="versionNumberLater">${id1VersionNumber}</span></span>
+                    <div id="versionMessageLater" style="display:none">${id1Message}</div>
+                    <span id="versionDateLater" style="display:none">${id1Date}</span><span id="versionTimeLater" style="display:none">${id1Time}</span>
+                    <span id="commitNumberLater" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
             document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
             var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
-                    <span class="versionNumberOverview"><span class="versionWord">Version </span><span class="versionNumberForChanges">${id2VersionNumber}</span></span>
-                    <div class="versionMessage" style="display:none">${id2Message}</div>       
-                    <span class="versionDate" style="display:none">${id2Date}</span><span class="versionTime" style="display:none">${id2Time}</span>
-                    <span class="commitNumber" style="display:none">${id2CommitNumber}</span>
+                    <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id2VersionNumber}</span></span>
+                    <div id="versionMessageEarlier" style="display:none">${id2Message}</div>
+                    <span id="versionDateEarlier" style="display:none">${id2Date}</span><span id="versionTimeEarlier" style="display:none">${id2Time}</span>
+                    <span id="commitNumberEarlier" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
             document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
@@ -636,40 +637,39 @@ document.getElementById('runChanges').addEventListener('click', ()=>{
 })
 
 function runComparisonFunction(){
-    var laterVersionNumber = document.querySelectorAll('#laterVersionForChanges .versionNumberOverview .versionNumberForChanges').textContent
-    var laterMessage = document.querySelectorAll('#laterVersionForChanges .versionMessage').textContent
-    var laterDate = document.querySelectorAll('#laterVersionForChanges .versionDate').textContent
-    var laterTime = document.querySelectorAll('#laterVersionForChanges .versionTime').textContent
-    var laterCommitNumber = document.querySelectorAll('#laterVersionForChanges .commitNumber').textContent
+    var laterVersionNumber = document.getElementById('versionNumberLater').textContent
+    console.log('later version number = ' + laterVersionNumber)
+    var laterMessage = document.getElementById('versionMessageLater').textContent
+    console.log('later message = ' + laterMessage)
+    var laterDate = document.getElementById('versionDateLater').textContent
+    var laterTime = document.getElementById('versionTimeLater').textContent
+    var laterCommitNumber = document.getElementById('commitNumberLater').textContent
 
-    var earlierVersionNumber = document.querySelectorAll('#earlierVersionForChanges .versionNumberOverview  .versionNumberForChanges').textContent
-    var earlierMessage = document.querySelectorAll('#earlierVersionForChanges .versionMessage').textContent
-    var earlierDate = document.querySelectorAll('#earlierVersionForChanges .versionDate').textContent
-    var earlierTime = document.querySelectorAll('#earlierVersionForChanges .versionTime').textContent
-    var earlierCommitNumber = document.querySelectorAll('#earlierVersionForChanges .commitNumber').textContent
+    var earlierVersionNumber = document.getElementById('versionNumberEarlier').textContent
+    var earlierMessage = document.getElementById('versionMessageEarlier').textContent
+    var earlierDate = document.getElementById('versionDateEarlier').textContent
+    var earlierTime = document.getElementById('versionTimeEarlier').textContent
+    var earlierCommitNumber = document.getElementById('commitNumberEarlier').textContent
 
-    var laterVersionArray = []
-    laterVersionArray.push({
+    var laterVersionArray = {
         commitNumber: laterCommitNumber,
         versionNumber: laterVersionNumber,
         versionMessage: laterMessage,
         versionDate: laterDate,
         versionTime: laterTime
-    })
+    }
 
-    var earlierVersionArray = []
-    earlierVersionArray.push({
+    //var earlierVersionArray = {}
+    var earlierVersionArray = {
         commitNumber: earlierCommitNumber,
         versionNumber: earlierVersionNumber,
         versionMessage: earlierMessage,
         versionDate: earlierDate,
         versionTime: earlierTime
-    })
+    }
 
     var arg1 = JSON.stringify(laterVersionArray)
     var arg2 = JSON.stringify(earlierVersionArray)
-
-
     ipcRenderer.send('open-compare-versions-window', arg1, arg2)
 }
 
