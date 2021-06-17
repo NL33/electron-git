@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<!--link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />  <!--CSS. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 60kb-->
+
+<!--script type="text/javascript" src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script><!--Javascripts. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 80kb-->
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+         /****BODY ***/
+        #bodyId {
+            padding: 10px;
+            padding-top: 5px
+        }
+
+        /*** COMPARING VERSIONS***/
+
+        .d2h-code-line,
+        .d2h-code-line-ctn {
+            white-space: normal !important;
+        }
+
+        .d2h-ins {
+            background-color: #d6ebd5
+        }
+
+        .d2h-del {
+            background-color: #fbe9ec;
+            // background-color: #fdf0c5  //more of a tannish background color
+        }
+
+        tr ins {
+            background-color: #9df2af
+        }
+
+        tr del {
+            background-color: #f1a7b3
+        }
+
+    </style>
+    <title>Showing Changes</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+
+<body id="bodyId">
+   
+    <div id="gitDiffWord" style="border: 2px solid green; cursor: pointer; padding: 3px; margin-bottom: 15px; ">Run Git Diff Straight</div>
+<div id="gitDiffTop" style="border: 2px solid orange; cursor: pointer; padding: 3px; margin-bottom: 15px">Run Git Diff On top of each other</div>
+
+    <div id="diffWordSummary"></div></br></br>
+   <div id="showDiffWord"></div></br></br>
+
+   <div id="showDiffTop" style=""></div>
+
+    <!--*************END OF FILE******************-->
+    <script src="../javascripts/compare-versions.js"></script>
+</body>
+
+</html>

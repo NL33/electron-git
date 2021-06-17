@@ -147,13 +147,27 @@ ipcMain.on('open-old-version-window', (event, args) => {
 /******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
 
 ipcMain.on('open-compare-versions-window', (event, arg1, arg2) =>{
-    var laterVersion = JSON.parse(arg1)
-    console.log('arg1 commit number= ' + laterVersion.commitNumber) //start here
-    console.log('arg2 = ' + arg2)
-   // compareVersionWindowFunction()
+   compareVersionsWindowFunction(arg1, arg2)
 })
 
+async function compareVersionsWindowFunction(laterVersionInfo, earlierVersionInfo) {
+    oldVersionWindow = new BrowserWindow({
+        width: 320,
+        //height: 620,
+        // transparent: true,
+        x: 415,
+        y: 0,
+        webPreferences: {
+            additionalArguments: [laterVersionInfo, earlierVersionInfo],
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+            enableRemoteModule: true
+        }
+    })
+    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
 
+    oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
+}
 
 
 /****FOLDER WINDOW (NOT CURRENTLY IN USE) ********/
