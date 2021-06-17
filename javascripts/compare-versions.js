@@ -14,11 +14,15 @@ var cp = require("child_process");
 const { promisify } = require('util')
 
 var diff2html = require("diff2html").Diff2Html
+
+var projectFolderPath
+var laterVersionInfo
+var earlierVersionInfo
 /*****Button Set Up *****/
 window.onload = function () {
-   var projectFolderPath = window.process.argv.slice(-3)[0] 
-   var laterVersionInfo = JSON.parse(window.process.argv.slice(-3)[1])
-   var earlierVersionInfo = JSON.parse(window.process.argv.slice(-3)[2])
+   projectFolderPath = window.process.argv.slice(-3)[0] 
+   laterVersionInfo = JSON.parse(window.process.argv.slice(-3)[1])
+   earlierVersionInfo = JSON.parse(window.process.argv.slice(-3)[2])
    console.log('project path = ' + projectFolderPath)
    console.log('later Version INfo = ' + JSON.stringify(laterVersionInfo))  /***START HERE */
 
@@ -32,6 +36,10 @@ document.getElementById('gitDiffWord').addEventListener('click', () => {
 
 
 async function gitDiffFunctionWord() {
+    var laterCommit = laterVersionInfo.commitNumber
+    var earlierCommit = earlierVersionInfo.commitNumber
+    console.log('later commit = ' + laterCommit)
+    console.log('earlier commit = ' + earlierCommit)
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
@@ -39,7 +47,6 @@ async function gitDiffFunctionWord() {
 
         await git.diffSummary().then(result => {
             console.log('first summary = ' + JSON.stringify(result))
-            var resultArray = result.files
             result.files.forEach((item)=>{
                 var file = item.file
                 var newId = '#' + file
@@ -48,29 +55,57 @@ async function gitDiffFunctionWord() {
             })
            // document.getElementById('showDiffWord').innerHTML = JSON.stringify(result)
         })
-
-        await git.diff('--word-diff', '--no-index').then(result => {    
-            //console.log('word diff result = ')
-            //console.log(result)
-            var red = result.replace(/\[-/g, '<del style="color: #c00">')
-            var endred = red.replace(/-]/g, '</del>')
-            //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
-            //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
-            var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
-            var endgreen = green.replace(/\+}/g, '</ins>')
-            var resultArray = endgreen.split('diff --git a/')
-            for (var i = 1; i < resultArray.length; i++) {
-                var fileName = resultArray[i].split(" ")[0]
-                var contents = `
-                <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
-                <div id=${fileName}>
-                    <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 10px;white-space: pre-wrap">${fileName}</div>
-                     <div style="white-space: pre-wrap">${resultArray[i]}</div>
-                </div>
-                `
-                document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
-            }
-        })
+        if (laterCommit !== 'current-changes') {
+            await git.raw('diff', '--word-diff', earlierCommit, laterCommit).then(result => {
+                console.log(result)
+                var red = result.replace(/\[-/g, '<del style="color: #c00">')
+                var endred = red.replace(/-]/g, '</del>')
+                console.log('2')
+                //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
+                //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
+                var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
+                var endgreen = green.replace(/\+}/g, '</ins>')
+                var resultArray = endgreen.split('diff --git a/')
+                console.log('3')
+                for (var i = 1; i < resultArray.length; i++) {
+                    var fileName = resultArray[i].split(" ")[0]
+                    var contents = `
+                    <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
+                    <div id=${fileName}>
+                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 10px;white-space: pre-wrap">${fileName}</div>
+                        <div style="white-space: pre-wrap">${resultArray[i]}</div>
+                    </div>
+                    `
+                    console.log('4')
+                    document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
+                }
+            })
+        } else {
+            await git.raw('diff', '--word-diff', earlierCommit).then(result => { //current
+                console.log(result)
+                var red = result.replace(/\[-/g, '<del style="color: #c00">')
+                var endred = red.replace(/-]/g, '</del>')
+                console.log('2')
+                //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
+                //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
+                var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
+                var endgreen = green.replace(/\+}/g, '</ins>')
+                var resultArray = endgreen.split('diff --git a/')
+                console.log('3')
+                for (var i = 1; i < resultArray.length; i++) {
+                    var fileName = resultArray[i].split(" ")[0]
+                    var contents = `
+                    <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
+                    <div id=${fileName}>
+                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 10px;white-space: pre-wrap">${fileName}</div>
+                        <div style="white-space: pre-wrap">${resultArray[i]}</div>
+                    </div>
+                    `
+                    console.log('4')
+                    document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
+                }
+            })
+        }
     } catch (e) {
         console.log('error in git diff word function = ')
         console.log(e)
@@ -83,14 +118,24 @@ document.getElementById('gitDiffTop').addEventListener('click', () => {
 })
 
 async function gitDiffFunctionTop() {
+    var laterCommit = laterVersionInfo.commitNumber
+    var earlierCommit = earlierVersionInfo.commitNumber
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
 
-        await git.diff().then(result => {
-            doTopDiffFunction(result)
-        })
+        if (laterCommit !== 'current-changes'){
+            await git.raw('diff', earlierCommit, laterCommit).then(result => {
+                doTopDiffFunction(result)
+            })
+        } else {
+            await git.raw('diff', earlierCommit).then(result => { //current changes v earlier commit
+                doTopDiffFunction(result)
+            }).then(result => { //run diff of current version against prior version
+                doTopDiffFunction(result)
+            })
+        }
     } catch (e) {
         console.log('error in git diff top function = ')
         console.log(e)

@@ -152,7 +152,7 @@ ipcMain.on('open-compare-versions-window', (event, arg1, arg2, arg3) =>{
 
 async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earlierVersionInfo) {
     oldVersionWindow = new BrowserWindow({
-        width: 320,
+        width: 600,
         //height: 620,
         // transparent: true,
         x: 415,

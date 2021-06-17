@@ -539,7 +539,7 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
        var id2Message = document.querySelector('#selectedChangeId2 .versionMessage').textContent
        var id2Date = document.querySelector('#selectedChangeId2 .versionDate').textContent
        var id2Time = document.querySelector('#selectedChangeId2 .versionTime').textContent
-       var id2CommitNumber = document.querySelector('#selectedChangeId1 .commitNumber').textContent
+       var id2CommitNumber = document.querySelector('#selectedChangeId2 .commitNumber').textContent
 
        //*****COMPARE THE VERSION NUMBERS******* */
 
@@ -558,7 +558,7 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id1VersionNumber}</span></span>
                     <div id="versionMessageEarlier" style="display:none">${id1Message}</div>
-                    <span id="versionersionDateEarlier" style="display:none">${id1Date}</span><span id="versionTimeEarlier" style="display:none">${id1Time}</span>
+                    <span id="versionDateEarlier" style="display:none">${id1Date}</span><span id="versionTimeEarlier" style="display:none">${id1Time}</span>
                     <span id="commitNumberEarlier" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
@@ -668,6 +668,8 @@ function runComparisonFunction(){
         versionTime: earlierTime
     }
 
+    console.log('later commit number = ' + laterVersionArray.commitNumber)
+    console.log('earlier commit number = ' + earlierVersionArray.commitNumber)
     var arg1 = projectFolderPath
     var arg2 = JSON.stringify(laterVersionArray)
     var arg3 = JSON.stringify(earlierVersionArray)
