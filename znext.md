@@ -129,9 +129,10 @@ make it easy to show and hide the main screen
           @@ -1,17 +1,22 @@
 to parse this, I split the string by split("diff --git a/"). This works well. But what if someone has that combo in the document itself? If so, it will split the string based on that. What to do? I need a different way of parsing the diff result. diff2html does it somehow, but I haven't been able to determine it yet. If I don't find a solution, then I could still split the string, but don't change any formatting (right now I add a separator and highlight the folder name). Just parse it in order to add a div id with the name of the file, which I use to link to that section from the table of contents. I could still keep the link--so worst case the table of contents link gets messed up, which is not a big deal.
 
-could do the split based on more info, like the actual name of the doc, which you get from the original diffsymmary array. Or could do split based on git diff -a/......@....@
+could do the split based on more info, like the actual name of the doc, which you get from the original diffsymmary array. Alternatively,  could do split based on git diff -a/......@....@
 
---when running a word diff, I look for certain symbols and replace them: [- , -], {+, +}  . These get stripped out and show up as deletions and additions. But what if the original docs have these in them? How to address that? Would need a way to tell between a deletion from git diff, and a "[-". same with the addition symbol. One possibility: can I change how git diff labels deletions and additions? I can do that on my local system with a config file. Maybe a way to do that in the app?
+--when running a word diff, I look for certain symbols and replace them: [- , -], {+, +}  . These get stripped out and show up as deletions and additions. But what if the original docs have these in them? How to address that? Would need a way to tell between a deletion from git diff, and a "[-". same with the addition symbol. One possibility: can I change how git diff labels deletions and additions? I can do that on my local system with a config file. Maybe a way to do that in the app? And change it to a random longer set of characters. If that doesn't work, could have an option to just highlight those characters (so highlight the deletion symbol in bold red, and addition symbol in bold green.)
+     --to start, maybe have a list of limitations. and this would be one of them. 
 
 
 --add a search box to the app windows so you can search text inside of the window.
