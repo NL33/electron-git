@@ -3,17 +3,6 @@ just laid out prior commits in the section on showing prior changes to adjust ch
 
 
 # Next
-need to separate out when choose the later version and when choose the earlier version.
-
-so have button saying change next to both later version and earlier version.  can just be a button saying "change", next to the later or earlier version.
-
-select change, and then have hader say "select later version" and you select that .
-
-can select change earlier version, and have button say change earlier version.
-
-Then have button saying "Show changes"
-
-can hit either button anytime. 
 
 ***
 plan simple structure for viewing two specific versions against each other.

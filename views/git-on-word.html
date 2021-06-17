@@ -225,8 +225,7 @@
             border-right: 2px solid #2db94b;
         }
 
-        #earlierVersionOverview,
-        #laterVersionOverview {
+        .versionNumberOverview {
             font-size: 14pt
         }
 
@@ -279,13 +278,16 @@
     <div style="margin-bottom: 15px">
         <span>Newer Version: </span>
         <span id="laterVersionOverview">
-            <span class="selectedForChangesClass" id="laterVersionforChanges"></span>
-                <span id="laterVersionNumber"><span id="versionWordLater"></span><span id="versionNumberLater">Current
-                        Changes</span></span>
-                <div class="laterVersionMessage" style="display:none">n/a</div>
-                <span class="laterVersionDate" style="display:none">n/a</span><span class="laterVersionTime" style="display:none">n/a</span>
-                <span class="commitNumber" style="display: none">current-changes</span>
+            <span class="selectedForChangesClass" id="laterVersionForChanges"></span>
+            <span class="versionNumberOverview">
+                <span class="versionWord"></span>
+                <span class="versionNumberForChanges">Current Changes</span>
             </span>
+            <div class="versionMessage" style="display:none">n/a</div>
+            <span class="versionDate" style="display:none">n/a</span><span class="versionTime"
+                style="display:none">n/a</span>
+            <span class="commitNumber" style="display: none">current-changes</span>
+        </span>
         </span>
     </div>
 

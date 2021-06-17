@@ -146,9 +146,11 @@ ipcMain.on('open-old-version-window', (event, args) => {
 
 /******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
 
-ipcMain.on('open-compare-versions-window', (event, args) =>{
+ipcMain.on('open-compare-versions-window', (event, arg1, arg2) =>{
     var receivedInfo = JSON.parse(args)
-    compareVersionWindowFunction()
+    console.log('arg1 = ' + arg1) //start here
+    console.log('arg2 = ' + arg2)
+   // compareVersionWindowFunction()
 })
 
 
