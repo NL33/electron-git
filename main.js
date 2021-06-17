@@ -146,11 +146,11 @@ ipcMain.on('open-old-version-window', (event, args) => {
 
 /******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
 
-ipcMain.on('open-compare-versions-window', (event, arg1, arg2) =>{
-   compareVersionsWindowFunction(arg1, arg2)
+ipcMain.on('open-compare-versions-window', (event, arg1, arg2, arg3) =>{
+   compareVersionsWindowFunction(arg1, arg2, arg3)
 })
 
-async function compareVersionsWindowFunction(laterVersionInfo, earlierVersionInfo) {
+async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earlierVersionInfo) {
     oldVersionWindow = new BrowserWindow({
         width: 320,
         //height: 620,
@@ -158,7 +158,7 @@ async function compareVersionsWindowFunction(laterVersionInfo, earlierVersionInf
         x: 415,
         y: 0,
         webPreferences: {
-            additionalArguments: [laterVersionInfo, earlierVersionInfo],
+            additionalArguments: [projectPath, laterVersionInfo, earlierVersionInfo],
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
             enableRemoteModule: true

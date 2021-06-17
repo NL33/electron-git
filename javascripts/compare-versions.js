@@ -16,7 +16,11 @@ const { promisify } = require('util')
 var diff2html = require("diff2html").Diff2Html
 /*****Button Set Up *****/
 window.onload = function () {
-   
+   var projectFolderPath = window.process.argv.slice(-3)[0] 
+   var laterVersionInfo = JSON.parse(window.process.argv.slice(-3)[1])
+   var earlierVersionInfo = JSON.parse(window.process.argv.slice(-3)[2])
+   console.log('project path = ' + projectFolderPath)
+   console.log('later Version INfo = ' + JSON.stringify(laterVersionInfo))  /***START HERE */
 
 }
 
@@ -101,7 +105,11 @@ async function doTopDiffFunction(result){
      const diffString = result
      const diffHtml = await Diff2html.html(diffJson, { drawFileList: true });
      document.getElementById('showDiffTop').innerHTML = await diffHtml
-    
+ } catch (e) {
+     console.log('error in doTopDiffFunction = ')
+     console.log(e)
+ }
+}
             /*
 //with diff2htmlUI
 const configuration = { drawFileList: true, matching: 'lines' };

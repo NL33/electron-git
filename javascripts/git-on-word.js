@@ -668,9 +668,10 @@ function runComparisonFunction(){
         versionTime: earlierTime
     }
 
-    var arg1 = JSON.stringify(laterVersionArray)
-    var arg2 = JSON.stringify(earlierVersionArray)
-    ipcRenderer.send('open-compare-versions-window', arg1, arg2)
+    var arg1 = projectFolderPath
+    var arg2 = JSON.stringify(laterVersionArray)
+    var arg3 = JSON.stringify(earlierVersionArray)
+    ipcRenderer.send('open-compare-versions-window', arg1, arg2, arg3)
 }
 
 /********* GIT DIFF TESTING ******* */
