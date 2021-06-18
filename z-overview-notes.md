@@ -44,6 +44,95 @@ Overall: taking the benefits of an IDE (like VS code) and git, and giving them i
 5. Comparing versions for word docs, apple notes, and urls.
 6. Share whole projects easily (to come)
 
+*Capabilities Beyond Your Computer*
+
+# What capabilities should there be for having your items off your computer
+
+To use this system for my own docs, I will want somewhere to save them off my computer. Otherwise, I'd be too concerned that files could be lost.
+
+ways that I might save the project files:
+--external disk
+--dropbox
+--github
+
+# Allowing Sharing--easily? Summary:
+
+--below is a lot of discussion about how sharing can work. 
+current conclusion (June 18, 2021, 11am): 
+    --make it easy to view changes (including to word docs) when viewing locally in the app. For microsoft word docs, when want to view changes, convert changed docs to md, and show diff changes that way
+    --app makes it easy to view prior versions of docs as well. so you could always use word's built in comparison tools on top of the app if you want to things like create a track change version. App makes it easy.
+    --***for sharing between computers: use github. They already have the functionality, security, pay for storage, etc.
+    --***but build an interface in the app for interacting with github, to make it easy for non-technical people to use. Just like I am building a wrapper on top of git (instead of rebuilding git itself), I can build a wrapper in front of github (instead of rebuilding github itself), that makes it friendlier and works the way I want to. For this, I'd probably use the github api.
+    --So assume that any interaction with github is going to be on the person's local computer through my app.
+    --for microsoft word docs, to view changes on github, would have to convert to md. But, remember, assume user will be interacting with github through the app itself. So, don't worry about converting word to md when saving commits or sending to github. That will start taking up a lot of storage, will make the git save process slow (so people won't want to do it), and having a separate md doc for each word doc will be confusing.
+    --instead, just save the project folder, with word docs, as is. So word docs (and no md equivalents) will be in the git commits, and sent to github.
+    --from github, the user can download the updated changes onto their machine. And once there, the app can take care of showing changes by converting to md at that time just for purposes of showing changes (converting only the docs that changed, and after running diff, remove the md files.)
+    --just make it very easy for the user to downlod the updated project file from github, view changes, and update their local file to the updated project file if they want.
+    --remember that you can download and open microsoft word docs directly from github if you like.
+    --so, bottom line:
+        1. for sharing, will build easy to use interface for non-technical users to interact with github: sending files to github and getting files from github
+        2. Don't convert word to md, except for when trying to view changes to project files or specific word docs. At that point, do the conversion on the changed files to be able to see the changes.
+        3. this approach is clean. it makes the saves faster. it saves space for users. and is less confusing for users. 
+        4. downside is not being able to view the doc or the changes in the browser. But hopefully I can make the process of downloading and viewing changes so smooth for the user that from their computer it feels like the equivalent of just viewing changes on the browser.
+
+
+
+## Notes
+--the orignal vision for writing that I discussed with A was that you could save your versions and then easily share them so you have a single source of truth. So you could avoid having to send docs back and forth over email.
+
+--I have been doing the local version piece. To be really useful, there needs to be some sharing piece. I originally thought I would build the sharing piece myself. But that might not be necessary. To really get it working, will take a lot of effort and maintaining. And I what I would build probably is not that much better than github. It could be more non-tech friendly. Maybe there is a way to build a wrapper for that too, just like I've done with git. So the user interface that the user sees is simple. It could potentially be in browser or on users computer. Potentially itneract with github API.
+
+--example: make it easy to update your local files to sync with the updated repo on git. Right now, its a little technical. I could make it easy: https://docs.github.com/en/github/getting-started-with-github/using-git/getting-changes-from-a-remote-repository
+
+--And then github would pay for the storage piece. 
+
+--to test this out, would just start with a simple example of sharing a word doc (or project) between two people. And just do an overlay of the simplest functionality required for them to view each other's changes.
+
+--But to get started toward that, I need a way of getting changes to github. That is all done automatically, except for the microsoft word to md conversion.
+
+With dropbox, could just get the link and share the link.
+
+github provides more functionality in terms of being able to see the changes online. 
+
+For github, the main piece that is missing is conversion for binary files (mostly, microsoft word). 
+
+How could this work: at some point I'll need to convert the word files to MD files. Options:
+1. Do the conversion for each file on every commit. so for every binary file you have a matching md file.
+    --benefits: gets you ready to run comparisons and send to github easily. --and, when push changes to github, the word docs will be there too, so other users can download them. So you get the view the changes online, and can also download the word docs themselves to make changes. 
+        --flow: have a folder with word docs in it. save changes and it creates an md version of each word doc. when you make changes later, it saves the changes for any changed word doc to the md doc as well. Go to push to github, and it pushes all files up there. you can look at the md files online, and you can separately download the actual word doc on your local computer. And github handles the storage.
+    --drawbacks: --confusing for non-technical users to have a separate doc right there. 
+                        --could hide the markdown files if they have a word equivalent
+                --if you update the md docs for each save, the save process can be slow for each save, and that would deter you from wanting to save the versions in the first place. 
+
+                --storage: for each word doc, you'd be including an MD doc that is 3 times as big. And the git file is also including the word docs too remember (that is required so you can go back to prior versions of the word docs). For every gitsave of a 30 kb word doc, you could be adding 90 kb+ to the storage.  Example:
+                    50 kb word doc. becomes
+                    50 kb + 120 kb (md doc) + 50 kb (git) + 120kb git = 340kb to start. then for every change:
+                    50kb git + 50kb (git for md) = 100 kb. 
+
+    --best solution: md docs, but only when you need them.
+        --when you want to run comparisons that include word docs: convert to MD docs to show the changes at that point, and then remove the MD docs after showing the changes.
+
+        --when you want to push to github. create an md doc equivalent for each word doc. 
+            --note that the equivalent has to be in the git commit for it to be pushed. so this might not end up saving much. Every time you want to push, you'd have to do a ocmmit with the md docs. So in the end you would be in a similar place as you would be with just having to do an md equivalent for every word doc.
+    --alternative:
+        --use the md only when you want to actually do a diff.
+        --so you don't fool around with the word doc or md doc when you are saving to git or you are pushing to github.
+        --to view the changes, that is when the magic happens. example:
+            A is writing a story and I am helping her. She is using the app along with microsoft word.
+            A writes chapter 1, version 1. saves it to version control. And sends it to github.
+            On github, there is now the latest version of the document. I can see the name of the file and when it was updated, but I can't see any changes in the browser.
+            I can open the doc directly from github (just not open a change document)
+            I can download the project file to my computer. 
+                --maybe label it as changes folder.
+                --I can then run changes to see the changes (where they are converted to md) 
+                --with button I can update my local version to their version (remember my old versions will be in version control). Note this does make it important to have author name on the commits so I can see who made the commits 
+            downside: I can't view your changes in the browser. I have to download the changes to make it happen.
+               --but, I can put an interface on that makes the process easy. 
+                        --could be an interface in front of github. So on my computer when I go to view the changes, it does the conversion right then (I go to view from the app, and it does the download and vonvert process right then, so I don't have to take extra steps other than how I normally view changes on my local machine in the app)
+
+
+
+
 *How to Handle Word Docs*
 
 --Code as of May 27, 2021 at 6:00pm, in the file javascripts/git-on-word.js works to have a folder full of word docs, hit "save", go through all files and determine what docs have changed since last git commit, if word doc convert to MD file, and then add all to the git commit.

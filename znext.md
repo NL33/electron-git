@@ -132,6 +132,11 @@ could do the split based on more info, like the actual name of the doc, which yo
 
 --change font color and style to look better. See github diffs (for readmes) as an example
 
+--when load the app and check for last folder, make sure it still exists. it may have moved since the app last loaded. so do a check to be sure the path is still there before displaying that folder. If the path is not there, just open blank and user selects the new folder
+
+--when release the app, be sure to remove any z items, like znext and zoverview-notes
+
+
 # contact notes
 
 if link it to github, could tell them about it to get their support

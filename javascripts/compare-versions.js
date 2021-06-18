@@ -32,7 +32,7 @@ window.onload = function () {
 /*******GIT DIFF WITH WORD  **************/
 
 function getChangedFilesFunction(){
-
+    //if word docs are there, then do this process:
 }
 
 /********* GIT DIFF TESTING ******* */
