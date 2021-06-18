@@ -136,6 +136,9 @@ could do the split based on more info, like the actual name of the doc, which yo
 
 --when release the app, be sure to remove any z items, like znext and zoverview-notes
 
+--when enter a commit message, are there certain characters you can't enter? If so, make sure that won't trip users up.
+
+--if creating work trees to view prior versions or compare word docs (putting old worddocs in worktree, and converting to md), make sure these are not caught up in any commit while they are there.
 
 # contact notes
 

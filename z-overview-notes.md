@@ -17,9 +17,6 @@ like the terminal. go into a folder. and save the project version with a note.
 version control for apple notes (and other items that don't create local folders)--you can mark the folder as an "apple notes" folder, and it will take on modified functionality. Like: the folder will be tied to a folder in apple notes itself. and when you do a git save, it will check which notes haven't been saved yet, and it will convert them to md files so they can be saved.
 
 
-
-
-
 # Other Notes
 remember focus is projects--like a project that combines research with writing. Don't get distracted by tracking random notes.
 
