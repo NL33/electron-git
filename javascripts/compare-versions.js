@@ -28,6 +28,13 @@ window.onload = function () {
 
 }
 
+
+/*******GIT DIFF WITH WORD  **************/
+
+function getChangedFilesFunction(){
+
+}
+
 /********* GIT DIFF TESTING ******* */
 
 document.getElementById('gitDiffWord').addEventListener('click', () => {

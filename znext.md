@@ -1,52 +1,39 @@
 # Just Completed
-just laid out prior commits in the section on showing prior changes to adjust changes.
+just made it work to see changes in a separate doc, and allow current changes against later docs. 
 
 
 # Next
+--run diff for micro word docs. 
+--see if can change the [- and {+ symbols for diffs
+--run the diff in new window automatically (without button)
 
-***
-plan simple structure for viewing two specific versions against each other.
-     -main list there is button to view changes. when hit view changes it opens up another window (just like pattern of view prior versions)
-     -view changes can be an option at the bottom of the screen, that you press to see options.
-     -options:
-          --show saved versions. then click on which ones you want to view. default can be current local changes versus most recent one (which would be simple git diff)
-               at top, show the two options (like, current changes vs. version 3)
-               and separately scroll the old versions.
-     --separate button that says either "mixed view (or something like that--see what github calls it)", "line by line"--can select the other option 
+--run diff for specific docs (remember diff -U999999)
+--give user options to choose integrated v on top diffs
+--make the compare change window an option at the bottom of the main screen to kickstart this whole process
 
-   --comparing specific docs. Remember that you need to 1. select the doc, and 2. select the versions. when choose compare specific documents, show folder options. and select docs from there. and then select the versions like in the above. 
+****
+Plan for comparing word docs:
 
-Steps
+--run git diff --name-only to get just file names
 
-1. assume user has already selected that they want to compare changes. DONE
-2. show prior versions. DONE
-3. have header showing the versions being compared. DONE
-4. select prior versions to change what's in the header. DONE
-5. have button that says compare changes
-6. click compare changes button to open up separate window that shows the changes
-7. have option for what kind of chnages to see: mixd view (or whatever github calls it--can test by adding a change with prose, or look at readme file) v line by line
-8. have option at bottom of main screen to view changes.  
+if any file has docx or doc extension, then need to convert.
+have to get the doc as of the prior commit. do a work tree
+
+--have to get the word doc from the earlier commit. how to do that?. do a worktree for the prior commit.
+
+--get the file from the worktree. 
+
+--convert the file to md, saving it either in the worktree folder or a new folder in the directory. 
+
+--then take the word docs we care about from the current commit, and convert to md, and save in separate folder
+
+--so ultimately you have two folders of md docs. then run git diff --no-index to compare the two folders (without having to commit any of those changes)
+
+--produce the chagnes, then delete the folders.
 
 
+--then add in any changes from non-word docs.
 
-***
-add option to compare specific docs: git diff -U49999999
-3. be able to open a full doc showing the changes (to see all changes in the doc).
-NOTE: First test this approach to make sure it works. Use two docs and do it manually
-or--maybe there is a way to use git diff and get full context?
-
-git diff -U4999999   (would be cover 499,999 lines. As a test, if a word doc had 100 lines per page (which would be way more than normal), and a doc had 1000 pages (way more than normal), then there would be 100,000 lines)
-
-look here: https://stackoverflow.com/questions/28727424/for-git-diff-is-there-a-uinfinity-option-to-show-the-whole-file
-and here: https://www.reddit.com/r/git/comments/8f8f7a/how_do_i_look_at_an_entire_file_for_the_diffs/
-     --find the two docs being compared (versiona and versionb).
-     --create a new doc with versona
-     --put it into a repo
-     --replace that doc with version b
-     --run git diff
-     --take results and put them into an html doc
-***
-do comparison for word docs.
 
 ***
 be able to collapse showing of folders by clicking on the project name (adding carrot icons to show if open or not. and the carrot icons are the indicator if folder or file)
@@ -132,6 +119,7 @@ to parse this, I split the string by split("diff --git a/"). This works well. Bu
 could do the split based on more info, like the actual name of the doc, which you get from the original diffsymmary array. Alternatively,  could do split based on git diff -a/......@....@
 
 --when running a word diff, I look for certain symbols and replace them: [- , -], {+, +}  . These get stripped out and show up as deletions and additions. But what if the original docs have these in them? How to address that? Would need a way to tell between a deletion from git diff, and a "[-". same with the addition symbol. One possibility: can I change how git diff labels deletions and additions? I can do that on my local system with a config file. Maybe a way to do that in the app? And change it to a random longer set of characters. If that doesn't work, could have an option to just highlight those characters (so highlight the deletion symbol in bold red, and addition symbol in bold green.)
+     --note how github does it for readmes--showing changes if you click the doc icon.
      --to start, maybe have a list of limitations. and this would be one of them. 
 
 
@@ -142,6 +130,7 @@ could do the split based on more info, like the actual name of the doc, which yo
 
 --when release, be sure to have way to update the app and provide notices in the app. There's probably some tutorials out there about charging for electron apps
 
+--change font color and style to look better. See github diffs (for readmes) as an example
 
 # contact notes
 
