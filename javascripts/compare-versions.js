@@ -1,6 +1,6 @@
 const { ipcRenderer, ipcMain, clipboard, shell, remote } = require('electron')
 const { Menu, MenuItem } = remote
-const { writeFile, fstat } = require('fs')
+const { mkdir, writeFile, fstat } = require('fs')
 const fs = require("fs")
 var path = require('path')
 const simpleGit = require('simple-git')
@@ -23,19 +23,25 @@ var earlierCommitNumber
 var wordDocPath
 /*****Button Set Up *****/
 window.onload = function () {
-   projectFolderPath = window.process.argv.slice(-3)[0] 
-   laterVersionInfo = JSON.parse(window.process.argv.slice(-3)[1])
-   earlierVersionInfo = JSON.parse(window.process.argv.slice(-3)[2])
-   console.log('project path = ' + projectFolderPath)
-   console.log('later Version INfo = ' + JSON.stringify(laterVersionInfo))  /***START HERE */
+    projectFolderPath = window.process.argv.slice(-3)[0]
+    laterVersionInfo = JSON.parse(window.process.argv.slice(-3)[1])
+    earlierVersionInfo = JSON.parse(window.process.argv.slice(-3)[2])
+    document.getElementById('testDiffWord').addEventListener('click', () => {
+        getChangedFilesFunction()
+    })
 
 }
 
 
 /*******GIT DIFF WITH WORD  **************/
+/*Sample docs
 
-async function getChangedFilesFunction(){
-   wordDocPath = '/path to word document' //(the git diff summary should produce the sub-folder path of the item, which should work)
+main-folder/llc-agreement.docx
+stockholders-agreement.docx
+
+*/
+async function getChangedFilesFunction() {
+    console.log('in get changed files function')
     laterCommitNumber = laterVersionInfo.commitNumber
     earlierCommitNumber = earlierVersionInfo.commitNumber
     try {
@@ -51,17 +57,18 @@ async function getChangedFilesFunction(){
         await git.raw('worktree', 'add', treeName).then(result => {
             if (result) {
                 console.log(result)
-                revertTree(treeName, earlieCommitNumber)
+                revertTree(treeName, earlierCommitNumber)
             } else {
                 console.log('error = ')
             }
         })
-    } catch(error){
+    } catch (error) {
         console.log('error in get changed files function = ' + error)
     }
 }
 
-async function revertTree(treeName, commitNumber){
+async function revertTree(treeName, commitNumber) {
+    console.log('in revert tree function')
     let treePath = projectFolderPath + '/' + treeName
     try {
         await git.cwd(treePath).then(result => {
@@ -78,15 +85,17 @@ async function revertTree(treeName, commitNumber){
     }
 }
 
-async function convertWordDoc(treePath){
-    let wordDoc= treePath + '/' + wordDocPath
+async function convertWordDoc(treePath) {
+    var doc1 = 'main-folder/llc-agreement.docx'
+    let wordDocPath = treePath + '/' + doc1
     /*steps: START HERE********
-    take the word doc in the worktree, and get the html
-    then get the markdown
-    then write file IN A SEPARATE NEW FOLDER IN THE MAIN PROJECT FILE--outside the worktree (STILL needs to be done), and put the markdown file there--givename, like "older".
-    then, revert the worktree to the other commit you are focused on.
-    then do the same process, putting the new markdown file in the same folder (name like "newer")
-    then run git diff --word-dif focused on these two files.
+    -take the word doc in the worktree, and get the html
+    -then get the markdown
+    -take the markdown path, and replace any forward slashes with a code (so node doesn't think we have to create a new directory where the slashes were)
+    -then write file IN A SEPARATE NEW FOLDER IN THE MAIN PROJECT FILE--outside the worktree (STILL needs to be done), and put the markdown file there--givename, like "older". START HERE
+    -then, revert the worktree to the other commit you are focused on.
+    -then do the same process, putting the new markdown file in the same folder (name like "newer")
+    -then run git diff --word-dif focused on these two files.
     repeat for each file
     */
     return new Promise((resolve, reject) => {
@@ -95,11 +104,29 @@ async function convertWordDoc(treePath){
             var data = turndownService.turndown(htmlWord)
             //now have a markdown 
             var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
-            var removeDocExtension = wordDocPath.replace(/\.[^/.]+$/, "")
-            var markDownPath = 'newTempFolder784321/' + removeDocExtension + '.md'
-            writeFile(markDownPath, dataCleaned, (err) => {
+            var removeDocExtension = doc1.replace(/\.[^/.]+$/, "")
+            //file at this point: /Users/sean/Desktop/git-app-test-docs/word-diff-test/383180worktree3#&7#&1#&4/main-folder/llc-agreement
+ 
+            var markDownDoc = removeDocExtension + '.md'
+            var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579') //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
+            var markDownDocPath = projectFolderPath + '/newTempFolder784321/' + markDownDocPathChanged
+            var newFolderPath = projectFolderPath + '/newTempFolder784321'
+            if (fs.existsSync(newFolderPath)){
+                console.log('it already exists')
+            } else {
+                console.log('it doesnt exist')
+                fs.mkdirSync(newFolderPath, (err) => { /***Start here: what if the subfolder doesn't exist? */
+                    if (err) {
+                        console.log('error in creating directory = ' + err)
+                    } else {
+                        console.log('new directory created')
+                        createMarkDownFile(markDownDocPath)
+                    }
+                })
+            }
+            writeFile(markDownDocPath, dataCleaned, (err) => {
                 if (err) {
-                    console.log('error = ' + err)
+                    console.log('error in write file action = ' + err)
                 } else {
                     resolve(dataCleaned)   //completed the conversion for the doc. sends it back to promise.all(promises)
                 }
@@ -108,10 +135,15 @@ async function convertWordDoc(treePath){
     })
 }
 
+function createMarkDownFile(markDownDocPath){
+    console.log('in create markdownfile')
+  
+}
+
 /********* GIT DIFF TESTING ******* */
 
 document.getElementById('gitDiffWord').addEventListener('click', () => {
-    gitDiffFunctionWord()
+    gitDiffFunctionWord() //function to do integrated word test
 })
 
 
@@ -125,13 +157,13 @@ async function gitDiffFunctionWord() {
 
         await git.diffSummary().then(result => {
             console.log('first summary = ' + JSON.stringify(result))
-            result.files.forEach((item)=>{
+            result.files.forEach((item) => {
                 var file = item.file
                 var newId = '#' + file
                 var contents = `<div><a href="${newId}">${file}</a><div>`
                 document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
             })
-           // document.getElementById('showDiffWord').innerHTML = JSON.stringify(result)
+            // document.getElementById('showDiffWord').innerHTML = JSON.stringify(result)
         })
         if (laterCommitNumber !== 'current-changes') {
             await git.raw('diff', '--word-diff', earlierCommitNumber, laterCommitNumber).then(result => {
@@ -192,7 +224,7 @@ async function gitDiffFunctionWord() {
 
 
 document.getElementById('gitDiffTop').addEventListener('click', () => {
-    gitDiffFunctionTop()
+    gitDiffFunctionTop() //function to do comparison one on top of the other, using diff2html
 })
 
 async function gitDiffFunctionTop() {
@@ -203,7 +235,7 @@ async function gitDiffFunctionTop() {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
 
-        if (laterCommitNumber !== 'current-changes'){
+        if (laterCommitNumber !== 'current-changes') {
             await git.raw('diff', earlierCommitNumber, laterCommitNumber).then(result => {
                 doTopDiffFunction(result)
             })
@@ -220,18 +252,18 @@ async function gitDiffFunctionTop() {
     }
 }
 
-async function doTopDiffFunction(result){
+async function doTopDiffFunction(result) {
     //with diffHTML
- try {
-     const Diff2html = require('diff2html');
-    const diffJson = await Diff2html.parse(result);
-     const diffString = result
-     const diffHtml = await Diff2html.html(diffJson, { drawFileList: true });
-     document.getElementById('showDiffTop').innerHTML = await diffHtml
- } catch (e) {
-     console.log('error in doTopDiffFunction = ')
-     console.log(e)
- }
+    try {
+        const Diff2html = require('diff2html');
+        const diffJson = await Diff2html.parse(result);
+        const diffString = result
+        const diffHtml = await Diff2html.html(diffJson, { drawFileList: true });
+        document.getElementById('showDiffTop').innerHTML = await diffHtml
+    } catch (e) {
+        console.log('error in doTopDiffFunction = ')
+        console.log(e)
+    }
 }
             /*
 //with diff2htmlUI
@@ -249,7 +281,7 @@ diff2htmlUi.highlightCode();
 
 }
 
-
+*/
 
 
 
