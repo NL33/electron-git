@@ -85,7 +85,7 @@ let mammothCounter= 0
 let mammothNeedsToRun
 async function convertWordDoc(treePath) {
     let wordDocArray = ['main-folder/llc-agreement.docx', 'stockholders-agreement.docx']
-    /*steps: START HERE********
+    /*steps: 
     -take the word doc in the worktree, and get the html
     -then get the markdown
     -take the markdown path, and replace any forward slashes with a code (so node doesn't think we have to create a new directory where the slashes were)
@@ -155,7 +155,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned){
             } else {
                 console.log('done with conversion of older and new word docs')
                 if (mammothCounter === mammothNeedsToRun) {
-                    console.log('all done. mammoth counter equals worddocarray')
+                    console.log('all done. mammoth counter equals worddocarray. NOW YOU CAN RUN THE GIT DIFF OF THE TWO NEW FOLDERS')
                 } else {
                     console.log('not done yet--mammoth counter does not equal worddocarray. mammoth counter = ' + mammothCounter + '; mammoth needs to run = ' + mammothNeedsToRun)
                 }
@@ -163,7 +163,22 @@ async function writeFileFunction(markDownDocPath, dataCleaned){
             //resolve(dataCleaned)   //completed the conversion for the doc. 
         }
     })
- 
+ /**************START HERE
+ 1. create worktree.
+ 2. for each commit being compared, create reversion of worktree to that number.
+ 3. loop through each word doc, creating a md version of old and new.
+
+  I jsut added an array of docs to loop through under convert word function.
+
+  issue then is tracking the mammoth conversion (async), then the writeFile conversion (async). It's ok for these to run in parallel for differnt docs. The key is to be sure that when you run the diff of the two new temp folders, that the process has fully run.
+
+  NEXT: 
+  --check to be sure the process has fully run--make sure the steps work so they go in right order.
+  --right now the array of word docs is hardcoded--instead, get the docs that changed from the diff summary
+  --run the diff on the two folders
+  --integrate that with the diff of all non-word docs
+
+ */
 
 
 }
