@@ -15,12 +15,14 @@ const { promisify } = require('util')
 
 var diff2html = require("diff2html").Diff2Html
 
-var projectFolderPath
-var laterVersionInfo
-var earlierVersionInfo
-var laterCommitNumber
-var earlierCommitNumber
-var wordDocPath
+let projectFolderPath
+let laterVersionInfo
+let earlierVersionInfo
+let laterCommitNumber
+let earlierCommitNumber
+let wordDocPath
+let functionCounter = 0
+let treeName
 /*****Button Set Up *****/
 window.onload = function () {
     projectFolderPath = window.process.argv.slice(-3)[0]
@@ -34,12 +36,7 @@ window.onload = function () {
 
 
 /*******GIT DIFF WITH WORD  **************/
-/*Sample docs
 
-main-folder/llc-agreement.docx
-stockholders-agreement.docx
-
-*/
 async function getChangedFilesFunction() {
     console.log('in get changed files function')
     laterCommitNumber = laterVersionInfo.commitNumber
@@ -53,7 +50,7 @@ async function getChangedFilesFunction() {
         var randomNumber = Math.floor(Math.random() * 10000)
         var randomMultiple = Math.floor(Math.random() * 500)
         var theNumber = randomNumber * randomMultiple
-        var treeName = theNumber.toString() + 'worktree3#&7#&1#&4'
+        treeName = theNumber.toString() + 'worktree3#&7#&1#&4'
         await git.raw('worktree', 'add', treeName).then(result => {
             if (result) {
                 console.log(result)
@@ -68,6 +65,7 @@ async function getChangedFilesFunction() {
 }
 
 async function revertTree(treeName, commitNumber) {
+    functionCounter++
     console.log('in revert tree function')
     let treePath = projectFolderPath + '/' + treeName
     try {
@@ -79,15 +77,14 @@ async function revertTree(treeName, commitNumber) {
             convertWordDoc(treePath)
         })
 
-
     } catch (e) {
         console.log('error in revert function = ' + e)
     }
 }
-
+let mammothCounter= 0
+let mammothNeedsToRun
 async function convertWordDoc(treePath) {
-    var doc1 = 'main-folder/llc-agreement.docx'
-    let wordDocPath = treePath + '/' + doc1
+    let wordDocArray = ['main-folder/llc-agreement.docx', 'stockholders-agreement.docx']
     /*steps: START HERE********
     -take the word doc in the worktree, and get the html
     -then get the markdown
@@ -98,21 +95,38 @@ async function convertWordDoc(treePath) {
     -then run git diff --word-dif focused on these two files.
     repeat for each file
     */
-    return new Promise((resolve, reject) => {
+    mammothNeedsToRun = (wordDocArray.length) * 2  //mamoth needs to convert the old version and the new version of each world file. so mammoth needs to run the amount of thw word docs, times 2
+   for (let i=0; i < wordDocArray.length; i++){
+  //START HERE: Try without doing promise. It's ok for mammoth to convert asyncronously. The key is that you have some way to tell when it has fully run. NExt step will be to run the git diff comparison of all the docs, but can't do that until we know the conversions are all done.
+
+  //maybe: put a counter in the mamoth result, and then only go to next step once the counter hits the length of the array?
+   
+   // return new Promise((resolve, reject) => {
+        let wordDocPath = treePath + '/' + wordDocArray[i]
+        console.log('in convertworddoc promise for  = ' + wordDocArray[i])
         mammoth.convertToHtml({ path: wordDocPath }).then(function (result) {
+            mammothCounter++
             var htmlWord = result.value
             var data = turndownService.turndown(htmlWord)
             //now have a markdown 
             var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
-            var removeDocExtension = doc1.replace(/\.[^/.]+$/, "")
+            var removeDocExtension = wordDocArray[i].replace(/\.[^/.]+$/, "")
             //file at this point: /Users/sean/Desktop/git-app-test-docs/word-diff-test/383180worktree3#&7#&1#&4/main-folder/llc-agreement
- 
-            var markDownDoc = removeDocExtension + '#old#.md'
-            var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579') //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
-            var markDownDocPath = projectFolderPath + '/newTempFolder784321/' + markDownDocPathChanged
-            var newFolderPath = projectFolderPath + '/newTempFolder784321'
+            var markDownDoc = removeDocExtension + '.md'
+            var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579')
+            console.log('function counter = ' + functionCounter)
+            if (functionCounter === 1){    
+                var markDownDocPath = projectFolderPath + '/newTempFolder7843OLD/' + markDownDocPathChanged
+                var newFolderPath = projectFolderPath + '/newTempFolder7843OLD'
+            } else {
+                var markDownDocPath = projectFolderPath + '/newTempFolder7843NEW/' + markDownDocPathChanged
+                var newFolderPath = projectFolderPath + '/newTempFolder7843NEW'
+            }
+             //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
+            
             if (fs.existsSync(newFolderPath)){
                 console.log('it already exists')
+                writeFileFunction(markDownDocPath, dataCleaned)
             } else {
                 console.log('it doesnt exist')
                 fs.mkdirSync(newFolderPath, (err) => { /***Start here: what if the subfolder doesn't exist? */
@@ -120,25 +134,41 @@ async function convertWordDoc(treePath) {
                         console.log('error in creating directory = ' + err)
                     } else {
                         console.log('new directory created')
-                        createMarkDownFile(markDownDocPath)
+                        writeFileFunction(markDownDocPath, dataCleaned)
                     }
                 })
             }
-            writeFile(markDownDocPath, dataCleaned, (err) => {
-                if (err) {
-                    console.log('error in write file action = ' + err)
-                } else {
-                    resolve(dataCleaned)   //completed the conversion for the doc. sends it back to promise.all(promises)
-                }
-            })
+ 
         })
-    })
+    //})
+   }
 }
 
-function createMarkDownFile(markDownDocPath){
-    console.log('in create markdownfile')
-  
+async function writeFileFunction(markDownDocPath, dataCleaned){
+    await writeFile(markDownDocPath, dataCleaned, (err) => {
+        if (err) {
+            console.log('error in write file action = ' + err)
+        } else {
+            if (functionCounter === 1) {
+                console.log('finished older conversion, now do the second conversion')
+                revertTree(treeName, laterCommitNumber)
+            } else {
+                console.log('done with conversion of older and new word docs')
+                if (mammothCounter === mammothNeedsToRun) {
+                    console.log('all done. mammoth counter equals worddocarray')
+                } else {
+                    console.log('not done yet--mammoth counter does not equal worddocarray. mammoth counter = ' + mammothCounter + '; mammoth needs to run = ' + mammothNeedsToRun)
+                }
+            }
+            //resolve(dataCleaned)   //completed the conversion for the doc. 
+        }
+    })
+ 
+
+
 }
+
+
 
 /********* GIT DIFF TESTING ******* */
 

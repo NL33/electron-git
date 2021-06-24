@@ -1111,7 +1111,7 @@ async function checkGitChangeTime(theFilePath) { //check the last time the git f
  in the first loop, don't do the asynchronous work. use that work to get all the filePaths for word docs that need to be worked on.
  Then, for all those filepaths, do the asynchronous magic work.
  once you've done so for all the paths in the word array, then and only then call the git function
- /******START HERE********* */
+ */
 var wordDocs = []
 var count = 0
 async function checkChangesFunction(theFilePath, lastSaveTime) {
