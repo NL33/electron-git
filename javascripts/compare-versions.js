@@ -107,7 +107,7 @@ async function convertWordDoc(treePath) {
             var removeDocExtension = doc1.replace(/\.[^/.]+$/, "")
             //file at this point: /Users/sean/Desktop/git-app-test-docs/word-diff-test/383180worktree3#&7#&1#&4/main-folder/llc-agreement
  
-            var markDownDoc = removeDocExtension + '.md'
+            var markDownDoc = removeDocExtension + '#old#.md'
             var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579') //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
             var markDownDocPath = projectFolderPath + '/newTempFolder784321/' + markDownDocPathChanged
             var newFolderPath = projectFolderPath + '/newTempFolder784321'
@@ -258,7 +258,7 @@ async function doTopDiffFunction(result) {
         const Diff2html = require('diff2html');
         const diffJson = await Diff2html.parse(result);
         const diffString = result
-        const diffHtml = await Diff2html.html(diffJson, { drawFileList: true });
+        const diffHtml = await Diff2html.html(diffJson, { drawFileList: true, diffStyle: 'word' });
         document.getElementById('showDiffTop').innerHTML = await diffHtml
     } catch (e) {
         console.log('error in doTopDiffFunction = ')
