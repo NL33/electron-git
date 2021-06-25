@@ -23,6 +23,8 @@ let earlierCommitNumber
 let wordDocPath
 let functionCounter = 0
 let treeName
+let mammothCounter
+let mammothNeedsToRun
 /*****Button Set Up *****/
 window.onload = function () {
     projectFolderPath = window.process.argv.slice(-3)[0]
@@ -39,6 +41,7 @@ window.onload = function () {
 
 async function getChangedFilesFunction() {
     console.log('in get changed files function')
+    mammothCounter = 0
     laterCommitNumber = laterVersionInfo.commitNumber
     earlierCommitNumber = earlierVersionInfo.commitNumber
     try {
@@ -51,10 +54,10 @@ async function getChangedFilesFunction() {
         var randomMultiple = Math.floor(Math.random() * 500)
         var theNumber = randomNumber * randomMultiple
         treeName = theNumber.toString() + 'worktree3#&7#&1#&4'
-        await git.raw('worktree', 'add', treeName).then(result => {
+        await git.raw('worktree', 'add', treeName).then(result => {   //^1. Create WorkTree (one for both versions)
             if (result) {
-                console.log(result)
-                revertTree(treeName, earlierCommitNumber)
+                let oldTempFolder = projectFolderPath + '/newTempFolder7843OLD'
+                createTempFolders(oldTempFolder, treeName, earlierCommitNumber) //^2. For earlier commit: go to revert tree function. done afte worktree is created (sync timing = good)
             } else {
                 console.log('error = ')
             }
@@ -64,6 +67,41 @@ async function getChangedFilesFunction() {
     }
 }
 
+function createTempFolders(tempFolder, treeName, earlierCommitNumber){
+    console.log('in createTempFolders')
+    let tempOld = projectFolderPath + '/newTempFolder7843OLD'
+    let tempNew = projectFolderPath + '/newTempFolder7843NEW'
+    if (fs.existsSync(tempFolder)) {
+        if (tempFolder === tempOld) {
+            console.log('1')
+            createTempFolders(tempNew, treeName, earlierCommitNumber)
+        } else {
+            console.log('2')
+            revertTree(treeName, earlierCommitNumber)
+        }
+    } else {
+        fs.mkdir(tempFolder, (err) => { //^7b. If the temp folder directory doesn't exist yet, create it first, then make then send the new md file into it.
+            if (err) {
+                console.log('error in creating directory = ' + err)
+            } else {
+                if (tempFolder === tempOld) {
+                    console.log('3')
+                    createTempFolders(tempNew, treeName, earlierCommitNumber)
+                } else {
+                    console.log('4')
+                    revertTree(treeName, earlierCommitNumber)
+                }
+            }
+        })
+    }
+}
+
+
+
+
+
+
+
 async function revertTree(treeName, commitNumber) {
     functionCounter++
     console.log('in revert tree function')
@@ -72,39 +110,28 @@ async function revertTree(treeName, commitNumber) {
         await git.cwd(treePath).then(result => {
         })
 
-        await git.checkout(commitNumber).then(result => {
+        await git.checkout(commitNumber).then(result => { //^3. checkout the tree to the commit number (first, the older one). sync timing = good.
             console.log('checkout result = ' + result)
-            convertWordDoc(treePath)
+            convertWordDoc(treePath) //^4. go to convert word function based on the current tree. sync timing = good.
         })
 
     } catch (e) {
         console.log('error in revert function = ' + e)
     }
 }
-let mammothCounter= 0
-let mammothNeedsToRun
+
 async function convertWordDoc(treePath) {
-    let wordDocArray = ['main-folder/llc-agreement.docx', 'stockholders-agreement.docx']
-    /*steps: 
-    -take the word doc in the worktree, and get the html
-    -then get the markdown
-    -take the markdown path, and replace any forward slashes with a code (so node doesn't think we have to create a new directory where the slashes were)
-    -then write file IN A SEPARATE NEW FOLDER IN THE MAIN PROJECT FILE--outside the worktree (STILL needs to be done), and put the markdown file there--givename, like "older". START HERE
-    -then, revert the worktree to the other commit you are focused on.
-    -then do the same process, putting the new markdown file in the same folder (name like "newer")
-    -then run git diff --word-dif focused on these two files.
-    repeat for each file
-    */
+    let wordDocArray = ['main-folder/llc-agreement.docx', 'stockholders-agreement.docx'] //^5. for each word doc that changed, convert the version that is in the current checked out tree. sync timing = good.
+
     mammothNeedsToRun = (wordDocArray.length) * 2  //mamoth needs to convert the old version and the new version of each world file. so mammoth needs to run the amount of thw word docs, times 2
    for (let i=0; i < wordDocArray.length; i++){
   //START HERE: Try without doing promise. It's ok for mammoth to convert asyncronously. The key is that you have some way to tell when it has fully run. NExt step will be to run the git diff comparison of all the docs, but can't do that until we know the conversions are all done.
 
   //maybe: put a counter in the mamoth result, and then only go to next step once the counter hits the length of the array?
-   
-   // return new Promise((resolve, reject) => {
         let wordDocPath = treePath + '/' + wordDocArray[i]
-        console.log('in convertworddoc promise for  = ' + wordDocArray[i])
-        mammoth.convertToHtml({ path: wordDocPath }).then(function (result) {
+        //console.log('in convertworddoc promise for  = ' + wordDocArray[i])
+        mammoth.convertToHtml({ path: wordDocPath }).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel. That is ok.
+           console.log('MAMMOTH converted for = ' + wordDocPath)
             mammothCounter++
             var htmlWord = result.value
             var data = turndownService.turndown(htmlWord)
@@ -114,48 +141,39 @@ async function convertWordDoc(treePath) {
             //file at this point: /Users/sean/Desktop/git-app-test-docs/word-diff-test/383180worktree3#&7#&1#&4/main-folder/llc-agreement
             var markDownDoc = removeDocExtension + '.md'
             var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579')
-            console.log('function counter = ' + functionCounter)
-            if (functionCounter === 1){    
+            if (functionCounter === 1){ //based on how many times revert tree has run. if run just once, then we are in the old setting. If run twice, then we are in the new setting.   
                 var markDownDocPath = projectFolderPath + '/newTempFolder7843OLD/' + markDownDocPathChanged
                 var newFolderPath = projectFolderPath + '/newTempFolder7843OLD'
+               
             } else {
                 var markDownDocPath = projectFolderPath + '/newTempFolder7843NEW/' + markDownDocPathChanged
                 var newFolderPath = projectFolderPath + '/newTempFolder7843NEW'
             }
+            writeFileFunction(markDownDocPath, dataCleaned)
              //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
             
-            if (fs.existsSync(newFolderPath)){
-                console.log('it already exists')
-                writeFileFunction(markDownDocPath, dataCleaned)
-            } else {
-                console.log('it doesnt exist')
-                fs.mkdirSync(newFolderPath, (err) => { /***Start here: what if the subfolder doesn't exist? */
-                    if (err) {
-                        console.log('error in creating directory = ' + err)
-                    } else {
-                        console.log('new directory created')
-                        writeFileFunction(markDownDocPath, dataCleaned)
-                    }
-                })
-            }
+          
  
         })
-    //})
    }
 }
 
 async function writeFileFunction(markDownDocPath, dataCleaned){
-    await writeFile(markDownDocPath, dataCleaned, (err) => {
+    console.log('FILE TO WRITE = ' + markDownDocPath)
+    writeFile(markDownDocPath, dataCleaned, (err) => {//^8. send the md file to the temp folder
         if (err) {
             console.log('error in write file action = ' + err)
         } else {
             if (functionCounter === 1) {
                 console.log('finished older conversion, now do the second conversion')
-                revertTree(treeName, laterCommitNumber)
+               // if (mammothCounter === (mammothNeedsToRun / 2)){
+                    revertTree(treeName, laterCommitNumber)
+               // }
+               
             } else {
                 console.log('done with conversion of older and new word docs')
                 if (mammothCounter === mammothNeedsToRun) {
-                    console.log('all done. mammoth counter equals worddocarray. NOW YOU CAN RUN THE GIT DIFF OF THE TWO NEW FOLDERS')
+                    console.log('all done. mammoth counter equals word-doc-array. NOW YOU CAN RUN THE GIT DIFF OF THE TWO NEW FOLDERS')
                 } else {
                     console.log('not done yet--mammoth counter does not equal worddocarray. mammoth counter = ' + mammothCounter + '; mammoth needs to run = ' + mammothNeedsToRun)
                 }
