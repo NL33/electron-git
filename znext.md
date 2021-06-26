@@ -3,7 +3,11 @@ just made it work to see changes in a separate doc, and allow current changes ag
 
 
 # Next
---run diff for micro word docs. 
+--run diff for micro word docs:
+      --check to be sure the process has fully run--make sure the steps work so they go in right order.
+      --right now the array of word docs is hardcoded--instead, get the docs that changed from the diff summary
+      --run the diff on the two folders
+     --integrate that with the diff of all non-word docs
 --see if can change the [- and {+ symbols for diffs
 --run the diff in new window automatically (without button)
 
