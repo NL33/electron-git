@@ -25,13 +25,14 @@ let revertTreeFunctionCounter = 0
 let treeName
 let mammothCounter
 let mammothNeedsToRun
+let wordDocsArray = []
 /*****Button Set Up *****/
 window.onload = function () {
     projectFolderPath = window.process.argv.slice(-3)[0]
     laterVersionInfo = JSON.parse(window.process.argv.slice(-3)[1])
     earlierVersionInfo = JSON.parse(window.process.argv.slice(-3)[2])
     document.getElementById('testDiffWord').addEventListener('click', () => {
-        getChangedFilesFunction()
+        startWordDiffProcess()
     })
 
 }
@@ -39,7 +40,7 @@ window.onload = function () {
 
 /*******GIT DIFF WITH WORD  **************/
 
-async function getChangedFilesFunction() {
+async function startWordDiffProcess() {
     mammothCounter = 0
     laterCommitNumber = laterVersionInfo.commitNumber
     earlierCommitNumber = earlierVersionInfo.commitNumber
@@ -107,7 +108,7 @@ async function revertTree(treeName, commitNumber) {
 }
 let numberOfWordDocsToConvert
 async function convertWordDoc(treePath) {
-    let wordDocArray = ['main-folder/llc-agreement.docx', 'stockholders-agreement.docx'] //^5. for each word doc that changed, convert the version that is in the current checked out tree.
+    let wordDocArray = wordDocsArray//^5. for each word doc that changed, convert the version that is in the current checked out tree. We get the wordDocsArray from the git diff summary action 
     numberOfWordDocsToConvert = wordDocArray.length
     mammothNeedsToRun = (wordDocArray.length) * 2  //mamoth needs to convert the old version and the new version of each world file. so mammoth needs to run the amount of thw word docs, times 2
     for (let i = 0; i < wordDocArray.length; i++) {
@@ -148,15 +149,14 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
            // console.log('older folder length = ' + oldFolderLength)
             // if (functionCounter === 1) {
             if ((oldFolderLength === numberOfWordDocsToConvert) && (writeFileRun === numberOfWordDocsToConvert) && (revertTreeFunctionCounter < 2)) {
-                console.log('finished older conversion, now do the second conversion')
-                // if (mammothCounter === (mammothNeedsToRun / 2)){
+                //'finished older conversion, now do the second conversion'
                 revertTree(treeName, laterCommitNumber)
-                // }
-
             } else {
                 let newFolderLength = fs.readdirSync(folderNew).length
                 if ((newFolderLength === numberOfWordDocsToConvert) && (oldFolderLength === numberOfWordDocsToConvert) && (mammothCounter === mammothNeedsToRun) && (writeFileRun === mammothNeedsToRun)) {
                     //done converting all word docs. Should have all word docs converted to md docs and in the temp folders. Ready for next step
+                    console.log('done converting the word docs. Now run the diff')
+                    diffTheTempFolders()
                 } else {
                    //still needs to run
                 }
@@ -164,7 +164,42 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
             }
         }
     })
+}
 
+async function diffTheTempFolders(){
+    var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
+    var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+        await git.raw('diff', '--no-index', '--word-diff', folderOld, folderNew, (error, result) => {
+            console.log('result of diff the temp folders = ' + result)
+            var red = result.replace(/\[-/g, '<del style="color: #c00">')
+            var endred = red.replace(/-]/g, '</del>')
+            //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
+            //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
+            var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
+            var endgreen = green.replace(/\+}/g, '</ins>')
+            var resultArray = endgreen.split('diff --git a/')
+            for (var i = 1; i < resultArray.length; i++) {
+                var fileNameRaw = resultArray[i].split(" ")[0]
+                var fileName1 = fileNameRaw.replace('135#&579-135#&579', '/')  //show original folder structure
+                var fileName = fileName1.split("newTempFolder7843OLD/").pop()
+                var contents = `
+                    <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
+                    <div id=${fileName}>
+                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 10px;white-space: pre-wrap">${fileName}</div>
+                        <div style="white-space: pre-wrap">${resultArray[i]}</div>
+                    </div>
+                    `
+                document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
+            }
+        })
+    } catch(error) {
+        console.log('error in comparing the temporary folders = ' + error)
+    }
 }
 
 /********* GIT DIFF TESTING ******* */
@@ -173,6 +208,7 @@ document.getElementById('gitDiffWord').addEventListener('click', () => {
     gitDiffFunctionWord() //function to do integrated word test
 })
 
+let areThereWordDocs = false
 
 async function gitDiffFunctionWord() {
     laterCommitNumber = laterVersionInfo.commitNumber
@@ -182,28 +218,34 @@ async function gitDiffFunctionWord() {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
 
-        await git.diffSummary().then(result => {
-            console.log('first summary = ' + JSON.stringify(result))
-            result.files.forEach((item) => {
-                var file = item.file
+        await git.raw('diff','--name-only', earlierCommitNumber, laterCommitNumber, (error, result)=>{
+           var resultArray = result.split('\n')
+           resultArray.forEach((file) =>{
                 var newId = '#' + file
                 var contents = `<div><a href="${newId}">${file}</a><div>`
                 document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
+                if (path.extname(file).includes('doc')){
+                    console.log('we have a word doc here')
+                    areThereWordDocs = true
+                    wordDocsArray.push(file)
+                }
             })
+            if (areThereWordDocs === true){
+                console.log('run the word doc diff on these files = ')
+                startWordDiffProcess()
+            }
             // document.getElementById('showDiffWord').innerHTML = JSON.stringify(result)
         })
         if (laterCommitNumber !== 'current-changes') {
             await git.raw('diff', '--word-diff', earlierCommitNumber, laterCommitNumber).then(result => {
-                console.log(result)
+                console.log('result of file changes = ' + result)
                 var red = result.replace(/\[-/g, '<del style="color: #c00">')
                 var endred = red.replace(/-]/g, '</del>')
-                console.log('2')
                 //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
                 //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
                 var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
                 var endgreen = green.replace(/\+}/g, '</ins>')
                 var resultArray = endgreen.split('diff --git a/')
-                console.log('3')
                 for (var i = 1; i < resultArray.length; i++) {
                     var fileName = resultArray[i].split(" ")[0]
                     var contents = `
@@ -213,7 +255,6 @@ async function gitDiffFunctionWord() {
                         <div style="white-space: pre-wrap">${resultArray[i]}</div>
                     </div>
                     `
-                    console.log('4')
                     document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
                 }
             })

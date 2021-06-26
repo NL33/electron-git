@@ -1,13 +1,18 @@
 # Just Completed
-just made it work to see changes in a separate doc, and allow current changes against later docs. 
+Just completed full function to convert then run diff on word documents. And now call that diff function (diffTheTempFolders) from within the testWordDiff Function.
 
+it works, though a little slow.
 
 # Next
 --run diff for micro word docs:
-      --check to be sure the process has fully run--make sure the steps work so they go in right order.
-      --right now the array of word docs is hardcoded--instead, get the docs that changed from the diff summary
-      --run the diff on the two folders
-     --integrate that with the diff of all non-word docs
+      --check to be sure the process has fully run--make sure the steps work so they go in right order. DONE.
+      --right now the array of word docs is hardcoded--instead, get the docs that changed from the diff summary. DONE
+      --run the diff on the two folders. DONE
+     --START HERE: integrate that with the diff of all non-word docs. So, have the nonword docs' diff show up first, then show the micro word. IN PROGRESS
+--current code has a summary of all docs, including micro word docs, that appears when you run the original diff function. So right now that summary for word docs appears below the word diff. make this not happen.
+--change the micro word diff to get rid of the summary at the beginning (starting with file name through @@ in the git result)
+--make it work if just running current (incommitted) version against older version
+--try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async?
 --see if can change the [- and {+ symbols for diffs
 --run the diff in new window automatically (without button)
 
