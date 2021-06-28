@@ -106,6 +106,7 @@ async function revertTree(treeName, commitNumber) {
         console.log('error in revert function = ' + e)
     }
 }
+
 let numberOfWordDocsToConvert
 async function convertWordDoc(treePath) {
     let wordDocArray = wordDocsArray//^5. for each word doc that changed, convert the version that is in the current checked out tree. We get the wordDocsArray from the git diff summary action 
@@ -135,6 +136,7 @@ async function convertWordDoc(treePath) {
         })
     }
 }
+
 let writeFileRun = 0
 async function writeFileFunction(markDownDocPath, dataCleaned) {
     var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
@@ -200,9 +202,27 @@ async function diffTheTempFolders(){
                 document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
             }
         })
+        removeWorkTreeFromWordComparison()
     } catch(error) {
         console.log('error in comparing the temporary folders = ' + error)
     }
+}
+
+async function removeWorkTreeFromWordComparison(){
+    console.log('remove work tree function')
+    fs.readdir(projectFolderPath, (err, files)=>{
+        if (err){
+            console.log(err)
+        } else {
+            files.forEach(file =>{
+                if (file.includes('worktree3#&7#&1#&4')){
+                   git.raw('worktree', 'remove', file, '--force').then((result) => {
+                       git.raw('worktree', 'prune')
+                    })
+                }
+            })
+        }
+    })
 }
 
 /********* GIT DIFF TESTING ******* */
