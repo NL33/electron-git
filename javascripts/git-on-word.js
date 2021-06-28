@@ -954,7 +954,7 @@ async function removeWorkTree(treePath) {
                     }
                 }
             }) //delete that folder
-            await git.raw('worktree', 'prune').then((result) => {
+            await git.raw('worktree', 'prune').then((result) => { //removes info about worktrees which no longer exist
             })
         }
     } catch (e) {

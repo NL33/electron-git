@@ -141,14 +141,14 @@ let writeFileRun = 0
 async function writeFileFunction(markDownDocPath, dataCleaned) {
     var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
     var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
-   
+
     writeFile(markDownDocPath, dataCleaned, (err) => {//^7. send the file to the temp folder
-       writeFileRun++
+        writeFileRun++
         if (err) {
             console.log('error in write file action = ' + err)
         } else {
             let oldFolderLength = fs.readdirSync(folderOld).length
-           // console.log('older folder length = ' + oldFolderLength)
+            // console.log('older folder length = ' + oldFolderLength)
             // if (functionCounter === 1) {
             if ((oldFolderLength === numberOfWordDocsToConvert) && (writeFileRun === numberOfWordDocsToConvert) && (revertTreeFunctionCounter < 2)) {
                 //'finished older conversion, now do the second conversion'
@@ -160,7 +160,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                     console.log('done converting the word docs. Now run the diff')
                     diffTheTempFolders()
                 } else {
-                   //still needs to run
+                    //still needs to run
                 }
                 //resolve(dataCleaned)   //completed the conversion for the doc. 
             }
@@ -168,7 +168,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
     })
 }
 
-async function diffTheTempFolders(){
+async function diffTheTempFolders() {
     var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
     var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
     try {
@@ -203,25 +203,37 @@ async function diffTheTempFolders(){
             }
         })
         removeWorkTreeFromWordComparison()
-    } catch(error) {
+    } catch (error) {
         console.log('error in comparing the temporary folders = ' + error)
     }
 }
 
-async function removeWorkTreeFromWordComparison(){
-    console.log('remove work tree function')
-    fs.readdir(projectFolderPath, (err, files)=>{
-        if (err){
+async function removeWorkTreeFromWordComparison() {
+    fs.readdir(projectFolderPath, (err, files) => {
+        if (err) {
             console.log(err)
         } else {
-            files.forEach(file =>{
-                if (file.includes('worktree3#&7#&1#&4')){
-                   git.raw('worktree', 'remove', file, '--force').then((result) => {
-                       git.raw('worktree', 'prune')
-                       var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
-                       var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
-                       fs.rmdirSync(folderOld, { recursive: true });
-                       fs.rmdirSync(folderNew, { recursive: true });
+            files.forEach(file => {
+                if (file.includes('worktree3#&7#&1#&4')) {
+                    git.raw('worktree', 'remove', file, '--force').then((result) => {
+                        git.raw('worktree', 'prune')
+                        var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
+                        var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
+                        fs.rm(folderOld, { recursive: true }, (err) => {
+                            console.log('running old delete = ' + oldDelete)
+                            if (err) {
+                                //error here could occur if there are left over worktrees that haven't been removed before running the new function (example: worktree created to do a word comparison, but app stopped before complete). If mroe than one worktree left over, would then run the remove the old temp folder twice. In that case, the temp folder won't be there on the second run through, creating an error. However, this catches the error, so no concern
+                            } else {
+                                //tempfolderold deleted
+                            }
+                        })
+                        fs.rm(folderNew, { recursive: true }, (err) => {
+                            if (err) {
+                                //error in removing temp folder. could be bc tempfolder already removed.
+                            } else {
+                                //tempfolder new deleted
+                            }
+                        })
                     })
                 }
             })
@@ -246,27 +258,27 @@ async function gitDiffFunctionIntegrated() {
         })
 
         //first get the name of all changed files:
-        await git.raw('diff','--name-only', earlierCommitNumber, laterCommitNumber, (error, result)=>{
-           var resultArray = result.split('\n')
-           resultArray.forEach((file) =>{
+        await git.raw('diff', '--name-only', earlierCommitNumber, laterCommitNumber, (error, result) => {
+            var resultArray = result.split('\n')
+            resultArray.forEach((file) => {
                 var newId1 = '#' + file
-               if (newId1.slice(newId1.length - 3) === 'doc') { //when printing the doc names at the top, for word docs, set the id to be the name of the file with the doc or docx extension removed. This way, we can link it to the converted document (which will have an md extension)
-                   var newId = newId1.slice(0, - 4) //minus 4 to remove extension name and period.
-               } else if (newId1.slice(newId1.length - 4) === 'docx'){
-                   var newId = newId1.slice(0, - 5)
-               } else {
-                   var newId = newId1
-               }
+                if (newId1.slice(newId1.length - 3) === 'doc') { //when printing the doc names at the top, for word docs, set the id to be the name of the file with the doc or docx extension removed. This way, we can link it to the converted document (which will have an md extension)
+                    var newId = newId1.slice(0, - 4) //minus 4 to remove extension name and period.
+                } else if (newId1.slice(newId1.length - 4) === 'docx') {
+                    var newId = newId1.slice(0, - 5)
+                } else {
+                    var newId = newId1
+                }
                 var contents = `<div><a href="${newId}">${file}</a><div>`
                 document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
-                if (path.extname(file).includes('doc')){
+                if (path.extname(file).includes('doc')) {
                     //we have a word doc here
                     areThereWordDocs = true
                     wordDocsArray.push(file)
                 }
             })
-            if (areThereWordDocs === true){
-               startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
+            if (areThereWordDocs === true) {
+                startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
             }
         })
 
@@ -284,8 +296,8 @@ async function gitDiffFunctionIntegrated() {
                     var fileName = resultArray[i].split(" ")[0] //get the filename
                     //the diff result produces a summary before showing the changes. The summary ends with "@@ [change numbers] @@". Goal is to remove this summary and go right at the changes themselves. The way we do this is to remove the text up to the second occurence of "@@":
                     var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
-                    var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence+1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
-                    var showResults = resultArray[i].substring((secondOccurence+2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
+                    var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
+                    var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
                     if ((fileName.slice(fileName.length - 3) !== 'doc') && (fileName.slice(fileName.length - 4) !== 'docx')) { //print changes only if not a word document. If a word document, printing changes handled separately in "startWordDiffProcess()"
                         var contents = `
                         <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">

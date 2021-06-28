@@ -9,8 +9,8 @@ it works, though a little slow.
       --right now the array of word docs is hardcoded--instead, get the docs that changed from the diff summary. DONE
       --run the diff on the two folders. DONE
      --START HERE: integrate that with the diff of all non-word docs. So, have the nonword docs' diff show up first, then show the micro word. DONE
---current code has a summary of all docs, including micro word docs, that appears when you run the original diff function. So right now that summary for word docs appears below the word diff. make this not happen.
---change the micro word diff to get rid of the summary at the beginning (starting with file name through @@ in the git result)
+--current code has a summary of all docs, including micro word docs, that appears when you run the original diff function. So right now that summary for word docs appears below the word diff. make this not happen. DONE
+--change the micro word diff to get rid of the summary at the beginning (starting with file name through @@ in the git result) DONE.
 --remove the worktree, and the temp folders, after diff is run.
 --right now, the diff for word docs shows things like bold using "*". Can you show it so it looks closer to original word doc. Something about showing a converted markup? (so isntead of "**", you see bold, etc...)
 --make it work if just running current (incommitted) version against older version
