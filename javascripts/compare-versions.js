@@ -218,6 +218,10 @@ async function removeWorkTreeFromWordComparison(){
                 if (file.includes('worktree3#&7#&1#&4')){
                    git.raw('worktree', 'remove', file, '--force').then((result) => {
                        git.raw('worktree', 'prune')
+                       var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
+                       var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
+                       fs.rmdirSync(folderOld, { recursive: true });
+                       fs.rmdirSync(folderNew, { recursive: true });
                     })
                 }
             })
