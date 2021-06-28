@@ -191,9 +191,9 @@ async function diffTheTempFolders(){
                 var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
                 var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
                 var contents = `
-                    <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
+                    <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
                     <div id=${fileName}>
-                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;white-space: pre-wrap">${fileName}</div>
+                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;  white-space: pre-wrap">${fileName}</div>
                         <div style="white-space: pre-wrap">${showResults}</div>
                     </div>
                     `
@@ -264,7 +264,7 @@ async function gitDiffFunctionIntegrated() {
                     var showResults = resultArray[i].substring((secondOccurence+2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
                     if ((fileName.slice(fileName.length - 3) !== 'doc') && (fileName.slice(fileName.length - 4) !== 'docx')) { //print changes only if not a word document. If a word document, printing changes handled separately in "startWordDiffProcess()"
                         var contents = `
-                        <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
+                        <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
                         <div id=${fileName}>
                             <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;white-space: pre-wrap">${fileName}</div>
                             <div style="white-space: pre-wrap">${showResults}</div>
@@ -294,7 +294,7 @@ async function gitDiffFunctionIntegrated() {
                     var contents = `
                     <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
                     <div id=${fileName}>
-                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;white-space: pre-wrap">${fileName}</div>
+                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px; margin-left: 0px; white-space: pre-wrap">${fileName}</div>
                         <div style="white-space: pre-wrap">${showResults}</div>
                     </div>
                     `
