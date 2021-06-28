@@ -3,6 +3,8 @@ Just completed full function to convert then run diff on word documents. And now
 
 it works, though a little slow.
 
+
+
 # Next
 --run diff for micro word docs:
       --check to be sure the process has fully run--make sure the steps work so they go in right order. DONE.
@@ -11,9 +13,17 @@ it works, though a little slow.
      --START HERE: integrate that with the diff of all non-word docs. So, have the nonword docs' diff show up first, then show the micro word. DONE
 --current code has a summary of all docs, including micro word docs, that appears when you run the original diff function. So right now that summary for word docs appears below the word diff. make this not happen. DONE
 --change the micro word diff to get rid of the summary at the beginning (starting with file name through @@ in the git result) DONE.
---remove the worktree, and the temp folders, after diff is run.
+--remove the worktree, and the temp folders, after diff is run. DONE
 --right now, the diff for word docs shows things like bold using "*". Can you show it so it looks closer to original word doc. Something about showing a converted markup? (so isntead of "**", you see bold, etc...)
+     --options:
+          -as is: comparing changes will show "*" and "_" for bold and italics.
+               --also shows code @@...@@ when skips lines.
+          --justdownloaded "Marked" and testing it. Formatting seems a little off--adds line breaks and struggles with bold if something is bold+italics. Showdown js: https://github.com/showdownjs/showdown. also seems to work potentially, but hasn't been updated since 2019. 
+          --one question is whether i can just do the conversion myself--focusing on bold and italics. But then test marked and showdown for tables and see how they look (if they look a lot better, then that may be a reason to try to make them work)
+          START HERE
+          
 --make it work if just running current (incommitted) version against older version
+--change the line break notice ("@@...@@")
 --try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async?
 --see if can change the [- and {+ symbols for diffs
 --run the diff in new window automatically (without button)
