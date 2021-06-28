@@ -206,12 +206,12 @@ async function diffTheTempFolders(){
 /********* GIT DIFF TESTING ******* */
 
 document.getElementById('gitDiffWord').addEventListener('click', () => {
-    gitDiffFunctionWord() //function to do integrated word test
+    gitDiffFunctionIntegrated() //function to do integrated word test
 })
 
 let areThereWordDocs = false
 
-async function gitDiffFunctionWord() {
+async function gitDiffFunctionIntegrated() {
     laterCommitNumber = laterVersionInfo.commitNumber
     earlierCommitNumber = earlierVersionInfo.commitNumber
     try {
@@ -219,6 +219,7 @@ async function gitDiffFunctionWord() {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
 
+        //first get the name of all changed files:
         await git.raw('diff','--name-only', earlierCommitNumber, laterCommitNumber, (error, result)=>{
            var resultArray = result.split('\n')
            resultArray.forEach((file) =>{
@@ -240,32 +241,34 @@ async function gitDiffFunctionWord() {
             })
             if (areThereWordDocs === true){
                 console.log('run the word doc diff on these files = ')
-                startWordDiffProcess()
+               // startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
             }
-            // document.getElementById('showDiffWord').innerHTML = JSON.stringify(result)
         })
+
+        //then show the actual changes:
         if (laterCommitNumber !== 'current-changes') {
             await git.raw('diff', '--word-diff', earlierCommitNumber, laterCommitNumber).then(result => {
-                console.log('result of file changes = ' + result)
                 var red = result.replace(/\[-/g, '<del style="color: #c00">')
                 var endred = red.replace(/-]/g, '</del>')
                 //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
                 //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
                 var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
                 var endgreen = green.replace(/\+}/g, '</ins>')
-                var resultArray = endgreen.split('diff --git a/')
+                var resultArray = endgreen.split('diff --git a/') //split the results up every time there is a diff --git a/. The result of this is to 
                 for (var i = 1; i < resultArray.length; i++) {
-                    var fileName = resultArray[i].split(" ")[0]
-                    console.log('file name = ' + fileName.slice(fileName.length - 4) )
+                    var fileName = resultArray[i].split(" ")[0] //get the filename
+                    //the diff result produces a summary before showing the changes. The summary ends with "@@ [change numbers] @@". Goal is to remove this summary and go right at the changes themselves. The way we do this is to remove the text up to the second occurence of "@@":
+                    var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
+                    var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence+1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
+                    var showResults = resultArray[i].substring((secondOccurence+2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
                     if ((fileName.slice(fileName.length - 3) !== 'doc') && (fileName.slice(fileName.length - 4) !== 'docx')) { //print changes only if not a word document. If a word document, printing changes handled separately in "startWordDiffProcess()"
                         var contents = `
                         <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
                         <div id=${fileName}>
                             <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 10px;white-space: pre-wrap">${fileName}</div>
-                            <div style="white-space: pre-wrap">${resultArray[i]}</div>
+                            <div style="white-space: pre-wrap">${showResults}</div>
                         </div>
                         `
-
                         document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
                     }
                 }
@@ -281,17 +284,19 @@ async function gitDiffFunctionWord() {
                 var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
                 var endgreen = green.replace(/\+}/g, '</ins>')
                 var resultArray = endgreen.split('diff --git a/')
-                console.log('3')
                 for (var i = 1; i < resultArray.length; i++) {
-                    var fileName = resultArray[i].split(" ")[0]
+                    var fileName = resultArray[i].split(" ")[0] //get the filename
+                    //the diff result produces a summary before showing the changes. The summary ends with "@@ [change numbers] @@". Goal is to remove this summary and go right at the changes themselves. The way we do this is to remove the text up to the second occurence of "@@":
+                    var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
+                    var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
+                    var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
                     var contents = `
                     <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
                     <div id=${fileName}>
                         <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 10px;white-space: pre-wrap">${fileName}</div>
-                        <div style="white-space: pre-wrap">${resultArray[i]}</div>
+                        <div style="white-space: pre-wrap">${showResults}</div>
                     </div>
                     `
-                    console.log('4')
                     document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
                 }
             })
