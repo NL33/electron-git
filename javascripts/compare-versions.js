@@ -186,7 +186,8 @@ async function diffTheTempFolders(){
             for (var i = 1; i < resultArray.length; i++) {
                 var fileNameRaw = resultArray[i].split(" ")[0]
                 var fileName1 = fileNameRaw.replace('135#&579-135#&579', '/')  //show original folder structure
-                var fileName = fileName1.split("newTempFolder7843OLD/").pop() //to show the file name without the newTempFolder and preceding stuff, that would be confusing to view.
+                var fileName2 = fileName1.split("newTempFolder7843OLD/").pop() //to show the file name without the newTempFolder and preceding stuff, that would be confusing to view.
+                var fileName = fileName2.slice(0, -3) //remove md extension name in the id so that it can link to the header (which is a word doc filename with extension removed)
                 var contents = `
                     <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
                     <div id=${fileName}>
@@ -221,7 +222,14 @@ async function gitDiffFunctionWord() {
         await git.raw('diff','--name-only', earlierCommitNumber, laterCommitNumber, (error, result)=>{
            var resultArray = result.split('\n')
            resultArray.forEach((file) =>{
-                var newId = '#' + file
+                var newId1 = '#' + file
+               if (newId1.slice(newId1.length - 3) === 'doc') { //when printing the doc names at the top, for word docs, set the id to be the name of the file with the doc or docx extension removed. This way, we can link it to the converted document (which will have an md extension)
+                   var newId = newId1.slice(0, - 4) //minus 4 to remove extension name and period.
+               } else if (newId1.slice(newId1.length - 4) === 'docx'){
+                   var newId = newId1.slice(0, - 5)
+               } else {
+                   var newId = newId1
+               }
                 var contents = `<div><a href="${newId}">${file}</a><div>`
                 document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
                 if (path.extname(file).includes('doc')){
