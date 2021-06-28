@@ -175,7 +175,6 @@ async function diffTheTempFolders(){
         })
 
         await git.raw('diff', '--no-index', '--word-diff', folderOld, folderNew, (error, result) => {
-            console.log('result of diff the temp folders = ' + result)
             var red = result.replace(/\[-/g, '<del style="color: #c00">')
             var endred = red.replace(/-]/g, '</del>')
             //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
@@ -188,11 +187,14 @@ async function diffTheTempFolders(){
                 var fileName1 = fileNameRaw.replace('135#&579-135#&579', '/')  //show original folder structure
                 var fileName2 = fileName1.split("newTempFolder7843OLD/").pop() //to show the file name without the newTempFolder and preceding stuff, that would be confusing to view.
                 var fileName = fileName2.slice(0, -3) //remove md extension name in the id so that it can link to the header (which is a word doc filename with extension removed)
+                var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
+                var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
+                var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
                 var contents = `
                     <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
                     <div id=${fileName}>
-                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 10px;white-space: pre-wrap">${fileName}</div>
-                        <div style="white-space: pre-wrap">${resultArray[i]}</div>
+                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;white-space: pre-wrap">${fileName}</div>
+                        <div style="white-space: pre-wrap">${showResults}</div>
                     </div>
                     `
                 document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
@@ -234,14 +236,13 @@ async function gitDiffFunctionIntegrated() {
                 var contents = `<div><a href="${newId}">${file}</a><div>`
                 document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
                 if (path.extname(file).includes('doc')){
-                    console.log('we have a word doc here')
+                    //we have a word doc here
                     areThereWordDocs = true
                     wordDocsArray.push(file)
                 }
             })
             if (areThereWordDocs === true){
-                console.log('run the word doc diff on these files = ')
-               // startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
+               startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
             }
         })
 
@@ -265,7 +266,7 @@ async function gitDiffFunctionIntegrated() {
                         var contents = `
                         <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
                         <div id=${fileName}>
-                            <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 10px;white-space: pre-wrap">${fileName}</div>
+                            <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;white-space: pre-wrap">${fileName}</div>
                             <div style="white-space: pre-wrap">${showResults}</div>
                         </div>
                         `
@@ -293,7 +294,7 @@ async function gitDiffFunctionIntegrated() {
                     var contents = `
                     <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
                     <div id=${fileName}>
-                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 10px;white-space: pre-wrap">${fileName}</div>
+                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;white-space: pre-wrap">${fileName}</div>
                         <div style="white-space: pre-wrap">${showResults}</div>
                     </div>
                     `
