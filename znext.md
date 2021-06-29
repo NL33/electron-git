@@ -20,8 +20,8 @@ it works, though a little slow.
                --also shows code @@...@@ when skips lines.
           --justdownloaded "Marked" and testing it. Formatting seems a little off--adds line breaks and struggles with bold if something is bold+italics. Showdown js: https://github.com/showdownjs/showdown. also seems to work potentially, but hasn't been updated since 2019. 
           --one question is whether i can just do the conversion myself--focusing on bold and italics. But then test marked and showdown for tables and see how they look (if they look a lot better, then that may be a reason to try to make them work)
-          START HERE
-          
+          --I tried showdown--it was not better than Marked. And neither addressed the table well.
+          --just added a potential regex based on: https://stackoverflow.com/questions/10168285/markdown-to-convert-double-asterisks-to-bold-text-in-javascript
 --make it work if just running current (incommitted) version against older version
 --change the line break notice ("@@...@@")
 --try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async?
@@ -160,6 +160,8 @@ could do the split based on more info, like the actual name of the doc, which yo
 --when enter a commit message, are there certain characters you can't enter? If so, make sure that won't trip users up.
 
 --if creating work trees to view prior versions or compare word docs (putting old worddocs in worktree, and converting to md), make sure these are not caught up in any commit while they are there.
+
+--if I have a word document open, it sometimes creates a hidden file equivalent (~$[name of file]). Seems to show up after I view hidden files. Shows up on main file results, and can get caught in git save. Make sure that doesn't happen.
 
 # contact notes
 

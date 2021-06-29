@@ -6,7 +6,7 @@ var path = require('path')
 const simpleGit = require('simple-git')
 const git = simpleGit()
 var TurndownService = require('turndown')
-var turndownService = new TurndownService()
+
 var mammoth = require("mammoth");
 
 let spawn = require("child_process").spawn
@@ -32,7 +32,8 @@ window.onload = function () {
     laterVersionInfo = JSON.parse(window.process.argv.slice(-3)[1])
     earlierVersionInfo = JSON.parse(window.process.argv.slice(-3)[2])
     document.getElementById('testDiffWord').addEventListener('click', () => {
-        startWordDiffProcess()
+        //startWordDiffProcess()
+        diffTheTempFolders()
     })
 
 }
@@ -109,23 +110,59 @@ let numberOfWordDocsToConvert
 async function convertWordDoc(treePath) {
     let wordDocArray = wordDocsArray//^5. for each word doc that changed, convert the version that is in the current checked out tree. We get the wordDocsArray from the git diff summary action 
     numberOfWordDocsToConvert = wordDocArray.length
+    /*
     var options = {
-        ignoreEmptyParagraphs: 'false'
+        //ignoreEmptyParagraphs: 'false'
+        styleMap: [
+            "p => pre: separator('\n')"
+        ]
     };
+    */
     mammothNeedsToRun = (wordDocArray.length) * 2  //mamoth needs to convert the old version and the new version of each world file. so mammoth needs to run the amount of thw word docs, times 2
     for (let i = 0; i < wordDocArray.length; i++) {
 
         let wordDocPath = treePath + '/' + wordDocArray[i]
         //console.log('in convertworddoc promise for  = ' + wordDocArray[i])
-        mammoth.convertToHtml({ path: wordDocPath }, options).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel. 
+        mammoth.convertToHtml({ path: wordDocPath }).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel.
             mammothCounter++
             var htmlWord = result.value
-            var data = turndownService.turndown(htmlWord)
+            var turndownService = new TurndownService()
+            turndownService.addRule('',{
+                filter: 'strong',
+                replacement: function (content) {
+                    return '<strong>' + content + '</strong>'
+                }
+            })
+            turndownService.addRule('', {
+                filter: 'em',
+                replacement: function (content) {
+                    return '<em>' + content + '</em>'
+                }
+            })
+
+            /* Turndown service examples:
+            turndownService.addRule('figure-with-youtube', {
+                filter: function (node, options) {
+                    console.log(node.nodeName)
+                    const classAttr = node.getAttribute('class')
+                    const isYoutube = classAttr && classAttr.indexOf('youtube-player') !== -1
+                    return node.nodeName === 'IFRAME' && isYoutube
+                },
+                replacement: function (content, node, options) {
+                    const src = node.getAttribute('src')
+                    return `<iframe src=${src}></iframe>`
+                }
+            })
+            turndownService = new TurndownService({ blankReplacement: (content, node) => node.isBlock && !node.matches("figure") ? "\n\n" : node.outerHTML })
+            */
+
+           
+            var data = turndownService.turndown(htmlWord) 
             //now have a markdown 
             var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
             var removeDocExtension = wordDocArray[i].replace(/\.[^/.]+$/, "")
             //example file at this point: /Users/username/Desktop/git-app-test-docs/word-diff-test/383180worktree3#&7#&1#&4/main-folder/llc-agreement
-            var markDownDoc = removeDocExtension + '.md' 
+            var markDownDoc = removeDocExtension + '.md'
             var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579')
             //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
             if (revertTreeFunctionCounter === 1) { //based on how many times revert tree has run. if run just once, then we are in the old setting. If run twice, then we are in the new setting.   
@@ -185,7 +222,7 @@ async function diffTheTempFolders() {
             var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
             var endgreen = green.replace(/\+}/g, '</ins>')
             //var endgreen2 = endgreen1.replaceAll('**_', '<span style="font-weight: bold">').replaceAll('_**', '</span>')
-           // var endgreen = endgreen2.replaceAll('**_', '<span style="font-weight: bold">').replaceAll('_**', '</span>')
+            // var endgreen = endgreen2.replaceAll('**_', '<span style="font-weight: bold">').replaceAll('_**', '</span>')
             var resultArray = endgreen.split('diff --git a/')
             for (var i = 1; i < resultArray.length; i++) {
                 var fileNameRaw = resultArray[i].split(" ")[0]
@@ -194,8 +231,10 @@ async function diffTheTempFolders() {
                 var fileName = fileName2.slice(0, -3) //remove md extension name in the id so that it can link to the header (which is a word doc filename with extension removed)
                 var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
                 var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
-                var showResults1 = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
-                var showResults = marked(showResults1)
+                var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
+              //  var bold = /\*\*(.*?)\*\*/gm;
+              //  var italics = /\_(.*?)\_/gm;
+                //var showResults = showResults1.replace(bold, '<strong>$1</strong>').replace(italics, '<em>$1</em>');
                 var contents = `
                     <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
                     <div id=${fileName}>
@@ -223,23 +262,21 @@ async function removeWorkTreeFromWordComparison() {
                         git.raw('worktree', 'prune')
                         var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
                         var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
-                      /*
-                        fs.rm(folderOld, { recursive: true }, (err) => {
-
-                            if (err) {
-                                //error here could occur if there are left over worktrees that haven't been removed before running the new function (example: worktree created to do a word comparison, but app stopped before complete). If mroe than one worktree left over, would then run the remove the old temp folder twice. In that case, the temp folder won't be there on the second run through, creating an error. However, this catches the error, so no concern
-                            } else {
-                                //tempfolderold deleted
-                            }
-                        })
-                        fs.rm(folderNew, { recursive: true }, (err) => {
-                            if (err) {
-                                //error in removing temp folder. could be bc tempfolder already removed.
-                            } else {
-                                //tempfolder new deleted
-                            }
-                        })
-                        */
+                          fs.rm(folderOld, { recursive: true }, (err) => {
+  
+                              if (err) {
+                                  //error here could occur if there are left over worktrees that haven't been removed before running the new function (example: worktree created to do a word comparison, but app stopped before complete). If mroe than one worktree left over, would then run the remove the old temp folder twice. In that case, the temp folder won't be there on the second run through, creating an error. However, this catches the error, so no concern
+                              } else {
+                                  //tempfolderold deleted
+                              }
+                          })
+                          fs.rm(folderNew, { recursive: true }, (err) => {
+                              if (err) {
+                                  //error in removing temp folder. could be bc tempfolder already removed.
+                              } else {
+                                  //tempfolder new deleted
+                              }
+                          })
                     })
                 }
             })
