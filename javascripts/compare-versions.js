@@ -139,24 +139,6 @@ async function convertWordDoc(treePath) {
                     return '<em>' + content + '</em>'
                 }
             })
-
-            /* Turndown service examples:
-            turndownService.addRule('figure-with-youtube', {
-                filter: function (node, options) {
-                    console.log(node.nodeName)
-                    const classAttr = node.getAttribute('class')
-                    const isYoutube = classAttr && classAttr.indexOf('youtube-player') !== -1
-                    return node.nodeName === 'IFRAME' && isYoutube
-                },
-                replacement: function (content, node, options) {
-                    const src = node.getAttribute('src')
-                    return `<iframe src=${src}></iframe>`
-                }
-            })
-            turndownService = new TurndownService({ blankReplacement: (content, node) => node.isBlock && !node.matches("figure") ? "\n\n" : node.outerHTML })
-            */
-
-           
             var data = turndownService.turndown(htmlWord) 
             //now have a markdown 
             var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
@@ -232,9 +214,6 @@ async function diffTheTempFolders() {
                 var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
                 var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
                 var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
-              //  var bold = /\*\*(.*?)\*\*/gm;
-              //  var italics = /\_(.*?)\_/gm;
-                //var showResults = showResults1.replace(bold, '<strong>$1</strong>').replace(italics, '<em>$1</em>');
                 var contents = `
                     <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
                     <div id=${fileName}>
