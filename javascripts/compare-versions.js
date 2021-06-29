@@ -127,7 +127,7 @@ async function convertWordDoc(treePath) {
             mammothCounter++
             var htmlWord = result.value
             var turndownService = new TurndownService()
-            turndownService.addRule('',{
+            turndownService.addRule('', {
                 filter: 'strong',
                 replacement: function (content) {
                     return '<strong>' + content + '</strong>'
@@ -139,7 +139,7 @@ async function convertWordDoc(treePath) {
                     return '<em>' + content + '</em>'
                 }
             })
-            var data = turndownService.turndown(htmlWord) 
+            var data = turndownService.turndown(htmlWord)
             //now have a markdown 
             var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
             var removeDocExtension = wordDocArray[i].replace(/\.[^/.]+$/, "")
@@ -197,7 +197,7 @@ async function diffTheTempFolders() {
         })
 
         await git.raw('diff', '--no-index', '--word-diff', folderOld, folderNew, (error, result) => {
-            var red = result.replace(/\[-/g, '<del style="color: #c00">')
+            var red = result.replace(/\[-/g, '<del style="color: #c00">')//.replaceAll('<del style="color: #c00"><', '<')
             var endred = red.replace(/-]/g, '</del>')
             //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
             //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
@@ -241,21 +241,21 @@ async function removeWorkTreeFromWordComparison() {
                         git.raw('worktree', 'prune')
                         var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
                         var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
-                          fs.rm(folderOld, { recursive: true }, (err) => {
-  
-                              if (err) {
-                                  //error here could occur if there are left over worktrees that haven't been removed before running the new function (example: worktree created to do a word comparison, but app stopped before complete). If mroe than one worktree left over, would then run the remove the old temp folder twice. In that case, the temp folder won't be there on the second run through, creating an error. However, this catches the error, so no concern
-                              } else {
-                                  //tempfolderold deleted
-                              }
-                          })
-                          fs.rm(folderNew, { recursive: true }, (err) => {
-                              if (err) {
-                                  //error in removing temp folder. could be bc tempfolder already removed.
-                              } else {
-                                  //tempfolder new deleted
-                              }
-                          })
+                        fs.rm(folderOld, { recursive: true }, (err) => {
+
+                            if (err) {
+                                //error here could occur if there are left over worktrees that haven't been removed before running the new function (example: worktree created to do a word comparison, but app stopped before complete). If mroe than one worktree left over, would then run the remove the old temp folder twice. In that case, the temp folder won't be there on the second run through, creating an error. However, this catches the error, so no concern
+                            } else {
+                                //tempfolderold deleted
+                            }
+                        })
+                        fs.rm(folderNew, { recursive: true }, (err) => {
+                            if (err) {
+                                //error in removing temp folder. could be bc tempfolder already removed.
+                            } else {
+                                //tempfolder new deleted
+                            }
+                        })
                     })
                 }
             })
@@ -425,7 +425,6 @@ diff2htmlUi.highlightCode();
 }
 
 */
-
 
 
 

@@ -64,6 +64,9 @@ $ npm install diff2html
     --to be able to show git comparisons in html
     --came with 2 severe vulnerabilities. Running npm audit fix seemed to address. Running $ npm i showed no vulnerabilities.
 
+$ npm install marked
+    --to be able to show mark down doc as good looking html 
+
 # Prior to rollback on April 15, 2021
 # RobotJS
 

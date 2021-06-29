@@ -156,12 +156,20 @@ could do the split based on more info, like the actual name of the doc, which yo
 --when load the app and check for last folder, make sure it still exists. it may have moved since the app last loaded. so do a check to be sure the path is still there before displaying that folder. If the path is not there, just open blank and user selects the new folder
 
 --when release the app, be sure to remove any z items, like znext and zoverview-notes
-
+ [
+            p[stylename= 'Code Block'] => pre:separator('\n')
+        ]
 --when enter a commit message, are there certain characters you can't enter? If so, make sure that won't trip users up.
 
 --if creating work trees to view prior versions or compare word docs (putting old worddocs in worktree, and converting to md), make sure these are not caught up in any commit while they are there.
 
 --if I have a word document open, it sometimes creates a hidden file equivalent (~$[name of file]). Seems to show up after I view hidden files. Shows up on main file results, and can get caught in git save. Make sure that doesn't happen.
+
+--when printing html, the electron app automatically strips out "<" in the html it shows. This is probably to sanitize, for security. That is fine. Issue: when running a conversion, if there is a "<" in there, everything afterward is stripped away. This can have strange implications, like if that section was in the deleted sections, then the result would be a start of <del> without an end. So everything from then on would show up as deleted.
+     --to address:
+          --for non-word docs: should be able to sanitize the entire diff result (like diff2html does)--so that you can show code results (like github does)
+          --for word docs: steps are: 1. convert to html, 2. convert to MD (adding in certain rules like changing the "strong" tag to '<strong>' in the md). then 3. running the diff. 
+               --instead, you could 1. convert to html, 2. convert to md with turndown (but instead take 'strong' tag and turn it into an arbitrary character combo, like: **^**). 3. then run the diff. and sanitize. And 4. then do regex, changing any **^** into <strong> at that point (post sanitizing)
 
 # contact notes
 
