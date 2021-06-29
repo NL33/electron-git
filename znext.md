@@ -10,25 +10,20 @@ it works, though a little slow.
       --check to be sure the process has fully run--make sure the steps work so they go in right order. DONE.
       --right now the array of word docs is hardcoded--instead, get the docs that changed from the diff summary. DONE
       --run the diff on the two folders. DONE
-     --START HERE: integrate that with the diff of all non-word docs. So, have the nonword docs' diff show up first, then show the micro word. DONE
+     -- integrate that with the diff of all non-word docs. So, have the nonword docs' diff show up first, then show the micro word. DONE
 --current code has a summary of all docs, including micro word docs, that appears when you run the original diff function. So right now that summary for word docs appears below the word diff. make this not happen. DONE
 --change the micro word diff to get rid of the summary at the beginning (starting with file name through @@ in the git result) DONE.
 --remove the worktree, and the temp folders, after diff is run. DONE
---right now, the diff for word docs shows things like bold using "*". Can you show it so it looks closer to original word doc. Something about showing a converted markup? (so isntead of "**", you see bold, etc...)
-     --options:
-          -as is: comparing changes will show "*" and "_" for bold and italics.
-               --also shows code @@...@@ when skips lines.
-          --justdownloaded "Marked" and testing it. Formatting seems a little off--adds line breaks and struggles with bold if something is bold+italics. Showdown js: https://github.com/showdownjs/showdown. also seems to work potentially, but hasn't been updated since 2019. 
-          --one question is whether i can just do the conversion myself--focusing on bold and italics. But then test marked and showdown for tables and see how they look (if they look a lot better, then that may be a reason to try to make them work)
-          --I tried showdown--it was not better than Marked. And neither addressed the table well.
-          --just added a potential regex based on: https://stackoverflow.com/questions/10168285/markdown-to-convert-double-asterisks-to-bold-text-in-javascript
---make it work if just running current (incommitted) version against older version
---change the line break notice ("@@...@@")
+--right now, the diff for word docs shows things like bold using "*". Can you show it so it looks closer to original word doc. Something about showing a converted markup? (so isntead of "**", you see bold, etc...). DONE. method right now: turndown special rule to convert <strong> tag in html from mammoth to <strong> in md, which displays as html bold. Other possibility is to change <strong> to arbitrary characters with turndown rule, and then later use regex to change that arbitrary character into bold, italics, etc. DONE
+    
+--make it work if just running current (incommitted) version against older version. START HERE***
+
+--change the line break notice ("@@...@@") [probably use the new regex method--see code overview recent regex info, to change this into something more obviously an indication that we are skipping some lines.]
 --try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async?
---see if can change the [- and {+ symbols for diffs
+--see if can change the [- and {+ symbols for diffs. I asked a stack overflow about this. And maybe there is a way to use diff2html to help.
 --run the diff in new window automatically (without button)
 
---run diff for specific docs (remember diff -U999999)
+--run diff for specific docs (remember diff -U999999)--showing the whole docs.
 --give user options to choose integrated v on top diffs
 --make the compare change window an option at the bottom of the main screen to kickstart this whole process
 
@@ -169,8 +164,10 @@ could do the split based on more info, like the actual name of the doc, which yo
      --to address:
           --for non-word docs: should be able to sanitize the entire diff result (like diff2html does)--so that you can show code results (like github does)
           --for word docs: steps are: 1. convert to html, 2. convert to MD (adding in certain rules like changing the "strong" tag to '<strong>' in the md). then 3. running the diff. 
-               --instead, you could 1. convert to html, 2. convert to md with turndown (but instead take 'strong' tag and turn it into an arbitrary character combo, like: **^**). 3. then run the diff. and sanitize. And 4. then do regex, changing any **^** into <strong> at that point (post sanitizing)
-
+               --instead, you could 1. convert to html, 2. convert to md with turndown (but instead take 'strong' tag and turn it into an arbitrary character combo, like: **^**). 3. then run the diff. and sanitize. And 4. then do regex, changing any **^** into <strong> at that point (post sanitizing).
+               --alternatively, just show the pure MD (where the tags are stripped), and sanitize that. So bold and italics show up as "**" and "_"
+               --to sanitize, looks like leading option is dompurify: https://github.com/cure53/DOMPurify
+               --and/or use tips to be able to display html code on webpage, like here: http://intelsea.com/displaying-and-highlighting-code-in-html-page.html
 # contact notes
 
 if link it to github, could tell them about it to get their support
