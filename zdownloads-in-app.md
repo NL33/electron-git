@@ -65,7 +65,9 @@ $ npm install diff2html
     --came with 2 severe vulnerabilities. Running npm audit fix seemed to address. Running $ npm i showed no vulnerabilities.
 
 $ npm install marked
+    --June 28, 2021
     --to be able to show mark down doc as good looking html 
+    --UNINSTALLED on June 29, 2021.  Formatting wasn't great, and I can get the necessary effect with other methods
 
 # Prior to rollback on April 15, 2021
 # RobotJS

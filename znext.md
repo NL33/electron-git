@@ -16,7 +16,7 @@ it works, though a little slow.
 --remove the worktree, and the temp folders, after diff is run. DONE
 --right now, the diff for word docs shows things like bold using "*". Can you show it so it looks closer to original word doc. Something about showing a converted markup? (so isntead of "**", you see bold, etc...). DONE. method right now: turndown special rule to convert <strong> tag in html from mammoth to <strong> in md, which displays as html bold. Other possibility is to change <strong> to arbitrary characters with turndown rule, and then later use regex to change that arbitrary character into bold, italics, etc. DONE
     
---make it work if just running current (incommitted) version against older version. START HERE***
+--make it work if just running current (uncommitted) version against older version. START HERE***
 
 --change the line break notice ("@@...@@") [probably use the new regex method--see code overview recent regex info, to change this into something more obviously an indication that we are skipping some lines.]
 --try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async?
@@ -168,6 +168,8 @@ could do the split based on more info, like the actual name of the doc, which yo
                --alternatively, just show the pure MD (where the tags are stripped), and sanitize that. So bold and italics show up as "**" and "_"
                --to sanitize, looks like leading option is dompurify: https://github.com/cure53/DOMPurify
                --and/or use tips to be able to display html code on webpage, like here: http://intelsea.com/displaying-and-highlighting-code-in-html-page.html
+
+--comparing changes: If you select two different versions, and then hit "compare changes" again, it makes both newer and older version the same (the later one). Fix this (Note of June 30, 2021). More detail: its possible for "new version" header to not be updated, and to wrongly show the last saved version, when it should show current local saved changes. And then for both "new version" and "older version" to show the same version number. In this case, it will run a diff of a version against itself. This happened for me when I had selected two different versions, then hit compare changes again
 # contact notes
 
 if link it to github, could tell them about it to get their support

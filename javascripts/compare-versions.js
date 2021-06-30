@@ -14,7 +14,6 @@ var cp = require("child_process");
 const { promisify } = require('util')
 
 var diff2html = require("diff2html").Diff2Html
-const marked = require("marked");
 let projectFolderPath
 let laterVersionInfo
 let earlierVersionInfo
@@ -26,7 +25,8 @@ let treeName
 let mammothCounter
 let mammothNeedsToRun
 let wordDocsArray = []
-/*****Button Set Up *****/
+
+/************************Button Set Up ***********************/
 window.onload = function () {
     projectFolderPath = window.process.argv.slice(-3)[0]
     laterVersionInfo = JSON.parse(window.process.argv.slice(-3)[1])
@@ -35,11 +35,183 @@ window.onload = function () {
         //startWordDiffProcess()
         diffTheTempFolders()
     })
-
 }
 
 
-/*******GIT DIFF WITH WORD  **************/
+/*************************** CREATE COMPARISONS WITH GIT DIFF ******************************* */
+
+/*************INTEGRATED DIFF ******************** */
+document.getElementById('gitDiffWord').addEventListener('click', () => {
+    gitDiffFunctionIntegrated() //function to do integrated word test
+})
+
+let areThereWordDocs = false
+
+async function gitDiffFunctionIntegrated() {
+    laterCommitNumber = laterVersionInfo.commitNumber
+    earlierCommitNumber = earlierVersionInfo.commitNumber
+
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+
+        //first get the name of all changed files:
+        if (laterCommitNumber !== 'current-changes') {
+            await git.raw('diff', '--name-only', earlierCommitNumber, laterCommitNumber, (error, result) => {
+                if (error) {
+                    console.log('error in name only diff = ' + error)
+                } else {
+                    showChangedDocNames(result)
+                }
+            })
+        } else { //summary for current changes against earlier commit number
+            await git.raw('diff', '--name-only', earlierCommitNumber, (error, result) => {
+                if (error) {
+                    console.log('error in name only diff = ' + error)
+                } else {
+                    showChangedDocNames(result)
+                }
+            })
+        }
+
+        //then show the actual changes:
+        if (laterCommitNumber !== 'current-changes') {
+            await git.raw('diff', '--word-diff', earlierCommitNumber, laterCommitNumber).then(result => {
+                showIntegratedDiffResult(result)
+            })
+        } else {
+            await git.raw('diff', '--word-diff', earlierCommitNumber).then(result => {
+                showIntegratedDiffResult(result)
+            })
+        }
+
+    } catch (e) {
+        console.log('error in git diff word function = ')
+        console.log(e)
+    }
+}
+
+function showChangedDocNames(result) {
+    var resultArray = result.split('\n')
+    resultArray.forEach((file) => {
+        var newId1 = '#' + file
+        if (newId1.slice(newId1.length - 3) === 'doc') { //when printing the doc names at the top, for word docs, set the id to be the name of the file with the doc or docx extension removed. This way, we can link it to the converted document (which will have an md extension)
+            var newId = newId1.slice(0, - 4) //minus 4 to remove extension name and period.
+        } else if (newId1.slice(newId1.length - 4) === 'docx') {
+            var newId = newId1.slice(0, - 5)
+        } else {
+            var newId = newId1
+        }
+        var contents = `<div><a href="${newId}">${file}</a><div>`
+        document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
+        if (path.extname(file).includes('doc')) {
+            //we have a word doc here
+            areThereWordDocs = true
+            wordDocsArray.push(file)
+        }
+    })
+    if (areThereWordDocs === true) {
+        startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
+    }
+}
+
+function showIntegratedDiffResult(result) {
+    var red = result.replace(/\[-/g, '<del style="color: #c00">')
+    var endred = red.replace(/-]/g, '</del>')
+    //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
+    //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
+    var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
+    var endgreen = green.replace(/\+}/g, '</ins>')
+    var resultArray = endgreen.split('diff --git a/') //split the results up every time there is a diff --git a/. The result of this is to 
+    for (var i = 1; i < resultArray.length; i++) {
+        var fileName = resultArray[i].split(" ")[0] //get the filename
+        //the diff result produces a summary before showing the changes. The summary ends with "@@ [change numbers] @@". Goal is to remove this summary and go right at the changes themselves. The way we do this is to remove the text up to the second occurence of "@@":
+        var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
+        var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
+        var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
+        if ((fileName.slice(fileName.length - 3) !== 'doc') && (fileName.slice(fileName.length - 4) !== 'docx')) { //print changes only if not a word document. If a word document, printing changes handled separately in "startWordDiffProcess()"
+            var contents = `
+                        <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
+                        <div id=${fileName}>
+                            <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;white-space: pre-wrap">${fileName}</div>
+                            <div style="white-space: pre-wrap">${showResults}</div>
+                        </div>
+                        `
+            document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
+        }
+    }
+}
+
+/****************BLOCK DIFF***************************** */
+
+document.getElementById('gitDiffTop').addEventListener('click', () => {
+    gitDiffFunctionTop() //function to do comparison one on top of the other, using diff2html
+})
+
+async function gitDiffFunctionTop() {
+    laterCommitNumber = laterVersionInfo.commitNumber
+    earlierCommitNumber = earlierVersionInfo.commitNumber
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+        if (laterCommitNumber !== 'current-changes') {
+            await git.raw('diff', earlierCommitNumber, laterCommitNumber).then(result => {
+                doTopDiffFunction(result)
+            })
+        } else {
+            await git.raw('diff', earlierCommitNumber).then(result => { //current changes v earlier commit
+                doTopDiffFunction(result)
+            }).then(result => { //run diff of current version against prior version
+                doTopDiffFunction(result)
+            })
+        }
+    } catch (e) {
+        console.log('error in git diff top function = ')
+        console.log(e)
+    }
+}
+
+async function doTopDiffFunction(result) {
+    //with diffHTML
+    try {
+        const Diff2html = require('diff2html');
+        const diffJson = await Diff2html.parse(result);
+        const diffString = result
+        const diffHtml = await Diff2html.html(diffJson, { drawFileList: true, diffStyle: 'word' });
+        document.getElementById('showDiffTop').innerHTML = await diffHtml
+    } catch (e) {
+        console.log('error in doTopDiffFunction = ')
+        console.log(e)
+    }
+}
+/*
+//with diff2htmlUI
+const configuration = { drawFileList: true, matching: 'lines' };
+const targetElement = document.getElementById('displayGitDiff')
+const diff2htmlUi = new Diff2HtmlUI(targetElement, diffJson, configuration);
+diff2htmlUi.draw();
+diff2htmlUi.highlightCode();
+*/
+/*
+ } catch (e){
+     console.log('error in doTopDiffFunction = ')
+     console.log(e)
+ }
+
+}
+
+*/
+
+
+
+
+
+
+/*******GIT DIFF WITH Microsoft WORD  **************/
 
 async function startWordDiffProcess() {
     mammothCounter = 0
@@ -182,7 +354,6 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                 } else {
                     //still needs to run
                 }
-                //resolve(dataCleaned)   //completed the conversion for the doc. 
             }
         }
     })
@@ -262,171 +433,6 @@ async function removeWorkTreeFromWordComparison() {
         }
     })
 }
-
-/********* GIT DIFF TESTING ******* */
-
-document.getElementById('gitDiffWord').addEventListener('click', () => {
-    gitDiffFunctionIntegrated() //function to do integrated word test
-})
-
-let areThereWordDocs = false
-
-async function gitDiffFunctionIntegrated() {
-    laterCommitNumber = laterVersionInfo.commitNumber
-    earlierCommitNumber = earlierVersionInfo.commitNumber
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-
-        //first get the name of all changed files:
-        await git.raw('diff', '--name-only', earlierCommitNumber, laterCommitNumber, (error, result) => {
-            var resultArray = result.split('\n')
-            resultArray.forEach((file) => {
-                var newId1 = '#' + file
-                if (newId1.slice(newId1.length - 3) === 'doc') { //when printing the doc names at the top, for word docs, set the id to be the name of the file with the doc or docx extension removed. This way, we can link it to the converted document (which will have an md extension)
-                    var newId = newId1.slice(0, - 4) //minus 4 to remove extension name and period.
-                } else if (newId1.slice(newId1.length - 4) === 'docx') {
-                    var newId = newId1.slice(0, - 5)
-                } else {
-                    var newId = newId1
-                }
-                var contents = `<div><a href="${newId}">${file}</a><div>`
-                document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
-                if (path.extname(file).includes('doc')) {
-                    //we have a word doc here
-                    areThereWordDocs = true
-                    wordDocsArray.push(file)
-                }
-            })
-            if (areThereWordDocs === true) {
-                startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
-            }
-        })
-
-        //then show the actual changes:
-        if (laterCommitNumber !== 'current-changes') {
-            await git.raw('diff', '--word-diff', earlierCommitNumber, laterCommitNumber).then(result => {
-                var red = result.replace(/\[-/g, '<del style="color: #c00">')
-                var endred = red.replace(/-]/g, '</del>')
-                //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
-                //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
-                var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
-                var endgreen = green.replace(/\+}/g, '</ins>')
-                var resultArray = endgreen.split('diff --git a/') //split the results up every time there is a diff --git a/. The result of this is to 
-                for (var i = 1; i < resultArray.length; i++) {
-                    var fileName = resultArray[i].split(" ")[0] //get the filename
-                    //the diff result produces a summary before showing the changes. The summary ends with "@@ [change numbers] @@". Goal is to remove this summary and go right at the changes themselves. The way we do this is to remove the text up to the second occurence of "@@":
-                    var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
-                    var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
-                    var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
-                    if ((fileName.slice(fileName.length - 3) !== 'doc') && (fileName.slice(fileName.length - 4) !== 'docx')) { //print changes only if not a word document. If a word document, printing changes handled separately in "startWordDiffProcess()"
-                        var contents = `
-                        <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
-                        <div id=${fileName}>
-                            <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;white-space: pre-wrap">${fileName}</div>
-                            <div style="white-space: pre-wrap">${showResults}</div>
-                        </div>
-                        `
-                        document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
-                    }
-                }
-            })
-        } else {
-            await git.raw('diff', '--word-diff', earlierCommitNumber).then(result => { //current
-                console.log(result)
-                var red = result.replace(/\[-/g, '<del style="color: #c00">')
-                var endred = red.replace(/-]/g, '</del>')
-                //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
-                //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
-                var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
-                var endgreen = green.replace(/\+}/g, '</ins>')
-                var resultArray = endgreen.split('diff --git a/')
-                for (var i = 1; i < resultArray.length; i++) {
-                    var fileName = resultArray[i].split(" ")[0] //get the filename
-                    //the diff result produces a summary before showing the changes. The summary ends with "@@ [change numbers] @@". Goal is to remove this summary and go right at the changes themselves. The way we do this is to remove the text up to the second occurence of "@@":
-                    var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
-                    var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
-                    var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
-                    var contents = `
-                    <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
-                    <div id=${fileName}>
-                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px; margin-left: 0px; white-space: pre-wrap">${fileName}</div>
-                        <div style="white-space: pre-wrap">${showResults}</div>
-                    </div>
-                    `
-                    document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
-                }
-            })
-        }
-    } catch (e) {
-        console.log('error in git diff word function = ')
-        console.log(e)
-    }
-}
-
-
-document.getElementById('gitDiffTop').addEventListener('click', () => {
-    gitDiffFunctionTop() //function to do comparison one on top of the other, using diff2html
-})
-
-async function gitDiffFunctionTop() {
-    laterCommitNumber = laterVersionInfo.commitNumber
-    earlierCommitNumber = earlierVersionInfo.commitNumber
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-
-        if (laterCommitNumber !== 'current-changes') {
-            await git.raw('diff', earlierCommitNumber, laterCommitNumber).then(result => {
-                doTopDiffFunction(result)
-            })
-        } else {
-            await git.raw('diff', earlierCommitNumber).then(result => { //current changes v earlier commit
-                doTopDiffFunction(result)
-            }).then(result => { //run diff of current version against prior version
-                doTopDiffFunction(result)
-            })
-        }
-    } catch (e) {
-        console.log('error in git diff top function = ')
-        console.log(e)
-    }
-}
-
-async function doTopDiffFunction(result) {
-    //with diffHTML
-    try {
-        const Diff2html = require('diff2html');
-        const diffJson = await Diff2html.parse(result);
-        const diffString = result
-        const diffHtml = await Diff2html.html(diffJson, { drawFileList: true, diffStyle: 'word' });
-        document.getElementById('showDiffTop').innerHTML = await diffHtml
-    } catch (e) {
-        console.log('error in doTopDiffFunction = ')
-        console.log(e)
-    }
-}
-            /*
-//with diff2htmlUI
-const configuration = { drawFileList: true, matching: 'lines' };
-const targetElement = document.getElementById('displayGitDiff')
-const diff2htmlUi = new Diff2HtmlUI(targetElement, diffJson, configuration);
-diff2htmlUi.draw();
-diff2htmlUi.highlightCode();
-*/
-/*
- } catch (e){
-     console.log('error in doTopDiffFunction = ')
-     console.log(e)
- }
-
-}
-
-*/
-
-
 
 
 
