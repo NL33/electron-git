@@ -18,8 +18,8 @@ it works, though a little slow.
     
 --make it work if just running current (uncommitted) version against older version. 
      --clean code for non-word integrated diffs. DONE
-     --make current changes work for word diffs. START HERE
-     --clean code for running block diffs
+     --make current changes work for word diffs. DONE
+     --clean code for running block diffs. **START HERE**
 
 --change the line break notice ("@@...@@") [probably use the new regex method--see code overview recent regex info, to change this into something more obviously an indication that we are skipping some lines.]
 --try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async?

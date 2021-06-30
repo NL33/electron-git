@@ -292,7 +292,7 @@ async function convertWordDoc(treeOrMainPath) {
         let wordDocPath = treeOrMainPath + '/' + wordDocArray[i]
         var options = {
             styleMap: [
-                "u => u"
+                "u => u"  //by default, mammoth takes an underline, and strips it away (out of concern of getting it confused with links). The stylemap adds it back in, by making clear that an underline tag should stay as an underline tag. This tag then gets picked up in the conversionto md.
             ]
         };
         //console.log('in convertworddoc promise for  = ' + wordDocArray[i])
@@ -316,6 +316,12 @@ async function convertWordDoc(treeOrMainPath) {
                 filter: 'u',
                 replacement: function (content) {
                     return '<u>' + content + '</u>'
+                }
+            })
+            turndownService.addRule('', {  //strike through
+                filter: 's',
+                replacement: function (content) {
+                    return '<s>' + content + '</s>'
                 }
             })
             turndownService.addRule('', {  //heading 1
