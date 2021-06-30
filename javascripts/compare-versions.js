@@ -25,7 +25,8 @@ let treeName
 let mammothCounter
 let mammothNeedsToRun
 let wordDocsArray = []
-
+let diffIntegrated = true
+let diffBlocks = false
 /************************Button Set Up ***********************/
 window.onload = function () {
     projectFolderPath = window.process.argv.slice(-3)[0]
@@ -48,6 +49,8 @@ document.getElementById('gitDiffWord').addEventListener('click', () => {
 let areThereWordDocs = false
 
 async function gitDiffFunctionIntegrated() {
+    diffIntegrated = true
+    diffBlocks = false
     laterCommitNumber = laterVersionInfo.commitNumber
     earlierCommitNumber = earlierVersionInfo.commitNumber
 
@@ -94,6 +97,7 @@ async function gitDiffFunctionIntegrated() {
 }
 
 function showChangedDocNames(result) {
+    wordDocsArray = []
     var resultArray = result.split('\n')
     resultArray.forEach((file) => {
         var newId1 = '#' + file
@@ -108,10 +112,10 @@ function showChangedDocNames(result) {
         document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
         if (path.extname(file).includes('doc')) {
             //we have a word doc here
-           if (file.substring(0,2) !== '~$'){
+            if (file.substring(0, 2) !== '~$') {
                 areThereWordDocs = true
                 wordDocsArray.push(file)
-           }
+            }
         }
     })
     if (areThereWordDocs === true) {
@@ -152,7 +156,12 @@ document.getElementById('gitDiffTop').addEventListener('click', () => {
     gitDiffFunctionTop() //function to do comparison one on top of the other, using diff2html
 })
 
+
 async function gitDiffFunctionTop() {
+    diffIntegrated = false
+    diffBlocks = true
+    wordDocsArray = []
+    let areThereWordDocs = true
     laterCommitNumber = laterVersionInfo.commitNumber
     earlierCommitNumber = earlierVersionInfo.commitNumber
     try {
@@ -167,8 +176,22 @@ async function gitDiffFunctionTop() {
         } else {
             await git.raw('diff', earlierCommitNumber).then(result => { //current changes v earlier commit
                 doTopDiffFunction(result)
-                console.log('diff result = ')
-                console.log(result)
+                var resultArray = result.split('diff --git a/')
+                //var nameDivs = document.getElementsByClassName('d2h-file-list-line')
+                wordDocsTopArray = []
+                for (var i = 0; i < resultArray.length; i++) {
+                    var fileName = resultArray[i].split(" ")[0] //get the filename
+                    if (path.extname(fileName).includes('doc')) {
+                        //we have a word doc here
+                        if (fileName.substring(0, 2) !== '~$') {
+                            areThereWordDocs = true
+                            wordDocsArray.push(fileName)
+                        }
+                    }
+                }
+                if (areThereWordDocs === true) {
+                    startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
+                }
             })
         }
     } catch (e) {
@@ -183,29 +206,22 @@ async function doTopDiffFunction(result) {
         const diffJson = await Diff2html.parse(result);
         const diffString = result
         const diffHtml = await Diff2html.html(diffJson, { drawFileList: true, diffStyle: 'word' });
-        document.getElementById('showDiffTop').innerHTML = await diffHtml
+       var contents = await diffHtml
+       // document.getElementById('showDiffTop').innerHTML = await diffHtml
+        document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
+        var fileHeaders = document.getElementsByClassName('d2h-file-name')
+        for (var i=0; i<fileHeaders.length; i++){
+            let fileHeader = fileHeaders[i]
+            let currentContent = fileHeader.textContent
+            let clean1 = currentContent.split('newTempFolder7843NEW}/')[1]
+            let clean2 = clean1.replace('135#&579-135#&579', '/').replace('.md', '')
+             fileHeader.textContent = clean2
+        }
     } catch (e) {
         console.log('error in doTopDiffFunction = ')
         console.log(e)
     }
 }
-/*
-//with diff2htmlUI
-const configuration = { drawFileList: true, matching: 'lines' };
-const targetElement = document.getElementById('displayGitDiff')
-const diff2htmlUi = new Diff2HtmlUI(targetElement, diffJson, configuration);
-diff2htmlUi.draw();
-diff2htmlUi.highlightCode();
-*/
-/*
- } catch (e){
-     console.log('error in doTopDiffFunction = ')
-     console.log(e)
- }
-
-}
-
-*/
 
 
 
@@ -287,99 +303,121 @@ async function convertWordDoc(treeOrMainPath) {
     numberOfWordDocsToConvert = wordDocArray.length
     mammothNeedsToRun = (wordDocArray.length) * 2  //mamoth needs to convert the old version and the new version of each world file. so mammoth needs to run the amount of thw word docs, times 2
     for (let i = 0; i < wordDocArray.length; i++) {
+        if (diffBlocks === false) {
+            var wordDocPath = treeOrMainPath + '/' + wordDocArray[i]
+            var options = {
+                styleMap: [
+                    "u => u"  //by default, mammoth takes an underline, and strips it away (out of concern of getting it confused with links). The stylemap adds it back in, by making clear that an underline tag should stay as an underline tag. This tag then gets picked up in the conversionto md.
+                ]
+            };
+            //console.log('in convertworddoc promise for  = ' + wordDocArray[i])
+            mammoth.convertToHtml({ path: wordDocPath }, options).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel.
+                mammothCounter++
+                var htmlWord = result.value
+                var turndownService = new TurndownService()
+                turndownService.addRule('', { //catch bold
+                    filter: 'strong',
+                    replacement: function (content) {
+                        return '<strong>' + content + '</strong>'
+                    }
+                })
+                turndownService.addRule('', { //catch italics
+                    filter: 'em',
+                    replacement: function (content) {
+                        return '<em>' + content + '</em>'
+                    }
+                })
+                turndownService.addRule('', {  //catch underlines
+                    filter: 'u',
+                    replacement: function (content) {
+                        return '<u>' + content + '</u>'
+                    }
+                })
+                turndownService.addRule('', {  //strike through
+                    filter: 's',
+                    replacement: function (content) {
+                        return '<s>' + content + '</s>'
+                    }
+                })
+                turndownService.addRule('', {  //heading 1
+                    filter: 'h1',
+                    replacement: function (content) {
+                        return '<h1>' + content + '</h1>'
+                    }
+                })
+                turndownService.addRule('', {  //heading 2
+                    filter: 'h2',
+                    replacement: function (content) {
+                        return '<h2>' + content + '</h2>'
+                    }
+                })
+                turndownService.addRule('', {  //heading 2
+                    filter: 'h3',
+                    replacement: function (content) {
+                        return '<h3>' + content + '</h3>'
+                    }
+                })
+                turndownService.addRule('', {  //table
+                    filter: 'table',
+                    replacement: function (content) {
+                        return '<table>' + content + '</table>'
+                    }
+                })
+                turndownService.addRule('', {  //tr
+                    filter: 'tr',
+                    replacement: function (content) {
+                        return '<tr>' + content + '</tr>'
+                    }
+                })
+                turndownService.addRule('', {  //th
+                    filter: 'td',
+                    replacement: function (content) {
+                        return '<td>' + content + '</td>'
+                    }
+                })
+                turndownService.addRule('', {  //th
+                    filter: 'th',
+                    replacement: function (content) {
+                        return '<th>' + content + '</th>'
+                    }
+                })
+                var data = turndownService.turndown(htmlWord)
+                //now have a markdown 
+                var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
+                var removeDocExtension = wordDocArray[i].replace(/\.[^/.]+$/, "")
+                //example file at this point: /Users/username/Desktop/git-app-test-docs/word-diff-test/383180worktree3#&7#&1#&4/main-folder/llc-agreement
+                var markDownDoc = removeDocExtension + '.md'
+                var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579')
+                //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
+                if (revertTreeFunctionCounter === 1) { //based on how many times revert tree has run. if run just once, then we are in the old setting. If run twice, then we are in the new setting.   
+                    var markDownDocPath = projectFolderPath + '/newTempFolder7843OLD/' + markDownDocPathChanged
+                } else {
+                    var markDownDocPath = projectFolderPath + '/newTempFolder7843NEW/' + markDownDocPathChanged
+                }
+                writeFileFunction(markDownDocPath, dataCleaned)
+            })
 
-        let wordDocPath = treeOrMainPath + '/' + wordDocArray[i]
-        var options = {
-            styleMap: [
-                "u => u"  //by default, mammoth takes an underline, and strips it away (out of concern of getting it confused with links). The stylemap adds it back in, by making clear that an underline tag should stay as an underline tag. This tag then gets picked up in the conversionto md.
-            ]
-        };
-        //console.log('in convertworddoc promise for  = ' + wordDocArray[i])
-        mammoth.convertToHtml({ path: wordDocPath }, options).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel.
-            mammothCounter++
-            var htmlWord = result.value
-            var turndownService = new TurndownService()
-            turndownService.addRule('', { //catch bold
-                filter: 'strong',
-                replacement: function (content) {
-                    return '<strong>' + content + '</strong>'
+        } else { //****************************for block diff*************************
+            var wordDocPath = treeOrMainPath + '/' + wordDocArray[i]
+            mammoth.extractRawText({ path: wordDocPath }).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel.
+                mammothCounter++
+                var mammothResult = result.value
+                var data = mammothResult //turndownService.turndown(htmlWord)
+                //now have a markdown 
+                var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
+                var removeDocExtension = wordDocArray[i].replace(/\.[^/.]+$/, "")
+                //example file at this point: /Users/username/Desktop/git-app-test-docs/word-diff-test/383180worktree3#&7#&1#&4/main-folder/llc-agreement
+                var markDownDoc = removeDocExtension + '.md'
+                var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579')
+                //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
+                if (revertTreeFunctionCounter === 1) { //based on how many times revert tree has run. if run just once, then we are in the old setting. If run twice, then we are in the new setting.   
+                    var markDownDocPath = projectFolderPath + '/newTempFolder7843OLD/' + markDownDocPathChanged
+                } else {
+                    var markDownDocPath = projectFolderPath + '/newTempFolder7843NEW/' + markDownDocPathChanged
                 }
+                writeFileFunction(markDownDocPath, dataCleaned)
             })
-            turndownService.addRule('', { //catch italics
-                filter: 'em',
-                replacement: function (content) {
-                    return '<em>' + content + '</em>'
-                }
-            })
-            turndownService.addRule('', {  //catch underlines
-                filter: 'u',
-                replacement: function (content) {
-                    return '<u>' + content + '</u>'
-                }
-            })
-            turndownService.addRule('', {  //strike through
-                filter: 's',
-                replacement: function (content) {
-                    return '<s>' + content + '</s>'
-                }
-            })
-            turndownService.addRule('', {  //heading 1
-                filter: 'h1',
-                replacement: function (content) {
-                    return '<h1>' + content + '</h1>'
-                }
-            })
-            turndownService.addRule('', {  //heading 2
-                filter: 'h2',
-                replacement: function (content) {
-                    return '<h2>' + content + '</h2>'
-                }
-            })
-            turndownService.addRule('', {  //heading 2
-                filter: 'h3',
-                replacement: function (content) {
-                    return '<h3>' + content + '</h3>'
-                }
-            })
-            turndownService.addRule('', {  //table
-                filter: 'table',
-                replacement: function (content) {
-                    return '<table>' + content + '</table>'
-                }
-            })
-            turndownService.addRule('', {  //tr
-                filter: 'tr',
-                replacement: function (content) {
-                    return '<tr>' + content + '</tr>'
-                }
-            })
-            turndownService.addRule('', {  //th
-                filter: 'td',
-                replacement: function (content) {
-                    return '<td>' + content + '</td>'
-                }
-            })
-            turndownService.addRule('', {  //th
-                filter: 'th',
-                replacement: function (content) {
-                    return '<th>' + content + '</th>'
-                }
-            })
-            var data = turndownService.turndown(htmlWord)
-            //now have a markdown 
-            var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
-            var removeDocExtension = wordDocArray[i].replace(/\.[^/.]+$/, "")
-            //example file at this point: /Users/username/Desktop/git-app-test-docs/word-diff-test/383180worktree3#&7#&1#&4/main-folder/llc-agreement
-            var markDownDoc = removeDocExtension + '.md'
-            var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579')
-            //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
-            if (revertTreeFunctionCounter === 1) { //based on how many times revert tree has run. if run just once, then we are in the old setting. If run twice, then we are in the new setting.   
-                var markDownDocPath = projectFolderPath + '/newTempFolder7843OLD/' + markDownDocPathChanged
-            } else {
-                var markDownDocPath = projectFolderPath + '/newTempFolder7843NEW/' + markDownDocPathChanged
-            }
-            writeFileFunction(markDownDocPath, dataCleaned)
-        })
+        }
     }
 }
 
@@ -420,36 +458,43 @@ async function diffTheTempFolders() {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
         })
+        if (diffBlocks === false) { //do a "word-diff" (integrated diff)
+            await git.raw('diff', '--no-index', '--word-diff', folderOld, folderNew, (error, result) => {
+                var red = result.replace(/\[-/g, '<del style="color: #c00">')//.replaceAll('<del style="color: #c00"><', '<')
+                var endred = red.replace(/-]/g, '</del>')
+                //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
+                //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
+                var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
+                var endgreen = green.replace(/\+}/g, '</ins>')
+                //var endgreen2 = endgreen1.replaceAll('**_', '<span style="font-weight: bold">').replaceAll('_**', '</span>')
+                // var endgreen = endgreen2.replaceAll('**_', '<span style="font-weight: bold">').replaceAll('_**', '</span>')
+                var resultArray = endgreen.split('diff --git a/')
+                for (var i = 1; i < resultArray.length; i++) {
+                    var fileNameRaw = resultArray[i].split(" ")[0]
+                    var fileName1 = fileNameRaw.replace('135#&579-135#&579', '/')  //show original folder structure
+                    var fileName2 = fileName1.split("newTempFolder7843OLD/").pop() //to show the file name without the newTempFolder and preceding stuff, that would be confusing to view.
+                    var fileName = fileName2.slice(0, -3) //remove md extension name in the id so that it can link to the header (which is a word doc filename with extension removed)
+                    var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
+                    var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
+                    var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
+                    var contents = `
+                        <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
+                        <div id=${fileName}>
+                            <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;  white-space: pre-wrap">${fileName}</div>
+                            <div style="white-space: pre-wrap">${showResults}</div>
+                        </div>
+                        `
+                    document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
+                }
+                removeWorkTreeFromWordComparison()
+            })
+        } else {
+            await git.raw('diff', '--no-index', folderOld, folderNew, (error, result) => {
+                doTopDiffFunction(result)
+                removeWorkTreeFromWordComparison()
+            })
+        }
 
-        await git.raw('diff', '--no-index', '--word-diff', folderOld, folderNew, (error, result) => {
-            var red = result.replace(/\[-/g, '<del style="color: #c00">')//.replaceAll('<del style="color: #c00"><', '<')
-            var endred = red.replace(/-]/g, '</del>')
-            //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
-            //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
-            var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
-            var endgreen = green.replace(/\+}/g, '</ins>')
-            //var endgreen2 = endgreen1.replaceAll('**_', '<span style="font-weight: bold">').replaceAll('_**', '</span>')
-            // var endgreen = endgreen2.replaceAll('**_', '<span style="font-weight: bold">').replaceAll('_**', '</span>')
-            var resultArray = endgreen.split('diff --git a/')
-            for (var i = 1; i < resultArray.length; i++) {
-                var fileNameRaw = resultArray[i].split(" ")[0]
-                var fileName1 = fileNameRaw.replace('135#&579-135#&579', '/')  //show original folder structure
-                var fileName2 = fileName1.split("newTempFolder7843OLD/").pop() //to show the file name without the newTempFolder and preceding stuff, that would be confusing to view.
-                var fileName = fileName2.slice(0, -3) //remove md extension name in the id so that it can link to the header (which is a word doc filename with extension removed)
-                var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
-                var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
-                var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
-                var contents = `
-                    <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
-                    <div id=${fileName}>
-                        <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;  white-space: pre-wrap">${fileName}</div>
-                        <div style="white-space: pre-wrap">${showResults}</div>
-                    </div>
-                    `
-                document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
-            }
-        })
-        removeWorkTreeFromWordComparison()
     } catch (error) {
         console.log('error in comparing the temporary folders = ' + error)
     }

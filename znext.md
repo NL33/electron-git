@@ -19,7 +19,12 @@ it works, though a little slow.
 --make it work if just running current (uncommitted) version against older version. 
      --clean code for non-word integrated diffs. DONE
      --make current changes work for word diffs. DONE
-     --clean code for running block diffs. **START HERE**
+     --clean code for running block diffs. DONE.
+     --block diffs for word docs. *Start here*: 
+          1. I just removed .md extension. But right now that happens for all kinds of docs. It should only happen if it is showing a doc converted from a word doc (note--that would be a doc that is in a temp folder). Make sure this only happens for those docs.
+          2. right now, the word conversion appears above the other conversions--and the doc TOC summary appears before both. There should only be one summary that happens at the top--note that the original summary from diff2html, prior to word conversions, is correct in terms of docs listed. Maybe still use that. Maybe add word docs diff at the end, and don't have a summary for those? (so just use first summary?)
+          3. Original listing of word docs (which would show not diff bc binary file) still shows up. Remove those.
+          4. for diff2html, reduce line breaks for raw, or try with straight html (might not work)
 
 --change the line break notice ("@@...@@") [probably use the new regex method--see code overview recent regex info, to change this into something more obviously an indication that we are skipping some lines.]
 --try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async?
@@ -173,6 +178,9 @@ could do the split based on more info, like the actual name of the doc, which yo
                --and/or use tips to be able to display html code on webpage, like here: http://intelsea.com/displaying-and-highlighting-code-in-html-page.html
 
 --comparing changes: If you select two different versions, and then hit "compare changes" again, it makes both newer and older version the same (the later one). Fix this (Note of June 30, 2021). More detail: its possible for "new version" header to not be updated, and to wrongly show the last saved version, when it should show current local saved changes. And then for both "new version" and "older version" to show the same version number. In this case, it will run a diff of a version against itself. This happened for me when I had selected two different versions, then hit compare changes again
+
+
+--comparison: after run the diff, you show the file name at the top of each section showing changes. Right now, you identify that name by seeing if there is any white space. But what if the file name has white space in it? Probably doesnt work. Fix it. To test, try a file name with white space in it.
 # contact notes
 
 if link it to github, could tell them about it to get their support
