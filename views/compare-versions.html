@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />  <!--CSS. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 60kb-->
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />  <!--CSS. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 60kb-->
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script><!--Javascripts. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 80kb-->
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script><!--Javascripts. if want to go with this method, can try downloading the file directly into the app so you can access the diff even when offline. This one is 80kb-->
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
             padding-top: 5px
         }
 
-        /*** COMPARING VERSIONS***/
+        /*** COMPARING VERSIONS: diff2html stying***/
 
         .d2h-code-line,
         .d2h-code-line-ctn {
@@ -23,6 +23,43 @@
 
         .d2h-ins {
             background-color: #d6ebd5
+        }
+
+        .d2h-icon { /*this is an icon printed next to any changed file*/
+            display: none
+        }
+
+        .d2h-changed { /*text that says:"CHANGED"*/
+            display: none
+        } 
+
+        .d2h-file-collapse {/*text that says: "Viewed" with a checkmark*/
+            display: none
+        }
+
+        .d2h-file-stats { /*in header, shows change numbers*/
+            display: none;
+        }
+
+        .d2h-code-linenumber {/*display of line numbers next to change results*/
+            display: none; 
+        }
+
+        .d2h-info { /*summary of changes--BUT THESE MIGHT BE SHOWING LINE */
+            display: none
+        }
+
+        .d2h-file-header {
+            border-top: 5px solid #32cd53;
+            padding-top: 15px;
+            font-weight: bold; 
+            font-size: 14pt;
+            margin-bottom: 10px; 
+           /*
+            margin-top: 0px; 
+            margin-bottom: 2px;
+            white-space: pre-wrap
+            */
         }
 
         .d2h-del {

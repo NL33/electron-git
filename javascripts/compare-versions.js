@@ -167,13 +167,12 @@ async function gitDiffFunctionTop() {
         } else {
             await git.raw('diff', earlierCommitNumber).then(result => { //current changes v earlier commit
                 doTopDiffFunction(result)
-            }).then(result => { //run diff of current version against prior version
-                doTopDiffFunction(result)
+                console.log('diff result = ')
+                console.log(result)
             })
         }
     } catch (e) {
-        console.log('error in git diff top function = ')
-        console.log(e)
+        console.log('error in git diff top function = ' + e)
     }
 }
 
