@@ -108,8 +108,10 @@ function showChangedDocNames(result) {
         document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
         if (path.extname(file).includes('doc')) {
             //we have a word doc here
-            areThereWordDocs = true
-            wordDocsArray.push(file)
+           if (file.substring(0,2) !== '~$'){
+                areThereWordDocs = true
+                wordDocsArray.push(file)
+           }
         }
     })
     if (areThereWordDocs === true) {
@@ -208,10 +210,7 @@ diff2htmlUi.highlightCode();
 
 
 
-
-
-
-/*******GIT DIFF WITH Microsoft WORD  **************/
+/*************************GIT DIFF WITH Microsoft WORD  *****************************/
 
 async function startWordDiffProcess() {
     mammothCounter = 0
@@ -244,9 +243,9 @@ function createTempFolders(tempFolder, treeName, earlierCommitNumber) {
     let tempOld = projectFolderPath + '/newTempFolder7843OLD'
     let tempNew = projectFolderPath + '/newTempFolder7843NEW'
     if (fs.existsSync(tempFolder)) {  //^3. if temp folder old doesn't exist, create it. Then create temp folder new if it doesn't exist. 
-        if (tempFolder === tempOld) {
+        if (tempFolder === tempOld) { //if oldTempFolder already exists, and the function is about the old folder, then create the new folder
             createTempFolders(tempNew, treeName, earlierCommitNumber)
-        } else {
+        } else { //if the temp folder that exists is the new temp folder, then both folders already exist, so now start reverting the worktree, starting with the earlier commit number
             revertTree(treeName, earlierCommitNumber)
         }
     } else {
@@ -266,49 +265,99 @@ function createTempFolders(tempFolder, treeName, earlierCommitNumber) {
 
 async function revertTree(treeName, commitNumber) {
     revertTreeFunctionCounter++
-    let treePath = projectFolderPath + '/' + treeName
     try {
-        await git.cwd(treePath).then(result => {
-        })
-        await git.checkout(commitNumber).then(result => { //^4. checkout the tree to the commit number (first, the older ones, then, after the older files are created, the newer ones ). 
-            convertWordDoc(treePath)
-        })
+        if (commitNumber !== 'current-changes') { //if not = current-changes, then it is a git commit number
+            let treePath = projectFolderPath + '/' + treeName
+            await git.cwd(treePath).then(result => {
+            })
+
+            await git.checkout(commitNumber).then(result => { //^4. checkout the tree to the commit number (first, the older ones, then, after the older files are created, the newer ones ). 
+                convertWordDoc(treePath)
+            })
+        } else { //the later version is the current non-committed changes.
+            convertWordDoc(projectFolderPath)
+        }
     } catch (e) {
         console.log('error in revert function = ' + e)
     }
 }
 
 let numberOfWordDocsToConvert
-async function convertWordDoc(treePath) {
+async function convertWordDoc(treeOrMainPath) {
     let wordDocArray = wordDocsArray//^5. for each word doc that changed, convert the version that is in the current checked out tree. We get the wordDocsArray from the git diff summary action 
     numberOfWordDocsToConvert = wordDocArray.length
-    /*
-    var options = {
-        //ignoreEmptyParagraphs: 'false'
-        styleMap: [
-            "p => pre: separator('\n')"
-        ]
-    };
-    */
     mammothNeedsToRun = (wordDocArray.length) * 2  //mamoth needs to convert the old version and the new version of each world file. so mammoth needs to run the amount of thw word docs, times 2
     for (let i = 0; i < wordDocArray.length; i++) {
 
-        let wordDocPath = treePath + '/' + wordDocArray[i]
+        let wordDocPath = treeOrMainPath + '/' + wordDocArray[i]
+        var options = {
+            styleMap: [
+                "u => u"
+            ]
+        };
         //console.log('in convertworddoc promise for  = ' + wordDocArray[i])
-        mammoth.convertToHtml({ path: wordDocPath }).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel.
+        mammoth.convertToHtml({ path: wordDocPath }, options).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel.
             mammothCounter++
             var htmlWord = result.value
             var turndownService = new TurndownService()
-            turndownService.addRule('', {
+            turndownService.addRule('', { //catch bold
                 filter: 'strong',
                 replacement: function (content) {
                     return '<strong>' + content + '</strong>'
                 }
             })
-            turndownService.addRule('', {
+            turndownService.addRule('', { //catch italics
                 filter: 'em',
                 replacement: function (content) {
                     return '<em>' + content + '</em>'
+                }
+            })
+            turndownService.addRule('', {  //catch underlines
+                filter: 'u',
+                replacement: function (content) {
+                    return '<u>' + content + '</u>'
+                }
+            })
+            turndownService.addRule('', {  //heading 1
+                filter: 'h1',
+                replacement: function (content) {
+                    return '<h1>' + content + '</h1>'
+                }
+            })
+            turndownService.addRule('', {  //heading 2
+                filter: 'h2',
+                replacement: function (content) {
+                    return '<h2>' + content + '</h2>'
+                }
+            })
+            turndownService.addRule('', {  //heading 2
+                filter: 'h3',
+                replacement: function (content) {
+                    return '<h3>' + content + '</h3>'
+                }
+            })
+            turndownService.addRule('', {  //table
+                filter: 'table',
+                replacement: function (content) {
+                    return '<table>' + content + '</table>'
+                }
+            })
+            turndownService.addRule('', {  //tr
+                filter: 'tr',
+                replacement: function (content) {
+                    return '<tr>' + content + '</tr>'
+                }
+            })
+            turndownService.addRule('', {  //th
+                filter: 'td',
+                replacement: function (content) {
+                    return '<td>' + content + '</td>'
+                }
+            })
+            turndownService.addRule('', {  //th
+                filter: 'th',
+                replacement: function (content) {
+                    return '<th>' + content + '</th>'
                 }
             })
             var data = turndownService.turndown(htmlWord)
@@ -343,7 +392,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
             // console.log('older folder length = ' + oldFolderLength)
             // if (functionCounter === 1) {
             if ((oldFolderLength === numberOfWordDocsToConvert) && (writeFileRun === numberOfWordDocsToConvert) && (revertTreeFunctionCounter < 2)) {
-                //'finished older conversion, now do the second conversion'
+                //finished older conversion, now do the second conversion for the later version
                 revertTree(treeName, laterCommitNumber)
             } else {
                 let newFolderLength = fs.readdirSync(folderNew).length

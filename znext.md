@@ -16,7 +16,10 @@ it works, though a little slow.
 --remove the worktree, and the temp folders, after diff is run. DONE
 --right now, the diff for word docs shows things like bold using "*". Can you show it so it looks closer to original word doc. Something about showing a converted markup? (so isntead of "**", you see bold, etc...). DONE. method right now: turndown special rule to convert <strong> tag in html from mammoth to <strong> in md, which displays as html bold. Other possibility is to change <strong> to arbitrary characters with turndown rule, and then later use regex to change that arbitrary character into bold, italics, etc. DONE
     
---make it work if just running current (uncommitted) version against older version. START HERE***
+--make it work if just running current (uncommitted) version against older version. 
+     --clean code for non-word integrated diffs. DONE
+     --make current changes work for word diffs. START HERE
+     --clean code for running block diffs
 
 --change the line break notice ("@@...@@") [probably use the new regex method--see code overview recent regex info, to change this into something more obviously an indication that we are skipping some lines.]
 --try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async?
