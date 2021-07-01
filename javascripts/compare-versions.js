@@ -210,12 +210,16 @@ async function doTopDiffFunction(result) {
        // document.getElementById('showDiffTop').innerHTML = await diffHtml
         document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
         var fileHeaders = document.getElementsByClassName('d2h-file-name')
+        //remove reference to tempfolders and remove .md extension for any file that is from a word conversion to md.
         for (var i=0; i<fileHeaders.length; i++){
             let fileHeader = fileHeaders[i]
-            let currentContent = fileHeader.textContent
-            let clean1 = currentContent.split('newTempFolder7843NEW}/')[1]
-            let clean2 = clean1.replace('135#&579-135#&579', '/').replace('.md', '')
-             fileHeader.textContent = clean2
+            if (fileHeader.textContent.includes('newTempFolder7843NEW')){
+                let currentContent = fileHeader.textContent
+                let clean1 = currentContent.split('newTempFolder7843NEW}/')[1]
+                let clean2 = clean1.replace('135#&579-135#&579', '/').replace('.md', '')
+                fileHeader.textContent = clean2
+            }
+        
         }
     } catch (e) {
         console.log('error in doTopDiffFunction = ')

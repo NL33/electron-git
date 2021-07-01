@@ -21,7 +21,7 @@ it works, though a little slow.
      --make current changes work for word diffs. DONE
      --clean code for running block diffs. DONE.
      --block diffs for word docs. *Start here*: 
-          1. I just removed .md extension. But right now that happens for all kinds of docs. It should only happen if it is showing a doc converted from a word doc (note--that would be a doc that is in a temp folder). Make sure this only happens for those docs.
+          1. I just removed .md extension. But right now that happens for all kinds of docs. It should only happen if it is showing a doc converted from a word doc (note--that would be a doc that is in a temp folder). Make sure this only happens for those docs. DONE
           2. right now, the word conversion appears above the other conversions--and the doc TOC summary appears before both. There should only be one summary that happens at the top--note that the original summary from diff2html, prior to word conversions, is correct in terms of docs listed. Maybe still use that. Maybe add word docs diff at the end, and don't have a summary for those? (so just use first summary?)
           3. Original listing of word docs (which would show not diff bc binary file) still shows up. Remove those.
           4. for diff2html, reduce line breaks for raw, or try with straight html (might not work)
