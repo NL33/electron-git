@@ -129,14 +129,16 @@ function showIntegratedDiffResult(result) {
     //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
     //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
     var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
-    var endgreen = green.replace(/\+}/g, '</ins>')
+    var endgreen = green.replace(/\+}/g, '</ins>')  
     var resultArray = endgreen.split('diff --git a/') //split the results up every time there is a diff --git a/. The result of this is to 
     for (var i = 1; i < resultArray.length; i++) {
         var fileName = resultArray[i].split(" ")[0] //get the filename
         //the diff result produces a summary before showing the changes. The summary ends with "@@ [change numbers] @@". Goal is to remove this summary and go right at the changes themselves. The way we do this is to remove the text up to the second occurence of "@@":
         var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
         var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
-        var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
+        var showResults1 = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
+        var breaks = /\@\@(.*?)\@\@/gm;
+        var showResults = showResults1.replace(breaks, '[.........]<br>') //in the text, replace '@@ diff calculations @@'
         if ((fileName.slice(fileName.length - 3) !== 'doc') && (fileName.slice(fileName.length - 4) !== 'docx')) { //print changes only if not a word document. If a word document, printing changes handled separately in "startWordDiffProcess()"
             var contents = `
                         <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
@@ -431,10 +433,11 @@ async function convertWordDoc(treeOrMainPath) {
             var wordDocPath = treeOrMainPath + '/' + wordDocArray[i]
             mammoth.extractRawText({ path: wordDocPath }).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel.
                 mammothCounter++
+               
                 var mammothResult = result.value
-                var data = mammothResult //turndownService.turndown(htmlWord)
+                var data = mammothResult 
                 //now have a markdown 
-                var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
+                var dataCleaned = data.replace(/<!--.*?-->/s, "").replace('<br>', 'HITHERE');  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
                 var removeDocExtension = wordDocArray[i].replace(/\.[^/.]+$/, "")
                 //example file at this point: /Users/username/Desktop/git-app-test-docs/word-diff-test/383180worktree3#&7#&1#&4/main-folder/llc-agreement
                 var markDownDoc = removeDocExtension + '.md'
@@ -506,7 +509,9 @@ async function diffTheTempFolders() {
                     var fileName = fileName2.slice(0, -3) //remove md extension name in the id so that it can link to the header (which is a word doc filename with extension removed)
                     var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
                     var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
-                    var showResults = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
+                    var showResults1 = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
+                    var breaks = /\@\@(.*?)\@\@/gm;
+                    var showResults = showResults1.replace(breaks, '[.........]<br>')
                     var contents = `
                         <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
                         <div id=${fileName}>
