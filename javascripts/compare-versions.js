@@ -201,6 +201,7 @@ async function gitDiffFunctionTop() {
 
 async function doTopDiffFunction(result) {
     //with diffHTML
+    var removeLaterListCounter = 0
     try {
         const Diff2html = require('diff2html');
         const diffJson = await Diff2html.parse(result);
@@ -218,7 +219,14 @@ async function doTopDiffFunction(result) {
                 fileNameDiv.href = '#' + cleanName 
                 var fileListHeader = selectedDiv.closest('.d2h-file-list')
                 fileListHeader.insertAdjacentElement('beforeend', selectedDiv)
-
+            }
+            if (fileNameDiv.textContent.includes('newTempFolder7843NEW')){
+                removeLaterListCounter++
+                if (removeLaterListCounter === 1){
+                    selectedDiv.closest('.d2h-file-list-wrapper').remove()
+                    //this will remove the toc div for the converted word docs. Why? diff2html immediately prints a TOC of docs, prior to our converting the word docs. We have manipulated that to reference the converted word docs, so we already have a TOC. After the conversion is done, diff2html would print a second toc for the new word docs (because we run doTopDiffFunction twice, and append the contents into #showDiffWord above). So without further action, there would be two TOCs. This remove() action removes the second TOC.
+                    //we want to run it only once, because there is only one TOC to remove. Otherwise, it would run for each file into the tocFiles array, which is unecessary (maybe harmless, but def unnecessary)
+                }
             }
         }
 
