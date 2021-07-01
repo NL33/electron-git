@@ -208,16 +208,34 @@ async function doTopDiffFunction(result) {
         const diffHtml = await Diff2html.html(diffJson, { drawFileList: true, diffStyle: 'word' });
        var contents = await diffHtml
        // document.getElementById('showDiffTop').innerHTML = await diffHtml
-        document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
-        var fileHeaders = document.getElementsByClassName('d2h-file-name')
+        document.getElementById('showDiffWord').insertAdjacentHTML('beforeend', contents)
+        var tocFiles = document.querySelectorAll('.d2h-file-list-line')
+        for (var i = 0; i < tocFiles.length; i++) {
+            var selectedDiv = tocFiles[i]
+            var fileNameDiv = selectedDiv.querySelector('.d2h-file-name')
+            if (path.extname(fileNameDiv.textContent).includes('doc')) {
+                var cleanName = fileNameDiv.textContent.replace('.docx', '').replace('.doc', '')
+                fileNameDiv.href = '#' + cleanName 
+                var fileListHeader = selectedDiv.closest('.d2h-file-list')
+                fileListHeader.insertAdjacentElement('beforeend', selectedDiv)
+
+            }
+        }
+
+        var fileHeaders = document.querySelectorAll('.d2h-file-wrapper .d2h-file-name')
         //remove reference to tempfolders and remove .md extension for any file that is from a word conversion to md.
         for (var i=0; i<fileHeaders.length; i++){
             let fileHeader = fileHeaders[i]
+            if (path.extname(fileHeader.textContent).includes('doc')) {
+               fileHeader.closest(".d2h-file-wrapper").style.display = 'none'   
+            }
             if (fileHeader.textContent.includes('newTempFolder7843NEW')){
                 let currentContent = fileHeader.textContent
                 let clean1 = currentContent.split('newTempFolder7843NEW}/')[1]
-                let clean2 = clean1.replace('135#&579-135#&579', '/').replace('.md', '')
+                let clean2 = clean1.replace('135#&579-135#&579', '/').replace('.md', '') //this is the file name, without reference to temp folder, and without extension name
                 fileHeader.textContent = clean2
+                fileHeader.closest(".d2h-file-wrapper").id = clean2 //change the id to the file name, so can link to it from the TOC, which has the href = the file
+
             }
         
         }
