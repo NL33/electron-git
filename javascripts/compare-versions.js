@@ -225,7 +225,7 @@ async function doTopDiffFunction(result) {
                 var fileListHeader = selectedDiv.closest('.d2h-file-list')
                 fileListHeader.insertAdjacentElement('beforeend', selectedDiv)
             }
-            if (fileNameDiv.textContent.includes('newTempFolder7843NEW')){
+            if (fileNameDiv.textContent.includes('tempFolder7843NEW')){
                 removeLaterListCounter++
                 if (removeLaterListCounter === 1){
                     selectedDiv.closest('.d2h-file-list-wrapper').remove()
@@ -242,9 +242,9 @@ async function doTopDiffFunction(result) {
             if (path.extname(fileHeader.textContent).includes('doc')) {
                fileHeader.closest(".d2h-file-wrapper").style.display = 'none'   
             }
-            if (fileHeader.textContent.includes('newTempFolder7843NEW')){
+            if (fileHeader.textContent.includes('tempFolder7843NEW')){
                 let currentContent = fileHeader.textContent
-                let clean1 = currentContent.split('newTempFolder7843NEW}/')[1]
+                let clean1 = currentContent.split('tempFolder7843NEW}/')[1]
                 let clean2 = clean1.replace('135#&579-135#&579', '/').replace('.md', '') //this is the file name, without reference to temp folder, and without extension name
                 fileHeader.textContent = clean2
                 fileHeader.closest(".d2h-file-wrapper").id = clean2 //change the id to the file name, so can link to it from the TOC, which has the href = the file
@@ -278,7 +278,7 @@ async function startWordDiffProcess() {
         treeName = theNumber.toString() + 'worktree3#&7#&1#&4'
         await git.raw('worktree', 'add', treeName).then(result => {   //^1. Create WorkTree (one for both versions)
             if (result) {
-                let oldTempFolder = projectFolderPath + '/newTempFolder7843OLD'
+                let oldTempFolder = projectFolderPath + '/tempFolder7843OLD'
                 createTempFolders(oldTempFolder, treeName, earlierCommitNumber) //^2. create the temporary folders for old and new
             } else {
                 console.log('error = ')
@@ -290,9 +290,9 @@ async function startWordDiffProcess() {
 }
 
 function createTempFolders(tempFolder, treeName, earlierCommitNumber) {
-    let tempOld = projectFolderPath + '/newTempFolder7843OLD'
-    let tempNew = projectFolderPath + '/newTempFolder7843NEW'
-    if (fs.existsSync(tempFolder)) {  //^3. if temp folder old doesn't exist, create it. Then create temp folder new if it doesn't exist. 
+    let tempOld = projectFolderPath + '/tempFolder7843OLD'
+    let tempNew = projectFolderPath + '/tempFolder7843NEW'
+    if (fs.existsSync(tempFolder)) {  //^3. if temp folder old doesn't exist, create it. Then create temp folder new if tempfoldernew doesn't exist. 
         if (tempFolder === tempOld) { //if oldTempFolder already exists, and the function is about the old folder, then create the new folder
             createTempFolders(tempNew, treeName, earlierCommitNumber)
         } else { //if the temp folder that exists is the new temp folder, then both folders already exist, so now start reverting the worktree, starting with the earlier commit number
@@ -425,9 +425,9 @@ async function convertWordDoc(treeOrMainPath) {
                 var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579')
                 //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
                 if (revertTreeFunctionCounter === 1) { //based on how many times revert tree has run. if run just once, then we are in the old setting. If run twice, then we are in the new setting.   
-                    var markDownDocPath = projectFolderPath + '/newTempFolder7843OLD/' + markDownDocPathChanged
+                    var markDownDocPath = projectFolderPath + '/tempFolder7843OLD/' + markDownDocPathChanged
                 } else {
-                    var markDownDocPath = projectFolderPath + '/newTempFolder7843NEW/' + markDownDocPathChanged
+                    var markDownDocPath = projectFolderPath + '/tempFolder7843NEW/' + markDownDocPathChanged
                 }
                 writeFileFunction(markDownDocPath, dataCleaned)
             })
@@ -447,9 +447,9 @@ async function convertWordDoc(treeOrMainPath) {
                 var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579')
                 //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
                 if (revertTreeFunctionCounter === 1) { //based on how many times revert tree has run. if run just once, then we are in the old setting. If run twice, then we are in the new setting.   
-                    var markDownDocPath = projectFolderPath + '/newTempFolder7843OLD/' + markDownDocPathChanged
+                    var markDownDocPath = projectFolderPath + '/tempFolder7843OLD/' + markDownDocPathChanged
                 } else {
-                    var markDownDocPath = projectFolderPath + '/newTempFolder7843NEW/' + markDownDocPathChanged
+                    var markDownDocPath = projectFolderPath + '/tempFolder7843NEW/' + markDownDocPathChanged
                 }
                 writeFileFunction(markDownDocPath, dataCleaned)
             })
@@ -460,8 +460,8 @@ async function convertWordDoc(treeOrMainPath) {
 let writeFileRun = 0
 
 async function writeFileFunction(markDownDocPath, dataCleaned) {
-    var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
-    var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
+    var folderOld = projectFolderPath + '/tempFolder7843OLD/'
+    var folderNew = projectFolderPath + '/tempFolder7843NEW/'
 
     writeFile(markDownDocPath, dataCleaned, (err) => {//^7. send the file to the temp folder
         writeFileRun++
@@ -489,8 +489,8 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
 }
 
 async function diffTheTempFolders() {
-    var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
-    var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
+    var folderOld = projectFolderPath + '/tempFolder7843OLD/'
+    var folderNew = projectFolderPath + '/tempFolder7843NEW/'
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
@@ -509,7 +509,7 @@ async function diffTheTempFolders() {
                 for (var i = 1; i < resultArray.length; i++) {
                     var fileNameRaw = resultArray[i].split(" ")[0]
                     var fileName1 = fileNameRaw.replace('135#&579-135#&579', '/')  //show original folder structure
-                    var fileName2 = fileName1.split("newTempFolder7843OLD/").pop() //to show the file name without the newTempFolder and preceding stuff, that would be confusing to view.
+                    var fileName2 = fileName1.split("tempFolder7843OLD/").pop() //to show the file name without the tempFolder and preceding stuff, that would be confusing to view.
                     var fileName = fileName2.slice(0, -3) //remove md extension name in the id so that it can link to the header (which is a word doc filename with extension removed)
                     var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
                     var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
@@ -548,8 +548,8 @@ async function removeWorkTreeFromWordComparison() {
                 if (file.includes('worktree3#&7#&1#&4')) {
                     git.raw('worktree', 'remove', file, '--force').then((result) => {
                         git.raw('worktree', 'prune')
-                        var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
-                        var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
+                        var folderOld = projectFolderPath + '/tempFolder7843OLD/'
+                        var folderNew = projectFolderPath + '/tempFolder7843NEW/'
                         fs.rm(folderOld, { recursive: true }, (err) => {
 
                             if (err) {
