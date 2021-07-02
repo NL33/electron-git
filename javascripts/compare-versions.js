@@ -333,10 +333,82 @@ async function revertTree(treeName, commitNumber) {
 }
 
 let numberOfWordDocsToConvert
+
 async function convertWordDoc(treeOrMainPath) {
     let wordDocArray = wordDocsArray//^5. for each word doc that changed, convert the version that is in the current checked out tree. We get the wordDocsArray from the git diff summary action 
     numberOfWordDocsToConvert = wordDocArray.length
     mammothNeedsToRun = (wordDocArray.length) * 2  //mamoth needs to convert the old version and the new version of each world file. so mammoth needs to run the amount of thw word docs, times 2
+   
+   /**Set turndown service (markdown conversion) styling */
+    turndownService.addRule('', { //catch bold
+        filter: 'strong',
+        replacement: function (content) {
+            return '<strong>' + content + '</strong>'
+        }
+    })
+    turndownService.addRule('', { //catch italics
+        filter: 'em',
+        replacement: function (content) {
+            return '<em>' + content + '</em>'
+        }
+    })
+    turndownService.addRule('', {  //catch underlines
+        filter: 'u',
+        replacement: function (content) {
+            return '<u>' + content + '</u>'
+        }
+    })
+    turndownService.addRule('', {  //strike through
+        filter: 's',
+        replacement: function (content) {
+            return '<s>' + content + '</s>'
+        }
+    })
+    turndownService.addRule('', {  //heading 1
+        filter: 'h1',
+        replacement: function (content) {
+            return '<h1>' + content + '</h1>'
+        }
+    })
+    turndownService.addRule('', {  //heading 2
+        filter: 'h2',
+        replacement: function (content) {
+            return '<h2>' + content + '</h2>'
+        }
+    })
+    turndownService.addRule('', {  //heading 2
+        filter: 'h3',
+        replacement: function (content) {
+            return '<h3>' + content + '</h3>'
+        }
+    })
+    turndownService.addRule('', {  //table
+        filter: 'table',
+        replacement: function (content) {
+            return '<table>' + content + '</table>'
+        }
+    })
+    turndownService.addRule('', {  //tr
+        filter: 'tr',
+        replacement: function (content) {
+            return '<tr>' + content + '</tr>'
+        }
+    })
+    turndownService.addRule('', {  //th
+        filter: 'td',
+        replacement: function (content) {
+            return '<td>' + content + '</td>'
+        }
+    })
+    turndownService.addRule('', {  //th
+        filter: 'th',
+        replacement: function (content) {
+            return '<th>' + content + '</th>'
+        }
+    })
+   
+
+    /****CONVERT THE DOCS**** */
     for (let i = 0; i < wordDocArray.length; i++) {
         if (diffBlocks === false) { /******************For Integrated Diff ******************************/
             var wordDocPath = treeOrMainPath + '/' + wordDocArray[i]
@@ -347,75 +419,10 @@ async function convertWordDoc(treeOrMainPath) {
             };
             //console.log('in convertworddoc promise for  = ' + wordDocArray[i])
             mammoth.convertToHtml({ path: wordDocPath }, options).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel.
+                //Note: the mammoth conversion is what slows the process of getting the results down. If you want to try to speed things up, this would be the focus
                 mammothCounter++
                 var htmlWord = result.value
                 var turndownService = new TurndownService()
-                turndownService.addRule('', { //catch bold
-                    filter: 'strong',
-                    replacement: function (content) {
-                        return '<strong>' + content + '</strong>'
-                    }
-                })
-                turndownService.addRule('', { //catch italics
-                    filter: 'em',
-                    replacement: function (content) {
-                        return '<em>' + content + '</em>'
-                    }
-                })
-                turndownService.addRule('', {  //catch underlines
-                    filter: 'u',
-                    replacement: function (content) {
-                        return '<u>' + content + '</u>'
-                    }
-                })
-                turndownService.addRule('', {  //strike through
-                    filter: 's',
-                    replacement: function (content) {
-                        return '<s>' + content + '</s>'
-                    }
-                })
-                turndownService.addRule('', {  //heading 1
-                    filter: 'h1',
-                    replacement: function (content) {
-                        return '<h1>' + content + '</h1>'
-                    }
-                })
-                turndownService.addRule('', {  //heading 2
-                    filter: 'h2',
-                    replacement: function (content) {
-                        return '<h2>' + content + '</h2>'
-                    }
-                })
-                turndownService.addRule('', {  //heading 2
-                    filter: 'h3',
-                    replacement: function (content) {
-                        return '<h3>' + content + '</h3>'
-                    }
-                })
-                turndownService.addRule('', {  //table
-                    filter: 'table',
-                    replacement: function (content) {
-                        return '<table>' + content + '</table>'
-                    }
-                })
-                turndownService.addRule('', {  //tr
-                    filter: 'tr',
-                    replacement: function (content) {
-                        return '<tr>' + content + '</tr>'
-                    }
-                })
-                turndownService.addRule('', {  //th
-                    filter: 'td',
-                    replacement: function (content) {
-                        return '<td>' + content + '</td>'
-                    }
-                })
-                turndownService.addRule('', {  //th
-                    filter: 'th',
-                    replacement: function (content) {
-                        return '<th>' + content + '</th>'
-                    }
-                })
                 var data = turndownService.turndown(htmlWord)
                 //now have a markdown 
                 var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
@@ -478,6 +485,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                 let newFolderLength = fs.readdirSync(folderNew).length
                 if ((newFolderLength === numberOfWordDocsToConvert) && (oldFolderLength === numberOfWordDocsToConvert) && (mammothCounter === mammothNeedsToRun) && (writeFileRun === mammothNeedsToRun)) {
                     //done converting all word docs. Should have all word docs converted to md docs and in the temp folders. Ready for next step
+                    //in theory, we should know we are done when newFolderLength = numberOfWordDocsToConvert. However, in testing, this number seemed to increase faster than having the workable docs in there. Not clear why. So I've added these additional checks to be sure that we only run the diff on the folders after the folders are ready
                     console.log('done converting the word docs. Now run the diff')
                     diffTheTempFolders()
                 } else {
