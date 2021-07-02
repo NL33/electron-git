@@ -27,7 +27,7 @@ it works, though a little slow.
 
 --change the line break notice ("@@...@@") [probably use the new regex method--see code overview recent regex info, to change this into something more obviously an indication that we are skipping some lines.]. DONE
 --in toc for straight diff, change the order so that the word docs come second, and have the word docs come second in the actual diff too. See block diff for how we do this. DONE.
---try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async?
+--try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async? DONE (no changes made--mammoth process is where slow down occurs; leaving that as is for now). *START HERE*
 --see if can change the [- and {+ symbols for diffs. I asked a stack overflow about this. And maybe there is a way to use diff2html to help.
 
 --run the diff in new window automatically (without button)

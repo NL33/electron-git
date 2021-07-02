@@ -407,7 +407,6 @@ async function convertWordDoc(treeOrMainPath) {
         }
     })
    
-
     /****CONVERT THE DOCS**** */
     for (let i = 0; i < wordDocArray.length; i++) {
         if (diffBlocks === false) { /******************For Integrated Diff ******************************/
@@ -501,7 +500,6 @@ async function diffTheTempFolders() {
     var folderNew = projectFolderPath + '/tempFolder7843NEW/'
     try {
         await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
         })
         if (diffBlocks === false) { //do a "word-diff" (integrated diff)
             await git.raw('diff', '--no-index', '--word-diff', folderOld, folderNew, (error, result) => {
