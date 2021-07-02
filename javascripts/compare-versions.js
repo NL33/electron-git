@@ -99,25 +99,33 @@ function showChangedDocNames(result) {
     wordDocsArray = []
     var resultArray = result.split('\n')
     resultArray.forEach((file) => {
-        var newId1 = '#' + file
-        if (newId1.slice(newId1.length - 3) === 'doc') { //when printing the doc names at the top, for word docs, set the id to be the name of the file with the doc or docx extension removed. This way, we can link it to the converted document (which will have an md extension)
-            var newId = newId1.slice(0, - 4) //minus 4 to remove extension name and period.
-        } else if (newId1.slice(newId1.length - 4) === 'docx') {
-            var newId = newId1.slice(0, - 5)
-        } else {
-            var newId = newId1
-        }
-        var contents = `<div><a href="${newId}">${file}</a><div>`
-
-        if (path.extname(file).includes('doc')) {
-            document.getElementById('diffFileNameSummary').insertAdjacentHTML('beforeend', contents)
-            //we have a word doc here
-            if (file.substring(0, 2) !== '~$') {
-                areThereWordDocs = true
-                wordDocsArray.push(file)
+        if (file.length){
+            var newId1 = '#' + file
+            if (newId1.slice(newId1.length - 3) === 'doc') { //when printing the doc names at the top, for word docs, set the id to be the name of the file with the doc or docx extension removed. This way, we can link it to the converted document (which will have an md extension)
+                var newId = newId1.slice(0, - 4) //minus 4 to remove extension name and period.
+            } else if (newId1.slice(newId1.length - 4) === 'docx') {
+                var newId = newId1.slice(0, - 5)
+            } else {
+                var newId = newId1
             }
-        } else {
-            document.getElementById('diffFileNameSummary').insertAdjacentHTML('afterbegin', contents)
+            var contents = `
+            <div>
+            <span>
+                        <a href="${newId}">${file}</a>
+                        <span>
+                        <span class="showThisDocClass">Show Full Changes</span>
+            </div>`
+
+            if (path.extname(file).includes('doc')) {
+                document.getElementById('diffFileNameSummary').insertAdjacentHTML('beforeend', contents)
+                //we have a word doc here
+                if (file.substring(0, 2) !== '~$') {
+                    areThereWordDocs = true
+                    wordDocsArray.push(file)
+                }
+            } else {
+                document.getElementById('diffFileNameSummary').insertAdjacentHTML('afterbegin', contents)
+            }
         }
     })
     if (areThereWordDocs === true) {
