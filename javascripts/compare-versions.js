@@ -109,13 +109,16 @@ function showChangedDocNames(result) {
             var newId = newId1
         }
         var contents = `<div><a href="${newId}">${file}</a><div>`
-        document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
+
         if (path.extname(file).includes('doc')) {
+           document.getElementById('diffWordSummary').insertAdjacentHTML('beforeend', contents)
             //we have a word doc here
             if (file.substring(0, 2) !== '~$') {
                 areThereWordDocs = true
                 wordDocsArray.push(file)
             }
+        } else {
+            document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
         }
     })
     if (areThereWordDocs === true) {
@@ -335,7 +338,7 @@ async function convertWordDoc(treeOrMainPath) {
     numberOfWordDocsToConvert = wordDocArray.length
     mammothNeedsToRun = (wordDocArray.length) * 2  //mamoth needs to convert the old version and the new version of each world file. so mammoth needs to run the amount of thw word docs, times 2
     for (let i = 0; i < wordDocArray.length; i++) {
-        if (diffBlocks === false) {
+        if (diffBlocks === false) { /******************For Integrated Diff ******************************/
             var wordDocPath = treeOrMainPath + '/' + wordDocArray[i]
             var options = {
                 styleMap: [
@@ -455,6 +458,7 @@ async function convertWordDoc(treeOrMainPath) {
 }
 
 let writeFileRun = 0
+
 async function writeFileFunction(markDownDocPath, dataCleaned) {
     var folderOld = projectFolderPath + '/newTempFolder7843OLD/'
     var folderNew = projectFolderPath + '/newTempFolder7843NEW/'
@@ -519,7 +523,7 @@ async function diffTheTempFolders() {
                             <div style="white-space: pre-wrap">${showResults}</div>
                         </div>
                         `
-                    document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
+                    document.getElementById('showDiffWord').insertAdjacentHTML('beforeend', contents)
                 }
                 removeWorkTreeFromWordComparison()
             })

@@ -24,11 +24,12 @@ it works, though a little slow.
           1. I just removed .md extension. But right now that happens for all kinds of docs. It should only happen if it is showing a doc converted from a word doc (note--that would be a doc that is in a temp folder). Make sure this only happens for those docs. DONE
           2. right now, the word conversion appears above the other conversions--and the doc TOC summary appears before both. There should only be one summary that happens at the top--note that the original summary from diff2html, prior to word conversions, is correct in terms of docs listed. Maybe still use that. Maybe add word docs diff at the end, and don't have a summary for those? (so just use first summary?). DONE
           3. Original listing of word docs (which would show not diff bc binary file) still shows up. Remove those. DONE
-          4. for diff2html, reduce line breaks--right now, using mammoth for converting word docs, and are using the get raw data setting. It adds two line breaks after each paragraph. And this ends up being too much. I asked a question on github about this. for raw, or try with straight html (might not work) *Start here*: 
 
---change the line break notice ("@@...@@") [probably use the new regex method--see code overview recent regex info, to change this into something more obviously an indication that we are skipping some lines.]
+--change the line break notice ("@@...@@") [probably use the new regex method--see code overview recent regex info, to change this into something more obviously an indication that we are skipping some lines.]. DONE
+--in toc for straight diff, change the order so that the word docs come second, and have the word docs come second in the actual diff too. See block diff for how we do this. DONE.
 --try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async?
 --see if can change the [- and {+ symbols for diffs. I asked a stack overflow about this. And maybe there is a way to use diff2html to help.
+
 --run the diff in new window automatically (without button)
 
 --run diff for specific docs (remember diff -U999999)--showing the whole docs.
