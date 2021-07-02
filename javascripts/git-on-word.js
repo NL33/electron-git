@@ -631,16 +631,18 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
 }
 
 /**************RUN COMPARISON OF DIFFERENT VERSIONS **********/
-
-document.getElementById('runChanges').addEventListener('click', ()=>{
-    runComparisonFunction()
+document.getElementById('runChangesIntegrated').addEventListener('click', () => {
+    runComparisonFunction('integrated')
 })
 
-function runComparisonFunction(){
+
+document.getElementById('runChangesBlock').addEventListener('click', ()=>{
+    runComparisonFunction('block')
+})
+
+function runComparisonFunction(comparisonType){
     var laterVersionNumber = document.getElementById('versionNumberLater').textContent
-    console.log('later version number = ' + laterVersionNumber)
     var laterMessage = document.getElementById('versionMessageLater').textContent
-    console.log('later message = ' + laterMessage)
     var laterDate = document.getElementById('versionDateLater').textContent
     var laterTime = document.getElementById('versionTimeLater').textContent
     var laterCommitNumber = document.getElementById('commitNumberLater').textContent
@@ -656,7 +658,7 @@ function runComparisonFunction(){
         versionNumber: laterVersionNumber,
         versionMessage: laterMessage,
         versionDate: laterDate,
-        versionTime: laterTime
+        versionTime: laterTime,
     }
 
     //var earlierVersionArray = {}
@@ -668,12 +670,11 @@ function runComparisonFunction(){
         versionTime: earlierTime
     }
 
-    console.log('later commit number = ' + laterVersionArray.commitNumber)
-    console.log('earlier commit number = ' + earlierVersionArray.commitNumber)
     var arg1 = projectFolderPath
     var arg2 = JSON.stringify(laterVersionArray)
     var arg3 = JSON.stringify(earlierVersionArray)
-    ipcRenderer.send('open-compare-versions-window', arg1, arg2, arg3)
+    var arg4 = comparisonType //either integrated or block 
+    ipcRenderer.send('open-compare-versions-window', arg1, arg2, arg3, arg4)
 }
 
 /********* GIT DIFF TESTING ******* */
