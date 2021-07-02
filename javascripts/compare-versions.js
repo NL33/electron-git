@@ -113,7 +113,7 @@ function showChangedDocNames(result) {
             <span>
                         <a href="${newId}">${file}</a>
                         <span>
-                        <span class="showThisDocClass">Show Full Changes</span>
+                        <span class="showThisDocClass">Show Full Document</span>
             </div>`
 
             if (path.extname(file).includes('doc')) {
