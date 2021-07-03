@@ -1,7 +1,13 @@
 # Just Completed
-Just completed full function to convert then run diff on word documents. And now call that diff function (diffTheTempFolders) from within the testWordDiff Function.
+-Just completed single file comparison for non-word.
+-now working on comparison for word.
+--use zdiff-explanation as a guide
+--just added revertTreeFunctionCounter = 0 in diffSingleFile. Start there. got it to write file for Old, but not for new. Issue is probably about a counter needing to be reset (because counters already at a certain spot from running earlier comparison--so when do single file, reset the all counters)
+--focus on word doc, single file, integrated, for 2 commits.
 
-it works, though a little slow.
+--then make single file work for integrated, current changes against a commit
+
+--then make both processes work for block diffs
 
 
 
@@ -194,6 +200,8 @@ could do the split based on more info, like the actual name of the doc, which yo
 --comparisons: make it easier to see the table of contents of the docs to navigate between them. For example, have it always on top, but collapsible in case there are a lot of docs. Or could have it on the side.
 
 --comparison: right now, if try to run a comparison too quickly after running another, the first comparison's temp folders could still be there. Make sure this doesn't cause issues.
+
+--in bundle for production, remove the z files, like 
 
 
 

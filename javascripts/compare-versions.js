@@ -156,7 +156,7 @@ async function diffSingleFile(file) {
             console.log(e)
         }
     } else {//if it is a micro word file
-       
+        revertTreeFunctionCounter = 0  //will have to start process again/ **START HERE FOR WORD DOC, SINGLE FILE, INTEGRATED, TWO COMMITS
         wordDocsArray = [file]
         showFullDoc = true
         startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
@@ -319,7 +319,6 @@ async function doTopDiffFunction(result) {
 /*************************GIT DIFF WITH Microsoft WORD  *****************************/
 
 async function startWordDiffProcess() {
-    console.log('in Start word diff process')
     mammothCounter = 0
     laterCommitNumber = laterVersionInfo.commitNumber
     earlierCommitNumber = earlierVersionInfo.commitNumber
@@ -526,19 +525,22 @@ let writeFileRun = 0
 async function writeFileFunction(markDownDocPath, dataCleaned) {
     var folderOld = projectFolderPath + '/tempFolder7843OLD/'
     var folderNew = projectFolderPath + '/tempFolder7843NEW/'
-
+ console.log('now write the file = ' + markDownDocPath)
     writeFile(markDownDocPath, dataCleaned, (err) => {//^7. send the file to the temp folder
         writeFileRun++
         if (err) {
             console.log('error in write file action = ' + err)
         } else {
             let oldFolderLength = fs.readdirSync(folderOld).length
+            console.log('in write file. oldFolder length ' + oldFolderLength + 'word docs to convert = ' + numberOfWordDocsToConvert)
             // console.log('older folder length = ' + oldFolderLength)
             // if (functionCounter === 1) {
             if ((oldFolderLength === numberOfWordDocsToConvert) && (writeFileRun === numberOfWordDocsToConvert) && (revertTreeFunctionCounter < 2)) {
                 //finished older conversion, now do the second conversion for the later version
+                console.log('now revert the tree')
                 revertTree(treeName, laterCommitNumber)
             } else {
+                console.log('maybe done?')
                 let newFolderLength = fs.readdirSync(folderNew).length
                 if ((newFolderLength === numberOfWordDocsToConvert) && (oldFolderLength === numberOfWordDocsToConvert) && (mammothCounter === mammothNeedsToRun) && (writeFileRun === mammothNeedsToRun)) {
                     //done converting all word docs. Should have all word docs converted to md docs and in the temp folders. Ready for next step

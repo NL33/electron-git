@@ -25,11 +25,11 @@
 -if not a word document, show the results   
 -if wordDoc, put into wordDocArray. After array set, call *startWordProcess 
 
-*Integrated Diff: Word Doc*
+*Integrated Diff and Block Diff: Word Doc*
 
 # startWordDiffProcess()
 -create worktree
--call #createTempFolders()
+-call *createTempFolders()
 
 # createTempFolders()
 -create oldtempfolder. Then call function again
@@ -41,7 +41,7 @@
 -iterate revertTreeFunctionCounter
 -then call *convertWordDoc(treePath)
 
-# convertWordDoc(treePath)
+# convertWordDoc(treePath)  
 -if integrated diff: for each item in wordDocArray:
     -mammoth convert to html. then turndown convert to markdown. 
     -add markdown extension (md)
@@ -50,12 +50,18 @@
         -call *writeFileFunction(tempFOlderOld + md-file-path, convertedFileData)
     -if revertTreeFunctionCounter > 1
         -call *writeFileFunction(tempFolderNew + md-file-path, convertedFileData)
+-if block diff: for each item in wordDocArray
+    -mammoth get raw text
+    -add markdown extension (md)
+    -change path to replace "/"
+    -call *writeFileFunction
+
 
  # writeFileFunction(filePath, fileData)
  -write fileData to filePath. then:
- -if filePath is tempFileOld, call *revertTree(laterCommitNumber)
- -if filePath is tempFileNew, then check counters for how many times: writeFile and mammoth has been called, and whether both tempFileOld and tempFileNew have sufficient docs in them.
- -when the counters show that all word files have been converted for old and new folders, call *diffTheTempFolders
+    -if filePath is tempFileOld, call *revertTree(laterCommitNumber)
+    -if filePath is tempFileNew, then check counters for how many times: writeFile and mammoth has been called, and whether both tempFileOld and tempFileNew have sufficient docs in them.
+    -when the counters show that all word files have been converted for old and new folders, call *diffTheTempFolders
 
  # diffTheTempFolders()
  -if integrated diff: 
@@ -72,7 +78,28 @@
     -call *doTopDiffFunction(diffResult)
     -call *removeWorkTreeFromWordComparison()
 
+# removeWorkTreeFromWordComparison()
+-git worktree rmemove (for any file that includes 'worktree3#&7#&1#&4'), then:
+    -git worktree prune
+    -fs.rm(folderOld)
+    -fs.rm(folderNew)
+
+*Block Diff*
+
+# gitDiffFunctionBlock()
+
+# doTopDiffFunction(result)
 
 
+*Single File: Non-Word Doc*
+
+# diffSingleFile()
+-get file name from button
+-if not word doc:
+    -git diff -word-diff -u999999, earlierCommitNumber, laterCommitNumber
+    -call *showIntegratedDiffResult(result)
+-if word doc:
+    -put word doc into wordDocsArray
+    -call *startWordDiffProcess
 
 
