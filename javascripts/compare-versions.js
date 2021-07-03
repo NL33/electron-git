@@ -99,7 +99,7 @@ function showChangedDocNames(result) {
     wordDocsArray = []
     var resultArray = result.split('\n')
     resultArray.forEach((file) => {
-        if (file.length){
+        if (file.length) {
             var newId1 = '#' + file
             if (newId1.slice(newId1.length - 3) === 'doc') { //when printing the doc names at the top, for word docs, set the id to be the name of the file with the doc or docx extension removed. This way, we can link it to the converted document (which will have an md extension)
                 var newId = newId1.slice(0, - 4) //minus 4 to remove extension name and period.
@@ -113,7 +113,7 @@ function showChangedDocNames(result) {
             <span>
                         <a href="${newId}">${file}</a>
                         <span>
-                        <span class="showThisDocClass" onclick='showFullDoc("${file}")'=>Show Full Document</span>
+                        <span class="showThisDocClass" onclick='diffSingleFile("${file}")'=>Show Full Document</span>
             </div>`
 
             if (path.extname(file).includes('doc')) {
@@ -133,33 +133,36 @@ function showChangedDocNames(result) {
     }
 }
 
-
-function showFullDoc(file){
-    //before leaving, copy all the html, so it's easy to come back to
-    var html = document.getElementsByTagName('html')[0].outerHTML;
-  //can just save this in a a hidden div in the file itself; or just in a js variable
-  diffOneFile(file)
-}
-
-async function diffOneFile(file){ /***START HERE--make this work for single doc with integrated, then single word doc, then block diff */
-    var filePath = projectFolderPath + '/' + file
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
+//*******************IF FOR SINGLE FILE *********************** */
+let showFullDoc = false
+async function diffSingleFile(file) {
+    showFullDoc = false
+    if (!(path.extname(file).includes('doc'))) { //f not word file
+        var filePath = projectFolderPath + '/' + file
+        try {
+            await git.cwd(projectFolderPath).then(result => {
+                // console.log('cwd resultss' + JSON.stringify(result))
+            })
 
 
-        await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber, laterCommitNumber, filePath).then(result => {
-            //with -U99999, will produce up to 99,999 lins around the changes in the output
-            console.log('result = ')
-            console.log(result)    
-            showIntegratedDiffResult(result, 'full')
-        })
-    } catch (e) {
-        console.log('error in git diff one file function = ')
-        console.log(e)
+            await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber, laterCommitNumber, filePath).then(result => {
+                //with -U99999, will produce up to 99,999 lins around the changes in the output
+                console.log('result = ')
+                console.log(result)
+                showIntegratedDiffResult(result, 'full')
+            })
+        } catch (e) {
+            console.log('error in git diff one file function = ')
+            console.log(e)
+        }
+    } else {//if it is a micro word file
+       
+        wordDocsArray = [file]
+        showFullDoc = true
+        startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
     }
 }
+/********************************************************** */
 
 function showIntegratedDiffResult(result, type) { //type can be full file ("full") or summary of changes
     var red = result.replace(/\[-/g, '<del style="color: #c00">')
@@ -185,14 +188,14 @@ function showIntegratedDiffResult(result, type) { //type can be full file ("full
                             <div style="white-space: pre-wrap">${showResults}</div>
                         </div>
                    `
-            if (type==='summary'){
-                   document.getElementById('showDiffIntegrated').insertAdjacentHTML('afterbegin', contents)
+            if (type === 'summary') {
+                document.getElementById('showDiffIntegrated').insertAdjacentHTML('afterbegin', contents)
             } else {
-                document.getElementById('showDiffIntegrated').style.display='none'
+                document.getElementById('showDiffIntegrated').style.display = 'none'
                 document.getElementById('showFullFile').insertAdjacentHTML('afterbegin', contents)
-                document.getElementById('backToSummaryButton').style.display="inline-block"
-                document.getElementById('backToSummaryButton').addEventListener('click', ()=>{
-                    document.getElementById('showDiffIntegrated').style.display="inline-block"
+                document.getElementById('backToSummaryButton').style.display = "inline-block"
+                document.getElementById('backToSummaryButton').addEventListener('click', () => {
+                    document.getElementById('showDiffIntegrated').style.display = "inline-block"
                     document.getElementById('showFullFile').innerHTML = ''
                     document.getElementById('backToSummaryButton').style.display = "none"
                 })
@@ -233,7 +236,7 @@ async function gitDiffFunctionBlock() {
                 if (areThereWordDocs === true) {
                     startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
                 }
-            })      
+            })
         } else {
             await git.raw('diff', earlierCommitNumber).then(result => { //current changes v earlier commit
                 doTopDiffFunction(result)
@@ -398,6 +401,7 @@ async function convertWordDoc(treeOrMainPath) {
 
     /****CONVERT THE DOCS**** */
     for (let i = 0; i < wordDocArray.length; i++) {
+        console.log('in the array')
         if (diffBlocks === false) { /******************For Integrated Diff ******************************/
             var wordDocPath = treeOrMainPath + '/' + wordDocArray[i]
             var options = {
@@ -471,7 +475,7 @@ async function convertWordDoc(treeOrMainPath) {
                     return '<th>' + content + '</th>'
                 }
             })
-            //console.log('in convertworddoc promise for  = ' + wordDocArray[i])
+            console.log('in convertworddoc promise for  = ' + wordDocArray[i])
             mammoth.convertToHtml({ path: wordDocPath }, options).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel.
                 //Note: the mammoth conversion is what slows the process of getting the results down. If you want to try to speed things up, this would be the focus
                 mammothCounter++
@@ -552,6 +556,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
 async function diffTheTempFolders() {
     var folderOld = projectFolderPath + '/tempFolder7843OLD/'
     var folderNew = projectFolderPath + '/tempFolder7843NEW/'
+    console.log('diff the word doc')
     try {
         await git.cwd(projectFolderPath).then(result => {
         })
