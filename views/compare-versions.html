@@ -83,7 +83,7 @@
             background-color: #f1a7b3
         }
 
-        /*CLICK BUTTON TO EXPAND ON DOC**/
+        /*SHOWING FULL FILE**/
         .showThisDocClass {
            display: inline-block;
             font-size: 11pt;
@@ -93,7 +93,24 @@
             padding-left: 8px;
             padding-right: 8px;
             cursor: pointer;
-            margin-left: 15px  
+            margin-left: 15px ;
+            margin-bottom: 5px 
+        }
+
+        #backToSummaryButton {
+           display: none;
+            font-size: 12pt;
+            border: 2px solid #32cd53;
+            border-radius: 5px;
+            padding: 2px;
+            padding-left: 8px;
+            padding-right: 8px;
+            cursor: pointer;
+            margin-bottom: 15px  
+        }
+        #backToSummaryButton:hover {
+            background-color: #32cd53;
+            color: white
         }
 
     </style>
@@ -102,6 +119,7 @@
 </head>
 
 <body id="bodyId">
+<div id="backToSummaryButton">Back to Summary</div>
 <div id="diffFileNameSummary" style="margin-bottom: 10px"></div>
 <div id="showFullFile"></div>
 <div id="showDiffIntegrated"></div>

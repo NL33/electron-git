@@ -30,12 +30,15 @@ it works, though a little slow.
 --try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async? DONE (no changes made--mammoth process is where slow down occurs; leaving that as is for now). DONE 
 
 
---run the diff in new window automatically (without button). 
-     --just change compare versions js, compare versions html, git on word html and main js, to run function automatically when load window*START HERE*
+--run the diff in new window automatically (without button). DONE
 
 --run diff for specific docs (remember diff -U999999)--showing the whole docs.
---give user options to choose integrated v on top diffs
+     --click button and run diff in the window that shows the full document. *START HERE*
+     --on full document view, have button to return to summary
+     --click button to return to the summary
 --make the compare change window an option at the bottom of the main screen to kickstart this whole process
+--give user options to choose integrated v on top diffs
+
 
 ****
 Plan for comparing word docs:
@@ -189,6 +192,11 @@ could do the split based on more info, like the actual name of the doc, which yo
 --Comparisons: see if can change the [- and {+ symbols for diffs. The goal would be to change those into more unique symbols so that I can then do a replace on them that has a better chance of not catching text a user has in a doc. I asked a stack overflow about this. And maybe there is a way to use diff2html to help.
 
 --comparisons: make it easier to see the table of contents of the docs to navigate between them. For example, have it always on top, but collapsible in case there are a lot of docs. Or could have it on the side.
+
+--comparison: right now, if try to run a comparison too quickly after running another, the first comparison's temp folders could still be there. Make sure this doesn't cause issues.
+
+
+
 # contact notes
 
 if link it to github, could tell them about it to get their support

@@ -190,6 +190,12 @@ function showIntegratedDiffResult(result, type) { //type can be full file ("full
             } else {
                 document.getElementById('showDiffIntegrated').style.display='none'
                 document.getElementById('showFullFile').insertAdjacentHTML('afterbegin', contents)
+                document.getElementById('backToSummaryButton').style.display="inline-block"
+                document.getElementById('backToSummaryButton').addEventListener('click', ()=>{
+                    document.getElementById('showDiffIntegrated').style.display="inline-block"
+                    document.getElementById('showFullFile').innerHTML = ''
+                    document.getElementById('backToSummaryButton').style.display = "none"
+                })
             }
         }
     }
