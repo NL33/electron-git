@@ -81,11 +81,11 @@ async function gitDiffFunctionIntegrated() {
         //then show the actual changes:
         if (laterCommitNumber !== 'current-changes') {
             await git.raw('diff', '--word-diff', earlierCommitNumber, laterCommitNumber).then(result => {
-                showIntegratedDiffResult(result)
+                showIntegratedDiffResult(result, 'summary')
             })
         } else {
             await git.raw('diff', '--word-diff', earlierCommitNumber).then(result => {
-                showIntegratedDiffResult(result)
+                showIntegratedDiffResult(result, 'summary')
             })
         }
 
@@ -113,7 +113,7 @@ function showChangedDocNames(result) {
             <span>
                         <a href="${newId}">${file}</a>
                         <span>
-                        <span class="showThisDocClass">Show Full Document</span>
+                        <span class="showThisDocClass" onclick='showFullDoc("${file}")'=>Show Full Document</span>
             </div>`
 
             if (path.extname(file).includes('doc')) {
@@ -133,7 +133,35 @@ function showChangedDocNames(result) {
     }
 }
 
-function showIntegratedDiffResult(result) {
+
+function showFullDoc(file){
+    //before leaving, copy all the html, so it's easy to come back to
+    var html = document.getElementsByTagName('html')[0].outerHTML;
+  //can just save this in a a hidden div in the file itself; or just in a js variable
+  diffOneFile(file)
+}
+
+async function diffOneFile(file){ /***START HERE--make this work for single doc with integrated, then single word doc, then block diff */
+    var filePath = projectFolderPath + '/' + file
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+
+        await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber, laterCommitNumber, filePath).then(result => {
+            //with -U99999, will produce up to 99,999 lins around the changes in the output
+            console.log('result = ')
+            console.log(result)    
+            showIntegratedDiffResult(result, 'full')
+        })
+    } catch (e) {
+        console.log('error in git diff one file function = ')
+        console.log(e)
+    }
+}
+
+function showIntegratedDiffResult(result, type) { //type can be full file ("full") or summary of changes
     var red = result.replace(/\[-/g, '<del style="color: #c00">')
     var endred = red.replace(/-]/g, '</del>')
     //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
@@ -156,8 +184,13 @@ function showIntegratedDiffResult(result) {
                             <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;white-space: pre-wrap">${fileName}</div>
                             <div style="white-space: pre-wrap">${showResults}</div>
                         </div>
-                        `
-            document.getElementById('showDiffIntegrated').insertAdjacentHTML('afterbegin', contents)
+                   `
+            if (type==='summary'){
+                   document.getElementById('showDiffIntegrated').insertAdjacentHTML('afterbegin', contents)
+            } else {
+                document.getElementById('showDiffIntegrated').style.display='none'
+                document.getElementById('showFullFile').insertAdjacentHTML('afterbegin', contents)
+            }
         }
     }
 }
