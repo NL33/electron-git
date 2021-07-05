@@ -144,7 +144,6 @@ async function diffSingleFile(file) {
                 // console.log('cwd resultss' + JSON.stringify(result))
             })
 
-
             await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber, laterCommitNumber, filePath).then(result => {
                 //with -U99999, will produce up to 99,999 lins around the changes in the output
                 console.log('result = ')
@@ -156,7 +155,10 @@ async function diffSingleFile(file) {
             console.log(e)
         }
     } else {//if it is a micro word file
-        revertTreeFunctionCounter = 0  //will have to start process again/ **START HERE FOR WORD DOC, SINGLE FILE, INTEGRATED, TWO COMMITS
+        revertTreeFunctionCounter = 0  //will have to start process again
+        mammothCounter = 0
+        mammothNeedsToRun = 0
+        writeFileRun = 0
         wordDocsArray = [file]
         showFullDoc = true
         startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
@@ -525,7 +527,7 @@ let writeFileRun = 0
 async function writeFileFunction(markDownDocPath, dataCleaned) {
     var folderOld = projectFolderPath + '/tempFolder7843OLD/'
     var folderNew = projectFolderPath + '/tempFolder7843NEW/'
- console.log('now write the file = ' + markDownDocPath)
+    console.log('now write the file = ' + markDownDocPath)
     writeFile(markDownDocPath, dataCleaned, (err) => {//^7. send the file to the temp folder
         writeFileRun++
         if (err) {
@@ -533,8 +535,6 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
         } else {
             let oldFolderLength = fs.readdirSync(folderOld).length
             console.log('in write file. oldFolder length ' + oldFolderLength + 'word docs to convert = ' + numberOfWordDocsToConvert)
-            // console.log('older folder length = ' + oldFolderLength)
-            // if (functionCounter === 1) {
             if ((oldFolderLength === numberOfWordDocsToConvert) && (writeFileRun === numberOfWordDocsToConvert) && (revertTreeFunctionCounter < 2)) {
                 //finished older conversion, now do the second conversion for the later version
                 console.log('now revert the tree')
@@ -558,12 +558,16 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
 async function diffTheTempFolders() {
     var folderOld = projectFolderPath + '/tempFolder7843OLD/'
     var folderNew = projectFolderPath + '/tempFolder7843NEW/'
-    console.log('diff the word doc')
+    if (showFullDoc === false) {
+        var uOption = '-U' //default git diff U, showing 3 lines of context around a change
+    } else {
+        var uOption = '-U9999999' //goal is to show the whole doc, so show all lines of content 
+    }
     try {
         await git.cwd(projectFolderPath).then(result => {
         })
         if (diffBlocks === false) { //*****************INTEGRATED DIFF***************** */
-            await git.raw('diff', '--no-index', '--word-diff', folderOld, folderNew, (error, result) => {
+            await git.raw('diff', '--no-index', '--word-diff', uOption, folderOld, folderNew, (error, result) => {
                 var red = result.replace(/\[-/g, '<del style="color: #c00">')//.replaceAll('<del style="color: #c00"><', '<')
                 var endred = red.replace(/-]/g, '</del>')
                 //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
@@ -590,12 +594,23 @@ async function diffTheTempFolders() {
                             <div style="white-space: pre-wrap">${showResults}</div>
                         </div>
                         `
-                    document.getElementById('showDiffIntegrated').insertAdjacentHTML('beforeend', contents)
+                    if (showFullDoc === false) {
+                        document.getElementById('showDiffIntegrated').insertAdjacentHTML('beforeend', contents)
+                    } else {
+                        document.getElementById('showDiffIntegrated').style.display = 'none'
+                        document.getElementById('showFullFile').insertAdjacentHTML('afterbegin', contents)
+                        document.getElementById('backToSummaryButton').style.display = "inline-block"
+                        document.getElementById('backToSummaryButton').addEventListener('click', () => {
+                            document.getElementById('showDiffIntegrated').style.display = "inline-block"
+                            document.getElementById('showFullFile').innerHTML = ''
+                            document.getElementById('backToSummaryButton').style.display = "none"
+                        })
+                    }
                 }
                 removeWorkTreeFromWordComparison()
             })
         } else { /*****************BLOCK DIFF*************************** */
-            await git.raw('diff', '--no-index', folderOld, folderNew, (error, result) => {
+            await git.raw('diff', '--no-index', uOption, folderOld, folderNew, (error, result) => {
                 doTopDiffFunction(result)
                 removeWorkTreeFromWordComparison()
             })

@@ -1,9 +1,9 @@
 # Just Completed
 -Just completed single file comparison for non-word.
--now working on comparison for word.
+-now working on comparison for word. 
 --use zdiff-explanation as a guide
 --just added revertTreeFunctionCounter = 0 in diffSingleFile. Start there. got it to write file for Old, but not for new. Issue is probably about a counter needing to be reset (because counters already at a certain spot from running earlier comparison--so when do single file, reset the all counters)
---focus on word doc, single file, integrated, for 2 commits.
+--focus on word doc, single file, integrated, for 2 commits. DONE
 
 --then make single file work for integrated, current changes against a commit
 
