@@ -136,7 +136,7 @@ function showChangedDocNames(result) {
 //*******************IF FOR SINGLE FILE *********************** */
 let showFullDoc = false
 async function diffSingleFile(file) {
-    showFullDoc = false
+    showFullDoc = false //showDoc=false is just for diffing micro word docs. Why? For non-micro-word-docs, it's just one other function, and we can include the specification of singleFile ('full') in the param, and it's more efficient. For micro-word docs, there are multiple functions to get through until this specification is relevant, and it's less efficient to carry this param through those functions (where they are not used until the end function)
     if (!(path.extname(file).includes('doc'))) { //f not word file
         var filePath = projectFolderPath + '/' + file
         try {
@@ -144,12 +144,16 @@ async function diffSingleFile(file) {
                 // console.log('cwd resultss' + JSON.stringify(result))
             })
 
-            await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber, laterCommitNumber, filePath).then(result => {
-                //with -U99999, will produce up to 99,999 lins around the changes in the output
-                console.log('result = ')
-                console.log(result)
-                showIntegratedDiffResult(result, 'full')
-            })
+            if (laterCommitNumber !== 'current-changes') {
+                await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber, laterCommitNumber, filePath).then(result => {
+                    //with -U99999, will produce up to 99,999 lins around the changes in the output
+                    showIntegratedDiffResult(result, 'full')
+                })
+            } else {
+                await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber).then(result => {
+                    showIntegratedDiffResult(result, 'full')
+                })
+            }          
         } catch (e) {
             console.log('error in git diff one file function = ')
             console.log(e)
@@ -402,7 +406,6 @@ async function convertWordDoc(treeOrMainPath) {
 
     /****CONVERT THE DOCS**** */
     for (let i = 0; i < wordDocArray.length; i++) {
-        console.log('in the array')
         if (diffBlocks === false) { /******************For Integrated Diff ******************************/
             var wordDocPath = treeOrMainPath + '/' + wordDocArray[i]
             var options = {
@@ -476,7 +479,6 @@ async function convertWordDoc(treeOrMainPath) {
                     return '<th>' + content + '</th>'
                 }
             })
-            console.log('in convertworddoc promise for  = ' + wordDocArray[i])
             mammoth.convertToHtml({ path: wordDocPath }, options).then(function (result) { //^6. convert the word docs to html. This will be happening async--so different docs will be being converted in parallel.
                 //Note: the mammoth conversion is what slows the process of getting the results down. If you want to try to speed things up, this would be the focus
                 mammothCounter++
@@ -527,20 +529,16 @@ let writeFileRun = 0
 async function writeFileFunction(markDownDocPath, dataCleaned) {
     var folderOld = projectFolderPath + '/tempFolder7843OLD/'
     var folderNew = projectFolderPath + '/tempFolder7843NEW/'
-    console.log('now write the file = ' + markDownDocPath)
     writeFile(markDownDocPath, dataCleaned, (err) => {//^7. send the file to the temp folder
         writeFileRun++
         if (err) {
             console.log('error in write file action = ' + err)
         } else {
             let oldFolderLength = fs.readdirSync(folderOld).length
-            console.log('in write file. oldFolder length ' + oldFolderLength + 'word docs to convert = ' + numberOfWordDocsToConvert)
             if ((oldFolderLength === numberOfWordDocsToConvert) && (writeFileRun === numberOfWordDocsToConvert) && (revertTreeFunctionCounter < 2)) {
                 //finished older conversion, now do the second conversion for the later version
-                console.log('now revert the tree')
                 revertTree(treeName, laterCommitNumber)
             } else {
-                console.log('maybe done?')
                 let newFolderLength = fs.readdirSync(folderNew).length
                 if ((newFolderLength === numberOfWordDocsToConvert) && (oldFolderLength === numberOfWordDocsToConvert) && (mammothCounter === mammothNeedsToRun) && (writeFileRun === mammothNeedsToRun)) {
                     //done converting all word docs. Should have all word docs converted to md docs and in the temp folders. Ready for next step
