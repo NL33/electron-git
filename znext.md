@@ -1,47 +1,7 @@
 # Just Completed
--Just completed single file comparison for non-word.
--now working on comparison for word. 
---use zdiff-explanation as a guide
---just added revertTreeFunctionCounter = 0 in diffSingleFile. Start there. got it to write file for Old, but not for new. Issue is probably about a counter needing to be reset (because counters already at a certain spot from running earlier comparison--so when do single file, reset the all counters)
---focus on word doc, single file, integrated, for 2 commits. DONE
-
---then make single file work for integrated, current changes against a commit. DONE
-
---then make both processes work for block diffs. 
-
 
 
 # Next
---run diff for micro word docs:
-      --check to be sure the process has fully run--make sure the steps work so they go in right order. DONE.
-      --right now the array of word docs is hardcoded--instead, get the docs that changed from the diff summary. DONE
-      --run the diff on the two folders. DONE
-     -- integrate that with the diff of all non-word docs. So, have the nonword docs' diff show up first, then show the micro word. DONE
---current code has a summary of all docs, including micro word docs, that appears when you run the original diff function. So right now that summary for word docs appears below the word diff. make this not happen. DONE
---change the micro word diff to get rid of the summary at the beginning (starting with file name through @@ in the git result) DONE.
---remove the worktree, and the temp folders, after diff is run. DONE
---right now, the diff for word docs shows things like bold using "*". Can you show it so it looks closer to original word doc. Something about showing a converted markup? (so isntead of "**", you see bold, etc...). DONE. method right now: turndown special rule to convert <strong> tag in html from mammoth to <strong> in md, which displays as html bold. Other possibility is to change <strong> to arbitrary characters with turndown rule, and then later use regex to change that arbitrary character into bold, italics, etc. DONE
-    
---make it work if just running current (uncommitted) version against older version. 
-     --clean code for non-word integrated diffs. DONE
-     --make current changes work for word diffs. DONE
-     --clean code for running block diffs. DONE.
-     --block diffs for word docs. 
-          1. I just removed .md extension. But right now that happens for all kinds of docs. It should only happen if it is showing a doc converted from a word doc (note--that would be a doc that is in a temp folder). Make sure this only happens for those docs. DONE
-          2. right now, the word conversion appears above the other conversions--and the doc TOC summary appears before both. There should only be one summary that happens at the top--note that the original summary from diff2html, prior to word conversions, is correct in terms of docs listed. Maybe still use that. Maybe add word docs diff at the end, and don't have a summary for those? (so just use first summary?). DONE
-          3. Original listing of word docs (which would show not diff bc binary file) still shows up. Remove those. DONE
-
---change the line break notice ("@@...@@") [probably use the new regex method--see code overview recent regex info, to change this into something more obviously an indication that we are skipping some lines.]. DONE
---in toc for straight diff, change the order so that the word docs come second, and have the word docs come second in the actual diff too. See block diff for how we do this. DONE.
---try to figure out where the slow down happens, and see if can speed that up. Maybe something that is currently sync can be async? DONE (no changes made--mammoth process is where slow down occurs; leaving that as is for now). DONE 
-
-
---run the diff in new window automatically (without button). DONE
-
---run diff for specific docs (remember diff -U999999)--showing the whole docs.
-     --click button and run diff in the window that shows the full document. *START HERE*
-     --on full document view, have button to return to summary
-     --click button to return to the summary
 --make the compare change window an option at the bottom of the main screen to kickstart this whole process
 --give user options to choose integrated v on top diffs
 

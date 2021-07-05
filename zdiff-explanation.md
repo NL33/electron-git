@@ -1,4 +1,6 @@
 **Explaining the Diff Steps for "Compare Versions**
+JS file: compare-versions.js
+html file: compare-versions.html
 
 *Integrated Diff: Common Functions*
 
@@ -96,16 +98,20 @@
 # diffSingleFile()
 
 -get file name from button
---if integrated diff:
-    -if not word doc:
+
+-if not word doc:
+    -if integrated diff:
         -git diff -word-diff -u999999, earlierCommitNumber, laterCommitNumber
-        -call *showIntegratedDiffResult(result)
-    -if word doc:
-        -revert counters: revertTreeFunctionCounter
-        -put word doc into wordDocsArray
-        -call *startWordDiffProcess
-        -put these counters to 0: numberOfWordDocsToConvert, mammothCounter, mammothNeedsToRun, writeFileRun (other counters for newFolderLength and oldFolderLength are already reset in writeFileFunction)
---if block diff:
-    --call *gitDiffFunctionBlock()
+        -call *showIntegratedDiffResult(result, 'full') //full for show full document
+    -if block diff:
+        -git diff =U999999
+        -call *doTopDiffFunction(result, 'full')
+
+-if word doc:
+    -revert counters: revertTreeFunctionCounter
+    -put word doc into wordDocsArray
+    -put these counters to 0: numberOfWordDocsToConvert, mammothCounter, mammothNeedsToRun, writeFileRun (other counters for newFolderLength and oldFolderLength are already reset in writeFileFunction)
+    -call *startWordDiffProcess
+
 
 
