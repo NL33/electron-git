@@ -94,12 +94,18 @@
 *Single File: Non-Word Doc*
 
 # diffSingleFile()
+
 -get file name from button
--if not word doc:
-    -git diff -word-diff -u999999, earlierCommitNumber, laterCommitNumber
-    -call *showIntegratedDiffResult(result)
--if word doc:
-    -put word doc into wordDocsArray
-    -call *startWordDiffProcess
+--if integrated diff:
+    -if not word doc:
+        -git diff -word-diff -u999999, earlierCommitNumber, laterCommitNumber
+        -call *showIntegratedDiffResult(result)
+    -if word doc:
+        -revert counters: revertTreeFunctionCounter
+        -put word doc into wordDocsArray
+        -call *startWordDiffProcess
+        -put these counters to 0: numberOfWordDocsToConvert, mammothCounter, mammothNeedsToRun, writeFileRun (other counters for newFolderLength and oldFolderLength are already reset in writeFileFunction)
+--if block diff:
+    --call *gitDiffFunctionBlock()
 
 

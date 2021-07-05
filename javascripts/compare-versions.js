@@ -52,7 +52,7 @@ async function gitDiffFunctionIntegrated() {
     diffBlocks = false
     laterCommitNumber = laterVersionInfo.commitNumber
     earlierCommitNumber = earlierVersionInfo.commitNumber
-
+    let showFullDoc = false
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
@@ -110,10 +110,8 @@ function showChangedDocNames(result) {
             }
             var contents = `
             <div>
-            <span>
-                        <a href="${newId}">${file}</a>
-                        <span>
-                        <span class="showThisDocClass" onclick='diffSingleFile("${file}")'=>Show Full Document</span>
+               <span><a href="${newId}">${file}</a></span>
+               <span class="showThisDocClass" onclick='diffSingleFile("${file}")'>Show Full Document</span>
             </div>`
 
             if (path.extname(file).includes('doc')) {
@@ -137,6 +135,7 @@ function showChangedDocNames(result) {
 let showFullDoc = false
 async function diffSingleFile(file) {
     showFullDoc = false //showDoc=false is just for diffing micro word docs. Why? For non-micro-word-docs, it's just one other function, and we can include the specification of singleFile ('full') in the param, and it's more efficient. For micro-word docs, there are multiple functions to get through until this specification is relevant, and it's less efficient to carry this param through those functions (where they are not used until the end function)
+
     if (!(path.extname(file).includes('doc'))) { //f not word file
         var filePath = projectFolderPath + '/' + file
         try {
@@ -144,16 +143,28 @@ async function diffSingleFile(file) {
                 // console.log('cwd resultss' + JSON.stringify(result))
             })
 
-            if (laterCommitNumber !== 'current-changes') {
-                await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber, laterCommitNumber, filePath).then(result => {
-                    //with -U99999, will produce up to 99,999 lins around the changes in the output
-                    showIntegratedDiffResult(result, 'full')
-                })
-            } else {
-                await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber).then(result => {
-                    showIntegratedDiffResult(result, 'full')
-                })
-            }          
+            if (showFullDoc === false) { //integrated diff
+                if (laterCommitNumber !== 'current-changes') {
+                    await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber, laterCommitNumber, filePath).then(result => {
+                        //with -U99999, will produce up to 99,999 lins around the changes in the output
+                        showIntegratedDiffResult(result, 'full')
+                    })
+                } else {
+                    await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber).then(result => {
+                        showIntegratedDiffResult(result, 'full')
+                    })
+                }
+            } else { //block dif
+                if (laterCommitNumber !== 'current-changes') {
+                    await git.raw('diff', '-U9999999', earlierCommitNumber, laterCommitNumber, filePath).then(result => {
+                        doTopDiffFunction(result, 'full')
+                    })
+                } else {
+                    await git.raw('diff', '-U9999999', earlierCommitNumber).then(result => {
+                        doTopDiffFunction(result, 'full')
+                    })
+                }
+            }
         } catch (e) {
             console.log('error in git diff one file function = ')
             console.log(e)
@@ -195,13 +206,13 @@ function showIntegratedDiffResult(result, type) { //type can be full file ("full
                         </div>
                    `
             if (type === 'summary') {
-                document.getElementById('showDiffIntegrated').insertAdjacentHTML('afterbegin', contents)
+                document.getElementById('showDiff').insertAdjacentHTML('afterbegin', contents)
             } else {
-                document.getElementById('showDiffIntegrated').style.display = 'none'
+                document.getElementById('showDiff').style.display = 'none'
                 document.getElementById('showFullFile').insertAdjacentHTML('afterbegin', contents)
                 document.getElementById('backToSummaryButton').style.display = "inline-block"
                 document.getElementById('backToSummaryButton').addEventListener('click', () => {
-                    document.getElementById('showDiffIntegrated').style.display = "inline-block"
+                    document.getElementById('showDiff').style.display = "inline-block"
                     document.getElementById('showFullFile').innerHTML = ''
                     document.getElementById('backToSummaryButton').style.display = "none"
                 })
@@ -212,7 +223,7 @@ function showIntegratedDiffResult(result, type) { //type can be full file ("full
 
 /****************BLOCK DIFF***************************** */
 
-async function gitDiffFunctionBlock() {
+async function gitDiffFunctionBlock() { //for file summary [full file handled under diffSingleFile()]
     diffIntegrated = false
     diffBlocks = true
     wordDocsArray = []
@@ -226,7 +237,7 @@ async function gitDiffFunctionBlock() {
 
         if (laterCommitNumber !== 'current-changes') {
             await git.raw('diff', earlierCommitNumber, laterCommitNumber).then(result => {
-                doTopDiffFunction(result)
+                doTopDiffFunction(result, 'summary')
                 var resultArray = result.split('diff --git a/')
                 wordDocsTopArray = []
                 for (var i = 0; i < resultArray.length; i++) {
@@ -245,7 +256,7 @@ async function gitDiffFunctionBlock() {
             })
         } else {
             await git.raw('diff', earlierCommitNumber).then(result => { //current changes v earlier commit
-                doTopDiffFunction(result)
+                doTopDiffFunction(result, 'summary')
                 var resultArray = result.split('diff --git a/')
                 wordDocsTopArray = []
                 for (var i = 0; i < resultArray.length; i++) {
@@ -267,8 +278,9 @@ async function gitDiffFunctionBlock() {
         console.log('error in git diff top function = ' + e)
     }
 }
-
-async function doTopDiffFunction(result) {
+var topDiffCounter = 0
+async function doTopDiffFunction(result, type) {
+    topDiffCounter++
     var removeLaterListCounter = 0
     try {
         const Diff2html = require('diff2html');
@@ -276,27 +288,65 @@ async function doTopDiffFunction(result) {
         const diffString = result
         const diffHtml = await Diff2html.html(diffJson, { drawFileList: true, diffStyle: 'word' });
         var contents = await diffHtml
-        document.getElementById('showDiffBlock').insertAdjacentHTML('beforeend', contents)
-        var tocFiles = document.querySelectorAll('.d2h-file-list-line')
-        for (var i = 0; i < tocFiles.length; i++) {
-            var selectedDiv = tocFiles[i]
-            var fileNameDiv = selectedDiv.querySelector('.d2h-file-name')
-            if (path.extname(fileNameDiv.textContent).includes('doc')) {
-                var cleanName = fileNameDiv.textContent.replace('.docx', '').replace('.doc', '')
-                fileNameDiv.href = '#' + cleanName
-                var fileListHeader = selectedDiv.closest('.d2h-file-list')
-                fileListHeader.insertAdjacentElement('beforeend', selectedDiv)
+
+        //NOTE: IN the block diff situation, steps: 1. show the whole diff, 2. get the files from the diff TOC, and 3. adjust file listing. In the integrated diff, steps: 1. run summary diff to show file names, and show them, then 2. run diff, and show full diff.
+        //Why the difference? In the block diff, we use diff2html, which does the file TOC automatically. So we show the whole diff first (including the doc TOC), then get the filenames from the TOC In the integrated diff, we need to produce the file TOC with a separate diff -name-only process. 
+
+        /****SHOW THE DIFF******* */
+        if (type === 'summary') {
+            document.getElementById('showDiff').insertAdjacentHTML('beforeend', contents)
+        } else {
+            document.getElementById('showDiff').style.display = 'none'
+            document.getElementById('showFullFile').insertAdjacentHTML('afterbegin', contents)
+            document.getElementById('backToSummaryButton').style.display = "inline-block"
+            document.getElementById('backToSummaryButton').addEventListener('click', () => {
+                document.getElementById('showDiff').style.display = "inline-block"
+                document.getElementById('showFullFile').innerHTML = ''
+                document.getElementById('backToSummaryButton').style.display = "none"
+            })
+        }
+
+        /***MANIPULATE THE FILE LISTING AT THE TOP***/
+        if (topDiffCounter < 2) { //we can run this function at least twice in the case that there are normal docs and micro-word docs; but we only want to adjust the TOC once.
+            var tocFiles = document.querySelectorAll('.d2h-file-list-line')
+            for (var i = 0; i < tocFiles.length; i++) {
+                var selectedDiv = tocFiles[i] //this is the TOC file listing
+                var fileNameDiv = selectedDiv.querySelector('.d2h-file-name')
+                var fileName = fileNameDiv.textContent
+                if (path.extname(fileName).includes('doc')) {
+                    var newId = '#' + fileNameDiv.textContent.replace('.docx', '').replace('.doc', '')
+                    // fileNameDiv.href = '#' + cleanName
+                    //var fileListHeader = selectedDiv.closest('.d2h-file-list')
+                    // fileListHeader.insertAdjacentElement('beforeend', selectedDiv)
+                    let contents = `
+                    <div>
+                    <span><a href="${newId}">${fileName}</a></span>
+                    <span class="showThisDocClass" onclick='diffSingleFile("${fileName}")'>Show Full Document</span>
+                    </div>`
+                    document.getElementById('diffFileNameSummary').insertAdjacentHTML('beforeend', contents)
+                } else {
+                    var newId = '#' + fileName
+                    let contents = `
+                    <div>
+                    <span><a href="${newId}">${fileName}</a></span>
+                    <span class="showThisDocClass" onclick='diffSingleFile("${fileName}")'>Show Full Document</span>
+                    </div>`
+                    document.getElementById('diffFileNameSummary').insertAdjacentHTML('afterbegin', contents)
+
+                }
             }
+
             if (fileNameDiv.textContent.includes('tempFolder7843NEW')) {
                 removeLaterListCounter++
                 if (removeLaterListCounter === 1) {
                     selectedDiv.closest('.d2h-file-list-wrapper').remove()
-                    //this will remove the toc div for the converted word docs. Why? diff2html immediately prints a TOC of docs, prior to our converting the word docs. We have manipulated that to reference the converted word docs, so we already have a TOC. After the conversion is done, diff2html would print a second toc for the new word docs (because we run doTopDiffFunction twice, and append the contents into #showDiffIntegrated above). So without further action, there would be two TOCs. This remove() action removes the second TOC.
+                    //this will remove the toc div for the converted word docs. Why? diff2html immediately prints a TOC of docs, prior to our converting the word docs. We have manipulated that to reference the converted word docs, so we already have a TOC. After the conversion is done, diff2html would print a second toc for the new word docs (because we run doTopDiffFunction twice, and append the contents into #showDiff above). So without further action, there would be two TOCs. This remove() action removes the second TOC.
                     //we want to run it only once, because there is only one TOC to remove. Otherwise, it would run for each file into the tocFiles array, which is unecessary (maybe harmless, but def unnecessary)
                 }
             }
         }
 
+        /****ADJUST FILE NAME BEFORE DIFF IF FROM A WORD CONVERSION****** */
         var fileHeaders = document.querySelectorAll('.d2h-file-wrapper .d2h-file-name')
         //remove reference to tempfolders and remove .md extension for any file that is from a word conversion to md.
         for (var i = 0; i < fileHeaders.length; i++) {
@@ -468,11 +518,18 @@ async function convertWordDoc(treeOrMainPath) {
                 }
             })
             turndownService.addRule('', {  //th
+                filter: 'td p',
+                replacement: function (content) {
+                    return '<em>' + content + '</em>'
+                }
+            })
+            turndownService.addRule('', {  //th
                 filter: 'td',
                 replacement: function (content) {
                     return '<td>' + content + '</td>'
                 }
             })
+
             turndownService.addRule('', {  //th
                 filter: 'th',
                 replacement: function (content) {
@@ -496,6 +553,7 @@ async function convertWordDoc(treeOrMainPath) {
                 } else {
                     var markDownDocPath = projectFolderPath + '/tempFolder7843NEW/' + markDownDocPathChanged
                 }
+                fs.writeFile('/Users/sean/Desktop/showMDResult.md', dataCleaned, () => { })
                 writeFileFunction(markDownDocPath, dataCleaned)
             })
 
@@ -593,13 +651,13 @@ async function diffTheTempFolders() {
                         </div>
                         `
                     if (showFullDoc === false) {
-                        document.getElementById('showDiffIntegrated').insertAdjacentHTML('beforeend', contents)
+                        document.getElementById('showDiff').insertAdjacentHTML('beforeend', contents)
                     } else {
-                        document.getElementById('showDiffIntegrated').style.display = 'none'
+                        document.getElementById('showDiff').style.display = 'none'
                         document.getElementById('showFullFile').insertAdjacentHTML('afterbegin', contents)
                         document.getElementById('backToSummaryButton').style.display = "inline-block"
                         document.getElementById('backToSummaryButton').addEventListener('click', () => {
-                            document.getElementById('showDiffIntegrated').style.display = "inline-block"
+                            document.getElementById('showDiff').style.display = "inline-block"
                             document.getElementById('showFullFile').innerHTML = ''
                             document.getElementById('backToSummaryButton').style.display = "none"
                         })
@@ -609,7 +667,11 @@ async function diffTheTempFolders() {
             })
         } else { /*****************BLOCK DIFF*************************** */
             await git.raw('diff', '--no-index', uOption, folderOld, folderNew, (error, result) => {
-                doTopDiffFunction(result)
+                if (showFullDoc === false) {
+                    doTopDiffFunction(result, 'summary')
+                } else {
+                    doTopDiffFunction(result, 'full')
+                }
                 removeWorkTreeFromWordComparison()
             })
         }
