@@ -3,7 +3,7 @@ finished functionality of compare docs
 
 # Next
 
---make process of selecting bottom button work for selecting show old version
+--make process of selecting bottom button work for selecting show old version. DONE
 
 --test out solution offered in turndownservice github for td+p
 
@@ -150,8 +150,11 @@ could do the split based on more info, like the actual name of the doc, which yo
 
 --in bundle for production, remove the z files, like 
 
+--if hit save version, or prior versions, or compare changes-> will not work if not a git repo. Will get an error. Take care of this.
 
+--main window: add scroll to folder contents, so it's clear if there are contents that flow over the present view
 
+-main window: adjust styling of buttons at the bottom in the case that window is made narrow (smaller than 275px )
 # contact notes
 
 if link it to github, could tell them about it to get their support

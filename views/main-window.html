@@ -90,7 +90,7 @@
             margin-left: 15px
         }
 
-        #changeFolder:hover{
+        #changeFolder:hover {
             background-color: #d4eff7;
         }
 
@@ -191,7 +191,7 @@
             /*font-size: 10pt;*/
             border-radius: 8px;
             padding: 5px;
-            border:  3px solid #d4eff7;
+            border: 3px solid #d4eff7;
             outline: none;
             margin-top: 20px;
             /* margin-left: 35px;
@@ -308,23 +308,24 @@
 <body id="bodyId" style="margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px">
 
     <!------Select Project Folder------>
-    <div id="folderOverview" class="padding-class">
-        <div style="text-align: right; margin-bottom: 10px">
-            <div id="changeFolder">change project folder</div>
+    <div style="overflow: auto">
+        <div id="folderOverview" class="padding-class">
+            <div style="text-align: right; margin-bottom: 10px">
+                <div id="changeFolder">change project folder</div>
+            </div>
+            <div>
+                <span id="projectDirectory" class="docOrDirectory"></span>
+                <div></div>
+                <!--new folder/doc box goes heret-->
+                <!---- <span style="margin-right: 15px" id="newFolderButton">nf+</span><span id="newDocButton">nd+</span>-->
+            </div>
         </div>
-        <div>
-            <span id="projectDirectory" class="docOrDirectory"></span>
-            <div></div>
-            <!--new folder/doc box goes heret-->
-            <!---- <span style="margin-right: 15px" id="newFolderButton">nf+</span><span id="newDocButton">nd+</span>-->
-        </div>
-    </div>
 
     <!--************List out contents of the folder***************-->
     <div id="folderContents" class="padding-class"></div>
-
+    </div>
     <!------*********SAVE PROJECT VERSION******************-->
-    <div id="saveProjectVersion">
+    <div id="saveProjectVersion" style="margin-bottom: 75px">
         <div style="margin-top: 15px" class="padding-class">
             <hr style="width: 70%; border: 1px solid  #f5f5f5">
             <div style="margin-right: 10px; margin-top: 20px;font-weight: bold">Save Project Version:</div>
@@ -332,7 +333,7 @@
 
         <div id="saveProjectItems" class="padding-class" style="margin-left: 15px">
             <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
-            <div id="saveButton" >Save Version</div>
+            <div id="saveButton">Save Version</div>
         </div>
         <div id="savingProgress" class="padding-class">Saving version...
         </div>
