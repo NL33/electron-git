@@ -29,7 +29,6 @@ const { shouldRebuildNativeModules } = require('electron-rebuild')
 var diff2html = require("diff2html").Diff2Html
 /*****Button Set Up *****/
 window.onload = function () {
-    console.log('in activate')
   /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
     if (localStorage.getItem('working-trees-present')) {
         let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
@@ -42,6 +41,13 @@ window.onload = function () {
         }
     }
 
+    document.getElementById('viewPriorVersionsSelect').addEventListener('click', ()=>{
+        showViewPriorVersionsFunction()
+    })
+
+    document.getElementById('compareChangesSelect').addEventListener('click', () => {
+        showCompareChangesFunction()
+    })
 
 
     /*
@@ -83,9 +89,9 @@ window.onload = function () {
     menuFunction()
     //seeWhichFilesChangedFunction()
 
-}
+}   //end window onload
 
-/******FUNCTION TO REMOVE ANY WORK TREES CREATED BY THE APP************ */
+/******************FUNCTION TO REMOVE ANY WORK TREES CREATED BY THE APP******************************** */
 
 async function removeSavedWorkTree(treePath) {
     console.log('in remove tree')
@@ -143,7 +149,7 @@ function openDocSpawn() {
     });
 }
 
-/******Select Project Folder to show folder contents*******/
+/*************************************Select Project Folder to show folder contents*******************************/
 
 function changeFolder() {
     ipcRenderer.send('open-folder-dialog', '')
@@ -224,7 +230,7 @@ async function showFolderContents(divId, mainPath, indent) {
 
 
 
-/************Menu Function****************/
+/*****************************************Menu Function***************************************************/
 
 function menuFunction() {
     const contextMenu = new Menu();
@@ -313,7 +319,7 @@ function newFolderNoFocus() {
     document.getElementById('addForm').remove()
 }
 
-/***********CREATE A FOLDER ********/
+/*************************CREATE A FOLDER ********************/
 function addFolder(divId, path, indent) {
     var folderName = document.getElementById('nameEntry').value
     document.getElementById('addForm').remove()
@@ -339,7 +345,7 @@ function addFolder(divId, path, indent) {
     })
 }
 
-/******* CREATE A FILE ************/
+/****************** CREATE A FILE **************************/
 
 function createFile(divId, path, indent) {
     var fileName = document.getElementById('nameEntry').value
@@ -395,7 +401,7 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
 }
 
 
-/************DELETE A FOLDER***************/
+/*******************DELETE A FOLDER****************************/
 
 async function deleteItem(e) {
     var fullId = e.target.id
@@ -408,11 +414,11 @@ async function deleteItem(e) {
 }
 
 
-/*************** SELECT OLD VERSIONS TO COMPARE CHANGES ********************/
-
-document.getElementById('viewPriorVersionsForCompare').addEventListener('click', () => {
+/**************************************************** VIEW SAVED VERSIONS **********************************************/
+function showCompareChangesFunction() {
     viewPriorVersionsForCompareFunction()
-})
+}
+
 
 async function viewPriorVersionsForCompareFunction() {
     document.getElementById('showPriorCommitsForCompare').innerHTML = ''
@@ -487,6 +493,7 @@ async function viewPriorVersionsForCompareFunction() {
                     document.getElementById('showPriorCommitsForCompare').children[1].id ="selectedChangeId2"
                     document.getElementById('selectedChangeId2').classList.add('selectedChangeClass')
                 }
+                document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
             }
         })
     }
@@ -630,7 +637,8 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
     }
 }
 
-/**************RUN COMPARISON OF DIFFERENT VERSIONS **********/
+/**************************RUN COMPARE CHANGES***************/
+
 document.getElementById('runChangesIntegrated').addEventListener('click', () => {
     runComparisonFunction('integrated')
 })
@@ -639,6 +647,7 @@ document.getElementById('runChangesIntegrated').addEventListener('click', () => 
 document.getElementById('runChangesBlock').addEventListener('click', ()=>{
     runComparisonFunction('block')
 })
+
 
 function runComparisonFunction(comparisonType){
     var laterVersionNumber = document.getElementById('versionNumberLater').textContent
@@ -825,7 +834,10 @@ async function saveGitVersion() {
     }
 }
 
-/*****************VIEW PRIOR VERSIONS ********************************/
+/**************************************************VIEW PRIOR VERSIONS ***************************************************/
+function showViewPriorVersionsFunction(){
+    console.log('show view prior versions')
+}
 
 document.getElementById('viewPriorVersionsButton').addEventListener('click', () => {
     viewPriorVersionsFunction()
