@@ -2,16 +2,11 @@
 finished functionality of compare docs
 
 # Next
---make the compare change window an option at the bottom of the main screen to kickstart this whole process
-     --get working css for having the buttons at the bottom
-     --click on button at bottom and have that option (compare version, see old version) appear
-     --have versions appear automatically when you select compare version
-     --have button to run changes 
-     --have option to switch to block diffs
+
+--make process of selecting bottom button work for selecting show old version
 
 --test out solution offered in turndownservice github for td+p
 
---make process of selecting bottom button work for selecting show old version
 
 --make it work to add in docs that are not already docs
      --start by assuming user has copied the doc

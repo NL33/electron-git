@@ -315,6 +315,7 @@
 </head>
 
 <body id="bodyId" style="margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px">
+
     <!------Select Project Folder------>
     <div id="folderOverview" class="padding-class">
         <div style="text-align: right; margin-bottom: 10px">
@@ -331,13 +332,42 @@
     <!--************List out contents of the folder***************-->
     <div id="folderContents" class="padding-class"></div>
 
+    <!------*********SAVE PROJECT VERSION******************-->
+   <div id="saveProjectVersion">
+    <div style="margin-top: 15px" class="padding-class">
+        <hr style="width: 70%; border: 1px solid  #f5f5f5">
+        <span style="margin-right: 10px">Save project version:</span>
+        <!--<span id="selectedDoc"></span>-->
+    </div>
+    
+    <!--<div id="addProjectButton">Add File</div> from focus on individual files. not in use -->
+    
+    <div id="saveProjectItems" class="padding-class">
+        <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
+        </br>
+    
+        <div id="saveButton">Save Project Version</div>
+    </div>
+    <div id="savingProgress" class="padding-class">Saving version...
+    </div>
+</div>
+<!--***************View Prior Versions**************-->
+<div id="showPriorVersions"
+    style="margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #32cd53; display: none"
+    class="padding-class">
+    <div class="closeViewButton" id="closePriorVersionsView">x</div>
+    <div id="savedVersionsId" style="font-weight: bold">Click to View Version:</div>
+    <div id="showPriorCommits" style="margin-top: 10px; width: 93%">
+    </div>
+</div>
+
+
     <!--**********COMPARE CHANGES***********************-->
     <div id="showViewPriorVersionsForCompare"
         style=" margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #3399FF; display: none " class="padding-class">
         <div style="margin-top: 0px; ">
             <div class="closeViewButton" id="closeCompareChangesView">x</div>
             <div style="font-weight: bold; margin-bottom: 15px;">Compare Changes Between Versions</div>
-
         </div>
         <div style="margin-left: 10px">
             <div style="margin-bottom: 15px">
@@ -375,37 +405,7 @@
         </div>
     </div>
 
-    <!------*********SAVE PROJECT VERSION******************-->
-    <div style="margin-top: 15px" class="padding-class">
-        <hr style="width: 70%; border: 1px solid  #f5f5f5">
-        <span style="margin-right: 10px">Save project version:</span>
-        <!--<span id="selectedDoc"></span>-->
-    </div>
-
-    <!--<div id="addProjectButton">Add File</div> from focus on individual files. not in use -->
-
-    <div id="saveProjectItems" class="padding-class">
-        <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
-        </br>
-
-        <div id="saveButton">Save Project Version</div>
-    </div>
-    <div id="savingProgress" class="padding-class">Saving version...
-    </div>
-
-    <!--***************View Prior Versions**************-->
-
-    <div style="margin-top: 25px" class="padding-class">
-        <hr style="width: 70%; margin-bottom: 25px; border: 1px solid  #f5f5f5">
-        <span style="margin-right: 10px" id="viewPriorVersionsButton">view saved versions</span>
-
-    </div>
-
-    <div id="savedVersionsOverview" style="margin-top: 25px; display: none">
-        <div id="savedVersionsId">Saved Versions:</div>
-    </div>
-    <div id="showPriorCommits" style="margin-top: 10px">
-    </div>
+<!--**************OPTIONS AT BOTTOM**************************-->
 
 <div id="optionsAtBottom" style="border-top: 4px solid #d4eff7;  font-size: 13pt; text-align: center">
     <span id="viewPriorVersionsSelect" style="text-align: center; padding-top: 5px;padding-bottom: 5px; display: inline-block;  width: 47%; margin-top: 7px; border-right: 3px solid #d4eff7; margin-bottom: 5px">Prior Versions</span>

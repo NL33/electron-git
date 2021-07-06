@@ -42,7 +42,7 @@ window.onload = function () {
     }
 
     document.getElementById('viewPriorVersionsSelect').addEventListener('click', ()=>{
-        showViewPriorVersionsFunction()
+        viewPriorVersionsFunction()
     })
 
     document.getElementById('compareChangesSelect').addEventListener('click', () => {
@@ -412,7 +412,7 @@ async function deleteItem(e) {
 }
 
 
-/**************************************************** COMPARE CHANGES **********************************************/
+/******************************************* COMPARE CHANGES *************************************/
 
 async function showCompareChangesFunction() {
     document.getElementById('showPriorCommitsForCompare').innerHTML = ''
@@ -487,14 +487,17 @@ async function showCompareChangesFunction() {
                     //this applies to the items in the list below
                     document.getElementById('showPriorCommitsForCompare').children[1].id ="selectedChangeId2"
                     document.getElementById('selectedChangeId2').classList.add('selectedChangeClass')
-                }
-                document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
-                document.getElementById('optionsAtBottom').style.display = "none"
-                document.getElementById('closeCompareChangesView').addEventListener('click', ()=>{
-                    document.getElementById('showViewPriorVersionsForCompare').style.display = 'none'
-                    document.getElementById('optionsAtBottom').style.display = "block"
-                })
+                }       
             }
+            document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
+            document.getElementById('optionsAtBottom').style.display = "none"
+            document.getElementById('saveProjectVersion').style.display = 'none'
+            document.getElementById('closeCompareChangesView').addEventListener('click', () => {
+                document.getElementById('showViewPriorVersionsForCompare').style.display = 'none'
+                document.getElementById('showPriorCommitsForCompare').innerHTML = ''
+                document.getElementById('optionsAtBottom').style.display = "block"
+                document.getElementById('saveProjectVersion').style.display = 'block'
+            })
         })
     }
     catch (e) {
@@ -686,105 +689,7 @@ function runComparisonFunction(comparisonType){
     ipcRenderer.send('open-compare-versions-window', arg1, arg2, arg3, arg4)
 }
 
-/********* GIT DIFF TESTING ******* */
 
-/*
-document.getElementById('gitDiffWord').addEventListener('click', () => {
-    gitDiffFunctionWord()
-})
-
-
-async function gitDiffFunctionWord() {
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-
-        await git.diffSummary().then(result => {
-            console.log('first summary = ' + JSON.stringify(result))
-            var resultArray = result.files
-            result.files.forEach((item)=>{
-                var file = item.file
-                var newId = '#' + file
-                var contents = `<div><a href="${newId}">${file}</a><div>`
-                document.getElementById('diffWordSummary').insertAdjacentHTML('afterbegin', contents)
-            })
-           // document.getElementById('showDiffWord').innerHTML = JSON.stringify(result)
-        })
-
-        await git.diff('--word-diff', '--no-index').then(result => {    
-            //console.log('word diff result = ')
-            //console.log(result)
-            var red = result.replace(/\[-/g, '<del style="color: #c00">')
-            var endred = red.replace(/-]/g, '</del>')
-            //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
-            //var green = endred.replace(/{\+/g, '<ins style="color: #009900">') //dark green color
-            var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
-            var endgreen = green.replace(/\+}/g, '</ins>')
-            var resultArray = endgreen.split('diff --git a/')
-            for (var i = 1; i < resultArray.length; i++) {
-                var fileName = resultArray[i].split(" ")[0]
-                var contents = `
-                <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; border-radius: 15px;">
-                <div id=${fileName}>
-                    <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 10px;white-space: pre-wrap">${fileName}</div>
-                     <div style="white-space: pre-wrap">${resultArray[i]}</div>
-                </div>
-                `
-                document.getElementById('showDiffWord').insertAdjacentHTML('afterbegin', contents)
-            }
-        })
-    } catch (e) {
-        console.log('error in git diff word function = ')
-        console.log(e)
-    }
-}
-
-
-document.getElementById('gitDiffTop').addEventListener('click', () => {
-    gitDiffFunctionTop()
-})
-
-async function gitDiffFunctionTop() {
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-
-        await git.diff().then(result => {
-            doTopDiffFunction(result)
-        })
-    } catch (e) {
-        console.log('error in git diff top function = ')
-        console.log(e)
-    }
-}
-
-async function doTopDiffFunction(result){
-    //with diffHTML
- try {
-     const Diff2html = require('diff2html');
-    const diffJson = await Diff2html.parse(result);
-     const diffString = result
-     const diffHtml = await Diff2html.html(diffJson, { drawFileList: true });
-     document.getElementById('showDiffTop').innerHTML = await diffHtml
-    
-            /*
-//with diff2htmlUI
-const configuration = { drawFileList: true, matching: 'lines' };
-const targetElement = document.getElementById('displayGitDiff')
-const diff2htmlUi = new Diff2HtmlUI(targetElement, diffJson, configuration);
-diff2htmlUi.draw();
-diff2htmlUi.highlightCode();
-*/
-/*
- } catch (e){
-     console.log('error in doTopDiffFunction = ')
-     console.log(e)
- }
-
-}
-*/
 /********GIT ACTIONS*************** */
 
 async function saveGitVersion() {
@@ -834,15 +739,7 @@ async function saveGitVersion() {
     }
 }
 
-/**************************************************VIEW PRIOR VERSIONS ***************************************************/
-function showViewPriorVersionsFunction(){
-    console.log('show view prior versions')
-}
-
-document.getElementById('viewPriorVersionsButton').addEventListener('click', () => {
-    viewPriorVersionsFunction()
-})
-
+/*************************************VIEW PRIOR VERSIONS *****************************************/
 
 async function viewPriorVersionsFunction() {
     document.getElementById('showPriorCommits').innerHTML = ''
@@ -884,6 +781,15 @@ async function viewPriorVersionsFunction() {
                 commitDiv.insertAdjacentHTML("beforeEnd", contents)
             })
         })
+        document.getElementById('showPriorVersions').style.display = 'block'
+        document.getElementById('saveProjectVersion').style.display = 'none'
+        document.getElementById('closePriorVersionsView').addEventListener('click', () => {
+            document.getElementById('showPriorVersions').style.display = 'none'
+            document.getElementById('showPriorCommits').innerHTML = ''
+            document.getElementById('optionsAtBottom').style.display = 'block'
+            document.getElementById('saveProjectVersion').style.display = 'block'
+        })
+        document.getElementById('optionsAtBottom').style.display = 'none'
     }
     catch (e) {
         console.log('error = ' + e)
