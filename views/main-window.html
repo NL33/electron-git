@@ -19,6 +19,18 @@
             display: inline-block;
         }
 
+        .closeViewButton {
+            text-align: right;
+            margin-right: 10%;
+            font-size: 13pt;
+            padding-left: 4px;
+            padding-right: 4px
+        }
+
+        .closeViewButton:hover{
+            cursor: pointer
+        }
+
         .showChangesButton:hover {
             background-color: #3399FF;
             border: 2px solid #3399FF;
@@ -318,47 +330,48 @@
     <!--************List out contents of the folder***************-->
     <div id="folderContents" class="padding-class"></div>
 
-
     <!--**********COMPARE CHANGES***********************-->
     <div id="showViewPriorVersionsForCompare"
         style=" margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #3399FF; " class="padding-class">
-        <div style="margin-top: 10px; margin-bottom: 15px;">
-            <div style="font-weight: bold; margin-bottom: 15px">Compare Changes Between Versions</div>
+        <div style="margin-top: 0px; ">
+            <div class="closeViewButton" id="closeCompareChangesView">x</div>
+            <div style="font-weight: bold; margin-bottom: 15px;">Compare Changes Between Versions</div>
 
         </div>
-
-        <div style="margin-bottom: 15px">
-            <span>Newer Version: </span>
-            <span id="laterVersionOverview">
-                <span class="selectedForChangesClass" id="laterVersionForChanges"></span>
-                <span class="versionNumberOverview">
-                    <span class="versionWordLater"></span>
-                    <span id="versionNumberLater">Current Changes</span>
+        <div style="margin-left: 10px">
+            <div style="margin-bottom: 15px">
+                <span>Newer Version: </span>
+                <span id="laterVersionOverview">
+                    <span class="selectedForChangesClass" id="laterVersionForChanges"></span>
+                    <span class="versionNumberOverview">
+                        <span class="versionWordLater"></span>
+                        <span id="versionNumberLater">Current Changes</span>
+                    </span>
+                    <div id="versionMessageLater" style="display:none">n/a</div>
+                    <span id="versionDateLater" style="display:none">n/a</span><span id="versionTimeLater"
+                        style="display:none">n/a</span>
+                    <span id="commitNumberLater" style="display: none">current-changes</span>
                 </span>
-                <div id="versionMessageLater" style="display:none">n/a</div>
-                <span id="versionDateLater" style="display:none">n/a</span><span id="versionTimeLater"
-                    style="display:none">n/a</span>
-                <span id="commitNumberLater" style="display: none">current-changes</span>
-            </span>
-            </span>
-        </div>
+                </span>
+            </div>
 
-        <div style="margin-bottom: 15px">
-            <span>Older Version: </span>
-            <span id="earlierVersionOverview">
-            </span>
-        </div>
+            <div style="margin-bottom: 15px">
+                <span>Older Version: </span>
+                <span id="earlierVersionOverview">
+                </span>
+            </div>
 
 
-        <div style=" margin-right: 5px" id="runChangesIntegrated" class="showChangesButton">show integrated changes
-        </div>
-        <div class="showChangesButton" id="runChangesBlock">show block changes
-        </div>
-        <div id="savedVersionsOverview" style="margin-top: 15px; display: none;">
-            <div id="selectVersionsHeader">Selected Versions:</div>
-        </div>
+            <div style=" margin-right: 5px" id="runChangesIntegrated" class="showChangesButton">show integrated changes
+            </div>
+            <div class="showChangesButton" id="runChangesBlock">show block changes
+            </div>
+            <div id="savedVersionsOverview" style="margin-top: 15px; display: none;">
+                <div id="selectVersionsHeader">Selected Versions:</div>
+            </div>
 
-        <div id="showPriorCommitsForCompare" style="margin-top: 10px; width: 93%;"></div>
+            <div id="showPriorCommitsForCompare" style="margin-top: 10px; width: 93%;"></div>
+        </div>
     </div>
 
     <!------*********SAVE PROJECT VERSION******************-->

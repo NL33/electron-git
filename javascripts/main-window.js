@@ -228,8 +228,6 @@ async function showFolderContents(divId, mainPath, indent) {
 }
 
 
-
-
 /*****************************************Menu Function***************************************************/
 
 function menuFunction() {
@@ -415,12 +413,8 @@ async function deleteItem(e) {
 
 
 /**************************************************** VIEW SAVED VERSIONS **********************************************/
-function showCompareChangesFunction() {
-    viewPriorVersionsForCompareFunction()
-}
 
-
-async function viewPriorVersionsForCompareFunction() {
+async function showCompareChangesFunction() {
     document.getElementById('showPriorCommitsForCompare').innerHTML = ''
     try {
         await git.cwd(projectFolderPath).then(result => {
@@ -494,6 +488,9 @@ async function viewPriorVersionsForCompareFunction() {
                     document.getElementById('selectedChangeId2').classList.add('selectedChangeClass')
                 }
                 document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
+                document.getElementById('closeCompareChangesView').addEventListener('click', ()=>{
+                    document.getElementById('showViewPriorVersionsForCompare').style.display = 'none'
+                })
             }
         })
     }
