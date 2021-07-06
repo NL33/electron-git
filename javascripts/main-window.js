@@ -415,8 +415,6 @@ async function deleteItem(e) {
 /**************************************************** COMPARE CHANGES **********************************************/
 
 async function showCompareChangesFunction() {
-    document.getElementById('compareChangesSelect').style.backgroundColor = '#3399FF'
-    document.getElementById('compareChangesSelect').style.color = 'white'
     document.getElementById('showPriorCommitsForCompare').innerHTML = ''
     
     try {
@@ -491,10 +489,10 @@ async function showCompareChangesFunction() {
                     document.getElementById('selectedChangeId2').classList.add('selectedChangeClass')
                 }
                 document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
+                document.getElementById('optionsAtBottom').style.display = "none"
                 document.getElementById('closeCompareChangesView').addEventListener('click', ()=>{
                     document.getElementById('showViewPriorVersionsForCompare').style.display = 'none'
-                    document.getElementById('compareChangesSelect').style.backgroundColor = 'white'
-                    document.getElementById('compareChangesSelect').style.color = 'black'
+                    document.getElementById('optionsAtBottom').style.display = "block"
                 })
             }
         })
