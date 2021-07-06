@@ -3,24 +3,23 @@ finished functionality of compare docs
 
 # Next
 
---make process of selecting bottom button work for selecting show old version. DONE
-
---test out solution offered in turndownservice github for td+p
-
-
 --make it work to add in docs that are not already docs
      --start by assuming user has copied the doc
      --make it easy to create the doc and add in the text from the clipboard
      --goal: one place to have everything, including emails.
      --could consider having it be a button in the header to copy automatically, but see first if you can make it as easy as possible without that
 
+make it easy to show and hide the main screen
+--icon on the right to show the main screen
+
+--link to github and/or dropbox
+
+--test out solution offered in turndownservice github for td+p (relevant for showing tables in word docs)
+
+--be able to collapse showing of folders by clicking on the project name (adding carrot icons to show if open or not. and the carrot icons are the indicator if folder or file)
 
 
-
-***
-be able to collapse showing of folders by clicking on the project name (adding carrot icons to show if open or not. and the carrot icons are the indicator if folder or file)
-***
-storage of large git files
+--another solution for storing large git files off computer
 
 ***
 Right Click Menu:
@@ -55,8 +54,7 @@ Next after that:
 
 
 ****
-make it easy to show and hide the main screen
---icon on the right to show the main screen 
+ 
 
 
 
@@ -155,6 +153,11 @@ could do the split based on more info, like the actual name of the doc, which yo
 --main window: add scroll to folder contents, so it's clear if there are contents that flow over the present view
 
 -main window: adjust styling of buttons at the bottom in the case that window is made narrow (smaller than 275px )
+
+--compare window: add header info about whether viewing summary of changes of full doc.
+
+--main window, compare window, when opening a doc: add loading spinner 
+
 # contact notes
 
 if link it to github, could tell them about it to get their support
