@@ -27,7 +27,7 @@
             padding-right: 4px
         }
 
-        .closeViewButton:hover{
+        .closeViewButton:hover {
             cursor: pointer
         }
 
@@ -74,10 +74,7 @@
         #projectDirectory {
             font-weight: bold;
             margin-right: 15px;
-            font-size: 14pt
-        }
-
-        #projectDirectory {
+            font-size: 15pt;
             cursor: pointer
         }
 
@@ -91,6 +88,10 @@
             padding-right: 8px;
             cursor: pointer;
             margin-left: 15px
+        }
+
+        #changeFolder:hover{
+            background-color: #d4eff7;
         }
 
         #closeChoose {
@@ -190,9 +191,9 @@
             /*font-size: 10pt;*/
             border-radius: 8px;
             padding: 5px;
-            border: 2px solid #32cd53;
+            border:  3px solid #d4eff7;
             outline: none;
-            margin-top: 15px;
+            margin-top: 20px;
             /* margin-left: 35px;
             vertical-align: 20%;*/
         }
@@ -201,7 +202,8 @@
 
         #saveButton:hover {
             background-color: #32cd53;
-            color: white
+            color: white;
+            border: 3px solid #32cd53;
         }
 
 
@@ -280,24 +282,13 @@
 
         }
 
-        viewPriorVersionsSelect {
-            border-top: 4px solid #32cd53;
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
 
-       #viewPriorVersionsSelect:hover {
+        #viewPriorVersionsSelect:hover {
             cursor: pointer;
             background-color: #32cd53;
             color: white;
         }
 
-        compareChangesSelect {
-            border-top: 4px solid #3399FF;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            font-size: 13pt
-        }
 
         #compareChangesSelect:hover {
             cursor: pointer;
@@ -333,38 +324,34 @@
     <div id="folderContents" class="padding-class"></div>
 
     <!------*********SAVE PROJECT VERSION******************-->
-   <div id="saveProjectVersion">
-    <div style="margin-top: 15px" class="padding-class">
-        <hr style="width: 70%; border: 1px solid  #f5f5f5">
-        <span style="margin-right: 10px">Save project version:</span>
-        <!--<span id="selectedDoc"></span>-->
+    <div id="saveProjectVersion">
+        <div style="margin-top: 15px" class="padding-class">
+            <hr style="width: 70%; border: 1px solid  #f5f5f5">
+            <div style="margin-right: 10px; margin-top: 20px;font-weight: bold">Save Project Version:</div>
+        </div>
+
+        <div id="saveProjectItems" class="padding-class" style="margin-left: 15px">
+            <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
+            <div id="saveButton" >Save Version</div>
+        </div>
+        <div id="savingProgress" class="padding-class">Saving version...
+        </div>
     </div>
-    
-    <!--<div id="addProjectButton">Add File</div> from focus on individual files. not in use -->
-    
-    <div id="saveProjectItems" class="padding-class">
-        <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
-        </br>
-    
-        <div id="saveButton">Save Project Version</div>
+    <!--***************View Prior Versions**************-->
+    <div id="showPriorVersions"
+        style="margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #32cd53; display: none"
+        class="padding-class">
+        <div class="closeViewButton" id="closePriorVersionsView">x</div>
+        <div id="savedVersionsId" style="font-weight: bold">Click to View Version:</div>
+        <div id="showPriorCommits" style="margin-top: 10px; width: 93%">
+        </div>
     </div>
-    <div id="savingProgress" class="padding-class">Saving version...
-    </div>
-</div>
-<!--***************View Prior Versions**************-->
-<div id="showPriorVersions"
-    style="margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #32cd53; display: none"
-    class="padding-class">
-    <div class="closeViewButton" id="closePriorVersionsView">x</div>
-    <div id="savedVersionsId" style="font-weight: bold">Click to View Version:</div>
-    <div id="showPriorCommits" style="margin-top: 10px; width: 93%">
-    </div>
-</div>
 
 
     <!--**********COMPARE CHANGES***********************-->
     <div id="showViewPriorVersionsForCompare"
-        style=" margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #3399FF; display: none " class="padding-class">
+        style=" margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #3399FF; display: none "
+        class="padding-class">
         <div style="margin-top: 0px; ">
             <div class="closeViewButton" id="closeCompareChangesView">x</div>
             <div style="font-weight: bold; margin-bottom: 15px;">Compare Changes Between Versions</div>
@@ -405,13 +392,17 @@
         </div>
     </div>
 
-<!--**************OPTIONS AT BOTTOM**************************-->
+    <!--**************OPTIONS AT BOTTOM**************************-->
 
-<div id="optionsAtBottom" style="border-top: 4px solid #d4eff7;  font-size: 13pt; text-align: center">
-    <span id="viewPriorVersionsSelect" style="text-align: center; padding-top: 5px;padding-bottom: 5px; display: inline-block;  width: 47%; margin-top: 7px; border-right: 3px solid #d4eff7; margin-bottom: 5px">Prior Versions</span>
-    <span id="compareChangesSelect" style="text-align: center;padding-top: 5px; padding-bottom: 5px; display: inline-block; width: 49%; margin-top: 7px; margin-bottom: 5px">Compare Changes</span>
-</div>
- 
+    <div id="optionsAtBottom" style="border-top: 4px solid #d4eff7;  font-size: 13pt; text-align: center">
+        <span id="viewPriorVersionsSelect"
+            style="text-align: center; padding-top: 5px;padding-bottom: 5px; display: inline-block;  width: 47%; margin-top: 7px; border-right: 3px solid #d4eff7; margin-bottom: 5px">Prior
+            Versions</span>
+        <span id="compareChangesSelect"
+            style="text-align: center;padding-top: 5px; padding-bottom: 5px; display: inline-block; width: 49%; margin-top: 7px; margin-bottom: 5px">Compare
+            Changes</span>
+    </div>
+
     <!--*************END OF FILE******************-->
     <script src="../javascripts/main-window.js"></script>
 </body>
