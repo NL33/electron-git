@@ -289,19 +289,20 @@
        #viewPriorVersionsSelect:hover {
             cursor: pointer;
             background-color: #32cd53;
-            color: white
+            color: white;
         }
 
         compareChangesSelect {
             border-top: 4px solid #3399FF;
             padding-top: 15px;
             padding-bottom: 15px;
+            font-size: 13pt
         }
 
         #compareChangesSelect:hover {
             cursor: pointer;
             background-color: #3399FF;
-            color: white
+            color: white;
         }
 
         .padding-class {
@@ -332,7 +333,7 @@
 
     <!--**********COMPARE CHANGES***********************-->
     <div id="showViewPriorVersionsForCompare"
-        style=" margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #3399FF; " class="padding-class">
+        style=" margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #3399FF; display: none " class="padding-class">
         <div style="margin-top: 0px; ">
             <div class="closeViewButton" id="closeCompareChangesView">x</div>
             <div style="font-weight: bold; margin-bottom: 15px;">Compare Changes Between Versions</div>
@@ -406,9 +407,9 @@
     <div id="showPriorCommits" style="margin-top: 10px">
     </div>
 
-<div id="optionsAtBottom" style="border-top: 5px solid #32cd53;  font-size: 13pt; text-align: center">
-    <span id="viewPriorVersionsSelect" style="text-align: center; padding-top: 15px;padding-bottom: 15px; display: inline-block; border-right: 3px solid #32cd53; width: 48% ">Prior Versions</span>
-    <span id="compareChangesSelect" style="text-align: center;padding-top: 15px; padding-bottom: 15px; display: inline-block; width: 48%">Compare Changes</span>
+<div id="optionsAtBottom" style="border-top: 4px solid #32cd53;  font-size: 13pt; text-align: center">
+    <span id="viewPriorVersionsSelect" style="text-align: center; padding-top: 15px;padding-bottom: 15px; display: inline-block;  width: 47%; margin-top: 7px; border-right: 3px solid #3399FF; margin-bottom: 3px">Prior Versions</span>
+    <span id="compareChangesSelect" style="text-align: center;padding-top: 15px; padding-bottom: 15px; display: inline-block; width: 49%; margin-top: 7px; margin-bottom: 3px">Compare Changes</span>
 </div>
  
     <!--*************END OF FILE******************-->

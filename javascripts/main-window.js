@@ -412,10 +412,13 @@ async function deleteItem(e) {
 }
 
 
-/**************************************************** VIEW SAVED VERSIONS **********************************************/
+/**************************************************** COMPARE CHANGES **********************************************/
 
 async function showCompareChangesFunction() {
+    document.getElementById('compareChangesSelect').style.backgroundColor = '#3399FF'
+    document.getElementById('compareChangesSelect').style.color = 'white'
     document.getElementById('showPriorCommitsForCompare').innerHTML = ''
+    
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd results' + JSON.stringify(result))
@@ -490,6 +493,8 @@ async function showCompareChangesFunction() {
                 document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
                 document.getElementById('closeCompareChangesView').addEventListener('click', ()=>{
                     document.getElementById('showViewPriorVersionsForCompare').style.display = 'none'
+                    document.getElementById('compareChangesSelect').style.backgroundColor = 'white'
+                    document.getElementById('compareChangesSelect').style.color = 'black'
                 })
             }
         })
