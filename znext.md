@@ -1,33 +1,25 @@
 # Just Completed
-
+finished functionality of compare docs
 
 # Next
 --make the compare change window an option at the bottom of the main screen to kickstart this whole process
---give user options to choose integrated v on top diffs
+     --get working css for having the buttons at the bottom
+     --click on button at bottom and have that option (compare version, see old version) appear
+     --have versions appear automatically when you select compare version
+     --have button to run changes 
+     --have option to switch to block diffs
+
+--test out solution offered in turndownservice github for td+p
+
+--make process of selecting bottom button work for selecting show old version
+
+--make it work to add in docs that are not already docs
+     --start by assuming user has copied the doc
+     --make it easy to create the doc and add in the text from the clipboard
+     --goal: one place to have everything, including emails.
+     --could consider having it be a button in the header to copy automatically, but see first if you can make it as easy as possible without that
 
 
-****
-Plan for comparing word docs:
-
---run git diff --name-only to get just file names
-
-if any file has docx or doc extension, then need to convert.
-have to get the doc as of the prior commit. do a work tree
-
---have to get the word doc from the earlier commit. how to do that?. do a worktree for the prior commit.
-
---get the file from the worktree. 
-
---convert the file to md, saving it either in the worktree folder or a new folder in the directory. 
-
---then take the word docs we care about from the current commit, and convert to md, and save in separate folder
-
---so ultimately you have two folders of md docs. then run git diff --no-index to compare the two folders (without having to commit any of those changes)
-
---produce the chagnes, then delete the folders.
-
-
---then add in any changes from non-word docs.
 
 
 ***

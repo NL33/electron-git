@@ -239,6 +239,40 @@
         .selectedChangeClass {
             border: 3px solid green
         }
+
+
+        /***COMPARE CHANGES****/
+
+        #optionsAtBotton { /***START HERE*****
+            position:fixed;
+            bottom: 0;
+            z-index: 100;
+            width: 100%;
+            
+            background-color: white;
+            margin-left: -10px
+        }
+
+           #viewChangesSelect {
+            border-top: 3px solid red;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        #viewChangesSelect:hover {
+            cursor: pointer
+        }
+
+        #compareChangesSelect {
+            border-top: 3px solid green;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        #compareChangesSelect:hover {
+            cursor: pointer
+        }
+
     </style>
     <title>Your Project</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
@@ -268,7 +302,7 @@
         <hr style="width: 70%; margin-bottom: 10px; border: 1px solid  #f5f5f5">
         <div
             style="margin-right: 10px; padding: 2px; border: 2px solid green; border-radius: 5px; cursor: pointer; margin-bottom: 15px"
-            id="viewPriorVersionsForCompare">compare changes</div>
+            id="viewPriorVersionsForCompare">compare changes new window</div>
         <div
             style="margin-right: 10px; padding: 2px; border: 2px solid orange; border-radius: 5px; cursor: pointer; margin-bottom: 15px" 
             id="runChangesIntegrated">run integrated changes
@@ -308,17 +342,6 @@
     </div>
 
 
-
-
-    <!--
-    <div id="gitDiffWord" style="border: 2px solid green; cursor: pointer; padding: 3px; margin-bottom: 15px; ">Run Git Diff Straight</div>
-<div id="gitDiffTop" style="border: 2px solid orange; cursor: pointer; padding: 3px; margin-bottom: 15px">Run Git Diff On top of each other</div>
-
-    <div id="diffWordSummary"></div></br></br>
-   <div id="showDiffWord"></div></br></br>
-
-   <div id="showDiffTop" style=""></div>
--->
     <!------*********SAVE PROJECT VERSION******************-->
     <div style="margin-top: 15px">
         <hr style="width: 70%; border: 1px solid  #f5f5f5">
@@ -351,7 +374,10 @@
     <div id="showPriorCommits" style="margin-top: 10px">
     </div>
 
-
+    <div id="optionsAtBottom">
+    <div id="viewChangesSelect">Compare Changes</div>
+    <div id="compareChangesSelect">Compare Changes</div>
+    </div>
 
 
     <!--*************END OF FILE******************-->
