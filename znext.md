@@ -4,15 +4,10 @@
 *Next*
 
 # make it work to add in docs that are not already docs
--click button to create file
-     -not working for text file--not putting content there. fix. DONE
-     -if add extension programmatically, when show the doc the first time, not showing with extension. fix. DONE.
--give it name. DONE
--automatically paste it in (programmatically). DONE
--easy way to open/view it. DONE.
-file type options:
-     -md, txt, or rtf. DONE
--give automatic file extension (like txt) if user does not add extension themselves.DONE
+--make it easy to update existing doc that has paste doc content
+     --mark paste docs as paste docs
+     --search paste docs
+
 
 # make it easy to show and hide the main screen
 --icon on the right to show the main screen
@@ -166,6 +161,8 @@ could do the split based on more info, like the actual name of the doc, which yo
 --right click menu -> move to trash -> add "are you sure?"
 
 --right click menu -> add "rename" file and folder options
+
+--if there haven't been any changes to docs between versions,when run show changes, show a note in the new window saying something like: no changes to docs between versions
 
 # contact notes
 

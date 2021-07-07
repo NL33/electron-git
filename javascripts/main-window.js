@@ -163,6 +163,10 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 
 async function showFolderContents(divId, mainPath, indent) {
     var element = document.getElementById(divId)
+   var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
+    while (highlightedDivs.length)
+        highlightedDivs[0].classList.remove('highlightFolderOrFile')
+    element.classList.add('highlightFolderOrFile')
     var extension = path.extname(mainPath)
     var hasExtension = false
     if (extension) {
@@ -266,13 +270,18 @@ function menuFunction() {
             }
 
             if (fullId !== 'projectDirectory') {
-                const genMenu = new MenuItem({
+                contextMenu.append(new MenuItem({
+                    label: "Update Paste Doc",
+                    click: () => {
+                        updatePasteDoc(e)
+                    }
+                }))
+                contextMenu.append(new MenuItem({
                     label: "Move to Trash",
                     click: () => {
                         deleteItem(e)
                     }
-                })
-                contextMenu.append(genMenu)
+                }))              
             }
 
             contextMenu.popup(remote.getCurrentWindow());
@@ -286,6 +295,9 @@ function menuFunction() {
 2. add folder does mkdir code., then goes to
 3. showNewFolderOrDoc or showFolderContents to show the new folder
 */
+function updatePasteDoc(e){
+    console.log('update the doc')
+}
 
 function enterNewFolder(divId, mainPath, indent) {
     var newIndent = parseInt(indent) + 17

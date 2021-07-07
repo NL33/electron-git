@@ -55,7 +55,7 @@ async function saveNewVersionWindow(windowTitle) {
         height: 620,
         x: 0,
         y: 0,
-        // alwaysOnTop: true,
+        alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
