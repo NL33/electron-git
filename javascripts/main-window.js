@@ -387,11 +387,11 @@ function createPasteFile(divId, folderPath, indent) {
     var newDocPath1 = folderPath + '/' + fileName
     var pathExtension = path.extname(newDocPath1)
     if (pathExtension.length){
-        console.log('has extension already')
         var newDocPath = newDocPath1
+        var updatedFileName = fileName
     } else {
-        console.log('requires extension')
        var newDocPath = newDocPath1 + '.md'
+       var updatedFileName = fileName + '.md'
     }
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
@@ -405,7 +405,7 @@ function createPasteFile(divId, folderPath, indent) {
             //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
             if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
                 //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                showNewFolderOrDoc(divId, folderPath, newDocPath, fileName, newIndent)
+                showNewFolderOrDoc(divId, folderPath, newDocPath, updatedFileName, newIndent)
             } else {
                 //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
                 showFolderContents(divId, folderPath, newIndent)

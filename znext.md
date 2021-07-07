@@ -5,14 +5,14 @@
 
 # make it work to add in docs that are not already docs
 -click button to create file
-     -not working for text file--not putting content there. fix. *START HERE*
-     -if add extension programmatically, when show the doc the first time, not showing with extension. fix.
--give it name
--automatically paste it in (programmatically).
--easy way to open/view it
+     -not working for text file--not putting content there. fix. DONE
+     -if add extension programmatically, when show the doc the first time, not showing with extension. fix. DONE.
+-give it name. DONE
+-automatically paste it in (programmatically). DONE
+-easy way to open/view it. DONE.
 file type options:
-     -md, txt, or rtf
--give automatic file extension (like txt) if user does not add extension themself 
+     -md, txt, or rtf. DONE
+-give automatic file extension (like txt) if user does not add extension themselves.DONE
 
 # make it easy to show and hide the main screen
 --icon on the right to show the main screen
