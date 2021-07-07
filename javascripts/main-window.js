@@ -166,7 +166,9 @@ async function showFolderContents(divId, mainPath, indent) {
    var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
     while (highlightedDivs.length)
         highlightedDivs[0].classList.remove('highlightFolderOrFile')
-    element.classList.add('highlightFolderOrFile')
+    if (element.id !== 'projectDirectory'){
+        element.classList.add('highlightFolderOrFile')
+    }
     var extension = path.extname(mainPath)
     var hasExtension = false
     if (extension) {
@@ -296,7 +298,9 @@ function menuFunction() {
 3. showNewFolderOrDoc or showFolderContents to show the new folder
 */
 function updatePasteDoc(e){
-    console.log('update the doc')
+    var content = clipboard.readText()
+    var targetDiv = e.target  /***START HERE: GOal: update the file clicked on with what's on the clipboard. So need to get the file path */
+    
 }
 
 function enterNewFolder(divId, mainPath, indent) {

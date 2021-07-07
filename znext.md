@@ -1,22 +1,28 @@
 # Just Completed
-
+-Just made it so that you can "create a paste file"--copy some text from email or a website, and hit create paste file--and it automagically creates the file.
+-I was also trying to figure out how to later update that file. I added a right click "update paste file" button--that would require you to copy the whole new text, and automaticlly have it pasted in. But what if you hit "updat paste file" for the wrong file, or by accident? And maybe you don't want to add it all in. Maybe just some additional parts. Bottom line: you probably will want to do it manually. *Start here*
+     --the key, then: make it really easy for you to **find** the document you want to update. maybe through:
+          -good search. is there a way to add search relatively easily by mimicking mac spotlight search? Could be search within present file or across all files.
+          -some other way?
+          -bottom line: this is nice feature, but not the most important, so not worth days and days.
+     --note: "update paste file" right click is still there--you can probably remove it.
 
 *Next*
 
 # make it work to add in docs that are not already docs
---make it easy to update existing doc that has paste doc content
-     --mark paste docs as paste docs
-     --search paste docs
+--see above.
 
 
 # make it easy to show and hide the main screen
 --icon on the right to show the main screen
 
 # link to github and/or dropbox
+--tackle this soon
 
 # test out solution offered in turndownservice github for td+p (relevant for showing tables in word docs)
 
-# be able to collapse showing of folders by clicking on the project name (adding carrot icons to show if open or not. and the carrot icons are the indicator if folder or file)
+# be able to collapse showing of folders by clicking on the project name (adding folder icons to show if open or not. and the carrot icons are the indicator if folder or file)
+     --try to mimick the way the icons look on the current file system (blue folder icon, for instance)
 
 
 # another solution for storing large git files off computer
@@ -163,6 +169,10 @@ could do the split based on more info, like the actual name of the doc, which yo
 --right click menu -> add "rename" file and folder options
 
 --if there haven't been any changes to docs between versions,when run show changes, show a note in the new window saying something like: no changes to docs between versions
+
+--search the project folder (why important? if you think you have a correspondence with someone somewhere, but don't remember where, would be helpful to search for it.)
+
+--if tries to view hidden micro word docs, like "$!apter 2"... it messes things up and stops the process. The result is worktrees and newtemp/oldtemp files that are not deleted, and a non-working system. Make it so these docs are not picked up the save. And catch the errors so that it doesn't stop things from moving forward(!)
 
 # contact notes
 

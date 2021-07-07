@@ -28,3 +28,12 @@ have an email related to project, and add to project files.
     file type options:
         -md, txt, or rtf
     -give automatic file extension (like txt) if user does not add extension themself 
+
+Cool Flow Possibility
+
+You are going through your email, and you see an email relevant to a project. You can easily add that to your project flow.
+
+--could doc be tagged with title of the doc?
+    --email: can get subject line through email with nutjs
+    --apple notes: can put in the id of the apple note into the doc
+--got your doc, press keyboard shortcut, and have it saved to your folder
