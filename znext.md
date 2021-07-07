@@ -5,6 +5,8 @@
           -good search. is there a way to add search relatively easily by mimicking mac spotlight search? Could be search within present file or across all files.
           -some other way?
           -bottom line: this is nice feature, but not the most important, so not worth days and days.
+     --would be nice to save the web address for any doc like that as well.
+          --should be possible with keyboard shortcut, using nutjs functionality (don't need full functionality of copying automatically--but could still do that too, maybe security issues are ok--something to consider)
      --note: "update paste file" right click is still there--you can probably remove it.
 
 *Next*
@@ -26,6 +28,12 @@
 
 
 # another solution for storing large git files off computer
+
+# cleaning up viewing old versions and comparing old versions
+when hit view old versions, consider opening up a new window. Then, select version, and have that version appear right in the window.
+same with compare changes (opens up new window to view versions)
+That way, not crowding main window, and main window for navigation and saving versions. 
+something to consider
 
 ***
 Right Click Menu:
