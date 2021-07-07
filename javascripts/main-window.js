@@ -49,16 +49,6 @@ window.onload = function () {
         showCompareChangesFunction()
     })
 
-
-    /*
-    //SAVING INDIVIDUAL FILES. NOT CURRENTLY IN USE.
-    //receives info from main.js about the active window
-    ipcRenderer.on('window-title', (event, data) => {  
-        document.getElementById('selectedDoc').textContent = data
-        fileName = data
-    })
-    */
-
     //get last project folder info
     if (localStorage.getItem('lastProjectFolder')) {
         let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
@@ -265,6 +255,14 @@ function menuFunction() {
                         enterNewFile(divId, thePath, indent)
                     }
                 }))
+                contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
+                    label: "New Paste File",
+                    click: () => {
+                        // addFolder(e, thePath, indent)
+                        var divId = fullId
+                        enterNewPasteFile(divId, thePath, indent)
+                    }
+                }))
             }
 
             if (fullId !== 'projectDirectory') {
@@ -305,6 +303,18 @@ function enterNewFile(divId, mainPath, indent) {
     var newIndent = parseInt(indent) + 17
     var element = document.getElementById(divId)
     contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px" onsubmit='createFile("${divId}", "${mainPath}", "${indent}")'>
+                <input type="text" class="docOrDirectory"  id="nameEntry" data-placeholder="folder name"  style="padding: 2px; padding-left: 2px" name="txt" /><span onclick="newFolderNoFocus()" style="color: #778899; cursor: pointer; margin-left: 4px; padding: 4px; vertical-align: super">x</span>
+                </form>
+                `
+    var newItems = element.nextElementSibling  //gets "newItems" div
+    newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
+    document.getElementById('nameEntry').focus()
+}
+
+function enterNewPasteFile(divId, mainPath, indent) {
+    var newIndent = parseInt(indent) + 17
+    var element = document.getElementById(divId)
+    contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px" onsubmit='createPasteFile("${divId}", "${mainPath}", "${indent}")'>
                 <input type="text" class="docOrDirectory"  id="nameEntry" data-placeholder="folder name"  style="padding: 2px; padding-left: 2px" name="txt" /><span onclick="newFolderNoFocus()" style="color: #778899; cursor: pointer; margin-left: 4px; padding: 4px; vertical-align: super">x</span>
                 </form>
                 `
@@ -365,10 +375,45 @@ function createFile(divId, path, indent) {
                 //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
                 showFolderContents(divId, path, newIndent)
             }
-
         }
     })
 }
+
+/*******************CREATE A PASTE FILE ****************************/
+//hit create paste file button, and app creates file, pastes in clipboard, and, if no extension specified when you create it, adds "md" extension.
+function createPasteFile(divId, folderPath, indent) {
+    var fileName = document.getElementById('nameEntry').value
+    document.getElementById('addForm').remove()
+    var newDocPath1 = folderPath + '/' + fileName
+    var pathExtension = path.extname(newDocPath1)
+    if (pathExtension.length){
+        console.log('has extension already')
+        var newDocPath = newDocPath1
+    } else {
+        console.log('requires extension')
+       var newDocPath = newDocPath1 + '.md'
+    }
+    var newIndent = parseInt(indent) + 15
+    var element = document.getElementById(divId)
+    var content = clipboard.readText()
+    fs.writeFile(newDocPath, content, function (err) {
+        if (err) {
+            console.log(err)
+        } else {
+            //var newItems = div.nextElementSibling
+            // newItems.innerHTML = ''
+            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
+            if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
+                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
+                showNewFolderOrDoc(divId, folderPath, newDocPath, fileName, newIndent)
+            } else {
+                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
+                showFolderContents(divId, folderPath, newIndent)
+            }
+        }
+    })
+}
+
 
 /**************** showNewFolder ANd new Doc *******************/
 
@@ -583,7 +628,7 @@ async function revertWorkTree(commitNumber, versionNumber, treeName, date, time,
 }
 
 
-/******************************************* COMPARE CHANGES *************************************/
+/******************************************* COMPARE CHANGES *************************************************/
 
 async function showCompareChangesFunction() {
     document.getElementById('showPriorCommitsForCompare').innerHTML = ''
@@ -917,10 +962,17 @@ async function saveGitVersion() {
 
 
 
-
+/*************************************************************************************** */
 
 /***************************** NOT CURRENTLY IN USE  *************************************/
-
+/*
+ //SAVING INDIVIDUAL FILES. NOT CURRENTLY IN USE.
+ //receives info from main.js about the active window
+ ipcRenderer.on('window-title', (event, data) => {
+     document.getElementById('selectedDoc').textContent = data
+     fileName = data
+ })
+ */
 
 
 /*********APPLE SCRIPT / JXA***************** */

@@ -1,25 +1,30 @@
 # Just Completed
-finished functionality of compare docs
 
-# Next
 
---make it work to add in docs that are not already docs
-     --start by assuming user has copied the doc
-     --make it easy to create the doc and add in the text from the clipboard
-     --goal: one place to have everything, including emails.
-     --could consider having it be a button in the header to copy automatically, but see first if you can make it as easy as possible without that
+*Next*
 
-make it easy to show and hide the main screen
+# make it work to add in docs that are not already docs
+-click button to create file
+     -not working for text file--not putting content there. fix. *START HERE*
+     -if add extension programmatically, when show the doc the first time, not showing with extension. fix.
+-give it name
+-automatically paste it in (programmatically).
+-easy way to open/view it
+file type options:
+     -md, txt, or rtf
+-give automatic file extension (like txt) if user does not add extension themself 
+
+# make it easy to show and hide the main screen
 --icon on the right to show the main screen
 
---link to github and/or dropbox
+# link to github and/or dropbox
 
---test out solution offered in turndownservice github for td+p (relevant for showing tables in word docs)
+# test out solution offered in turndownservice github for td+p (relevant for showing tables in word docs)
 
---be able to collapse showing of folders by clicking on the project name (adding carrot icons to show if open or not. and the carrot icons are the indicator if folder or file)
+# be able to collapse showing of folders by clicking on the project name (adding carrot icons to show if open or not. and the carrot icons are the indicator if folder or file)
 
 
---another solution for storing large git files off computer
+# another solution for storing large git files off computer
 
 ***
 Right Click Menu:
@@ -157,6 +162,10 @@ could do the split based on more info, like the actual name of the doc, which yo
 --compare window: add header info about whether viewing summary of changes of full doc.
 
 --main window, compare window, when opening a doc: add loading spinner 
+
+--right click menu -> move to trash -> add "are you sure?"
+
+--right click menu -> add "rename" file and folder options
 
 # contact notes
 
