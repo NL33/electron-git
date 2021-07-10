@@ -270,7 +270,7 @@ function menuFunction() {
                     }
                 }))
                 contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
-                    label: "View Folder",
+                    label: "View Folder to Search",
                     click: () => {
                         viewFolder(e, thePath)
                     }
@@ -292,25 +292,11 @@ function menuFunction() {
 }
 
 function viewFolder(e, thePath) { /***START HERE***** */
-    console.log('now in open file')
     var theFolder = thePath
     shell.openPath(theFolder)
 }
 
-function openFolder() {
 
-    var exec = require('child_process').exec;
-    var theFolder = '/Users/sean/Desktop/sample-project'
-    var command = 'search ' + theFolder
-    exec(command, function (error, stdout, stderr) {  // 'dir' is for example
-        if (error) {
-            console.error(`exec error: ${error}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-        console.log(`stderr: ${stderr}`);
-    });
-}
 /*old code: onblur="newFolderNoFocus()"*/
 /****INPUT TO ENTER NEW FOLDER AND FILE ********* */
 /* Steps of creating new folder:

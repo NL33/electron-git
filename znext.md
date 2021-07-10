@@ -4,7 +4,7 @@
      --the key, then: make it really easy for you to **find** the document you want to update. maybe through:
           -good search. is there a way to add search relatively easily by mimicking mac spotlight search? Could be search within present file or across all files.
           -some other way?
-          -bottom line: this is nice feature, but not the most important, so not worth days and days.
+          -bottom line: this is nice feature, but not the most important, so not worth days and days. DONE [added way to open up the folder to search]
      --would be nice to save the web address for any doc like that as well.
           --should be possible with keyboard shortcut, using nutjs functionality (don't need full functionality of copying automatically--but could still do that too, maybe security issues are ok--something to consider)
      --note: "update paste file" right click is still there--you can probably remove it.
