@@ -14,7 +14,8 @@ console.log("Does the client have accessibility permissions?", isTrusted)
 
 
 /*** TOOLBAR MENU ICON****** */
-const { getActiveWindow } = require("@nut-tree/nut-js");
+//const { getActiveWindow } = require("@nut-tree/nut-js");
+//const activeWindow = require('active-win');
 let tray = null
 var mainWindow
 function menuApp() {
@@ -28,18 +29,18 @@ function menuApp() {
     tray.setContextMenu(contextMenu)
 }
 
+/*NOT IN USE
 async function getTheWindow() {
     const foregroundWindow = await getActiveWindow()
     const windowTitle = await foregroundWindow.title
     saveNewVersionWindow(windowTitle)
 }
-
+*/
 /****SAVING INDIVIDUAL FILES. NOT CURRENTY IN USE */
-/*
-async function sendTheWindow(){  //this is for saving infi
-    const foregroundWindow = await getActiveWindow()
-    const windowTitle = await foregroundWindow.title
-    newVersionWindow.webContents.send('window-title', windowTitle)
+/* NOT IN USE
+async function sendTheWindow(){  //send info on front window to the main app window
+    var theWindow = await activeWindow();
+    newVersionWindow.webContents.send('active-window-info', theWindow)
 }
 */
 

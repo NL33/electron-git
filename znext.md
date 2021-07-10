@@ -1,25 +1,16 @@
 # Just Completed
--Just made it so that you can "create a paste file"--copy some text from email or a website, and hit create paste file--and it automagically creates the file.
--I was also trying to figure out how to later update that file. I added a right click "update paste file" button--that would require you to copy the whole new text, and automaticlly have it pasted in. But what if you hit "updat paste file" for the wrong file, or by accident? And maybe you don't want to add it all in. Maybe just some additional parts. Bottom line: you probably will want to do it manually. *Start here*
-     --the key, then: make it really easy for you to **find** the document you want to update. maybe through:
-          -good search. is there a way to add search relatively easily by mimicking mac spotlight search? Could be search within present file or across all files.
-          -some other way?
-          -bottom line: this is nice feature, but not the most important, so not worth days and days. DONE [added way to open up the folder to search]
-     --would be nice to save the web address for any doc like that as well.
-          --should be possible with keyboard shortcut, using nutjs functionality (don't need full functionality of copying automatically--but could still do that too, maybe security issues are ok--something to consider)
-     --note: "update paste file" right click is still there--you can probably remove it.
+Just worked through opening a file for searching, and worked through how to handle adding title and url to paste File (decided to not pursue until I can think of an easier user flow)
 
 *Next*
 
-# make it work to add in docs that are not already docs
---see above.
-
+# link to github and/or dropbox
+--start here.
+--don't overcomplicate it. Start with github: and more or less just take the github commands and make it easier to run them.
 
 # make it easy to show and hide the main screen
 --icon on the right to show the main screen
 
-# link to github and/or dropbox
---tackle this soon--maybe this is the best next thing to work on
+
 
 # test out solution offered in turndownservice github for td+p (relevant for showing tables in word docs)
 

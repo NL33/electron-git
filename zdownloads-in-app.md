@@ -12,6 +12,8 @@ $ npm install nutjs
 
 $ npm install active-win
     --April 27, 2021. REMOVED April 27, 2021 (not the functionality I wanted)
+    --installed again July 10, 2021
+    --almost found a good use for it. But then uninstalled it--not adding value yet
 
 $ npm install axios --save
     --May 1, 2021
