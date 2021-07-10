@@ -29,19 +29,19 @@ const { shouldRebuildNativeModules } = require('electron-rebuild')
 var diff2html = require("diff2html").Diff2Html
 /*****Button Set Up *****/
 window.onload = function () {
-  /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
+    /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
     if (localStorage.getItem('working-trees-present')) {
         let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
         if (treeArray.length > 0) {
             treeArray.forEach((treePath) => {
-                if (treePath.length){
+                if (treePath.length) {
                     removeSavedWorkTree(treePath)
                 }
             })
         }
     }
 
-    document.getElementById('viewPriorVersionsSelect').addEventListener('click', ()=>{
+    document.getElementById('viewPriorVersionsSelect').addEventListener('click', () => {
         viewPriorVersionsFunction()
     })
 
@@ -87,17 +87,17 @@ async function removeSavedWorkTree(treePath) {
     console.log('in remove tree')
     await trash([treePath]).then((error) => {
         console.log('removed work tree = ' + treePath)
-        if (error){
+        if (error) {
             console.log(error)
         } else {
-        let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
-        let index = treeArray.indexOf(treePath)
-        if (index > -1) {
-            treeArray.splice(index, 1)
-            localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
-            console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
+            let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+            let index = treeArray.indexOf(treePath)
+            if (index > -1) {
+                treeArray.splice(index, 1)
+                localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
+                console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
+            }
         }
-     }
     })
 }
 
@@ -163,10 +163,10 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 
 async function showFolderContents(divId, mainPath, indent) {
     var element = document.getElementById(divId)
-   var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
+    var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
     while (highlightedDivs.length)
         highlightedDivs[0].classList.remove('highlightFolderOrFile')
-    if (element.id !== 'projectDirectory'){
+    if (element.id !== 'projectDirectory') {
         element.classList.add('highlightFolderOrFile')
     }
     var extension = path.extname(mainPath)
@@ -269,26 +269,47 @@ function menuFunction() {
                         enterNewPasteFile(divId, thePath, indent)
                     }
                 }))
+                contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
+                    label: "View Folder",
+                    click: () => {
+                        viewFolder(e, thePath)
+                    }
+                }))
             }
 
             if (fullId !== 'projectDirectory') {
-                contextMenu.append(new MenuItem({
-                    label: "Update Paste Doc",
-                    click: () => {
-                        updatePasteDoc(e)
-                    }
-                }))
                 contextMenu.append(new MenuItem({
                     label: "Move to Trash",
                     click: () => {
                         deleteItem(e)
                     }
-                }))              
+                }))
             }
 
             contextMenu.popup(remote.getCurrentWindow());
         } //end if contains docOrDirectory
     }, false);
+}
+
+function viewFolder(e, thePath) { /***START HERE***** */
+    console.log('now in open file')
+    var theFolder = thePath
+    shell.openPath(theFolder)
+}
+
+function openFolder() {
+
+    var exec = require('child_process').exec;
+    var theFolder = '/Users/sean/Desktop/sample-project'
+    var command = 'search ' + theFolder
+    exec(command, function (error, stdout, stderr) {  // 'dir' is for example
+        if (error) {
+            console.error(`exec error: ${error}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+        console.log(`stderr: ${stderr}`);
+    });
 }
 /*old code: onblur="newFolderNoFocus()"*/
 /****INPUT TO ENTER NEW FOLDER AND FILE ********* */
@@ -297,11 +318,6 @@ function menuFunction() {
 2. add folder does mkdir code., then goes to
 3. showNewFolderOrDoc or showFolderContents to show the new folder
 */
-function updatePasteDoc(e){
-    var content = clipboard.readText()
-    var targetDiv = e.target  /***START HERE: GOal: update the file clicked on with what's on the clipboard. So need to get the file path */
-    
-}
 
 function enterNewFolder(divId, mainPath, indent) {
     var newIndent = parseInt(indent) + 17
@@ -402,12 +418,12 @@ function createPasteFile(divId, folderPath, indent) {
     document.getElementById('addForm').remove()
     var newDocPath1 = folderPath + '/' + fileName
     var pathExtension = path.extname(newDocPath1)
-    if (pathExtension.length){
+    if (pathExtension.length) {
         var newDocPath = newDocPath1
         var updatedFileName = fileName
     } else {
-       var newDocPath = newDocPath1 + '.md'
-       var updatedFileName = fileName + '.md'
+        var newDocPath = newDocPath1 + '.md'
+        var updatedFileName = fileName + '.md'
     }
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
@@ -648,7 +664,7 @@ async function revertWorkTree(commitNumber, versionNumber, treeName, date, time,
 
 async function showCompareChangesFunction() {
     document.getElementById('showPriorCommitsForCompare').innerHTML = ''
-    
+
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd results' + JSON.stringify(result))
@@ -673,7 +689,7 @@ async function showCompareChangesFunction() {
             commitForCompareDiv.insertAdjacentHTML('beforeend', currentChangesContent)
 
             /***PRIOR VERSIONS LIST: Load all prior versions into the prior versions list** */
-            for (var i = 0; i<resultArray.length; i++) {
+            for (var i = 0; i < resultArray.length; i++) {
                 var commit = resultArray[i]
                 var versionNumber = totalNumber--
                 var versionMessage = commit.message
@@ -691,7 +707,7 @@ async function showCompareChangesFunction() {
                     timeStyle: 'short'
                 })
                 var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
-               /***CLEAN UP HERE: Do not need (probably) to have the params other than even in the selectversiontoviewchanges function */
+                /***CLEAN UP HERE: Do not need (probably) to have the params other than even in the selectversiontoviewchanges function */
                 contents = `
                 <div class="versionOverviewClass" onclick='selectVersionToViewChanges(event, "${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}", "${versionMessage}")'>
                     <div class="versionMessage">${versionMessage}</div>
@@ -700,10 +716,10 @@ async function showCompareChangesFunction() {
                     <span class="commitNumber" style="display:none">${commitNumber}</span>
                 </div>   
                 `
-               commitForCompareDiv.insertAdjacentHTML("beforeend", contents)
+                commitForCompareDiv.insertAdjacentHTML("beforeend", contents)
 
                 /**SUMMARY HEADER: Take the first prior version, and add it to the summary header as the earlier version. The current changes are already listed as the later version */
-                if (i === 0){
+                if (i === 0) {
                     //this is the insert at the top summary header.
                     //NOTE: the current change selection is already hard-coded as the later change for comparison in the html
                     var headerInsert = `
@@ -717,14 +733,14 @@ async function showCompareChangesFunction() {
                     document.getElementById('earlierVersionOverview').innerHTML = headerInsert
 
                     //this applies to the items in the list below
-                    document.getElementById('showPriorCommitsForCompare').children[1].id ="selectedChangeId2"
+                    document.getElementById('showPriorCommitsForCompare').children[1].id = "selectedChangeId2"
                     document.getElementById('selectedChangeId2').classList.add('selectedChangeClass')
-                }       
+                }
             }
             document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
             document.getElementById('optionsAtBottom').style.display = "none"
             document.getElementById('saveProjectVersion').style.display = 'none'
-            document.getElementById('folderContents').style.display="none"
+            document.getElementById('folderContents').style.display = "none"
             document.getElementById('closeCompareChangesView').addEventListener('click', () => {
                 document.getElementById('folderContents').style.display = 'block'
                 document.getElementById('showViewPriorVersionsForCompare').style.display = 'none'
@@ -739,11 +755,11 @@ async function showCompareChangesFunction() {
     }
 }
 
-function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate, showTime, versionMessage){
+function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate, showTime, versionMessage) {
     //Info on how this works:
-   //To keep track of which versions are selected, we give them one of two ids: selectedChangeId1 and selectedChangeId2. The numbers on these ids do NOT correspond to which version is earlier and which is later. The numbers are there to just identify which versions are selected. When a new version is selected, the numbers shift, so that the new selection becomes selectedChangeId1, the prior selectedChangeId1 becomes selectedChangeId2, and the prior selectedChangeId2 loses its selection.
-   //After the selection numbers are sorted out, then there is a separate process to determine which version will be listed as later (newer) and which as earlier(older). This process is redone every time there is a selection.
-    
+    //To keep track of which versions are selected, we give them one of two ids: selectedChangeId1 and selectedChangeId2. The numbers on these ids do NOT correspond to which version is earlier and which is later. The numbers are there to just identify which versions are selected. When a new version is selected, the numbers shift, so that the new selection becomes selectedChangeId1, the prior selectedChangeId1 becomes selectedChangeId2, and the prior selectedChangeId2 loses its selection.
+    //After the selection numbers are sorted out, then there is a separate process to determine which version will be listed as later (newer) and which as earlier(older). This process is redone every time there is a selection.
+
     //***MAKE SURE THE ID IS LINKED TO THE OVERVIEW CLASS OF THE ELEMENT (no matter where it was clicked) ********/
     if (event.target.classList.contains('versionOverviewClass')) {
         var selectedDiv = event.target
@@ -751,41 +767,41 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
         var selectedDiv = event.target.closest('.versionOverviewClass')
     }
 
-   if ((selectedDiv.id !== 'selectedChangeId2') && (selectedDiv.id !== 'selectedChangeId1')) {
-       //********SET THE IDS CORRECTLY ************/
-       document.getElementById('selectedChangeId2').classList.remove('selectedChangeClass')
-       document.getElementById('selectedChangeId2').id = ''
-       document.getElementById('selectedChangeId1').id = 'selectedChangeId2'
-       selectedDiv.id = 'selectedChangeId1'
-       selectedDiv.classList.add('selectedChangeClass')
+    if ((selectedDiv.id !== 'selectedChangeId2') && (selectedDiv.id !== 'selectedChangeId1')) {
+        //********SET THE IDS CORRECTLY ************/
+        document.getElementById('selectedChangeId2').classList.remove('selectedChangeClass')
+        document.getElementById('selectedChangeId2').id = ''
+        document.getElementById('selectedChangeId1').id = 'selectedChangeId2'
+        selectedDiv.id = 'selectedChangeId1'
+        selectedDiv.classList.add('selectedChangeClass')
 
         //********Get the Version Number of the currently selected versions **************/
         var id1 = document.getElementById('selectedChangeId1')
         var id2 = document.getElementById('selectedChangeId2')
         var id1Version = document.querySelector('#selectedChangeId1 .versionNumber').textContent
-        if (id1Version !== 'Current Changes'){
+        if (id1Version !== 'Current Changes') {
             var id1VersionNumber = parseInt(id1Version)
         } else {
             var id1VersionNumber = id1Version
         }
-       var id2Version = document.querySelector('#selectedChangeId2 .versionNumber').textContent
-       if (id2Version !== 'Current Changes') {
-           var id2VersionNumber = parseInt(id2Version)
-       } else {
-           var id2VersionNumber = id2Version
-       }
+        var id2Version = document.querySelector('#selectedChangeId2 .versionNumber').textContent
+        if (id2Version !== 'Current Changes') {
+            var id2VersionNumber = parseInt(id2Version)
+        } else {
+            var id2VersionNumber = id2Version
+        }
 
-       var id1Message = document.querySelector('#selectedChangeId1 .versionMessage').textContent
-       var id1Date = document.querySelector('#selectedChangeId1 .versionDate').textContent
-       var id1Time = document.querySelector('#selectedChangeId1 .versionTime').textContent
-       var id1CommitNumber = document.querySelector('#selectedChangeId1 .commitNumber').textContent
+        var id1Message = document.querySelector('#selectedChangeId1 .versionMessage').textContent
+        var id1Date = document.querySelector('#selectedChangeId1 .versionDate').textContent
+        var id1Time = document.querySelector('#selectedChangeId1 .versionTime').textContent
+        var id1CommitNumber = document.querySelector('#selectedChangeId1 .commitNumber').textContent
 
-       var id2Message = document.querySelector('#selectedChangeId2 .versionMessage').textContent
-       var id2Date = document.querySelector('#selectedChangeId2 .versionDate').textContent
-       var id2Time = document.querySelector('#selectedChangeId2 .versionTime').textContent
-       var id2CommitNumber = document.querySelector('#selectedChangeId2 .commitNumber').textContent
+        var id2Message = document.querySelector('#selectedChangeId2 .versionMessage').textContent
+        var id2Date = document.querySelector('#selectedChangeId2 .versionDate').textContent
+        var id2Time = document.querySelector('#selectedChangeId2 .versionTime').textContent
+        var id2CommitNumber = document.querySelector('#selectedChangeId2 .commitNumber').textContent
 
-       //*****COMPARE THE VERSION NUMBERS******* */
+        //*****COMPARE THE VERSION NUMBERS******* */
 
         if (id2VersionNumber === 'Current Changes') { //then the first chosen item is the current changes
             var laterHeaderInsert = `
@@ -829,7 +845,7 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                 `
             document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
 
-        } else if (id2VersionNumber > id1VersionNumber){ //no current changes selected
+        } else if (id2VersionNumber > id1VersionNumber) { //no current changes selected
             var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordLater">Version </span><span id="versionNumberLater">${id2VersionNumber}</span></span>
@@ -850,7 +866,7 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                 `
             document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
 
-        } else if (id1VersionNumber > id2VersionNumber){ //no current changes selected
+        } else if (id1VersionNumber > id2VersionNumber) { //no current changes selected
             var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordLater">Version </span><span id="versionNumberLater">${id1VersionNumber}</span></span>
@@ -881,12 +897,12 @@ document.getElementById('runChangesIntegrated').addEventListener('click', () => 
 })
 
 
-document.getElementById('runChangesBlock').addEventListener('click', ()=>{
+document.getElementById('runChangesBlock').addEventListener('click', () => {
     runComparisonFunction('block')
 })
 
 
-function runComparisonFunction(comparisonType){
+function runComparisonFunction(comparisonType) {
     var laterVersionNumber = document.getElementById('versionNumberLater').textContent
     var laterMessage = document.getElementById('versionMessageLater').textContent
     var laterDate = document.getElementById('versionDateLater').textContent

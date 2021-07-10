@@ -19,7 +19,7 @@
 --icon on the right to show the main screen
 
 # link to github and/or dropbox
---tackle this soon
+--tackle this soon--maybe this is the best next thing to work on
 
 # test out solution offered in turndownservice github for td+p (relevant for showing tables in word docs)
 
