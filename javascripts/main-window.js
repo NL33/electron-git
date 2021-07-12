@@ -284,6 +284,13 @@ function menuFunction() {
                         deleteItem(e)
                     }
                 }))
+                /**NOTE: Consider having this appear only for files that I can write, like md, txt, rtf, html, etc. */
+                contextMenu.append(new MenuItem({
+                    label: "Update Paste File",
+                    click: () => {
+                        updatePasteFile(e)
+                    }
+                }))
             }
 
             contextMenu.popup(remote.getCurrentWindow());
@@ -432,6 +439,24 @@ function createFile(divId, path, indent) {
                 }
             }
         })
+    }
+
+    function updatePasteFile(e){
+        var content = clipboard.readText()
+        var targetDiv = e.target
+        var filePath = targetDiv.id.split('^^^')[1]  //id of docs has structure = ***is-directory***^^^/Users/[pathandname]^^^indentnumber
+        /*Consider adding a dialog saying: confirm update file with [the first lines of text] to make sure this is on purpose.*/
+        fs.writeFile(filePath, content, function(err){
+            if (err){
+                console.log(err)
+                /**Can add dialog saying: Sorry, there was a problem updating this doc */
+            } else {
+                console.log('paste doc updated')
+                /**Can add a dialog confirming this worked */
+            }
+        })
+
+
     }
 
 

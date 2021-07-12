@@ -7,10 +7,30 @@ Just worked through opening a file for searching, and worked through how to hand
 --start here.
 --don't overcomplicate it. Start with github: and more or less just take the github commands and make it easier to run them.
 
+# apple notes: make it easy to use with apple notes
+--options
+     --as is: copy text, hit create paste doc.; then probably add back the "update paste doc" so can update text
+
+     --with apple script: current status (July 12, 2021)--stick with more general, manual way from above. THis adds too much.
+          --ideal structure: typing apple note, and hit: save, and it automatically updates file with the note in it. how:
+               --hit save. and it gets the id of the last updated note
+               --and gets name. 
+               --creates a file with the name, with "-apple-note" appended, and adds the id to the first line of file.
+               --in some way, gets text of the apple note, and adds it to the doc. This is the current hold up--not sure how to do that other than relying on clipboard (which requires manual copying or using something like nutjs, which I'd prefer not to do.)
+               --then, next time you hit the save button, app 1. gets the id of the note in the foreground, 2. searches the current folder for the docs with the apple-note title, then 3. searches those for the line with the first id, and then updates that text with the text of the note.
+               --then, when you want to open the note, you can open it from that app
+
 # make it easy to show and hide the main screen
 --icon on the right to show the main screen
 
-
+# add moments of elevation
+--these buttons can be across the header. nice to leave it simple for now--so 2 or 3 buttons tops. breathe big. Gratitude notes. Especially to keep things simple for my building and not to overcomplicate. The idea is these are things I would like to do while I am working, and these are touches to add personality--make my work actually elevating. 
+--breathe big button. 
+--gratitude notes (save to your computer--create a doc on user's desktop (if want to change later, can save location as local storage)). adds a new time to the doc when you press new gratitude notes. 
+--other possibilities:
+     --what I love about this moment
+     --pledge: what I will do in the next 30, 60, 120 minutes
+     --work sprint
 
 # test out solution offered in turndownservice github for td+p (relevant for showing tables in word docs)
 
@@ -172,6 +192,11 @@ could do the split based on more info, like the actual name of the doc, which yo
 --search the project folder (why important? if you think you have a correspondence with someone somewhere, but don't remember where, would be helpful to search for it.)
 
 --if tries to view hidden micro word docs, like "$!apter 2"... it messes things up and stops the process. The result is worktrees and newtemp/oldtemp files that are not deleted, and a non-working system. Make it so these docs are not picked up the save. And catch the errors so that it doesn't stop things from moving forward(!)
+     --in general, add error catching for anywhere where a problem with a doc could stop the app.
+          and for some errors, add an option for the user to remedy
+               --example, if you have folders open on the app, and then change an extension or a name of a doc, and then try to open the doc as named on the app, will throw an error "no such file or directory". 
+
+--add a show location button 
 
 # contact notes
 
