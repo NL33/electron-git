@@ -7,8 +7,6 @@ Just worked through opening a file for searching, and worked through how to hand
 --start here.
 --don't overcomplicate it. Start with github: and more or less just take the github commands and make it easier to run them.
 
-
-
 # make it easy to show and hide the main screen
 --icon on the right to show the main screen
 
