@@ -1,5 +1,5 @@
 # Just Completed
-Just worked through opening a file for searching, and worked through how to handle adding title and url to paste File (decided to not pursue until I can think of an easier user flow)
+Basic work for creating apple doc. next: reference to "zoneplace" doc for apple notes next steps
 
 *Next*
 

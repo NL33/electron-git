@@ -124,8 +124,36 @@ And this method is kind of confusing for the user.
 
 -to do option 2:
 --make apple script work for simple apple note in the app (ie, make apple script work in jxa). DONE.
---add button to header to create doc with id
---add content to that doc
---place the doc right--put it under the currently highlighted folder
---update that doc with button press
+--add button to header to create doc with id. DONE (currently using right click)
+--add content to that doc. DONE.
+--place the doc right--put it under the currently highlighted folder. DONE
+--update that doc with button press. *START HERE*
+--consider if there is any way to keep the current structure of html to markdown, while improving look and indents of dashes
 --open the note with apple notes app from doc
+--make apple notes doc work to open right after create it (right now there is bug in the code)
+--see if way to make it go faster--test with script to compare time. seems like sometimes its much faster than others
+
+# Further notes on apple notes
+current stance: could go with either.
+--right now, converting html to markdown.
+    --good parts: can keep heading bold, and doesn't require changing clipboard
+    --downsides: numbered lists don't work well. can't keep indentation for bullets (dashes or bullets). no distinction between bullets and dashes.
+        seems like lost markdown too. but why?
+
+--alternative:
+   (a) automatic copy
+    1. with applescript, copy the text of the foreground note (check if notes in foreground, then do command press A, and command press copy)
+    2. get id and name of note
+    3. create file, adding in id, then text from clipboard.
+
+    benefits: 
+        --will keep more formatting for tables, bullets, and dashes
+    
+    downsides:
+        --lose formatting of header. But: can do markup text for that to compensate
+        --lose bold and italic text. 
+        --messes with clipboard
+
+    (b) user copies, then hits "apple note file". and it gets the id, and adds clipboard text.
+        1. But: user might mess up copying.
+        2. takes more effort

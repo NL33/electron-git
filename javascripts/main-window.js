@@ -82,15 +82,13 @@ window.onload = function () {
 }   //end window onload
 
 /********CONTROLLING APPLE NOTES ************************* */
-var appleNoteId
-var appleNoteName
+
 var appleNoteHtmlContent
 async function addAppleNote(divId, mainPath, indent) {
     var newIndent = parseInt(indent) + 17
     try {
         await getFrontNote().then((response) => {
             appleNoteHtmlContent = response.noteContent
-            var mdContent1 = 'hi there'
             var noteId = response.noteId
             var element = document.getElementById(divId)
             contents = `<form action="#" id="addAppleNoteForm" style="margin-left: ${newIndent}px;" onsubmit='createAppleNoteFile("${divId}", "${mainPath}", "${indent}", "${noteId}")'>
@@ -128,7 +126,6 @@ async function getFrontNote() {
 }
 
 function createAppleNoteFile(divId, folderPath, indent, noteId) {
-    console.log('here we go')
     var updatedContent = appleNoteHtmlContent.replace('<div><br></div>', '')
     turndownService.addRule('', {
         filter: 'h2',
@@ -151,11 +148,9 @@ function createAppleNoteFile(divId, folderPath, indent, noteId) {
     var mdContent = turndownService.turndown(updatedContent)
     var mdContent1 = appleNoteHtmlContent
     var fileName = document.getElementById('appleNoteNameEntry').value
-    console.log('1')
     document.getElementById('addAppleNoteForm').remove()
     var newDocPath = folderPath + '/' + fileName
     var newIndent = parseInt(indent) + 15
-    console.log(2)
     var element = document.getElementById(divId)
     var content = 'id:' + noteId + '\n\n' + mdContent
     fs.writeFile(newDocPath, content, function (err) {
@@ -453,7 +448,11 @@ function enterNewPasteFile(divId, mainPath, indent) {
 }
 
 function newFolderNoFocus() {
-    document.getElementById('addForm').remove()
+    if (document.getElementById('addForm')){
+        document.getElementById('addForm').remove()
+    } else if (document.getElementById('addAppleNoteForm')){
+        document.getElementById('addAppleNoteForm').remove()
+    }
 }
 
 /*************************CREATE A FOLDER ********************/
