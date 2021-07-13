@@ -185,6 +185,14 @@ could do the split based on more info, like the actual name of the doc, which yo
 
 --add a show location button 
 
+--if not project file (tries to open based on local storage, but may have been deleted in mean time)--do error catching
+
+--if running jxa code, then want to check can run in jxa environment. THere is a package for that:  https://github.com/sindresorhus/is-jxa
+
+--if entering Apple Notes ID into doc, note that the structure seems to be "x-coredata://922A35B9-C523-44DE-8611-CA444607F49E/ICNote/p1076". Everything until "/p1076". Investigate whether the data before hand is private info that should be protected. If so, hide it in the doc.
+
+--main window.js: when creating a file and creating a paste file, it gets the name from id="nameEntry". But that is an id--if you try to create a few files, app will get confused. Change this--either make it so you only create one at a time, or make referene to nameEntry more specific
+
 # contact notes
 
 if link it to github, could tell them about it to get their support

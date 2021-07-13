@@ -6,7 +6,7 @@ const fs = require('fs');
 const { systemPreferences } = require('electron')
 // Prompt to access System Preferences by setting the prompt "true"
 const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
-
+const runJxa = require('run-jxa')
 console.log("Does the client have accessibility permissions?", isTrusted)
 
 //require = require("esm")(module/*, options*/)
@@ -66,6 +66,7 @@ async function saveNewVersionWindow(windowTitle) {
 
     newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
+    getFrontNote()
     newVersionWindow.openDevTools()
     //sendTheWindow()
 
@@ -76,7 +77,33 @@ async function saveNewVersionWindow(windowTitle) {
     */
     // convertWord()
 }
+async function getFrontNote() {
+    /*
+    var insert = '"tell application Notes' +
+                   'set noteName to name of item 1 of(get selection)' + 
+                'end tell"'
+    */
+    runJxa(`
+                  (() => {
+              'use strict';
+             //evalAS2 :: String -> IO a
+            const evalAS2 = s => {
+                const a = Application.currentApplication();
+				const sa = (a.includeStandardAdditions = true, a)
+                ;                
+				return sa.runScript(s);
+            };
+           return evalAS2('return "hi"')
+           console.log('done')
+            })();
+          `)
+    /*     
+     } catch (error) {
+         console.log('error in get front note = ' + error)
+     }
+ */
 
+}
 
 /*****## OPEN DIALOG TO SELECT FOLDER ******/
 

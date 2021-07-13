@@ -13,8 +13,8 @@ const trash = require('trash');
 const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
-
 const runJxa = require('run-jxa')
+
 const { getWindows, getActiveWindow } = require("@nut-tree/nut-js");
 var projectFolderPath
 var projectFolderName
@@ -81,10 +81,105 @@ window.onload = function () {
 
 }   //end window onload
 
+/********CONTROLLING APPLE NOTES ************************* */
+var appleNoteId
+var appleNoteName
+var appleNoteHtmlContent
+async function addAppleNote(divId, mainPath, indent) {
+    var newIndent = parseInt(indent) + 17
+    try {
+        await getFrontNote().then((response) => {
+            appleNoteHtmlContent = response.noteContent
+            var mdContent1 = 'hi there'
+            var noteId = response.noteId
+            var element = document.getElementById(divId)
+            contents = `<form action="#" id="addAppleNoteForm" style="margin-left: ${newIndent}px;" onsubmit='createAppleNoteFile("${divId}", "${mainPath}", "${indent}", "${noteId}")'>
+                <input type="text" class="docOrDirectory"  id="appleNoteNameEntry" data-placeholder="folder name"  style="padding: 2px; padding-left: 2px" name="txt" /><span onclick="newFolderNoFocus()" style="color: #778899; cursor: pointer; margin-left: 4px; padding: 4px; vertical-align: super">x</span>
+                </form>
+                `
+
+            var newItems = element.nextElementSibling  //gets "newItems" div
+            newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
+            document.getElementById('appleNoteNameEntry').value = response.noteName + ' (apple-note).md'
+        })
+    } catch (error) {
+        console.log('error in addAppleNote = ' + error)
+    }
+}
+async function getFrontNote() {
+    // (async () => {
+    try {
+        const result = await runJxa(`
+            const evalAS2 = s => {
+                    const a = Application.currentApplication();
+                    const sa = (a.includeStandardAdditions = true, a);
+                    return sa.runScript(s);
+            };
+            var noteName = evalAS2('tell application "Notes" to get the name of item 1 of (get selection)');
+            var noteId = evalAS2('tell application "Notes" to get the id of item 1 of (get selection)');
+            var noteContent = evalAS2('tell application "Notes" to get body of item 1 of (get selection)');
+            return {'noteName': noteName, 'noteId': noteId, 'noteContent': noteContent}
+            `)
+       return result
+    } catch (error) {
+        console.log('error in trying to get note information ' + error)
+    }
+    //})();
+}
+
+function createAppleNoteFile(divId, folderPath, indent, noteId) {
+    console.log('here we go')
+    var updatedContent = appleNoteHtmlContent.replace('<div><br></div>', '')
+    turndownService.addRule('', {
+        filter: 'h2',
+        replacement: function (content) {
+            return '**' + content + '**'
+        }
+    })
+    turndownService.addRule('', {
+        filter: 'h3',
+        replacement: function (content) {
+            return '**' + content + '**'
+        }
+    })
+    turndownService.addRule('', {
+        filter: 'br',
+        replacement: function () {
+            return ''
+        }
+    })
+    var mdContent = turndownService.turndown(updatedContent)
+    var mdContent1 = appleNoteHtmlContent
+    var fileName = document.getElementById('appleNoteNameEntry').value
+    console.log('1')
+    document.getElementById('addAppleNoteForm').remove()
+    var newDocPath = folderPath + '/' + fileName
+    var newIndent = parseInt(indent) + 15
+    console.log(2)
+    var element = document.getElementById(divId)
+    var content = 'id:' + noteId + '\n\n' + mdContent
+    fs.writeFile(newDocPath, content, function (err) {
+        if (err) {
+            console.log(err)
+        } else {
+            //var newItems = div.nextElementSibling
+            // newItems.innerHTML = ''
+            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
+            if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
+                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
+                showNewFolderOrDoc(divId, folderPath, newDocPath, fileName, newIndent)
+            } else {
+                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
+                showFolderContents(divId, folderPath, newIndent)
+            }
+        }
+    })
+}
+
 /******************FUNCTION TO REMOVE ANY WORK TREES CREATED BY THE APP******************************** */
 
 async function removeSavedWorkTree(treePath) {
-    console.log('in remove tree')
+
     await trash([treePath]).then((error) => {
         console.log('removed work tree = ' + treePath)
         if (error) {
@@ -270,6 +365,14 @@ function menuFunction() {
                     }
                 }))
                 contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
+                    label: "Add Apple Note File",
+                    click: () => {
+                        // addFolder(e, thePath, indent)
+                        var divId = fullId
+                        addAppleNote(divId, thePath, indent)
+                    }
+                }))
+                contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
                     label: "View Folder to Search",
                     click: () => {
                         viewFolder(e, thePath)
@@ -408,289 +511,289 @@ function createFile(divId, path, indent) {
 /*******************CREATE A PASTE FILE ****************************/
 //hit create paste file button, and app creates file, pastes in clipboard, and, if no extension specified when you create it, adds "md" extension.
 
-    function createPasteFile(divId, folderPath, indent) {
-        var fileName = document.getElementById('nameEntry').value
-        document.getElementById('addForm').remove()
-        var newDocPath1 = folderPath + '/' + fileName
-        var pathExtension = path.extname(newDocPath1)
-        if (pathExtension.length) {
-            var newDocPath = newDocPath1
-            var updatedFileName = fileName
-        } else {
-            var newDocPath = newDocPath1 + '.md'
-            var updatedFileName = fileName + '.md'
-        }
-        var newIndent = parseInt(indent) + 15
-        var element = document.getElementById(divId)
-        var content = clipboard.readText()
-        fs.writeFile(newDocPath, content, function (err) {
-            if (err) {
-                console.log(err)
-            } else {
-                //var newItems = div.nextElementSibling
-                // newItems.innerHTML = ''
-                //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
-                if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
-                    //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                    showNewFolderOrDoc(divId, folderPath, newDocPath, updatedFileName, newIndent)
-                } else {
-                    //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
-                    showFolderContents(divId, folderPath, newIndent)
-                }
-            }
-        })
+function createPasteFile(divId, folderPath, indent) {
+    var fileName = document.getElementById('nameEntry').value
+    document.getElementById('addForm').remove()
+    var newDocPath1 = folderPath + '/' + fileName
+    var pathExtension = path.extname(newDocPath1)
+    if (pathExtension.length) {
+        var newDocPath = newDocPath1
+        var updatedFileName = fileName
+    } else {
+        var newDocPath = newDocPath1 + '.md'
+        var updatedFileName = fileName + '.md'
     }
-
-    function updatePasteFile(e){
-        var content = clipboard.readText()
-        var targetDiv = e.target
-        var filePath = targetDiv.id.split('^^^')[1]  //id of docs has structure = ***is-directory***^^^/Users/[pathandname]^^^indentnumber
-        /*Consider adding a dialog saying: confirm update file with [the first lines of text] to make sure this is on purpose.*/
-        fs.writeFile(filePath, content, function(err){
-            if (err){
-                console.log(err)
-                /**Can add dialog saying: Sorry, there was a problem updating this doc */
-            } else {
-                console.log('paste doc updated')
-                /**Can add a dialog confirming this worked */
-            }
-        })
-
-
-    }
-
-
-    /**************** showNewFolder ANd new Doc *******************/
-
-    function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
-        //note: right now, this inserts the folder in the view at the top of the view (not alphabetical order)
-        var element = document.getElementById(divId)
-        var contents = ""
-        var newIndent = parseInt(indent) + 15
-        var fullPath = newPath
-        var statsHere = fs.statSync(fullPath)
-        if (statsHere.isDirectory() === true) {
-            var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+    var newIndent = parseInt(indent) + 15
+    var element = document.getElementById(divId)
+    var content = clipboard.readText()
+    fs.writeFile(newDocPath, content, function (err) {
+        if (err) {
+            console.log(err)
         } else {
-            var newId = "**is-document**^^^" + fullPath + "^^^" + indent
+            //var newItems = div.nextElementSibling
+            // newItems.innerHTML = ''
+            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
+            if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
+                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
+                showNewFolderOrDoc(divId, folderPath, newDocPath, updatedFileName, newIndent)
+            } else {
+                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
+                showFolderContents(divId, folderPath, newIndent)
+            }
         }
-        contents = `<div>
+    })
+}
+
+function updatePasteFile(e) {
+    var content = clipboard.readText()
+    var targetDiv = e.target
+    var filePath = targetDiv.id.split('^^^')[1]  //id of docs has structure = ***is-directory***^^^/Users/[pathandname]^^^indentnumber
+    /*Consider adding a dialog saying: confirm update file with [the first lines of text] to make sure this is on purpose.*/
+    fs.writeFile(filePath, content, function (err) {
+        if (err) {
+            console.log(err)
+            /**Can add dialog saying: Sorry, there was a problem updating this doc */
+        } else {
+            console.log('paste doc updated')
+            /**Can add a dialog confirming this worked */
+        }
+    })
+
+
+}
+
+
+/**************** showNewFolder ANd new Doc *******************/
+
+function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
+    //note: right now, this inserts the folder in the view at the top of the view (not alphabetical order)
+    var element = document.getElementById(divId)
+    var contents = ""
+    var newIndent = parseInt(indent) + 15
+    var fullPath = newPath
+    var statsHere = fs.statSync(fullPath)
+    if (statsHere.isDirectory() === true) {
+        var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+    } else {
+        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
+    }
+    contents = `<div>
                 <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id=${newId} onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
                 <div class="newItems"></div>
                 </div>`
-        if (divId === 'projectDirectory') { //its the project folder
-            var contentsDiv = document.getElementById('folderContents')
-            contentsDiv.insertAdjacentHTML("afterBegin", contents)
-        } else { //else its a subfolder
-            var newItems = element.nextElementSibling  //gets "newItems" div
-            newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
-        }
-
+    if (divId === 'projectDirectory') { //its the project folder
+        var contentsDiv = document.getElementById('folderContents')
+        contentsDiv.insertAdjacentHTML("afterBegin", contents)
+    } else { //else its a subfolder
+        var newItems = element.nextElementSibling  //gets "newItems" div
+        newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
     }
 
-
-    /*******************DELETE A FOLDER****************************/
-
-    async function deleteItem(e) {
-        var fullId = e.target.id
-        var item = document.getElementById(fullId)
-        var idArray = fullId.split("^^^")
-        var thePath = idArray[1]
-        await trash([thePath]).then(() => {
-            item.remove()
-        });
-    }
+}
 
 
-    /*************************************VIEW PRIOR VERSIONS *****************************************/
+/*******************DELETE A FOLDER****************************/
 
-    async function viewPriorVersionsFunction() {
-        document.getElementById('showPriorCommits').innerHTML = ''
-        try {
-            await git.cwd(projectFolderPath).then(result => {
-                // console.log('cwd resultss' + JSON.stringify(result))
-            })
+async function deleteItem(e) {
+    var fullId = e.target.id
+    var item = document.getElementById(fullId)
+    var idArray = fullId.split("^^^")
+    var thePath = idArray[1]
+    await trash([thePath]).then(() => {
+        item.remove()
+    });
+}
 
-            await git.log().then(result => {
-                var resultArray = result.all
-                var totalNumber = resultArray.length
-                var commitDiv = document.getElementById('showPriorCommits')
-                var savedVersionsHeader = document.getElementById('savedVersionsOverview')
-                savedVersionsHeader.style.display = "block"
-                resultArray.forEach((commit) => {
-                    var versionNumber = totalNumber--
-                    var versionMessage = commit.message
-                    var dateTime = commit.date
-                    var commitNumber = commit.hash
 
-                    var dateObject = new Date(dateTime)
-                    var showDate = dateObject.toLocaleDateString('en-us', {
-                        weekday: 'short',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    })
-                    var showTime = dateObject.toLocaleTimeString('en-us', {
-                        timeStyle: 'short'
-                    })
-                    var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
-                    contents = `
+/*************************************VIEW PRIOR VERSIONS *****************************************/
+
+async function viewPriorVersionsFunction() {
+    document.getElementById('showPriorCommits').innerHTML = ''
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+        await git.log().then(result => {
+            var resultArray = result.all
+            var totalNumber = resultArray.length
+            var commitDiv = document.getElementById('showPriorCommits')
+            var savedVersionsHeader = document.getElementById('savedVersionsOverview')
+            savedVersionsHeader.style.display = "block"
+            resultArray.forEach((commit) => {
+                var versionNumber = totalNumber--
+                var versionMessage = commit.message
+                var dateTime = commit.date
+                var commitNumber = commit.hash
+
+                var dateObject = new Date(dateTime)
+                var showDate = dateObject.toLocaleDateString('en-us', {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })
+                var showTime = dateObject.toLocaleTimeString('en-us', {
+                    timeStyle: 'short'
+                })
+                var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
+                contents = `
                 <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}", "${versionMessage}")'>
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumber">Version ${versionNumber}</span>
                     <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
                 </div>   
                 `
-                    commitDiv.insertAdjacentHTML("beforeEnd", contents)
-                })
+                commitDiv.insertAdjacentHTML("beforeEnd", contents)
             })
-            document.getElementById('showPriorVersions').style.display = 'block'
-            document.getElementById('saveProjectVersion').style.display = 'none'
-            document.getElementById('folderContents').style.display = "none"
-            document.getElementById('closePriorVersionsView').addEventListener('click', () => {
-                document.getElementById('showPriorVersions').style.display = 'none'
-                document.getElementById('folderContents').style.display = "block"
-                document.getElementById('showPriorCommits').innerHTML = ''
-                document.getElementById('optionsAtBottom').style.display = 'block'
-                document.getElementById('saveProjectVersion').style.display = 'block'
-            })
-            document.getElementById('optionsAtBottom').style.display = 'none'
-        }
-        catch (e) {
-            console.log('error = ' + e)
-        }
+        })
+        document.getElementById('showPriorVersions').style.display = 'block'
+        document.getElementById('saveProjectVersion').style.display = 'none'
+        document.getElementById('folderContents').style.display = "none"
+        document.getElementById('closePriorVersionsView').addEventListener('click', () => {
+            document.getElementById('showPriorVersions').style.display = 'none'
+            document.getElementById('folderContents').style.display = "block"
+            document.getElementById('showPriorCommits').innerHTML = ''
+            document.getElementById('optionsAtBottom').style.display = 'block'
+            document.getElementById('saveProjectVersion').style.display = 'block'
+        })
+        document.getElementById('optionsAtBottom').style.display = 'none'
     }
-    var treeName = 'n/a'
-    async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
-        try {
-            await git.cwd(projectFolderPath).then(result => {
-                // console.log('cwd resultss' + JSON.stringify(result))
-            })
-
-            //prior to creating a new worktree, delete any worktree that's there
-            var folderArray = await fs.readdirSync(projectFolderPath)
-            /* remove any existing worktree in the project, prior to creating a new one. 
-            Note: this means you can't view two different old versions at once. I think that is ok for now.
-            */
-            folderArray.forEach((item) => {
-                if (item.includes('worktree3#&7#&1#&4')) { //if a folder exists that matches the worktree naming convention
-                    removeWorkTree(item)
-                }
-            })
-
-            //done removing any existing worktree
-
-            console.log('now move on')
-            //create worktree, with different name then before
-            var randomNumber = Math.floor(Math.random() * 10000)
-            var randomMultiple = Math.floor(Math.random() * 500)
-            var theNumber = randomNumber * randomMultiple
-            treeName = theNumber.toString() + 'worktree3#&7#&1#&4'
-            await git.raw('worktree', 'add', treeName).then(result => {
-                if (result) {
-                    console.log(result)
-                    if (localStorage.getItem('working-trees-present')) {  //local storage array is to keep track of worktrees created, so as to delete them in the case the app is not shut down properly (they would be deleted on startup)
-                        let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
-                        treeArray.push(projectFolderPath + '/' + treeName)
-                        localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
-                        console.log('trees exist')
-                    } else {
-                        let treeArray = []
-                        treeArray.push(projectFolderPath + '/' + treeName)
-                        localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
-                        console.log('trees didnt exist yet')
-                    }
-                } else {
-                    console.log('error = ')
-                }
-            })
-            //now should have a folder in the directory that is a copy of the directory, with its own git file.
-            revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes)
-        } catch (e) {
-            console.log('error in showOldVersion = ' + e)
-        }
+    catch (e) {
+        console.log('error = ' + e)
     }
+}
+var treeName = 'n/a'
+async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
 
-    /*****REMOVE WORKTREE CREATED IN THE PRIOR VERSION WINDOW WHEN CLOSE THE WINDOW***** */
-    ipcRenderer.on('close-worktree', (event, arg) => {
-        removeWorkTree(arg)
-    })
-
-
-    async function removeWorkTree(treePath) {
-        var thisTreeName = path.basename(treePath)
-        console.log('inremove tree. name = ' + thisTreeName)
-        try {
-            await git.cwd(projectFolderPath).then(result => {
-                // console.log('cwd resultss' + JSON.stringify(result))
-            })
-            if (thisTreeName) {
-                /*"--force" is included because its necessary if you are deleting a worktree with modified files.In this case, that is required: 1. user could change files(accidentally), 2. by adding a notation like "old" to the front of files you are modifying the folder.*/
-                await git.raw('worktree', 'remove', thisTreeName, '--force').then((result) => {
-                    if (localStorage.getItem('working-trees-present')) {  //local storage array is to keep track of worktrees created, so as to delete them in the case the app is not shut down properly (they would be deleted on startup)
-                        let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
-                        let theTreePath = projectFolderPath + '/' + thisTreeName
-                        let index = treeArray.indexOf(theTreePath)
-                        if (index > -1) {
-                            treeArray.splice(index, 1)
-                            localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
-                            console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
-                        }
-                    }
-                }) //delete that folder
-                await git.raw('worktree', 'prune').then((result) => { //removes info about worktrees which no longer exist
-                })
+        //prior to creating a new worktree, delete any worktree that's there
+        var folderArray = await fs.readdirSync(projectFolderPath)
+        /* remove any existing worktree in the project, prior to creating a new one. 
+        Note: this means you can't view two different old versions at once. I think that is ok for now.
+        */
+        folderArray.forEach((item) => {
+            if (item.includes('worktree3#&7#&1#&4')) { //if a folder exists that matches the worktree naming convention
+                removeWorkTree(item)
             }
-        } catch (e) {
-            console.log('error in removework = ' + e)
+        })
+
+        //done removing any existing worktree
+
+        console.log('now move on')
+        //create worktree, with different name then before
+        var randomNumber = Math.floor(Math.random() * 10000)
+        var randomMultiple = Math.floor(Math.random() * 500)
+        var theNumber = randomNumber * randomMultiple
+        treeName = theNumber.toString() + 'worktree3#&7#&1#&4'
+        await git.raw('worktree', 'add', treeName).then(result => {
+            if (result) {
+                console.log(result)
+                if (localStorage.getItem('working-trees-present')) {  //local storage array is to keep track of worktrees created, so as to delete them in the case the app is not shut down properly (they would be deleted on startup)
+                    let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+                    treeArray.push(projectFolderPath + '/' + treeName)
+                    localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
+                    console.log('trees exist')
+                } else {
+                    let treeArray = []
+                    treeArray.push(projectFolderPath + '/' + treeName)
+                    localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
+                    console.log('trees didnt exist yet')
+                }
+            } else {
+                console.log('error = ')
+            }
+        })
+        //now should have a folder in the directory that is a copy of the directory, with its own git file.
+        revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes)
+    } catch (e) {
+        console.log('error in showOldVersion = ' + e)
+    }
+}
+
+/*****REMOVE WORKTREE CREATED IN THE PRIOR VERSION WINDOW WHEN CLOSE THE WINDOW***** */
+ipcRenderer.on('close-worktree', (event, arg) => {
+    removeWorkTree(arg)
+})
+
+
+async function removeWorkTree(treePath) {
+    var thisTreeName = path.basename(treePath)
+    console.log('inremove tree. name = ' + thisTreeName)
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+        if (thisTreeName) {
+            /*"--force" is included because its necessary if you are deleting a worktree with modified files.In this case, that is required: 1. user could change files(accidentally), 2. by adding a notation like "old" to the front of files you are modifying the folder.*/
+            await git.raw('worktree', 'remove', thisTreeName, '--force').then((result) => {
+                if (localStorage.getItem('working-trees-present')) {  //local storage array is to keep track of worktrees created, so as to delete them in the case the app is not shut down properly (they would be deleted on startup)
+                    let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+                    let theTreePath = projectFolderPath + '/' + thisTreeName
+                    let index = treeArray.indexOf(theTreePath)
+                    if (index > -1) {
+                        treeArray.splice(index, 1)
+                        localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
+                        console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
+                    }
+                }
+            }) //delete that folder
+            await git.raw('worktree', 'prune').then((result) => { //removes info about worktrees which no longer exist
+            })
         }
+    } catch (e) {
+        console.log('error in removework = ' + e)
+    }
+}
+
+async function revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes) {
+    var theArray = []
+    var treePath = projectFolderPath + '/' + treeName
+    theArray.push(treePath)
+    theArray.push(projectFolderName)
+    theArray.push(versionNumber)
+    theArray.push(date)
+    theArray.push(time)
+    theArray.push(notes)
+    var infoToSend = JSON.stringify(theArray)
+    try {
+        await git.cwd(treePath).then(result => {
+        })
+
+        await git.checkout(commitNumber).then(result => {
+            console.log('checkout result = ' + result)
+            ipcRenderer.send('open-old-version-window', infoToSend)
+        })
+
+
+    } catch (e) {
+        console.log('error in revert function = ' + e)
     }
 
-    async function revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes) {
-        var theArray = []
-        var treePath = projectFolderPath + '/' + treeName
-        theArray.push(treePath)
-        theArray.push(projectFolderName)
-        theArray.push(versionNumber)
-        theArray.push(date)
-        theArray.push(time)
-        theArray.push(notes)
-        var infoToSend = JSON.stringify(theArray)
-        try {
-            await git.cwd(treePath).then(result => {
-            })
-
-            await git.checkout(commitNumber).then(result => {
-                console.log('checkout result = ' + result)
-                ipcRenderer.send('open-old-version-window', infoToSend)
-            })
+}
 
 
-        } catch (e) {
-            console.log('error in revert function = ' + e)
-        }
+/******************************************* COMPARE CHANGES *************************************************/
 
-    }
+async function showCompareChangesFunction() {
+    document.getElementById('showPriorCommitsForCompare').innerHTML = ''
 
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd results' + JSON.stringify(result))
+        })
 
-    /******************************************* COMPARE CHANGES *************************************************/
-
-    async function showCompareChangesFunction() {
-        document.getElementById('showPriorCommitsForCompare').innerHTML = ''
-
-        try {
-            await git.cwd(projectFolderPath).then(result => {
-                // console.log('cwd results' + JSON.stringify(result))
-            })
-
-            await git.log().then(result => {
-                var resultArray = result.all
-                var totalNumber = resultArray.length
-                var commitForCompareDiv = document.getElementById('showPriorCommitsForCompare')
-                var savedVersionsHeader = document.getElementById('savedVersionsOverview')
-                savedVersionsHeader.style.display = "block"
-                /**Load Current Change info into the prior versions list */
-                var currentChangesContent = `
+        await git.log().then(result => {
+            var resultArray = result.all
+            var totalNumber = resultArray.length
+            var commitForCompareDiv = document.getElementById('showPriorCommitsForCompare')
+            var savedVersionsHeader = document.getElementById('savedVersionsOverview')
+            savedVersionsHeader.style.display = "block"
+            /**Load Current Change info into the prior versions list */
+            var currentChangesContent = `
             <div class="versionOverviewClass selectedChangeClass" id="selectedChangeId1"
             onclick="selectVersionToViewChanges(event, 'current', 'Current Changes', 'current', 'n/a', 'n/a')">
                  <div class="versionMessage" id="currentChanges">Current locally saved changes</div>
@@ -699,29 +802,29 @@ function createFile(divId, path, indent) {
                 <span class="commitNumber" style="display: none">current-changes</span>
             </div>
             `
-                commitForCompareDiv.insertAdjacentHTML('beforeend', currentChangesContent)
+            commitForCompareDiv.insertAdjacentHTML('beforeend', currentChangesContent)
 
-                /***PRIOR VERSIONS LIST: Load all prior versions into the prior versions list** */
-                for (var i = 0; i < resultArray.length; i++) {
-                    var commit = resultArray[i]
-                    var versionNumber = totalNumber--
-                    var versionMessage = commit.message
-                    var dateTime = commit.date
-                    var commitNumber = commit.hash
+            /***PRIOR VERSIONS LIST: Load all prior versions into the prior versions list** */
+            for (var i = 0; i < resultArray.length; i++) {
+                var commit = resultArray[i]
+                var versionNumber = totalNumber--
+                var versionMessage = commit.message
+                var dateTime = commit.date
+                var commitNumber = commit.hash
 
-                    var dateObject = new Date(dateTime)
-                    var showDate = dateObject.toLocaleDateString('en-us', {
-                        weekday: 'short',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    })
-                    var showTime = dateObject.toLocaleTimeString('en-us', {
-                        timeStyle: 'short'
-                    })
-                    var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
-                    /***CLEAN UP HERE: Do not need (probably) to have the params other than even in the selectversiontoviewchanges function */
-                    contents = `
+                var dateObject = new Date(dateTime)
+                var showDate = dateObject.toLocaleDateString('en-us', {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })
+                var showTime = dateObject.toLocaleTimeString('en-us', {
+                    timeStyle: 'short'
+                })
+                var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
+                /***CLEAN UP HERE: Do not need (probably) to have the params other than even in the selectversiontoviewchanges function */
+                contents = `
                 <div class="versionOverviewClass" onclick='selectVersionToViewChanges(event, "${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}", "${versionMessage}")'>
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumberWord">Version </span><span class="versionNumber">${versionNumber}</span>
@@ -729,13 +832,13 @@ function createFile(divId, path, indent) {
                     <span class="commitNumber" style="display:none">${commitNumber}</span>
                 </div>   
                 `
-                    commitForCompareDiv.insertAdjacentHTML("beforeend", contents)
+                commitForCompareDiv.insertAdjacentHTML("beforeend", contents)
 
-                    /**SUMMARY HEADER: Take the first prior version, and add it to the summary header as the earlier version. The current changes are already listed as the later version */
-                    if (i === 0) {
-                        //this is the insert at the top summary header.
-                        //NOTE: the current change selection is already hard-coded as the later change for comparison in the html
-                        var headerInsert = `
+                /**SUMMARY HEADER: Take the first prior version, and add it to the summary header as the earlier version. The current changes are already listed as the later version */
+                if (i === 0) {
+                    //this is the insert at the top summary header.
+                    //NOTE: the current change selection is already hard-coded as the later change for comparison in the html
+                    var headerInsert = `
                     <span class="selectedForChangesClass" id="earlierVersionForChanges">
                         <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${versionNumber}</span></span>
                         <div id="versionMessageEarlier" style="display:none">${versionMessage}</div>
@@ -743,81 +846,81 @@ function createFile(divId, path, indent) {
                          <span id="commitNumberEarlier" style="display:none">${commitNumber}</span>
                     </span>   
                     `
-                        document.getElementById('earlierVersionOverview').innerHTML = headerInsert
+                    document.getElementById('earlierVersionOverview').innerHTML = headerInsert
 
-                        //this applies to the items in the list below
-                        document.getElementById('showPriorCommitsForCompare').children[1].id = "selectedChangeId2"
-                        document.getElementById('selectedChangeId2').classList.add('selectedChangeClass')
-                    }
+                    //this applies to the items in the list below
+                    document.getElementById('showPriorCommitsForCompare').children[1].id = "selectedChangeId2"
+                    document.getElementById('selectedChangeId2').classList.add('selectedChangeClass')
                 }
-                document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
-                document.getElementById('optionsAtBottom').style.display = "none"
-                document.getElementById('saveProjectVersion').style.display = 'none'
-                document.getElementById('folderContents').style.display = "none"
-                document.getElementById('closeCompareChangesView').addEventListener('click', () => {
-                    document.getElementById('folderContents').style.display = 'block'
-                    document.getElementById('showViewPriorVersionsForCompare').style.display = 'none'
-                    document.getElementById('showPriorCommitsForCompare').innerHTML = ''
-                    document.getElementById('optionsAtBottom').style.display = "block"
-                    document.getElementById('saveProjectVersion').style.display = 'block'
-                })
+            }
+            document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
+            document.getElementById('optionsAtBottom').style.display = "none"
+            document.getElementById('saveProjectVersion').style.display = 'none'
+            document.getElementById('folderContents').style.display = "none"
+            document.getElementById('closeCompareChangesView').addEventListener('click', () => {
+                document.getElementById('folderContents').style.display = 'block'
+                document.getElementById('showViewPriorVersionsForCompare').style.display = 'none'
+                document.getElementById('showPriorCommitsForCompare').innerHTML = ''
+                document.getElementById('optionsAtBottom').style.display = "block"
+                document.getElementById('saveProjectVersion').style.display = 'block'
             })
-        }
-        catch (e) {
-            console.log('error = ' + e)
-        }
+        })
+    }
+    catch (e) {
+        console.log('error = ' + e)
+    }
+}
+
+function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate, showTime, versionMessage) {
+    //Info on how this works:
+    //To keep track of which versions are selected, we give them one of two ids: selectedChangeId1 and selectedChangeId2. The numbers on these ids do NOT correspond to which version is earlier and which is later. The numbers are there to just identify which versions are selected. When a new version is selected, the numbers shift, so that the new selection becomes selectedChangeId1, the prior selectedChangeId1 becomes selectedChangeId2, and the prior selectedChangeId2 loses its selection.
+    //After the selection numbers are sorted out, then there is a separate process to determine which version will be listed as later (newer) and which as earlier(older). This process is redone every time there is a selection.
+
+    //***MAKE SURE THE ID IS LINKED TO THE OVERVIEW CLASS OF THE ELEMENT (no matter where it was clicked) ********/
+    if (event.target.classList.contains('versionOverviewClass')) {
+        var selectedDiv = event.target
+    } else {
+        var selectedDiv = event.target.closest('.versionOverviewClass')
     }
 
-    function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate, showTime, versionMessage) {
-        //Info on how this works:
-        //To keep track of which versions are selected, we give them one of two ids: selectedChangeId1 and selectedChangeId2. The numbers on these ids do NOT correspond to which version is earlier and which is later. The numbers are there to just identify which versions are selected. When a new version is selected, the numbers shift, so that the new selection becomes selectedChangeId1, the prior selectedChangeId1 becomes selectedChangeId2, and the prior selectedChangeId2 loses its selection.
-        //After the selection numbers are sorted out, then there is a separate process to determine which version will be listed as later (newer) and which as earlier(older). This process is redone every time there is a selection.
+    if ((selectedDiv.id !== 'selectedChangeId2') && (selectedDiv.id !== 'selectedChangeId1')) {
+        //********SET THE IDS CORRECTLY ************/
+        document.getElementById('selectedChangeId2').classList.remove('selectedChangeClass')
+        document.getElementById('selectedChangeId2').id = ''
+        document.getElementById('selectedChangeId1').id = 'selectedChangeId2'
+        selectedDiv.id = 'selectedChangeId1'
+        selectedDiv.classList.add('selectedChangeClass')
 
-        //***MAKE SURE THE ID IS LINKED TO THE OVERVIEW CLASS OF THE ELEMENT (no matter where it was clicked) ********/
-        if (event.target.classList.contains('versionOverviewClass')) {
-            var selectedDiv = event.target
+        //********Get the Version Number of the currently selected versions **************/
+        var id1 = document.getElementById('selectedChangeId1')
+        var id2 = document.getElementById('selectedChangeId2')
+        var id1Version = document.querySelector('#selectedChangeId1 .versionNumber').textContent
+        if (id1Version !== 'Current Changes') {
+            var id1VersionNumber = parseInt(id1Version)
         } else {
-            var selectedDiv = event.target.closest('.versionOverviewClass')
+            var id1VersionNumber = id1Version
+        }
+        var id2Version = document.querySelector('#selectedChangeId2 .versionNumber').textContent
+        if (id2Version !== 'Current Changes') {
+            var id2VersionNumber = parseInt(id2Version)
+        } else {
+            var id2VersionNumber = id2Version
         }
 
-        if ((selectedDiv.id !== 'selectedChangeId2') && (selectedDiv.id !== 'selectedChangeId1')) {
-            //********SET THE IDS CORRECTLY ************/
-            document.getElementById('selectedChangeId2').classList.remove('selectedChangeClass')
-            document.getElementById('selectedChangeId2').id = ''
-            document.getElementById('selectedChangeId1').id = 'selectedChangeId2'
-            selectedDiv.id = 'selectedChangeId1'
-            selectedDiv.classList.add('selectedChangeClass')
+        var id1Message = document.querySelector('#selectedChangeId1 .versionMessage').textContent
+        var id1Date = document.querySelector('#selectedChangeId1 .versionDate').textContent
+        var id1Time = document.querySelector('#selectedChangeId1 .versionTime').textContent
+        var id1CommitNumber = document.querySelector('#selectedChangeId1 .commitNumber').textContent
 
-            //********Get the Version Number of the currently selected versions **************/
-            var id1 = document.getElementById('selectedChangeId1')
-            var id2 = document.getElementById('selectedChangeId2')
-            var id1Version = document.querySelector('#selectedChangeId1 .versionNumber').textContent
-            if (id1Version !== 'Current Changes') {
-                var id1VersionNumber = parseInt(id1Version)
-            } else {
-                var id1VersionNumber = id1Version
-            }
-            var id2Version = document.querySelector('#selectedChangeId2 .versionNumber').textContent
-            if (id2Version !== 'Current Changes') {
-                var id2VersionNumber = parseInt(id2Version)
-            } else {
-                var id2VersionNumber = id2Version
-            }
+        var id2Message = document.querySelector('#selectedChangeId2 .versionMessage').textContent
+        var id2Date = document.querySelector('#selectedChangeId2 .versionDate').textContent
+        var id2Time = document.querySelector('#selectedChangeId2 .versionTime').textContent
+        var id2CommitNumber = document.querySelector('#selectedChangeId2 .commitNumber').textContent
 
-            var id1Message = document.querySelector('#selectedChangeId1 .versionMessage').textContent
-            var id1Date = document.querySelector('#selectedChangeId1 .versionDate').textContent
-            var id1Time = document.querySelector('#selectedChangeId1 .versionTime').textContent
-            var id1CommitNumber = document.querySelector('#selectedChangeId1 .commitNumber').textContent
+        //*****COMPARE THE VERSION NUMBERS******* */
 
-            var id2Message = document.querySelector('#selectedChangeId2 .versionMessage').textContent
-            var id2Date = document.querySelector('#selectedChangeId2 .versionDate').textContent
-            var id2Time = document.querySelector('#selectedChangeId2 .versionTime').textContent
-            var id2CommitNumber = document.querySelector('#selectedChangeId2 .commitNumber').textContent
-
-            //*****COMPARE THE VERSION NUMBERS******* */
-
-            if (id2VersionNumber === 'Current Changes') { //then the first chosen item is the current changes
-                var laterHeaderInsert = `
+        if (id2VersionNumber === 'Current Changes') { //then the first chosen item is the current changes
+            var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordLater"></span><span id="versionNumberLater">${id2VersionNumber}</span></span>
                     <div id="versionMessageLater" style="display:none">${id2Message}</div>
@@ -825,9 +928,9 @@ function createFile(divId, path, indent) {
                     <span id="commitNumberLater" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
-                document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
+            document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
-                var earlierHeaderInsert = `
+            var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id1VersionNumber}</span></span>
                     <div id="versionMessageEarlier" style="display:none">${id1Message}</div>
@@ -835,10 +938,10 @@ function createFile(divId, path, indent) {
                     <span id="commitNumberEarlier" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
-                document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
+            document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
 
-            } else if (id1VersionNumber === 'Current Changes') {
-                var laterHeaderInsert = `
+        } else if (id1VersionNumber === 'Current Changes') {
+            var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordLater"></span><span id="versionNumberLater">${id1VersionNumber}</span></span>
                     <div id="versionMessageLater" style="display:none">${id1Message}</div>
@@ -846,9 +949,9 @@ function createFile(divId, path, indent) {
                     <span id="commitNumberLater" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
-                document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
+            document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
-                var earlierHeaderInsert = `
+            var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id2VersionNumber}</span></span>
                     <div id="versionMessageEarlier" style="display:none">${id2Message}</div>
@@ -856,10 +959,10 @@ function createFile(divId, path, indent) {
                     <span id="commitNumberEarlier" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
-                document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
+            document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
 
-            } else if (id2VersionNumber > id1VersionNumber) { //no current changes selected
-                var laterHeaderInsert = `
+        } else if (id2VersionNumber > id1VersionNumber) { //no current changes selected
+            var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordLater">Version </span><span id="versionNumberLater">${id2VersionNumber}</span></span>
                     <div id="versionMessageLater" style="display:none">${id2Message}</div>
@@ -867,9 +970,9 @@ function createFile(divId, path, indent) {
                     <span id="commitNumberLater" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
-                document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
+            document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
-                var earlierHeaderInsert = `
+            var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id1VersionNumber}</span></span>
                     <div id="versionMessageEarlier" style="display:none">${id1Message}</div>
@@ -877,10 +980,10 @@ function createFile(divId, path, indent) {
                     <span id="commitNumberEarlier" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
-                document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
+            document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
 
-            } else if (id1VersionNumber > id2VersionNumber) { //no current changes selected
-                var laterHeaderInsert = `
+        } else if (id1VersionNumber > id2VersionNumber) { //no current changes selected
+            var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordLater">Version </span><span id="versionNumberLater">${id1VersionNumber}</span></span>
                     <div id="versionMessageLater" style="display:none">${id1Message}</div>
@@ -888,9 +991,9 @@ function createFile(divId, path, indent) {
                     <span id="commitNumberLater" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
-                document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
+            document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
-                var earlierHeaderInsert = `
+            var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id2VersionNumber}</span></span>
                     <div id="versionMessageEarlier" style="display:none">${id2Message}</div>
@@ -898,133 +1001,133 @@ function createFile(divId, path, indent) {
                     <span id="commitNumberEarlier" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
-                document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
+            document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
+        }
+    }
+}
+
+/**************************RUN COMPARE CHANGES***************/
+
+document.getElementById('runChangesIntegrated').addEventListener('click', () => {
+    runComparisonFunction('integrated')
+})
+
+
+document.getElementById('runChangesBlock').addEventListener('click', () => {
+    runComparisonFunction('block')
+})
+
+
+function runComparisonFunction(comparisonType) {
+    var laterVersionNumber = document.getElementById('versionNumberLater').textContent
+    var laterMessage = document.getElementById('versionMessageLater').textContent
+    var laterDate = document.getElementById('versionDateLater').textContent
+    var laterTime = document.getElementById('versionTimeLater').textContent
+    var laterCommitNumber = document.getElementById('commitNumberLater').textContent
+
+    var earlierVersionNumber = document.getElementById('versionNumberEarlier').textContent
+    var earlierMessage = document.getElementById('versionMessageEarlier').textContent
+    var earlierDate = document.getElementById('versionDateEarlier').textContent
+    var earlierTime = document.getElementById('versionTimeEarlier').textContent
+    var earlierCommitNumber = document.getElementById('commitNumberEarlier').textContent
+
+    var laterVersionArray = {
+        commitNumber: laterCommitNumber,
+        versionNumber: laterVersionNumber,
+        versionMessage: laterMessage,
+        versionDate: laterDate,
+        versionTime: laterTime,
+    }
+
+    //var earlierVersionArray = {}
+    var earlierVersionArray = {
+        commitNumber: earlierCommitNumber,
+        versionNumber: earlierVersionNumber,
+        versionMessage: earlierMessage,
+        versionDate: earlierDate,
+        versionTime: earlierTime
+    }
+
+    var arg1 = projectFolderPath
+    var arg2 = JSON.stringify(laterVersionArray)
+    var arg3 = JSON.stringify(earlierVersionArray)
+    var arg4 = comparisonType //either integrated or block 
+    ipcRenderer.send('open-compare-versions-window', arg1, arg2, arg3, arg4)
+}
+
+
+/********GIT ACTIONS*************** */
+
+async function saveGitVersion() {
+    var text = document.getElementById('noteForSave').textContent
+    if (text.length < 1) {
+        text = "new version saved"
+    }
+    document.getElementById('saveProjectItems').style.display = "none"
+    document.getElementById('savingProgress').style.display = "inline-block"
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+        await git.init().then(result => {
+            //console.log('init result = ' + JSON.stringify(result))
+        })
+
+        await git.add('.').then(result => {
+            //console.log('add result = ' + JSON.stringify(result))
+        })
+
+        await git.commit(text).then(result => {
+            /*
+            var overviewS = document.getElementById("ifNewVersionSaved")
+            var overviewN = document.getElementById("ifNoNewVersion")
+            var showResults = document.getElementById("showResults")
+            if (result.summary.changes != "0") {
+                overviewN.style.display = "none"
+                showResults.textContent = JSON.stringify(result.summary)
+                overviewS.style.display = "inline-block"
+            } else {
+                overviewS.style.display = "none"
+                showResults.textContent = ""
+                overviewN.style.display = "inline-block"
             }
-        }
+            */
+            document.getElementById('noteForSave').textContent = ''
+            document.getElementById('savingProgress').style.display = "none"
+            document.getElementById('saveProjectItems').style.display = "inline-block"
+            console.log('commit result = ' + JSON.stringify(result))
+        })
+
     }
-
-    /**************************RUN COMPARE CHANGES***************/
-
-    document.getElementById('runChangesIntegrated').addEventListener('click', () => {
-        runComparisonFunction('integrated')
-    })
-
-
-    document.getElementById('runChangesBlock').addEventListener('click', () => {
-        runComparisonFunction('block')
-    })
-
-
-    function runComparisonFunction(comparisonType) {
-        var laterVersionNumber = document.getElementById('versionNumberLater').textContent
-        var laterMessage = document.getElementById('versionMessageLater').textContent
-        var laterDate = document.getElementById('versionDateLater').textContent
-        var laterTime = document.getElementById('versionTimeLater').textContent
-        var laterCommitNumber = document.getElementById('commitNumberLater').textContent
-
-        var earlierVersionNumber = document.getElementById('versionNumberEarlier').textContent
-        var earlierMessage = document.getElementById('versionMessageEarlier').textContent
-        var earlierDate = document.getElementById('versionDateEarlier').textContent
-        var earlierTime = document.getElementById('versionTimeEarlier').textContent
-        var earlierCommitNumber = document.getElementById('commitNumberEarlier').textContent
-
-        var laterVersionArray = {
-            commitNumber: laterCommitNumber,
-            versionNumber: laterVersionNumber,
-            versionMessage: laterMessage,
-            versionDate: laterDate,
-            versionTime: laterTime,
-        }
-
-        //var earlierVersionArray = {}
-        var earlierVersionArray = {
-            commitNumber: earlierCommitNumber,
-            versionNumber: earlierVersionNumber,
-            versionMessage: earlierMessage,
-            versionDate: earlierDate,
-            versionTime: earlierTime
-        }
-
-        var arg1 = projectFolderPath
-        var arg2 = JSON.stringify(laterVersionArray)
-        var arg3 = JSON.stringify(earlierVersionArray)
-        var arg4 = comparisonType //either integrated or block 
-        ipcRenderer.send('open-compare-versions-window', arg1, arg2, arg3, arg4)
+    catch (e) {
+        console.log('error = ' + e)
     }
-
-
-    /********GIT ACTIONS*************** */
-
-    async function saveGitVersion() {
-        var text = document.getElementById('noteForSave').textContent
-        if (text.length < 1) {
-            text = "new version saved"
-        }
-        document.getElementById('saveProjectItems').style.display = "none"
-        document.getElementById('savingProgress').style.display = "inline-block"
-        try {
-            await git.cwd(projectFolderPath).then(result => {
-                // console.log('cwd resultss' + JSON.stringify(result))
-            })
-
-            await git.init().then(result => {
-                //console.log('init result = ' + JSON.stringify(result))
-            })
-
-            await git.add('.').then(result => {
-                //console.log('add result = ' + JSON.stringify(result))
-            })
-
-            await git.commit(text).then(result => {
-                /*
-                var overviewS = document.getElementById("ifNewVersionSaved")
-                var overviewN = document.getElementById("ifNoNewVersion")
-                var showResults = document.getElementById("showResults")
-                if (result.summary.changes != "0") {
-                    overviewN.style.display = "none"
-                    showResults.textContent = JSON.stringify(result.summary)
-                    overviewS.style.display = "inline-block"
-                } else {
-                    overviewS.style.display = "none"
-                    showResults.textContent = ""
-                    overviewN.style.display = "inline-block"
-                }
-                */
-                document.getElementById('noteForSave').textContent = ''
-                document.getElementById('savingProgress').style.display = "none"
-                document.getElementById('saveProjectItems').style.display = "inline-block"
-                console.log('commit result = ' + JSON.stringify(result))
-            })
-
-        }
-        catch (e) {
-            console.log('error = ' + e)
-        }
-    }
+}
 
 
 
 
 
 
-    /*************************************************************************************** */
+/*************************************************************************************** */
 
-    /***************************** NOT CURRENTLY IN USE  *************************************/
-    /*
-     //SAVING INDIVIDUAL FILES. NOT CURRENTLY IN USE.
-     //receives info from main.js about the active window
-     ipcRenderer.on('window-title', (event, data) => {
-         document.getElementById('selectedDoc').textContent = data
-         fileName = data
-     })
-     */
+/***************************** NOT CURRENTLY IN USE  *************************************/
+/*
+ //SAVING INDIVIDUAL FILES. NOT CURRENTLY IN USE.
+ //receives info from main.js about the active window
+ ipcRenderer.on('window-title', (event, data) => {
+     document.getElementById('selectedDoc').textContent = data
+     fileName = data
+ })
+ */
 
 
-    /*********APPLE SCRIPT / JXA***************** */
-    async function controlTheWindow() {
+/*********APPLE SCRIPT / JXA***************** */
+async function controlTheWindow() {
 
-        try {
-            await runJxa(`
+    try {
+        await runJxa(`
     // evalAS :: String -> IO String
    
     const evalAS = s => {
@@ -1043,179 +1146,206 @@ function createFile(divId, path, indent) {
         var insert = 'bounds of first window of application (path to frontmost application as text)'
           return evalAS(insert);
        `
-            )
-        } catch (e) {
-            console.log('error = ' + e)
-        }
+        )
+    } catch (e) {
+        console.log('error = ' + e)
     }
+}
+/*
+    async function getFrontNote(){
+        try {
+            await runJxa(`
+                  (() => {
+            'use strict';
 
-    /*
-      await runJxa(`
-          var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();
-          console.log('front app name = ' + frontAppName)
-          var frontApp = Application(frontAppName); //gets the application with that name
-         var info = frontApp.windows[0].path()
-          console.log('info = ' + info)
-          frontApp.windows[0].bounds = {
-          "x": 80,
-          "y": 80,
-          "width": 50,
-          "height": 50
-          }
-    
-          console.log('done')
-      `)
-      */
+            // evalAS2 :: String -> IO a
+            const evalAS2 = s => {
+                const a = Application.currentApplication();
+                const sa = (a.includeStandardAdditions = true, a);                
+                return sa.runScript(s);
+            };
+    	
+            return evalAS2("use scripting additions\n\
+                tell application "Notes"
+                set noteName to name of item 1 of(get selection)
+            end tell
+            ");
+            })();
+          `)
 
-    /* working function
-    var its = se.processes.byName('iTunes');
-    
-    
-    
-    async function controlTheWindow() {
-        await runJxa(`
-         const wordApp = Application("Microsoft Word")
-        //wordDoc.activate()
-        wordApp.windows[0].bounds = {
-          "x": 2,
-          "y": 4,
-          "width": 200,
-          "height": 200
+        } catch (error) {
+            console.log('error in get front note = ' + error)
         }
-      `)
-    }
-    //this one puts the first window of foreground app in a position:
-       await runJxa(`
-            var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();  //gets the name of the process that is currently in front
-            var frontApp = Application(frontAppName); //gets the application with that name
-            frontApp.windows[0].bounds = {
-            "x": 2,
-            "y": 4,
-            "width": 200,
-            "height": 200
-            }
-        `)
-    
-    */
 
-    /****************FUNCTIONS TO CONVERT WORD DOCS TO MD ON GIT SAVE ******************/
-    /*These functions are not currently in use.
-    The purpose of these functios is to 1. determine last time git file was saved, 2. go through and determine if any word docs have been saved since that time (ie, they are more updated then the last git file), and 3. take those word docs and create markdown file equivalents of them. 
+    }
     */
-    async function checkGitChangeTime(theFilePath) { //check the last time the git file was created
-        var newStat = promisify(fs.stat)
-        console.log('a. check changes function')
-        //if a doc is md, txt, html, etc.--> then I don't need to create a copy of it.
-        //if a doc is a word doc (and specific others), then I need to create a copy of it.
-        //so one strategy is to find all the word docs in a project, and then see if they have been updated, and then update the copy if they have
-        var lastSaveTime
-        var gitFile = theFilePath + '/.git'
-        if (gitFile) {
-            await newStat(gitFile).then((stats, err) => {
-                lastSaveTime = stats.mtime
-                console.log('b. last save time = ' + lastSaveTime)
-                return checkChangesFunction(theFilePath, lastSaveTime) //once have the last updated time, run the function to see what folders have changed since then
-                // }).catch((e) => {
-                //   console.log('error = ' + e)
-            })
-        } else {
-            lastSaveTime = 0
+/*
+  await runJxa(`
+      var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();
+      console.log('front app name = ' + frontAppName)
+      var frontApp = Application(frontAppName); //gets the application with that name
+     var info = frontApp.windows[0].path()
+      console.log('info = ' + info)
+      frontApp.windows[0].bounds = {
+      "x": 80,
+      "y": 80,
+      "width": 50,
+      "height": 50
+      }
+ 
+      console.log('done')
+  `)
+  */
+
+/* working function
+var its = se.processes.byName('iTunes');
+ 
+ 
+ 
+async function controlTheWindow() {
+    await runJxa(`
+     const wordApp = Application("Microsoft Word")
+    //wordDoc.activate()
+    wordApp.windows[0].bounds = {
+      "x": 2,
+      "y": 4,
+      "width": 200,
+      "height": 200
+    }
+  `)
+}
+//this one puts the first window of foreground app in a position:
+   await runJxa(`
+        var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();  //gets the name of the process that is currently in front
+        var frontApp = Application(frontAppName); //gets the application with that name
+        frontApp.windows[0].bounds = {
+        "x": 2,
+        "y": 4,
+        "width": 200,
+        "height": 200
+        }
+    `)
+ 
+*/
+
+/****************FUNCTIONS TO CONVERT WORD DOCS TO MD ON GIT SAVE ******************/
+/*These functions are not currently in use.
+The purpose of these functios is to 1. determine last time git file was saved, 2. go through and determine if any word docs have been saved since that time (ie, they are more updated then the last git file), and 3. take those word docs and create markdown file equivalents of them. 
+*/
+async function checkGitChangeTime(theFilePath) { //check the last time the git file was created
+    var newStat = promisify(fs.stat)
+    console.log('a. check changes function')
+    //if a doc is md, txt, html, etc.--> then I don't need to create a copy of it.
+    //if a doc is a word doc (and specific others), then I need to create a copy of it.
+    //so one strategy is to find all the word docs in a project, and then see if they have been updated, and then update the copy if they have
+    var lastSaveTime
+    var gitFile = theFilePath + '/.git'
+    if (gitFile) {
+        await newStat(gitFile).then((stats, err) => {
+            lastSaveTime = stats.mtime
+            console.log('b. last save time = ' + lastSaveTime)
             return checkChangesFunction(theFilePath, lastSaveTime) //once have the last updated time, run the function to see what folders have changed since then
-        }
+            // }).catch((e) => {
+            //   console.log('error = ' + e)
+        })
+    } else {
+        lastSaveTime = 0
+        return checkChangesFunction(theFilePath, lastSaveTime) //once have the last updated time, run the function to see what folders have changed since then
     }
+}
 
 
-    /**THe below function runs a loop. When it analyzes and converts a word doc, that goes on a different track and happens slower. That is ok
-     the question is: how to call the next stage (git actions), only once all word docs have been addressed?
-     Potential Answer:
-     in the first loop, don't do the asynchronous work. use that work to get all the filePaths for word docs that need to be worked on.
-     Then, for all those filepaths, do the asynchronous magic work.
-     once you've done so for all the paths in the word array, then and only then call the git function
-     */
-    var wordDocs = []
-    var count = 0
-    async function checkChangesFunction(theFilePath, lastSaveTime) {
-        var newStat = promisify(fs.stat)
-        var projectFolder = theFilePath
-        var projectContents = await fs.readdirSync(projectFolder)
-        count++
-        if (count === 1) { //only do this the first time you run through this array, so only do this for the top line of the directory. This will add a fake name at the end of the project contents (not actually adding a file--just for purposes of the loop below). It's a way to know when we've reached the end of the project contents
-            var fakeFileName = 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g'
-            projectContents.push(fakeFileName)
-        }
-        for (var i = 0; i < projectContents.length; i++) {
+/**THe below function runs a loop. When it analyzes and converts a word doc, that goes on a different track and happens slower. That is ok
+ the question is: how to call the next stage (git actions), only once all word docs have been addressed?
+ Potential Answer:
+ in the first loop, don't do the asynchronous work. use that work to get all the filePaths for word docs that need to be worked on.
+ Then, for all those filepaths, do the asynchronous magic work.
+ once you've done so for all the paths in the word array, then and only then call the git function
+ */
+var wordDocs = []
+var count = 0
+async function checkChangesFunction(theFilePath, lastSaveTime) {
+    var newStat = promisify(fs.stat)
+    var projectFolder = theFilePath
+    var projectContents = await fs.readdirSync(projectFolder)
+    count++
+    if (count === 1) { //only do this the first time you run through this array, so only do this for the top line of the directory. This will add a fake name at the end of the project contents (not actually adding a file--just for purposes of the loop below). It's a way to know when we've reached the end of the project contents
+        var fakeFileName = 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g'
+        projectContents.push(fakeFileName)
+    }
+    for (var i = 0; i < projectContents.length; i++) {
 
-            if ((projectContents[i] != 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g') && (projectContents[i] != ".DS_Store") && (projectContents[i] != ".git")) {
-                var filePath = path.join(projectFolder, projectContents[i]); //get full path of item in the project we're focused on
-                console.log('1. filepath = ' + filePath)
-                await newStat(filePath).then((stats, err) => {  //gets stats then. and convert fs.stat to a promise that resolves to be sure: 1. it does the analysis of the relevant file before moving on the loop and 2. it resolves, so it does move on when it's done
-                    if (err) {
-                        throw (err)
-                    }
-                    let timeModified = stats.mtime //get modified time of item
-                    if (timeModified > lastSaveTime) { //has it been modified since the last git save? If so, we need to look closer.
-                        if (fs.statSync(filePath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
-                            //note it may not get here aagain if no contents
-                            console.log('2a. file path = ' + filePath + ", **is a directory")
-                            return checkChangesFunction(filePath, lastSaveTime)
-                        } else { //if it's a file, then see if a word doc. If so, perform magic. If not, then no action necessary cause git can handle file as is.
-                            //console.log('in a document')
-                            var extension = path.extname(filePath)
-                            if (extension.includes('doc')) {
-                                wordDocs.push(filePath)
-                                console.log('2.b word doc = ' + filePath)
-                                return 'done'
-                            } else {
-                                console.log('2ba. doc but not word doc ')
-                                return 'done'
-                            }
+        if ((projectContents[i] != 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g') && (projectContents[i] != ".DS_Store") && (projectContents[i] != ".git")) {
+            var filePath = path.join(projectFolder, projectContents[i]); //get full path of item in the project we're focused on
+            console.log('1. filepath = ' + filePath)
+            await newStat(filePath).then((stats, err) => {  //gets stats then. and convert fs.stat to a promise that resolves to be sure: 1. it does the analysis of the relevant file before moving on the loop and 2. it resolves, so it does move on when it's done
+                if (err) {
+                    throw (err)
+                }
+                let timeModified = stats.mtime //get modified time of item
+                if (timeModified > lastSaveTime) { //has it been modified since the last git save? If so, we need to look closer.
+                    if (fs.statSync(filePath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
+                        //note it may not get here aagain if no contents
+                        console.log('2a. file path = ' + filePath + ", **is a directory")
+                        return checkChangesFunction(filePath, lastSaveTime)
+                    } else { //if it's a file, then see if a word doc. If so, perform magic. If not, then no action necessary cause git can handle file as is.
+                        //console.log('in a document')
+                        var extension = path.extname(filePath)
+                        if (extension.includes('doc')) {
+                            wordDocs.push(filePath)
+                            console.log('2.b word doc = ' + filePath)
+                            return 'done'
+                        } else {
+                            console.log('2ba. doc but not word doc ')
+                            return 'done'
                         }
-                    } else { //if it has not been modified since the last git save, then we are done with this item in the loop
-                        console.log('2c. has not been modified since last git save')
-                        return 'done'
                     }
-
-                }).catch((e) => {
-                    console.log('error hereo= ' + JSON.stringify(e))
-                })  //end stat
-
-            } else if (projectContents[i] === 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g') {
-                console.log('^^^^^^^^^^END LOOP THROUGH PROJECT CONTENTS************')
-                console.log('word doc lenght = ')
-                console.log(wordDocs.length)
-
-                let promises = []
-                for (let i = 0; i < wordDocs.length; i++) {
-                    promises.push(mammothFunction(wordDocs[i]))
-                    //mammothFunction(wordDocs[i])
+                } else { //if it has not been modified since the last git save, then we are done with this item in the loop
+                    console.log('2c. has not been modified since last git save')
+                    return 'done'
                 }
 
+            }).catch((e) => {
+                console.log('error hereo= ' + JSON.stringify(e))
+            })  //end stat
 
-                Promise.all(promises).then(function (result) {
-                    console.log('*&*&*&*&*&*& promise all done *&*&*&*&*&*&*&*&*&*&*&*&*&*&')
-                    saveGitVersion()
-                })
+        } else if (projectContents[i] === 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g') {
+            console.log('^^^^^^^^^^END LOOP THROUGH PROJECT CONTENTS************')
+            console.log('word doc lenght = ')
+            console.log(wordDocs.length)
+
+            let promises = []
+            for (let i = 0; i < wordDocs.length; i++) {
+                promises.push(mammothFunction(wordDocs[i]))
+                //mammothFunction(wordDocs[i])
+            }
 
 
-            }//end if not ds_store or git
-        } //end projectContents loop
-    } //end check Changes Function
+            Promise.all(promises).then(function (result) {
+                console.log('*&*&*&*&*&*& promise all done *&*&*&*&*&*&*&*&*&*&*&*&*&*&')
+                saveGitVersion()
+            })
 
-    function mammothFunction(wordDocPath) {
-        return new Promise((resolve, reject) => {
-            mammoth.convertToHtml({ path: wordDocPath }).then(function (result) {
-                var htmlWord = result.value
-                var data = turndownService.turndown(htmlWord)
-                var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
-                var removeDocExtension = wordDocPath.replace(/\.[^/.]+$/, "")
-                var markDownPath = removeDocExtension + '.md'
-                writeFile(markDownPath, dataCleaned, (err) => {
-                    if (err) {
-                        console.log('error = ' + err)
-                    } else {
-                        resolve(dataCleaned)   //completed the conversion for the doc. sends it back to promise.all(promises)
-                    }
-                })
+
+        }//end if not ds_store or git
+    } //end projectContents loop
+} //end check Changes Function
+
+function mammothFunction(wordDocPath) {
+    return new Promise((resolve, reject) => {
+        mammoth.convertToHtml({ path: wordDocPath }).then(function (result) {
+            var htmlWord = result.value
+            var data = turndownService.turndown(htmlWord)
+            var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
+            var removeDocExtension = wordDocPath.replace(/\.[^/.]+$/, "")
+            var markDownPath = removeDocExtension + '.md'
+            writeFile(markDownPath, dataCleaned, (err) => {
+                if (err) {
+                    console.log('error = ' + err)
+                } else {
+                    resolve(dataCleaned)   //completed the conversion for the doc. sends it back to promise.all(promises)
+                }
             })
         })
-    }
+    })
+}

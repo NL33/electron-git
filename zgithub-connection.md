@@ -2,6 +2,16 @@
 
 # adding a repo to github, assuming already have an account linked up
 *Start here*
+--adding a repo to github
+    --start with git push and git remote in gitjs: https://github.com/steveukx/git-js
+    --will want to push an existing repository. Normal git commands:
+        git remote add origin https://github.com/IrSg/test.git
+        git branch -M main
+        git push -u origin main
+--make it private or public
+
+
+
 # linking up an account the first time
 
 # Note on logic and github

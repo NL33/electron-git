@@ -110,14 +110,22 @@ And this method is kind of confusing for the user.
 *CONCLUSION for adding in title and url automatially:* If a better method is not available, probably not worth pursuing right now. So we'll just go with allowing you to take what's on clipboard and easily add a new file to it. (July 10, 2021).
 
 # apple notes: make it easy to use with apple notes
---options
+--option 1: general view applicable to any program:
      --as is: copy text, hit create paste doc.; then probably add back the "update paste doc" so can update text. DONE [could add some dialogs confirming actions later]
+--option 2: make it really good for apple notes specifically:
 
-     --with apple script: current status (July 12, 2021)--stick with more general, manual way from above. THis adds too much. Also, make the general method better and better by using it with apple notes
-          --ideal structure: typing apple note, and hit: save, and it automatically updates file with the note in it. how:
-               --hit save. and it gets the id of the last updated note
-               --and gets name. 
-               --creates a file with the name, with "-apple-note" appended, and adds the id to the first line of file.
-               --in some way, gets text of the apple note, and adds it to the doc. This is the current hold up--not sure how to do that other than relying on clipboard (which requires manual copying or using something like nutjs, which I'd prefer not to do.)
-               --then, next time you hit the save button, app 1. gets the id of the note in the foreground, 2. searches the current folder for the docs with the apple-note title, then 3. searches those for the line with the first id, and then updates that text with the text of the note.
-               --then, when you want to open the note, you can open it from that app
+     -using apple script, I can get the 1. id, 2. name, 3. folder, 4. html, and 5. content of currently selected apple note, and last saved apple note.
+
+    --can open apple note itself in notes app using the id
+
+     --with that, I can have a system where you press a button on the toolbar or do a keyboard shortcut, and it can automatically create a file, put the note id in the file (or in file metadata?), and put content there. Then, when you want to update the note on your saved version, you just hit the button and it can find that doc by id and update it.
+
+     --I can also take the html of the note and convert it to markdown for viewing.
+
+-to do option 2:
+--make apple script work for simple apple note in the app (ie, make apple script work in jxa). DONE.
+--add button to header to create doc with id
+--add content to that doc
+--place the doc right--put it under the currently highlighted folder
+--update that doc with button press
+--open the note with apple notes app from doc
