@@ -147,7 +147,9 @@ current stance: could go with either.
     3. create file, adding in id, then text from clipboard.
 
     benefits: 
-        --will keep more formatting for tables, bullets, and dashes
+        --will keep more formatting for tables, bullets, and dashes.
+        --probably looks better for sharing
+        --maybe a way to preserve the look if convert back to apple notes?
     
     downsides:
         --lose formatting of header. But: can do markup text for that to compensate
