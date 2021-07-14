@@ -47,12 +47,15 @@ async function sendTheWindow(){  //send info on front window to the main app win
 
 /****#OPEN BASIC (Mini) WINDOW******** */
 var basicWindow
+
 function openBasicWindow(){
+    var theDisplay = screen.getPrimaryDisplay()
+    var screenWidth = theDisplay.bounds.width
     basicWindow= new BrowserWindow({
         width: 47,
         height: 54,
-        x: 0,
-        y: 102,
+        x: screenWidth - 47,
+        y: 85,
         alwaysOnTop: true,
         transparent: true,
         maximizable: false,
@@ -77,13 +80,12 @@ ipcMain.on('hide-main-window', (event, arg) => {
 /* **** #OPEN MAIN WINDOW********/
 var newVersionWindow
 async function saveNewVersionWindow(windowTitle) {
-    let display = screen.getPrimaryDisplay();
-    let width = display.bounds.width
-    let height = display.bounds.height
+    var theDisplay = screen.getPrimaryDisplay()
+    var screenWidth = theDisplay.bounds.width
     newVersionWindow = new BrowserWindow({
         width: 209, //320,
         height: 620,
-        x: 0,
+        x: screenWidth - 209,
         y: 0,
         alwaysOnTop: true,
         webPreferences: {
