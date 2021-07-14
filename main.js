@@ -45,6 +45,35 @@ async function sendTheWindow(){  //send info on front window to the main app win
 */
 
 
+/****#OPEN BASIC (Mini) WINDOW******** */
+var basicWindow
+function openBasicWindow(){
+    basicWindow= new BrowserWindow({
+        width: 47,
+        height: 54,
+        x: 0,
+        y: 102,
+        alwaysOnTop: true,
+        transparent: true,
+        maximizable: false,
+        webPreferences: {
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+        }
+    })
+
+    basicWindow.loadURL('file://' + __dirname + '/views/basic-window.html');
+}
+
+ipcMain.on('open-main-window', (event, arg) => {
+    newVersionWindow.show()
+    basicWindow.hide()   
+})
+
+ipcMain.on('hide-main-window', (event, arg) => {
+    basicWindow.show()
+    newVersionWindow.hide()
+})
 /* **** #OPEN MAIN WINDOW********/
 var newVersionWindow
 async function saveNewVersionWindow(windowTitle) {
@@ -52,7 +81,7 @@ async function saveNewVersionWindow(windowTitle) {
     let width = display.bounds.width
     let height = display.bounds.height
     newVersionWindow = new BrowserWindow({
-        width: 320,
+        width: 209, //320,
         height: 620,
         x: 0,
         y: 0,
@@ -67,7 +96,8 @@ async function saveNewVersionWindow(windowTitle) {
     newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
     getFrontNote()
-    newVersionWindow.openDevTools()
+    newVersionWindow.hide()
+    //newVersionWindow.openDevTools()
     //sendTheWindow()
 
     /*
@@ -232,6 +262,8 @@ function folderWindowFunction() {
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
     app.allowRendererProcessReuse = false  //to allow nutjs
+    openBasicWindow()
+    saveNewVersionWindow()
     menuApp()
     // createWindow()
     app.on('activate', () => {

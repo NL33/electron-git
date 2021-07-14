@@ -81,6 +81,12 @@ window.onload = function () {
 
 }   //end window onload
 
+/******HIDE WINDOW, AND SHOW BASIC WINDOW**** */
+
+function hideWindow(){
+    ipcRenderer.send('hide-main-window', '')
+}
+
 /********CONTROLLING APPLE NOTES ************************* */
 
 var appleNoteHtmlContent
