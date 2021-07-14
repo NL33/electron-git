@@ -1,5 +1,3 @@
-id:x-coredata://922A35B9-C523-44DE-8611-CA444607F49E/ICNote/p1198
-
 This is a test note
 ===================
 
