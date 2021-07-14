@@ -6,6 +6,7 @@ Basic work for creating apple doc. next: reference to "zoneplace" doc for apple 
 # link to github and/or dropbox
 --start here.
 --don't overcomplicate it. Start with github: and more or less just take the github commands and make it easier to run them.
+--add ability to add readme (just a md doc)
 
 # make it easy to show and hide the main screen
 --icon on the right to show the main screen

@@ -250,6 +250,7 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
     var divId = "projectDirectory"
     showFolderContents(divId, projectFolderPath, 0)
     if (projectFolderPath.length > 0) { //should always be true, but adding a doublecheck
+        console.log('set local storage')
         let array = [projectFolderPath, projectFolderName]
         localStorage.setItem('lastProjectFolder', JSON.stringify(array))
     }

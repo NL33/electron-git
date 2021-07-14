@@ -88,7 +88,7 @@
             padding-left: 8px;
             padding-right: 8px;
             cursor: pointer;
-            margin-left: 15px
+            margin-left: 8px
         }
 
         #changeFolder:hover {
@@ -309,24 +309,25 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
 
-<body id="bodyId" style="margin-top: 4px; padding: 10px; padding-top: 5px; padding-left: 0px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px">
-    
+<body id="bodyId"
+    style="margin-top: 4px; padding: 10px; padding-top: 5px; padding-left: 0px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px">
+
     <!------Select Project Folder------>
     <div style="overflow: auto">
         <div style="margin-bottom: 15px" class="">
-            <span id="hideWindowButton" style="border-radius: 4px; cursor: pointer; display: inline-block; padding: 5px; font-size: 14pt; color:  #737373" onclick="hideWindow()">
-                << </span>
             <span style="margin-bottom: 20px">
                 <span id="changeFolder">change project folder</span>
-                </span>
- 
+            </span>
+            <span id="hideWindowButton"
+                style="margin-left: 8px; border-radius: 4px; cursor: pointer; display: inline-block; padding: 5px; font-size: 14pt; color:  #737373"
+                onclick="hideWindow()"> >> </span>
         </div>
         <div class="padding-class">
             <span id="projectDirectory" class="docOrDirectory"></span>
             <div></div>
         </div>
-    <!--************List out contents of the folder***************-->
-    <div id="folderContents" class="padding-class"></div>
+        <!--************List out contents of the folder***************-->
+        <div id="folderContents" class="padding-class"></div>
     </div>
     <!------*********SAVE PROJECT VERSION******************-->
     <div id="saveProjectVersion" style="margin-bottom: 75px">
