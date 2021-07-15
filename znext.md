@@ -1,9 +1,17 @@
 # Just Completed
 Basic work for creating apple doc. next: reference to "zoneplace" doc for apple notes next steps
 
-Next:
---get applescript working to open apple note and click on main window. see copy-text script event.
---then need to do multiline applescript with jxa.
+Next: Apple notes:
+--open file in app.
+     --just got to read the html in function openDoc()
+     --next: 
+          --send the data [file name, and content] to main.js
+          --main.js open the file with the content in a window
+     then:
+          --this has to apply for when view prior versions (and present version too)
+          --then confirm that comparing changes works for apple notes too.
+--add right click option to open file directly 
+--look at making it faster
 *Next*
 
 # link to github and/or dropbox

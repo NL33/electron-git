@@ -133,8 +133,7 @@ async function getFrontNote() {
 
 function createAppleNoteFile(divId, folderPath, indent, noteId) {
     var updatedContent = appleNoteHtmlContent.replaceAll('<div><br></div>', '').replaceAll('<div><u><br></u></div>', '').replaceAll('<u><br></u>', '').replaceAll('<h1><br></h1>', '').replaceAll('<h2><br></h2>', '').replaceAll('<h3><br></h3>', '')
-    /***Take class "apple-dash-list", and make <li>s into dashes--> maybe a css solution for that*/
-    /***START HERE: It's NOt REPLACING AS IT SHOULD. THEN: do css for apple-dash-list. THEN: open file in app. Then: add right click option to open file directly  */
+    
     var fileName = document.getElementById('appleNoteNameEntry').value
     document.getElementById('addAppleNoteForm').remove()
     var newDocPath = folderPath + '/' + fileName
@@ -187,12 +186,22 @@ var txtDoc = '/Users/sean/Desktop/txt-docs/converttest-test.txt'
 var appleDoc = 'https://www.icloud.com/notes/0hZOhxE5di_MSCv7bX-hYHY8w#Contribution_is_the_Focus'
 var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
 
-function openDoc(path) {
-    shell.openPath(path)
+function openDoc(thePath) {
+    if (thePath.includes('apple-note')) {
+        console.log('it does')
+        fs.readFile(thePath, 'utf8', (err, data)=>{
+            console.log('data = ')
+            console.log(data)
+            /***START HERE*** */
+        })
+    } else {
+        shell.openPath(thePath)
+    }  
     // controlTheWindow() //this function is for snapping the doc into place
 }
 
 
+/*
 function openDocFunction() {
 
     shell.openPath(wordDoc, '', 'x=10, y=10').then((result) => {
@@ -216,7 +225,7 @@ function openDocSpawn() {
         console.log(`stderr: ${stderr}`);
     });
 }
-
+*/
 /*************************************Select Project Folder to show folder contents*******************************/
 
 function changeFolder() {
