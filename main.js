@@ -52,10 +52,10 @@ function openBasicWindow(){
     var theDisplay = screen.getPrimaryDisplay()
     var screenWidth = theDisplay.bounds.width
     basicWindow= new BrowserWindow({
-        width: 47,
-        height: 54,
+        width: 40,
+        height: 52,
         x: screenWidth - 47,
-        y: 85,
+        y: 25,
         alwaysOnTop: true,
         transparent: true,
         hasShadow: false,

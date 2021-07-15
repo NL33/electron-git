@@ -20,6 +20,15 @@ when uploading a logic pro file or folder with a git commit to github, github br
 
 to then view the lgoic file, you need to download the zip file--this will copy the file to wherever you choose to download, matching the original upload. So when you view the downloaded file, the file will show up again as a logic pro file and can be opened with logic pro like normal (I have tested this)
 
+# Github and audio files
+
+if I record an aifc file and add it to git, and send it to github:
+--when I click on the file in github, it will say: "show raw". If I click on the "show raw", it uploads the attachment to safari. And plays automatically on my default music player.
+
+--in dropbox it shows you a music player in the browser, which is better. But, in github, you can still "kind of" play it in browswer, without having to download it.
+
+
+
 # Logic with dropbox
 --dropbox plays sound files, which github doesn't
 --for logic pro files--dropbox breaks them up into their components. Basically, they don't make sense. You can just download the file, like on github.

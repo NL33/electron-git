@@ -197,6 +197,8 @@ could do the split based on more info, like the actual name of the doc, which yo
 
 --main window.js: when creating a file and creating a paste file, it gets the name from id="nameEntry". But that is an id--if you try to create a few files, app will get confused. Change this--either make it so you only create one at a time, or make referene to nameEntry more specific
 
+--you can really use the app save action as a place to provide notes about the version. Sometimes you want this to be longer (like 4 lines or so). for this, you may want to organize your notes--for example, with different lines. In that case, app should preserve the formatting, instead of bunching all the formatting together when you go to look at the note.
+
 # contact notes
 
 if link it to github, could tell them about it to get their support
