@@ -104,7 +104,7 @@ async function addAppleNote(divId, mainPath, indent) {
 
             var newItems = element.nextElementSibling  //gets "newItems" div
             newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
-            document.getElementById('appleNoteNameEntry').value = response.noteName + ' (apple-note).md'
+            document.getElementById('appleNoteNameEntry').value = response.noteName + ' (apple-note).html'
         })
     } catch (error) {
         console.log('error in addAppleNote = ' + error)
@@ -132,27 +132,10 @@ async function getFrontNote() {
 }
 
 function createAppleNoteFile(divId, folderPath, indent, noteId) {
-    var updatedContent = appleNoteHtmlContent.replace('<div><br></div>', '')
-    turndownService.addRule('', {
-        filter: 'h2',
-        replacement: function (content) {
-            return '**' + content + '**'
-        }
-    })
-    turndownService.addRule('', {
-        filter: 'h3',
-        replacement: function (content) {
-            return '**' + content + '**'
-        }
-    })
-    turndownService.addRule('', {
-        filter: 'br',
-        replacement: function () {
-            return ''
-        }
-    })
-    var mdContent = turndownService.turndown(updatedContent)
-    var mdContent1 = appleNoteHtmlContent
+    var updatedContent = appleNoteHtmlContent.replace('<div><br></div>', '').replace('<div><u><br></u></div>', '').replace('<u><br></u>', '').replace('<h1><br></h1>', '').replace('<h2><br></h2>', '').replace('<h3><br></h3>', '')
+    /***Take class "apple-dash-list", and make <li>s into dashes--> maybe a css solution for that*/
+    /***START HERE: It's NOt REPLACING AS IT SHOULD. THEN: do css for apple-dash-list. THEN: open file in app. Then: add right click option to open file directly  */
+    var mdContent = appleNoteHtmlContent
     var fileName = document.getElementById('appleNoteNameEntry').value
     document.getElementById('addAppleNoteForm').remove()
     var newDocPath = folderPath + '/' + fileName

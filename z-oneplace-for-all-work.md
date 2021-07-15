@@ -159,3 +159,22 @@ current stance: could go with either.
     (b) user copies, then hits "apple note file". and it gets the id, and adds clipboard text.
         1. But: user might mess up copying.
         2. takes more effort
+
+
+# New approach on apple notes:
+get the html of the note with applescript
+    -keeps nearly all formatting
+    -adds a few extra spaces, but I can remove that (remove anytime there is a br in between other tags)
+    -if display in app, it looks pretty close. 
+        -so could view prior version in app.
+        -if copy from prior version then paste into note itself, then formatting stays pretty close. and it's easy to get the formatting back when paste back in.
+    --key: view the paste file within the app.
+        --might be the way you'd want to view any html file.
+    --apple note: save as html file and (apple-note) notation. 
+        --then, when go to view it, if it has apple-note notation, then clicking on it opens it up in the app.
+            --and can right click to open document directly
+--other html files:
+    --could have option: save webpage. you copy the text, and the app gets the web address and title.
+    --creates an html doc, with the html of the page.
+    --when want to open it later, opens within the app so formatting is there
+    

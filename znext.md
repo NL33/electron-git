@@ -199,6 +199,8 @@ could do the split based on more info, like the actual name of the doc, which yo
 
 --you can really use the app save action as a place to provide notes about the version. Sometimes you want this to be longer (like 4 lines or so). for this, you may want to organize your notes--for example, with different lines. In that case, app should preserve the formatting, instead of bunching all the formatting together when you go to look at the note.
 
+--show changes: for apple script docs at least, the first letter of the file name was cut off in the summary. why? scripting docs are binary files. Maybe that's it. Note tat the header is fine--just the summary saying the binary file changed.
+
 # contact notes
 
 if link it to github, could tell them about it to get their support
