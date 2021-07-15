@@ -1,12 +1,15 @@
 # Just Completed
 Basic work for creating apple doc. next: reference to "zoneplace" doc for apple notes next steps
 
+Next:
+--get applescript working to open apple note and click on main window. see copy-text script event.
+--then need to do multiline applescript with jxa.
 *Next*
 
 # link to github and/or dropbox
 --start here.
 --don't overcomplicate it. Start with github: and more or less just take the github commands and make it easier to run them.
---add ability to add readme (just a md doc)
+--add ability to add readme (just creating an md doc)
 
 # make it easy to show and hide the main screen
 --icon on the right to show the main screen

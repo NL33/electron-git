@@ -20,6 +20,10 @@ when uploading a logic pro file or folder with a git commit to github, github br
 
 to then view the lgoic file, you need to download the zip file--this will copy the file to wherever you choose to download, matching the original upload. So when you view the downloaded file, the file will show up again as a logic pro file and can be opened with logic pro like normal (I have tested this)
 
+# Logic with dropbox
+--dropbox plays sound files, which github doesn't
+--for logic pro files--dropbox breaks them up into their components. Basically, they don't make sense. You can just download the file, like on github.
+
 *What is the right service to use?*
 
 # Focus on my use case. 
