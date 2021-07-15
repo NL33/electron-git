@@ -58,6 +58,7 @@ function openBasicWindow(){
         y: 85,
         alwaysOnTop: true,
         transparent: true,
+        hasShadow: false,
         maximizable: false,
         webPreferences: {
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
