@@ -144,21 +144,34 @@ ipcMain.on('open-html-window', (event, arg) => {
 /******OPEN HTML FILES *********** */
 function openHTMLWindow(arg) {
     var filePath = arg
-    var fileTitle = path.basename(filePath).replace('.html', '')
-    var htmlWindow = new BrowserWindow({
-        width: 670, //320,
-        height: 650,
-        title: fileTitle,
-        x: 0,
-        y: 0,
-       // alwaysOnTop: true,
-        webPreferences: {
-            nodeIntegration: true, 
-            contextIsolation: false, 
-            enableRemoteModule: true
-        }
-    })
-    htmlWindow.loadURL('file:' + filePath);
+    var parentDirectoryName = path.dirname(filePath).split(path.sep).pop()
+    var fileName =  path.basename(filePath).replace('.html', '')
+    var fileTitle = parentDirectoryName + '/' + fileName
+    var windowArray = BrowserWindow.getAllWindows()
+    var openTheFile = true
+   for (var i = 0; i<windowArray.length; i++){
+       let thisWindowTitle = windowArray[i].getTitle()
+       if (fileTitle === thisWindowTitle){
+          openTheFile = false
+          windowArray[i].show()
+       }
+   }
+   if (openTheFile === true){
+        var htmlWindow = new BrowserWindow({
+            width: 670, //320,
+            height: 650,
+            title: fileTitle,
+            x: 0,
+            y: 0,
+        // alwaysOnTop: true,
+            webPreferences: {
+                nodeIntegration: true, 
+                contextIsolation: false, 
+                enableRemoteModule: true
+            }
+        })
+        htmlWindow.loadURL('file:' + filePath);
+    }
 
 }
 

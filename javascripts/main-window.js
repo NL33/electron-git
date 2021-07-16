@@ -204,6 +204,9 @@ var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
 
 function openDoc(thePath) {
     let theExtension = path.extname(thePath)
+    var directoryName = path.dirname(thePath).split(path.sep).pop()
+    console.log('directoryName')
+    console.log(directoryName)
     if (theExtension.includes('html')) {
         //current-code
         ipcRenderer.send('open-html-window', thePath)
