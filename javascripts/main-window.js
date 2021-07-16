@@ -534,9 +534,11 @@ function createPasteFile(divId, folderPath, indent) {
         var newDocPath = newDocPath1 + '.html'
         var updatedFileName = fileName + '.html'
     }
+
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
-    var content = clipboard.readHTML()
+    var copiedContent = clipboard.readHTML()
+    var content = '<html contenteditable="true" style="padding: 10px">' + copiedContent + '</html>'
     fs.writeFile(newDocPath, content, function (err) {
         if (err) {
             console.log(err)

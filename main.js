@@ -173,7 +173,9 @@ function openHTMLWindow(arg) {
                 enableRemoteModule: true
             }
         })
-        htmlWindow.loadURL('file:' + filePath);
+
+        //htmlWindow.loadURL('file:' + filePath);
+       oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
     }
 
 }

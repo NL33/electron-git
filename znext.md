@@ -1,12 +1,26 @@
 # Just Completed
 Basic work for creating apple doc. next: reference to "zoneplace" doc for apple notes next steps
 
+
+*START HERE*
+-working on opening html, with contenteditable
+-need to load javascript file with the browser window. Is there a way to do that automatically? Look a little more.
+--if not, then need to send the contents of the window when open it
+     --read file from the file. get contents
+     --send contents to main window
+     --main window opens window.
+     --main window sends contents
+--then make this work for apple notes
+--then make the html open process for apple notes and html work for prior versions
+--then provide a way to update apple note with new changes
+
 Next: Apple notes:
 --open file in app.
      --just got to read the html in function openDoc()
      --next: 
           --send the data [file name, and content] to main.js. DONE
           --main.js open the file with the content in a window. DONE
+     --make the content editable.
      then:
           --this has to apply for when view prior versions (and present version too)
           --then confirm that comparing changes works for apple notes too.
@@ -213,6 +227,13 @@ could do the split based on more info, like the actual name of the doc, which yo
 --show changes: for apple script docs at least, the first letter of the file name was cut off in the summary. why? scripting docs are binary files. Maybe that's it. Note tat the header is fine--just the summary saying the binary file changed.
 
 --converting word docs for showing diffs. Right now, I convert them to HTML, then to MD, and run the diff. But, I show the diff within the app window, which renders html (it doesn't show source, like "divs", etc.). So there is probably not a reason to convert it to markdown (which changes more of the format anyway). So I can probably remove the turndown service action for viewing diffs of microsoft word.
+
+--if keeping contenteditable for html paste docs, then add some formatting abilities 
+     --tabs
+     --right click copying, etc.
+
+
+--if make text contenteditable in an old version, then would have to warn user when trying to save that they can't save to this version (the old version is just in the git file and doesn't have a path). Could show them a save as anytime they try. Or just don't allow contenteditable in old versions.
 
 # contact notes
 
