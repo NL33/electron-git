@@ -204,11 +204,7 @@ var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
 
 function openDoc(thePath) {
     let theExtension = path.extname(thePath)
-    var directoryName = path.dirname(thePath).split(path.sep).pop()
-    console.log('directoryName')
-    console.log(directoryName)
     if (theExtension.includes('html')) {
-        //current-code
         ipcRenderer.send('open-html-window', thePath)
     } else {
         shell.openPath(thePath)
@@ -521,23 +517,26 @@ function createFile(divId, path, indent) {
 }
 
 /*******************CREATE A PASTE FILE ****************************/
-//hit create paste file button, and app creates file, pastes in clipboard, and, if no extension specified when you create it, adds "md" extension.
-
+//hit create paste file button, and app creates file, pastes in clipboard, and, if no extension specified when you create it, adds "html" extension.
+//the html extension means that when you open it, it will open in an app window, that will render the html 
+//the expectation is that most times of using a paste file is getting content from the web--an email, a website, etc...
+//so rendering the html will be the best representation of the data
+//current-code
 function createPasteFile(divId, folderPath, indent) {
     var fileName = document.getElementById('nameEntry').value
     document.getElementById('addForm').remove()
     var newDocPath1 = folderPath + '/' + fileName
     var pathExtension = path.extname(newDocPath1)
-    if (pathExtension.length) {
+    if (pathExtension.length) { //people can still specify an extension if they want
         var newDocPath = newDocPath1
         var updatedFileName = fileName
-    } else {
-        var newDocPath = newDocPath1 + '.md'
-        var updatedFileName = fileName + '.md'
+    } else { //if not, go with html
+        var newDocPath = newDocPath1 + '.html'
+        var updatedFileName = fileName + '.html'
     }
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
-    var content = clipboard.readText()
+    var content = clipboard.readHTML()
     fs.writeFile(newDocPath, content, function (err) {
         if (err) {
             console.log(err)
