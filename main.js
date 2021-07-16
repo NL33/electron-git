@@ -78,6 +78,7 @@ ipcMain.on('hide-main-window', (event, arg) => {
     basicWindow.show()
     newVersionWindow.hide()
 })
+
 /* **** #OPEN MAIN WINDOW********/
 var newVersionWindow
 async function saveNewVersionWindow(windowTitle) {
@@ -99,18 +100,12 @@ async function saveNewVersionWindow(windowTitle) {
     newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
     newVersionWindow.hide()
-    
-    
-    
     //newVersionWindow.openDevTools()
-    //sendTheWindow()
-
     /*
     newVersionWindow.webContents.on('did-finish-load', function () {
         newVersionWindow.show();
     })
     */
-    // convertWord()
 }
 
 /*****## OPEN DIALOG TO SELECT FOLDER ******/
@@ -142,6 +137,30 @@ async function revertToOldVersion() {
     win.webContents.send('revert-to-old-version', 'cool')
 }
 
+ipcMain.on('open-html-window', (event, arg) => {
+   openHTMLWindow(arg)
+})
+
+/******OPEN HTML FILES *********** */
+function openHTMLWindow(arg) {
+    var filePath = arg
+    var fileTitle = path.basename(filePath).replace('.html', '')
+    var htmlWindow = new BrowserWindow({
+        width: 670, //320,
+        height: 650,
+        title: fileTitle,
+        x: 0,
+        y: 0,
+       // alwaysOnTop: true,
+        webPreferences: {
+            nodeIntegration: true, 
+            contextIsolation: false, 
+            enableRemoteModule: true
+        }
+    })
+    htmlWindow.loadURL('file:' + filePath);
+
+}
 
 /*********VIEW PRIOR VERSION************* */
 var oldVersionWindow

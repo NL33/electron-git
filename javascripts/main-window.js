@@ -188,12 +188,14 @@ var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
 
 function openDoc(thePath) {
     if (thePath.includes('apple-note')) {
-        console.log('it does')
+        //current-code
+        ipcRenderer.send('open-html-window', thePath)
+       /*
         fs.readFile(thePath, 'utf8', (err, data)=>{
             console.log('data = ')
             console.log(data)
-            /***START HERE*** */
         })
+        */
     } else {
         shell.openPath(thePath)
     }  

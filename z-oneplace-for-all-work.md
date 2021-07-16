@@ -177,4 +177,13 @@ get the html of the note with applescript
     --could have option: save webpage. you copy the text, and the app gets the web address and title.
     --creates an html doc, with the html of the page.
     --when want to open it later, opens within the app so formatting is there
-    
+    --could open up "get infor" or users to change default opening program too, or just "open with" dialog
+
+# Opening the html files directly
+
+--the files are rendered as viewable in text editor mac program, and chrome, and (probably) notepad for microsoft windows
+--will be shown as source (with divs, etc) if opened in an IDE
+
+# Diffing the html files
+
+--showing the html files in app itself works well. the diff renders the html content as real content (does not show divs and the like).
