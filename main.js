@@ -137,13 +137,13 @@ async function revertToOldVersion() {
     win.webContents.send('revert-to-old-version', 'cool')
 }
 
-ipcMain.on('open-html-window', (event, arg) => {
-   openHTMLWindow(arg)
+ipcMain.on('open-html-window', (event, arg1, arg2) => {
+   openHTMLWindow(arg1, arg2)
 })
 
 /******OPEN HTML FILES *********** */
-function openHTMLWindow(arg) {
-    var filePath = arg
+function openHTMLWindow(thePath, content) {
+    var filePath = thePath
     var parentDirectoryName = path.dirname(filePath).split(path.sep).pop()
     var fileName =  path.basename(filePath).replace('.html', '')
     var fileTitle = parentDirectoryName + '/' + fileName
@@ -170,12 +170,15 @@ function openHTMLWindow(arg) {
             webPreferences: {
                 nodeIntegration: true, 
                 contextIsolation: false, 
-                enableRemoteModule: true
+                enableRemoteModule: true,
+                additionalArguments: [thePath, content],
             }
+            
         })
-
-        //htmlWindow.loadURL('file:' + filePath);
-       oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
+        //current-code
+       //window.loadURL('file:' + filePath);
+       htmlWindow.loadURL('file://' + __dirname + '/views/loaded-html-window.html');
+       //oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
     }
 
 }

@@ -205,7 +205,14 @@ var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
 function openDoc(thePath) {
     let theExtension = path.extname(thePath)
     if (theExtension.includes('html')) {
-        ipcRenderer.send('open-html-window', thePath)
+        fs.readFile(thePath, 'utf8', function(err, data) {
+            if (err){
+                console.log(err)
+            } else {             
+                ipcRenderer.send('open-html-window', thePath, data)
+            }
+        })
+        
     } else {
         shell.openPath(thePath)
     }
@@ -521,7 +528,6 @@ function createFile(divId, path, indent) {
 //the html extension means that when you open it, it will open in an app window, that will render the html 
 //the expectation is that most times of using a paste file is getting content from the web--an email, a website, etc...
 //so rendering the html will be the best representation of the data
-//current-code
 function createPasteFile(divId, folderPath, indent) {
     var fileName = document.getElementById('nameEntry').value
     document.getElementById('addForm').remove()
@@ -537,8 +543,7 @@ function createPasteFile(divId, folderPath, indent) {
 
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
-    var copiedContent = clipboard.readHTML()
-    var content = '<html contenteditable="true" style="padding: 10px">' + copiedContent + '</html>'
+    var content = clipboard.readHTML()
     fs.writeFile(newDocPath, content, function (err) {
         if (err) {
             console.log(err)
