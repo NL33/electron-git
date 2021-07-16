@@ -203,19 +203,13 @@ var appleDoc = 'https://www.icloud.com/notes/0hZOhxE5di_MSCv7bX-hYHY8w#Contribut
 var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
 
 function openDoc(thePath) {
-    if (thePath.includes('apple-note')) {
+    let theExtension = path.extname(thePath)
+    if (theExtension.includes('html')) {
         //current-code
         ipcRenderer.send('open-html-window', thePath)
-        /*
-         fs.readFile(thePath, 'utf8', (err, data)=>{
-             console.log('data = ')
-             console.log(data)
-         })
-         */
     } else {
         shell.openPath(thePath)
     }
-    // controlTheWindow() //this function is for snapping the doc into place
 }
 
 
