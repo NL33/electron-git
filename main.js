@@ -149,6 +149,8 @@ function openHTMLWindow(arg) {
     var fileTitle = parentDirectoryName + '/' + fileName
     var windowArray = BrowserWindow.getAllWindows()
     var openTheFile = true
+
+   //check each opened app window to see if a window with that dirName/fileName is opened. If there is a window with that dirName/fileName already opened, then don't open a new window. Rather, show that window (bring it to foreground/unminimize it)  
    for (var i = 0; i<windowArray.length; i++){
        let thisWindowTitle = windowArray[i].getTitle()
        if (fileTitle === thisWindowTitle){
@@ -156,6 +158,7 @@ function openHTMLWindow(arg) {
           windowArray[i].show()
        }
    }
+   //if a file with that dirName/fileName is not opened yet:
    if (openTheFile === true){
         var htmlWindow = new BrowserWindow({
             width: 670, //320,
