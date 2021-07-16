@@ -175,10 +175,8 @@ function openHTMLWindow(thePath, content) {
             }
             
         })
-        //current-code
        //window.loadURL('file:' + filePath);
        htmlWindow.loadURL('file://' + __dirname + '/views/loaded-html-window.html');
-       //oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
     }
 
 }

@@ -1,18 +1,20 @@
 # Just Completed
 Basic work for creating apple doc. next: reference to "zoneplace" doc for apple notes next steps
 
-
-*START HERE*
+*START WITH FIGURING OUT GITHUB*
+*START HERE FOR OPENING HTML FILES/APPLESCRIPT*
 -working on opening html, with contenteditable
 -need to load javascript file with the browser window. Is there a way to do that automatically? Look a little more.
---if not, then need to send the contents of the window when open it
+--if not, then need to send the contents of the window when open it  .DONE, using loaded-html-window js and html:
      --read file from the file. get contents
      --send contents to main window
      --main window opens window.
      --main window sends contents
---then make this work for apple notes
+--then make this work for apple notes. *START HERE*
 --then make the html open process for apple notes and html work for prior versions
 --then provide a way to update apple note with new changes
+--then save the file with changes (for web pages)
+     --can just add a save option, and writeFile with the content to the path
 
 Next: Apple notes:
 --open file in app.
