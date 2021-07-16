@@ -83,7 +83,7 @@ window.onload = function () {
 
 /******HIDE WINDOW, AND SHOW BASIC WINDOW**** */
 
-function hideWindow(){
+function hideWindow() {
     ipcRenderer.send('hide-main-window', '')
 }
 
@@ -124,7 +124,7 @@ async function getFrontNote() {
             var noteContent = evalAS2('tell application "Notes" to get body of item 1 of (get selection)');
             return {'noteName': noteName, 'noteId': noteId, 'noteContent': noteContent}
             `)
-       return result
+        return result
     } catch (error) {
         console.log('error in trying to get note information ' + error)
     }
@@ -132,14 +132,30 @@ async function getFrontNote() {
 }
 
 function createAppleNoteFile(divId, folderPath, indent, noteId) {
-    var updatedContent = appleNoteHtmlContent.replaceAll('<div><br></div>', '').replaceAll('<div><u><br></u></div>', '').replaceAll('<u><br></u>', '').replaceAll('<h1><br></h1>', '').replaceAll('<h2><br></h2>', '').replaceAll('<h3><br></h3>', '')
-    
+    var updatedContent = appleNoteHtmlContent.replaceAll('<div><u><br></u></div>', '').replaceAll('<u><br></u>', '').replaceAll('<h1><br></h1>', '').replaceAll('<h2><br></h2>', '').replaceAll('<h3><br></h3>', '')
+    var colorStyleInsert = `
+    <style>
+       body {
+         color: #353535;
+         padding-left: 10px;
+         padding-right: 10px
+       }
+       h1, h2, h3 {
+         margin-bottom: 1px;
+         margin-top: 1px
+       }
+       ul {
+         margin-top: 0px;
+         margin-bottom: 0px
+       }
+    </style>
+    `
     var fileName = document.getElementById('appleNoteNameEntry').value
     document.getElementById('addAppleNoteForm').remove()
     var newDocPath = folderPath + '/' + fileName
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
-    var content = 'id:' + noteId + '\n\n' + updatedContent
+    var content = colorStyleInsert + '<div style="margin-bottom: 12px;">id:<span id="noteId">' + noteId +'</span></div>' + updatedContent
     fs.writeFile(newDocPath, content, function (err) {
         if (err) {
             console.log(err)
@@ -190,15 +206,15 @@ function openDoc(thePath) {
     if (thePath.includes('apple-note')) {
         //current-code
         ipcRenderer.send('open-html-window', thePath)
-       /*
-        fs.readFile(thePath, 'utf8', (err, data)=>{
-            console.log('data = ')
-            console.log(data)
-        })
-        */
+        /*
+         fs.readFile(thePath, 'utf8', (err, data)=>{
+             console.log('data = ')
+             console.log(data)
+         })
+         */
     } else {
         shell.openPath(thePath)
-    }  
+    }
     // controlTheWindow() //this function is for snapping the doc into place
 }
 
@@ -448,9 +464,9 @@ function enterNewPasteFile(divId, mainPath, indent) {
 }
 
 function newFolderNoFocus() {
-    if (document.getElementById('addForm')){
+    if (document.getElementById('addForm')) {
         document.getElementById('addForm').remove()
-    } else if (document.getElementById('addAppleNoteForm')){
+    } else if (document.getElementById('addAppleNoteForm')) {
         document.getElementById('addAppleNoteForm').remove()
     }
 }

@@ -5,8 +5,8 @@ Next: Apple notes:
 --open file in app.
      --just got to read the html in function openDoc()
      --next: 
-          --send the data [file name, and content] to main.js
-          --main.js open the file with the content in a window
+          --send the data [file name, and content] to main.js. DONE
+          --main.js open the file with the content in a window. DONE
      then:
           --this has to apply for when view prior versions (and present version too)
           --then confirm that comparing changes works for apple notes too.
@@ -202,6 +202,9 @@ could do the split based on more info, like the actual name of the doc, which yo
 --if running jxa code, then want to check can run in jxa environment. THere is a package for that:  https://github.com/sindresorhus/is-jxa
 
 --if entering Apple Notes ID into doc, note that the structure seems to be "x-coredata://922A35B9-C523-44DE-8611-CA444607F49E/ICNote/p1076". Everything until "/p1076". Investigate whether the data before hand is private info that should be protected. If so, hide it in the doc.
+     --another way to do it. Get the code after the last / (ie, "p1076")--maybe that is sufficient. 
+     --could do that last code + name, but name could change
+     --code should be sufficient, unless you download another note from someone else, that happens to have the same code. That is probably unlikely, and the unlikelihood might make it sufficient to go with it.
 
 --main window.js: when creating a file and creating a paste file, it gets the name from id="nameEntry". But that is an id--if you try to create a few files, app will get confused. Change this--either make it so you only create one at a time, or make referene to nameEntry more specific
 
