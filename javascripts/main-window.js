@@ -400,7 +400,7 @@ function menuFunction() {
                 }))
                 /**NOTE: Consider having this appear only for files that I can write, like md, txt, rtf, html, etc. */
                 contextMenu.append(new MenuItem({
-                    label: "Update Paste File",
+                    label: "Update File with copied content",
                     click: () => {
                         updatePasteFile(e)
                     }

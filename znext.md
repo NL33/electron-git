@@ -1,33 +1,18 @@
 # Just Completed
-Basic work for creating apple doc. next: reference to "zoneplace" doc for apple notes next steps
 
 *START WITH FIGURING OUT GITHUB*
 *START HERE FOR OPENING HTML FILES/APPLESCRIPT*
 -working on opening html, with contenteditable
--need to load javascript file with the browser window. Is there a way to do that automatically? Look a little more.
---if not, then need to send the contents of the window when open it  .DONE, using loaded-html-window js and html:
-     --read file from the file. get contents
-     --send contents to main window
-     --main window opens window.
-     --main window sends contents
+
 --then make this work for apple notes. *START HERE*
 --then make the html open process for apple notes and html work for prior versions
 --then provide a way to update apple note with new changes
 --then save the file with changes (for web pages)
      --can just add a save option, and writeFile with the content to the path
+     --maybe add a save as also? (especially for older versions)
+--make the content process faster for apple notes.
 
-Next: Apple notes:
---open file in app.
-     --just got to read the html in function openDoc()
-     --next: 
-          --send the data [file name, and content] to main.js. DONE
-          --main.js open the file with the content in a window. DONE
-     --make the content editable.
-     then:
-          --this has to apply for when view prior versions (and present version too)
-          --then confirm that comparing changes works for apple notes too.
---add right click option to open file directly 
---look at making it faster
+
 *Next*
 
 # link to github and/or dropbox
@@ -52,6 +37,8 @@ Next: Apple notes:
 # be able to collapse showing of folders by clicking on the project name (adding folder icons to show if open or not. and the carrot icons are the indicator if folder or file)
      --try to mimick the way the icons look on the current file system (blue folder icon, for instance)
 
+# Branching and making it easy for people to offer edits
+--likely just: fork from github (so you can control it). download it. make changes to it. and send those changes back to github. Then the other person can see your changes
 
 # another solution for storing large git files off computer
 
@@ -236,6 +223,9 @@ could do the split based on more info, like the actual name of the doc, which yo
 
 
 --if make text contenteditable in an old version, then would have to warn user when trying to save that they can't save to this version (the old version is just in the git file and doesn't have a path). Could show them a save as anytime they try. Or just don't allow contenteditable in old versions.
+
+
+--for pasting in html content to your local computer, maybe provide a warning, like microsoft word: This page allows you to share data with external sites, make sure it is a trustworthy source.
 
 # contact notes
 
