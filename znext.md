@@ -225,7 +225,7 @@ could do the split based on more info, like the actual name of the doc, which yo
 --if make text contenteditable in an old version, then would have to warn user when trying to save that they can't save to this version (the old version is just in the git file and doesn't have a path). Could show them a save as anytime they try. Or just don't allow contenteditable in old versions.
 
 
---for pasting in html content to your local computer, maybe provide a warning, like microsoft word: This page allows you to share data with external sites, make sure it is a trustworthy source.
+--for pasting in html content to your local computer, maybe provide a warning, like microsoft word: This page allows you to share data with external sites, make sure it is a trustworthy source. could just be a general warning that comes up the first time you do it and other times too
 
 # contact notes
 
