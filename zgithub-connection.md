@@ -136,7 +136,7 @@ can also just do the following to get info on latest commit (using mainlast comm
 
 Will return info about each file, including about each path.
 
-# Next: *Start here*
+# Current Considerations
 
 --consider: I can make it easy to view items within the app from github. Could I just do the same in discourse. So there would be a basic app I create (on top of discourse), and then that plugs into github.
 --or, jsut take the same things I would do in the app, and put them on a simple site that loads content from github.
@@ -159,3 +159,26 @@ Will return info about each file, including about each path.
         --allow viewing your repo on the app, and inviting others. 
             --could be within the app, but it would be ok too to open up github to do it there.
 
+--mabe it's a little wierd (like, show you some things on the app, and then view github itself for more technical details), but that's ok. The focus is just whether its helpful.
+
+--the app could work like a full interface, where I provide a home page that highlights repos, you can search, and other functionality. Like itunes--basically, the app is where you interact with what otherwise would seem like a site. (later I can build site too)
+
+--focus ultimately on what I need to:
+    --share my work in progress
+    --get comments
+
+# Next
+
+--see if you can view a repo with the app.
+    --I want to see how this looks/feels and whats involved. See how it feels when I can se a page with github info that just has the essentials: project contents, project description, add comments, propose changes.
+    --show project description
+    --idea is potentially the app will be the user interface for remote repos, just showing you what a non-technical user should see. And making it friendly and fun for non-technical users. Ultimately, it may be that you never need to view github itself from the app (just for more advanced info and capabilities)
+    --would want to view as well: version number, version notes, version date (and can leave the main commit info for github itself)
+    --see what's involved in navigating through the folder
+
+--push project repo to github through the app (takes care of having easy backup storage)
+--share the project
+    --get share link (repo url)
+--add comments to a repo through the app
+--add pull request to a repo through the app 
+    --so, possibly, is not a place to view repos, but it gives you the tools for interacting with them
