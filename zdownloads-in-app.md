@@ -71,6 +71,10 @@ $ npm install marked
     --to be able to show mark down doc as good looking html 
     --UNINSTALLED on June 29, 2021.  Formatting wasn't great, and I can get the necessary effect with other methods
 
+$ npm install @octokit/core
+    --July 18, 2021
+    --this is the official github api client. for making api calls with github.
+
 # Prior to rollback on April 15, 2021
 # RobotJS
 

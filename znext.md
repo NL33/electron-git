@@ -1,9 +1,6 @@
 # Just Completed
-<<<<<<< HEAD
-=======
 This is an edit to the next file from NL33.
 Basic work for creating apple doc. next: reference to "zoneplace" doc for apple notes next steps
->>>>>>> 4cb6ec7e99e87cafeae5d3bb1fa0b976d8a31c00
 
 *START WITH FIGURING OUT GITHUB*
 *START HERE FOR OPENING HTML FILES/APPLESCRIPT*

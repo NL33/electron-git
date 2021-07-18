@@ -54,3 +54,108 @@ I want a way to show my work in progress, so that
 
 # Related ideas
 -If I am focused on helping other people see what work I changed, I should make my commit notes clear
+
+
+# Github possibilities
+
+# Discourse Possibilities
+
+-send your work to discourse
+-working on a document, send it up to share it.
+    --one click to send it as a new file
+--why might this make sense?
+    --2 purposes of github
+        --
+
+
+# Loading website (like github) into electron
+
+pacakge: nativefier (well maintained and popular); https://github.com/nativefier/nativefier
+
+https://www.electronjs.org/docs/tutorial/web-embeds
+
+Note: Iframe probably isn't the way to go. I want to be able to show different things and manipulate the view. For that, probably need to use the github api.
+
+
+*Github Api*
+
+# Rate Limits
+https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting
+
+Rate limits = 5,000 requests per hour [per user], when using basic authentication or oath.
+
+So, if the app is the owner of the tokens making the requests, the app can make 5,000 requests per hour across all users
+
+If an individual user is the owner of the tokens making the requests, each individual user can make 5,000 requests per hour
+
+If not using basic authentication or oauth token, then no rate limit
+
+# Package info
+
+github api package: https://github.com/octokit/core.js#readme
+
+github api reference for getting a repo: https://docs.github.com/en/rest/reference/repos#get-a-repository
+
+simple-git: authentication to github: https://github.com/steveukx/git-js (see authentication--allowing you to do things like fetch, clone, etc.)
+
+
+But maybe don't even need the API, because you can use git commands to get the repos, like described here: https://stackoverflow.com/questions/57669037/how-to-clone-github-repo-using-node-js
+
+--I downloaded octokit to play with this
+--but most github api situations will be geared toward websites accessing the api, different thant my situation, where someone is just accessing github from their computer.
+--though may be good for just viewing repos (most command line tools are for downloading repos, fetching, cloning, etc)
+
+
+# basic oktokit setup
+
+const { Octokit } = require("@octokit/core");
+const octokit = new Octokit();
+
+
+# Get info about a repo:
+
+
+
+# Get files in repo
+
+const response = await octokit.request("GET /repos/steveukx/git-js/git/trees/6d92bd4b3a0a27f86011e20fe9515391478b3a30", {
+    // org: "octokit",
+    // type: "private",
+});
+
+console.log('response = ')
+console.log(response)
+
+The long number here is the "sha", that we get when we look under "tree" with await octokit.request("GET /repos/steveukx/git-js/commits/[commit hash]", {});
+
+can also just do the following to get info on latest commit (using mainlast commit hash):
+
+    const response = await octokit.request("GET /repos/steveukx/git-js/commits/main", {});
+    console.log('response = ')
+    console.log(response)
+
+Will return info about each file, including about each path.
+
+# Next: *Start here*
+
+--consider: I can make it easy to view items within the app from github. Could I just do the same in discourse. So there would be a basic app I create (on top of discourse), and then that plugs into github.
+--or, jsut take the same things I would do in the app, and put them on a simple site that loads content from github.
+--possibly could do this, but if it's easier for now to just do everything in the app, that seems ok. And it makes it all integrated into one spot on your computer
+--using the app, I can show you just the key things you want to see from github.
+    --is it allowed? should be, just like what gitkraken and other tools do that integrate github.
+
+--I think it will work to download git repo into the app (or view in the app), and then have buttons on top to manipulate the repo/do stuff with git
+
+--focus on simple actions in the app:
+    --1. view a project's files (this is actually the most important for my purposes: allos you to share a project)
+        --consider: you could just view it on github itself. But when you want to take action with the repo, that's where my app comes in, to make it simpler.
+            --so actually downloading the repo, like through fetch or clone, might make sense
+            --and I could just show you the bare essentials for you to know to take action.
+    --2. navigate through a project on the app
+    --3. view description of project
+    --4. add comments to a project (ie, issues)
+    --5. add proposed changes (ie, pull request)
+    --6. and make this work for private repos too
+        --allow viewing your repo on the app, and inviting others. 
+            --could be within the app, but it would be ok too to open up github to do it there.
+

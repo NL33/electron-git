@@ -23,7 +23,7 @@ function menuApp() {
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Save New Version', click() { saveNewVersionWindow() } },
         { label: 'Get the Window', click() { sendTheWindow() } }, //getthewindow = get the active window
-        { label: 'Revert to Old Version', click() { revertToOldVersion() } },
+        { label: 'Github Window', click() { openGithubWindow() } },
     ])
     tray.setToolTip('This is my application.')
     tray.setContextMenu(contextMenu)
@@ -129,19 +129,32 @@ function showDialog() {
 }
 
 
-async function viewOldVersion() {
-    newVersionWindow.webContents.send('view-old-version', 'cool')
+function openGithubWindow() {
+   var githubWindow = new BrowserWindow({
+        width: 670, //320,
+        height: 650,
+        title: 'GithubWindow',
+        x: 12,
+        y: 0,
+        // alwaysOnTop: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true,
+            //webSecurity: false
+        }
+
+    })
+    //window.loadURL('file:' + filePath);
+    githubWindow.loadURL('file://' + __dirname + '/views/github-window.html');
+    githubWindow.openDevTools()
 }
 
-async function revertToOldVersion() {
-    win.webContents.send('revert-to-old-version', 'cool')
-}
-
+/******OPEN HTML FILES *********** */
 ipcMain.on('open-html-window', (event, arg1, arg2) => {
    openHTMLWindow(arg1, arg2)
 })
 
-/******OPEN HTML FILES *********** */
 function openHTMLWindow(thePath, content) {
     var filePath = thePath
     var parentDirectoryName = path.dirname(filePath).split(path.sep).pop()
@@ -182,6 +195,10 @@ function openHTMLWindow(thePath, content) {
 }
 
 /*********VIEW PRIOR VERSION************* */
+async function viewOldVersion() {
+    newVersionWindow.webContents.send('view-old-version', 'cool')
+}
+
 var oldVersionWindow
 var oldVersionWindowCreated = false
 async function oldVersionWindowFunction(receivedPath, receivedName, versionNumber, date, time, notes) {
