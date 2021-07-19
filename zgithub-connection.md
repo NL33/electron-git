@@ -114,6 +114,28 @@ const octokit = new Octokit();
 
 # Get info about a repo:
 
+stack overflow on get files on a remote repo: https://stackoverflow.com/questions/58690859/getting-a-list-of-files-file-tree-on-remote-git-repo
+    --git clone --bare --depth=1 [repo]  //shallow clone--cloning the last commit into a bare repo
+    --cd [repo].git
+    --git ls-tree  --name-only -r HEAD  //view the files, with recursion
+
+
+# Git commands for info about remote repo
+
+
+usage: git ls-tree [<options>] <tree-ish> [<path>...]
+
+    -d                    only show trees
+    -r                    recurse into subtrees
+    -t                    show trees when recursing
+    -z                    terminate entries with NUL byte
+    -l, --long            include object size
+    --name-only           list only filenames
+    --name-status         list only filenames
+    --full-name           use full path names
+    --full-tree           list entire tree; not just current directory (implies --full-name)
+    --abbrev[=<n>]        use <n> digits to display SHA-1s
+
 
 
 # Get files in repo
