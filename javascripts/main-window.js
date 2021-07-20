@@ -87,107 +87,6 @@ function hideWindow() {
     ipcRenderer.send('hide-main-window', '')
 }
 
-
-/***********CREATE REPO WITH GITHUB *************/
-//current-code
-
-async function checkIfRemoteExists() {
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-
-        await git.getRemotes().then(result => {
-            console.log('get remote result = ' + JSON.stringify(result))
-            //if lists a remote at github that doesn't exist, will send back an error
-        })
-
-        await git.listRemote(['--heads', '--tags'], console.log)
-
-        await git.raw('ls-remote').then(result => {
-            console.log('get remote result = ' + JSON.stringify(result))
-            //if lists a remote at github that doesn't exist, will send back an error
-        })
-    }
-    catch (e) {
-        console.log('error in check if remote exists = ' + e)
-    }
-}
-
-
-async function createRemote() {
-    /*
-        .add('./*')
-        .commit("first commit!")
-        .addRemote('origin', 'some-repo-url')
-        .push(['-u', 'origin', 'master'], () => console.log('done'));
-    ***
-    github remote repo commands:
-    
-    touch README.md
-    git init
-    git add README.md
-    git commit -m "first commit"
-    git remote add origin git@github.com:alexpchin/<reponame>.git
-    git push -u origin master
-    
-    */
-
-    const USER = 'NL33'
-    const PASS = ''
-    const REPO = 'github.com/nl33/remote-test-repo'
-    const remote1 = `https://${USER}:${PASS}@${REPO}`
-    const remote2 = 'https://nl33@github.com/nl33/remote-test-repo'
-    //git push 'https://nl33@github.com/nl33/remote-test-repo' --all
-    /*steps that work:
-    git push 'https://nl33@github.com/nl33/remote-test-repo' --all
-    --will ask for a password, then enter it there
-
-
-    Issues:
-    --will need to log into github with a password (or access token)
-    --will need to set the local git system with that password (or token)
-        --personal access token: have to manually go into github and generate it. Then save it somewhere, and use that for passwords when prompted.
-        --applies if you have two factor authentication on
-    --if trying to affect a repo owned with different credentials, will need a way to enter those credentials
-    --will those credentials then replace the prior credentials?
-        --will have to be able to switch credentials.
-            so if you have one set of credentials, will have to be able to switch easily.
-    */
-
-
-
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-
-        await git.init().then(result => {
-            console.log('init result = ' + JSON.stringify(result))
-        })
-
-        await git.add('.').then(result => {
-            console.log('add result = ' + JSON.stringify(result))
-        })
-
-        await git.commit('first commit!').then(result => {
-            console.log('commit result = ' + JSON.stringify(result))
-        })
-/*
-        await git.addRemote('origin', 'https://github.com/NL33/remote-test-repo.git').then(result => {
-            console.log('add remote origin result = ' + JSON.stringify(result))
-        })
-        */
-        await git.push(remote2, '--all').then(result => {
-            console.log('push origin result = ' + JSON.stringify(result))
-        })
-
-    }
-    catch (e) {
-        console.log('error in create remote = ' + e)
-    }
-}
-
 /********CONTROLLING APPLE NOTES ************************* */
 
 var appleNoteHtmlContent
@@ -1232,6 +1131,27 @@ async function saveGitVersion() {
 }
 
 /****SEND PROJECT TO GITHUB**************** */
+
+/*
+Github commands:
+   /*
+        .add('./*')
+        .commit("first commit!")
+        .addRemote('origin', 'some-repo-url')
+        .push(['-u', 'origin', 'master'], () => console.log('done'));
+    ***
+    github remote repo commands:
+
+    touch README.md
+    git init
+    git add README.md
+    git commit -m "first commit"
+    git remote add origin git@github.com:alexpchin/<reponame>.git
+    git push -u origin master
+
+    */
+
+
 async function showSendOptions(){
  try {
     document.getElementById('saveProjectItems').style.display = "none"
