@@ -5,8 +5,8 @@
 # push project to github
 https://github.com/steveukx/git-js/#git-push
 
---how to link local project to remote repo?
---experiment in terminal first.
+--I just got a basicversion to wor, plugging in a specific push location for a local repo
+--make it work without having to manually plug in the push value
 
 
 # create github repo from app itself

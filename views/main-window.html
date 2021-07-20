@@ -202,6 +202,20 @@
             vertical-align: 20%;*/
         }
 
+        #sendButton {
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+            /*font-size: 10pt;*/
+            border-radius: 8px;
+            padding: 5px;
+            border: 3px solid #3399FF;
+            outline: none;
+            margin-bottom: 10px; 
+            /* margin-left: 35px;
+            vertical-align: 20%;*/
+        }
+
         /***MAKING THE COMMIT****/
 
         #saveButton:hover {
@@ -209,6 +223,12 @@
             color: white;
             border: 3px solid #32cd53;
         }
+
+       #sendButton:hover {
+            background-color: #3399FF;
+            color: white;
+        }
+ 
 
 
         /*****PRIOR VERSIONS*****/
@@ -310,14 +330,9 @@
 </head>
 
 <body id="bodyId"
-    style="margin-top: 4px; padding: 10px; padding-top: 5px; padding-left: 0px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px">
+    style="margin-top: 4px; padding: 10px; padding-top: 5px; padding-left: 0px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; overflow: auto">
 
     <!------Select Project Folder------>
-<div onclick="checkIfRemoteExists()" style="padding: 5px; margin: 5px; cursor: pointer; border: 3px solid green">Check if Remote Exists</div>
-
-  <div onclick="createRemote()" style="padding: 5px; margin: 5px; cursor: pointer; border: 3px solid orange">Create Remote</div>
-
-
     <div style="overflow: auto">
         <div style="margin-bottom: 15px" class="">
             <span style="margin-bottom: 20px">
@@ -335,19 +350,36 @@
         <div id="folderContents" class="padding-class"></div>
     </div>
     <!------*********SAVE PROJECT VERSION******************-->
-    <div id="saveProjectVersion" style="margin-bottom: 75px">
+    <div id="saveProjectVersion" style="margin-bottom: 10px">
         <div style="margin-top: 15px" class="padding-class">
             <hr style="width: 70%; border: 1px solid  #f5f5f5">
-            <div style="margin-right: 10px; margin-top: 20px;font-weight: bold">Save Project Version:</div>
+            <div id="saveProjectHeader" style="margin-right: 10px; margin-top: 20px;font-weight: bold">Save Project Version:</div>
         </div>
 
         <div id="saveProjectItems" class="padding-class" style="margin-left: 10px">
             <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
             <div id="saveButton">Save Version</div>
+            <br>
+            <div style="margin-top: 15px; text-align: right;" id="sendProjOptions" >
+                <div style="font-size: 11pt; margin-top: 8px; border-left: 3px solid green; padding-left: 5px; cursor: pointer; display: inline-block" onclick="showSendOptions()">Send project options</div>
         </div>
         <div id="savingProgress" class="padding-class">Saving version...
         </div>
     </div>
+
+  
+    <div id="sendOptions" style="display: none">
+        <div style="text-align: right; padding-left: 15px; padding-right: 5px; margin-right: 10px; font-size: 13pt; cursor: pointer" onclick="closeSendView()">x</div>
+        <div id="localSaveNotice" style="display: none; margin-right: 10px; margin-left: 5px; margin-bottom: 15px; font-weight: bold">Version saved locally.</div>
+        <div class="padding-class">
+        <div id="sendButton" onclick="sendToGithubFunction()">
+            Send to GitHub</div>
+        <div style="margin-left: 5px">Your project will be at:</div>
+        <div id="remoteName" style="margin-left: 5px; margin-top: 8px; color: #007ae1; cursor: pointer; word-wrap: break-word" onclick="openPushTarget()"></div>
+        </div>
+    </div>
+
+
     <!--***************View Prior Versions**************-->
     <div id="showPriorVersions"
         style="margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #32cd53; display: none"
@@ -405,7 +437,7 @@
 
     <!--**************OPTIONS AT BOTTOM**************************-->
 
-    <div id="optionsAtBottom" style="border-top: 4px solid #d4eff7;  font-size: 13pt; text-align: center">
+    <div id="optionsAtBottom" style="border-top: 4px solid #d4eff7;  font-size: 13pt; text-align: center;">
         <span id="viewPriorVersionsSelect"
             style="text-align: center; padding-top: 5px;padding-bottom: 5px; display: inline-block;  width: 47%; margin-top: 7px; border-right: 3px solid #d4eff7; margin-bottom: 5px">Prior
             Versions</span>

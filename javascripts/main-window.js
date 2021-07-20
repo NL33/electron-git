@@ -137,11 +137,22 @@ async function createRemote() {
     const PASS = ''
     const REPO = 'github.com/nl33/remote-test-repo'
     const remote1 = `https://${USER}:${PASS}@${REPO}`
+    const remote2 = 'https://nl33@github.com/nl33/remote-test-repo'
     //git push 'https://nl33@github.com/nl33/remote-test-repo' --all
     /*steps that work:
     git push 'https://nl33@github.com/nl33/remote-test-repo' --all
     --will ask for a password, then enter it there
 
+
+    Issues:
+    --will need to log into github with a password (or access token)
+    --will need to set the local git system with that password (or token)
+        --personal access token: have to manually go into github and generate it. Then save it somewhere, and use that for passwords when prompted.
+        --applies if you have two factor authentication on
+    --if trying to affect a repo owned with different credentials, will need a way to enter those credentials
+    --will those credentials then replace the prior credentials?
+        --will have to be able to switch credentials.
+            so if you have one set of credentials, will have to be able to switch easily.
     */
 
 
@@ -167,7 +178,7 @@ async function createRemote() {
             console.log('add remote origin result = ' + JSON.stringify(result))
         })
         */
-        await git.push(remote1, '--all').then(result => {
+        await git.push(remote2, '--all').then(result => {
             console.log('push origin result = ' + JSON.stringify(result))
         })
 
@@ -1202,14 +1213,80 @@ async function saveGitVersion() {
             }
             */
             document.getElementById('noteForSave').textContent = ''
-            document.getElementById('savingProgress').style.display = "none"
-            document.getElementById('saveProjectItems').style.display = "inline-block"
+            document.getElementById('saveProjectItems').style.display = "none"
+            document.getElementById('saveProjectHeader').style.display = "none"
+            document.getElementById('sendOptions').style.display = 'block'
+            document.getElementById('localSaveNotice').style.display = 'block'
             console.log('commit result = ' + JSON.stringify(result))
+        })
+        await git.raw('remote', 'get-url', '--push', 'origin').then(result => {
+            console.log('get remote result = ' + JSON.stringify(result))
+            //if lists a remote at github that doesn't exist, will send back an error
+            document.getElementById('remoteName').textContent = result
         })
 
     }
     catch (e) {
         console.log('error = ' + e)
+    }
+}
+
+/****SEND PROJECT TO GITHUB**************** */
+async function showSendOptions(){
+ try {
+    document.getElementById('saveProjectItems').style.display = "none"
+    document.getElementById('saveProjectHeader').style.display = "none"
+    document.getElementById('sendOptions').style.display = "block"
+    await git.cwd(projectFolderPath).then(result => {
+        // console.log('cwd resultss' + JSON.stringify(result))
+    })
+    await git.raw('remote', 'get-url', '--push', 'origin').then(result => {
+        console.log('get remote result = ' + JSON.stringify(result))
+        //if lists a remote at github that doesn't exist, will send back an error
+        document.getElementById('remoteName').innerHTML = result
+    })
+} catch (e) {
+        console.log('error = ' + e)
+    }
+}
+
+function closeSendView(){
+    document.getElementById('sendOptions').style.display = "none"
+    document.getElementById('saveProjectItems').style.display = "block"
+    document.getElementById('saveProjectHeader').style.display = "block"
+}
+
+function openPushTarget(){
+    var target = document.getElementById('remoteName').textContent
+    shell.openExternal(target)
+}
+
+async function sendToGithubFunction(){
+    const USER = 'NL33'
+    const PASS = ''
+    const REPO = 'github.com/nl33/remote-test-repo'
+    const remote1 = `https://${USER}:${PASS}@${REPO}`
+    const remote2 = 'https://nl33@github.com/nl33/remote-test-repo'
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+
+        await git.raw('remote', '--v').then(result => {
+            console.log('get remote result = ' + result)
+        })
+
+        await git.push(remote2).then(result => {
+            console.log('push origin result = ' + JSON.stringify(result))
+           
+            document.getElementById('sendOptions').style.display = "none"
+            document.getElementById('saveProjectItems').style.display = "block"
+            document.getElementById('saveProjectHeader').style.display = "block"
+        })
+
+    }
+    catch (e) {
+        console.log('error in sendToGithubFunction = ' + e)
     }
 }
 

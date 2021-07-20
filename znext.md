@@ -234,6 +234,16 @@ could do the split based on more info, like the actual name of the doc, which yo
 
 --where it says *OLD* on old version docs, could add *OLDV6* or the like to set the version number. Helpful in case viewing more than 1 old version at once. 
 
+--save project version: if hit save version, and no text in note, add a prompt asking to confirm, and noting what save note will say
+
+--if typing in "enter note to go along with save", gray out "send project options"--so don't hit that instead of "save version" by accident
+
+--ideally, you don't see the "send project options" button unless: 1. you have already set up a remote repo and 2. the latest local version has not been pushed. If you need to create a remote repo, could still say the same, but should take you to different options where you will set up the remote repo (could get there by just seeing if anything comes back from git raw get-url). If you have a remote already, then only show "send project options" if there is a push waiting to be done.
+
+--when send successful push to remote, show success button prior to going back to main screen
+
+--if not changes when try to save version, should tell the user that
+
 # contact notes
 
 if link it to github, could tell them about it to get their support
