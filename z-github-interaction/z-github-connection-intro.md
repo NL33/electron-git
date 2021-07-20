@@ -1,7 +1,19 @@
-**Connecting the App to Gitub**
+**Original Thinking On Connecting the App to Gitub**
+
+NOte: Updated thinking in apple note: creating content/Storing and Sharing Projects (created July 19, 2021)
 
 # adding a repo to github, assuming already have an account linked up
-*Start here*
+
+
+Key Features
+--very simple send your project to the web, so it's backed up, and shareable
+--make your project private
+--invite others to it if you want
+--for very private items, like gratitude notes
+    --I can just back those up myself wherever I want, like dropbox. I can just do that manually
+--
+
+
 --adding a repo to github
     --start with git push and git remote in gitjs: https://github.com/steveukx/git-js
     --will want to push an existing repository. Normal git commands:

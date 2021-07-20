@@ -232,6 +232,8 @@ could do the split based on more info, like the actual name of the doc, which yo
 
 --for pasting in html content to your local computer, maybe provide a warning, like microsoft word: This page allows you to share data with external sites, make sure it is a trustworthy source. could just be a general warning that comes up the first time you do it and other times too
 
+--where it says *OLD* on old version docs, could add *OLDV6* or the like to set the version number. Helpful in case viewing more than 1 old version at once. 
+
 # contact notes
 
 if link it to github, could tell them about it to get their support
