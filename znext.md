@@ -1,5 +1,4 @@
 # Just Completed
-This is an edit to the next file from NL33.
 Basic work for creating apple doc. next: reference to "zoneplace" doc for apple notes next steps
 
 *START WITH FIGURING OUT GITHUB*

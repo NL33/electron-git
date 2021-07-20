@@ -1196,12 +1196,16 @@ async function sendToGithubFunction(){
             console.log('get remote result = ' + result)
         })
 
-        await git.push(remote2).then(result => {
-            console.log('push origin result = ' + JSON.stringify(result))
-           
-            document.getElementById('sendOptions').style.display = "none"
-            document.getElementById('saveProjectItems').style.display = "block"
-            document.getElementById('saveProjectHeader').style.display = "block"
+        await git.push().then(result => {
+            console.log('push origin result = ' + JSON.stringify(result, error))
+            if (result){
+                document.getElementById('sendOptions').style.display = "none"
+                document.getElementById('saveProjectItems').style.display = "block"
+                document.getElementById('saveProjectHeader').style.display = "block"
+            } else if (error){
+                console.log('error in git push function = ')
+                console.log(error)
+            }
         })
 
     }
