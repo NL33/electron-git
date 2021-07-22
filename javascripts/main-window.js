@@ -1210,9 +1210,10 @@ async function sendToGithubFunction(){
             console.log('adding remote result = ' + result)
         })
 */
+
+/* first push of code to remote
         await git.raw("push", "-u", "origin", "master").then(result => {
-            console.log('push origin result = ' + JSON.stringify(result))
-            console.log('result of push = ' + JSON.stringify(result))
+            console.log('result of first push = ' + JSON.stringify(result))
             if (result){
                 document.getElementById('sendOptions').style.display = "none"
                 document.getElementById('saveProjectItems').style.display = "block"
@@ -1225,6 +1226,11 @@ async function sendToGithubFunction(){
 
         //needs -u, origin, main as first commit to remote.
         //using git.push("-u", "origin", "master") did not seem to work. git.push() probably works, but not for the first commit to the master
+*/
+
+        await git.push().then(result =>{
+            console.log('result of push = ' + JSON.stringify(result))
+        })
 
     }
     catch (e) {
