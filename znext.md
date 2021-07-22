@@ -6,10 +6,10 @@ Basic work for creating apple doc. next: reference to "zoneplace" doc for apple 
 see zgithub-connection for more
 
 *START HERE FOR OPENING HTML FILES/APPLESCRIPT*
--working on opening html, with contenteditable
+-working on opening html, with contenteditable. I made it work to save files to html, and then when open them, they open in the app itself. so its like your own webpage that you can edit and save.
 
---then make this work for apple notes. *START HERE*
---then make the html open process for apple notes and html work for prior versions
+--then make this work for apple notes--automatic saving to this format, and opening to this format. *START HERE*
+--then make the html open process for apple notes and html work for prior versions. (when want to veiw prior versions, add code to the prior versions window so you open the old versions for html in the same way)
 --then provide a way to update apple note with new changes
 --then save the file with changes (for web pages)
      --can just add a save option, and writeFile with the content to the path

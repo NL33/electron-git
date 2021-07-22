@@ -1187,6 +1187,7 @@ async function sendToGithubFunction(){
     const REPO = 'github.com/nl33/remote-test-repo'
     const remote1 = `https://${USER}:${PASS}@${REPO}`
     const remote2 = 'https://nl33@github.com/nl33/remote-test-repo'
+    var newRemoteUrl = 'https://github.com/IrSg/test-remote-repo.git'
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd resultss' + JSON.stringify(result))
@@ -1196,8 +1197,22 @@ async function sendToGithubFunction(){
             console.log('get remote result = ' + result)
         })
 
-        await git.push().then(result => {
-            console.log('push origin result = ' + JSON.stringify(result, error))
+
+        /*if already has remote and want to change remote:
+
+        await git.raw('remote', 'set-url', 'origin', newRemoteUrl).then(result => {
+            console.log('setting new remote url result = ' + result)
+        })
+       */
+
+        /*if no remote yet:
+        await git.addRemote('origin', 'https://github.com/IrSg/test-remote-repo.git').then(result => {
+            console.log('adding remote result = ' + result)
+        })
+*/
+        await git.raw("push", "-u", "origin", "master").then(result => {
+            console.log('push origin result = ' + JSON.stringify(result))
+            console.log('result of push = ' + JSON.stringify(result))
             if (result){
                 document.getElementById('sendOptions').style.display = "none"
                 document.getElementById('saveProjectItems').style.display = "block"
@@ -1207,6 +1222,9 @@ async function sendToGithubFunction(){
                 console.log(error)
             }
         })
+
+        //needs -u, origin, main as first commit to remote.
+        //using git.push("-u", "origin", "master") did not seem to work. git.push() probably works, but not for the first commit to the master
 
     }
     catch (e) {
