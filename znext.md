@@ -24,8 +24,6 @@ see zgithub-connection for more
 --don't overcomplicate it. Start with github: and more or less just take the github commands and make it easier to run them.
 --add ability to add readme (just creating an md doc)
 
-# make it easy to show and hide the main screen
---icon on the right to show the main screen
 
 # add moments of elevation
 --these buttons can be across the header. nice to leave it simple for now--so 2 or 3 buttons tops. breathe big. Gratitude notes. Especially to keep things simple for my building and not to overcomplicate. The idea is these are things I would like to do while I am working, and these are touches to add personality--make my work actually elevating. 
@@ -40,9 +38,6 @@ see zgithub-connection for more
 
 # be able to collapse showing of folders by clicking on the project name (adding folder icons to show if open or not. and the carrot icons are the indicator if folder or file)
      --try to mimick the way the icons look on the current file system (blue folder icon, for instance)
-
-# Branching and making it easy for people to offer edits
---likely just: fork from github (so you can control it). download it. make changes to it. and send those changes back to github. Then the other person can see your changes
 
 # another solution for storing large git files off computer
 

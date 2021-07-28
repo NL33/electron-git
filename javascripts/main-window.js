@@ -14,6 +14,9 @@ const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
 const runJxa = require('run-jxa')
+const environmentVariables = require('../z-environments.js')
+var token = environmentVariables.discourseToken
+var discourseUser = environmentVariables.discourseUser
 
 const { getWindows, getActiveWindow } = require("@nut-tree/nut-js");
 var projectFolderPath
@@ -27,6 +30,7 @@ const { resolve } = require('path')
 const { O_DIRECTORY } = require('constants')
 const { shouldRebuildNativeModules } = require('electron-rebuild')
 var diff2html = require("diff2html").Diff2Html
+const { default: axios } = require('axios')
 /*****Button Set Up *****/
 window.onload = function () {
     /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
@@ -86,6 +90,137 @@ window.onload = function () {
 function hideWindow() {
     ipcRenderer.send('hide-main-window', '')
 }
+
+
+/************** Testing Discourse API *******************************/
+
+
+function createDiscoursePost() {
+    console.log('now in create Post')
+    var url = 'https://go.racetosaturn.com/posts.json'
+    var key = token
+    var userName = discourseUser
+    var topicContent = `
+        This is a great document from GroupInfoUser. Posted on July 28, 2021, at 1:25pm.
+    `
+    axios({
+        method: 'post',
+        url: url,
+        contentType:'multipart/form-data',
+        data: {
+            "title": "Great Word Doc 2",
+            "raw": topicContent,
+            //"topic_id": 0,
+            "category": 36,
+          //  "target_recipients": "blake,sam",
+            //"target_usernames": "string",
+            //"archetype": "private_message",
+            //"created_at": "string"
+        },
+        headers: {
+            "Api-Key": key,
+            "Api-Username": userName
+        },
+        dataType: 'json'
+    }).then(response => {
+        console.log('post response = ')
+        console.log(response)
+    }).catch(error => {
+        console.log('error in api post test =')
+        console.log(error)
+    })
+}
+
+function getDiscoursePostId(){
+    console.log('now in get postid ')
+    var topicId = '421' //looking for post id = 586
+    var url = 'https://go.racetosaturn.com/t/' + topicId + '.json'
+    var key = token
+    var userName = discourseUser
+    axios({
+        method: 'get',
+        url: url,
+        //contentType: 'multipart/form-data',
+        headers: {
+            "Api-Key": key,
+            "Api-Username": userName
+        },
+        dataType: 'application/json'
+    }).then(response => {
+        console.log('initial response = ' + JSON.stringify(response))
+        var postId = response.data.post_stream.posts[0].id
+        console.log('post response = ' + postId)
+        updatePost(postId, userName, key)      
+    }).catch(error => {
+        console.log('error in get post Id =')
+        console.log(error)
+    })
+}
+
+function updatePost(postId, userName, key){
+    console.log('now in update Post')
+    var url = 'https://go.racetosaturn.com/posts/' + postId + '.json'
+    var topicContent = 'Update content as of 1:151 from GroupInfoUser. How does it look?'
+    axios({
+        method: 'put',
+        url: url,
+        contentType: 'multipart/form-data',
+        data: {
+          //  "title": "Great Word Doc 2",
+            "raw": topicContent,
+            //"topic_id": 0,
+            //"category": 36,
+            //  "target_recipients": "blake,sam",
+            //"target_usernames": "string",
+            //"archetype": "private_message",
+            //"created_at": "string"
+        },
+        headers: {
+            "Api-Key": key,
+            "Api-Username": userName
+        },
+        dataType: 'json'
+    }).then(response => {
+        console.log('post response = ')
+        console.log(response)
+    }).catch(error => {
+        console.log('error in update post =')
+        console.log(error)
+    })
+}
+
+function discourseAPITest1(){
+    console.log('api test1')
+    var url = 'https://go.racetosaturn.com/user-api-key/new'
+    var redirectUrl = 'http://127.0.0.1:8000/' /* could also set a custom protocol, as a "urn", choosing a protocol ('coolprotocol') using the method here: https://www.electronjs.org/docs/api/protocol, and then providing the redirectURL as "coolprotocol//example"
+    --some use http://127.0.0.1:8000/ instead of localhost: https://stackoverflow.com/questions/44086537/how-to-integrate-oauth2-0-login-in-electron
+    */
+    //https://meta.discourse.org/t/user-api-keys-specification/48536
+    //https://go.racetosaturn.com/user-api-key/new?public_key=89e1d5c9a196c3a25b5d615c932486720d5d406cd8ff224276524be66249cdfc&nonce='123'&scopes='read,write'&client_id=%27system%27&application_name=%27Saturn%27
+    axios({
+        method: 'get',
+        url: url,
+        params: {
+            auth_redirect: redirectUrl,
+            application_name: 'Saturn App',
+            client_id: 'system', /**GET THIS FROM THE SITE */
+            scopes: 'read, write',//can also include push for notifications
+            push_url: '',
+            nonce: 'aaadafaf',
+            public_key: '89e1d5c9a196c3a25b5d615c932486720d5d406cd8ff224276524be66249cdfc'/****GET THIS FROM SITE */
+        },
+        dataType: 'json'
+    }).then(response =>{
+        console.log('response = ')
+        console.log(response.data)
+    }).catch(error=>{
+        console.log('error in api test =')
+        console.log(error)
+    })
+}
+
+
+
 
 /********CONTROLLING APPLE NOTES ************************* */
 
