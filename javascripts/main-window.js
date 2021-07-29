@@ -17,6 +17,7 @@ const runJxa = require('run-jxa')
 const environmentVariables = require('../z-environments.js')
 var token = environmentVariables.discourseToken
 var discourseUser = environmentVariables.discourseUser
+var userKey = environmentVariables.newUserAPIKey
 
 const { getWindows, getActiveWindow } = require("@nut-tree/nut-js");
 var projectFolderPath
@@ -31,6 +32,12 @@ const { O_DIRECTORY } = require('constants')
 const { shouldRebuildNativeModules } = require('electron-rebuild')
 var diff2html = require("diff2html").Diff2Html
 const { default: axios } = require('axios')
+
+// Including generateKeyPairSync from crypto module
+const { generateKeyPairSync } = require('crypto');
+const {hostname} = require('os')
+
+
 /*****Button Set Up *****/
 window.onload = function () {
     /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
@@ -93,8 +100,84 @@ function hideWindow() {
 
 
 /************** Testing Discourse API *******************************/
+//Next: go through files and make posts from the files
+//remember to have the app not stall when its happening. just get notice when its done, with url
+
+/***START HERE: Look up other examples (outside of discourse of getting "api keys" with client) ******/
+
+//get the path of each file in the folder
+//****TAKE THIS FUNCTION (that gets the file paths) AND USE IT TO GET DOC CONTENTS. also see checkChangesFunction() below for converting word docs */
 
 
+
+
+
+/*
+async function showFolderContents(divId, mainPath, indent) {
+    var element = document.getElementById(divId)
+    var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
+    while (highlightedDivs.length)
+        highlightedDivs[0].classList.remove('highlightFolderOrFile')
+    if (element.id !== 'projectDirectory') {
+        element.classList.add('highlightFolderOrFile')
+    }
+    var extension = path.extname(mainPath)
+    var hasExtension = false
+    if (extension) {
+        hasExtension = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
+        console.log('it has extension = ' + extension)
+    }
+    if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
+        var stats = fs.statSync(mainPath)
+        if ((stats.isDirectory() === true) && (hasExtension === false)) { //determine if a directory (instead of file). 
+            //show folder contents
+            var contentArray = []
+            try {
+                contentArray = fs.readdirSync(mainPath)
+            } catch (e) {
+                console.log(e)
+            }
+            var contents = ""
+            var newIndent = parseInt(indent) + 15
+            contentArray.forEach((item) => {
+                if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
+                    var fullPath = mainPath + '/' + item
+                    var subStats = fs.statSync(fullPath)
+                    if (subStats.isDirectory() === true) {
+                        var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+                        contents = `<div >
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        <div class="newItems"></div>
+                        </div>`
+                    } else {
+                        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
+                        contents = `<div >
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        </div>`
+                    }
+                }
+                if (divId !== "projectDirectory") {
+                    var newItems = element.nextElementSibling  //gets "newItems" div
+                    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+                    element.classList.add('clicked') //add clicked class so don't run this again if click again
+                } else {
+                    var contentsDiv = document.getElementById('folderContents')
+                    contentsDiv.insertAdjacentHTML("beforeEnd", contents)
+                }
+            })
+        } else {  //if not a directory
+            openDoc(mainPath)
+        }
+    } else { //if not projectstart and DO have clicked (so a folder that is already open)
+        element.classList.remove('clicked')
+        var newItems = element.nextElementSibling
+        newItems.innerHTML = '' //remove items in newItems
+    }
+}
+*/
+
+
+/*****Create discourse post  */
 function createDiscoursePost() {
     console.log('now in create Post')
     var url = 'https://go.racetosaturn.com/posts.json'
@@ -189,36 +272,89 @@ function updatePost(postId, userName, key){
     })
 }
 
+/*******GENERATE PUBLIC AND PRIVATE KEY */
+
+
+
 function discourseAPITest1(){
+    const { publicKey, privateKey } = generateKeyPairSync('rsa', {
+        modulusLength: 4096,
+        publicKeyEncoding: {
+            type: 'pkcs1',
+            format: 'pem',
+        },
+        privateKeyEncoding: {
+            type: 'pkcs1',
+            format: 'pem',
+        },
+    })
     console.log('api test1')
-    var url = 'https://go.racetosaturn.com/user-api-key/new'
-    var redirectUrl = 'http://127.0.0.1:8000/' /* could also set a custom protocol, as a "urn", choosing a protocol ('coolprotocol') using the method here: https://www.electronjs.org/docs/api/protocol, and then providing the redirectURL as "coolprotocol//example"
-    --some use http://127.0.0.1:8000/ instead of localhost: https://stackoverflow.com/questions/44086537/how-to-integrate-oauth2-0-login-in-electron
+    const http = require('url')
+    //const myUrl = new URL('https://go.racetosaturn.com/user-api-key/new')
+   var  myUrl = 'https://go.racetosaturn.com/user-api-key/new'
+    //var redirectUrl = myURL.href
+    var redirectUrl = 'http://127.0.0.1:8000/' 
+    /* could also set a custom protocol, as a "urn", choosing a protocol ('coolprotocol') using the method here: https://www.electronjs.org/docs/api/protocol, and then providing the redirectURL as "coolprotocol//example"
+    //--some use http://127.0.0.1:8000/ instead of localhost: https://stackoverflow.com/questions/44086537/how-to-integrate-oauth2-0-login-in-electron
     */
     //https://meta.discourse.org/t/user-api-keys-specification/48536
     //https://go.racetosaturn.com/user-api-key/new?public_key=89e1d5c9a196c3a25b5d615c932486720d5d406cd8ff224276524be66249cdfc&nonce='123'&scopes='read,write'&client_id=%27system%27&application_name=%27Saturn%27
-    axios({
+
+    var sendUrl = myUrl + '?public_key=' + publicKey + '&nonce=' + '1' + '&auth_redirect=' + redirectUrl + '&application_name=' + 'Saturn-App' + '&client_id=' + hostname + '&scopes=' + 'write' 
+
+    //shell.openExternal(sendUrl)
+    
+/* converted URL=
+https://go.racetosaturn.com/user-api-key/new?public_key=-----BEGIN%20RSA%20PUBLIC%20KEY----------END%20RSA%20PUBLIC%20KEY-----&nonce=1&auth_redirect=http://127.0.0.1:8000/&application_name=Saturn-App&client_id=Wins-Mac.local&scopes=write
+
+*/
+    const url = new URL(`https://go.racetosaturn.com/user-api-key/new`)
+
+    url.searchParams.append('application_name', 'Saturn-App')
+    url.searchParams.append('client_id', hostname())
+    url.searchParams.append('scopes', 'write')
+    url.searchParams.append('public_key', publicKey)
+    url.searchParams.append('nonce', '1')
+    console.log(`redirect URL is ${url.href}`)
+    shell.openExternal(url.href)
+
+/*
+     axios({
         method: 'get',
-        url: url,
+        url: myUrl,
         params: {
             auth_redirect: redirectUrl,
             application_name: 'Saturn App',
-            client_id: 'system', /**GET THIS FROM THE SITE */
-            scopes: 'read, write',//can also include push for notifications
-            push_url: '',
-            nonce: 'aaadafaf',
-            public_key: '89e1d5c9a196c3a25b5d615c932486720d5d406cd8ff224276524be66249cdfc'/****GET THIS FROM SITE */
+            client_id: 'hostname',
+            scopes: 'write',//can also include push for notifications
+            //push_url: '',
+            nonce: '1',
+            public_key: publicKey
         },
         dataType: 'json'
     }).then(response =>{
         console.log('response = ')
-        console.log(response.data)
+        console.log(response)
+        console.log('response data = ')
+        myUrl.href = response.config 
+        shell.openExternal(myUrl)
     }).catch(error=>{
         console.log('error in api test =')
         console.log(error)
     })
+*/
+
 }
 
+
+
+/*****With url.searchParams.append, got this response:
+ --Application Saturn App is trying to authorize your account, to give "write all"
+ --authorize button, then:
+ --We just generated a new user API key for you to use with "Saturn-App", please paste the following key into your application:
+  newUserKey
+
+ */
 
 
 

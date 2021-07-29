@@ -3,5 +3,6 @@
 module.exports = {
     nl33: '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',
     discourseToken: '3ebc37a96e7b8f363e28ee847c7ef5128406a2107ee6aa8d7d3a682ff685c11b',
-    discourseUser: 'GroupInfoUser'
+    discourseUser: 'GroupInfoUser',
+    newUserAPIKey: 'jCmuYRULsvyoAYjqavznl7/KnEU3f1QdxiSORNZErKVmd/zgqyXRMhJZsgVJ jJiiO9cxLfvbnZvJoA5EdQVq+jCuVnB8bBWh4eLx2olepmhFCNd7stCWboqL 8Rh1wdIaKtlR2549XbdLy3xp7dVyo257krK3L5W8fzxmkM4PcHIo1wBXEzyZ 8qwW+B37ETreG05gclA6Dnv4JBijnObABPCSzOSwtYoral1tPaF1T84InmE9 gzDD0s//81+r7IRsDuMo5XL14sonuV6Mwo9xG46i+9RWWUyIOYCxgzIPEPEB 6bQwzEpd7ZMS4xfhlHCHBG0XJCud1fVbAn16OW8gUQnBTAaAUxDP6qs1CIxa nCoDlSb1sN4p/bAYsu8XU94sc+N2TPnwo/vRTtowyIxP1kyJDj/rAhEvRgux mUClliSxjyY2u5/2UjnszsXA1fnopy5hUzCD5pB68Unzo+xDV+VkxQ22e5q2 F3TU3WkBOa90ftJ9RaWmCI5Na8PpGm94DAkdTKsj6Da4nDZp3YRwBHoKx25X 7BSMmSwMQk18NE/TYEFUMbCMtEcAk5RQyY6uFgY3CPRfE+bPjYQD2AiIrAsQ dTHMyuMmiUmBR9rs/yRIe/AJHpiV3bFjZkEROWf6f171hE4KOjv1OZsmUjeb QjR3s83JZeFfEw9cKQGp4Eg='
 }
