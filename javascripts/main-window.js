@@ -17,7 +17,7 @@ const runJxa = require('run-jxa')
 const environmentVariables = require('../z-environments.js')
 var token = environmentVariables.discourseToken
 var discourseUser = environmentVariables.discourseUser
-var userKey = environmentVariables.newUserAPIKey
+var encodedUserKey = environmentVariables.newUserAPIKey
 
 const { getWindows, getActiveWindow } = require("@nut-tree/nut-js");
 var projectFolderPath
@@ -34,7 +34,7 @@ var diff2html = require("diff2html").Diff2Html
 const { default: axios } = require('axios')
 
 // Including generateKeyPairSync from crypto module
-const { generateKeyPairSync } = require('crypto');
+const { generateKeyPairSync, privateDecrypt, constants } = require('crypto');
 const {hostname} = require('os')
 
 
@@ -288,6 +288,9 @@ function discourseAPITest1(){
             format: 'pem',
         },
     })
+
+    console.log('private key = ')
+    console.log(privateKey)
     console.log('api test1')
     const http = require('url')
     //const myUrl = new URL('https://go.racetosaturn.com/user-api-key/new')
@@ -355,6 +358,23 @@ https://go.racetosaturn.com/user-api-key/new?public_key=-----BEGIN%20RSA%20PUBLI
   newUserKey
 
  */
+
+  function decodeTheKey(){
+      var privateKey = environmentVariables.privateKeyForDecoding
+      var encodedKey = encodedUserKey
+      const trimmedKey = encodedUserKey.trim().replace(/\s/g, '')
+      //console.log(`trimmed encoded key is ${trim}`)
+      const decreptedKey = privateDecrypt(
+          {
+              key: privateKey,
+              padding: constants.RSA_PKCS1_PADDING,
+          },
+          Buffer.from(trimmedKey, 'base64')
+      )
+      const jsonKey = decreptedKey.toString('ascii')
+      console.log('the decoded key = ')
+      console.log(jsonKey)
+  }
 
 
 
