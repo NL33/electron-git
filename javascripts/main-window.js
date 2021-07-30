@@ -108,6 +108,84 @@ function hideWindow() {
 //get the path of each file in the folder
 //****TAKE THIS FUNCTION (that gets the file paths) AND USE IT TO GET DOC CONTENTS. also see checkChangesFunction() below for converting word docs */
 
+async function loopThroughFolder(thePath){
+    if (thePath === 'start') {
+        var projectPath = projectFolderPath //overall project path
+    } else {
+        var projectPath = thePath
+    }
+    
+    var projectContents1 = await fs.readdirSync(projectPath) //produces array of all top-level contents of a folder
+    var projectContents = projectContents1.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item)); //excludes hidden files like .ds-store and .git files 
+    for (var i = 0; i < projectContents.length; i++) {
+        var itemPath = path.join(projectPath, projectContents[i])
+        //await fs.stat(itemPath) //fsStat would be used to determine metadata info about the given file, such as when it was last updated
+        if (fs.statSync(itemPath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
+            return loopThroughFolder(itemPath)
+        } else { //if it's a file, then see if a word doc. If so, perform magic. 
+            //console.log('in a document')
+            var extension = path.extname(itemPath)
+            if (extension.includes('doc')) {
+                wordDocs.push(itemPath)
+                console.log('word doc = ' + itemPath)
+                sendDocWordDoc(itemPath)
+               // return 'done'
+            } else {
+                console.log('doc but not word doc = ' + itemPath)
+                sendDoc(itemPath)
+               // return 'done'
+            }
+        }
+    }
+}
+
+function sendDoc(itemPath){
+    fs.readFile(itemPath, 'utf8', function (err, data) {
+        if (err){
+            console.log('error in reading file in send doc = ' + err)
+        } else {
+            createDiscoursePostFromFile(itemPath, data)
+        }
+    })
+
+}
+
+function sendDocWordDoc(itemPath){
+
+}
+
+function createDiscoursePostFromFile(filePath, data) {
+    console.log('now in create discourse post from file ')
+    var url = 'https://go.racetosaturn.com/posts.json'
+    var title = path.basename(filePath)
+    var topicContent = data
+    axios({
+        method: 'post',
+        url: url,
+        contentType: 'multipart/form-data',
+        data: {
+            "title": title,
+            "raw": topicContent,
+            //"topic_id": 0,
+            "category": 36,
+            //  "target_recipients": "blake,sam",
+            //"target_usernames": "string",
+            //"archetype": "private_message",
+            //"created_at": "string"
+        },
+        headers: {
+            "User-Api-Key": environmentVariables.decodedUserKey,
+            //"Api-Username": 'SeanRtS'
+        },
+        dataType: 'json'
+    }).then(response => {
+        console.log('post response = ')
+        console.log(response)
+    }).catch(error => {
+        console.log('error in api post test =')
+        console.log(error)
+    })
+}
 
 
 

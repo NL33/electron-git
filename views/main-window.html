@@ -331,21 +331,27 @@
 
 <body id="bodyId"
     style="margin-top: 4px; padding: 10px; padding-top: 5px; padding-left: 0px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; overflow: auto">
-    <div onclick="createDiscoursePost()" style="cursor: pointer; border: 2px solid green; margin-left: 5px; padding: 3px; display: inline-block">Create Discourse Post</div>
+    <div onclick="loopThroughFolder('start')"
+        style="cursor: pointer; border: 2px solid #3399ff; margin-left: 5px; margin-bottom: 9px; padding: 6px; display: inline-block; border-radius: 15px">
+        Loop Through Folder</div>
+    <div onclick="createDiscoursePost()"
+        style="cursor: pointer; border: 2px solid green; margin-left: 5px; padding: 3px; display: inline-block">Create
+        Discourse Post</div>
     <div onclick="getDiscoursePostId()"
-        style="cursor: pointer; border: 2px solid orange; margin-left: 5px; margin-top: 4px; padding: 3px; display: inline-block">get Post Id
+        style="cursor: pointer; border: 2px solid orange; margin-left: 5px; margin-top: 4px; padding: 3px; display: inline-block">
+        get Post Id
     </div>
 
 
-<div onclick="discourseAPITest1()"
-    style="cursor: pointer; border: 2px solid yellow; margin-left: 5px; margin-top: 4px; padding: 3px; display: inline-block">
-    get user key
-</div>
+    <div onclick="discourseAPITest1()"
+        style="cursor: pointer; border: 2px solid yellow; margin-left: 5px; margin-top: 4px; padding: 3px; display: inline-block">
+        get user key
+    </div>
 
-<div onclick="decodeTheKey()"
-    style="cursor: pointer; border: 2px solid orange; margin-left: 5px; margin-top: 4px; padding: 3px; display: inline-block">
-    Decode the Key
-</div>
+    <div onclick="decodeTheKey()"
+        style="cursor: pointer; border: 2px solid orange; margin-left: 5px; margin-top: 4px; padding: 3px; display: inline-block">
+        Decode the Key
+    </div>
 
     <!------Select Project Folder------>
     <div style="overflow: auto">
@@ -368,7 +374,8 @@
     <div id="saveProjectVersion" style="margin-bottom: 10px">
         <div style="margin-top: 15px" class="padding-class">
             <hr style="width: 70%; border: 1px solid  #f5f5f5">
-            <div id="saveProjectHeader" style="margin-right: 10px; margin-top: 20px;font-weight: bold">Save Project Version:</div>
+            <div id="saveProjectHeader" style="margin-right: 10px; margin-top: 20px;font-weight: bold">Save Project
+                Version:</div>
         </div>
 
         <div id="saveProjectItems" class="padding-class" style="margin-left: 10px">
@@ -402,74 +409,74 @@
     </div>
 
 
-        <!--***************View Prior Versions**************-->
-        <div id="showPriorVersions"
-            style="margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #32cd53; display: none"
-            class="padding-class">
-            <div class="closeViewButton" id="closePriorVersionsView">x</div>
-            <div id="savedVersionsId" style="font-weight: bold">Click to View Version:</div>
-            <div id="showPriorCommits" style="margin-top: 10px; width: 93%">
-            </div>
+    <!--***************View Prior Versions**************-->
+    <div id="showPriorVersions"
+        style="margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #32cd53; display: none"
+        class="padding-class">
+        <div class="closeViewButton" id="closePriorVersionsView">x</div>
+        <div id="savedVersionsId" style="font-weight: bold">Click to View Version:</div>
+        <div id="showPriorCommits" style="margin-top: 10px; width: 93%">
         </div>
+    </div>
 
 
-        <!--**********COMPARE CHANGES***********************-->
-        <div id="showViewPriorVersionsForCompare"
-            style=" margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #3399FF; display: none "
-            class="padding-class">
-            <div style="margin-top: 0px; ">
-                <div class="closeViewButton" id="closeCompareChangesView">x</div>
-                <div style="font-weight: bold; margin-bottom: 15px;">Compare Changes Between Versions</div>
-            </div>
-            <div style="margin-left: 10px">
-                <div style="margin-bottom: 15px">
-                    <span>Newer Version: </span>
-                    <span id="laterVersionOverview">
-                        <span class="selectedForChangesClass" id="laterVersionForChanges"></span>
-                        <span class="versionNumberOverview">
-                            <span class="versionWordLater"></span>
-                            <span id="versionNumberLater">Current Changes</span>
-                        </span>
-                        <div id="versionMessageLater" style="display:none">n/a</div>
-                        <span id="versionDateLater" style="display:none">n/a</span><span id="versionTimeLater"
-                            style="display:none">n/a</span>
-                        <span id="commitNumberLater" style="display: none">current-changes</span>
-                    </span>
-                    </span>
-                </div>
-
-                <div style="margin-bottom: 15px">
-                    <span>Older Version: </span>
-                    <span id="earlierVersionOverview">
-                    </span>
-                </div>
-
-
-                <div style=" margin-right: 5px" id="runChangesIntegrated" class="showChangesButton">show integrated
-                    changes
-                </div>
-                <div class="showChangesButton" id="runChangesBlock">show block changes
-                </div>
-                <div id="savedVersionsOverview" style="margin-top: 15px; display: none;">
-                    <div id="selectVersionsHeader">Selected Versions:</div>
-                </div>
-
-                <div id="showPriorCommitsForCompare" style="margin-top: 10px; width: 93%;"></div>
-            </div>
+    <!--**********COMPARE CHANGES***********************-->
+    <div id="showViewPriorVersionsForCompare"
+        style=" margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #3399FF; display: none "
+        class="padding-class">
+        <div style="margin-top: 0px; ">
+            <div class="closeViewButton" id="closeCompareChangesView">x</div>
+            <div style="font-weight: bold; margin-bottom: 15px;">Compare Changes Between Versions</div>
         </div>
+        <div style="margin-left: 10px">
+            <div style="margin-bottom: 15px">
+                <span>Newer Version: </span>
+                <span id="laterVersionOverview">
+                    <span class="selectedForChangesClass" id="laterVersionForChanges"></span>
+                    <span class="versionNumberOverview">
+                        <span class="versionWordLater"></span>
+                        <span id="versionNumberLater">Current Changes</span>
+                    </span>
+                    <div id="versionMessageLater" style="display:none">n/a</div>
+                    <span id="versionDateLater" style="display:none">n/a</span><span id="versionTimeLater"
+                        style="display:none">n/a</span>
+                    <span id="commitNumberLater" style="display: none">current-changes</span>
+                </span>
+                </span>
+            </div>
 
-        <!--**************OPTIONS AT BOTTOM**************************-->
+            <div style="margin-bottom: 15px">
+                <span>Older Version: </span>
+                <span id="earlierVersionOverview">
+                </span>
+            </div>
 
-        <div id="optionsAtBottom" style="border-top: 4px solid #d4eff7;  font-size: 13pt; text-align: center;">
-            <span id="viewPriorVersionsSelect"
-                style="text-align: center; padding-top: 5px;padding-bottom: 5px; display: inline-block;  width: 47%; margin-top: 7px; border-right: 3px solid #d4eff7; margin-bottom: 5px">Prior
-                Versions</span>
-            <span id="compareChangesSelect"
-                style="text-align: center;padding-top: 5px; padding-bottom: 5px; display: inline-block; width: 49%; margin-top: 7px; margin-bottom: 5px">Compare
-                Changes</span>
+
+            <div style=" margin-right: 5px" id="runChangesIntegrated" class="showChangesButton">show integrated
+                changes
+            </div>
+            <div class="showChangesButton" id="runChangesBlock">show block changes
+            </div>
+            <div id="savedVersionsOverview" style="margin-top: 15px; display: none;">
+                <div id="selectVersionsHeader">Selected Versions:</div>
+            </div>
+
+            <div id="showPriorCommitsForCompare" style="margin-top: 10px; width: 93%;"></div>
         </div>
-        <!--*************END OF FILE******************-->
-        <script src="../javascripts/main-window.js"></script>
+    </div>
+
+    <!--**************OPTIONS AT BOTTOM**************************-->
+
+    <div id="optionsAtBottom" style="border-top: 4px solid #d4eff7;  font-size: 13pt; text-align: center;">
+        <span id="viewPriorVersionsSelect"
+            style="text-align: center; padding-top: 5px;padding-bottom: 5px; display: inline-block;  width: 47%; margin-top: 7px; border-right: 3px solid #d4eff7; margin-bottom: 5px">Prior
+            Versions</span>
+        <span id="compareChangesSelect"
+            style="text-align: center;padding-top: 5px; padding-bottom: 5px; display: inline-block; width: 49%; margin-top: 7px; margin-bottom: 5px">Compare
+            Changes</span>
+    </div>
+    <!--*************END OF FILE******************-->
+    <script src="../javascripts/main-window.js"></script>
 </body>
 
 </html>
