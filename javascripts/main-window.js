@@ -100,15 +100,9 @@ function hideWindow() {
 
 
 /************** Testing Discourse API *******************************/
-//Next: go through files and make posts from the files
-//remember to have the app not stall when its happening. just get notice when its done, with url
-
-/***START HERE: Look up other examples (outside of discourse of getting "api keys" with client) ******/
-
-//get the path of each file in the folder
-//****TAKE THIS FUNCTION (that gets the file paths) AND USE IT TO GET DOC CONTENTS. also see checkChangesFunction() below for converting word docs */
-
+//current-code
 async function loopThroughFolder(thePath){
+
     if (thePath === 'start') {
         var projectPath = projectFolderPath //overall project path
     } else {
@@ -118,22 +112,20 @@ async function loopThroughFolder(thePath){
     var projectContents1 = await fs.readdirSync(projectPath) //produces array of all top-level contents of a folder
     var projectContents = projectContents1.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item)); //excludes hidden files like .ds-store and .git files 
     for (var i = 0; i < projectContents.length; i++) {
-        var itemPath = path.join(projectPath, projectContents[i])
-        //await fs.stat(itemPath) //fsStat would be used to determine metadata info about the given file, such as when it was last updated
-        if (fs.statSync(itemPath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
-            return loopThroughFolder(itemPath)
-        } else { //if it's a file, then see if a word doc. If so, perform magic. 
-            //console.log('in a document')
-            var extension = path.extname(itemPath)
-            if (extension.includes('doc')) {
-                wordDocs.push(itemPath)
-                console.log('word doc = ' + itemPath)
-                sendDocWordDoc(itemPath)
-               // return 'done'
-            } else {
-                console.log('doc but not word doc = ' + itemPath)
-                sendDoc(itemPath)
-               // return 'done'
+        if (projectContents[i].substring(0, 2) !== '~$'){ //stop if a temp word file
+            var itemPath = path.join(projectPath, projectContents[i])
+            //await fs.stat(itemPath) //fsStat would be used to determine metadata info about the given file, such as when it was last updated
+            if (fs.statSync(itemPath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
+                loopThroughFolder(itemPath)
+            } else { //if it's a file, then see if a word doc. If so, perform magic. 
+                //console.log('in a document')
+                var extension = path.extname(itemPath)
+                if (extension.includes('doc')) {
+                    sendDocWordDoc(itemPath)
+                } else {
+                    sendDoc(itemPath)
+                // return 'done'
+                }
             }
         }
     }
@@ -151,11 +143,14 @@ function sendDoc(itemPath){
 }
 
 function sendDocWordDoc(itemPath){
+    mammoth.convertToHtml({ path: itemPath }).then(function (result) {
+        var htmlWord = result.value
+        createDiscoursePostFromFile(itemPath, htmlWord)
+    })
 
 }
 
 function createDiscoursePostFromFile(filePath, data) {
-    console.log('now in create discourse post from file ')
     var url = 'https://go.racetosaturn.com/posts.json'
     var title = path.basename(filePath)
     var topicContent = data
