@@ -17,7 +17,7 @@ const runJxa = require('run-jxa')
 const environmentVariables = require('../z-environments.js')
 var token = environmentVariables.discourseToken
 var discourseUser = environmentVariables.discourseUser
-var encodedUserKey = environmentVariables.newUserAPIKey
+
 
 const { getWindows, getActiveWindow } = require("@nut-tree/nut-js");
 var projectFolderPath
@@ -184,14 +184,14 @@ function createDiscoursePost() {
     var key = token
     var userName = discourseUser
     var topicContent = `
-        This is a great document from GroupInfoUser. Posted on July 28, 2021, at 1:25pm.
+        Here is a post using the generated api user key. check it out.
     `
     axios({
         method: 'post',
         url: url,
         contentType:'multipart/form-data',
         data: {
-            "title": "Great Word Doc 2",
+            "title": "Great Word Doc 3",
             "raw": topicContent,
             //"topic_id": 0,
             "category": 36,
@@ -201,8 +201,8 @@ function createDiscoursePost() {
             //"created_at": "string"
         },
         headers: {
-            "Api-Key": key,
-            "Api-Username": userName
+            "User-Api-Key": environmentVariables.decodedUserKey,
+            //"Api-Username": 'SeanRtS'
         },
         dataType: 'json'
     }).then(response => {
@@ -273,7 +273,7 @@ function updatePost(postId, userName, key){
 }
 
 /*******GENERATE PUBLIC AND PRIVATE KEY */
-
+//NOTE: can use loadURL(discourse site) if want to keep everything in an app-based window
 
 
 function discourseAPITest1(){
@@ -293,33 +293,26 @@ function discourseAPITest1(){
     console.log(privateKey)
     console.log('api test1')
     const http = require('url')
-    //const myUrl = new URL('https://go.racetosaturn.com/user-api-key/new')
    var  myUrl = 'https://go.racetosaturn.com/user-api-key/new'
-    //var redirectUrl = myURL.href
-    var redirectUrl = 'http://127.0.0.1:8000/' 
-    /* could also set a custom protocol, as a "urn", choosing a protocol ('coolprotocol') using the method here: https://www.electronjs.org/docs/api/protocol, and then providing the redirectURL as "coolprotocol//example"
-    //--some use http://127.0.0.1:8000/ instead of localhost: https://stackoverflow.com/questions/44086537/how-to-integrate-oauth2-0-login-in-electron
-    */
-    //https://meta.discourse.org/t/user-api-keys-specification/48536
-    //https://go.racetosaturn.com/user-api-key/new?public_key=89e1d5c9a196c3a25b5d615c932486720d5d406cd8ff224276524be66249cdfc&nonce='123'&scopes='read,write'&client_id=%27system%27&application_name=%27Saturn%27
 
-    var sendUrl = myUrl + '?public_key=' + publicKey + '&nonce=' + '1' + '&auth_redirect=' + redirectUrl + '&application_name=' + 'Saturn-App' + '&client_id=' + hostname + '&scopes=' + 'write' 
+    var redirectUrl = 'goprotocol://example'
 
-    //shell.openExternal(sendUrl)
-    
-/* converted URL=
-https://go.racetosaturn.com/user-api-key/new?public_key=-----BEGIN%20RSA%20PUBLIC%20KEY----------END%20RSA%20PUBLIC%20KEY-----&nonce=1&auth_redirect=http://127.0.0.1:8000/&application_name=Saturn-App&client_id=Wins-Mac.local&scopes=write
 
-*/
+// code for getting user key. Commented out to not run again until ready
+
+/*
     const url = new URL(`https://go.racetosaturn.com/user-api-key/new`)
 
     url.searchParams.append('application_name', 'Saturn-App')
     url.searchParams.append('client_id', hostname())
     url.searchParams.append('scopes', 'write')
     url.searchParams.append('public_key', publicKey)
+    url.searchParams.append('auth_redirect', redirectUrl)
     url.searchParams.append('nonce', '1')
     console.log(`redirect URL is ${url.href}`)
     shell.openExternal(url.href)
+   // ipcRenderer.send('open-discourse-auth-window', url.href)
+*/
 
 /*
      axios({
@@ -349,20 +342,18 @@ https://go.racetosaturn.com/user-api-key/new?public_key=-----BEGIN%20RSA%20PUBLI
 
 }
 
-
-
-/*****With url.searchParams.append, got this response:
- --Application Saturn App is trying to authorize your account, to give "write all"
- --authorize button, then:
- --We just generated a new user API key for you to use with "Saturn-App", please paste the following key into your application:
-  newUserKey
-
- */
+ipcRenderer.on('discourse-payload-url', (event, newUrl) =>{
+    console.log('***just got the new url = ') 
+    console.log(newUrl)
+} )
 
   function decodeTheKey(){
-      var privateKey = environmentVariables.privateKeyForDecoding
-      var encodedKey = encodedUserKey
-      const trimmedKey = encodedUserKey.trim().replace(/\s/g, '')
+      /**START HERE: TRYING TO MAKE THIS WORK WITH UPDATED KEY.
+       * May have to get the key without the auth_redirect param. Otherwise the key might not go through fully.**** */
+      var privateKey = environmentVariables.privateKeyForDecoding.trim()
+      var encodedKey = environmentVariables.encodedUserKey
+      console.log('encoded key = ' + encodedKey)
+      const trimmedKey = encodedKey.trim().replace(/\s/g, '')
       //console.log(`trimmed encoded key is ${trim}`)
       const decreptedKey = privateDecrypt(
           {

@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, webContents } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
+const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, webContents, protocol } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
 const { keyboard, Key } = require("@nut-tree/nut-js")
 const fs = require('fs');
@@ -194,6 +194,36 @@ function openHTMLWindow(thePath, content) {
 
 }
 
+/********OPEN DISCOURSE WINDOW FOR AUTHENTICATION ***********/
+
+ipcMain.on('open-discourse-auth-window', (event, arg1) => {
+    openDiscourseAuthWindow(arg1)
+})
+
+function openDiscourseAuthWindow(discourseUrl) {
+
+        var discourseWindow = new BrowserWindow({
+            width: 670, //320,
+            height: 650,
+            title: 'Authorize',
+           // x: 0,
+           // y: 0,
+            alwaysOnTop: true,
+            webPreferences: {
+                nodeIntegration: true,
+                contextIsolation: false,
+                enableRemoteModule: true,
+               // additionalArguments: [thePath, content],
+            }
+        })
+        //window.loadURL('file:' + filePath);
+        discourseWindow.loadURL(discourseUrl);
+        discourseWindow.webContents.on('will-navigate', function(event, newUrl){
+            discourseWindow.webContents.send('discourse-payload-url', newUrl )
+        })
+}
+
+
 /*********VIEW PRIOR VERSION************* */
 async function viewOldVersion() {
     newVersionWindow.webContents.send('view-old-version', 'cool')
@@ -305,6 +335,20 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
             // createWindow()
         }
     })
+
+    protocol.registerFileProtocol('goprotocol', (request, callback) => {
+        console.log('registerd file protocol!!')
+       // const url = request.url.substr(7)
+       const url = request.url
+        callback({ path: path.normalize(`${__dirname}/${url}`) })
+        console.log('******THAT URL**** = ' + url)
+    }, (error) => {
+        if (error) console.error('Failed to register protocol = ' + error)
+    })
+    protocol.interceptFileProtocol('goprotocol', (request, callback) => { 
+        console.log('****Protocol has been PROVIDED!****')
+     });
+  
 })
 
 /*
