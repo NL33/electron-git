@@ -100,7 +100,6 @@ function hideWindow() {
 
 
 /************** Testing Discourse API *******************************/
-//current-code
 async function loopThroughFolder(thePath){
 
     if (thePath === 'start') {
@@ -151,6 +150,9 @@ function sendDocWordDoc(itemPath){
 }
 
 function createDiscoursePostFromFile(filePath, data) {
+
+
+     */
     var url = 'https://go.racetosaturn.com/posts.json'
     var title = path.basename(filePath)
     var topicContent = data
