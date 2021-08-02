@@ -75,6 +75,14 @@ $ npm install @octokit/core
     --July 18, 2021
     --this is the official github api client. for making api calls with github.
 
+$ npm install dexie
+    --july 31, 2021
+    --for use as a database to link project files to discourse post ids.
+
+$ npm install dexie-export-import
+    --July 31, 2021
+    --uninstalled on Aug 2, 2021. Provides ability to export and import database (for example, to send the database somewhere else). Not clear this is useful for current requirements.
+
 # Prior to rollback on April 15, 2021
 # RobotJS
 

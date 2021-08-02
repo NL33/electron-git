@@ -33,14 +33,27 @@ const { shouldRebuildNativeModules } = require('electron-rebuild')
 var diff2html = require("diff2html").Diff2Html
 const { default: axios } = require('axios')
 
-// Including generateKeyPairSync from crypto module
+// Including generateKeyPairSync from crypto module. This is for generating an api key for authenticating with discourse
 const { generateKeyPairSync, privateDecrypt, constants } = require('crypto');
 const {hostname} = require('os')
 
+//dexie database for linking project files to discourse posts
+const Dexie = require('dexie')
+var db = ''
+//Dexie.debug = false //set to false for production. During development, gives more thorough error logs
 
 /*****Button Set Up *****/
 window.onload = function () {
     /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
+    var db = new Dexie('FileDatabase')
+
+    db.version(1).stores({
+        fileInfo: "++id, fileId, fileName, filePath, postId" //will send file to discourse, linking with postId. how will it link with project? When send to site, project will probably be named after main-folder-name/subfolder. Can get this from the filepath. And then add the tag with this name and a hash to the post, so it will be tagged that way on discourse.
+            //start out this way. Issues in future: if change path name, will that change project? maybe it's ok for it to work that way?
+    })
+
+
+
     if (localStorage.getItem('working-trees-present')) {
         let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
         if (treeArray.length > 0) {
@@ -100,6 +113,20 @@ function hideWindow() {
 
 
 /************** Testing Discourse API *******************************/
+
+function testFileDetails(){
+    var theFile = '/Users/sean/Desktop/file-path-test/blue-folder/blue-text-file-2.txt'
+    var file1 = '/Users/sean/Desktop/anewworddoc.docx'
+    var file2 = '/Users/sean/Desktop/companycd/electron-git/zz-file2.txt'
+    //var theStats = fs.statSync(theFile)
+    var stat1 = fs.statSync(file1)
+    var stat2 = fs.statSync(file2)
+    console.log('stat 1 for word doc convert-test = ******')
+    console.log(stat1)
+   // console.log('stat 2 = *******')
+    //console.log(stat2)
+}
+
 async function loopThroughFolder(thePath){
 
     if (thePath === 'start') {
@@ -151,8 +178,6 @@ function sendDocWordDoc(itemPath){
 
 function createDiscoursePostFromFile(filePath, data) {
 
-
-     */
     var url = 'https://go.racetosaturn.com/posts.json'
     var title = path.basename(filePath)
     var topicContent = data

@@ -20,6 +20,7 @@
     "@nut-tree/nut-js": "^1.6.1-next.20210408195718",
     "@octokit/core": "^3.5.1",
     "axios": "^0.21.1",
+    "dexie": "^3.0.3",
     "diff2html": "^3.4.5",
     "mammoth": "^1.4.17",
     "moment": "^2.29.1",

@@ -1,9 +1,29 @@
 # Just Completed
-Basic work for creating apple doc. next: reference to "zoneplace" doc for apple notes next steps
 
-*START WITH FIGURING OUT GITHUB*
+# Next
 
-see zgithub-connection for more
+By Wednesday, August 4, 6:30pm EST:
+
+*Sending Docs to Discourse*
+
+-set up database
+-when sending a doc, update database entry with doc info (docId (birthtime), filename, discourse topic id, discourse postid)
+have project page on discourse, based on tags
+-comment system 
+-authentication 
+-private posts (later)
+
+*Additional Nav elements to desktop app*
+-button to minimize all windows
+-add breathe big button
+-add gratitude notes
+-make faster to choose file (later)
+
+
+
+
+
+# Previous
 
 *START HERE FOR OPENING HTML FILES/APPLESCRIPT*
 -working on opening html, with contenteditable. I made it work to save files to html, and then when open them, they open in the app itself. so its like your own webpage that you can edit and save.
@@ -16,8 +36,6 @@ see zgithub-connection for more
      --maybe add a save as also? (especially for older versions)
 --make the content process faster for apple notes.
 
-
-*Next*
 
 # link to github and/or dropbox
 --start here.
@@ -237,6 +255,8 @@ could do the split based on more info, like the actual name of the doc, which yo
 --when send successful push to remote, show success button prior to going back to main screen
 
 --if not changes when try to save version, should tell the user that
+
+--dexiedb has the ability to send the database contents into json format, or other format that you can download (and probably backup). Not clear if this is important or helpful for where I am using dexie (for example, sending docs to discourse). But consider. To use, have to download export-import package: https://www.npmjs.com/package/dexie-export-import. and some examples here: https://gauriatiq.medium.com/electron-app-database-with-dexie-js-indexeddb-and-web-worker-570d9a66a47a
 
 # contact notes
 

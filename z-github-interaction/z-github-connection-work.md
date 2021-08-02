@@ -1,4 +1,8 @@
 **Work On Connecting the App to Github**
+*Overview*
+Update note: Monday, August 2, 2021: I put this file together when I was assuming that github would be the prime place to share the work you do with the desktop app. Since then, I have focused more on discourse as the place to share your work. So I have not pursued the below. This could still be relevant to provide a simple place to backup apps.
+
+
 *Status*
 Works to push to github if:
 --already set up remote on github
@@ -13,6 +17,8 @@ Works to push to github if:
 others to come
     --view repos on app
     --layer functionality like milestones and connections on top of viewing github.
+
+
 # push project to github
 https://github.com/steveukx/git-js/#git-push
 status: basic version working. 
