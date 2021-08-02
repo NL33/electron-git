@@ -6,12 +6,22 @@ By Wednesday, August 4, 6:30pm EST:
 
 *Sending Docs to Discourse*
 
--set up database
--when sending a doc, update database entry with doc info (docId (birthtime), filename, discourse topic id, discourse postid)
-have project page on discourse, based on tags
--comment system 
--authentication 
--private posts (later)
+# set up database
+
+done.
+
+# when sending a doc, update database entry with doc info (docId (birthtime), filename, discourse topic id, discourse postid)
+
+--make sure can search by birthdime of file (fileId)
+--check database for birthtime of the file. If not there, add new entry
+--if there, update last sent value
+--later, can compare last sent value to update value. and only send if last modified value is later than last sent.
+
+
+# have project page on discourse, based on tags
+# comment system 
+# authentication 
+# private posts (later)
 
 *Additional Nav elements to desktop app*
 -button to minimize all windows

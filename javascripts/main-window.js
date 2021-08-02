@@ -158,6 +158,8 @@ async function loopThroughFolder(thePath){
 }
 
 function sendDoc(itemPath){
+    /****Start Here:***/
+    //current-code
     fs.readFile(itemPath, 'utf8', function (err, data) {
         if (err){
             console.log('error in reading file in send doc = ' + err)
