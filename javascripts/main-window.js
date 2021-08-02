@@ -39,21 +39,35 @@ const {hostname} = require('os')
 
 //dexie database for linking project files to discourse posts
 const Dexie = require('dexie')
-var db = ''
+var db = new Dexie("FileDatabase")
+
+
 //Dexie.debug = false //set to false for production. During development, gives more thorough error logs
 
+console.log('1')
 /*****Button Set Up *****/
-window.onload = function () {
-    /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
-    var db = new Dexie('FileDatabase')
+window.onload = async function () {
 
-    db.version(1).stores({
-        fileInfo: "++id, fileId, fileName, filePath, postId" //will send file to discourse, linking with postId. how will it link with project? When send to site, project will probably be named after main-folder-name/subfolder. Can get this from the filepath. And then add the tag with this name and a hash to the post, so it will be tagged that way on discourse.
+ try {
+     await db.version(1).stores({
+         fileInfo: "++id,fileId,fileName,filePath,postId"
+     })
+ } catch (error) {
+     console.log('error = ' + error)
+ }
+
+ console.log('should be done')
+
+    /*
+    catch(function (error) {
+        alert('Uh oh : ' + error);
+    });
+    */
+    //will send file to discourse, linking with postId. how will it link with project? When send to site, project will probably be named after main-folder-name/subfolder. Can get this from the filepath. And then add the tag with this name and a hash to the post, so it will be tagged that way on discourse.
             //start out this way. Issues in future: if change path name, will that change project? maybe it's ok for it to work that way?
-    })
 
 
-
+    /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
     if (localStorage.getItem('working-trees-present')) {
         let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
         if (treeArray.length > 0) {
@@ -126,7 +140,7 @@ function testFileDetails(){
    // console.log('stat 2 = *******')
     //console.log(stat2)
 }
-
+//current-code
 async function loopThroughFolder(thePath){
 
     if (thePath === 'start') {
@@ -147,9 +161,11 @@ async function loopThroughFolder(thePath){
                 //console.log('in a document')
                 var extension = path.extname(itemPath)
                 if (extension.includes('doc')) {
-                    sendDocWordDoc(itemPath)
+                    checkDatabase(itemPath, 'word')
+                   // sendDocWordDoc(itemPath)
                 } else {
-                    sendDoc(itemPath)
+                    checkDatabase(itemPath, 'notWord')
+                    //sendDoc(itemPath)
                 // return 'done'
                 }
             }
@@ -157,29 +173,42 @@ async function loopThroughFolder(thePath){
     }
 }
 
-function sendDoc(itemPath){
-    /****Start Here:***/
-    //current-code
-    fs.readFile(itemPath, 'utf8', function (err, data) {
-        if (err){
-            console.log('error in reading file in send doc = ' + err)
+async function checkDatabase(filePath, wordOrNot){
+    var createTime = fs.statSync(filePath).birthtimeMs
+
+    db.transaction('rw', db.fileInfo, async () => {
+        if ((await db.fileInfo.where({fileId: createTime}).count()) === 0) {
+            sendDoc(filePath, createTime, wordOrNot)
         } else {
-            createDiscoursePostFromFile(itemPath, data)
+            console.log('there is a post already')
+            /***Start here: 
+                1. this is working to check db, and not send post if db entry already exists.
+                2. send to put function if already exists.
+                3. one entry is coming back with a 422 error. why? 
+             
+             */
         }
     })
-
 }
 
-function sendDocWordDoc(itemPath){
-    mammoth.convertToHtml({ path: itemPath }).then(function (result) {
-        var htmlWord = result.value
-        createDiscoursePostFromFile(itemPath, htmlWord)
-    })
-
+function sendDoc(itemPath, createTime, wordOrNot){
+    if (wordOrNot === 'word'){
+        mammoth.convertToHtml({ path: itemPath }).then(function (result) {
+            var htmlWord = result.value
+            createDiscoursePostFromFile(itemPath, createTime, htmlWord)
+        })
+    } else {
+        fs.readFile(itemPath, 'utf8', function (err, data) {
+            if (err) {
+                console.log('error in reading file in send doc = ' + err)
+            } else {
+                createDiscoursePostFromFile(itemPath, createTime, data)
+            }
+        })
+    }
 }
 
-function createDiscoursePostFromFile(filePath, data) {
-
+function createDiscoursePostFromFile(filePath, createTime, data) {
     var url = 'https://go.racetosaturn.com/posts.json'
     var title = path.basename(filePath)
     var topicContent = data
@@ -203,8 +232,15 @@ function createDiscoursePostFromFile(filePath, data) {
         },
         dataType: 'json'
     }).then(response => {
-        console.log('post response = ')
-        console.log(response)
+        console.log('created new post.')
+        var postId = response.data.id
+        db.fileInfo.add({
+            fileId: createTime,
+            fileName: title,
+            filePath: filePath,
+            postId: postId
+            //project?
+        })
     }).catch(error => {
         console.log('error in api post test =')
         console.log(error)
@@ -311,7 +347,7 @@ function createDiscoursePost() {
         console.log('post response = ')
         console.log(response)
     }).catch(error => {
-        console.log('error in api post test =')
+        console.log('error in create post =')
         console.log(error)
     })
 }
