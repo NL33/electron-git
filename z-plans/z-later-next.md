@@ -1,5 +1,14 @@
 **Later To-Dos**
 
+# notable issues to fix
+--compare changes. full document not working. Still showing both items. at least this happens when one of the files has changed its name. 
+
+--compare changes. When one file changes its name. Does the comparison still work? 
+
+--compare changes. I had a few versions saved. Then I added a word documnt. and saved the version. When I went to compare the changes (version with the word doc, v version without), the word doc did not show up. It had this error: Unhandled rejection Error: ENOENT: no such file or directory, open '/Users/sean/Desktop/git-app-test-docs/remote-test/426708worktree3#&7#&1#&4/llc-agreement.docx'
+
+--compare changes: error catching: if a problem, make sure it doesn't stop the app. Otherwise, the temp folders could show up in the project
+
 # Later
 --idea--put red bar over old versionwhen retreiving prior version?
 -when add a new folder (especially in the main project directory), insert the new folder in alphabetical order. meaning go through the titles of the directory, and insert it after he one with proper alphabetical order

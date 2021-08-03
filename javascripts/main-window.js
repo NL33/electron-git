@@ -47,8 +47,8 @@ var db = new Dexie("FileDatabase")
 window.onload = async function () {
 
  try {
-     await db.version(1).stores({
-         fileInfo: "++id,fileId, fileName, lastSentTime, filePath,postId"
+     await db.version(2).stores({
+         fileInfo: "++id,fileId, fileName, lastSentTime, filePath,postId, projectName"
      })
  } catch (error) {
      console.log('error = ' + error)
@@ -162,8 +162,6 @@ async function checkDatabase(filePath, wordOrNot){
     var stats = fs.statSync(filePath)
     var createTime = stats.birthtimeMs
     var dbEntry = await db.fileInfo.get({ fileId: createTime})
-    //console.log('db entry = ' + dbEntry.fileName)
-    //
     if (!dbEntry) {
         //not entered in database yet. should mean no discourse topic created yet. So create a new one
         setUpDocForCreate(filePath, createTime, wordOrNot)
@@ -219,6 +217,8 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
     var title = path.basename(filePath)
     var topicContent = data
     console.log('title = ' + title)
+    var directoryOnly = path.dirname(filePath)
+    console.log('directory only = ' + directoryOnly)
     axios({
         method: 'post',
         url: url,
@@ -228,6 +228,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
             "raw": topicContent,
             //"topic_id": 0,
             "category": 36,
+            "tags": [directoryOnly]
             //  "target_recipients": "blake,sam",
             //"target_usernames": "string",
             //"archetype": "private_message",
@@ -240,6 +241,8 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
         dataType: 'json'
     }).then(response => {
         console.log('created new post for = ' + filePath)
+        console.log('heres the response = ')
+        console.log(response)
         var postId = response.data.id
         var timeNow1 = new Date();
         var timeNow = timeNow1.getTime()
@@ -291,8 +294,6 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId){
                 lastSentTime: timeNow
             })
             const viewEntry = await db.fileInfo.where({fileId: createTime}).toArray()
-            console.log('view entry***** = ')
-            console.log(viewEntry) 
         }).catch(Dexie.ModifyError, error => {
            // ModifyError did occur
             console.error(error.failures.length + " items failed to modify");
