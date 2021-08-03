@@ -15,15 +15,16 @@ done.
 --make sure can search by birthdime of file (fileId). DONE
 --check database for birthtime of the file. If not there, add new entry. DONE
 --ad last sentValue to DB. might requrire creating new version (db.version(2). but for development, can probably just update the one already there. DONE.
---if there, add put entry.
-----and each send, update "lastSent" value
---later, can compare last sent value to update value. and only send if last modified value is later than last sent.
+--if there, add put entry. DONE.
+----and each send, update "lastSent" value DONE.
+--later, can compare last sent value to update value. and only send if last modified value is later than last sent. some docs seem to be updating when they haven't been updated. DONE.
 
 
 # have project page on discourse, based on tags
 # comment system 
 # authentication 
 # private posts (later)
+# add comments to the version you are sending to discourse, explaining the update. Would be a topic custom field, updated through the API. and then a field on the topic page to view the comment.
 
 *Additional Nav elements to desktop app*
 -button to minimize all windows
@@ -32,7 +33,11 @@ done.
 -make faster to choose file (later)
 
 
+# PAyments
 
+stripe now has payent links. Create a page through stripe. Create a link. put the link on site. User pays there
+     --basically same as a checkout page on the site. But saves you having to code up or set up the page on the site.
+     --question: how do you then know whether the user is paid or not? can probably just stick with discourse subscriptions for now. if not using discourse, payment links are a possibility.
 
 
 # Previous

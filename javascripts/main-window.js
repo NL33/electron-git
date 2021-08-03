@@ -168,11 +168,11 @@ async function checkDatabase(filePath, wordOrNot){
         //not entered in database yet. should mean no discourse topic created yet. So create a new one
         setUpDocForCreate(filePath, createTime, wordOrNot)
     } else { //already a discourse topic
-        var lastModifiedTime = stats.ctime //mtime is when file last modified. ctime includes that time, but also includes if file properties change, like file permissions, name or location
+        var lastModifiedTime = stats.mtime //mtime is when file last modified. ctime includes that time, but also includes if file properties change, like file permissions, name or location. Ctime would be better, but it also updates when the file is opened (even if no other change). So I am going with mtime--and if you want to update the version online, you need to be sure to save it.
         var lastSentTime = dbEntry.lastSentTime
         var postId = dbEntry.postId
         if (lastModifiedTime > lastSentTime){
-            console.log('time to update')
+            console.log('time to update for  = ' + filePath )
             setUpDocForUpdate(filePath, createTime, wordOrNot, postId)
         } else {
            console.log('dont update for ' + filePath)
@@ -691,7 +691,6 @@ async function showFolderContents(divId, mainPath, indent) {
     var hasExtension = false
     if (extension) {
         hasExtension = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
-        console.log('it has extension = ' + extension)
     }
     if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
         var stats = fs.statSync(mainPath)
