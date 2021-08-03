@@ -43,20 +43,16 @@ var db = new Dexie("FileDatabase")
 
 
 //Dexie.debug = false //set to false for production. During development, gives more thorough error logs
-
-console.log('1')
 /*****Button Set Up *****/
 window.onload = async function () {
 
  try {
      await db.version(1).stores({
-         fileInfo: "++id,fileId,fileName,filePath,postId"
+         fileInfo: "++id,fileId, fileName, lastSentTime, filePath,postId"
      })
  } catch (error) {
      console.log('error = ' + error)
  }
-
- console.log('should be done')
 
     /*
     catch(function (error) {
@@ -128,21 +124,10 @@ function hideWindow() {
 
 /************** Testing Discourse API *******************************/
 
-function testFileDetails(){
-    var theFile = '/Users/sean/Desktop/file-path-test/blue-folder/blue-text-file-2.txt'
-    var file1 = '/Users/sean/Desktop/anewworddoc.docx'
-    var file2 = '/Users/sean/Desktop/companycd/electron-git/zz-file2.txt'
-    //var theStats = fs.statSync(theFile)
-    var stat1 = fs.statSync(file1)
-    var stat2 = fs.statSync(file2)
-    console.log('stat 1 for word doc convert-test = ******')
-    console.log(stat1)
-   // console.log('stat 2 = *******')
-    //console.log(stat2)
-}
 //current-code
 async function loopThroughFolder(thePath){
-
+    var currentTime = new Date()
+    console.log('current time = ' + currentTime.getTime())
     if (thePath === 'start') {
         var projectPath = projectFolderPath //overall project path
     } else {
@@ -174,24 +159,28 @@ async function loopThroughFolder(thePath){
 }
 
 async function checkDatabase(filePath, wordOrNot){
-    var createTime = fs.statSync(filePath).birthtimeMs
-
-    db.transaction('rw', db.fileInfo, async () => {
-        if ((await db.fileInfo.where({fileId: createTime}).count()) === 0) {
-            sendDoc(filePath, createTime, wordOrNot)
+    var stats = fs.statSync(filePath)
+    var createTime = stats.birthtimeMs
+    var dbEntry = await db.fileInfo.get({ fileId: createTime})
+    //console.log('db entry = ' + dbEntry.fileName)
+    //
+    if (!dbEntry) {
+        //not entered in database yet. should mean no discourse topic created yet. So create a new one
+        setUpDocForCreate(filePath, createTime, wordOrNot)
+    } else { //already a discourse topic
+        var lastModifiedTime = stats.ctime //mtime is when file last modified. ctime includes that time, but also includes if file properties change, like file permissions, name or location
+        var lastSentTime = dbEntry.lastSentTime
+        var postId = dbEntry.postId
+        if (lastModifiedTime > lastSentTime){
+            console.log('time to update')
+            setUpDocForUpdate(filePath, createTime, wordOrNot, postId)
         } else {
-            console.log('there is a post already')
-            /***Start here: 
-                1. this is working to check db, and not send post if db entry already exists.
-                2. send to put function if already exists.
-                3. one entry is coming back with a 422 error. why? 
-             
-             */
+           console.log('dont update for ' + filePath)
         }
-    })
+    } 
 }
 
-function sendDoc(itemPath, createTime, wordOrNot){
+function setUpDocForCreate(itemPath, createTime, wordOrNot){
     if (wordOrNot === 'word'){
         mammoth.convertToHtml({ path: itemPath }).then(function (result) {
             var htmlWord = result.value
@@ -202,7 +191,24 @@ function sendDoc(itemPath, createTime, wordOrNot){
             if (err) {
                 console.log('error in reading file in send doc = ' + err)
             } else {
-                createDiscoursePostFromFile(itemPath, createTime, data)
+               createDiscoursePostFromFile(itemPath, createTime, data)
+            }
+        })
+    }
+}
+
+function setUpDocForUpdate(itemPath, createTime, wordOrNot, postId) {
+    if (wordOrNot === 'word') {
+        mammoth.convertToHtml({ path: itemPath }).then(function (result) {
+            var htmlWord = result.value
+            updateDiscoursePostFromFile(itemPath, createTime, htmlWord, postId)
+        })
+    } else {
+        fs.readFile(itemPath, 'utf8', function (err, data) {
+            if (err) {
+                console.log('error in reading file in send doc = ' + err)
+            } else {
+                updateDiscoursePostFromFile(itemPath, createTime, data, postId)
             }
         })
     }
@@ -212,6 +218,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
     var url = 'https://go.racetosaturn.com/posts.json'
     var title = path.basename(filePath)
     var topicContent = data
+    console.log('title = ' + title)
     axios({
         method: 'post',
         url: url,
@@ -232,13 +239,16 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
         },
         dataType: 'json'
     }).then(response => {
-        console.log('created new post.')
+        console.log('created new post for = ' + filePath)
         var postId = response.data.id
+        var timeNow1 = new Date();
+        var timeNow = timeNow1.getTime()
         db.fileInfo.add({
             fileId: createTime,
             fileName: title,
             filePath: filePath,
-            postId: postId
+            postId: postId,
+            lastSentTime: timeNow
             //project?
         })
     }).catch(error => {
@@ -247,72 +257,54 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
     })
 }
 
-
-
-
-/*
-async function showFolderContents(divId, mainPath, indent) {
-    var element = document.getElementById(divId)
-    var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
-    while (highlightedDivs.length)
-        highlightedDivs[0].classList.remove('highlightFolderOrFile')
-    if (element.id !== 'projectDirectory') {
-        element.classList.add('highlightFolderOrFile')
-    }
-    var extension = path.extname(mainPath)
-    var hasExtension = false
-    if (extension) {
-        hasExtension = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
-        console.log('it has extension = ' + extension)
-    }
-    if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
-        var stats = fs.statSync(mainPath)
-        if ((stats.isDirectory() === true) && (hasExtension === false)) { //determine if a directory (instead of file). 
-            //show folder contents
-            var contentArray = []
-            try {
-                contentArray = fs.readdirSync(mainPath)
-            } catch (e) {
-                console.log(e)
-            }
-            var contents = ""
-            var newIndent = parseInt(indent) + 15
-            contentArray.forEach((item) => {
-                if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
-                    var fullPath = mainPath + '/' + item
-                    var subStats = fs.statSync(fullPath)
-                    if (subStats.isDirectory() === true) {
-                        var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
-                        contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
-                        <div class="newItems"></div>
-                        </div>`
-                    } else {
-                        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
-                        contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
-                        </div>`
-                    }
-                }
-                if (divId !== "projectDirectory") {
-                    var newItems = element.nextElementSibling  //gets "newItems" div
-                    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
-                    element.classList.add('clicked') //add clicked class so don't run this again if click again
-                } else {
-                    var contentsDiv = document.getElementById('folderContents')
-                    contentsDiv.insertAdjacentHTML("beforeEnd", contents)
-                }
+function updateDiscoursePostFromFile(filePath, createTime, data, postId){
+    var url = 'https://go.racetosaturn.com/posts/' + postId + '.json'
+    var title = path.basename(filePath)
+    var topicContent = data
+    axios({
+        method: 'put',
+        url: url,
+        contentType: 'multipart/form-data',
+        data: {
+            "title": title,
+            "raw": topicContent,
+            //"topic_id": 0,
+            "category": 36,
+            //  "target_recipients": "blake,sam",
+            //"target_usernames": "string",
+            //"archetype": "private_message",
+            //"created_at": "string"
+        },
+        headers: {
+            "User-Api-Key": environmentVariables.decodedUserKey,
+            //"Api-Username": 'SeanRtS'
+        },
+        dataType: 'json'
+    }).then(response => {
+        console.log('discourse post updated for = ' + title)
+        var timeNow1 = new Date();
+        var timeNow = timeNow1.getTime()
+        db.transaction("rw", db.fileInfo, async () => {
+            db.fileInfo.where("fileId").equals(createTime).modify({
+                fileName: title, //most of the time will be the same. but would be updated if user changes the title
+                filePath: filePath, //most of the time will be the same. but would be updated if user changes the path
+                lastSentTime: timeNow
             })
-        } else {  //if not a directory
-            openDoc(mainPath)
-        }
-    } else { //if not projectstart and DO have clicked (so a folder that is already open)
-        element.classList.remove('clicked')
-        var newItems = element.nextElementSibling
-        newItems.innerHTML = '' //remove items in newItems
-    }
+            const viewEntry = await db.fileInfo.where({fileId: createTime}).toArray()
+            console.log('view entry***** = ')
+            console.log(viewEntry) 
+        }).catch(Dexie.ModifyError, error => {
+           // ModifyError did occur
+            console.error(error.failures.length + " items failed to modify");
+
+        }).catch(error => {
+            console.error("Generic error: " + error);
+        })
+    }).catch(error => {
+        console.log('error in update discourse post from file =')
+        console.log(error)
+    })
 }
-*/
 
 
 /*****Create discourse post  */
