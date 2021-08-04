@@ -512,7 +512,7 @@ async function minimizeWindows(){
                     const sa = (a.includeStandardAdditions = true, a);
                     return sa.runScript(s);
             };
-           evalAS2('tell application "System Events" to set visible of every application process to false')
+           evalAS2('tell application "System Events" to set visible of every application process whose name is not "Electron" to false')
           `)
         return result
         function openMain() {
