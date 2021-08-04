@@ -1,5 +1,18 @@
 **Later To-Dos**
 
+# projects for discourse / tagging.
+
+Right now (Aug 4, 2021), when you send a doc to discourse, it reads the "user" + projectName, and creates a tag from that.
+
+the files from the project will be displayed without project subfolders.
+
+Consider adding project subfolders. It's probably not necessary to add sub-tags. Rather, goal is a single project page (based on main tag) that is divided into the subfolders. Potentially, you could add in hide and show subfolders too. But everything can be on one page, because generally projects will not have so many files, as in the github case.
+
+To create the subfolders:
+--could add it to the title of the topic. Example: main project = Churchill-research-paper. Then topics could be called: chapters/final/chapter-1.docx. Note that slashes are allowed for topic titles (just not for tags, which strip them out).
+    --another benefit: would all folder items searchable
+    --UPDATE: this is the current approach. Potentially, when showing the items on a project page, I could parse the items so that the page is divided up into the subfolders. 
+--could create a custom field for topics, that would have the subfolders. And then parse them that way.
 # notable issues to fix
 --compare changes. full document not working. Still showing both items. at least this happens when one of the files has changed its name. 
 

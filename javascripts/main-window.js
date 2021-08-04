@@ -216,29 +216,24 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
     var url = 'https://go.racetosaturn.com/posts.json'
     var title = path.basename(filePath)
     var topicContent = data
-    console.log('title = ' + title)
-    var directoryOnly = path.dirname(filePath)
+    var topicShowPath = filePath.substring(filePath.indexOf(projectFolderName) + (projectFolderName.length+1)) /*
+    example:
+    project name (projectFolderName) = 'rocking-research'
+    doc path = rocking-research/post-enlightenment/platos-influences.docx
+    topicShowPath = 'post-enlightenment/platos-influences.docx' ; and that will be the title of the post.
+   */
     var userName = 'SeanRtS' //***Have to get this programmatically*****/
     var tagName = userName + '-project-' + projectFolderName
-    /**START HERE:
-     * want to be able to show any subfolders as required.and change any '/' into '-'
-     * tag user name may have to be parsed out in thedisplay page
-     * 
-     * 
-     */
-    console.log('directory only = ' + directoryOnly)
-    console.log('project folder path  = ' + projectFolderPath)
-    console.log('tagName = ' + tagName)
     axios({
         method: 'post',
         url: url,
         contentType: 'multipart/form-data',
         data: {
-            "title": title,
+            "title": topicShowPath,
             "raw": topicContent,
             //"topic_id": 0,
             "category": 36,
-            "tags": [directoryOnly]
+            "tags": [tagName]
             //  "target_recipients": "blake,sam",
             //"target_usernames": "string",
             //"archetype": "private_message",
