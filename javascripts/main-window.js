@@ -270,19 +270,17 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId){
     var url = 'https://go.racetosaturn.com/posts/' + postId + '.json'
     var title = path.basename(filePath)
     var topicContent = data
+    var topicShowPath = filePath.substring(filePath.indexOf(projectFolderName) + (projectFolderName.length + 1))
+    var userName = 'SeanRtS' //***Have to get this programmatically*****/
+    var tagName = userName + '-project-' + projectFolderName
     axios({
         method: 'put',
         url: url,
         contentType: 'multipart/form-data',
         data: {
-            "title": title,
+            "title": topicShowPath,
             "raw": topicContent,
-            //"topic_id": 0,
-            "category": 36,
-            //  "target_recipients": "blake,sam",
-            //"target_usernames": "string",
-            //"archetype": "private_message",
-            //"created_at": "string"
+            "tags": [tagName]
         },
         headers: {
             "User-Api-Key": environmentVariables.decodedUserKey,
@@ -290,7 +288,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId){
         },
         dataType: 'json'
     }).then(response => {
-        console.log('discourse post updated for = ' + title)
+        console.log('discourse post updated for = ' + topicShowPath)
         var timeNow1 = new Date();
         var timeNow = timeNow1.getTime()
         db.transaction("rw", db.fileInfo, async () => {
