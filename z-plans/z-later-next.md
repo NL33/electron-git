@@ -13,6 +13,13 @@ To create the subfolders:
     --another benefit: would all folder items searchable
     --UPDATE: this is the current approach. Potentially, when showing the items on a project page, I could parse the items so that the page is divided up into the subfolders. 
 --could create a custom field for topics, that would have the subfolders. And then parse them that way.
+
+# discourse tags
+
+--tags are used for projects right now.
+--would be nice to have a few other set tags that could be added. such as: music, videos, books, research, etc. Could you have the ability for users to add just those (and only those), while also having the api create tags? not clear, and not a big deal.
+--to start, probably better to not have user created tags. To do this, could hide the tag box on the page itself. 
+
 # notable issues to fix
 --compare changes. full document not working. Still showing both items. at least this happens when one of the files has changed its name. 
 

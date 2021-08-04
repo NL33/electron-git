@@ -47,8 +47,8 @@ var db = new Dexie("FileDatabase")
 window.onload = async function () {
 
  try {
-     await db.version(2).stores({
-         fileInfo: "++id,fileId, fileName, lastSentTime, filePath,postId, projectName"
+     await db.version(3).stores({
+         fileInfo: "++id,fileId, fileName, lastSentTime, filePath,postId, projectTagName"
      })
  } catch (error) {
      console.log('error = ' + error)
@@ -256,7 +256,8 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
             fileName: title,
             filePath: filePath,
             postId: postId,
-            lastSentTime: timeNow
+            lastSentTime: timeNow,
+            projectTagName: tagName
             //project?
         })
     }).catch(error => {
