@@ -14,7 +14,12 @@ done.
 
 DONE.
 
+
+
 # have project page on discourse, based on tags
+--link topics based on tags. DONE.
+--edit tag show page to look more like a repo page
+--could have "project-summary" doc or the like show up as a description right there. 
 
 
 
@@ -25,7 +30,8 @@ DONE.
 # delete topics when removed from the file
 
 *Additional Nav elements to desktop app*
--button to minimize all windows
+-button to minimize all windows. 
+     --looked into this. doesn't seem to be a way to do this with file system. And applescript method is not ideal--it closes them one by one, and its hard to get them back
 -add breathe big button
 -add gratitude notes
 -make faster to choose file (later)

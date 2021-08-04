@@ -70,6 +70,7 @@ function openBasicWindow(){
 }
 
 ipcMain.on('open-main-window', (event, arg) => {
+    console.log('show the window')
     newVersionWindow.show()
     basicWindow.hide()   
 })

@@ -1,5 +1,9 @@
 **Later To-Dos**
 
+# to consider: what would it look like if focus was sharing
+--still linked work from desktop to site.
+
+
 # projects for discourse / tagging.
 
 Right now (Aug 4, 2021), when you send a doc to discourse, it reads the "user" + projectName, and creates a tag from that.
