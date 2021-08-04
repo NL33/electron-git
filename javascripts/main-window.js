@@ -218,7 +218,17 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
     var topicContent = data
     console.log('title = ' + title)
     var directoryOnly = path.dirname(filePath)
+    var userName = 'SeanRtS' //***Have to get this programmatically*****/
+    var tagName = userName + '-project-' + projectFolderName
+    /**START HERE:
+     * want to be able to show any subfolders as required.and change any '/' into '-'
+     * tag user name may have to be parsed out in thedisplay page
+     * 
+     * 
+     */
     console.log('directory only = ' + directoryOnly)
+    console.log('project folder path  = ' + projectFolderPath)
+    console.log('tagName = ' + tagName)
     axios({
         method: 'post',
         url: url,
