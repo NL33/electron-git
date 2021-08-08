@@ -1,4 +1,11 @@
-# Just Completed
+# Weekly Update
+
+Aug2 to Aug8:
+--Complete working versions of functionality for users to provide comments to posted projects (like pull requests on github, but simpler)
+
+--complete working version of functionality for users to provide notes to accompany their posts
+
+--add 2 functions to the desktop app to add moments of lightness
 
 # Next
 
@@ -21,16 +28,24 @@ DONE.
 --edit tag show page to look more like a repo page
 --could have "project-summary" doc or the like show up as a description right there. 
 
+# comment system
+
+*START HERE: Look at project.hbs file in discourse local plugin code*
+--I just got a template to render at a unique url.
+--I just looked at tags/show page to see structure
+--I just found post at: https://meta.discourse.org/t/how-to-add-a-featured-topic-list-to-your-discourse-homepage/132949 that shows how to load chosen topics into a new component, and put that on a page
+--if I want to see about loading topics at a project url, then next steps are listed at: code-overview-discourse/comment-system/get-topics-withtag.md
+--next: decide whether to try to get topics to load through a project url, or just go with tags.
+     --one consideration: you can search by tags. can you do that for projects? is that important?
 
 
-# comment system 
 # authentication 
 # private posts (later)
 # add comments to the version you are sending to discourse, explaining the update. Would be a topic custom field, updated through the API. and then a field on the topic page to view the comment.
 # delete topics when removed from the file
 
 *Additional Nav elements to desktop app*
--button to minimize all windows. 
+-button to minimize all windows. DONE. Except:
      --looked into this. doesn't seem to be a way to do this with file system. And applescript method is not ideal--it closes them one by one, and its hard to get them back
 -add breathe big button
 -add gratitude notes

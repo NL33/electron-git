@@ -33,6 +33,11 @@ To create the subfolders:
 
 --compare changes: error catching: if a problem, make sure it doesn't stop the app. Otherwise, the temp folders could show up in the project
 
+
+# discourse site settings
+
+--get rid of badges
+--get rid of note: "revive this topic?" when a topic is old
 # Later
 --idea--put red bar over old versionwhen retreiving prior version?
 -when add a new folder (especially in the main project directory), insert the new folder in alphabetical order. meaning go through the titles of the directory, and insert it after he one with proper alphabetical order
