@@ -14,7 +14,7 @@ const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
 const runJxa = require('run-jxa')
-const environmentVariables = require('../z-environments.js')
+const environmentVariables = require('../z-environments-1.js')
 var token = environmentVariables.discourseToken
 var discourseUser = environmentVariables.discourseUser
 
