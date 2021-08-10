@@ -30,16 +30,12 @@ DONE.
 
 # comment system
 
-*START HERE: Look at project.hbs file in discourse local plugin code*
---I just got a template to render at a unique url.
---I just looked at tags/show page to see structure
---I just found post at: https://meta.discourse.org/t/how-to-add-a-featured-topic-list-to-your-discourse-homepage/132949 that shows how to load chosen topics into a new component, and put that on a page
---if I want to see about loading topics at a project url, then next steps are listed at: code-overview-discourse/comment-system/get-topics-withtag.md
---next: decide whether to try to get topics to load through a project url, or just go with tags.
-     --one consideration: you can search by tags. can you do that for projects? is that important?
+underway
 
 
 # authentication 
+try mughees' suggestion. DONE. I tried entering http:// or https:// in the redirect url, and it did not make a difference.
+
 # private posts (later)
 # add comments to the version you are sending to discourse, explaining the update. Would be a topic custom field, updated through the API. and then a field on the topic page to view the comment.
 # delete topics when removed from the file

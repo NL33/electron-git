@@ -213,7 +213,9 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, postId) {
 }
 
 function createDiscoursePostFromFile(filePath, createTime, data) {
+    //***NOTE: I have experimented with getting a user key, but have not updated z-environments yet. So it's possible those keys are no longer valid. And just go through the process of getting the key again using the discourse api test code. */ */
     var url = 'https://go.racetosaturn.com/posts.json'
+    //var url1 = 'http://localhost:4200/posts.json'
     var title = path.basename(filePath)
     var topicContent = data
     var topicShowPath = filePath.substring(filePath.indexOf(projectFolderName) + (projectFolderName.length+1)) /*
@@ -233,15 +235,20 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
             "raw": topicContent,
             //"topic_id": 0,
             "category": 36,
-            "tags": [tagName]
+            "tags": [tagName],
+            /*VERIFIED THAT THIS WORKS: "project_name": 'test-project-name'*/
             //  "target_recipients": "blake,sam",
             //"target_usernames": "string",
             //"archetype": "private_message",
             //"created_at": "string"
         },
         headers: {
-            "User-Api-Key": environmentVariables.decodedUserKey,
+          "User-Api-Key": environmentVariables.decodedUserKey,
             //"Api-Username": 'SeanRtS'
+            /* for local testing: make sure to add localHost as url, and remove category and tags
+            "Api-Key": environmentVariables.wsKey,
+            "Api-Username": 'ADD IN'
+            */
         },
         dataType: 'json'
     }).then(response => {
@@ -265,7 +272,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
         console.log(error)
     })
 }
-
+//wsKey
 function updateDiscoursePostFromFile(filePath, createTime, data, postId){
     var url = 'https://go.racetosaturn.com/posts/' + postId + '.json'
     var title = path.basename(filePath)
@@ -428,14 +435,13 @@ function discourseAPITest1(){
     console.log(privateKey)
     console.log('api test1')
     const http = require('url')
-   var  myUrl = 'https://go.racetosaturn.com/user-api-key/new'
+     var  myUrl = 'https://go.racetosaturn.com/user-api-key/new'
 
-    var redirectUrl = 'goprotocol://example'
+    var redirectUrl = 'goprotocol://example' /***the below code with this url works to get a key for the app and go to discourse, but discourse produces an error when it tries to go to the redirect url. the custom protocol is not working yet. */
 
 
 // code for getting user key. Commented out to not run again until ready
 
-/*
     const url = new URL(`https://go.racetosaturn.com/user-api-key/new`)
 
     url.searchParams.append('application_name', 'Saturn-App')
@@ -446,8 +452,7 @@ function discourseAPITest1(){
     url.searchParams.append('nonce', '1')
     console.log(`redirect URL is ${url.href}`)
     shell.openExternal(url.href)
-   // ipcRenderer.send('open-discourse-auth-window', url.href)
-*/
+    ipcRenderer.send('open-discourse-auth-window', url.href)
 
 /*
      axios({

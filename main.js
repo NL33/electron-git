@@ -202,7 +202,6 @@ ipcMain.on('open-discourse-auth-window', (event, arg1) => {
 })
 
 function openDiscourseAuthWindow(discourseUrl) {
-
         var discourseWindow = new BrowserWindow({
             width: 670, //320,
             height: 650,
