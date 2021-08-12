@@ -35,11 +35,13 @@ To create the subfolders:
 
 
 # discourse site settings
-
+--if a main-project-topic. then should not allow replies. replies are allowed for comment topics
 --get rid of badges
 --get rid of note: "revive this topic?" when a topic is old
 -get rid of "your post is similar to"
 --prob get rid of "post must have 20 characters"
+
+
 # Later
 --idea--put red bar over old versionwhen retreiving prior version?
 -when add a new folder (especially in the main project directory), insert the new folder in alphabetical order. meaning go through the titles of the directory, and insert it after he one with proper alphabetical order

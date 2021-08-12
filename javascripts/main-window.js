@@ -35,7 +35,7 @@ const { default: axios } = require('axios')
 
 // Including generateKeyPairSync from crypto module. This is for generating an api key for authenticating with discourse
 const { generateKeyPairSync, privateDecrypt, constants } = require('crypto');
-const {hostname} = require('os')
+const { hostname } = require('os')
 
 //dexie database for linking project files to discourse posts
 const Dexie = require('dexie')
@@ -46,13 +46,13 @@ var db = new Dexie("FileDatabase")
 /*****Button Set Up *****/
 window.onload = async function () {
 
- try {
-     await db.version(3).stores({
-         fileInfo: "++id,fileId, fileName, lastSentTime, filePath,postId, projectTagName"
-     })
- } catch (error) {
-     console.log('error = ' + error)
- }
+    try {
+        await db.version(3).stores({
+            fileInfo: "++id,fileId, fileName, lastSentTime, filePath,postId, projectTagName"
+        })
+    } catch (error) {
+        console.log('error = ' + error)
+    }
 
     /*
     catch(function (error) {
@@ -60,7 +60,7 @@ window.onload = async function () {
     });
     */
     //will send file to discourse, linking with postId. how will it link with project? When send to site, project will probably be named after main-folder-name/subfolder. Can get this from the filepath. And then add the tag with this name and a hash to the post, so it will be tagged that way on discourse.
-            //start out this way. Issues in future: if change path name, will that change project? maybe it's ok for it to work that way?
+    //start out this way. Issues in future: if change path name, will that change project? maybe it's ok for it to work that way?
 
 
     /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
@@ -125,7 +125,7 @@ function hideWindow() {
 /************** Testing Discourse API *******************************/
 
 //current-code
-async function loopThroughFolder(thePath){
+async function loopThroughFolder(thePath) {
     var currentTime = new Date()
     console.log('current time = ' + currentTime.getTime())
     if (thePath === 'start') {
@@ -133,11 +133,11 @@ async function loopThroughFolder(thePath){
     } else {
         var projectPath = thePath
     }
-    
+
     var projectContents1 = await fs.readdirSync(projectPath) //produces array of all top-level contents of a folder
     var projectContents = projectContents1.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item)); //excludes hidden files like .ds-store and .git files 
     for (var i = 0; i < projectContents.length; i++) {
-        if (projectContents[i].substring(0, 2) !== '~$'){ //stop if a temp word file
+        if (projectContents[i].substring(0, 2) !== '~$') { //stop if a temp word file
             var itemPath = path.join(projectPath, projectContents[i])
             //await fs.stat(itemPath) //fsStat would be used to determine metadata info about the given file, such as when it was last updated
             if (fs.statSync(itemPath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
@@ -147,21 +147,21 @@ async function loopThroughFolder(thePath){
                 var extension = path.extname(itemPath)
                 if (extension.includes('doc')) {
                     checkDatabase(itemPath, 'word')
-                   // sendDocWordDoc(itemPath)
+                    // sendDocWordDoc(itemPath)
                 } else {
                     checkDatabase(itemPath, 'notWord')
                     //sendDoc(itemPath)
-                // return 'done'
+                    // return 'done'
                 }
             }
         }
     }
 }
 
-async function checkDatabase(filePath, wordOrNot){
+async function checkDatabase(filePath, wordOrNot) {
     var stats = fs.statSync(filePath)
     var createTime = stats.birthtimeMs
-    var dbEntry = await db.fileInfo.get({ fileId: createTime})
+    var dbEntry = await db.fileInfo.get({ fileId: createTime })
     if (!dbEntry) {
         //not entered in database yet. should mean no discourse topic created yet. So create a new one
         setUpDocForCreate(filePath, createTime, wordOrNot)
@@ -169,17 +169,17 @@ async function checkDatabase(filePath, wordOrNot){
         var lastModifiedTime = stats.mtime //mtime is when file last modified. ctime includes that time, but also includes if file properties change, like file permissions, name or location. Ctime would be better, but it also updates when the file is opened (even if no other change). So I am going with mtime--and if you want to update the version online, you need to be sure to save it.
         var lastSentTime = dbEntry.lastSentTime
         var postId = dbEntry.postId
-        if (lastModifiedTime > lastSentTime){
-            console.log('time to update for  = ' + filePath )
+        if (lastModifiedTime > lastSentTime) {
+            console.log('time to update for  = ' + filePath)
             setUpDocForUpdate(filePath, createTime, wordOrNot, postId)
         } else {
-           console.log('dont update for ' + filePath)
+            console.log('dont update for ' + filePath)
         }
-    } 
+    }
 }
 
-function setUpDocForCreate(itemPath, createTime, wordOrNot){
-    if (wordOrNot === 'word'){
+function setUpDocForCreate(itemPath, createTime, wordOrNot) {
+    if (wordOrNot === 'word') {
         mammoth.convertToHtml({ path: itemPath }).then(function (result) {
             var htmlWord = result.value
             createDiscoursePostFromFile(itemPath, createTime, htmlWord)
@@ -189,7 +189,7 @@ function setUpDocForCreate(itemPath, createTime, wordOrNot){
             if (err) {
                 console.log('error in reading file in send doc = ' + err)
             } else {
-               createDiscoursePostFromFile(itemPath, createTime, data)
+                createDiscoursePostFromFile(itemPath, createTime, data)
             }
         })
     }
@@ -212,13 +212,75 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, postId) {
     }
 }
 
-function createDiscoursePostFromFile(filePath, createTime, data) {
+function createDiscoursePostFromFile1(filePath, createTime, data) {
+    //***NOTE: I have experimented with getting a user key, but have not updated z-environments yet. So it's possible those keys are no longer valid. And just go through the process of getting the key again using the discourse api test code. */ */
+    var url1 = 'https://go.racetosaturn.com/posts.json'
+    var url = 'http://localhost:4200/posts.json'
+    var title = path.basename(filePath)
+    var topicContent = data
+    var topicShowPath = filePath.substring(filePath.indexOf(projectFolderName) + (projectFolderName.length + 1)) /*
+    example:
+    project name (projectFolderName) = 'rocking-research'
+    doc path = rocking-research/post-enlightenment/platos-influences.docx
+    topicShowPath = 'post-enlightenment/platos-influences.docx' ; and that will be the title of the post.
+   */
+    var userName = 'SeanRtS' //***Have to get this programmatically*****/
+    var tagName = userName + '-project-' + projectFolderName
+    axios({
+        method: 'post',
+        url: url,
+        contentType: 'multipart/form-data',
+        data: {
+            "title": topicShowPath,
+            "raw": topicContent,
+            "project_main": "wow-main-project",
+            "project_contents": ''
+            //"topic_id": 0,
+            //   "category": 36,
+            //   "tags": [tagName],
+            /*VERIFIED THAT THIS WORKS: "project_name": 'test-project-name'*/
+            //  "target_recipients": "blake,sam",
+            //"target_usernames": "string",
+            //"archetype": "private_message",
+            //"created_at": "string"
+        },
+        headers: {
+            //"User-Api-Key": environmentVariables.decodedUserKey,
+            //"Api-Username": 'SeanRtS'
+            // for local testing: make sure to add localHost as url, and remove category and tags
+            "Api-Key": environmentVariables.wsKey,
+            "Api-Username": environmentVariables.wsName
+        },
+        dataType: 'json'
+    }).then(response => {
+        console.log('created new post for = ' + filePath)
+        console.log('heres the response = ')
+        console.log(response)
+        var postId = response.data.id
+        var timeNow1 = new Date();
+        var timeNow = timeNow1.getTime()
+        db.fileInfo.add({
+            fileId: createTime,
+            fileName: title,
+            filePath: filePath,
+            postId: postId,
+            lastSentTime: timeNow,
+            projectTagName: tagName
+            //project?
+        })
+    }).catch(error => {
+        console.log('error in api post test =')
+        console.log(error)
+    })
+}
+
+function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE FUNCTION TO create discourse post on main app through electron. sometimes I add 1 when I want to use the alternative function to create on local site.
     //***NOTE: I have experimented with getting a user key, but have not updated z-environments yet. So it's possible those keys are no longer valid. And just go through the process of getting the key again using the discourse api test code. */ */
     var url = 'https://go.racetosaturn.com/posts.json'
     //var url1 = 'http://localhost:4200/posts.json'
     var title = path.basename(filePath)
     var topicContent = data
-    var topicShowPath = filePath.substring(filePath.indexOf(projectFolderName) + (projectFolderName.length+1)) /*
+    var topicShowPath = filePath.substring(filePath.indexOf(projectFolderName) + (projectFolderName.length + 1)) /*
     example:
     project name (projectFolderName) = 'rocking-research'
     doc path = rocking-research/post-enlightenment/platos-influences.docx
@@ -243,7 +305,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
             //"created_at": "string"
         },
         headers: {
-          "User-Api-Key": environmentVariables.decodedUserKey,
+            "User-Api-Key": environmentVariables.decodedUserKey,
             //"Api-Username": 'SeanRtS'
             /* for local testing: make sure to add localHost as url, and remove category and tags
             "Api-Key": environmentVariables.wsKey,
@@ -273,7 +335,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
     })
 }
 //wsKey
-function updateDiscoursePostFromFile(filePath, createTime, data, postId){
+function updateDiscoursePostFromFile(filePath, createTime, data, postId) {
     var url = 'https://go.racetosaturn.com/posts/' + postId + '.json'
     var title = path.basename(filePath)
     var topicContent = data
@@ -304,9 +366,9 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId){
                 filePath: filePath, //most of the time will be the same. but would be updated if user changes the path
                 lastSentTime: timeNow
             })
-            const viewEntry = await db.fileInfo.where({fileId: createTime}).toArray()
+            const viewEntry = await db.fileInfo.where({ fileId: createTime }).toArray()
         }).catch(Dexie.ModifyError, error => {
-           // ModifyError did occur
+            // ModifyError did occur
             console.error(error.failures.length + " items failed to modify");
 
         }).catch(error => {
@@ -331,13 +393,13 @@ function createDiscoursePost() {
     axios({
         method: 'post',
         url: url,
-        contentType:'multipart/form-data',
+        contentType: 'multipart/form-data',
         data: {
             "title": "Great Word Doc 3",
             "raw": topicContent,
             //"topic_id": 0,
             "category": 36,
-          //  "target_recipients": "blake,sam",
+            //  "target_recipients": "blake,sam",
             //"target_usernames": "string",
             //"archetype": "private_message",
             //"created_at": "string"
@@ -356,7 +418,7 @@ function createDiscoursePost() {
     })
 }
 
-function getDiscoursePostId(){
+function getDiscoursePostId() {
     console.log('now in get postid ')
     var topicId = '421' //looking for post id = 586
     var url = 'https://go.racetosaturn.com/t/' + topicId + '.json'
@@ -375,14 +437,14 @@ function getDiscoursePostId(){
         console.log('initial response = ' + JSON.stringify(response))
         var postId = response.data.post_stream.posts[0].id
         console.log('post response = ' + postId)
-        updatePost(postId, userName, key)      
+        updatePost(postId, userName, key)
     }).catch(error => {
         console.log('error in get post Id =')
         console.log(error)
     })
 }
 
-function updatePost(postId, userName, key){
+function updatePost(postId, userName, key) {
     console.log('now in update Post')
     var url = 'https://go.racetosaturn.com/posts/' + postId + '.json'
     var topicContent = 'Update content as of 1:151 from GroupInfoUser. How does it look?'
@@ -391,7 +453,7 @@ function updatePost(postId, userName, key){
         url: url,
         contentType: 'multipart/form-data',
         data: {
-          //  "title": "Great Word Doc 2",
+            //  "title": "Great Word Doc 2",
             "raw": topicContent,
             //"topic_id": 0,
             //"category": 36,
@@ -418,7 +480,7 @@ function updatePost(postId, userName, key){
 //NOTE: can use loadURL(discourse site) if want to keep everything in an app-based window
 
 
-function discourseAPITest1(){
+function discourseAPITest1() {
     const { publicKey, privateKey } = generateKeyPairSync('rsa', {
         modulusLength: 4096,
         publicKeyEncoding: {
@@ -435,12 +497,12 @@ function discourseAPITest1(){
     console.log(privateKey)
     console.log('api test1')
     const http = require('url')
-     var  myUrl = 'https://go.racetosaturn.com/user-api-key/new'
+    var myUrl = 'https://go.racetosaturn.com/user-api-key/new'
 
     var redirectUrl = 'goprotocol://example' /***the below code with this url works to get a key for the app and go to discourse, but discourse produces an error when it tries to go to the redirect url. the custom protocol is not working yet. */
 
 
-// code for getting user key. Commented out to not run again until ready
+    // code for getting user key. Commented out to not run again until ready
 
     const url = new URL(`https://go.racetosaturn.com/user-api-key/new`)
 
@@ -454,62 +516,62 @@ function discourseAPITest1(){
     shell.openExternal(url.href)
     ipcRenderer.send('open-discourse-auth-window', url.href)
 
-/*
-     axios({
-        method: 'get',
-        url: myUrl,
-        params: {
-            auth_redirect: redirectUrl,
-            application_name: 'Saturn App',
-            client_id: 'hostname',
-            scopes: 'write',//can also include push for notifications
-            //push_url: '',
-            nonce: '1',
-            public_key: publicKey
-        },
-        dataType: 'json'
-    }).then(response =>{
-        console.log('response = ')
-        console.log(response)
-        console.log('response data = ')
-        myUrl.href = response.config 
-        shell.openExternal(myUrl)
-    }).catch(error=>{
-        console.log('error in api test =')
-        console.log(error)
-    })
-*/
+    /*
+         axios({
+            method: 'get',
+            url: myUrl,
+            params: {
+                auth_redirect: redirectUrl,
+                application_name: 'Saturn App',
+                client_id: 'hostname',
+                scopes: 'write',//can also include push for notifications
+                //push_url: '',
+                nonce: '1',
+                public_key: publicKey
+            },
+            dataType: 'json'
+        }).then(response =>{
+            console.log('response = ')
+            console.log(response)
+            console.log('response data = ')
+            myUrl.href = response.config 
+            shell.openExternal(myUrl)
+        }).catch(error=>{
+            console.log('error in api test =')
+            console.log(error)
+        })
+    */
 
 }
 
-ipcRenderer.on('discourse-payload-url', (event, newUrl) =>{
-    console.log('***just got the new url = ') 
+ipcRenderer.on('discourse-payload-url', (event, newUrl) => {
+    console.log('***just got the new url = ')
     console.log(newUrl)
-} )
+})
 
-  function decodeTheKey(){
-      /**START HERE: TRYING TO MAKE THIS WORK WITH UPDATED KEY.
-       * May have to get the key without the auth_redirect param. Otherwise the key might not go through fully.**** */
-      var privateKey = environmentVariables.privateKeyForDecoding.trim()
-      var encodedKey = environmentVariables.encodedUserKey
-      console.log('encoded key = ' + encodedKey)
-      const trimmedKey = encodedKey.trim().replace(/\s/g, '')
-      //console.log(`trimmed encoded key is ${trim}`)
-      const decreptedKey = privateDecrypt(
-          {
-              key: privateKey,
-              padding: constants.RSA_PKCS1_PADDING,
-          },
-          Buffer.from(trimmedKey, 'base64')
-      )
-      const jsonKey = decreptedKey.toString('ascii')
-      console.log('the decoded key = ')
-      console.log(jsonKey)
-  }
+function decodeTheKey() {
+    /**START HERE: TRYING TO MAKE THIS WORK WITH UPDATED KEY.
+     * May have to get the key without the auth_redirect param. Otherwise the key might not go through fully.**** */
+    var privateKey = environmentVariables.privateKeyForDecoding.trim()
+    var encodedKey = environmentVariables.encodedUserKey
+    console.log('encoded key = ' + encodedKey)
+    const trimmedKey = encodedKey.trim().replace(/\s/g, '')
+    //console.log(`trimmed encoded key is ${trim}`)
+    const decreptedKey = privateDecrypt(
+        {
+            key: privateKey,
+            padding: constants.RSA_PKCS1_PADDING,
+        },
+        Buffer.from(trimmedKey, 'base64')
+    )
+    const jsonKey = decreptedKey.toString('ascii')
+    console.log('the decoded key = ')
+    console.log(jsonKey)
+}
 
 /*****close all windows with appletext ***********/
 
-async function minimizeWindows(){
+async function minimizeWindows() {
     try {
         const result = await runJxa(`
             const evalAS2 = s => {
@@ -1558,6 +1620,34 @@ async function saveGitVersion() {
             document.getElementById('sendOptions').style.display = 'block'
             document.getElementById('localSaveNotice').style.display = 'block'
             console.log('commit result = ' + JSON.stringify(result))
+            var commitTextFilePath = projectFolderPath + '/version-notes.md'
+            fs.readFile(commitTextFilePath, 'utf8', (err, data) => {
+                if (err) {
+                    console.log('error = ' + err)
+                } else {
+                    var dateObject = new Date()
+                    var showDate = dateObject.toLocaleDateString('en-us', {
+                        weekday: 'short',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    })
+                    var showTime = dateObject.toLocaleTimeString('en-us', {
+                        timeStyle: 'short'
+                    })
+                    var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
+                    var showTime = '**' + showDate + ' ' + cleanedTime + '**' + '\n\n'
+                    var newData = showTime + text + '\n\n\n' + data
+                    fs.writeFile(commitTextFilePath, newData, (err) => {
+                        if (err) {
+                            console.log(err)
+                        } else {
+                            console.log('file created')
+                        }
+                    })
+                }
+            })
+            //current-code
         })
         await git.raw('remote', 'get-url', '--push', 'origin').then(result => {
             console.log('get remote result = ' + JSON.stringify(result))
@@ -1593,36 +1683,36 @@ Github commands:
     */
 
 
-async function showSendOptions(){
- try {
-    document.getElementById('saveProjectItems').style.display = "none"
-    document.getElementById('saveProjectHeader').style.display = "none"
-    document.getElementById('sendOptions').style.display = "block"
-    await git.cwd(projectFolderPath).then(result => {
-        // console.log('cwd resultss' + JSON.stringify(result))
-    })
-    await git.raw('remote', 'get-url', '--push', 'origin').then(result => {
-        console.log('get remote result = ' + JSON.stringify(result))
-        //if lists a remote at github that doesn't exist, will send back an error
-        document.getElementById('remoteName').innerHTML = result
-    })
-} catch (e) {
+async function showSendOptions() {
+    try {
+        document.getElementById('saveProjectItems').style.display = "none"
+        document.getElementById('saveProjectHeader').style.display = "none"
+        document.getElementById('sendOptions').style.display = "block"
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+        await git.raw('remote', 'get-url', '--push', 'origin').then(result => {
+            console.log('get remote result = ' + JSON.stringify(result))
+            //if lists a remote at github that doesn't exist, will send back an error
+            document.getElementById('remoteName').innerHTML = result
+        })
+    } catch (e) {
         console.log('error = ' + e)
     }
 }
 
-function closeSendView(){
+function closeSendView() {
     document.getElementById('sendOptions').style.display = "none"
     document.getElementById('saveProjectItems').style.display = "block"
     document.getElementById('saveProjectHeader').style.display = "block"
 }
 
-function openPushTarget(){
+function openPushTarget() {
     var target = document.getElementById('remoteName').textContent
     shell.openExternal(target)
 }
 
-async function sendToGithubFunction(){
+async function sendToGithubFunction() {
     const USER = 'NL33'
     const PASS = ''
     const REPO = 'github.com/nl33/remote-test-repo'
@@ -1652,24 +1742,24 @@ async function sendToGithubFunction(){
         })
 */
 
-/* first push of code to remote
-        await git.raw("push", "-u", "origin", "master").then(result => {
-            console.log('result of first push = ' + JSON.stringify(result))
-            if (result){
-                document.getElementById('sendOptions').style.display = "none"
-                document.getElementById('saveProjectItems').style.display = "block"
-                document.getElementById('saveProjectHeader').style.display = "block"
-            } else if (error){
-                console.log('error in git push function = ')
-                console.log(error)
-            }
-        })
+        /* first push of code to remote
+                await git.raw("push", "-u", "origin", "master").then(result => {
+                    console.log('result of first push = ' + JSON.stringify(result))
+                    if (result){
+                        document.getElementById('sendOptions').style.display = "none"
+                        document.getElementById('saveProjectItems').style.display = "block"
+                        document.getElementById('saveProjectHeader').style.display = "block"
+                    } else if (error){
+                        console.log('error in git push function = ')
+                        console.log(error)
+                    }
+                })
+        
+                //needs -u, origin, main as first commit to remote.
+                //using git.push("-u", "origin", "master") did not seem to work. git.push() probably works, but not for the first commit to the master
+        */
 
-        //needs -u, origin, main as first commit to remote.
-        //using git.push("-u", "origin", "master") did not seem to work. git.push() probably works, but not for the first commit to the master
-*/
-
-        await git.push().then(result =>{
+        await git.push().then(result => {
             console.log('result of push = ' + JSON.stringify(result))
         })
 

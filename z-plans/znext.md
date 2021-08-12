@@ -34,7 +34,7 @@ underway
 
 
 # authentication 
-try mughees' suggestion. DONE. I tried entering http:// or https:// in the redirect url, and it did not make a difference.
+try mughees' suggestion. DONE. I tried entering http:// or https:// in the redirect url, and it did not make a difference. I've emailed him about it. still need to get custom protocol to work.
 
 # private posts (later)
 # add comments to the version you are sending to discourse, explaining the update. Would be a topic custom field, updated through the API. and then a field on the topic page to view the comment.
