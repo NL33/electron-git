@@ -24,6 +24,7 @@ function menuApp() {
         { label: 'Save New Version', click() { saveNewVersionWindow() } },
         { label: 'Get the Window', click() { sendTheWindow() } }, //getthewindow = get the active window
         { label: 'Github Window', click() { openGithubWindow() } },
+        { label: 'Breathe Big', click() { openBreatheBigWindow() } },
     ])
     tray.setToolTip('This is my application.')
     tray.setContextMenu(contextMenu)
@@ -68,7 +69,48 @@ function openBasicWindow(){
 
     basicWindow.loadURL('file://' + __dirname + '/views/basic-window.html');
 }
+/***BREATHE BIG WINDOW */
+function openBreatheBigWindow(){
+    var electronScreen = electron.screen
+    var size = electronScreen.getPrimaryDisplay().workAreaSize;
+    var rightHeight = Math.floor((size.height)) - Math.floor((size.height) - 2)
+    //var rightHeight = Math.floor((size.height)-170)
+    var xSpot = Math.floor((size.width) / 2) - 112
+    var focusWindow = new BrowserWindow({
+        show: false,
+        height: 165,
+        width: 225,
+        x: xSpot,
+        y: rightHeight,
+        title: "Focus",
+        hasShadow: false,
+        transparent: true,
+        frame: false,
+        alwaysOnTop: true,
+        //backgroundColor: 'white'
+    })
 
+    focusWindow.loadURL('file://' + __dirname + '/views/breathe-big-button.html');
+
+    //focusWindow.webContents.on('did-finish-load', function() {
+    focusWindow.once('ready-to-show', function () {
+        //focusWindow.webContents.send('focusText', arg);
+        focusWindow.showInactive();
+    });
+
+    ipc.on('close-focusWindow', function () {
+        focusWindow.destroy()
+    });
+}
+
+
+
+
+ipc.on('close-focusWindow', function () {
+    focusWindow.destroy()
+});
+
+/***END BREATHE BIG WINDOW*** */
 ipcMain.on('open-main-window', (event, arg) => {
     console.log('show the window')
     newVersionWindow.show()
