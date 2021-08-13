@@ -39,9 +39,20 @@ var txtDoc = '/Users/sean/Desktop/txt-docs/converttest-test.txt'
 var appleDoc = 'https://www.icloud.com/notes/0hZOhxE5di_MSCv7bX-hYHY8w#Contribution_is_the_Focus'
 var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
 
-function openDoc(path) {
-    shell.openPath(path)
-    // controlTheWindow() //this function is for snapping the doc into place
+function openDoc(thePath) {
+    let theExtension = path.extname(thePath)
+    if (theExtension.includes('html')) {
+        fs.readFile(thePath, 'utf8', function (err, data) {
+            if (err) {
+                console.log(err)
+            } else {
+                ipcRenderer.send('open-html-window', thePath, data)
+            }
+        })
+
+    } else {
+        shell.openPath(thePath)
+    }
 }
 
 

@@ -218,3 +218,9 @@ further info:https://dexie.org/docs/Version/Version.stores()#warning
         Writing this because there have been some issues on github where people index images or movies without really understanding the purpose of indexing fields. A rule of thumb: Are you going to put your property in a where(‘…’) clause? If yes, index it, if not, dont. Large indexes will affect database performance and in extreme cases make it unstable.
 
 --send docs to discourse: do error handling--tell the user if the file was not able to be sent up was not made into a post. For example, I had an html doc that I had created from a website, and the formatting was all off. When I tried to send to discourse, came back with 422 error (unprocessable entity).
+
+
+--html paste file: if you copy an html page some times the formatting can create a problem, and the app won't be able to build it. show the user some kind of error. example, go to wikipedia page on churchill, and copy the whole page, then create paste file. It doesn't work when you open it in the app.
+
+--error handling: if in old version, and want to open file from old version, if there is an error, show it to user. Error could be bc the work tree holding the old file was removed by the user.
+     -NOTE: Right now, if I save the code, it will refresh the whole app. When it refreshes the whole app, the work tree gets removed (because of blanket remvoe tree action). But, the old versions window is still there, so nothing opens, because the worktree is gone. Is it possible that would happen with a user? If so, probably close the old version window on any app refresh

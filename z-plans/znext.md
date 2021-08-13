@@ -21,7 +21,8 @@ done.
 
 DONE.
 
-
+# file and folder icons in window
+and in old versions window too
 
 # have project page on discourse, based on tags
 --link topics based on tags. DONE.
@@ -60,7 +61,7 @@ stripe now has payent links. Create a page through stripe. Create a link. put th
 *START HERE FOR OPENING HTML FILES/APPLESCRIPT*
 -working on opening html, with contenteditable. I made it work to save files to html, and then when open them, they open in the app itself. so its like your own webpage that you can edit and save.
 
---then make this work for apple notes--automatic saving to this format, and opening to this format. *START HERE*
+--then make this work for apple notes--automatic saving to this format, and opening to this format. DONE.
 --then make the html open process for apple notes and html work for prior versions. (when want to veiw prior versions, add code to the prior versions window so you open the old versions for html in the same way)
 --then provide a way to update apple note with new changes
 --then save the file with changes (for web pages)
@@ -68,6 +69,22 @@ stripe now has payent links. Create a page through stripe. Create a link. put th
      --maybe add a save as also? (especially for older versions)
 --make the content process faster for apple notes.
 
+# Html files
+--add loading symbol while it's loading.
+
+--if edit an html file, add ability to save any changes you make to it. But actually, right now if that note has the same name, it will create a nother file with the same name. Before refreshing the main window, it will show as two files. But then after refreshing it will show as one.
+     want to link with the apple note id
+     while that is better, for mvp purposes, probably ok just to go with title of the note: but if go this route, probably have to get the folder too, otherwise could be too many duplicates across one person's notes
+
+--after create apple note, if try to open it immediately, it will show error:
+main-window.js:781 Uncaught (in promise) TypeError: Cannot read property 'id' of null
+    at showFolderContents (main-window.js:781)
+    at HTMLDivElement.onclick (main-window.html:1)
+--the id is not available till you refresh the page. Fix that.
+
+# apple notes file.
+
+If want to update apple note pre-existing file, make that work. (right now, it just creates a duplicate apple note file)
 
 # link to github and/or dropbox
 --start here.

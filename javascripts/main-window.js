@@ -212,7 +212,7 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, postId) {
     }
 }
 
-function createDiscoursePostFromFile1(filePath, createTime, data) {
+function createDiscoursePostFromFile(filePath, createTime, data) {
     //***NOTE: I have experimented with getting a user key, but have not updated z-environments yet. So it's possible those keys are no longer valid. And just go through the process of getting the key again using the discourse api test code. */ */
     var url1 = 'https://go.racetosaturn.com/posts.json'
     var url = 'http://localhost:4200/posts.json'
@@ -274,7 +274,7 @@ function createDiscoursePostFromFile1(filePath, createTime, data) {
     })
 }
 
-function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE FUNCTION TO create discourse post on main app through electron. sometimes I add 1 when I want to use the alternative function to create on local site.
+function createDiscoursePostFromFile1(filePath, createTime, data) { //THIS IS THE FUNCTION TO create discourse post on main app through electron. sometimes I add 1 when I want to use the alternative function to create on local site.
     //***NOTE: I have experimented with getting a user key, but have not updated z-environments yet. So it's possible those keys are no longer valid. And just go through the process of getting the key again using the discourse api test code. */ */
     var url = 'https://go.racetosaturn.com/posts.json'
     //var url1 = 'http://localhost:4200/posts.json'
@@ -772,6 +772,8 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 /******Loop through contents of Selected Folder and display results************* */
 
 async function showFolderContents(divId, mainPath, indent) {
+    console.log('in show folder contents')
+    console.log('main path = ' + mainPath)
     var element = document.getElementById(divId)
     var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
     while (highlightedDivs.length)
