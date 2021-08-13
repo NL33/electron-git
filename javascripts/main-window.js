@@ -772,8 +772,6 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 /******Loop through contents of Selected Folder and display results************* */
 
 async function showFolderContents(divId, mainPath, indent) {
-    console.log('in show folder contents')
-    console.log('main path = ' + mainPath)
     var element = document.getElementById(divId)
     var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
     while (highlightedDivs.length)

@@ -62,8 +62,11 @@ stripe now has payent links. Create a page through stripe. Create a link. put th
 -working on opening html, with contenteditable. I made it work to save files to html, and then when open them, they open in the app itself. so its like your own webpage that you can edit and save.
 
 --then make this work for apple notes--automatic saving to this format, and opening to this format. DONE.
---then make the html open process for apple notes and html work for prior versions. (when want to veiw prior versions, add code to the prior versions window so you open the old versions for html in the same way)
---then provide a way to update apple note with new changes
+--then make the html open process for apple notes and html work for prior versions. (when want to veiw prior versions, add code to the prior versions window so you open the old versions for html in the same way).
+     --code is in openDoc(thePath). DONE.
+
+
+--then provide a way to update apple note with new changes. *TO DO*
 --then save the file with changes (for web pages)
      --can just add a save option, and writeFile with the content to the path
      --maybe add a save as also? (especially for older versions)

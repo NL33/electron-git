@@ -196,13 +196,26 @@ ipcMain.on('open-html-window', (event, arg1, arg2) => {
 
 function openHTMLWindow(thePath, content) {
     var filePath = thePath
-    var parentDirectoryName = path.dirname(filePath).split(path.sep).pop()
-    var fileName =  path.basename(filePath).replace('.html', '')
-    var fileTitle = parentDirectoryName + '/' + fileName
+    //in the case of viewing an old version of an html file, the path will include the worktree, like: [randomnumber]worktree3#&7#&1#&4/
+    //want to remove that worktree reference, bc otherwise will be confusing to user
+    var fullPathName = path.dirname(filePath)
+    if (fullPathName.includes('worktree3#&7#&1#&4/')){
+        var cleanedPathArray = fullPathName.split('worktree3#&7#&1#&4/')
+        var pathToUse = cleanedPathArray[1]
+    } else {
+        var pathToUse = fullPathName
+    }
+    var parentDirectoryName = path.dirname(pathToUse).split(path.sep).pop()
+    var relevantPath = (filePath.split(parentDirectoryName)[1]).replace('.html', '')
+
+    //goal with fileTitle: should be the main directory/any-subdirectories/file-name
+    var fileTitle = parentDirectoryName + relevantPath
+
+
     var windowArray = BrowserWindow.getAllWindows()
     var openTheFile = true
 
-   //check each opened app window to see if a window with that dirName/fileName is opened. If there is a window with that dirName/fileName already opened, then don't open a new window. Rather, show that window (bring it to foreground/unminimize it)  
+   //THIS IS WHY I NEED THE FILE NAME TO HAVE THE PATH directories IN IT: check each opened app window to see if a window with that dirName/fileName is opened. If there is a window with that dirName/fileName already opened, then don't open a new window. Rather, show that window (bring it to foreground/unminimize it)  
    for (var i = 0; i<windowArray.length; i++){
        let thisWindowTitle = windowArray[i].getTitle()
        if (fileTitle === thisWindowTitle){
@@ -210,7 +223,7 @@ function openHTMLWindow(thePath, content) {
           windowArray[i].show()
        }
    }
-   //if a file with that dirName/fileName is not opened yet:
+   //if a file with that fileTitle is not opened yet:
    if (openTheFile === true){
         var htmlWindow = new BrowserWindow({
             width: 670, //320,
