@@ -71,8 +71,8 @@ function openBasicWindow(){
 }
 /***BREATHE BIG WINDOW */
 function openBreatheBigWindow(){
-    var electronScreen = electron.screen
-    var size = electronScreen.getPrimaryDisplay().workAreaSize;
+    var theDisplay = screen.getPrimaryDisplay()
+    var size = theDisplay.workAreaSize
     var rightHeight = Math.floor((size.height)) - Math.floor((size.height) - 2)
     //var rightHeight = Math.floor((size.height)-170)
     var xSpot = Math.floor((size.width) / 2) - 112
@@ -98,17 +98,13 @@ function openBreatheBigWindow(){
         focusWindow.showInactive();
     });
 
-    ipc.on('close-focusWindow', function () {
+    
+    ipcMain.on('close-focusWindow', function () {
         focusWindow.destroy()
     });
+    
 }
 
-
-
-
-ipc.on('close-focusWindow', function () {
-    focusWindow.destroy()
-});
 
 /***END BREATHE BIG WINDOW*** */
 ipcMain.on('open-main-window', (event, arg) => {
