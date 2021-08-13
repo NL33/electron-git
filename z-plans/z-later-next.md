@@ -3,6 +3,7 @@
 # to consider: what would it look like if focus was sharing
 --still linked work from desktop to site.
 
+# create folder from the app
 
 # projects for discourse / tagging.
 

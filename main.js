@@ -199,19 +199,22 @@ function openHTMLWindow(thePath, content) {
     //in the case of viewing an old version of an html file, the path will include the worktree, like: [randomnumber]worktree3#&7#&1#&4/
     //want to remove that worktree reference, bc otherwise will be confusing to user
     var fullPathName = path.dirname(filePath)
-    if (fullPathName.includes('worktree3#&7#&1#&4/')){
-        var cleanedPathArray = fullPathName.split('worktree3#&7#&1#&4/')
-        var pathToUse = cleanedPathArray[1]
+    if (filePath.includes('worktree3#&7#&1#&4/')){
+        var fpArray1 = filePath.split('worktree3#&7#&1#&4/') //array now has [].../randomNumber, /filename]. Next, get rid of the random number
+        var firstPart = fpArray1[0]
+        var cleanedFirstPart = firstPart.substring(0, firstPart.lastIndexOf("/") + 1) //this would be fpArray1 without the random number on the end. Bc it's removed everything after the last "/"
+        var secondPart = fpArray1[1]
+        var pathToUse = cleanedFirstPart + secondPart
+        var parentDirectoryName = path.dirname(pathToUse).split(path.sep).pop()
+        var relevantPath = (pathToUse.split(parentDirectoryName)[1]).replace('.html', '')
     } else {
         var pathToUse = fullPathName
+        var parentDirectoryName = path.dirname(pathToUse).split(path.sep).pop()
+        var relevantPath = (filePath.split(parentDirectoryName)[1]).replace('.html', '')
     }
-    var parentDirectoryName = path.dirname(pathToUse).split(path.sep).pop()
-    var relevantPath = (filePath.split(parentDirectoryName)[1]).replace('.html', '')
 
     //goal with fileTitle: should be the main directory/any-subdirectories/file-name
     var fileTitle = parentDirectoryName + relevantPath
-
-
     var windowArray = BrowserWindow.getAllWindows()
     var openTheFile = true
 
