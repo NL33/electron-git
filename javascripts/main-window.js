@@ -638,21 +638,21 @@ async function getFrontNote() {
 function createAppleNoteFile(divId, folderPath, indent, noteId) {
     var updatedContent = appleNoteHtmlContent.replaceAll('<div><u><br></u></div>', '').replaceAll('<u><br></u>', '').replaceAll('<h1><br></h1>', '').replaceAll('<h2><br></h2>', '').replaceAll('<h3><br></h3>', '')
     var colorStyleInsert = `
-    <style>
-       body {
-         color: #353535;
-         padding-left: 10px;
-         padding-right: 10px
-       }
-       h1, h2, h3 {
-         margin-bottom: 1px;
-         margin-top: 1px
-       }
-       ul {
-         margin-top: 0px;
-         margin-bottom: 0px
-       }
-    </style>
+<style>
+body {
+color: #353535;
+padding-left: 10px;
+padding-right: 10px
+}
+h1, h2, h3 {
+margin-bottom: 1px;
+margin-top: 1px
+}
+ul {
+margin-top: 0px;
+margin-bottom: 0px
+}
+</style>
     `
     var fileName = document.getElementById('appleNoteNameEntry').value
     document.getElementById('addAppleNoteForm').remove()

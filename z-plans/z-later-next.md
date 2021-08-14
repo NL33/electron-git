@@ -21,7 +21,6 @@ To create the subfolders:
 
 # discourse tags
 
---tags are used for projects right now.
 --would be nice to have a few other set tags that could be added. such as: music, videos, books, research, etc. Could you have the ability for users to add just those (and only those), while also having the api create tags? not clear, and not a big deal.
 --to start, probably better to not have user created tags. To do this, could hide the tag box on the page itself. 
 
@@ -34,6 +33,7 @@ To create the subfolders:
 
 --compare changes: error catching: if a problem, make sure it doesn't stop the app. Otherwise, the temp folders could show up in the project
 
+--worktrees: when remove them, they go to trash. Should be deleted altogether (see package for that), otherwise will take up too much user space.
 
 # discourse site settings
 --if a main-project-topic. then should not allow replies. replies are allowed for comment topics
