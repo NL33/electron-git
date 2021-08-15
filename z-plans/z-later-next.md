@@ -35,6 +35,10 @@ To create the subfolders:
 
 --worktrees: when remove them, they go to trash. Should be deleted altogether (see package for that), otherwise will take up too much user space.
 
+# discourse site
+
+when loading latest topics--like first time loading the comments to a project on local site--it showed the 'welcome to discourse" topic on the page? Why? Get rid of welcome to discourse. And basically get rid of all the normal introductory stuff a user might see
+
 # discourse site settings
 --if a main-project-topic. then should not allow replies. replies are allowed for comment topics
 --get rid of badges

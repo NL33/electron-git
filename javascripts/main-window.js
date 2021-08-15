@@ -233,8 +233,8 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
         data: {
             "title": topicShowPath,
             "raw": topicContent,
-            "project_main": "wow-main-project",
-            "project_contents": ''
+            //"project_main": "wow-main-project",
+            "project_comments": 'wow-main-project'
             //"topic_id": 0,
             //   "category": 36,
             //   "tags": [tagName],

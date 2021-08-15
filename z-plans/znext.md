@@ -1,15 +1,35 @@
-# Weekly Update
+*Notes from Sunday August 16*
 
-Aug2 to Aug8:
---Complete working versions of functionality for users to provide comments to posted projects (like pull requests on github, but simpler)
+# Composer
+-issue is probably code for creating new composer is not right, but then the cache saves it for the rest of the composers. Need to clear out the composer cache. One method: sign in as different user and see if the issue is there.
+-can also figure out th code by experimenting on the live site. Choose a plugin outlet (for code for that, see post about decoratewidget, where they give the code for how to use a plugin outlet instead). and put a button there. then try code for loading the composer and adding a field to it.
 
---complete working version of functionality for users to provide notes to accompany their posts
+# showing version notes with files
 
---add 2 functions to the desktop app to add moments of lightness
+-create custom field for version notes
+-when upload a doc, attach those version notes to that doc.
+-then, can show the version notes with the doc. maybe in list view?
+-can show on doc show view potentially?
+-when look at past versions on discourse, potentially see the custom field there?
+
+# Loading docs -- Categories
+
+potentially: all main project files are in one category (that does not allow replies), and all comment topics are in another (that does allow replies)
+
+when loading, could you first filter by category, and then custom field?
+
+see in routes.rb if there are category routes to call (maybe it's as easy as /c/cat_id?project_name='....')
+
+Or, could do category+latest?project_name...
+
+And then do separate categories for the different types of content (surges, music, milestones, etc)
+
+And for a users home page, could look up the route in routes.rb that is about showing topics by user, and filter category for projects, and then:
+1. parse the results, find the different project names, put them into an array, and just load the project names. Then when click on the project names, have link to the project home page
+2. alternative, just show the latest documents. But there should be somewhere you can go to find a particular project to view.
 
 # Next
 
-By Wednesday, August 4, 6:30pm EST:
 
 *Sending Docs to Discourse*
 
