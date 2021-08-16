@@ -773,9 +773,8 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 
 /******Loop through contents of Selected Folder and display results************* */
 
-async function showFolderContents(divId, mainPath, indent) {
+async function showFolderContents(divId, mainPath, indent, fileJustAdded) {
     var element = document.getElementById(divId)
-    console.log('element = ' + element)
     var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
     while (highlightedDivs.length)
         highlightedDivs[0].classList.remove('highlightFolderOrFile')
@@ -828,6 +827,11 @@ async function showFolderContents(divId, mainPath, indent) {
         } else {  //if not a directory
             openDoc(mainPath)
         }
+    } else if (fileJustAdded === 'fileJustAddedTrue'){
+        element.classList.remove('clicked')
+        var newItems = element.nextElementSibling
+        newItems.innerHTML = '' //remove items in newItems
+        openFolderWithNewFile(divId, mainPath, indent)
     } else { //if not projectstart and DO have clicked (so a folder that is already open)
         element.classList.remove('clicked')
         var newItems = element.nextElementSibling
@@ -835,6 +839,46 @@ async function showFolderContents(divId, mainPath, indent) {
     }
 }
 
+
+function openFolderWithNewFile(divId, mainPath, indent){
+    var element = document.getElementById(divId)
+    var contentArray = []
+    try {
+        contentArray = fs.readdirSync(mainPath)
+    } catch (e) {
+        console.log(e)
+    }
+    var contents = ""
+    var newIndent = parseInt(indent) + 15
+    contentArray.forEach((item) => {
+        if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
+            var fullPath = mainPath + '/' + item
+            var subStats = fs.statSync(fullPath)
+            if (subStats.isDirectory() === true) {
+                var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+                contents = `<div >
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        <div class="newItems"></div>
+                        </div>`
+            } else {
+                var newId = "**is-document**^^^" + fullPath + "^^^" + indent
+                contents = `<div >
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        </div>`
+            }
+        }
+        if (divId !== "projectDirectory") {
+            console.log('1')
+            var newItems = element.nextElementSibling  //gets "newItems" div
+            newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+            element.classList.add('clicked') //add clicked class so don't run this again if click again
+        } else {
+            console.log('2')
+            var contentsDiv = document.getElementById('folderContents')
+            contentsDiv.insertAdjacentHTML("beforeEnd", contents)
+        }
+    })
+}
 
 /*****************************************Menu Function***************************************************/
 
@@ -845,7 +889,6 @@ function menuFunction() {
 
         if ((e.target.id) && (e.target.classList.contains('docOrDirectory'))) {
             var fullId = e.target.id
-            console.log('fullid = ' + fullId)
             contextMenu.clear() //remove prior menuItem
             e.preventDefault();
 
@@ -1091,7 +1134,10 @@ function updatePasteFile(e) {
 /**************** showNewFolder ANd new Doc *******************/
 
 function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
+
+    showFolderContents(divId, mainPath, indent, 'fileJustAddedTrue')
     //note: right now, this inserts the folder in the view at the top of the view (not alphabetical order)
+    /*
     var element = document.getElementById(divId)
     var contents = ""
     var newIndent = parseInt(indent) + 15
@@ -1114,7 +1160,7 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
         var newItems = element.nextElementSibling  //gets "newItems" div
         newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
     }
-
+*/
 }
 
 
