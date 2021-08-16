@@ -840,7 +840,7 @@ async function showFolderContents(divId, mainPath, indent, fileJustAdded) {
 }
 
 
-function openFolderWithNewFile(divId, mainPath, indent){
+function openFolderWithNewFile(divId, mainPath, indent){  //after create a new file, show the contents of the directory where the file is. 
     var element = document.getElementById(divId)
     var contentArray = []
     try {
@@ -868,7 +868,6 @@ function openFolderWithNewFile(divId, mainPath, indent){
             }
         }
         if (divId !== "projectDirectory") {
-            console.log('1')
             var newItems = element.nextElementSibling  //gets "newItems" div
             newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
             element.classList.add('clicked') //add clicked class so don't run this again if click again
@@ -1135,9 +1134,9 @@ function updatePasteFile(e) {
 
 function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
 
-    showFolderContents(divId, mainPath, indent, 'fileJustAddedTrue')
+    showFolderContents(divId, mainPath, indent, 'fileJustAddedTrue') //call this from the beginning for the parent directory so that we show the new file in alphabetical order.
     //note: right now, this inserts the folder in the view at the top of the view (not alphabetical order)
-    /*
+    /* ***Previously, we would just show that doc at the top of the directory ( before deciding it was better to show the doc in proper alphabetical order by calling the show file function again. The code to jus show the file at the top is here: 
     var element = document.getElementById(divId)
     var contents = ""
     var newIndent = parseInt(indent) + 15
