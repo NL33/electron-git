@@ -659,7 +659,7 @@ margin-bottom: 0px
     var newDocPath = folderPath + '/' + fileName
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
-    var content = colorStyleInsert + '<div style="margin-bottom: 12px;">id:<span id="noteId">' + noteId + '</span></div>' + updatedContent
+    var content = colorStyleInsert + '<div style="margin-bottom: 12px; display: none">id:<span id="noteId">' + noteId + '</span></div>' + updatedContent
     fs.writeFile(newDocPath, content, function (err) {
         if (err) {
             console.log(err)
@@ -670,9 +670,11 @@ margin-bottom: 0px
             if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
                 //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
                 showNewFolderOrDoc(divId, folderPath, newDocPath, fileName, newIndent)
+                console.log('here 1')
             } else {
                 //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
                 showFolderContents(divId, folderPath, newIndent)
+                console.log('here 2')
             }
         }
     })
@@ -773,6 +775,7 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 
 async function showFolderContents(divId, mainPath, indent) {
     var element = document.getElementById(divId)
+    console.log('element = ' + element)
     var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
     while (highlightedDivs.length)
         highlightedDivs[0].classList.remove('highlightFolderOrFile')
@@ -842,6 +845,7 @@ function menuFunction() {
 
         if ((e.target.id) && (e.target.classList.contains('docOrDirectory'))) {
             var fullId = e.target.id
+            console.log('fullid = ' + fullId)
             contextMenu.clear() //remove prior menuItem
             e.preventDefault();
 
@@ -1097,9 +1101,10 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
         var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
     } else {
         var newId = "**is-document**^^^" + fullPath + "^^^" + indent
+       
     }
     contents = `<div>
-                <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id=${newId} onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
+                <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
                 <div class="newItems"></div>
                 </div>`
     if (divId === 'projectDirectory') { //its the project folder

@@ -1,5 +1,7 @@
 **Later To-Dos**
 
+
+
 # to consider: what would it look like if focus was sharing
 --still linked work from desktop to site.
 
@@ -45,6 +47,7 @@ when loading latest topics--like first time loading the comments to a project on
 --get rid of note: "revive this topic?" when a topic is old
 -get rid of "your post is similar to"
 --prob get rid of "post must have 20 characters"
+--turn off discobot greetings
 
 
 # Later
