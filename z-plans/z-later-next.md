@@ -26,6 +26,18 @@ To create the subfolders:
 --would be nice to have a few other set tags that could be added. such as: music, videos, books, research, etc. Could you have the ability for users to add just those (and only those), while also having the api create tags? not clear, and not a big deal.
 --to start, probably better to not have user created tags. To do this, could hide the tag box on the page itself. 
 
+# Showing files
+
+fyi when show new file, key code is:
+
+showNewFolderOrDoc(..)
+
+right now:
+--if you delete a folder, the subfiles of that folder still show in the view until refreshed
+--I have an apple doc title "Today's schedule" and it shows up first in the file list no matter what (despite alphabetical order). Fix that .
+
+
+
 # notable issues to fix
 --compare changes. full document not working. Still showing both items. at least this happens when one of the files has changed its name. 
 

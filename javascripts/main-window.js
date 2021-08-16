@@ -1089,7 +1089,7 @@ function updatePasteFile(e) {
 /**************** showNewFolder ANd new Doc *******************/
 
 function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
-//goal: insert new file alphabetically into view of the directory
+    //goal: insert new file alphabetically into view of the directory
     var contentArray = []
     try {
         contentArray = fs.readdirSync(mainPath) //note: this is plugging into the file system, where the new file already exists. So the new file is already in the content array
@@ -1097,14 +1097,14 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
         console.log(e)
     }
     let itemArray = []
-    contentArray.forEach((item)=>{
-        if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
+    contentArray.forEach((item) => {
+        if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) { //code that shows the folder contents excludes these items. so want to exclude them here too to get the right index
             itemArray.push(item)
         }
     })
-   
-    var indexGo = itemArray.indexOf(folderName)
 
+    var indexGo = itemArray.indexOf(folderName)
+    console.log('indexGo = ' + indexGo)
     var element = document.getElementById(divId)
     var contents = ""
     var newIndent = parseInt(indent) + 15
@@ -1113,32 +1113,29 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
     if (statsHere.isDirectory() === true) {
         var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
     } else {
-        var newId = "**is-document**^^^" + fullPath + "^^^" + indent     
+        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
     }
     contents = `<div>
-                <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
+                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
                 <div class="newItems"></div>
                 </div>`
     if (divId === 'projectDirectory') { //its the project folder
         var contentsDiv = document.getElementById('folderContents')
-        var divAfter = contentsDiv.children[indexGo]
-        if (divAfter) {
-            divAfter.insertAdjacentHTML("beforebegin", contents)
-        } else {
-            contentsDiv.insertAdjacentHTML("beforeend", contents)
-        }
-        //contentsDiv.insertAdjacentHTML("afterBegin", contents)
-    } else { //else its a subfolder
-        var newItems = element.nextElementSibling  //gets "newItems" div
-        //newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
-        var divAfter = newItems.children[indexGo]
-        if (divAfter){
-            divAfter.insertAdjacentHTML("beforebegin", contents)
-        } else {
-            newItems.insertAdjacentHTML("beforeend", contents)
-        }
-        
+    } else {
+        var contentsDiv = element.nextElementSibling //not the project directory. So structure is parent, then sibling where contents are
     }
+    if (indexGo === 0) {
+        contentsDiv.insertAdjacentHTML("afterbegin", contents)
+    } else {
+        var divBefore = contentsDiv.children[indexGo]
+        console.log('div before = ' + divBefore.textContent) /***START HERE: This has trouble if you add new file after just adding another new file (but not refreshing. Because an additional div for new items is added.) so need to account for those "newItems" folders. They only exist in the temporary view, not the actual file system. So it changes the index.  */
+        divBefore.insertAdjacentHTML("afterend", contents)
+    }
+
+    var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
+    while (highlightedDivs.length)
+        highlightedDivs[0].classList.remove('highlightFolderOrFile')
+    document.getElementById(newId).classList.add('highlightFolderOrFile')
 }
 
 
