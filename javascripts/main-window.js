@@ -773,7 +773,7 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 
 /******Loop through contents of Selected Folder and display results************* */
 
-async function showFolderContents(divId, mainPath, indent, fileJustAdded) {
+async function showFolderContents(divId, mainPath, indent) {
     var element = document.getElementById(divId)
     var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
     while (highlightedDivs.length)
@@ -827,11 +827,6 @@ async function showFolderContents(divId, mainPath, indent, fileJustAdded) {
         } else {  //if not a directory
             openDoc(mainPath)
         }
-    } else if (fileJustAdded === 'fileJustAddedTrue'){
-        element.classList.remove('clicked')
-        var newItems = element.nextElementSibling
-        newItems.innerHTML = '' //remove items in newItems
-        openFolderWithNewFile(divId, mainPath, indent)
     } else { //if not projectstart and DO have clicked (so a folder that is already open)
         element.classList.remove('clicked')
         var newItems = element.nextElementSibling
@@ -839,45 +834,6 @@ async function showFolderContents(divId, mainPath, indent, fileJustAdded) {
     }
 }
 
-
-function openFolderWithNewFile(divId, mainPath, indent){  //after create a new file, show the contents of the directory where the file is. 
-    var element = document.getElementById(divId)
-    var contentArray = []
-    try {
-        contentArray = fs.readdirSync(mainPath)
-    } catch (e) {
-        console.log(e)
-    }
-    var contents = ""
-    var newIndent = parseInt(indent) + 15
-    contentArray.forEach((item) => {
-        if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
-            var fullPath = mainPath + '/' + item
-            var subStats = fs.statSync(fullPath)
-            if (subStats.isDirectory() === true) {
-                var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
-                contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
-                        <div class="newItems"></div>
-                        </div>`
-            } else {
-                var newId = "**is-document**^^^" + fullPath + "^^^" + indent
-                contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
-                        </div>`
-            }
-        }
-        if (divId !== "projectDirectory") {
-            var newItems = element.nextElementSibling  //gets "newItems" div
-            newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
-            element.classList.add('clicked') //add clicked class so don't run this again if click again
-        } else {
-            console.log('2')
-            var contentsDiv = document.getElementById('folderContents')
-            contentsDiv.insertAdjacentHTML("beforeEnd", contents)
-        }
-    })
-}
 
 /*****************************************Menu Function***************************************************/
 
@@ -1133,10 +1089,22 @@ function updatePasteFile(e) {
 /**************** showNewFolder ANd new Doc *******************/
 
 function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
+//goal: insert new file alphabetically into view of the directory
+    var contentArray = []
+    try {
+        contentArray = fs.readdirSync(mainPath) //note: this is plugging into the file system, where the new file already exists. So the new file is already in the content array
+    } catch (e) {
+        console.log(e)
+    }
+    let itemArray = []
+    contentArray.forEach((item)=>{
+        if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
+            itemArray.push(item)
+        }
+    })
+   
+    var indexGo = itemArray.indexOf(folderName)
 
-    showFolderContents(divId, mainPath, indent, 'fileJustAddedTrue') //call this from the beginning for the parent directory so that we show the new file in alphabetical order.
-    //note: right now, this inserts the folder in the view at the top of the view (not alphabetical order)
-    /* ***Previously, we would just show that doc at the top of the directory ( before deciding it was better to show the doc in proper alphabetical order by calling the show file function again. The code to jus show the file at the top is here: 
     var element = document.getElementById(divId)
     var contents = ""
     var newIndent = parseInt(indent) + 15
@@ -1145,8 +1113,7 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
     if (statsHere.isDirectory() === true) {
         var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
     } else {
-        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
-       
+        var newId = "**is-document**^^^" + fullPath + "^^^" + indent     
     }
     contents = `<div>
                 <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
@@ -1154,12 +1121,24 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
                 </div>`
     if (divId === 'projectDirectory') { //its the project folder
         var contentsDiv = document.getElementById('folderContents')
-        contentsDiv.insertAdjacentHTML("afterBegin", contents)
+        var divAfter = contentsDiv.children[indexGo]
+        if (divAfter) {
+            divAfter.insertAdjacentHTML("beforebegin", contents)
+        } else {
+            contentsDiv.insertAdjacentHTML("beforeend", contents)
+        }
+        //contentsDiv.insertAdjacentHTML("afterBegin", contents)
     } else { //else its a subfolder
         var newItems = element.nextElementSibling  //gets "newItems" div
-        newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+        //newItems.insertAdjacentHTML("afterBegin", contents)  //insert into newItems
+        var divAfter = newItems.children[indexGo]
+        if (divAfter){
+            divAfter.insertAdjacentHTML("beforebegin", contents)
+        } else {
+            newItems.insertAdjacentHTML("beforeend", contents)
+        }
+        
     }
-*/
 }
 
 
