@@ -25,6 +25,11 @@ To create the subfolders:
 
 --would be nice to have a few other set tags that could be added. such as: music, videos, books, research, etc. Could you have the ability for users to add just those (and only those), while also having the api create tags? not clear, and not a big deal.
 --to start, probably better to not have user created tags. To do this, could hide the tag box on the page itself. 
+# discourse categories
+
+if loading projects and project comments by category (ie, /c/projects_main?project_main=project-name), then:
+-local discourse code uses an ajax call based on the category numbers on the local site
+-you will need to change the numbers to the live site category numbers
 
 # Showing files
 

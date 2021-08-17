@@ -234,9 +234,9 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
             "title": topicShowPath,
             "raw": topicContent,
             //"project_main": "wow-main-project",
-            "project_comments": 'wow-main-project'
+            "project_comments": 'wow-main-project',
             //"topic_id": 0,
-            //   "category": 36,
+            "category": 11,
             //   "tags": [tagName],
             /*VERIFIED THAT THIS WORKS: "project_name": 'test-project-name'*/
             //  "target_recipients": "blake,sam",
@@ -635,7 +635,48 @@ async function getFrontNote() {
     //})();
 }
 
-function createAppleNoteFile(divId, folderPath, indent, noteId) {
+async function createAppleNoteFile(divId, folderPath, indent, noteId) {
+    var fileName = document.getElementById('appleNoteNameEntry').value
+    document.getElementById('addAppleNoteForm').remove()
+    var newDocPath = folderPath + '/' + fileName
+    var folderArray = await fs.readdirSync(folderPath)
+    var appleNoteFiles = []
+    folderArray.forEach((item) => {
+        if (item.includes('(apple-note)')) {
+            console.log('There is an apple note: ' + item)
+            appleNoteFiles.push(item)
+        }
+    })
+    var matchingNotePath = 'n/a'
+
+    appleNoteFiles.forEach((note) => {  //go through the apple notes to see if one of them has the same id. NOTE: Currently, this only works for the same directory. Will not update apple notes in a different directory, even if the same id
+        var theNotePath = folderPath + '/' + note
+
+        try {
+            var data = fs.readFileSync(theNotePath, 'utf8')
+            var dataInfo = data.substring(
+                data.lastIndexOf('<span id="noteId81423">') + 23,
+                data.lastIndexOf('</span>')
+            )
+
+            if (dataInfo === noteId) {
+                matchingNotePath = theNotePath  //if match in ids, then set the matching note as the matchingNotePath
+            }
+        } catch (err) {
+            console.log('error in reading apple note file = ' + err)
+        }
+    })
+
+    if (matchingNotePath !== 'n/a') {
+        try {
+          fs.renameSync(matchingNotePath, newDocPath, ()=>{
+              console.log('the matching note has been renamed to the new note.')
+          })
+        } catch (err) {
+            console.log('error in renamig = ' + err)
+        }
+    }
+
     var updatedContent = appleNoteHtmlContent.replaceAll('<div><u><br></u></div>', '').replaceAll('<u><br></u>', '').replaceAll('<h1><br></h1>', '').replaceAll('<h2><br></h2>', '').replaceAll('<h3><br></h3>', '')
     var colorStyleInsert = `
 <style>
@@ -654,12 +695,10 @@ margin-bottom: 0px
 }
 </style>
     `
-    var fileName = document.getElementById('appleNoteNameEntry').value
-    document.getElementById('addAppleNoteForm').remove()
-    var newDocPath = folderPath + '/' + fileName
+   
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
-    var content = colorStyleInsert + '<div style="margin-bottom: 12px; display: none">id:<span id="noteId">' + noteId + '</span></div>' + updatedContent
+    var content = colorStyleInsert + '<div style="margin-bottom: 12px; display: none">id:<span id="noteId81423">' + noteId + '</span></div>' + updatedContent  //noteId span name is given the code 81423 to make it unlikely someone will print that exact string in their own notes
     fs.writeFile(newDocPath, content, function (err) {
         if (err) {
             console.log(err)
@@ -1125,18 +1164,18 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
                 <div class="newItems"></div>
                 </div>`
     }
-   
+
     if (divId === 'projectDirectory') { //its the project folder
         var contentsDiv = document.getElementById('folderContents')
     } else {
-        var contentsDiv = element.nextElementSibling //not the project directory. So structure is parent, then sibling where contents are
+        var contentsDiv = element.nextElementSibling //not the project directory (so a subfolder). So structure is parent, then sibling where contents are
     }
     if (indexGo === 0) {
         contentsDiv.insertAdjacentHTML("afterbegin", contents)
     } else {
         var divBefore = contentsDiv.children[indexGo]
         console.log('div before = ' + divBefore.textContent) /***START HERE: This has trouble if you add new file after just adding another new file (but not refreshing. Because an additional div for new items is added.) so need to account for those "newItems" folders. They only exist in the temporary view, not the actual file system. So it changes the index.  */
-        divBefore.insertAdjacentHTML("afterend", contents)
+        divBefore.insertAdjacentHTML("beforebegin", contents)
     }
 
     var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
