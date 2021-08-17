@@ -31,6 +31,14 @@ if loading projects and project comments by category (ie, /c/projects_main?proje
 -local discourse code uses an ajax call based on the category numbers on the local site
 -you will need to change the numbers to the live site category numbers
 
+# save changes to html windows
+right now, the save action is in the tray menu
+
+ //if the focused window is not an html file, then nothing happens
+    //next step is to only show the top menu save item if an html file is in focus
+    //and to add a right click menu, just on the html file (in the loaded-html-window.js), to do the save action (to go along with control+save keyboard shortcut)
+
+
 # updating apple docs
 check for existing matching docs before showing the file name text area, then just update the existing doc instead of showing that area isf the existing doc exists.
 
