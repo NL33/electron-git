@@ -636,6 +636,12 @@ async function getFrontNote() {
 }
 
 async function createAppleNoteFile(divId, folderPath, indent, noteId) {
+    //this checks if an apple note with that id already exists.
+    /*
+        when click "add apple note", it should automatically check if there is an existing matching note before it gives you the chance to rename. If there is an existing matching note, DON't show the spot to name the file. Just update the existing file with the name of the note on the system.
+        If you then want to change the name, you can do so with the right click menu.
+        will have to show a spinner while the activity is happening, and then a confirmation message once the note has been updated
+    */
     var fileName = document.getElementById('appleNoteNameEntry').value
     document.getElementById('addAppleNoteForm').remove()
     var newDocPath = folderPath + '/' + fileName
