@@ -23,7 +23,7 @@ function menuApp() {
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Save New Version', click() { saveNewVersionWindow() } },
         { label: 'Get the Window', click() { sendTheWindow() } }, //getthewindow = get the active window
-        { label: 'Github Window', click() { openGithubWindow() } },
+        { label: 'Save HTML File', click() { saveActiveWindow() } },
         { label: 'Breathe Big', click() { openBreatheBigWindow() } },
     ])
     tray.setToolTip('This is my application.')
@@ -69,6 +69,8 @@ function openBasicWindow(){
 
     basicWindow.loadURL('file://' + __dirname + '/views/basic-window.html');
 }
+
+
 /***BREATHE BIG WINDOW */
 function openBreatheBigWindow(){
     var theDisplay = screen.getPrimaryDisplay()
@@ -168,26 +170,6 @@ function showDialog() {
 }
 
 
-function openGithubWindow() {
-   var githubWindow = new BrowserWindow({
-        width: 670, //320,
-        height: 650,
-        title: 'GithubWindow',
-        x: 12,
-        y: 0,
-        // alwaysOnTop: true,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-            enableRemoteModule: true,
-            //webSecurity: false
-        }
-
-    })
-    //window.loadURL('file:' + filePath);
-    githubWindow.loadURL('file://' + __dirname + '/views/github-window.html');
-    githubWindow.openDevTools()
-}
 
 /******OPEN HTML FILES *********** */
 ipcMain.on('open-html-window', (event, arg1, arg2) => {
@@ -248,6 +230,19 @@ function openHTMLWindow(thePath, content) {
     }
 
 }
+
+
+/****SAVE FOCUSED HTML WINDOW***** */
+
+function saveActiveWindow() {
+    //get the in focus browser window
+    var focusedWindow = BrowserWindow.getFocusedWindow()
+    focusedWindow.webContents.send('focused-window-to-save', 'save the html')  //sends to javascript attached to the focused window. file = loaded-html-window.js. 
+    //if the focused window is not an html file, then nothing happens
+    //next step is to only show the top menu save item if an html file is in focus
+    //and to add a right click menu, just on the html file (in the loaded-html-window.js), to do the save action (to go along with control+save keyboard shortcut)
+}
+
 
 /********OPEN DISCOURSE WINDOW FOR AUTHENTICATION ***********/
 

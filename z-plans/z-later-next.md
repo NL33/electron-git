@@ -31,6 +31,10 @@ if loading projects and project comments by category (ie, /c/projects_main?proje
 -local discourse code uses an ajax call based on the category numbers on the local site
 -you will need to change the numbers to the live site category numbers
 
+# updating apple docs
+check for existing matching docs before showing the file name text area, then just update the existing doc instead of showing that area isf the existing doc exists.
+
+
 # Showing files
 
 fyi when show new file, key code is:

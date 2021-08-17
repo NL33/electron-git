@@ -1,4 +1,5 @@
 const { ipcRenderer, ipcMain, clipboard, shell, remote } = require('electron')
+const fs = require("fs")
 
 var contentToLoad
 var filePath
@@ -17,3 +18,18 @@ function contentEditableFunction(){
     }
     console.log('done')
 }
+
+
+/***************SAVE HTML FILE CHANGES ************ */
+
+ipcRenderer.on('focused-window-to-save', (event, data) => { //NOTE: This will get data to save file. But what if the basic window is opened
+    var updatedContent = document.getElementById('htmlContentHere').innerHTML
+    fs.writeFile(filePath, updatedContent, function (err) {
+        if (err) {
+            console.log(err)
+        } else {
+           alert('File Saved')
+        }
+    })
+   
+})
