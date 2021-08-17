@@ -1114,13 +1114,18 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
     var statsHere = fs.statSync(fullPath)
     if (statsHere.isDirectory() === true) {
         var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+        contents = `<div>
+                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><img src="../clear-folder-fntawesome.svg" style="padding-right: 3px; height: 11pt; width: 9pt; vertical-align: text-top"></img>` + folderName + `</div>
+                <div class="newItems"></div>
+                </div>`
     } else {
         var newId = "**is-document**^^^" + fullPath + "^^^" + indent
-    }
-    contents = `<div>
+        contents = `<div>
                 <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
                 <div class="newItems"></div>
                 </div>`
+    }
+   
     if (divId === 'projectDirectory') { //its the project folder
         var contentsDiv = document.getElementById('folderContents')
     } else {
