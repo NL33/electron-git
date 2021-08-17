@@ -805,8 +805,8 @@ async function showFolderContents(divId, mainPath, indent) {
                     if (subStats.isDirectory() === true) {
                         var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
                         contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
-                        <div class="newItems"></div>
+                        <div style='margin-left: ${indent}px' ><img src="../clear-folder-fntawesome.svg" style="height: 11pt; width: 9pt; vertical-align: unset"><span class='subFolder docOrDirectory' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        <div class="newItems"></span></div>
                         </div>`
                     } else {
                         var newId = "**is-document**^^^" + fullPath + "^^^" + indent
