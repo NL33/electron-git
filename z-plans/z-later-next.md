@@ -1,6 +1,16 @@
 **Later To-Dos**
 
+# For apple notes and html files: it makes a lot more sense to:
 
+open the file directly from the command center.
+
+-for apple notes, it is helpful to have the html version opened in the app for OLD VERSIONS (bc can't open old versions in apple notes)
+
+but otherwise, you will want to open apple notes directly in the app to work on them there. example: if I am doing a surge, I would have the command center open, and when I want to work on the script, I would open the apple note directly from the command center. *to do*: click on file, and open apple note directly (to do that, can get the note id of the file, and with apple script open that note id)
+
+web page: might be helpful to open this in the app, because that way you can save snippets from the page, and then just see snippets. But would be good to have a link in that file to open the original url (or right click on the web page file name in the main window). *To do* get url of the web page. if it is a paste file, then may not be possible. users might just have to do manually. Alternative is to get the url of the active window when save web page--but on the other hand I want to encourage users to save snippets, so won't want to save the whole file. so this might not be something to do for now.
+
+email: these would be paste files. probably ok to leave this part flexible. so the docs are helpful to have so you can open them quickly and get notes from them (and edit them if you want). But then you can also just go directly to the email in the browser (for now, no need to create ) *to do*: probably nothing to do for now.
 
 # to consider: what would it look like if focus was sharing
 --still linked work from desktop to site.
