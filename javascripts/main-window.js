@@ -774,6 +774,7 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 /******Loop through contents of Selected Folder and display results************* */
 
 async function showFolderContents(divId, mainPath, indent) {
+    console.log(divId, mainPath, indent)
     var element = document.getElementById(divId)
     var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
     while (highlightedDivs.length)
@@ -804,9 +805,10 @@ async function showFolderContents(divId, mainPath, indent) {
                     var subStats = fs.statSync(fullPath)
                     if (subStats.isDirectory() === true) {
                         var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
-                        contents = `<div >
-                        <div style='margin-left: ${indent}px' ><img src="../clear-folder-fntawesome.svg" style="height: 11pt; width: 9pt; vertical-align: unset"><span class='subFolder docOrDirectory' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
-                        <div class="newItems"></span></div>
+                        /**START HERE: I added a parent div, then the icon as a sibling div. This works, but prevents opening the folder***/
+                        contents = `<div style='margin-left: ${indent}px'>
+                        <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'> <img src="../clear-folder-fntawesome.svg" style="padding-right: 3px; height: 11pt; width: 9pt; vertical-align: text-top"></img>` + item + `</div>
+                        <div class="newItems"></div>
                         </div>`
                     } else {
                         var newId = "**is-document**^^^" + fullPath + "^^^" + indent
@@ -833,7 +835,7 @@ async function showFolderContents(divId, mainPath, indent) {
         newItems.innerHTML = '' //remove items in newItems
     }
 }
-
+//<img src="../clear-folder-fntawesome.svg" style="height: 11pt; width: 9pt; vertical-align: unset"></img>
 
 /*****************************************Menu Function***************************************************/
 
