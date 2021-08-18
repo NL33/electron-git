@@ -750,9 +750,47 @@ async function removeSavedWorkTree(treePath) {
 
 /*****Open Doc***** */
 
-function openDoc(thePath) {
+async function openDoc(thePath) {
     let theExtension = path.extname(thePath)
-    if (theExtension.includes('html')) {
+    if (thePath.includes('(apple-note)')){ //if apple note. then open the apple note doc directly
+        console.log('open apple doc')
+        var theNoteId
+        try {
+            var data = fs.readFileSync(thePath, 'utf8')
+            theNoteId = data.substring(
+                data.lastIndexOf('<span id="noteId81423">') + 23,
+                data.lastIndexOf('</span>')
+            )
+        } catch (err) {
+            console.log('error in reading apple note file = ' + err)
+        }
+
+        try {
+            await runJxa(`
+            'use strict';
+
+            // evalAS2 :: String -> IO a
+            const evalAS2 = s => {
+                const a = Application.currentApplication();
+				const sa = (a.includeStandardAdditions = true, a);
+				return sa.runScript(s);
+            };
+
+             return evalAS2('tell application "Notes" to show note id "${theNoteId}"')
+            `)
+        } catch (e){//if there's an error in trying to open the apple note, can just go ahead and open the file through the app.
+            console.log('error in opening note = ' + e) 
+            fs.readFile(thePath, 'utf8', function (err, data) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    ipcRenderer.send('open-html-window', thePath, data)
+                }
+            })
+        }
+        console.log('the note id = ' + theNoteId)
+       
+    } else if (theExtension.includes('html')) { //if not apple note but is an html file, open that file
         fs.readFile(thePath, 'utf8', function (err, data) {
             if (err) {
                 console.log(err)
@@ -761,7 +799,7 @@ function openDoc(thePath) {
             }
         })
 
-    } else {
+    } else { //open the file directly
         shell.openPath(thePath)
     }
 }

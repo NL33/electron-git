@@ -1,5 +1,10 @@
 **Later To-Dos**
 
+# private messages
+its ok for this to not be full functionality off the bat. ok to just have a simple way to share a doc in private. 
+
+build out the functionality for public docs first.
+
 # For apple notes and html files: it makes a lot more sense to:
 
 open the file directly from the command center.
@@ -12,24 +17,23 @@ web page: might be helpful to open this in the app, because that way you can sav
 
 email: these would be paste files. probably ok to leave this part flexible. so the docs are helpful to have so you can open them quickly and get notes from them (and edit them if you want). But then you can also just go directly to the email in the browser (for now, no need to create ) *to do*: probably nothing to do for now.
 
-# to consider: what would it look like if focus was sharing
---still linked work from desktop to site.
+# Check if can run jxa code
+
+--if running jxa code, then want to check can run in jxa environment. THere is a package for that:  https://github.com/sindresorhus/is-jxa
 
 # create folder from the app
 
-# projects for discourse / tagging.
-
-Right now (Aug 4, 2021), when you send a doc to discourse, it reads the "user" + projectName, and creates a tag from that.
-
-the files from the project will be displayed without project subfolders.
-
-Consider adding project subfolders. It's probably not necessary to add sub-tags. Rather, goal is a single project page (based on main tag) that is divided into the subfolders. Potentially, you could add in hide and show subfolders too. But everything can be on one page, because generally projects will not have so many files, as in the github case.
+# subfolders on projects
+BUT NOTE: I like it more to have everything in front at once. so ok to see all docs, even subfolders, on one page.
 
 To create the subfolders:
 --could add it to the title of the topic. Example: main project = Churchill-research-paper. Then topics could be called: chapters/final/chapter-1.docx. Note that slashes are allowed for topic titles (just not for tags, which strip them out).
     --another benefit: would all folder items searchable
     --UPDATE: this is the current approach. Potentially, when showing the items on a project page, I could parse the items so that the page is divided up into the subfolders. 
 --could create a custom field for topics, that would have the subfolders. And then parse them that way.
+
+# move docs around on control center
+change doc location like can do in vs code
 
 # discourse tags
 
@@ -76,9 +80,6 @@ right now:
 
 --worktrees: when remove them, they go to trash. Should be deleted altogether (see package for that), otherwise will take up too much user space.
 
-# discourse site
-
-when loading latest topics--like first time loading the comments to a project on local site--it showed the 'welcome to discourse" topic on the page? Why? Get rid of welcome to discourse. And basically get rid of all the normal introductory stuff a user might see
 
 # discourse site settings
 --if a main-project-topic. then should not allow replies. replies are allowed for comment topics
@@ -116,8 +117,9 @@ when loading latest topics--like first time loading the comments to a project on
 --don't show "view saved versions" on main screen if don't have old versions. So, check if there is a git file in the directory before showing this.
 --if you have main window, then view old version window. and remove main window, can old version window still be there?
 --git doesn't track empty directories. So when view old versions the old files won't be there (worktree won't track them). Info here: https://stackoverflow.com/questions/7229885/what-are-the-differences-between-gitignore-and-gitkeep. Maybe just have to leave as is and provide explanation for now.
---if open a project. and then off the app edit the project--like add a new folder or add a new doc, the version displayed in the electron app will be old. and can cause problems if you try to open a doc. fix. how does vs code do it? Simple solution--a refresh button, that reruns the function.
---add icons or some other way to tell folders from docs.
+--if open a project. and then off the app edit the project--like add a new folder or add a new doc, the version displayed in the electron app will be old. and can cause problems if you try to open a doc. fix. how does vs code do it? Simple solution--a refresh button, that reruns the function.  MVP Solution: no change. Encourages users to do everything in the app.
+
+--add icons or some other way to tell folders from docs. DONE.
 
 --show summary of changes to pror versions. Right now, I run a word-diff, which returns a string of changes to all files. To parse that string, I look at the first part of each string. Here's an example:
           diff --git a/second-folder/lincoln-doc.txt b/second-folder/lincoln-doc.txt
@@ -134,7 +136,7 @@ could do the split based on more info, like the actual name of the doc, which yo
      --to start, maybe have a list of limitations. and this would be one of them. 
 
 
---add a search box to the app windows so you can search text inside of the window.
+--add a search box to the app windows so you can search text inside of the window. MVP version: just open the folder on the desktop.
 
 --check if git installed on system. 
 --if try to save changes but there are no changes, then tell the user that a new version wasn't saved bc of it.
@@ -202,13 +204,13 @@ could do the split based on more info, like the actual name of the doc, which yo
           and for some errors, add an option for the user to remedy
                --example, if you have folders open on the app, and then change an extension or a name of a doc, and then try to open the doc as named on the app, will throw an error "no such file or directory". 
 
---add a show location button 
+--add a show location button . NOT necessary--can just open the folder directly.
 
 --if not project file (tries to open based on local storage, but may have been deleted in mean time)--do error catching
 
---if running jxa code, then want to check can run in jxa environment. THere is a package for that:  https://github.com/sindresorhus/is-jxa
 
---if entering Apple Notes ID into doc, note that the structure seems to be "x-coredata://922A35B9-C523-44DE-8611-CA444607F49E/ICNote/p1076". Everything until "/p1076". Investigate whether the data before hand is private info that should be protected. If so, hide it in the doc.
+
+--if entering Apple Notes ID into doc, note that the structure seems to be "x-coredata://922A35B9-C523-44DE-8611-CA444607F49E/ICNote/p1076". Everything until "/p1076". Investigate whether the data before hand is private info that should be protected. If so, hide it in the doc. I THINK THIS IS DONE for viewing in discourse, but check. Also, I DONT this is done if sharing the doc itself, because you can view the data in there. For apple notes, sharing the doc is not a big deal. maybe preclude sharing the doc itself if apple notes. You can just copy and paste into a new apple note if you want to work on it.
      --another way to do it. Get the code after the last / (ie, "p1076")--maybe that is sufficient. 
      --could do that last code + name, but name could change
      --code should be sufficient, unless you download another note from someone else, that happens to have the same code. That is probably unlikely, and the unlikelihood might make it sufficient to go with it.

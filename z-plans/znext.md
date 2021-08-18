@@ -76,20 +76,8 @@ stripe now has payent links. Create a page through stripe. Create a link. put th
      --question: how do you then know whether the user is paid or not? can probably just stick with discourse subscriptions for now. if not using discourse, payment links are a possibility.
 
 
-# Previous
+# apple notes
 
-*START HERE FOR OPENING HTML FILES/APPLESCRIPT*
--working on opening html, with contenteditable. I made it work to save files to html, and then when open them, they open in the app itself. so its like your own webpage that you can edit and save.
-
---then make this work for apple notes--automatic saving to this format, and opening to this format. DONE.
---then make the html open process for apple notes and html work for prior versions. (when want to veiw prior versions, add code to the prior versions window so you open the old versions for html in the same way).
-     --code is in openDoc(thePath). DONE.
-
-
---then provide a way to update apple note with new changes. *TO DO*
---then save the file with changes (for web pages)
-     --can just add a save option, and writeFile with the content to the path
-     --maybe add a save as also? (especially for older versions)
 --make the content process faster for apple notes.
 
 # Html files
@@ -126,8 +114,6 @@ If want to update apple note pre-existing file, make that work. (right now, it j
 
 # test out solution offered in turndownservice github for td+p (relevant for showing tables in word docs)
 
-# be able to collapse showing of folders by clicking on the project name (adding folder icons to show if open or not. and the carrot icons are the indicator if folder or file)
-     --try to mimick the way the icons look on the current file system (blue folder icon, for instance)
 
 # another solution for storing large git files off computer
 
