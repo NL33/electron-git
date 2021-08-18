@@ -499,8 +499,8 @@ function discourseAPITest1() {
     const http = require('url')
     var myUrl = 'https://go.racetosaturn.com/user-api-key/new'
 
-    var redirectUrl = 'goprotocol://example' /***the below code with this url works to get a key for the app and go to discourse, but discourse produces an error when it tries to go to the redirect url. the custom protocol is not working yet. */
-
+    //var redirectUrl = 'goprotocol:example' /***the below code with this url works to get a key for the app and go to discourse, but discourse produces an error when it tries to go to the redirect url. the custom protocol is not working yet. */
+    var redirectUrl = 'http://gohtprotocol'
 
     // code for getting user key. Commented out to not run again until ready
 
@@ -514,7 +514,9 @@ function discourseAPITest1() {
     url.searchParams.append('nonce', '1')
     console.log(`redirect URL is ${url.href}`)
     shell.openExternal(url.href)
-    ipcRenderer.send('open-discourse-auth-window', url.href)
+    
+    
+    //ipcRenderer.send('open-discourse-auth-window', url.href)  //if want to open the window in the app
 
     /*
          axios({

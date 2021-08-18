@@ -5,6 +5,14 @@ its ok for this to not be full functionality off the bat. ok to just have a simp
 
 build out the functionality for public docs first.
 
+# load spinner in command center
+
+add load spinner to show progress when doing tasks, like:
+-creating apple note doc
+-opening apple note
+-saving version
+-sending to discourse [for this especially, show a success message when done]
+
 # For apple notes and html files: it makes a lot more sense to:
 
 open the file directly from the command center.

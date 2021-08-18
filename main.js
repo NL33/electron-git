@@ -156,17 +156,31 @@ ipcMain.on('open-folder-dialog', (event, arg) => {
 })
 
 function showDialog() {
+    //let interval = setInterval(() => { /* nothing */ }, 100)
     dialog.showOpenDialog(newVersionWindow, {
         properties: ['openDirectory'],
         title: "Select Your Project Folder",
         buttonLabel: "Select",
     }).then(result => {
+       // clearInterval(interval)
         if (!result.canceled) {
             newVersionWindow.webContents.send('selected-folder', result.filePaths)
         }
     }).catch(err => {
         console.log(err)
     })
+
+/*
+    try {
+        dialog.showOpenDialogSync(newVersionWindow, {
+            properties: ['openDirectory'],
+            title: "Select Your Project Folder",
+            buttonLabel: "Select",
+        })
+    } catch(e){
+        console.log('error in opening dialog = ' + e)
+    }
+    */
 }
 
 
@@ -371,8 +385,20 @@ function folderWindowFunction() {
 
 
 /*******BASIC SETUP**** */
-
+/*
+let theArray = [{ scheme: 'privilegestring', privileges: { bypassCSP: true } }]
+protocol.registerSchemesAsPrivileged(theArray, (request, callback) => {
+    console.log('registerd file protocol!!' + request)
+    console.log("md-file", request);
+    callback({
+        data: '1231231'
+    });
+}, (error) => {
+    if (error) console.error('Failed to register protocol = ' + error)
+})
+*/
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
+    console.log('***IN APP READY***')    
     app.allowRendererProcessReuse = false  //to allow nutjs
     openBasicWindow()
     saveNewVersionWindow()
@@ -385,20 +411,93 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
         }
     })
 
+    //the following are various attemps at registering a custom protocol. once one works, you can remove the others:
     protocol.registerFileProtocol('goprotocol', (request, callback) => {
         console.log('registerd file protocol!!')
-       // const url = request.url.substr(7)
-       const url = request.url
-        callback({ path: path.normalize(`${__dirname}/${url}`) })
+        // const url = request.url.substr(7)
+        //const url = request.url
+        const pathname = '/Users/sean/Desktop/aug17topic.txt'
+        callback({ path: pathname })
+        //callback({ path: path.normalize(`${__dirname}/${url}`) })
         console.log('******THAT URL**** = ' + url)
     }, (error) => {
         if (error) console.error('Failed to register protocol = ' + error)
+    })  //register file protocol is the only one that gets a payload response, but its in the error console for discourse
+
+
+    protocol.registerFileProtocol('goaprotocol', myCoolFunction(request, callback))
+
+    function myCoolFunction(request, callback){
+        console.log('called the function!')
+    }
+        
+
+    protocol.registerStringProtocol('protostring', (request, callback) => {
+        console.log('registerd file protocol!!' + request)
+        console.log("md-file", request);
+        callback('heres the callback')
+    }, (error) => {
+        if (error) console.error('Failed to register protocol = ' + error)
     })
-    protocol.interceptFileProtocol('goprotocol', (request, callback) => { 
-        console.log('****Protocol has been PROVIDED!****')
-     });
+
+    protocol.registerHttpProtocol('gohtprotocol', (request, callback) => {
+        console.log('registerd file protocol!!' + request)
+        console.log("md-file", request);
+        callback({
+            data: '1231231'
+        });
+    }, (error) => {
+        if (error) console.error('Failed to register protocol = ' + error)
+    })
+
+  
+
+   console.log('IS THIS REGISTERED? = ' + protocol.isProtocolRegistered('httpstring'))
+
+    console.log('IS THIS Intercepted? = ' + protocol.interceptHttpProtocol('goprotocol'))
+
+    protocol.interceptHttpProtocol('httpstring', (request, callback) => {
+        console.log('registerd file protocol!!' + request)
+        console.log("md-file", request);
+        callback({
+            data: '1231231'
+        });
+    }, (error) => {
+        if (error) console.error('Failed to register protocol = ' + error)
+    })
+
+    protocol.interceptStringProtocol('protostring', (request, callback) => {
+        console.log('registerd file protocol!!' + request)
+        console.log("md-file", request);
+        callback('hello there');
+    }, (error) => {
+        if (error) console.error('Failed to register protocol = ' + error)
+    })
+
+    protocol.interceptFileProtocol('http', function (request, callback) {
+        // intercept only requests to "http://example.com"
+        if (request.url.includes("gohtprotocol")) {
+            callback("/path/to/file")
+            console.log('INTERCEPTED !!')
+        }
+
+        // otherwise, let the HTTP request behave like normal.
+        protocol.uninterceptProtocol('http');
+    })
+
+    protocol.interceptHttpProtocol("gohtprotocol", function (request, callback) {
+        console.log('intercepted 2')
+        var parsedUri = url.parse(request.url);
+
+        var filePath = path.join(__dirname, parsedUri.pathname);
+        request.url = "file://" + filePath;
+
+        callback(request);
+    });
+
   
 })
+
 
 /*
 async function getWindow(){
