@@ -301,7 +301,7 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
      }
 
     oldVersionWindow = new BrowserWindow({
-        width: 320,
+        width: 400,
         //height: 620,
         // transparent: true,
         x: 415,
@@ -336,7 +336,7 @@ ipcMain.on('open-compare-versions-window', (event, arg1, arg2, arg3, arg4) =>{
 
 async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earlierVersionInfo, comparisonType) {
     oldVersionWindow = new BrowserWindow({
-        width: 600,
+        width: 700,
         //height: 620,
         // transparent: true,
         x: 415,
@@ -412,33 +412,6 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
     })
 
     //the following are various attemps at registering a custom protocol. once one works, you can remove the others:
-    protocol.registerFileProtocol('goprotocol', (request, callback) => {
-        console.log('registerd file protocol!!')
-        // const url = request.url.substr(7)
-        //const url = request.url
-        const pathname = '/Users/sean/Desktop/aug17topic.txt'
-        callback({ path: pathname })
-        //callback({ path: path.normalize(`${__dirname}/${url}`) })
-        console.log('******THAT URL**** = ' + url)
-    }, (error) => {
-        if (error) console.error('Failed to register protocol = ' + error)
-    })  //register file protocol is the only one that gets a payload response, but its in the error console for discourse
-
-
-    protocol.registerFileProtocol('goaprotocol', myCoolFunction(request, callback))
-
-    function myCoolFunction(request, callback){
-        console.log('called the function!')
-    }
-        
-
-    protocol.registerStringProtocol('protostring', (request, callback) => {
-        console.log('registerd file protocol!!' + request)
-        console.log("md-file", request);
-        callback('heres the callback')
-    }, (error) => {
-        if (error) console.error('Failed to register protocol = ' + error)
-    })
 
     protocol.registerHttpProtocol('gohtprotocol', (request, callback) => {
         console.log('registerd file protocol!!' + request)
@@ -450,12 +423,6 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
         if (error) console.error('Failed to register protocol = ' + error)
     })
 
-  
-
-   console.log('IS THIS REGISTERED? = ' + protocol.isProtocolRegistered('httpstring'))
-
-    console.log('IS THIS Intercepted? = ' + protocol.interceptHttpProtocol('goprotocol'))
-
     protocol.interceptHttpProtocol('httpstring', (request, callback) => {
         console.log('registerd file protocol!!' + request)
         console.log("md-file", request);
@@ -465,35 +432,6 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
     }, (error) => {
         if (error) console.error('Failed to register protocol = ' + error)
     })
-
-    protocol.interceptStringProtocol('protostring', (request, callback) => {
-        console.log('registerd file protocol!!' + request)
-        console.log("md-file", request);
-        callback('hello there');
-    }, (error) => {
-        if (error) console.error('Failed to register protocol = ' + error)
-    })
-
-    protocol.interceptFileProtocol('http', function (request, callback) {
-        // intercept only requests to "http://example.com"
-        if (request.url.includes("gohtprotocol")) {
-            callback("/path/to/file")
-            console.log('INTERCEPTED !!')
-        }
-
-        // otherwise, let the HTTP request behave like normal.
-        protocol.uninterceptProtocol('http');
-    })
-
-    protocol.interceptHttpProtocol("gohtprotocol", function (request, callback) {
-        console.log('intercepted 2')
-        var parsedUri = url.parse(request.url);
-
-        var filePath = path.join(__dirname, parsedUri.pathname);
-        request.url = "file://" + filePath;
-
-        callback(request);
-    });
 
   
 })

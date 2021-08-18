@@ -1,4 +1,7 @@
 **Later To-Dos**
+# Window sizes;
+
+make windows larger
 
 # private messages
 its ok for this to not be full functionality off the bat. ok to just have a simple way to share a doc in private. 
@@ -12,6 +15,13 @@ add load spinner to show progress when doing tasks, like:
 -opening apple note
 -saving version
 -sending to discourse [for this especially, show a success message when done]
+--loading micro word
+
+# Comparing Versions
+
+When show full doc, should hide the reference to any other docs and just show the selected doc.
+
+would also be nice to have a "back" button when you view a certain doc. to take you back to the top of the doc where the table of contents is (could be a "go to top" button, and put at the bottom)
 
 # For apple notes and html files: it makes a lot more sense to:
 
