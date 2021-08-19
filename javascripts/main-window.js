@@ -1744,7 +1744,7 @@ async function saveGitVersion() {
             console.log('commit result = ' + JSON.stringify(result))
 
             /*Make a file of commit notes:*/
-            var commitTextFilePath = projectFolderPath + '/version-notes.md'
+            var commitTextFilePath = projectFolderPath + '/z-version-notes.md'
             fs.stat(commitTextFilePath, function (err, stat) {
                 if (err == null) {
                     //file exists
@@ -1798,7 +1798,7 @@ async function saveGitVersion() {
                             var newIndent = parseInt(indent) + 15
                             var newId = "**is-document**^^^" + commitTextFilePath + "^^^" + indent
                             contents = `<div>
-                                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${commitTextFilePath}", "${newIndent}")'>` + 'version-notes.md' + `</div>
+                                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${commitTextFilePath}", "${newIndent}")'>` + 'z-version-notes.md' + `</div>
                                 <div class="newItems"></div>
                                 </div>`
                             var contentsDiv = document.getElementById('folderContents')

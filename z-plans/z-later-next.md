@@ -11,6 +11,10 @@ its ok for this to not be full functionality off the bat. ok to just have a simp
 
 build out the functionality for public docs first.
 
+# composer action for comments in discourse app
+
+right now, the action to set the value is in an initializer. But, that code just links up with the connector/composer-fields/... values anyway. So maybe better to just put that code directly there? Same result, but cleaner, and no need for that initializer file.
+
 # load spinner in command center
 
 add load spinner to show progress when doing tasks, like:
