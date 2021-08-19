@@ -514,8 +514,8 @@ function discourseAPITest1() {
     url.searchParams.append('nonce', '1')
     console.log(`redirect URL is ${url.href}`)
     shell.openExternal(url.href)
-    
-    
+
+
     //ipcRenderer.send('open-discourse-auth-window', url.href)  //if want to open the window in the app
 
     /*
@@ -679,9 +679,9 @@ async function createAppleNoteFile(divId, folderPath, indent, noteId) {
 
     if (matchingNotePath !== 'n/a') {
         try {
-          fs.renameSync(matchingNotePath, newDocPath, ()=>{
-              console.log('the matching note has been renamed to the new note.')
-          })
+            fs.renameSync(matchingNotePath, newDocPath, () => {
+                console.log('the matching note has been renamed to the new note.')
+            })
         } catch (err) {
             console.log('error in renamig = ' + err)
         }
@@ -705,7 +705,7 @@ margin-bottom: 0px
 }
 </style>
     `
-   
+
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
     var content = colorStyleInsert + '<div style="margin-bottom: 12px; display: none">id:<span id="noteId81423">' + noteId + '</span></div>' + updatedContent  //noteId span name is given the code 81423 to make it unlikely someone will print that exact string in their own notes
@@ -754,7 +754,7 @@ async function removeSavedWorkTree(treePath) {
 
 async function openDoc(thePath) {
     let theExtension = path.extname(thePath)
-    if (thePath.includes('(apple-note)')){ //if apple note. then open the apple note doc directly
+    if (thePath.includes('(apple-note)')) { //if apple note. then open the apple note doc directly
         console.log('open apple doc')
         var theNoteId
         try {
@@ -780,8 +780,8 @@ async function openDoc(thePath) {
 
              return evalAS2('tell application "Notes" to show note id "${theNoteId}"')
             `)
-        } catch (e){//if there's an error in trying to open the apple note, can just go ahead and open the file through the app.
-            console.log('error in opening note = ' + e) 
+        } catch (e) {//if there's an error in trying to open the apple note, can just go ahead and open the file through the app.
+            console.log('error in opening note = ' + e)
             fs.readFile(thePath, 'utf8', function (err, data) {
                 if (err) {
                     console.log(err)
@@ -791,7 +791,7 @@ async function openDoc(thePath) {
             })
         }
         console.log('the note id = ' + theNoteId)
-       
+
     } else if (theExtension.includes('html')) { //if not apple note but is an html file, open that file
         fs.readFile(thePath, 'utf8', function (err, data) {
             if (err) {
@@ -890,7 +890,7 @@ async function showFolderContents(divId, mainPath, indent) {
                     if (extension1) {
                         hasExtension1 = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
                     }
-                    if ((subStats.isDirectory() === true) && (hasExtension1 === false)){
+                    if ((subStats.isDirectory() === true) && (hasExtension1 === false)) {
                         var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
                         contents = `<div style='margin-left: ${indent}px'>
                         <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'> <img src="../clear-folder-fntawesome.svg" style="padding-right: 3px; height: 11pt; width: 9pt; vertical-align: text-top"></img>` + item + `</div>
@@ -1192,7 +1192,6 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
     })
 
     var indexGo = itemArray.indexOf(folderName)
-    console.log('indexGo = ' + indexGo)
     var element = document.getElementById(divId)
     var contents = ""
     var newIndent = parseInt(indent) + 15
@@ -1216,13 +1215,13 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
         var contentsDiv = document.getElementById('folderContents')
     } else {
         var contentsDiv = element.nextElementSibling //not the project directory (so a subfolder). So structure is parent, then sibling where contents are
-        
+
     }
     if (indexGo === 0) {
         contentsDiv.insertAdjacentHTML("afterbegin", contents)
     } else {
         var divBefore = contentsDiv.children[indexGo]
-        if (divBefore){
+        if (divBefore) {
             divBefore.insertAdjacentHTML("beforebegin", contents)
         } else {
             contentsDiv.insertAdjacentHTML("afterbegin", contents)
@@ -1743,11 +1742,40 @@ async function saveGitVersion() {
             document.getElementById('sendOptions').style.display = 'block'
             document.getElementById('localSaveNotice').style.display = 'block'
             console.log('commit result = ' + JSON.stringify(result))
+
+            /*Make a file of commit notes:*/
             var commitTextFilePath = projectFolderPath + '/version-notes.md'
-            fs.readFile(commitTextFilePath, 'utf8', (err, data) => {
-                if (err) {
-                    console.log('error = ' + err)
-                } else {
+            fs.stat(commitTextFilePath, function (err, stat) {
+                if (err == null) {
+                    //file exists
+                    fs.readFile(commitTextFilePath, 'utf8', (err, data) => {
+                        if (err) {
+                            console.log('error = ' + err)
+                        } else {
+                            var dateObject = new Date()
+                            var showDate = dateObject.toLocaleDateString('en-us', {
+                                weekday: 'short',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            })
+                            var showTime = dateObject.toLocaleTimeString('en-us', {
+                                timeStyle: 'short'
+                            })
+                            var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
+                            var showTime = '**' + showDate + ' ' + cleanedTime + '**' + '\n\n'
+                            var newData = showTime + text + '\n\n\n' + data
+                            fs.writeFile(commitTextFilePath, newData, (err) => {
+                                if (err) {
+                                    console.log(err)
+                                } else {
+                                    console.log('file created')
+                                }
+                            })
+                        }
+                    })
+                } else if (err.code === 'ENOENT') {
+                    // file does not exist
                     var dateObject = new Date()
                     var showDate = dateObject.toLocaleDateString('en-us', {
                         weekday: 'short',
@@ -1759,24 +1787,36 @@ async function saveGitVersion() {
                         timeStyle: 'short'
                     })
                     var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
-                    var showTime = '**' + showDate + ' ' + cleanedTime + '**' + '\n\n'
-                    var newData = showTime + text + '\n\n\n' + data
+                    var showTime = '**' + showDate + ', ' + cleanedTime + '**' + '\n\n'
+                    var newData = showTime + text + '\n\n\n'
                     fs.writeFile(commitTextFilePath, newData, (err) => {
                         if (err) {
                             console.log(err)
                         } else {
                             console.log('file created')
+                            var indent = 0
+                            var newIndent = parseInt(indent) + 15
+                            var newId = "**is-document**^^^" + commitTextFilePath + "^^^" + indent
+                            contents = `<div>
+                                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${commitTextFilePath}", "${newIndent}")'>` + 'version-notes.md' + `</div>
+                                <div class="newItems"></div>
+                                </div>`
+                            var contentsDiv = document.getElementById('folderContents')
+                            contentsDiv.insertAdjacentHTML("beforeend", contents)
                         }
                     })
+                } else {
+                    console.log('Some other error: ', err.code);
                 }
-            })
-            //current-code
+            });
         })
-        await git.raw('remote', 'get-url', '--push', 'origin').then(result => {
+        /*
+        await git.raw('remote', 'get-url', '--push', 'origin').then(result => {  //thiswould be to push to github
             console.log('get remote result = ' + JSON.stringify(result))
             //if lists a remote at github that doesn't exist, will send back an error
             document.getElementById('remoteName').textContent = result
         })
+        */
 
     }
     catch (e) {
