@@ -885,9 +885,13 @@ async function showFolderContents(divId, mainPath, indent) {
                 if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
                     var fullPath = mainPath + '/' + item
                     var subStats = fs.statSync(fullPath)
-                    if (subStats.isDirectory() === true) {
+                    var extension1 = path.extname(fullPath)
+                    var hasExtension1 = false
+                    if (extension1) {
+                        hasExtension1 = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
+                    }
+                    if ((subStats.isDirectory() === true) && (hasExtension1 === false)){
                         var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
-                        /**START HERE: I added a parent div, then the icon as a sibling div. This works, but prevents opening the folder***/
                         contents = `<div style='margin-left: ${indent}px'>
                         <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'> <img src="../clear-folder-fntawesome.svg" style="padding-right: 3px; height: 11pt; width: 9pt; vertical-align: text-top"></img>` + item + `</div>
                         <div class="newItems"></div>
@@ -1212,13 +1216,17 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
         var contentsDiv = document.getElementById('folderContents')
     } else {
         var contentsDiv = element.nextElementSibling //not the project directory (so a subfolder). So structure is parent, then sibling where contents are
+        
     }
     if (indexGo === 0) {
         contentsDiv.insertAdjacentHTML("afterbegin", contents)
     } else {
         var divBefore = contentsDiv.children[indexGo]
-        console.log('div before = ' + divBefore.textContent) /***START HERE: This has trouble if you add new file after just adding another new file (but not refreshing. Because an additional div for new items is added.) so need to account for those "newItems" folders. They only exist in the temporary view, not the actual file system. So it changes the index.  */
-        divBefore.insertAdjacentHTML("beforebegin", contents)
+        if (divBefore){
+            divBefore.insertAdjacentHTML("beforebegin", contents)
+        } else {
+            contentsDiv.insertAdjacentHTML("afterbegin", contents)
+        }
     }
 
     var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')

@@ -1,7 +1,10 @@
 **Later To-Dos**
-# Window sizes;
+# project description
 
-make windows larger
+- project description
+    - add a project summary description? could have that in the control center—where you can add a project summary. then, save it to dexiedb, associated with the path. if look up the path and there is no matching path, check project name and search for that name, and show message to user saying there are matching project names, and show possible project descriptions. if no matching path and no matching project names, then just show “add project description” to control center.
+    - then, when send to discourse, associate that project description with each doc.
+    - and then show on discourse, based on the project description of the most updated doc
 
 # private messages
 its ok for this to not be full functionality off the bat. ok to just have a simple way to share a doc in private. 
@@ -18,6 +21,8 @@ add load spinner to show progress when doing tasks, like:
 --loading micro word
 
 # Comparing Versions
+
+see apple notes of Wednesday, August 18, 2021. There are a variety of issues to resolve. Probably 2 hrs.+
 
 When show full doc, should hide the reference to any other docs and just show the selected doc.
 
