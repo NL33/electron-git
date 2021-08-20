@@ -15,6 +15,20 @@ build out the functionality for public docs first.
 
 right now, the action to set the value is in an initializer. But, that code just links up with the connector/composer-fields/... values anyway. So maybe better to just put that code directly there? Same result, but cleaner, and no need for that initializer file.
 
+# comparing docs: remaining issues
+
+-there are a few issues remaining. They don't seem too significant, but should be addressed:
+
+
+- comparing changes: If you select two different versions, and then hit "compare changes" again, it makes both newer and older version the same (the later one). Fix this (Note of June 30, 2021). More detail: its possible for "new version" header to not be updated, and to wrongly show the last saved version, when it should show current local saved changes. And then for both "new version" and "older version" to show the same version number. In this case, it will run a diff of a version against itself. This happened for me when I had selected two different versions, then hit compare changes again
+- comparison: after run the diff, you show the file name at the top of each section showing changes. Right now, you identify that name by seeing if there is any white space. But what if the file name has white space in it? Probably doesnt work. Fix it. To test, try a file name with white space in it
+    - CONFIRMED: White space in a file name means the link to the file won’t work 
+- comparison: right now, if try to run a comparison too quickly after running another, the first comparison's temp folders could still be there. Make sure this doesn't cause issues.
+- Issue: when running a conversion, if there is a "<" in there, everything afterward is stripped away. This can have strange implications, like if that section was in the deleted sections, then the result would be a start of <del> without an end. So everything from then on would show up as deleted.
+    - see z-later-next.md file for more on this
+- when want to select different versions, getting “unexpected token” in html, line 1, for comparing versions, if I just recently did something else (like save a version or open old versions)
+
+
 # Word comparisons
 
 -if word is open when you save the version, the hidden file may be saved with it. Be sure to not save the hidden file
