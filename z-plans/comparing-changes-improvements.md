@@ -26,6 +26,7 @@ I had a few versions saved. Then I added a word documnt. and saved the version. 
 
 -only happens with word docs. Because only word docs create a work tree and temp folder
 -the work tree and temp folder are not properly being deleted
+-seems to happen just for newly added word docs.
 
 
 

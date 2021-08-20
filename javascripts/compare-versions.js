@@ -221,7 +221,23 @@ function showIntegratedDiffResult(result, type) { //type can be full file ("full
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /****************BLOCK DIFF***************************** */
+
+/**********NOTE: REMOVED BUTTON FOR NOW (Aug20,2021) TO JUST DO THE INTEGRATED DIFF. THat seems more natural for non-coders, and I prefer to simplify for now. Simplify choices for users, and simplify coding requirements */
 
 async function gitDiffFunctionBlock() { //for file summary [full file handled under diffSingleFile()]
     diffIntegrated = false
