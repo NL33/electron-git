@@ -398,7 +398,6 @@ protocol.registerSchemesAsPrivileged(theArray, (request, callback) => {
 })
 */
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
-    console.log('***IN APP READY***')    
     app.allowRendererProcessReuse = false  //to allow nutjs
     openBasicWindow()
     saveNewVersionWindow()
@@ -409,33 +408,16 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
         if (BrowserWindow.getAllWindows().length === 0) { //create a new browswer window only if app has no visible windows after being activated, such as when launching the app for the first time or relaunching the already running app
             // createWindow()
         }
-    })
-
-    //the following are various attemps at registering a custom protocol. once one works, you can remove the others:
-
-    protocol.registerHttpProtocol('gohtprotocol', (request, callback) => {
-        console.log('registerd file protocol!!' + request)
-        console.log("md-file", request);
-        callback({
-            data: '1231231'
-        });
-    }, (error) => {
-        if (error) console.error('Failed to register protocol = ' + error)
-    })
-
-    protocol.interceptHttpProtocol('httpstring', (request, callback) => {
-        console.log('registerd file protocol!!' + request)
-        console.log("md-file", request);
-        callback({
-            data: '1231231'
-        });
-    }, (error) => {
-        if (error) console.error('Failed to register protocol = ' + error)
-    })
-
-  
+    })  
 })
 
+app.setAsDefaultProtocolClient('defaultproto');
+
+app.on('open-url', function (event, data) {
+    event.preventDefault();
+    link = data;
+    console.log('RECEIVED!!!')
+});
 
 /*
 async function getWindow(){
