@@ -500,7 +500,7 @@ function discourseAPITest1() {
     var myUrl = 'https://go.racetosaturn.com/user-api-key/new'
 
     //var redirectUrl = 'goprotocol:example' /***the below code with this url works to get a key for the app and go to discourse, but discourse produces an error when it tries to go to the redirect url. the custom protocol is not working yet. */
-    var redirectUrl = 'http://gohtprotocol'
+    var redirectUrl = 'saturnproto://redirect'
 
     // code for getting user key. Commented out to not run again until ready
 

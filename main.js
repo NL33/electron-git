@@ -408,18 +408,7 @@ function folderWindowFunction() {
 
 
 /*******BASIC SETUP**** */
-/*
-let theArray = [{ scheme: 'privilegestring', privileges: { bypassCSP: true } }]
-protocol.registerSchemesAsPrivileged(theArray, (request, callback) => {
-    console.log('registerd file protocol!!' + request)
-    console.log("md-file", request);
-    callback({
-        data: '1231231'
-    });
-}, (error) => {
-    if (error) console.error('Failed to register protocol = ' + error)
-})
-*/
+
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
     app.allowRendererProcessReuse = false  //to allow nutjs
     openBasicWindow()
@@ -440,13 +429,13 @@ if (process.platform === 'win32') {
     // Register the private URI scheme differently for Windows
     // https://stackoverflow.com/questions/45570589/electron-protocol-handler-not-working-on-windows
     app.setAsDefaultProtocolClient(
-        'defaultproto',
+        'saturnproto',
         process.execPath,
         [app.getAppPath()]);
 
 } else {
     console.log('on non-windows')
-    app.setAsDefaultProtocolClient('defaultproto');
+    app.setAsDefaultProtocolClient('saturnproto');
 }
 
 
