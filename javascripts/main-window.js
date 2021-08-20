@@ -599,8 +599,9 @@ async function minimizeWindows() {
 var appleNoteHtmlContent
 async function addAppleNote(divId, mainPath, indent) {
     var newIndent = parseInt(indent) + 17
+    console.log('get apple note file')
     try {
-        await getFrontNote().then((response) => {
+         getFrontNote().then((response) => {
             appleNoteHtmlContent = response.noteContent
             var noteId = response.noteId
             var element = document.getElementById(divId)
@@ -617,10 +618,11 @@ async function addAppleNote(divId, mainPath, indent) {
         console.log('error in addAppleNote = ' + error)
     }
 }
-async function getFrontNote() {
+async function getFrontNote() { //get the text of the apple note in the foreground
     // (async () => {
     try {
         const result = await runJxa(`
+        console.log('running')
             const evalAS2 = s => {
                     const a = Application.currentApplication();
                     const sa = (a.includeStandardAdditions = true, a);
@@ -1243,6 +1245,13 @@ async function deleteItem(e) {
     var idArray = fullId.split("^^^")
     var thePath = idArray[1]
     await trash([thePath]).then(() => {
+        if (fullId.includes('is-directory')){
+            var newItems = item.nextElementSibling
+            if (newItems){
+                newItems.innerHTML = '' //remove items in newItems
+            }
+            item.remove() 
+        }
         item.remove()
     });
 }
