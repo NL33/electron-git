@@ -149,35 +149,6 @@ async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earl
     oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
 }
 
-/************ OPEN COMPARE CHANGES WINDOW**************** */
-ipcMain.on('open-compare-changes-window', (event, laterVersion, earlierVersion) => {    
-    openCompareChangesWindow(laterVersion, earlierVersion)
-})
-//START HERE
-async function openCompareChangesWindow(laterVersion, earlierVersion) {
-    var compareChangesWindow = new BrowserWindow({
-        width: 209, //320,
-        height: 620,
-        x: screenWidth - 209,
-        y: 0,
-        alwaysOnTop: true,
-        webPreferences: {
-            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
-            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
-            enableRemoteModule: true
-        }
-    })
-
-    newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
-    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
-    newVersionWindow.hide()
-    //newVersionWindow.openDevTools()
-    /*
-    newVersionWindow.webContents.on('did-finish-load', function () {
-        newVersionWindow.show();
-    })
-    */
-}
 
 
 /*****## OPEN DIALOG TO SELECT FOLDER ******/

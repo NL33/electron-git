@@ -10,6 +10,8 @@ There have been some issues with comparing changes and I want to improve them
 
 that can isolate the code more.
 
+but: focus first is getting the comparison to run smoothly, and making this change started to become time consuming. So I will address this later
+
 
 *Identified Issues*
 
