@@ -94,55 +94,6 @@ function openBasicWindow(){
 }
 
 
-/***BREATHE BIG WINDOW */
-function openBreatheBigWindow(){
-    var theDisplay = screen.getPrimaryDisplay()
-    var size = theDisplay.workAreaSize
-    var rightHeight = Math.floor((size.height)) - Math.floor((size.height) - 2)
-    //var rightHeight = Math.floor((size.height)-170)
-    var xSpot = Math.floor((size.width) / 2) - 112
-    var focusWindow = new BrowserWindow({
-        show: false,
-        height: 165,
-        width: 225,
-        x: xSpot,
-        y: rightHeight,
-        title: "Focus",
-        hasShadow: false,
-        transparent: true,
-        frame: false,
-        alwaysOnTop: true,
-        //backgroundColor: 'white'
-    })
-
-    focusWindow.loadURL('file://' + __dirname + '/views/breathe-big-button.html');
-
-    //focusWindow.webContents.on('did-finish-load', function() {
-    focusWindow.once('ready-to-show', function () {
-        //focusWindow.webContents.send('focusText', arg);
-        focusWindow.showInactive();
-    });
-
-    
-    ipcMain.on('close-focusWindow', function () {
-        focusWindow.destroy()
-    });
-    
-}
-
-
-/***END BREATHE BIG WINDOW*** */
-ipcMain.on('open-main-window', (event, arg) => {
-    console.log('show the window')
-    newVersionWindow.show()
-    basicWindow.hide()   
-})
-
-ipcMain.on('hide-main-window', (event, arg) => {
-    basicWindow.show()
-    newVersionWindow.hide()
-})
-
 /* **** #OPEN MAIN WINDOW********/
 
 async function saveNewVersionWindow(windowTitle) {
@@ -171,6 +122,63 @@ async function saveNewVersionWindow(windowTitle) {
     })
     */
 }
+/********************************************************* */
+
+/******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
+
+ipcMain.on('open-compare-versions-window', (event, arg1, arg2, arg3, arg4) => {
+    compareVersionsWindowFunction(arg1, arg2, arg3, arg4)
+})
+
+async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earlierVersionInfo, comparisonType) {
+    oldVersionWindow = new BrowserWindow({
+        width: 700,
+        //height: 620,
+        // transparent: true,
+        x: 415,
+        y: 0,
+        webPreferences: {
+            additionalArguments: [projectPath, laterVersionInfo, earlierVersionInfo, comparisonType],
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+            enableRemoteModule: true
+        }
+    })
+    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
+
+    oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
+}
+
+/************ OPEN COMPARE CHANGES WINDOW**************** */
+ipcMain.on('open-compare-changes-window', (event, laterVersion, earlierVersion) => {    
+    openCompareChangesWindow(laterVersion, earlierVersion)
+})
+//START HERE
+async function openCompareChangesWindow(laterVersion, earlierVersion) {
+    var compareChangesWindow = new BrowserWindow({
+        width: 209, //320,
+        height: 620,
+        x: screenWidth - 209,
+        y: 0,
+        alwaysOnTop: true,
+        webPreferences: {
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+            enableRemoteModule: true
+        }
+    })
+
+    newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
+    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
+    newVersionWindow.hide()
+    //newVersionWindow.openDevTools()
+    /*
+    newVersionWindow.webContents.on('did-finish-load', function () {
+        newVersionWindow.show();
+    })
+    */
+}
+
 
 /*****## OPEN DIALOG TO SELECT FOLDER ******/
 
@@ -206,6 +214,55 @@ function showDialog() {
     */
 }
 
+
+/***BREATHE BIG WINDOW */
+function openBreatheBigWindow() {
+    var theDisplay = screen.getPrimaryDisplay()
+    var size = theDisplay.workAreaSize
+    var rightHeight = Math.floor((size.height)) - Math.floor((size.height) - 2)
+    //var rightHeight = Math.floor((size.height)-170)
+    var xSpot = Math.floor((size.width) / 2) - 112
+    var focusWindow = new BrowserWindow({
+        show: false,
+        height: 165,
+        width: 225,
+        x: xSpot,
+        y: rightHeight,
+        title: "Focus",
+        hasShadow: false,
+        transparent: true,
+        frame: false,
+        alwaysOnTop: true,
+        //backgroundColor: 'white'
+    })
+
+    focusWindow.loadURL('file://' + __dirname + '/views/breathe-big-button.html');
+
+    //focusWindow.webContents.on('did-finish-load', function() {
+    focusWindow.once('ready-to-show', function () {
+        //focusWindow.webContents.send('focusText', arg);
+        focusWindow.showInactive();
+    });
+
+
+    ipcMain.on('close-focusWindow', function () {
+        focusWindow.destroy()
+    });
+
+}
+
+
+/***END BREATHE BIG WINDOW*** */
+ipcMain.on('open-main-window', (event, arg) => {
+    console.log('show the window')
+    newVersionWindow.show()
+    basicWindow.hide()
+})
+
+ipcMain.on('hide-main-window', (event, arg) => {
+    basicWindow.show()
+    newVersionWindow.hide()
+})
 
 
 /******OPEN HTML FILES *********** */
@@ -351,30 +408,7 @@ ipcMain.on('open-old-version-window', (event, args) => {
     oldVersionWindowFunction(receivedInfo[0], receivedInfo[1], receivedInfo[2], receivedInfo[3], receivedInfo[4], receivedInfo[5])
 })
 
-/******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
 
-ipcMain.on('open-compare-versions-window', (event, arg1, arg2, arg3, arg4) =>{
-   compareVersionsWindowFunction(arg1, arg2, arg3, arg4)
-})
-
-async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earlierVersionInfo, comparisonType) {
-    oldVersionWindow = new BrowserWindow({
-        width: 700,
-        //height: 620,
-        // transparent: true,
-        x: 415,
-        y: 0,
-        webPreferences: {
-            additionalArguments: [projectPath, laterVersionInfo, earlierVersionInfo, comparisonType],
-            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
-            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
-            enableRemoteModule: true
-        }
-    })
-    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
-
-    oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
-}
 
 
 /****FOLDER WINDOW (NOT CURRENTLY IN USE) ********/

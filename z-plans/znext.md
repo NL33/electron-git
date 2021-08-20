@@ -1,8 +1,13 @@
 *Notes from Sunday August 16*
 
-# Composer
--issue is probably code for creating new composer is not right, but then the cache saves it for the rest of the composers. Need to clear out the composer cache. One method: sign in as different user and see if the issue is there.
--can also figure out th code by experimenting on the live site. Choose a plugin outlet (for code for that, see post about decoratewidget, where they give the code for how to use a plugin outlet instead). and put a button there. then try code for loading the composer and adding a field to it.
+# Authentication
+
+got app to work to register code.
+
+probably next:
+--when receive the code,
+--open up new window with instructions to user
+-and save code somewhere (asked followup on so about that)
 
 # showing version notes with files
 
