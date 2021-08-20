@@ -28,7 +28,16 @@ I had a few versions saved. Then I added a word documnt. and saved the version. 
 -the work tree and temp folder are not properly being deleted
 -seems to happen just for newly added word docs.
 
+# Why its happening
 
+-if you add a word doc, and then compare against a version without that word doc, then it returns an error, because the code assumes there is a word doc in both folders to compare against
+
+
+
+# Diff Process
+
+-when window opens, get later version and earlier version
+-run diff of later v earlier (git.raw('diff', 'name-only') to get summary, and then git.raw('diff', 'word-diff') to get integrated diff)
 
 
 

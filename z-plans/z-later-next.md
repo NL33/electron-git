@@ -15,6 +15,22 @@ build out the functionality for public docs first.
 
 right now, the action to set the value is in an initializer. But, that code just links up with the connector/composer-fields/... values anyway. So maybe better to just put that code directly there? Same result, but cleaner, and no need for that initializer file.
 
+# Word comparisons
+
+-if word is open when you save the version, the hidden file may be saved with it. Be sure to not save the hidden file
+
+-in compare-versions.js file, where we run the comparisons, the writeFileFunction is where we write the files--meaning take the word docs converted to md, and create files from them, putting them in the TempOld folder and then TempNewFolder. After all necessary md files have been created, we move on to run the diff comparison between the two.
+
+-I have spent awhile trying to be sure that we are only running the diff comparison when all necessary files are in the folders. For each word doc requiring a comparison, there are 3 possibilities: 1. it should have a copy in both TempOld and TempNew, bc its in both versions. 2. Just a copy in TempOld (bc it was in the old folder prior to being deleted), and 3. a copy in TempNew (bc it was in the new folder prior to being deleted).
+
+To be sure the files are where they need to be, I compare how many times write file has been run and how many times mamoth needs to run. 
+
+Is this correct? It seems to be working for me, but not clear it's the right move.
+
+# make sure worktrees and tempFolder7843OLD and tempFolder7843NEW are removed regularly, in case an error happens before the remove code (especially in compare-versions.js)
+
+and when remove, delete the folders (not just move to trash)
+
 # load spinner in command center
 
 add load spinner to show progress when doing tasks, like:
@@ -23,6 +39,8 @@ add load spinner to show progress when doing tasks, like:
 -saving version
 -sending to discourse [for this especially, show a success message when done]
 --loading micro word
+--compare versions js--loading micro word changes 
+--compare version js-viewing full document
 
 # Comparing Versions
 
