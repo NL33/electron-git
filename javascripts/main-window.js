@@ -1655,10 +1655,13 @@ document.getElementById('runChangesIntegrated').addEventListener('click', () => 
     runComparisonFunction('integrated')
 })
 
-
+/*
+//block changes option removed for simplicity
 document.getElementById('runChangesBlock').addEventListener('click', () => {
     runComparisonFunction('block')
 })
+
+*/
 
 
 function runComparisonFunction(comparisonType) {
@@ -1709,107 +1712,79 @@ async function saveGitVersion() {
     document.getElementById('saveProjectItems').style.display = "none"
     document.getElementById('savingProgress').style.display = "inline-block"
     try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
 
-        await git.init().then(result => {
-            //console.log('init result = ' + JSON.stringify(result))
-        })
 
-        await git.add('.').then(result => {
-            //console.log('add result = ' + JSON.stringify(result))
-        })
+      /**STEPS FROM HERE: Create file with commit notes (including checking if already exists). Create file if necessary. Then, after notes file has been updated, run the commit */
 
-        await git.commit(text).then(result => {
-            /*
-            var overviewS = document.getElementById("ifNewVersionSaved")
-            var overviewN = document.getElementById("ifNoNewVersion")
-            var showResults = document.getElementById("showResults")
-            if (result.summary.changes != "0") {
-                overviewN.style.display = "none"
-                showResults.textContent = JSON.stringify(result.summary)
-                overviewS.style.display = "inline-block"
-            } else {
-                overviewS.style.display = "none"
-                showResults.textContent = ""
-                overviewN.style.display = "inline-block"
-            }
-            */
-            document.getElementById('noteForSave').textContent = ''
-            document.getElementById('saveProjectItems').style.display = "none"
-            document.getElementById('saveProjectHeader').style.display = "none"
-            document.getElementById('sendOptions').style.display = 'block'
-            document.getElementById('localSaveNotice').style.display = 'block'
-            console.log('commit result = ' + JSON.stringify(result))
-
-            /*Make a file of commit notes:*/
-            var commitTextFilePath = projectFolderPath + '/z-version-notes.md'
-            fs.stat(commitTextFilePath, function (err, stat) {
-                if (err == null) {
-                    //file exists
-                    fs.readFile(commitTextFilePath, 'utf8', (err, data) => {
-                        if (err) {
-                            console.log('error = ' + err)
-                        } else {
-                            var dateObject = new Date()
-                            var showDate = dateObject.toLocaleDateString('en-us', {
-                                weekday: 'short',
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric'
-                            })
-                            var showTime = dateObject.toLocaleTimeString('en-us', {
-                                timeStyle: 'short'
-                            })
-                            var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
-                            var showTime = '**' + showDate + ' ' + cleanedTime + '**' + '\n\n'
-                            var newData = showTime + text + '\n\n\n' + data
-                            fs.writeFile(commitTextFilePath, newData, (err) => {
-                                if (err) {
-                                    console.log(err)
-                                } else {
-                                    console.log('file created')
-                                }
-                            })
-                        }
-                    })
-                } else if (err.code === 'ENOENT') {
-                    // file does not exist
-                    var dateObject = new Date()
-                    var showDate = dateObject.toLocaleDateString('en-us', {
-                        weekday: 'short',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    })
-                    var showTime = dateObject.toLocaleTimeString('en-us', {
-                        timeStyle: 'short'
-                    })
-                    var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
-                    var showTime = '**' + showDate + ', ' + cleanedTime + '**' + '\n\n'
-                    var newData = showTime + text + '\n\n\n'
-                    fs.writeFile(commitTextFilePath, newData, (err) => {
-                        if (err) {
-                            console.log(err)
-                        } else {
-                            console.log('file created')
-                            var indent = 0
-                            var newIndent = parseInt(indent) + 15
-                            var newId = "**is-document**^^^" + commitTextFilePath + "^^^" + indent
-                            contents = `<div>
+        /*Make a file of commit notes:*/
+        var commitTextFilePath = projectFolderPath + '/z-version-notes.md'
+        fs.stat(commitTextFilePath, function (err, stat) {
+            if (err == null) {
+                //file exists
+                fs.readFile(commitTextFilePath, 'utf8', (err, data) => {
+                    if (err) {
+                        console.log('error = ' + err)
+                    } else {
+                        var dateObject = new Date()
+                        var showDate = dateObject.toLocaleDateString('en-us', {
+                            weekday: 'short',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        })
+                        var showTime = dateObject.toLocaleTimeString('en-us', {
+                            timeStyle: 'short'
+                        })
+                        var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
+                        var showTime = '**' + showDate + ' ' + cleanedTime + '**' + '\n\n'
+                        var newData = showTime + text + '\n\n\n' + data
+                        fs.writeFile(commitTextFilePath, newData, (err) => {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                //********FILE UPDATED. NOW MAKE THE COMMIT****** */
+                                doTheCommit(text)
+                            }
+                        })
+                    }
+                })
+            } else if (err.code === 'ENOENT') {
+                // file does not exist
+                var dateObject = new Date()
+                var showDate = dateObject.toLocaleDateString('en-us', {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })
+                var showTime = dateObject.toLocaleTimeString('en-us', {
+                    timeStyle: 'short'
+                })
+                var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
+                var showTime = '**' + showDate + ', ' + cleanedTime + '**' + '\n\n'
+                var newData = showTime + text + '\n\n\n'
+                fs.writeFile(commitTextFilePath, newData, (err) => {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        console.log('file created')
+                        var indent = 0
+                        var newIndent = parseInt(indent) + 15
+                        var newId = "**is-document**^^^" + commitTextFilePath + "^^^" + indent
+                        contents = `<div>
                                 <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${commitTextFilePath}", "${newIndent}")'>` + 'z-version-notes.md' + `</div>
                                 <div class="newItems"></div>
                                 </div>`
-                            var contentsDiv = document.getElementById('folderContents')
-                            contentsDiv.insertAdjacentHTML("beforeend", contents)
-                        }
-                    })
-                } else {
-                    console.log('Some other error: ', err.code);
-                }
-            });
-        })
+                        var contentsDiv = document.getElementById('folderContents')
+                        contentsDiv.insertAdjacentHTML("beforeend", contents)
+                        //********FILE CREATED. NOW MAKE THE COMMIT****** */
+                        doTheCommit(text)
+                    }
+                })
+            } else {
+                console.log('Some other error: ', err.code);
+            }
+        });
         /*
         await git.raw('remote', 'get-url', '--push', 'origin').then(result => {  //thiswould be to push to github
             console.log('get remote result = ' + JSON.stringify(result))
@@ -1822,6 +1797,42 @@ async function saveGitVersion() {
     catch (e) {
         console.log('error = ' + e)
     }
+}
+
+async function doTheCommit(text){ //Where the actual version commit is done.
+    await git.cwd(projectFolderPath).then(result => {
+        // console.log('cwd resultss' + JSON.stringify(result))
+    })
+    await git.init().then(result => {
+        //console.log('init result = ' + JSON.stringify(result))
+    })
+
+    await git.add('.').then(result => {
+        //console.log('add result = ' + JSON.stringify(result))
+    })
+
+    await git.commit(text).then(result => {
+        /*
+        var overviewS = document.getElementById("ifNewVersionSaved")
+        var overviewN = document.getElementById("ifNoNewVersion")
+        var showResults = document.getElementById("showResults")
+        if (result.summary.changes != "0") {
+            overviewN.style.display = "none"
+            showResults.textContent = JSON.stringify(result.summary)
+            overviewS.style.display = "inline-block"
+        } else {
+            overviewS.style.display = "none"
+            showResults.textContent = ""
+            overviewN.style.display = "inline-block"
+        }
+        */
+        document.getElementById('noteForSave').textContent = ''
+        document.getElementById('saveProjectItems').style.display = "none"
+        document.getElementById('saveProjectHeader').style.display = "none"
+        document.getElementById('sendOptions').style.display = 'block'
+        document.getElementById('localSaveNotice').style.display = 'block'
+        console.log('commit result = ' + JSON.stringify(result))
+    })
 }
 
 /****SEND PROJECT TO GITHUB**************** */

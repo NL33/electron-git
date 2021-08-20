@@ -26,24 +26,21 @@ I had a few versions saved. Then I added a word documnt. and saved the version. 
 
 -only happens with word docs. Because only word docs create a work tree and temp folder
 -the work tree and temp folder are not properly being deleted
--seems to happen just for newly added word docs.
+-seems to happen just for newly added word docs, or when comparing versions where a word doc has been removed.
 
 # Why its happening
 
 -if you add a word doc, and then compare against a version without that word doc, then it returns an error, because the code assumes there is a word doc in both folders to compare against
 
+-RESOLVED (I think), as of Aug20, 2021, at 3:09pm EST.
 
 
-# Diff Process
-
--when window opens, get later version and earlier version
--run diff of later v earlier (git.raw('diff', 'name-only') to get summary, and then git.raw('diff', 'word-diff') to get integrated diff)
 
 
 
 *Identified Issues*
 
-- Notes: I had a few versions saved. Then I added a word documnt. and saved the version. When I went to compare the changes (version with the word doc, v version without), the word doc did not show up. It had this error: Unhandled rejection Error: ENOENT: no such file or directory, open '/Users/sean/Desktop/git-app-test-docs/remote-test/426708worktree3#&7#&1#&4/llc-agreement.docx’.
+- Notes: I had a few versions saved. Then I added a word documnt. and saved the version. When I went to compare the changes (version with the word doc, v version without), the word doc did not show up. It had this error: Unhandled rejection Error: ENOENT: no such file or directory, open '/Users/sean/Desktop/git-app-test-docs/remote-test/426708worktree3#&7#&1#&4/llc-agreement.docx’. DONE/RESOLVED (I THINK)
 - 	further notes
 
 - comparing changes: If you select two different versions, and then hit "compare changes" again, it makes both newer and older version the same (the later one). Fix this (Note of June 30, 2021). More detail: its possible for "new version" header to not be updated, and to wrongly show the last saved version, when it should show current local saved changes. And then for both "new version" and "older version" to show the same version number. In this case, it will run a diff of a version against itself. This happened for me when I had selected two different versions, then hit compare changes again
