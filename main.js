@@ -45,9 +45,32 @@ async function sendTheWindow(){  //send info on front window to the main app win
 }
 */
 
+//prevent electron from opening a second instance of the app (for example, as a result of the protocol being called on windows)
+let newVersionWindow= null
+let basicWindow = null
 
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
+    app.quit()
+} else {
+    app.on('second-instance', (event, commandLine, workingDirectory) => {
+        // Someone tried to run a second instance, we should focus our window.
+        if (newVersionWindow) {
+            if (basicWindow){
+                basicWindow.hide()
+            }
+            if (newVersionWindow.isMinimized()) newVersionWindow.restore()
+            newVersionWindow.focus()
+        } else {
+            if (basicWindow){
+                basicWindow.show()
+            }
+           
+        }
+    })
+}
 /****#OPEN BASIC (Mini) WINDOW******** */
-var basicWindow
 
 function openBasicWindow(){
     var theDisplay = screen.getPrimaryDisplay()
@@ -121,7 +144,7 @@ ipcMain.on('hide-main-window', (event, arg) => {
 })
 
 /* **** #OPEN MAIN WINDOW********/
-var newVersionWindow
+
 async function saveNewVersionWindow(windowTitle) {
     var theDisplay = screen.getPrimaryDisplay()
     var screenWidth = theDisplay.bounds.width
@@ -411,13 +434,30 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
     })  
 })
 
-app.setAsDefaultProtocolClient('defaultproto');
+
+if (process.platform === 'win32') {
+    
+    // Register the private URI scheme differently for Windows
+    // https://stackoverflow.com/questions/45570589/electron-protocol-handler-not-working-on-windows
+    app.setAsDefaultProtocolClient(
+        'defaultproto',
+        process.execPath,
+        [app.getAppPath()]);
+
+} else {
+    console.log('on non-windows')
+    app.setAsDefaultProtocolClient('defaultproto');
+}
+
 
 app.on('open-url', function (event, data) {
     event.preventDefault();
     link = data;
-    console.log('RECEIVED!!!')
+    console.log('RECEIVED!!! data = ' + data)
 });
+
+
+
 
 /*
 async function getWindow(){
