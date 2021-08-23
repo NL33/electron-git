@@ -1,4 +1,19 @@
 **Later To-Dos**
+
+# mammoth security vulnerability
+needs to fix jzip issue
+https://github.com/mwilliamson/mammoth.js/issues/290
+
+# prior versions 
+
+one button at bottom for prior versions.
+
+--that takes you to screen that shows prior versions.
+--click prior version to view.
+--option there to compare prior versions--same screen where you select versions. To start, can have a button at the bottom that says "compare versions." and that opens up (in same window) the place where you select the prior versions to compare
+
+
+
 # project description
 
 - project description
@@ -39,7 +54,10 @@ right now, the action to set the value is in an initializer. But, that code just
 
 To be sure the files are where they need to be, I compare how many times write file has been run and how many times mamoth needs to run. 
 
-Is this correct? It seems to be working for me, but not clear it's the right move.
+Is this correct? It seems to be working for me, but not clear it's the rig
+
+
+ht move.
 
 # make sure worktrees and tempFolder7843OLD and tempFolder7843NEW are removed regularly, in case an error happens before the remove code (especially in compare-versions.js)
 
@@ -55,6 +73,7 @@ add load spinner to show progress when doing tasks, like:
 --loading micro word
 --compare versions js--loading micro word changes 
 --compare version js-viewing full document
+--opening the rts site from app to authorize and get api key
 
 # Comparing Versions
 
@@ -123,8 +142,8 @@ fyi when show new file, key code is:
 showNewFolderOrDoc(..)
 
 right now:
---if you delete a folder, the subfiles of that folder still show in the view until refreshed
---I have an apple doc title "Today's schedule" and it shows up first in the file list no matter what (despite alphabetical order). Fix that .
+--if you delete a folder, the subfiles of that folder still show in the view until refreshed. DONE (Aug 20 2021)
+--I have an apple doc title "Today's schedule" and it shows up first in the file list no matter what (despite alphabetical order). Fix that . DONE. this seems to be the case for the actual file system. Not a function of the app.
 
 
 
@@ -147,6 +166,8 @@ right now:
 -get rid of "your post is similar to"
 --prob get rid of "post must have 20 characters"
 --turn off discobot greetings
+--topic limit right now is 150k characters. Any way of making this bigger
+     --its 150k characters. the stockholders agreement example is just over that, with all spaces accounted for. 
 
 
 # Later

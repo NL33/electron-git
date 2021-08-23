@@ -30,20 +30,6 @@ function menuApp() {
     tray.setContextMenu(contextMenu)
 }
 
-/*NOT IN USE
-async function getTheWindow() {
-    const foregroundWindow = await getActiveWindow()
-    const windowTitle = await foregroundWindow.title
-    saveNewVersionWindow(windowTitle)
-}
-*/
-/****SAVING INDIVIDUAL FILES. NOT CURRENTY IN USE */
-/* NOT IN USE
-async function sendTheWindow(){  //send info on front window to the main app window
-    var theWindow = await activeWindow();
-    newVersionWindow.webContents.send('active-window-info', theWindow)
-}
-*/
 
 //prevent electron from opening a second instance of the app (for example, as a result of the protocol being called on windows)
 let newVersionWindow= null
@@ -123,6 +109,29 @@ async function saveNewVersionWindow(windowTitle) {
     */
 }
 /********************************************************* */
+/****Open Project Description Window * *************/
+
+ipcMain.on('open-description-window', (event, projectPath, projectName)=>{
+    openDescriptionWindow(projectPath, projectName)
+})
+
+function openDescriptionWindow(projectPath, projectName){
+    var descriptionWindow = new BrowserWindow({
+        //width: 700,
+        //height: 620,
+        // transparent: true,
+        //x: 415,
+        //y: 0,
+        webPreferences: {
+            additionalArguments: [projectPath, projectName],
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+            enableRemoteModule: true
+        }
+    })
+
+    descriptionWindow.loadURL('file://' + __dirname + '/views/description-window.html')
+}
 
 /******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
 
@@ -446,8 +455,13 @@ if (process.platform === 'win32') {
 
 app.on('open-url', function (event, data) {
     event.preventDefault();
-    link = data;
+    //data is the 
+    var payload = data.split('redirect?payload=')[1]
     console.log('RECEIVED!!! data = ' + data)
+    console.log('*********************')
+    console.log('payload = ' + payload)
+    newVersionWindow.webContents.send('discourse-payload-url', payload)
+    
 });
 
 

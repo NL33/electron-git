@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #projectDescription {
+            border: 2px solid #d4eff7;
+            border-radius: 7px;
+            padding: 10px;
+            outline: none;
+            font-size: 13pt;
+            margin-top: 15px;
+            min-height: 35px;
+        }
+
+        [contenteditable]:empty:before {
+            content: attr(data-placeholder);
+            color: #778899;
+        }
+    </style>
+    <title></title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+
+<body id="bodyId" style="">
+
+
+    <div id="projectName" style="text-align: center; font-size: 15pt; margin-top: 10px; margin-bottom: 10px;"></div>
+
+    <div id="projectDescription" contenteditable="true" data-placeholder="Enter description of your project" style="margin-left: 20px; margin-right: 20px; text-align: left"></div>
+
+
+    <script src="../javascripts/description-window.js"></script>
+</body>
+
+</html>

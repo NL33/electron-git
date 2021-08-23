@@ -35,6 +35,7 @@ const { default: axios } = require('axios')
 
 // Including generateKeyPairSync from crypto module. This is for generating an api key for authenticating with discourse
 const { generateKeyPairSync, privateDecrypt, constants } = require('crypto');
+
 const { hostname } = require('os')
 
 //dexie database for linking project files to discourse posts
@@ -121,6 +122,12 @@ function hideWindow() {
     ipcRenderer.send('hide-main-window', '')
 }
 
+/**SHOW PROJECT DESCRIPTION************** */
+
+
+function showDescriptionWindow(){
+    ipcRenderer.send('open-description-window', projectFolderPath, projectFolderName)
+}
 
 /************** Testing Discourse API *******************************/
 
@@ -212,7 +219,7 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, postId) {
     }
 }
 
-function createDiscoursePostFromFile(filePath, createTime, data) {
+function createDiscoursePostFromFile1(filePath, createTime, data) {
     //***NOTE: I have experimented with getting a user key, but have not updated z-environments yet. So it's possible those keys are no longer valid. And just go through the process of getting the key again using the discourse api test code. */ */
     var url1 = 'https://go.racetosaturn.com/posts.json'
     var url = 'http://localhost:4200/posts.json'
@@ -274,7 +281,17 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
     })
 }
 
-function createDiscoursePostFromFile1(filePath, createTime, data) { //THIS IS THE FUNCTION TO create discourse post on main app through electron. sometimes I add 1 when I want to use the alternative function to create on local site.
+//my-new-micro-word
+//new-text-doc
+//amazing stuff email
+//z-version notes
+//simple-text
+//social-interactions notes
+//word-test-doc
+//
+
+
+function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE FUNCTION TO create discourse post on main app through electron. sometimes I add 1 when I want to use the alternative function to create on local site.
     //***NOTE: I have experimented with getting a user key, but have not updated z-environments yet. So it's possible those keys are no longer valid. And just go through the process of getting the key again using the discourse api test code. */ */
     var url = 'https://go.racetosaturn.com/posts.json'
     //var url1 = 'http://localhost:4200/posts.json'
@@ -286,8 +303,8 @@ function createDiscoursePostFromFile1(filePath, createTime, data) { //THIS IS TH
     doc path = rocking-research/post-enlightenment/platos-influences.docx
     topicShowPath = 'post-enlightenment/platos-influences.docx' ; and that will be the title of the post.
    */
-    var userName = 'SeanRtS' //***Have to get this programmatically*****/
-    var tagName = userName + '-project-' + projectFolderName
+    var userName = 'seanrts' //***Have to get this programmatically*****/
+    var projectName = userName + '-project-' + projectFolderName
     axios({
         method: 'post',
         url: url,
@@ -296,8 +313,8 @@ function createDiscoursePostFromFile1(filePath, createTime, data) { //THIS IS TH
             "title": topicShowPath,
             "raw": topicContent,
             //"topic_id": 0,
-            "category": 36,
-            "tags": [tagName],
+            "category": 37,
+            "project_main": projectName,
             /*VERIFIED THAT THIS WORKS: "project_name": 'test-project-name'*/
             //  "target_recipients": "blake,sam",
             //"target_usernames": "string",
@@ -326,7 +343,7 @@ function createDiscoursePostFromFile1(filePath, createTime, data) { //THIS IS TH
             filePath: filePath,
             postId: postId,
             lastSentTime: timeNow,
-            projectTagName: tagName
+            projectTagName: projectName
             //project?
         })
     }).catch(error => {
@@ -477,9 +494,18 @@ function updatePost(postId, userName, key) {
 }
 
 /*******GENERATE PUBLIC AND PRIVATE KEY */
-//NOTE: can use loadURL(discourse site) if want to keep everything in an app-based window
+//steps:
+//1. duscourseAPITest: send rsa keys to discourse. opens up discourse. where user hits authorize
+//2. discourse redirects with payload. paypload based on default protocol set up with setAsDefaultProtocolClient in main.js: saturnproto
+//3 app picks that up in "app.on('open-url')" function in main.js
+//4 app parses to get the data after the payload in main.js. This is the "encoded user key"
+//5. main.js sends parsed payload (encoded user key) to renderer, though discourse-payload-url
+//6. renderer receives discourse-payload-url call, and then calls "decodeTheKey()" function. this decodes the key, and produces the actual API Key
+//7. API key is saved securely
+//8. when user wants to send something to discourse, the fucntion gets the API Key from the secure spot
 
-
+var privateKey1
+var publicKey
 function discourseAPITest1() {
     const { publicKey, privateKey } = generateKeyPairSync('rsa', {
         modulusLength: 4096,
@@ -492,10 +518,8 @@ function discourseAPITest1() {
             format: 'pem',
         },
     })
-
-    console.log('private key = ')
-    console.log(privateKey)
     console.log('api test1')
+    console.log('private key = ' + privateKey)
     const http = require('url')
     var myUrl = 'https://go.racetosaturn.com/user-api-key/new'
 
@@ -510,7 +534,7 @@ function discourseAPITest1() {
     url.searchParams.append('client_id', hostname())
     url.searchParams.append('scopes', 'write')
     url.searchParams.append('public_key', publicKey)
-    url.searchParams.append('auth_redirect', redirectUrl)
+    //url.searchParams.append('auth_redirect', redirectUrl) /***LEAVE OUT IF YOU WANT THE SITE TO GIVE YOU THE KEY DIRECTLY */
     url.searchParams.append('nonce', '1')
     console.log(`redirect URL is ${url.href}`)
     shell.openExternal(url.href)
@@ -546,30 +570,65 @@ function discourseAPITest1() {
 
 }
 
-ipcRenderer.on('discourse-payload-url', (event, newUrl) => {
-    console.log('***just got the new url = ')
-    console.log(newUrl)
+ipcRenderer.on('discourse-payload-url', (event, payload) => {
+    decodeTheKey(payload)
 })
 
-function decodeTheKey() {
-    /**START HERE: TRYING TO MAKE THIS WORK WITH UPDATED KEY.
-     * May have to get the key without the auth_redirect param. Otherwise the key might not go through fully.**** */
-    var privateKey = environmentVariables.privateKeyForDecoding.trim()
-    var encodedKey = environmentVariables.encodedUserKey
-    console.log('encoded key = ' + encodedKey)
-    const trimmedKey = encodedKey.trim().replace(/\s/g, '')
-    //console.log(`trimmed encoded key is ${trim}`)
-    const decreptedKey = privateDecrypt(
+function decodeTheKey(payload) {
+    console.log('decode the key now')
+    var privateKey2 = privateKey1.trim() //environmentVariables.privateKeyForDecoding.trim()
+  //  var encodedKey = environmentVariables.encodedUserKey
+    console.log('private key2 = ' + privateKey2)
+    const trimmedKey = payload.trim().replace(/\s/g, '')
+    console.log(`trimmed encoded key is:*******= ${trimmedKey}`)
+    const decriptedKey = privateDecrypt(
         {
-            key: privateKey,
+            key: privateKey2,
             padding: constants.RSA_PKCS1_PADDING,
         },
         Buffer.from(trimmedKey, 'base64')
     )
-    const jsonKey = decreptedKey.toString('ascii')
+    const jsonKey = decriptedKey.toString('ascii')
     console.log('the decoded key = ')
     console.log(jsonKey)
 }
+
+
+
+
+function decryptAttempt1() {
+    var privateKey = environmentVariables.privateKeyForDecoding.trim()
+    var encodedKey = environmentVariables.encodedUserKey.trim()
+    const buffer = Buffer.from(encodedKey, "base64");
+    const decrypted = privateDecrypt({
+        key: privateKey, padding:
+            constants.RSA_PKCS1_PADDING
+    }, buffer);
+    console.log(decrypted.toString("utf8"))
+}
+
+function decryptAttempt() {
+    var forge = require('node-forge')
+    var pki = require('node-forge').pki;
+    var privateKey1 = environmentVariables.privateKeyForDecoding1.trim()
+    var encodedKey = environmentVariables.encodedUserKey1.trim()
+   // var private_key = pki.privateKeyFromPem(privateKey);
+    try {
+        var privateKey = forge.pki.privateKeyFromPem(privateKey1);
+        var ctBytes = forge.util.decode64(encodedKey);
+
+        var plaintextBytes = privateKey.decrypt(ctBytes);
+        // rsaMessage.val(plaintextBytes.toString('utf8')); <-- old
+        console.log('key result = ' + forge.util.decodeUtf8(plaintextBytes));
+    }
+    catch (e) {
+        console.log(e);
+        alert("cannot decrypt");
+    }
+    console.log('result = '  )
+    //console.log(result)
+}
+//https://stackoverflow.com/questions/47306186/node-decrypt-content-with-private-key-and-padding
 
 /*****close all windows with appletext ***********/
 
@@ -1335,7 +1394,7 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
 
         //done removing any existing worktree
 
-        console.log('now move on')
+        //now move on
         //create worktree, with different name then before
         var randomNumber = Math.floor(Math.random() * 10000)
         var randomMultiple = Math.floor(Math.random() * 500)
