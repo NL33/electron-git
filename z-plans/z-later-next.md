@@ -4,6 +4,25 @@
 needs to fix jzip issue
 https://github.com/mwilliamson/mammoth.js/issues/290
 
+# not sending certain items to the site
+
+-certain items--especially emails that you make a doc out of, should not be sent to the site. 
+--how to address?
+     -could have a folder in each project called "private". and this could automatically be such that it won't get uploaded to discourse.
+          --when sending to discourse, skip anything in theprivate folder
+    -or, could have that folder create private messages
+    -or, could have to opt in any docs you want to send
+          --when hit share, see checkboxes next to each doc, blank by default. have to check the boxes to share them. 
+one big concern is showing email addresses. To address, there should be a way of removing email addresses: https://meta.discourse.org/t/is-there-any-way-i-can-automatically-censor-email-addresses-on-posts/25407/17
+
+# project description
+
+right now, it creates a new doc for project description. Now, improve how it shows on discourse:
+     -want project description to show up first.
+     -in js, check if name of topic is project description (look at html to find the right div)
+     -if it is project description, then get the content (probably not raw, bc that could raise security issues)
+     --and append that content (maybe only to a certain word limit) to the bottom of the div showing the title
+
 # prior versions 
 
 one button at bottom for prior versions.
