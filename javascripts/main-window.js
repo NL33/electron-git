@@ -112,8 +112,10 @@ window.onload = async function () {
 
     //set right click menu 
     menuFunction()
-    //seeWhichFilesChangedFunction()
-
+    
+    checkIfDescriptionExists()
+    
+    
 }   //end window onload
 
 /******HIDE WINDOW, AND SHOW BASIC WINDOW**** */
@@ -123,10 +125,65 @@ function hideWindow() {
 }
 
 /**SHOW PROJECT DESCRIPTION************** */
+async function checkIfDescriptionExists(){
+    try {
+        var descFilePath = projectFolderPath + '/project-description.md'
+        fs.stat(descFilePath, function (err, stat) {
+            if (err == null) {
+                //file exists
+                document.getElementById('addDescriptionButton').style.display = 'none'
+            } else if (err.code === 'ENOENT') {
+                document.getElementById('addDescriptionButton').style.display = 'inline-block'
+            } else {
+                console.log('Some other error: ', err.code);
+            }
+        });
+    }
+    catch (e) {
+        console.log('error = ' + e)
+    }
+}
 
-
-function showDescriptionWindow(){
-    ipcRenderer.send('open-description-window', projectFolderPath, projectFolderName)
+async function addDescription(){
+    try {
+        /*Make a file of project-description:*/
+        var descFilePath = projectFolderPath + '/project-description.md'
+        fs.stat(descFilePath, function (err, stat) { //just a doublecheck in case file already exists. In most instances, this will already be done through checkIfDescriptionExists function
+            if (err == null) {
+                //file exists
+                document.getElementById('addDescriptionButton').style.display = 'none'
+            } else if (err.code === 'ENOENT') {
+                // file does not exist
+                fs.writeFile(descFilePath, '', (err) => {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        //file created
+                        var indent = 0
+                        var newIndent = parseInt(indent) + 15
+                        var newId = "**is-document**^^^" + descFilePath + "^^^" + indent
+                        var newId = "**is-document**^^^" + descFilePath + "^^^" + indent
+                        contents = `<div>
+                                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${descFilePath}", "${newIndent}")'>` + 'project-description.md' + `</div>
+                                </div>`
+                        var contentsDiv = document.getElementById('folderContents')
+                        contentsDiv.insertAdjacentHTML("afterbegin", contents)
+                        openDoc(descFilePath)
+                        var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
+                        while (highlightedDivs.length)
+                            highlightedDivs[0].classList.remove('highlightFolderOrFile')
+                        document.getElementById(newId).classList.add('highlightFolderOrFile')
+                        document.getElementById('addDescriptionButton').style.display = 'none'
+                    }
+                })
+            } else {
+                console.log('Some other error: ', err.code);
+            }
+        });
+    }
+    catch (e) {
+        console.log('error = ' + e)
+    }
 }
 
 /************** Testing Discourse API *******************************/
@@ -970,7 +1027,11 @@ async function showFolderContents(divId, mainPath, indent) {
                     element.classList.add('clicked') //add clicked class so don't run this again if click again
                 } else {
                     var contentsDiv = document.getElementById('folderContents')
+                    if (item.indexOf('project-description') > -1){
+                        contentsDiv.insertAdjacentHTML("afterBegin", contents)
+                    } else {
                     contentsDiv.insertAdjacentHTML("beforeEnd", contents)
+                    }
                 }
             })
         } else {  //if not a directory
@@ -1268,7 +1329,6 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
         var newId = "**is-document**^^^" + fullPath + "^^^" + indent
         contents = `<div>
                 <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
-                <div class="newItems"></div>
                 </div>`
     }
 
@@ -1312,7 +1372,12 @@ async function deleteItem(e) {
             item.remove() 
         }
         item.remove()
+        if (thePath.indexOf('project-description') > -1 ){
+            checkIfDescriptionExists()
+        }
+        
     });
+   
 }
 
 
@@ -1841,7 +1906,6 @@ async function saveGitVersion() {
                         var newId = "**is-document**^^^" + commitTextFilePath + "^^^" + indent
                         contents = `<div>
                                 <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${commitTextFilePath}", "${newIndent}")'>` + 'z-version-notes.md' + `</div>
-                                <div class="newItems"></div>
                                 </div>`
                         var contentsDiv = document.getElementById('folderContents')
                         contentsDiv.insertAdjacentHTML("beforeend", contents)
