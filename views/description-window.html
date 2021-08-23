@@ -11,7 +11,7 @@
             outline: none;
             font-size: 13pt;
             margin-top: 15px;
-            min-height: 35px;
+            min-height: 60px;
         }
 
         [contenteditable]:empty:before {
@@ -19,7 +19,7 @@
             color: #778899;
         }
     </style>
-    <title></title>
+    <title>Project Description</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
 
@@ -28,7 +28,12 @@
 
     <div id="projectName" style="text-align: center; font-size: 15pt; margin-top: 10px; margin-bottom: 10px;"></div>
 
-    <div id="projectDescription" contenteditable="true" data-placeholder="Enter description of your project" style="margin-left: 20px; margin-right: 20px; text-align: left"></div>
+    <div id="projectDescription" contenteditable="true" data-placeholder="Enter a description for your project" style="margin-left: 20px; margin-right: 20px; text-align: left"></div>
+    
+    <div style="text-align: center">
+    <div onclick="saveDescription()" style="display: inline-block; margin-top: 15px; border: 3px solid #d4eff7; border-radius: 10px; padding: 5px; padding-right: 8px; padding-left: 8px; font-size: 12pt; cursor: pointer; margin-right: 20px">Save</div>
+    </div>
+
 
 
     <script src="../javascripts/description-window.js"></script>

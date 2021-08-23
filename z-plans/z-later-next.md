@@ -12,7 +12,14 @@ one button at bottom for prior versions.
 --click prior version to view.
 --option there to compare prior versions--same screen where you select versions. To start, can have a button at the bottom that says "compare versions." and that opens up (in same window) the place where you select the prior versions to compare
 
+# if open new window, make sure it closes any other one
 
+if description window is already open, don't open a new description window when open it, rather, just show the open one. See the method for doing this in the html windows
+
+same with other secondary windows:
+--breathe big
+--compare versions
+--view old versions window
 
 # project description
 

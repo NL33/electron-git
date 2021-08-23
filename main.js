@@ -122,6 +122,7 @@ function openDescriptionWindow(projectPath, projectName){
         // transparent: true,
         //x: 415,
         //y: 0,
+        title: 'Project Description',
         webPreferences: {
             additionalArguments: [projectPath, projectName],
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
