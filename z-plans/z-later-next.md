@@ -15,6 +15,15 @@ https://github.com/mwilliamson/mammoth.js/issues/290
           --when hit share, see checkboxes next to each doc, blank by default. have to check the boxes to share them. 
 one big concern is showing email addresses. To address, there should be a way of removing email addresses: https://meta.discourse.org/t/is-there-any-way-i-can-automatically-censor-email-addresses-on-posts/25407/17
 
+previous thinking on this:
+- when want to share your work, you select which docs you want to share
+    - potentially there is a folder you mark as what you want to share. 
+    - you hit share, and it creates a discourse topic for each document you are sharing
+        - when you hit share again, the app uses git to see which docs have changed, and then, for those topics, updates them with the update text.
+
+- you can mark the topic as private or not. 
+    - if private, creates a private group on discourse for your project. You could invite other users to view (they would have to have accounts)
+
 # project description
 
 right now, it creates a new doc for project description. Now, improve how it shows on discourse:
@@ -22,6 +31,7 @@ right now, it creates a new doc for project description. Now, improve how it sho
      -in js, check if name of topic is project description (look at html to find the right div)
      -if it is project description, then get the content (probably not raw, bc that could raise security issues)
      --and append that content (maybe only to a certain word limit) to the bottom of the div showing the title
+could have button to view project description, which would read the doc and open a separate window with it there. (but then would be confusing if you can't edit it)
 
 # prior versions 
 

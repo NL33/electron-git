@@ -9,6 +9,8 @@ $ npm install simple-git
 
 $ npm install nutjs
     --approx April 20, 2021
+    REMOVED August 24, 2021.
+        --that package is not being kept up, and I am not using it.
 
 $ npm install active-win
     --April 27, 2021. REMOVED April 27, 2021 (not the functionality I wanted)
@@ -135,6 +137,7 @@ So I decide
   attempt to control keyboard. From: https://github.com/nut-tree/nut.js
 
 $ npm i @nut-tree/nut-js
+UNINSTALLED ON august 24, 2021
 
 $ npm  add -D electron-rebuild
 
@@ -149,10 +152,12 @@ $ npm run rebuild
 ***
 didn't work. so tried 
 $ npm i electron-rebuild
+UNINSTALLED ON Aug24, 2021
 
 go error about can't find opencv4nodejs, so tried
 
 $ npm install opencv4nodejs
+UNINSTALLED ON AUg 24, 2021
 
 didn't work.
 

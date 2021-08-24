@@ -18,8 +18,6 @@ const environmentVariables = require('../z-environments-1.js')
 var token = environmentVariables.discourseToken
 var discourseUser = environmentVariables.discourseUser
 
-
-const { getWindows, getActiveWindow } = require("@nut-tree/nut-js");
 var projectFolderPath
 var projectFolderName
 var fileName
@@ -29,7 +27,7 @@ var cp = require("child_process");
 const { promisify } = require('util')
 const { resolve } = require('path')
 const { O_DIRECTORY } = require('constants')
-const { shouldRebuildNativeModules } = require('electron-rebuild')
+
 var diff2html = require("diff2html").Diff2Html
 const { default: axios } = require('axios')
 

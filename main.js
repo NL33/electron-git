@@ -1,6 +1,6 @@
 const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, webContents, protocol } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
-const { keyboard, Key } = require("@nut-tree/nut-js")
+
 const fs = require('fs');
 // Main process of the Electron application
 const { systemPreferences } = require('electron')
@@ -14,7 +14,7 @@ console.log("Does the client have accessibility permissions?", isTrusted)
 
 
 /*** TOOLBAR MENU ICON****** */
-//const { getActiveWindow } = require("@nut-tree/nut-js");
+
 //const activeWindow = require('active-win');
 let tray = null
 var mainWindow
@@ -401,7 +401,7 @@ function folderWindowFunction() {
 /*******BASIC SETUP**** */
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
-    app.allowRendererProcessReuse = false  //to allow nutjs
+
     openBasicWindow()
     saveNewVersionWindow()
     menuApp()
