@@ -1,5 +1,4 @@
-const { ipcRenderer, ipcMain, clipboard, shell, remote } = require('electron')
-const fs = require("fs")
+
 
 var contentToLoad
 var filePath
@@ -8,9 +7,10 @@ window.onload = function () {
     filePath = window.process.argv.slice(-2)[0]
     contentToLoad = window.process.argv.slice(-2)[1]
     document.getElementById('htmlContentHere').innerHTML = contentToLoad
-    contentEditableFunction()
 }      
 
+/* TURNING THIS FUNCTION OFF.
+WHY? Because it allows links in the loaded html to be clickable, in a way that would open up the link in the electron window. This is a potential security concern. 
 function contentEditableFunction(){
     var divs = document.getElementsByTagName('a')
     for (var i = 0; max = divs.length; i++){
@@ -18,18 +18,15 @@ function contentEditableFunction(){
     }
     console.log('done')
 }
+*/
 
 
 /***************SAVE HTML FILE CHANGES ************ */
-
+/* TURNED OFF FORNOW UNTIL SECURE WAY TO DO IT
+See z-later-next.md and security.md
 ipcRenderer.on('focused-window-to-save', (event, data) => { //NOTE: This will get data to save file. But what if the basic window is opened
     var updatedContent = document.getElementById('htmlContentHere').innerHTML
-    fs.writeFile(filePath, updatedContent, function (err) {
-        if (err) {
-            console.log(err)
-        } else {
-           alert('File Saved')
-        }
-    })
-   
+    window.API.writeTheFile(filePath, updatedContent)
+    
 })
+*/

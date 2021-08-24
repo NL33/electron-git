@@ -269,9 +269,11 @@ function openHTMLWindow(thePath, content) {
             y: 0,
         // alwaysOnTop: true,
             webPreferences: {
-                nodeIntegration: true, 
-                contextIsolation: false, 
-                enableRemoteModule: true,
+               // preload: path.join(__dirname, './preload.js'), //path.join(app.getAppPath(), 'preload.js'),
+                nodeIntegration: false, 
+                contextIsolation: true, 
+                enableRemoteModule: false,
+                sandbox: true,
                 additionalArguments: [thePath, content],
             }
             

@@ -4,6 +4,29 @@
 needs to fix jzip issue
 https://github.com/mwilliamson/mammoth.js/issues/290
 
+# saving changes to html content is turned off for now
+don't want ipcrenderer or file system directly in load html renderer.js.
+
+I have sample code in plans/security.md for how to access file system from preload. That puts a function in preload.js, that the renderer has access to through window.functionName.
+
+another possibility: sanitize the html using: https://github.com/apostrophecms/sanitize-html
+
+or, paste the content in as straight text, NOT html. This would be to change the createPasteFile code.
+
+To just view the html file: issue now, with nodeintegration turned to false, seems can't send additional arguments on creating the window. Hopefully some way around that.
+
+Priority: view the window.
+next priority (lower down): save changes to the window.
+
+but will have to also access menu function in some way, and maybe ipc renderer too.
+
+see: https://github.com/electron/electron/issues/5113
+
+Maybe: the way to do it is to add a menu function--and do that by having the menu function in the preloadjs, that the renderer has access to. And then through that function call write file. The function call would be directly from the menu function, so potentially no need for ipcrenderer.
+
+some further info about that here:
+https://stackoverflow.com/questions/52236641/electron-ipc-and-nodeintegration
+
 # not sending certain items to the site
 
 -certain items--especially emails that you make a doc out of, should not be sent to the site. 
