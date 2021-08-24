@@ -11,9 +11,10 @@ I have sample code in plans/security.md for how to access file system from prelo
 
 another possibility: sanitize the html using: https://github.com/apostrophecms/sanitize-html
 
-or, paste the content in as straight text, NOT html. This would be to change the createPasteFile code.
+or, paste the content in as straight text, NOT html. This would be to change the createPasteFile code. Then, could save the file with some name like (paste file) in it. And if that appears the name, open from the app--and make the text look a little nicer.
 
 To just view the html file: issue now, with nodeintegration turned to false, seems can't send additional arguments on creating the window. Hopefully some way around that.
+
 
 Priority: view the window.
 next priority (lower down): save changes to the window.

@@ -3,9 +3,11 @@
 var contentToLoad
 var filePath
 window.onload = function () {
-    console.log('loaded the file')
-    filePath = window.process.argv.slice(-2)[0]
-    contentToLoad = window.process.argv.slice(-2)[1]
+    console.log('loaded the file' + window.location.search)
+    var params = window.location.search.split('queryParam870988')
+    
+    filePath = params[1]//window.process.argv.slice(-2)[0]
+    contentToLoad = params[2]//window.process.argv.slice(-2)[1]
     document.getElementById('htmlContentHere').innerHTML = contentToLoad
 }      
 
@@ -22,8 +24,7 @@ function contentEditableFunction(){
 
 
 /***************SAVE HTML FILE CHANGES ************ */
-/* TURNED OFF FORNOW UNTIL SECURE WAY TO DO IT
-See z-later-next.md and security.md
+/* TURNED OFF FORNOW UNTIL SECURE WAY TO DO THIS.
 ipcRenderer.on('focused-window-to-save', (event, data) => { //NOTE: This will get data to save file. But what if the basic window is opened
     var updatedContent = document.getElementById('htmlContentHere').innerHTML
     window.API.writeTheFile(filePath, updatedContent)

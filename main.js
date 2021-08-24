@@ -271,15 +271,16 @@ function openHTMLWindow(thePath, content) {
             webPreferences: {
                // preload: path.join(__dirname, './preload.js'), //path.join(app.getAppPath(), 'preload.js'),
                 nodeIntegration: false, 
-                contextIsolation: true, 
+                contextIsolation: false, 
                 enableRemoteModule: false,
                 sandbox: true,
                 additionalArguments: [thePath, content],
             }
             
         })
+       var queryString = '?queryParam870988=' + thePath + 'queryParam870988=' + content
        //window.loadURL('file:' + filePath);
-       htmlWindow.loadURL('file://' + __dirname + '/views/loaded-html-window.html');
+       htmlWindow.loadURL('file://' + __dirname + '/views/loaded-html-window.html?${hi}' + queryString);
     }
 
 }
