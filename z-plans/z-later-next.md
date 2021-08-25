@@ -11,9 +11,31 @@ I have sample code in plans/security.md for how to access file system from prelo
 
 another possibility: sanitize the html using: https://github.com/apostrophecms/sanitize-html
 
+***
+leading possibility:
+1. in main js, send the file path as a query param
+2. in preload.js, put the fs code for reading files.
+3. in renderer.js, get the file path, then access the code in preload.js to read the file (something like window.API.writeTheFile(filepath))
+4. sanitize the resulting html--this probably has to be done in the preload as well--maybe part of the writeTheFile function, which probably returns the sanitized html.
+5. in the renderer, put it into the html.
+
+**
+
+For saving the file, could do the menu function in the preload, and call that function in the renderer. when go to save the file, call function from renderer to preload to save the file.
+
+**
+And then check with someone this is safe. It probably is.
+
+
+***
+
 or, paste the content in as straight text, NOT html. This would be to change the createPasteFile code. Then, could save the file with some name like (paste file) in it. And if that appears the name, open from the app--and make the text look a little nicer.
 
 To just view the html file: issue now, with nodeintegration turned to false, seems can't send additional arguments on creating the window. Hopefully some way around that.
+
+I tried query params (current attempt)--but doesn't work, because can't pass readable content that way. Need another way.  process.argv doesn't work with contextisolation.
+
+NEXT:look into context isolation to see what could work with that.
 
 
 Priority: view the window.

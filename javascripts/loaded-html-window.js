@@ -4,7 +4,7 @@ var contentToLoad
 var filePath
 window.onload = function () {
     console.log('loaded the file' + window.location.search)
-    var params = window.location.search.split('queryParam870988')
+    var params = window.location.search.split('queryParam870988') //THIS DOESN"T WORK. HAVE TO FIND ANOTHER WAY
     
     filePath = params[1]//window.process.argv.slice(-2)[0]
     contentToLoad = params[2]//window.process.argv.slice(-2)[1]

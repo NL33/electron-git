@@ -281,6 +281,8 @@ function openHTMLWindow(thePath, content) {
        var queryString = '?queryParam870988=' + thePath + 'queryParam870988=' + content
        //window.loadURL('file:' + filePath);
        htmlWindow.loadURL('file://' + __dirname + '/views/loaded-html-window.html?${hi}' + queryString);
+
+       //QUERY PARAMS DO NOT WORK FOR CONTENT, BECAUSE IT INTERPRETS STUFF LIKE SPACES, ADDING IN %22, ETC. HAVE TO FIND ANOTHER WAY
     }
 
 }
