@@ -1904,6 +1904,7 @@ function runComparisonFunction(comparisonType) {
         ipcRenderer.send('open-compare-versions-window', arg1, arg2, arg3, arg4)
     } catch (e) {
         console.log('error in run comparison function = ' + e)
+        alert("Sorry, there was an error running this comparison. Please try again.")
     }
 }
 
@@ -2003,6 +2004,7 @@ async function saveGitVersion() {
     }
     catch (e) {
         console.log('error = ' + e)
+        alert("Sorry, there was an error saving this version. Please try again.")
     }
 }
 
@@ -2051,6 +2053,7 @@ async function doTheCommit(text) { //Where the actual version commit is done.
         })
     } catch (e) {
         console.log('error in do the commit = ' + e)
+        alert("Sorry, there was an error saving this version. Please try again.")
     }
 }
 
