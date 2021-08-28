@@ -1,4 +1,5 @@
 const { ipcRenderer, ipcMain, clipboard, shell, remote } = require('electron')
+
 const { Menu, MenuItem } = remote
 const { mkdir, writeFile, fstat } = require('fs')
 const fs = require("fs")
@@ -8,11 +9,11 @@ const git = simpleGit()
 var TurndownService = require('turndown')
 
 var mammoth = require("mammoth");
-
+/*
 let spawn = require("child_process").spawn
 var cp = require("child_process");
 const { promisify } = require('util')
-
+*/
 var diff2html = require("diff2html").Diff2Html
 let projectFolderPath
 let laterVersionInfo

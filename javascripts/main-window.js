@@ -2053,24 +2053,13 @@ async function doTheCommit(text) { //Where the actual version commit is done.
         })
     } catch (e) {
         console.log('error in do the commit = ' + e)
-        alert("Sorry, there was an error saving this version. Please try again.")
+        if (e.toString().indexOf('installed') > -1) {
+            ipcRenderer.send('open-get-git-window', '')
+        } else {
+            alert("Sorry, there was an error saving this version. Please try again.")
+        }   
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

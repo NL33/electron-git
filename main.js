@@ -110,6 +110,28 @@ async function saveNewVersionWindow(windowTitle) {
 }
 /********************************************************* */
 
+
+/************NEED GIT WINDOW ********************* */
+ipcMain.on('open-get-git-window', () => {
+    getGitWindow()
+})
+
+async function getGitWindow(windowTitle) {
+    var getGitWindow
+    getGitWindow = new BrowserWindow({
+        title: 'Check for Git',
+        width: 1000,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+
+        }
+    })
+
+    getGitWindow.loadURL('file://' + __dirname + '/views/get-git-window.html');
+}
+
 /******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
 
 ipcMain.on('open-compare-versions-window', (event, arg1, arg2, arg3, arg4) => {
