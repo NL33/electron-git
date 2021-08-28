@@ -104,17 +104,30 @@ window.onload = async function () {
     })
 
     //click save button
+  /*
     document.getElementById('saveButton').addEventListener('click', () => {
         saveGitVersion()
     })
-
+*/
     //set right click menu 
     menuFunction()
     
     checkIfDescriptionExists()
     
+    tabFunction()
     
 }   //end window onload
+
+
+function tabFunction(){
+    document.getElementById('noteForSave').addEventListener('keydown', (event)=>{
+        if (event.which == 9) {
+            console.log('tab hit')
+            saveGitVersion()
+            
+        }
+    })
+}
 
 /******HIDE WINDOW, AND SHOW BASIC WINDOW**** */
 
@@ -1836,7 +1849,8 @@ function runComparisonFunction(comparisonType) {
 /********GIT ACTIONS*************** */
 
 async function saveGitVersion() {
-    var text = document.getElementById('noteForSave').textContent
+    console.log('in save version')
+    var text = document.getElementById('noteForSave').innerHTML.replaceAll('<div><br></div>', '\n\n').replaceAll('<div>', '').replaceAll('</div>', '') //textContent
     if (text.length < 1) {
         text = "new version saved"
     }
