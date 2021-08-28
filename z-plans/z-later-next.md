@@ -3,6 +3,7 @@
 # mammoth security vulnerability
 needs to fix jzip issue
 https://github.com/mwilliamson/mammoth.js/issues/290
+**DONE: Addressed with upgrade to mammoth 1.4.18, done on Aug 28, 2021**
 
 # saving changes to html content is turned off for now
 don't want ipcrenderer or file system directly in load html renderer.js.

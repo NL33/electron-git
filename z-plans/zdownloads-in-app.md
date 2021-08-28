@@ -27,6 +27,7 @@ $ npm install mammoth
     --REMOVED: May 8, 2021
     --added again on May 26, 2021
     --REINSTALLED on Aug 22 2021 to try to address security vulnerabilities. Looks like 2 still remain: https://github.com/mwilliamson/mammoth.js/issues/290
+    --REINSTALLED on Aug 28, 2021. updated to 1.4.18. No vulnerabilities reported
 
 $ npm install turndown
     --May 7, 2021
