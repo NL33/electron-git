@@ -572,8 +572,9 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                         // var endgreen = endgreen2.replaceAll('**_', '<span style="font-weight: bold">').replaceAll('_**', '</span>')
                         var resultArray = endgreen.split('diff --git a/')
                         for (var i = 1; i < resultArray.length; i++) {
-                            var fileNameRaw = resultArray[i].split(" ")[0]
-                            var fileName1 = fileNameRaw.replace('135#&579-135#&579', '/')  //show original folder structure
+                            var initialFileName = resultArray[i].substr(0, (resultArray[i].indexOf('.md')+ 3)) //isolate the initial file name, including the full path and ending in .md
+                            //var fileNameRaw = resultArray[i].split(" ")[0]
+                            var fileName1 = initialFileName.replace('135#&579-135#&579', '/')//fileNameRaw.replace('135#&579-135#&579', '/')  //show original folder structure
                             if (fileName1.includes("tempFolder7843OLD/")) {
                                 var fileName2 = fileName1.split("tempFolder7843OLD/").pop() //to show the file name without the tempFolder and preceding stuff, that would be confusing to view.
                             } else {
@@ -587,7 +588,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                             var showResults = showResults1.replace(breaks, '[.........]<br>')
                             var contents = `
                             <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
-                            <div id=${fileName}>
+                            <div id="${fileName}">
                                 <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;  white-space: pre-wrap">${fileName}</div>
                                 <div style="white-space: pre-wrap">${showResults}</div>
                             </div>

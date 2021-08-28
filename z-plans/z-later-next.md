@@ -123,6 +123,7 @@ right now, the action to set the value is in an initializer. But, that code just
 - comparison: after run the diff, you show the file name at the top of each section showing changes. Right now, you identify that name by seeing if there is any white space. But what if the file name has white space in it? Probably doesnt work. Fix it. To test, try a file name with white space in it
     - CONFIRMED: White space in a file name means the link to the file won’t work 
     **Addressed on Aug28 at 4:59pm, but still need to confirm for word docs that it works**
+    **UPDATE: Aug 28, 5:14pm: corrected (I think) for micro word as well**
 
 
 - comparison: right now, if try to run a comparison too quickly after running another, the first comparison's temp folders could still be there. Make sure this doesn't cause issues. **THis SHOULD BE ok, bc when the second comparison is run, it should delete any temp folders, whether from that one or another one**
