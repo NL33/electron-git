@@ -1615,7 +1615,32 @@ async function revertWorkTree(commitNumber, versionNumber, treeName, date, time,
 
 async function showCompareChangesFunction() {
     document.getElementById('showPriorCommitsForCompare').innerHTML = ''
-
+    /****Refresh display of the versions that will be compared******************* */
+    var versionSummaryNewer = `
+      <span>Newer Version: </span>
+                    <span id="laterVersionOverview">
+                        <span class="selectedForChangesClass" id="laterVersionForChanges"></span>
+                        <span class="versionNumberOverview">
+                            <span class="versionWordLater"></span>
+                            <span id="versionNumberLater">Current Changes</span>
+                        </span>
+                        <div id="versionMessageLater" style="display:none">n/a</div>
+                        <span id="versionDateLater" style="display:none">n/a</span><span id="versionTimeLater"
+                            style="display:none">n/a</span>
+                        <span id="commitNumberLater" style="display: none">current-changes</span>
+                    </span>
+                    </span>
+    `
+    var versionSummaryOlder = `
+                    <span>Older Version: </span>
+                    <span id="earlierVersionOverview">
+                    </span>
+    `
+    document.getElementById('displayNewerVersion').innerHTML = ''
+    document.getElementById('displayNewerVersion').insertAdjacentHTML('afterbegin', versionSummaryNewer)
+    document.getElementById('displayOlderVersion').innerHTML = ''
+    document.getElementById('displayOlderVersion').insertAdjacentHTML('afterbegin', versionSummaryOlder)
+    /*********Get the prior versions******** */
     try {
         await git.cwd(projectFolderPath).then(result => {
             // console.log('cwd results' + JSON.stringify(result))

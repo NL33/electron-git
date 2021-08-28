@@ -85,7 +85,7 @@ async function saveNewVersionWindow(windowTitle) {
     var theDisplay = screen.getPrimaryDisplay()
     var screenWidth = theDisplay.bounds.width
     newVersionWindow = new BrowserWindow({
-        width: 209, //320,
+        width: 222, //320,
         height: 620,
         x: screenWidth - 209,
         icon: 'file://' + __dirname  +  '/rts-icon2.png',
