@@ -993,6 +993,7 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
         let array = [projectFolderPath, projectFolderName]
         localStorage.setItem('lastProjectFolder', JSON.stringify(array))
     }
+    checkIfDescriptionExists()
 })
 
 /******Loop through contents of Selected Folder and display results************* */

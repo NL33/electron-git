@@ -108,7 +108,8 @@ function showChangedDocNames(result) {
             } else if (newId1.slice(newId1.length - 4) === 'docx') {
                 var newId = newId1.slice(0, - 5)
             } else {
-                var newId = newId1
+                var newId = newId1.trim()
+                console.log('new id = ' + newId)
             }
             var contents = `
             <div>
@@ -146,18 +147,21 @@ function showIntegratedDiffResult(result, type) { //type can be full file ("full
     var green = endred.replace(/{\+/g, '<ins style="color: #0066cc; font-weight: bold">')  //blue color
     var endgreen = green.replace(/\+}/g, '</ins>')
     var resultArray = endgreen.split('diff --git a/') //split the results up every time there is a diff --git a/. The result of this is to 
+
     for (var i = 1; i < resultArray.length; i++) {
-        var fileName = resultArray[i].split(" ")[0] //get the filename
+        console.log('result! = ' + resultArray[i])
+        var fileName = resultArray[i].split(" b/")[0].trim() //get the filename
         //the diff result produces a summary before showing the changes. The summary ends with "@@ [change numbers] @@". Goal is to remove this summary and go right at the changes themselves. The way we do this is to remove the text up to the second occurence of "@@":
         var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
         var secondOccurence = (resultArray[i].indexOf("@@", firstOccurence + 1))//get the index of "@@", starting from the first occurence (in other words, get the second occurence)
         var showResults1 = resultArray[i].substring((secondOccurence + 2)) //show the substring starting at the second occurence+2 (because its two characters, so start where they begin, then add two)
         var breaks = /\@\@(.*?)\@\@/gm;
         var showResults = showResults1.replace(breaks, '[.........]<br>') //in the text, replace '@@ diff calculations @@'
+
         if ((fileName.slice(fileName.length - 3) !== 'doc') && (fileName.slice(fileName.length - 4) !== 'docx')) { //print changes only if not a word document. If a word document, printing changes handled separately in "startWordDiffProcess()"
             var contents = `
                         <hr style="width: 95%; border: 2px solid  #32cd53; margin-bottom: 15px; margin-top: 15px; margin-left: 0px; border-radius: 15px;">
-                        <div id=${fileName}>
+                        <div id="${fileName}">
                             <div style="font-weight: bold; font-size: 14pt; margin-top: 0px; margin-bottom: 2px;white-space: pre-wrap">${fileName}</div>
                             <div style="white-space: pre-wrap">${showResults}</div>
                         </div>
