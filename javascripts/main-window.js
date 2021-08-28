@@ -44,89 +44,95 @@ var db = new Dexie("FileDatabase")
 //Dexie.debug = false //set to false for production. During development, gives more thorough error logs
 /*****Button Set Up *****/
 window.onload = async function () {
-
     try {
-        await db.version(3).stores({
-            fileInfo: "++id,fileId, fileName, lastSentTime, filePath,postId, projectTagName"
-        })
-    } catch (error) {
-        console.log('error = ' + error)
-    }
-
-    /*
-    catch(function (error) {
-        alert('Uh oh : ' + error);
-    });
-    */
-    //will send file to discourse, linking with postId. how will it link with project? When send to site, project will probably be named after main-folder-name/subfolder. Can get this from the filepath. And then add the tag with this name and a hash to the post, so it will be tagged that way on discourse.
-    //start out this way. Issues in future: if change path name, will that change project? maybe it's ok for it to work that way?
-
-
-    /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
-    if (localStorage.getItem('working-trees-present')) {
-        let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
-        if (treeArray.length > 0) {
-            treeArray.forEach((treePath) => {
-                if (treePath.length) {
-                    removeSavedWorkTree(treePath)
-                }
+        try {
+            await db.version(3).stores({
+                fileInfo: "++id,fileId, fileName, lastSentTime, filePath,postId, projectTagName"
             })
+        } catch (error) {
+            console.log('error = ' + error)
         }
-    }
 
-    document.getElementById('viewPriorVersionsSelect').addEventListener('click', () => {
-        viewPriorVersionsFunction()
-    })
+        /*
+        catch(function (error) {
+            alert('Uh oh : ' + error);
+        });
+        */
+        //will send file to discourse, linking with postId. how will it link with project? When send to site, project will probably be named after main-folder-name/subfolder. Can get this from the filepath. And then add the tag with this name and a hash to the post, so it will be tagged that way on discourse.
+        //start out this way. Issues in future: if change path name, will that change project? maybe it's ok for it to work that way?
 
-    document.getElementById('compareChangesSelect').addEventListener('click', () => {
-        showCompareChangesFunction()
-    })
 
-    //get last project folder info
-    if (localStorage.getItem('lastProjectFolder')) {
-        let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
-        if (folderArray) {
-            projectFolderPath = folderArray[0]
-            projectFolderName = folderArray[1]
-            document.getElementById('projectDirectory').textContent = projectFolderName
-            var divId = "projectDirectory"
-            showFolderContents(divId, projectFolderPath, 0)
+        /****** REMOVE ANY WORK TREES CREATED BY THE APP*********** */
+        if (localStorage.getItem('working-trees-present')) {
+            let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+            if (treeArray.length > 0) {
+                treeArray.forEach((treePath) => {
+                    if (treePath.length) {
+                        removeSavedWorkTree(treePath)
+                    }
+                })
+            }
         }
+
+        document.getElementById('viewPriorVersionsSelect').addEventListener('click', () => {
+            viewPriorVersionsFunction()
+        })
+
+        document.getElementById('compareChangesSelect').addEventListener('click', () => {
+            showCompareChangesFunction()
+        })
+
+        //get last project folder info
+        if (localStorage.getItem('lastProjectFolder')) {
+            let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
+            if (folderArray) {
+                projectFolderPath = folderArray[0]
+                projectFolderName = folderArray[1]
+                document.getElementById('projectDirectory').textContent = projectFolderName
+                var divId = "projectDirectory"
+                showFolderContents(divId, projectFolderPath, 0)
+            }
+        }
+
+        //change project folder button
+        var changeFolderButton = document.getElementById('changeFolder')
+        changeFolderButton.addEventListener('click', () => {
+            changeFolder()
+            //openDocFunction()
+            //openDocSpawn()
+            // wordExps()
+        })
+
+        //click save button
+
+        document.getElementById('saveButton').addEventListener('click', () => {
+            saveGitVersion()
+        })
+
+        //set right click menu 
+        menuFunction()
+
+        checkIfDescriptionExists()
+
+        tabFunction()
+    } catch (e) {
+        console.log('error in onload function')
     }
-
-    //change project folder button
-    var changeFolderButton = document.getElementById('changeFolder')
-    changeFolderButton.addEventListener('click', () => {
-        changeFolder()
-        //openDocFunction()
-        //openDocSpawn()
-        // wordExps()
-    })
-
-    //click save button
-
-    document.getElementById('saveButton').addEventListener('click', () => {
-        saveGitVersion()
-    })
-
-    //set right click menu 
-    menuFunction()
-    
-    checkIfDescriptionExists()
-    
-    tabFunction()
-    
 }   //end window onload
 
 
-function tabFunction(){
-    document.getElementById('noteForSave').addEventListener('keydown', (event)=>{
-        if (event.which == 9) {
-            console.log('tab hit')
-            saveGitVersion()
-            
-        }
-    })
+function tabFunction() {
+    try {
+        document.getElementById('noteForSave').addEventListener('keydown', (event) => {
+            if (event.which == 9) {
+                console.log('tab hit')
+                saveGitVersion()
+
+            }
+        })
+    } catch (e) {
+        console.log('error in tab function')
+    }
 }
 
 /******HIDE WINDOW, AND SHOW BASIC WINDOW**** */
@@ -136,7 +142,7 @@ function hideWindow() {
 }
 
 /**SHOW PROJECT DESCRIPTION************** */
-async function checkIfDescriptionExists(){
+async function checkIfDescriptionExists() {
     try {
         var descFilePath = projectFolderPath + '/project-description.md'
         fs.stat(descFilePath, function (err, stat) {
@@ -151,11 +157,11 @@ async function checkIfDescriptionExists(){
         });
     }
     catch (e) {
-        console.log('error = ' + e)
+        console.log('error in checking for description = ' + e)
     }
 }
 
-async function addDescription(){
+async function addDescription() {
     try {
         /*Make a file of project-description:*/
         var descFilePath = projectFolderPath + '/project-description.md'
@@ -188,12 +194,12 @@ async function addDescription(){
                     }
                 })
             } else {
-                console.log('Some other error: ', err.code);
+                console.log('Some other error in adding description function = ', err.code);
             }
         });
     }
     catch (e) {
-        console.log('error = ' + e)
+        console.log('error in adding description function = ' + e)
     }
 }
 
@@ -645,7 +651,7 @@ ipcRenderer.on('discourse-payload-url', (event, payload) => {
 function decodeTheKey(payload) {
     console.log('decode the key now')
     var privateKey2 = privateKey1.trim() //environmentVariables.privateKeyForDecoding.trim()
-  //  var encodedKey = environmentVariables.encodedUserKey
+    //  var encodedKey = environmentVariables.encodedUserKey
     console.log('private key2 = ' + privateKey2)
     const trimmedKey = payload.trim().replace(/\s/g, '')
     console.log(`trimmed encoded key is:*******= ${trimmedKey}`)
@@ -680,7 +686,7 @@ function decryptAttempt() {
     var pki = require('node-forge').pki;
     var privateKey1 = environmentVariables.privateKeyForDecoding1.trim()
     var encodedKey = environmentVariables.encodedUserKey1.trim()
-   // var private_key = pki.privateKeyFromPem(privateKey);
+    // var private_key = pki.privateKeyFromPem(privateKey);
     try {
         var privateKey = forge.pki.privateKeyFromPem(privateKey1);
         var ctBytes = forge.util.decode64(encodedKey);
@@ -693,7 +699,7 @@ function decryptAttempt() {
         console.log(e);
         alert("cannot decrypt");
     }
-    console.log('result = '  )
+    console.log('result = ')
     //console.log(result)
 }
 //https://stackoverflow.com/questions/47306186/node-decrypt-content-with-private-key-and-padding
@@ -728,7 +734,7 @@ async function addAppleNote(divId, mainPath, indent) {
     var newIndent = parseInt(indent) + 17
     console.log('get apple note file')
     try {
-         getFrontNote().then((response) => {
+        getFrontNote().then((response) => {
             appleNoteHtmlContent = response.noteContent
             var noteId = response.noteId
             var element = document.getElementById(divId)
@@ -861,43 +867,47 @@ margin-bottom: 0px
 /******************FUNCTION TO REMOVE ANY WORK TREES CREATED BY THE APP******************************** */
 
 async function removeSavedWorkTree(treePath) {
-
-    await trash([treePath]).then((error) => {
-        console.log('removed work tree = ' + treePath)
-        if (error) {
-            console.log(error)
-        } else {
-            let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
-            let index = treeArray.indexOf(treePath)
-            if (index > -1) {
-                treeArray.splice(index, 1)
-                localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
-                console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
+    try {
+        await trash([treePath]).then((error) => {
+            console.log('removed work tree = ' + treePath)
+            if (error) {
+                console.log(error)
+            } else {
+                let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+                let index = treeArray.indexOf(treePath)
+                if (index > -1) {
+                    treeArray.splice(index, 1)
+                    localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
+                    console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
+                }
             }
-        }
-    })
+        })
+    } catch (e) {
+        console.log('error in removing work tree')
+    }
 }
 
 
 /*****Open Doc***** */
 
 async function openDoc(thePath) {
-    let theExtension = path.extname(thePath)
-    if (thePath.includes('(apple-note)')) { //if apple note. then open the apple note doc directly
-        console.log('open apple doc')
-        var theNoteId
-        try {
-            var data = fs.readFileSync(thePath, 'utf8')
-            theNoteId = data.substring(
-                data.lastIndexOf('<span id="noteId81423">') + 23,
-                data.lastIndexOf('</span>')
-            )
-        } catch (err) {
-            console.log('error in reading apple note file = ' + err)
-        }
+    try {
+        let theExtension = path.extname(thePath)
+        if (thePath.includes('(apple-note)')) { //if apple note. then open the apple note doc directly
+            console.log('open apple doc')
+            var theNoteId
+            try {
+                var data = fs.readFileSync(thePath, 'utf8')
+                theNoteId = data.substring(
+                    data.lastIndexOf('<span id="noteId81423">') + 23,
+                    data.lastIndexOf('</span>')
+                )
+            } catch (err) {
+                console.log('error in reading apple note file = ' + err)
+            }
 
-        try {
-            await runJxa(`
+            try {
+                await runJxa(`
             'use strict';
 
             // evalAS2 :: String -> IO a
@@ -909,8 +919,19 @@ async function openDoc(thePath) {
 
              return evalAS2('tell application "Notes" to show note id "${theNoteId}"')
             `)
-        } catch (e) {//if there's an error in trying to open the apple note, can just go ahead and open the file through the app.
-            console.log('error in opening note = ' + e)
+            } catch (e) {//if there's an error in trying to open the apple note, can just go ahead and open the file through the app.
+                console.log('error in opening note = ' + e)
+                fs.readFile(thePath, 'utf8', function (err, data) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        ipcRenderer.send('open-html-window', thePath, data)
+                    }
+                })
+            }
+            console.log('the note id = ' + theNoteId)
+
+        } else if (theExtension.includes('html')) { //if not apple note but is an html file, open that file
             fs.readFile(thePath, 'utf8', function (err, data) {
                 if (err) {
                     console.log(err)
@@ -918,20 +939,12 @@ async function openDoc(thePath) {
                     ipcRenderer.send('open-html-window', thePath, data)
                 }
             })
+
+        } else { //open the file directly
+            shell.openPath(thePath)
         }
-        console.log('the note id = ' + theNoteId)
-
-    } else if (theExtension.includes('html')) { //if not apple note but is an html file, open that file
-        fs.readFile(thePath, 'utf8', function (err, data) {
-            if (err) {
-                console.log(err)
-            } else {
-                ipcRenderer.send('open-html-window', thePath, data)
-            }
-        })
-
-    } else { //open the file directly
-        shell.openPath(thePath)
+    } catch (e) {
+        alert('Sorry, there was an error showing this doc.')
     }
 }
 
@@ -985,73 +998,77 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 /******Loop through contents of Selected Folder and display results************* */
 
 async function showFolderContents(divId, mainPath, indent) {
-    console.log(divId, mainPath, indent)
-    var element = document.getElementById(divId)
-    var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
-    while (highlightedDivs.length)
-        highlightedDivs[0].classList.remove('highlightFolderOrFile')
-    if (element.id !== 'projectDirectory') {
-        element.classList.add('highlightFolderOrFile')
-    }
-    var extension = path.extname(mainPath)
-    var hasExtension = false
-    if (extension) {
-        hasExtension = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
-    }
-    if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
-        var stats = fs.statSync(mainPath)
-        if ((stats.isDirectory() === true) && (hasExtension === false)) { //determine if a directory (instead of file). 
-            //show folder contents
-            var contentArray = []
-            try {
-                contentArray = fs.readdirSync(mainPath)
-            } catch (e) {
-                console.log(e)
-            }
-            var contents = ""
-            var newIndent = parseInt(indent) + 15
-            contentArray.forEach((item) => {
-                if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
-                    var fullPath = mainPath + '/' + item
-                    var subStats = fs.statSync(fullPath)
-                    var extension1 = path.extname(fullPath)
-                    var hasExtension1 = false
-                    if (extension1) {
-                        hasExtension1 = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
-                    }
-                    if ((subStats.isDirectory() === true) && (hasExtension1 === false)) {
-                        var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
-                        contents = `<div style='margin-left: ${indent}px'>
+    try {
+        var element = document.getElementById(divId)
+        var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
+        while (highlightedDivs.length)
+            highlightedDivs[0].classList.remove('highlightFolderOrFile')
+        if (element.id !== 'projectDirectory') {
+            element.classList.add('highlightFolderOrFile')
+        }
+        var extension = path.extname(mainPath)
+        var hasExtension = false
+        if (extension) {
+            hasExtension = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
+        }
+        if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
+            var stats = fs.statSync(mainPath)
+            if ((stats.isDirectory() === true) && (hasExtension === false)) { //determine if a directory (instead of file). 
+                //show folder contents
+                var contentArray = []
+                try {
+                    contentArray = fs.readdirSync(mainPath)
+                } catch (e) {
+                    console.log(e)
+                }
+                var contents = ""
+                var newIndent = parseInt(indent) + 15
+                contentArray.forEach((item) => {
+                    if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
+                        var fullPath = mainPath + '/' + item
+                        var subStats = fs.statSync(fullPath)
+                        var extension1 = path.extname(fullPath)
+                        var hasExtension1 = false
+                        if (extension1) {
+                            hasExtension1 = true  //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
+                        }
+                        if ((subStats.isDirectory() === true) && (hasExtension1 === false)) {
+                            var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+                            contents = `<div style='margin-left: ${indent}px'>
                         <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'> <img src="../clear-folder-fntawesome.svg" style="padding-right: 3px; height: 11pt; width: 9pt; vertical-align: text-top"></img>` + item + `</div>
                         <div class="newItems"></div>
                         </div>`
-                    } else {
-                        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
-                        contents = `<div >
+                        } else {
+                            var newId = "**is-document**^^^" + fullPath + "^^^" + indent
+                            contents = `<div >
                         <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
                         </div>`
+                        }
                     }
-                }
-                if (divId !== "projectDirectory") {
-                    var newItems = element.nextElementSibling  //gets "newItems" div
-                    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
-                    element.classList.add('clicked') //add clicked class so don't run this again if click again
-                } else {
-                    var contentsDiv = document.getElementById('folderContents')
-                    if (item.indexOf('project-description') > -1){
-                        contentsDiv.insertAdjacentHTML("afterBegin", contents)
+                    if (divId !== "projectDirectory") {
+                        var newItems = element.nextElementSibling  //gets "newItems" div
+                        newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+                        element.classList.add('clicked') //add clicked class so don't run this again if click again
                     } else {
-                    contentsDiv.insertAdjacentHTML("beforeEnd", contents)
+                        var contentsDiv = document.getElementById('folderContents')
+                        if (item.indexOf('project-description') > -1) {
+                            contentsDiv.insertAdjacentHTML("afterBegin", contents)
+                        } else {
+                            contentsDiv.insertAdjacentHTML("beforeEnd", contents)
+                        }
                     }
-                }
-            })
-        } else {  //if not a directory
-            openDoc(mainPath)
+                })
+            } else {  //if not a directory
+                openDoc(mainPath)
+            }
+        } else { //if not projectstart and DO have clicked (so a folder that is already open)
+            element.classList.remove('clicked')
+            var newItems = element.nextElementSibling
+            newItems.innerHTML = '' //remove items in newItems
         }
-    } else { //if not projectstart and DO have clicked (so a folder that is already open)
-        element.classList.remove('clicked')
-        var newItems = element.nextElementSibling
-        newItems.innerHTML = '' //remove items in newItems
+    } catch (e) {
+        console.log('error in showing folder contents')
+        alert('Sorry, there was an error in showing these contents. Please try again.')
     }
 }
 //<img src="../clear-folder-fntawesome.svg" style="height: 11pt; width: 9pt; vertical-align: unset"></img>
@@ -1062,83 +1079,87 @@ function menuFunction() {
     const contextMenu = new Menu();
 
     window.addEventListener('contextmenu', (e) => {
+        try {
 
-        if ((e.target.id) && (e.target.classList.contains('docOrDirectory'))) {
-            var fullId = e.target.id
-            contextMenu.clear() //remove prior menuItem
-            e.preventDefault();
+            if ((e.target.id) && (e.target.classList.contains('docOrDirectory'))) {
+                var fullId = e.target.id
+                contextMenu.clear() //remove prior menuItem
+                e.preventDefault();
 
-            if (fullId.includes('**is-directory**')) { //show this menu only if a directory
-                var idArray = fullId.split("^^^")
-                var thePath = idArray[1]
-                var indent = idArray[2]
-            } else if (fullId === "projectDirectory") {
-                var thePath = projectFolderPath
-                var indent = -15
-            }
-            if ((fullId.includes('**is-directory**')) || (fullId === 'projectDirectory')) {
-                contextMenu.append(new MenuItem({
-                    label: "New Folder",
-                    click: () => {
-                        // addFolder(e, thePath, indent)
-                        var divId = fullId
-                        enterNewFolder(divId, thePath, indent)
-                    }
-                }))
-                contextMenu.append(new MenuItem({
-                    label: "New File",
-                    click: () => {
-                        // addFolder(e, thePath, indent)
-                        var divId = fullId
-                        enterNewFile(divId, thePath, indent)
-                    }
-                }))
-                contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
-                    label: "New Paste File",
-                    click: () => {
-                        // addFolder(e, thePath, indent)
-                        var divId = fullId
-                        enterNewPasteFile(divId, thePath, indent)
-                    }
-                }))
-                contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
-                    label: "Add Apple Note File",
-                    click: () => {
-                        // addFolder(e, thePath, indent)
-                        var divId = fullId
-                        addAppleNote(divId, thePath, indent)
-                    }
-                }))
-                contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
-                    label: "View Folder to Search",
-                    click: () => {
-                        viewFolder(e, thePath)
-                    }
-                }))
-            }
+                if (fullId.includes('**is-directory**')) { //show this menu only if a directory
+                    var idArray = fullId.split("^^^")
+                    var thePath = idArray[1]
+                    var indent = idArray[2]
+                } else if (fullId === "projectDirectory") {
+                    var thePath = projectFolderPath
+                    var indent = -15
+                }
+                if ((fullId.includes('**is-directory**')) || (fullId === 'projectDirectory')) {
+                    contextMenu.append(new MenuItem({
+                        label: "New Folder",
+                        click: () => {
+                            // addFolder(e, thePath, indent)
+                            var divId = fullId
+                            enterNewFolder(divId, thePath, indent)
+                        }
+                    }))
+                    contextMenu.append(new MenuItem({
+                        label: "New File",
+                        click: () => {
+                            // addFolder(e, thePath, indent)
+                            var divId = fullId
+                            enterNewFile(divId, thePath, indent)
+                        }
+                    }))
+                    contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
+                        label: "New Paste File",
+                        click: () => {
+                            // addFolder(e, thePath, indent)
+                            var divId = fullId
+                            enterNewPasteFile(divId, thePath, indent)
+                        }
+                    }))
+                    contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
+                        label: "Add Apple Note File",
+                        click: () => {
+                            // addFolder(e, thePath, indent)
+                            var divId = fullId
+                            addAppleNote(divId, thePath, indent)
+                        }
+                    }))
+                    contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
+                        label: "View Folder to Search",
+                        click: () => {
+                            viewFolder(e, thePath)
+                        }
+                    }))
+                }
 
-            if (fullId !== 'projectDirectory') {
-                contextMenu.append(new MenuItem({
-                    label: "Move to Trash",
-                    click: () => {
-                        deleteItem(e)
-                    }
-                }))
-                /**NOTE: Consider having this appear only for files that I can write, like md, txt, rtf, html, etc. */
-                contextMenu.append(new MenuItem({
-                    label: "Update File with copied content",
-                    click: () => {
-                        updatePasteFile(e)
-                    }
-                }))
-            }
+                if (fullId !== 'projectDirectory') {
+                    contextMenu.append(new MenuItem({
+                        label: "Move to Trash",
+                        click: () => {
+                            deleteItem(e)
+                        }
+                    }))
+                    /**NOTE: Consider having this appear only for files that I can write, like md, txt, rtf, html, etc. */
+                    contextMenu.append(new MenuItem({
+                        label: "Update File with copied content",
+                        click: () => {
+                            updatePasteFile(e)
+                        }
+                    }))
+                }
 
-            contextMenu.popup(remote.getCurrentWindow());
-        } //end if contains docOrDirectory
+                contextMenu.popup(remote.getCurrentWindow());
+            } //end if contains docOrDirectory
+        } catch (e) {
+            console.log('error in adding menu function')
+        }
     }, false);
 }
 
-function viewFolder(e, thePath) { /***START HERE***** */
+function viewFolder(e, thePath) {
     var theFolder = thePath
     shell.openPath(theFolder)
 }
@@ -1199,54 +1220,62 @@ function newFolderNoFocus() {
 
 /*************************CREATE A FOLDER ********************/
 function addFolder(divId, path, indent) {
-    var folderName = document.getElementById('nameEntry').value
-    document.getElementById('addForm').remove()
-    var newPath = path + '/' + folderName
-    var newIndent = parseInt(indent) + 15
-    var element = document.getElementById(divId)
-    fs.mkdir(newPath, function (err) {
-        if (err) {
-            console.log(err)
-        } else {
-            //var newItems = div.nextElementSibling
-            // newItems.innerHTML = ''
-            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
-            if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
-                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                showNewFolderOrDoc(divId, path, newPath, folderName, newIndent)
+    try {
+        var folderName = document.getElementById('nameEntry').value
+        document.getElementById('addForm').remove()
+        var newPath = path + '/' + folderName
+        var newIndent = parseInt(indent) + 15
+        var element = document.getElementById(divId)
+        fs.mkdir(newPath, function (err) {
+            if (err) {
+                console.log(err)
             } else {
-                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
-                showFolderContents(divId, path, newIndent)
-            }
+                //var newItems = div.nextElementSibling
+                // newItems.innerHTML = ''
+                //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
+                if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
+                    //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
+                    showNewFolderOrDoc(divId, path, newPath, folderName, newIndent)
+                } else {
+                    //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
+                    showFolderContents(divId, path, newIndent)
+                }
 
-        }
-    })
+            }
+        })
+    } catch (e) {
+        alert('Sorry, there was an error in adding the folder. Please try again.')
+    }
 }
 
 /****************** CREATE A FILE **************************/
 
 function createFile(divId, path, indent) {
-    var fileName = document.getElementById('nameEntry').value
-    document.getElementById('addForm').remove()
-    var newPath = path + '/' + fileName
-    var newIndent = parseInt(indent) + 15
-    var element = document.getElementById(divId)
-    fs.writeFile(newPath, '', function (err) {
-        if (err) {
-            console.log(err)
-        } else {
-            //var newItems = div.nextElementSibling
-            // newItems.innerHTML = ''
-            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
-            if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
-                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                showNewFolderOrDoc(divId, path, newPath, fileName, newIndent)
+    try {
+        var fileName = document.getElementById('nameEntry').value
+        document.getElementById('addForm').remove()
+        var newPath = path + '/' + fileName
+        var newIndent = parseInt(indent) + 15
+        var element = document.getElementById(divId)
+        fs.writeFile(newPath, '', function (err) {
+            if (err) {
+                console.log(err)
             } else {
-                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
-                showFolderContents(divId, path, newIndent)
+                //var newItems = div.nextElementSibling
+                // newItems.innerHTML = ''
+                //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
+                if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
+                    //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
+                    showNewFolderOrDoc(divId, path, newPath, fileName, newIndent)
+                } else {
+                    //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
+                    showFolderContents(divId, path, newIndent)
+                }
             }
-        }
-    })
+        })
+    } catch (e) {
+        console.log('Sorry, there was an error in creating the file. Please try again.')
+    }
 }
 
 /*******************CREATE A PASTE FILE ****************************/
@@ -1255,37 +1284,41 @@ function createFile(divId, path, indent) {
 //the expectation is that most times of using a paste file is getting content from the web--an email, a website, etc...
 //so rendering the html will be the best representation of the data
 function createPasteFile(divId, folderPath, indent) {
-    var fileName = document.getElementById('nameEntry').value
-    document.getElementById('addForm').remove()
-    var newDocPath1 = folderPath + '/' + fileName
-    var pathExtension = path.extname(newDocPath1)
-    if (pathExtension.length) { //people can still specify an extension if they want
-        var newDocPath = newDocPath1
-        var updatedFileName = fileName
-    } else { //if not, go with html
-        var newDocPath = newDocPath1 + '.html'
-        var updatedFileName = fileName + '.html'
-    }
-
-    var newIndent = parseInt(indent) + 15
-    var element = document.getElementById(divId)
-    var content = clipboard.readText()//clipboard.readHTML()
-    fs.writeFile(newDocPath, content, function (err) {
-        if (err) {
-            console.log(err)
-        } else {
-            //var newItems = div.nextElementSibling
-            // newItems.innerHTML = ''
-            //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
-            if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
-                //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                showNewFolderOrDoc(divId, folderPath, newDocPath, updatedFileName, newIndent)
-            } else {
-                //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
-                showFolderContents(divId, folderPath, newIndent)
-            }
+    try {
+        var fileName = document.getElementById('nameEntry').value
+        document.getElementById('addForm').remove()
+        var newDocPath1 = folderPath + '/' + fileName
+        var pathExtension = path.extname(newDocPath1)
+        if (pathExtension.length) { //people can still specify an extension if they want
+            var newDocPath = newDocPath1
+            var updatedFileName = fileName
+        } else { //if not, go with html
+            var newDocPath = newDocPath1 + '.html'
+            var updatedFileName = fileName + '.html'
         }
-    })
+
+        var newIndent = parseInt(indent) + 15
+        var element = document.getElementById(divId)
+        var content = clipboard.readText()//clipboard.readHTML()
+        fs.writeFile(newDocPath, content, function (err) {
+            if (err) {
+                console.log(err)
+            } else {
+                //var newItems = div.nextElementSibling
+                // newItems.innerHTML = ''
+                //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
+                if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
+                    //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
+                    showNewFolderOrDoc(divId, folderPath, newDocPath, updatedFileName, newIndent)
+                } else {
+                    //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
+                    showFolderContents(divId, folderPath, newIndent)
+                }
+            }
+        })
+    } catch (e) {
+        console.log('Sorry, there was an error in creating the file. Please try again.')
+    }
 }
 
 function updatePasteFile(e) {
@@ -1311,84 +1344,93 @@ function updatePasteFile(e) {
 
 function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
     //goal: insert new file alphabetically into view of the directory
-    var contentArray = []
     try {
-        contentArray = fs.readdirSync(mainPath) //note: this is plugging into the file system, where the new file already exists. So the new file is already in the content array
-    } catch (e) {
-        console.log(e)
-    }
-    let itemArray = []
-    contentArray.forEach((item) => {
-        if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) { //code that shows the folder contents excludes these items. so want to exclude them here too to get the right index
-            itemArray.push(item)
+        var contentArray = []
+        try {
+            contentArray = fs.readdirSync(mainPath) //note: this is plugging into the file system, where the new file already exists. So the new file is already in the content array
+        } catch (e) {
+            console.log(e)
         }
-    })
+        let itemArray = []
+        contentArray.forEach((item) => {
+            if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) { //code that shows the folder contents excludes these items. so want to exclude them here too to get the right index
+                itemArray.push(item)
+            }
+        })
 
-    var indexGo = itemArray.indexOf(folderName)
-    var element = document.getElementById(divId)
-    var contents = ""
-    var newIndent = parseInt(indent) + 15
-    var fullPath = newPath
-    var statsHere = fs.statSync(fullPath)
-    if (statsHere.isDirectory() === true) {
-        var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
-        contents = `<div>
+        var indexGo = itemArray.indexOf(folderName)
+        var element = document.getElementById(divId)
+        var contents = ""
+        var newIndent = parseInt(indent) + 15
+        var fullPath = newPath
+        var statsHere = fs.statSync(fullPath)
+        if (statsHere.isDirectory() === true) {
+            var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+            contents = `<div>
                 <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><img src="../clear-folder-fntawesome.svg" style="padding-right: 3px; height: 11pt; width: 9pt; vertical-align: text-top"></img>` + folderName + `</div>
                 <div class="newItems"></div>
                 </div>`
-    } else {
-        var newId = "**is-document**^^^" + fullPath + "^^^" + indent
-        contents = `<div>
+        } else {
+            var newId = "**is-document**^^^" + fullPath + "^^^" + indent
+            contents = `<div>
                 <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
                 </div>`
-    }
-
-    if (divId === 'projectDirectory') { //its the project folder
-        var contentsDiv = document.getElementById('folderContents')
-    } else {
-        var contentsDiv = element.nextElementSibling //not the project directory (so a subfolder). So structure is parent, then sibling where contents are
-
-    }
-    if (indexGo === 0) {
-        contentsDiv.insertAdjacentHTML("afterbegin", contents)
-    } else {
-        var divBefore = contentsDiv.children[indexGo]
-        if (divBefore) {
-            divBefore.insertAdjacentHTML("beforebegin", contents)
-        } else {
-            contentsDiv.insertAdjacentHTML("afterbegin", contents)
         }
-    }
 
-    var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
-    while (highlightedDivs.length)
-        highlightedDivs[0].classList.remove('highlightFolderOrFile')
-    document.getElementById(newId).classList.add('highlightFolderOrFile')
+        if (divId === 'projectDirectory') { //its the project folder
+            var contentsDiv = document.getElementById('folderContents')
+        } else {
+            var contentsDiv = element.nextElementSibling //not the project directory (so a subfolder). So structure is parent, then sibling where contents are
+
+        }
+        if (indexGo === 0) {
+            contentsDiv.insertAdjacentHTML("afterbegin", contents)
+        } else {
+            var divBefore = contentsDiv.children[indexGo]
+            if (divBefore) {
+                divBefore.insertAdjacentHTML("beforebegin", contents)
+            } else {
+                contentsDiv.insertAdjacentHTML("afterbegin", contents)
+            }
+        }
+
+        var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
+        while (highlightedDivs.length)
+            highlightedDivs[0].classList.remove('highlightFolderOrFile')
+        document.getElementById(newId).classList.add('highlightFolderOrFile')
+    } catch (e) {
+        console.log('error in adding new folder or doc to view')
+    }
 }
 
 
 /*******************DELETE A FOLDER****************************/
 
 async function deleteItem(e) {
-    var fullId = e.target.id
-    var item = document.getElementById(fullId)
-    var idArray = fullId.split("^^^")
-    var thePath = idArray[1]
-    await trash([thePath]).then(() => {
-        if (fullId.includes('is-directory')){
-            var newItems = item.nextElementSibling
-            if (newItems){
-                newItems.innerHTML = '' //remove items in newItems
+    try {
+        var fullId = e.target.id
+        var item = document.getElementById(fullId)
+        var idArray = fullId.split("^^^")
+        var thePath = idArray[1]
+        await trash([thePath]).then(() => {
+            if (fullId.includes('is-directory')) {
+                var newItems = item.nextElementSibling
+                if (newItems) {
+                    newItems.innerHTML = '' //remove items in newItems
+                }
+                item.remove()
             }
-            item.remove() 
-        }
-        item.remove()
-        if (thePath.indexOf('project-description') > -1 ){
-            checkIfDescriptionExists()
-        }
-        
-    });
-   
+            item.remove()
+            if (thePath.indexOf('project-description') > -1) {
+                checkIfDescriptionExists()
+            }
+
+        });
+    } catch (e) {
+        console.log('error in delete item = ' + e)
+        alert('Sorry, there was an error in deleting this item. Please try again.')
+    }
+
 }
 
 
@@ -1447,7 +1489,12 @@ async function viewPriorVersionsFunction() {
         document.getElementById('optionsAtBottom').style.display = 'none'
     }
     catch (e) {
-        console.log('error = ' + e)
+        console.log('error in view prior versions = ' + e)
+        if (e.toString().indexOf('not a git repository') > -1) {
+            alert('To view Prior Versions, please first save a project version.')
+        } else {
+            alert('Sorry, there was an error in viewing prior versions. Please try again.')
+        }
     }
 }
 var treeName = 'n/a'
@@ -1498,6 +1545,7 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
         revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes)
     } catch (e) {
         console.log('error in showOldVersion = ' + e)
+        alert('Sorry, there was an error in viewing prior versions. Please try again.')
     }
 }
 
@@ -1654,7 +1702,12 @@ async function showCompareChangesFunction() {
         })
     }
     catch (e) {
-        console.log('error = ' + e)
+        console.log('error in show versions to compare = ' + e)
+        if (e.toString().indexOf('not a git repository') > -1) {
+            alert('To Compare Changes, please first save a project version.')
+        } else {
+            alert('Sorry, there was an error in comparing changes. Please try again.')
+        }
     }
 }
 
@@ -1664,50 +1717,51 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
     //After the selection numbers are sorted out, then there is a separate process to determine which version will be listed as later (newer) and which as earlier(older). This process is redone every time there is a selection.
 
     //***MAKE SURE THE ID IS LINKED TO THE OVERVIEW CLASS OF THE ELEMENT (no matter where it was clicked) ********/
-    if (event.target.classList.contains('versionOverviewClass')) {
-        var selectedDiv = event.target
-    } else {
-        var selectedDiv = event.target.closest('.versionOverviewClass')
-    }
-
-    if ((selectedDiv.id !== 'selectedChangeId2') && (selectedDiv.id !== 'selectedChangeId1')) {
-        //********SET THE IDS CORRECTLY ************/
-        document.getElementById('selectedChangeId2').classList.remove('selectedChangeClass')
-        document.getElementById('selectedChangeId2').id = ''
-        document.getElementById('selectedChangeId1').id = 'selectedChangeId2'
-        selectedDiv.id = 'selectedChangeId1'
-        selectedDiv.classList.add('selectedChangeClass')
-
-        //********Get the Version Number of the currently selected versions **************/
-        var id1 = document.getElementById('selectedChangeId1')
-        var id2 = document.getElementById('selectedChangeId2')
-        var id1Version = document.querySelector('#selectedChangeId1 .versionNumber').textContent
-        if (id1Version !== 'Current Changes') {
-            var id1VersionNumber = parseInt(id1Version)
+    try {
+        if (event.target.classList.contains('versionOverviewClass')) {
+            var selectedDiv = event.target
         } else {
-            var id1VersionNumber = id1Version
-        }
-        var id2Version = document.querySelector('#selectedChangeId2 .versionNumber').textContent
-        if (id2Version !== 'Current Changes') {
-            var id2VersionNumber = parseInt(id2Version)
-        } else {
-            var id2VersionNumber = id2Version
+            var selectedDiv = event.target.closest('.versionOverviewClass')
         }
 
-        var id1Message = document.querySelector('#selectedChangeId1 .versionMessage').textContent
-        var id1Date = document.querySelector('#selectedChangeId1 .versionDate').textContent
-        var id1Time = document.querySelector('#selectedChangeId1 .versionTime').textContent
-        var id1CommitNumber = document.querySelector('#selectedChangeId1 .commitNumber').textContent
+        if ((selectedDiv.id !== 'selectedChangeId2') && (selectedDiv.id !== 'selectedChangeId1')) {
+            //********SET THE IDS CORRECTLY ************/
+            document.getElementById('selectedChangeId2').classList.remove('selectedChangeClass')
+            document.getElementById('selectedChangeId2').id = ''
+            document.getElementById('selectedChangeId1').id = 'selectedChangeId2'
+            selectedDiv.id = 'selectedChangeId1'
+            selectedDiv.classList.add('selectedChangeClass')
 
-        var id2Message = document.querySelector('#selectedChangeId2 .versionMessage').textContent
-        var id2Date = document.querySelector('#selectedChangeId2 .versionDate').textContent
-        var id2Time = document.querySelector('#selectedChangeId2 .versionTime').textContent
-        var id2CommitNumber = document.querySelector('#selectedChangeId2 .commitNumber').textContent
+            //********Get the Version Number of the currently selected versions **************/
+            var id1 = document.getElementById('selectedChangeId1')
+            var id2 = document.getElementById('selectedChangeId2')
+            var id1Version = document.querySelector('#selectedChangeId1 .versionNumber').textContent
+            if (id1Version !== 'Current Changes') {
+                var id1VersionNumber = parseInt(id1Version)
+            } else {
+                var id1VersionNumber = id1Version
+            }
+            var id2Version = document.querySelector('#selectedChangeId2 .versionNumber').textContent
+            if (id2Version !== 'Current Changes') {
+                var id2VersionNumber = parseInt(id2Version)
+            } else {
+                var id2VersionNumber = id2Version
+            }
 
-        //*****COMPARE THE VERSION NUMBERS******* */
+            var id1Message = document.querySelector('#selectedChangeId1 .versionMessage').textContent
+            var id1Date = document.querySelector('#selectedChangeId1 .versionDate').textContent
+            var id1Time = document.querySelector('#selectedChangeId1 .versionTime').textContent
+            var id1CommitNumber = document.querySelector('#selectedChangeId1 .commitNumber').textContent
 
-        if (id2VersionNumber === 'Current Changes') { //then the first chosen item is the current changes
-            var laterHeaderInsert = `
+            var id2Message = document.querySelector('#selectedChangeId2 .versionMessage').textContent
+            var id2Date = document.querySelector('#selectedChangeId2 .versionDate').textContent
+            var id2Time = document.querySelector('#selectedChangeId2 .versionTime').textContent
+            var id2CommitNumber = document.querySelector('#selectedChangeId2 .commitNumber').textContent
+
+            //*****COMPARE THE VERSION NUMBERS******* */
+
+            if (id2VersionNumber === 'Current Changes') { //then the first chosen item is the current changes
+                var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordLater"></span><span id="versionNumberLater">${id2VersionNumber}</span></span>
                     <div id="versionMessageLater" style="display:none">${id2Message}</div>
@@ -1715,9 +1769,9 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                     <span id="commitNumberLater" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
-            document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
+                document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
-            var earlierHeaderInsert = `
+                var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id1VersionNumber}</span></span>
                     <div id="versionMessageEarlier" style="display:none">${id1Message}</div>
@@ -1725,10 +1779,10 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                     <span id="commitNumberEarlier" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
-            document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
+                document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
 
-        } else if (id1VersionNumber === 'Current Changes') {
-            var laterHeaderInsert = `
+            } else if (id1VersionNumber === 'Current Changes') {
+                var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordLater"></span><span id="versionNumberLater">${id1VersionNumber}</span></span>
                     <div id="versionMessageLater" style="display:none">${id1Message}</div>
@@ -1736,9 +1790,9 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                     <span id="commitNumberLater" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
-            document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
+                document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
-            var earlierHeaderInsert = `
+                var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id2VersionNumber}</span></span>
                     <div id="versionMessageEarlier" style="display:none">${id2Message}</div>
@@ -1746,10 +1800,10 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                     <span id="commitNumberEarlier" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
-            document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
+                document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
 
-        } else if (id2VersionNumber > id1VersionNumber) { //no current changes selected
-            var laterHeaderInsert = `
+            } else if (id2VersionNumber > id1VersionNumber) { //no current changes selected
+                var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordLater">Version </span><span id="versionNumberLater">${id2VersionNumber}</span></span>
                     <div id="versionMessageLater" style="display:none">${id2Message}</div>
@@ -1757,9 +1811,9 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                     <span id="commitNumberLater" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
-            document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
+                document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
-            var earlierHeaderInsert = `
+                var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id1VersionNumber}</span></span>
                     <div id="versionMessageEarlier" style="display:none">${id1Message}</div>
@@ -1767,10 +1821,10 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                     <span id="commitNumberEarlier" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
-            document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
+                document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
 
-        } else if (id1VersionNumber > id2VersionNumber) { //no current changes selected
-            var laterHeaderInsert = `
+            } else if (id1VersionNumber > id2VersionNumber) { //no current changes selected
+                var laterHeaderInsert = `
                 <span class="selectedForChangesClass" id="laterVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordLater">Version </span><span id="versionNumberLater">${id1VersionNumber}</span></span>
                     <div id="versionMessageLater" style="display:none">${id1Message}</div>
@@ -1778,9 +1832,9 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                     <span id="commitNumberLater" style="display:none">${id1CommitNumber}</span>
                 </span>   
                 `
-            document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
+                document.getElementById('laterVersionOverview').innerHTML = laterHeaderInsert
 
-            var earlierHeaderInsert = `
+                var earlierHeaderInsert = `
                 <span class="selectedForChangesClass" id="earlierVersionForChanges">
                     <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${id2VersionNumber}</span></span>
                     <div id="versionMessageEarlier" style="display:none">${id2Message}</div>
@@ -1788,8 +1842,12 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
                     <span id="commitNumberEarlier" style="display:none">${id2CommitNumber}</span>
                 </span>   
                 `
-            document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
+                document.getElementById('earlierVersionOverview').innerHTML = earlierHeaderInsert
+            }
         }
+    } catch (e) {
+        console.log('error in select versions to view changes = ' + e)
+        alert('Sorry, there was an error in comparing changes. Please close this item and try again.')
     }
 }
 
@@ -1809,40 +1867,44 @@ document.getElementById('runChangesBlock').addEventListener('click', () => {
 
 
 function runComparisonFunction(comparisonType) {
-    var laterVersionNumber = document.getElementById('versionNumberLater').textContent
-    var laterMessage = document.getElementById('versionMessageLater').textContent
-    var laterDate = document.getElementById('versionDateLater').textContent
-    var laterTime = document.getElementById('versionTimeLater').textContent
-    var laterCommitNumber = document.getElementById('commitNumberLater').textContent
+    try {
+        var laterVersionNumber = document.getElementById('versionNumberLater').textContent
+        var laterMessage = document.getElementById('versionMessageLater').textContent
+        var laterDate = document.getElementById('versionDateLater').textContent
+        var laterTime = document.getElementById('versionTimeLater').textContent
+        var laterCommitNumber = document.getElementById('commitNumberLater').textContent
 
-    var earlierVersionNumber = document.getElementById('versionNumberEarlier').textContent
-    var earlierMessage = document.getElementById('versionMessageEarlier').textContent
-    var earlierDate = document.getElementById('versionDateEarlier').textContent
-    var earlierTime = document.getElementById('versionTimeEarlier').textContent
-    var earlierCommitNumber = document.getElementById('commitNumberEarlier').textContent
+        var earlierVersionNumber = document.getElementById('versionNumberEarlier').textContent
+        var earlierMessage = document.getElementById('versionMessageEarlier').textContent
+        var earlierDate = document.getElementById('versionDateEarlier').textContent
+        var earlierTime = document.getElementById('versionTimeEarlier').textContent
+        var earlierCommitNumber = document.getElementById('commitNumberEarlier').textContent
 
-    var laterVersionArray = {
-        commitNumber: laterCommitNumber,
-        versionNumber: laterVersionNumber,
-        versionMessage: laterMessage,
-        versionDate: laterDate,
-        versionTime: laterTime,
+        var laterVersionArray = {
+            commitNumber: laterCommitNumber,
+            versionNumber: laterVersionNumber,
+            versionMessage: laterMessage,
+            versionDate: laterDate,
+            versionTime: laterTime,
+        }
+
+        //var earlierVersionArray = {}
+        var earlierVersionArray = {
+            commitNumber: earlierCommitNumber,
+            versionNumber: earlierVersionNumber,
+            versionMessage: earlierMessage,
+            versionDate: earlierDate,
+            versionTime: earlierTime
+        }
+
+        var arg1 = projectFolderPath
+        var arg2 = JSON.stringify(laterVersionArray)
+        var arg3 = JSON.stringify(earlierVersionArray)
+        var arg4 = comparisonType //either integrated or block 
+        ipcRenderer.send('open-compare-versions-window', arg1, arg2, arg3, arg4)
+    } catch (e) {
+        console.log('error in run comparison function = ' + e)
     }
-
-    //var earlierVersionArray = {}
-    var earlierVersionArray = {
-        commitNumber: earlierCommitNumber,
-        versionNumber: earlierVersionNumber,
-        versionMessage: earlierMessage,
-        versionDate: earlierDate,
-        versionTime: earlierTime
-    }
-
-    var arg1 = projectFolderPath
-    var arg2 = JSON.stringify(laterVersionArray)
-    var arg3 = JSON.stringify(earlierVersionArray)
-    var arg4 = comparisonType //either integrated or block 
-    ipcRenderer.send('open-compare-versions-window', arg1, arg2, arg3, arg4)
 }
 
 
@@ -1860,7 +1922,7 @@ async function saveGitVersion() {
     try {
 
 
-      /**STEPS FROM HERE: Create file with commit notes (including checking if already exists). Create file if necessary. Then, after notes file has been updated, run the commit */
+        /**STEPS FROM HERE: Create file with commit notes (including checking if already exists). Create file if necessary. Then, after notes file has been updated, run the commit */
 
         /*Make a file of commit notes:*/
         var commitTextFilePath = projectFolderPath + '/z-version-notes.md'
@@ -1944,48 +2006,52 @@ async function saveGitVersion() {
     }
 }
 
-async function doTheCommit(text){ //Where the actual version commit is done.
-    await git.cwd(projectFolderPath).then(result => {
-        // console.log('cwd resultss' + JSON.stringify(result))
-    })
-    await git.init().then(result => {
-        //console.log('init result = ' + JSON.stringify(result))
-    })
+async function doTheCommit(text) { //Where the actual version commit is done.
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+        await git.init().then(result => {
+            //console.log('init result = ' + JSON.stringify(result))
+        })
 
-    await git.add('.').then(result => {
-        //console.log('add result = ' + JSON.stringify(result))
-    })
+        await git.add('.').then(result => {
+            //console.log('add result = ' + JSON.stringify(result))
+        })
 
-    await git.commit(text).then(result => {
-        /*
-        var overviewS = document.getElementById("ifNewVersionSaved")
-        var overviewN = document.getElementById("ifNoNewVersion")
-        var showResults = document.getElementById("showResults")
-        if (result.summary.changes != "0") {
-            overviewN.style.display = "none"
-            showResults.textContent = JSON.stringify(result.summary)
-            overviewS.style.display = "inline-block"
-        } else {
-            overviewS.style.display = "none"
-            showResults.textContent = ""
-            overviewN.style.display = "inline-block"
-        }
-        */
+        await git.commit(text).then(result => {
+            /*
+            var overviewS = document.getElementById("ifNewVersionSaved")
+            var overviewN = document.getElementById("ifNoNewVersion")
+            var showResults = document.getElementById("showResults")
+            if (result.summary.changes != "0") {
+                overviewN.style.display = "none"
+                showResults.textContent = JSON.stringify(result.summary)
+                overviewS.style.display = "inline-block"
+            } else {
+                overviewS.style.display = "none"
+                showResults.textContent = ""
+                overviewN.style.display = "inline-block"
+            }
+            */
 
-        /*
-        
-        document.getElementById('saveProjectItems').style.display = "none"
-        document.getElementById('saveProjectHeader').style.display = "none"
-        document.getElementById('sendOptions').style.display = 'block'
-        document.getElementById('localSaveNotice').style.display = 'block'
-        */
-        document.getElementById('savingProgress').style.display = "none"
-        document.getElementById('saveProjectHeader').style.display = "block"
-        document.getElementById('noteForSave').textContent = ''
-        document.getElementById('saveProjectItems').style.display = "block"
-        document.getElementById('saveProjectHeader').style.display = "block"
-        console.log('commit result = ' + JSON.stringify(result))
-    })
+            /*
+            
+            document.getElementById('saveProjectItems').style.display = "none"
+            document.getElementById('saveProjectHeader').style.display = "none"
+            document.getElementById('sendOptions').style.display = 'block'
+            document.getElementById('localSaveNotice').style.display = 'block'
+            */
+            document.getElementById('savingProgress').style.display = "none"
+            document.getElementById('saveProjectHeader').style.display = "block"
+            document.getElementById('noteForSave').textContent = ''
+            document.getElementById('saveProjectItems').style.display = "block"
+            document.getElementById('saveProjectHeader').style.display = "block"
+            console.log('commit result = ' + JSON.stringify(result))
+        })
+    } catch (e) {
+        console.log('error in do the commit = ' + e)
+    }
 }
 
 
