@@ -2,15 +2,12 @@ const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog,
 const path = require('path') //import the path package which provides utility functions for the file paths
 
 const fs = require('fs');
-// Main process of the Electron application
-const { systemPreferences } = require('electron')
-// Prompt to access System Preferences by setting the prompt "true"
-const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
-const runJxa = require('run-jxa')
-console.log("Does the client have accessibility permissions?", isTrusted)
 
-//require = require("esm")(module/*, options*/)
-//module.exports = require("./main.js")
+//const { systemPreferences } = require('electron')
+// Prompt to access System Preferences by setting the prompt "true"
+
+//const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
+//console.log("Does the client have accessibility permissions?", isTrusted)
 
 
 /*** TOOLBAR MENU ICON****** */
@@ -19,7 +16,7 @@ console.log("Does the client have accessibility permissions?", isTrusted)
 let tray = null
 var mainWindow
 function menuApp() {
-    tray = new Tray('mountains-icon.jpg')
+    tray = new Tray('rts-icon2.png')
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Save New Version', click() { saveNewVersionWindow() } },
         { label: 'Get the Window', click() { sendTheWindow() } }, //getthewindow = get the active window
@@ -77,6 +74,7 @@ function openBasicWindow(){
     })
 
     basicWindow.loadURL('file://' + __dirname + '/views/basic-window.html');
+    basicWindow.hide()
 }
 
 
@@ -100,7 +98,7 @@ async function saveNewVersionWindow(windowTitle) {
 
     newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
-    newVersionWindow.hide()
+    
     //newVersionWindow.openDevTools()
     /*
     newVersionWindow.webContents.on('did-finish-load', function () {
@@ -211,7 +209,6 @@ function openBreatheBigWindow() {
 
 /***END BREATHE BIG WINDOW*** */
 ipcMain.on('open-main-window', (event, arg) => {
-    console.log('show the window')
     newVersionWindow.show()
     basicWindow.hide()
 })
@@ -430,7 +427,6 @@ if (process.platform === 'win32') {
         [app.getAppPath()]);
 
 } else {
-    console.log('on non-windows')
     app.setAsDefaultProtocolClient('saturnproto');
 }
 
