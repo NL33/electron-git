@@ -104,11 +104,11 @@ window.onload = async function () {
     })
 
     //click save button
-  /*
+
     document.getElementById('saveButton').addEventListener('click', () => {
         saveGitVersion()
     })
-*/
+
     //set right click menu 
     menuFunction()
     
