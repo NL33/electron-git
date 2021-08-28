@@ -61,6 +61,7 @@ function openBasicWindow(){
     basicWindow= new BrowserWindow({
         width: 40,
         height: 52,
+        icon: 'rts-icon2.png',
         x: screenWidth - 47,
         y: 25,
         alwaysOnTop: true,
@@ -87,6 +88,7 @@ async function saveNewVersionWindow(windowTitle) {
         width: 209, //320,
         height: 620,
         x: screenWidth - 209,
+        icon: 'file://' + __dirname  +  '/rts-icon2.png',
         y: 0,
         alwaysOnTop: true,
         webPreferences: {
