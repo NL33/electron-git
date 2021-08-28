@@ -1256,7 +1256,7 @@ function createPasteFile(divId, folderPath, indent) {
 
     var newIndent = parseInt(indent) + 15
     var element = document.getElementById(divId)
-    var content = clipboard.readHTML()
+    var content = clipboard.readText()//clipboard.readHTML()
     fs.writeFile(newDocPath, content, function (err) {
         if (err) {
             console.log(err)
@@ -1842,6 +1842,7 @@ async function saveGitVersion() {
     }
     document.getElementById('saveProjectItems').style.display = "none"
     document.getElementById('savingProgress').style.display = "inline-block"
+    document.getElementById('saveProjectHeader').style.display = "none"
     try {
 
 
@@ -1956,16 +1957,59 @@ async function doTheCommit(text){ //Where the actual version commit is done.
             overviewN.style.display = "inline-block"
         }
         */
-        document.getElementById('noteForSave').textContent = ''
+
+        /*
+        
         document.getElementById('saveProjectItems').style.display = "none"
         document.getElementById('saveProjectHeader').style.display = "none"
         document.getElementById('sendOptions').style.display = 'block'
         document.getElementById('localSaveNotice').style.display = 'block'
+        */
+        document.getElementById('savingProgress').style.display = "none"
+        document.getElementById('saveProjectHeader').style.display = "block"
+        document.getElementById('noteForSave').textContent = ''
+        document.getElementById('saveProjectItems').style.display = "block"
+        document.getElementById('saveProjectHeader').style.display = "block"
         console.log('commit result = ' + JSON.stringify(result))
     })
 }
 
-/****SEND PROJECT TO GITHUB**************** */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*************************************************************************************** */
+
+/***************************** NOT CURRENTLY IN USE  *************************************/
+/*
+ //SAVING INDIVIDUAL FILES. NOT CURRENTLY IN USE.
+ //receives info from main.js about the active window
+ ipcRenderer.on('window-title', (event, data) => {
+     document.getElementById('selectedDoc').textContent = data
+     fileName = data
+ })
+ */
+
+
+
+/****NOT IN USE: SEND PROJECT TO GITHUB**************** */
 
 /*
 Github commands:
@@ -2078,17 +2122,9 @@ async function sendToGithubFunction() {
 
 
 
-/*************************************************************************************** */
 
-/***************************** NOT CURRENTLY IN USE  *************************************/
-/*
- //SAVING INDIVIDUAL FILES. NOT CURRENTLY IN USE.
- //receives info from main.js about the active window
- ipcRenderer.on('window-title', (event, data) => {
-     document.getElementById('selectedDoc').textContent = data
-     fileName = data
- })
- */
+
+
 
 
 /*********APPLE SCRIPT / JXA***************** */

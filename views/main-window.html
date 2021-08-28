@@ -332,7 +332,7 @@
 
 <body id="bodyId"
     style="margin-top: 4px; padding: 10px; padding-top: 5px; padding-left: 0px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; overflow: auto">
-<div style="" class="test-buttons">
+<div style="display: none" class="test-buttons">
     <div onclick="loopThroughFolder('start')"
         style="cursor: pointer; border: 2px solid #3399ff; margin-left: 5px; margin-bottom: 9px; padding: 6px; display: inline-block; border-radius: 15px">
         Loop Through Folder</div>
@@ -370,23 +370,24 @@
     <div id="saveProjectVersion" style="margin-bottom: 10px">
         <div style="margin-top: 15px" class="padding-class">
             <hr style="width: 70%; border: 1px solid  #f5f5f5">
-            <div id="saveProjectHeader" style="margin-right: 10px; margin-top: 20px;font-weight: bold">Save Project
-                Version:</div>
+            <div id="saveProjectHeader" style="margin-right: 10px; margin-top: 20px;font-weight: bold">Save Project Version:</div>
         </div>
 
         <div id="saveProjectItems" class="padding-class" style="margin-left: 10px">
             <div id="noteForSave" contenteditable="true" data-placeholder="Enter note to go along with save"></div>
             <div id="saveButton">Save Version</div>
+            <!--
             <br>
             <div style="margin-top: 15px; text-align: right;" id="sendProjOptions">
                 <div style="font-size: 11pt; margin-top: 8px; border-left: 3px solid green; padding-left: 5px; cursor: pointer; display: inline-block"
                     onclick="showSendOptions()">Send project options</div>
             </div>
-            <div id="savingProgress" class="padding-class">Saving version...
-            </div>
+                -->
+        </div>
+        <div id="savingProgress" class="padding-class">Saving version...
         </div>
 
-
+<!--
         <div id="sendOptions" style="display: none">
             <div style="text-align: right; padding-left: 15px; padding-right: 5px; margin-right: 10px; font-size: 13pt; cursor: pointer"
                 onclick="closeSendView()">x</div>
@@ -403,7 +404,7 @@
             </div>
         </div>
     </div>
-
+-->
 
     <!--***************View Prior Versions**************-->
     <div id="showPriorVersions"
