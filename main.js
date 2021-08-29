@@ -242,6 +242,22 @@ ipcMain.on('hide-main-window', (event, arg) => {
     newVersionWindow.hide()
 })
 
+/*******GET CONTENT FROM Clipboard For Paste FILE */
+
+
+ipcMain.on('create-paste-file', (event, filePath) =>{
+    var content = clipboard.readHTML()
+    try {
+    fs.writeFile(newDocPath, content, function (err) {
+        if (err) {
+            console.log(err)
+        } else {
+            newVersionWindow.webContents.send('finished-paste-file' '')
+        }
+        } catch(e){
+        console.log('error in creating paste file')
+    }
+} )
 
 /******OPEN HTML FILES *********** */
 ipcMain.on('open-html-window', (event, arg1, arg2) => {
