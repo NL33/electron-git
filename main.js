@@ -278,11 +278,11 @@ ipcMain.on("toMain", (event, arg) => {
 function openHTMLWindow(thePath) {
     var filePath = thePath
     console.log('the Path = ' + thePath)
-    //in the case of viewing an old version of an html file, the path will include the worktree, like: [randomnumber]worktree3#&7#&1#&4/
+    //in the case of viewing an old version of an html file, the path will include the worktree, like: [randomnumber]worktree3a7c1e4g7/
     //want to remove that worktree reference, bc otherwise will be confusing to user
     var fullPathName = path.dirname(filePath)
-    if (filePath.includes('worktree3#&7#&1#&4/')) {
-        var fpArray1 = filePath.split('worktree3#&7#&1#&4/') //array now has [].../randomNumber, /filename]. Next, get rid of the random number
+    if (filePath.includes('worktree3a7c1e4g7/')) {
+        var fpArray1 = filePath.split('worktree3a7c1e4g7/') //array now has [].../randomNumber, /filename]. Next, get rid of the random number
         var firstPart = fpArray1[0]
         var cleanedFirstPart = firstPart.substring(0, firstPart.lastIndexOf("/") + 1) //this would be fpArray1 without the random number on the end. Bc it's removed everything after the last "/"
         var secondPart = fpArray1[1]
@@ -323,7 +323,6 @@ function openHTMLWindow(thePath) {
                 contextIsolation: true,
                 enableRemoteModule: false,
                 sandbox: true,
-                additionalArguments: [thePath],
             }
 
         })

@@ -149,7 +149,6 @@ function showIntegratedDiffResult(result, type) { //type can be full file ("full
     var resultArray = endgreen.split('diff --git a/') //split the results up every time there is a diff --git a/. The result of this is to 
 
     for (var i = 1; i < resultArray.length; i++) {
-        console.log('result! = ' + resultArray[i])
         var fileName = resultArray[i].split(" b/")[0].trim() //get the filename
         //the diff result produces a summary before showing the changes. The summary ends with "@@ [change numbers] @@". Goal is to remove this summary and go right at the changes themselves. The way we do this is to remove the text up to the second occurence of "@@":
         var firstOccurence = resultArray[i].indexOf("@@") //get the index of first occurence of "@@"
@@ -254,7 +253,7 @@ async function startWordDiffProcess() {
         var randomNumber = Math.floor(Math.random() * 10000)
         var randomMultiple = Math.floor(Math.random() * 500)
         var theNumber = randomNumber * randomMultiple
-        treeName = theNumber.toString() + 'worktree3#&7#&1#&4'
+        treeName = theNumber.toString() + 'worktree3a7c1e4g7'
         await git.raw('worktree', 'add', treeName).then(result => {   //^1. Create WorkTree (one that will be the basis for both versions). Recall that the worktree to start is just a copy of the current project directory. You have to revert it to go to the prior versions of the directory
             if (result) {
                 let oldTempFolder = projectFolderPath + '/tempFolder7843OLD'
@@ -421,7 +420,7 @@ async function convertWordDoc(treeOrMainPath) {
                         //now have a markdown 
                         var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
                         var removeDocExtension = wordDocArray[i].replace(/\.[^/.]+$/, "")
-                        //example file at this point: /Users/username/Desktop/git-app-test-docs/word-diff-test/383180worktree3#&7#&1#&4/main-folder/llc-agreement
+                        //example file at this point: /Users/username/Desktop/git-app-test-docs/word-diff-test/383180worktree3a7c1e4g7/main-folder/llc-agreement
                         var markDownDoc = removeDocExtension + '.md'
                         var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579')
                         //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
@@ -460,7 +459,7 @@ async function convertWordDoc(treeOrMainPath) {
                 //now have a markdown 
                 var dataCleaned = data.replace(/<!--.*?-->/s, "").replace('<br>', 'HITHERE');  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
                 var removeDocExtension = wordDocArray[i].replace(/\.[^/.]+$/, "")
-                //example file at this point: /Users/username/Desktop/git-app-test-docs/word-diff-test/383180worktree3#&7#&1#&4/main-folder/llc-agreement
+                //example file at this point: /Users/username/Desktop/git-app-test-docs/word-diff-test/383180worktree3a7c1e4g7/main-folder/llc-agreement
                 var markDownDoc = removeDocExtension + '.md'
                 var markDownDocPathChanged = markDownDoc.replace(/\//g, '135#&579-135#&579')
                 //take the path of the word doc, and remove any "/". This is bc the forward slash means a directory. We want all the word docs for comparison to go into a temporary folder we create. If the forward slashes continue to be there, node will read them as their own directories. This means we would have to create a new directory for each of these when we run the md conversion (we do writeFile(...)--which you can only do into pre-existing directories), which would be too cumbersome. So instead we change out the forward slash for a complex code--which is the same across docs, so we can know later where we made the change, and can change back
@@ -634,7 +633,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                 console.log(err)
             } else {
                 files.forEach(file => {
-                    if (file.includes('worktree3#&7#&1#&4')) {
+                    if (file.includes('worktree3a7c1e4g7')) {
                         git.raw('worktree', 'remove', file, '--force').then((result) => {
                             git.raw('worktree', 'prune')
                             var folderOld = projectFolderPath + '/tempFolder7843OLD/'

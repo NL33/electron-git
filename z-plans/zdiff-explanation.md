@@ -81,7 +81,7 @@ html file: compare-versions.html
     -call *removeWorkTreeFromWordComparison()
 
 # removeWorkTreeFromWordComparison()
--git worktree rmemove (for any file that includes 'worktree3#&7#&1#&4'), then:
+-git worktree rmemove (for any file that includes 'worktree3a7c1e4g7'), then:
     -git worktree prune
     -fs.rm(folderOld)
     -fs.rm(folderNew)

@@ -1019,7 +1019,7 @@ async function showFolderContents(divId, mainPath, indent) {
                 var contents = ""
                 var newIndent = parseInt(indent) + 15
                 contentArray.forEach((item) => {
-                    if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) {
+                    if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3a7c1e4g7')))) {
                         var fullPath = mainPath + '/' + item
                         var subStats = fs.statSync(fullPath)
                         var extension1 = path.extname(fullPath)
@@ -1344,7 +1344,7 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
         }
         let itemArray = []
         contentArray.forEach((item) => {
-            if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3#&7#&1#&4')))) { //code that shows the folder contents excludes these items. so want to exclude them here too to get the right index
+            if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3a7c1e4g7')))) { //code that shows the folder contents excludes these items. so want to exclude them here too to get the right index
                 itemArray.push(item)
             }
         })
@@ -1501,7 +1501,7 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
         Note: this means you can't view two different old versions at once. I think that is ok for now.
         */
         folderArray.forEach((item) => {
-            if (item.includes('worktree3#&7#&1#&4')) { //if a folder exists that matches the worktree naming convention
+            if (item.includes('worktree3a7c1e4g7')) { //if a folder exists that matches the worktree naming convention
                 removeWorkTree(item)
             }
         })
@@ -1513,7 +1513,7 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
         var randomNumber = Math.floor(Math.random() * 10000)
         var randomMultiple = Math.floor(Math.random() * 500)
         var theNumber = randomNumber * randomMultiple
-        treeName = theNumber.toString() + 'worktree3#&7#&1#&4'
+        treeName = theNumber.toString() + 'worktree3a7c1e4g7'
         await git.raw('worktree', 'add', treeName).then(result => {
             if (result) {
                 console.log(result)

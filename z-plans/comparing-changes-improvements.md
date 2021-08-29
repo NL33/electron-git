@@ -20,7 +20,7 @@ but: focus first is getting the comparison to run smoothly, and making this chan
 
 # Issue Description
 
-I had a few versions saved. Then I added a word documnt. and saved the version. When I went to compare the changes (version with the word doc, v version without), the word doc did not show up. It had this error: Unhandled rejection Error: ENOENT: no such file or directory, open '/Users/sean/Desktop/git-app-test-docs/remote-test/426708worktree3#&7#&1#&4/llc-agreement.docx’
+I had a few versions saved. Then I added a word documnt. and saved the version. When I went to compare the changes (version with the word doc, v version without), the word doc did not show up. It had this error: Unhandled rejection Error: ENOENT: no such file or directory, open '/Users/sean/Desktop/git-app-test-docs/remote-test/426708worktree3a7c1e4g7/llc-agreement.docx’
 
 # Notes
 
@@ -40,5 +40,5 @@ I had a few versions saved. Then I added a word documnt. and saved the version. 
 
 *Identified Issues*
 
-- Notes: I had a few versions saved. Then I added a word documnt. and saved the version. When I went to compare the changes (version with the word doc, v version without), the word doc did not show up. It had this error: Unhandled rejection Error: ENOENT: no such file or directory, open '/Users/sean/Desktop/git-app-test-docs/remote-test/426708worktree3#&7#&1#&4/llc-agreement.docx’. DONE/RESOLVED (I THINK)
+- Notes: I had a few versions saved. Then I added a word documnt. and saved the version. When I went to compare the changes (version with the word doc, v version without), the word doc did not show up. It had this error: Unhandled rejection Error: ENOENT: no such file or directory, open '/Users/sean/Desktop/git-app-test-docs/remote-test/426708worktree3a7c1e4g7/llc-agreement.docx’. DONE/RESOLVED (I THINK)
 - 	further notes

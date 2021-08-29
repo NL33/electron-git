@@ -261,7 +261,7 @@ right now:
 
 --compare changes. When one file changes its name. Does the comparison still work? 
 
---compare changes. I had a few versions saved. Then I added a word documnt. and saved the version. When I went to compare the changes (version with the word doc, v version without), the word doc did not show up. It had this error: Unhandled rejection Error: ENOENT: no such file or directory, open '/Users/sean/Desktop/git-app-test-docs/remote-test/426708worktree3#&7#&1#&4/llc-agreement.docx'
+--compare changes. I had a few versions saved. Then I added a word documnt. and saved the version. When I went to compare the changes (version with the word doc, v version without), the word doc did not show up. It had this error: Unhandled rejection Error: ENOENT: no such file or directory, open '/Users/sean/Desktop/git-app-test-docs/remote-test/426708worktree3a7c1e4g7/llc-agreement.docx'
 
 --compare changes: error catching: if a problem, make sure it doesn't stop the app. Otherwise, the temp folders could show up in the project
 
