@@ -96,6 +96,11 @@ $  npm install del
     --used for deleting docs directly
     --uninstalled on Aug 29, 2021. BC fs.rm('path), {recursive: true}... seems to be working fine.
 
+$ npm install --save-dev @electron-forge/cli
+    --August 29, 2021
+    --electron forge. meant for packaging and distributing
+    --UNINSTALLED on Aug 29, 2021, bc on install it didn't seem to work right and said that there were now 2 high severity vulnerabilities that I was not abele to fix.
+
 # Prior to rollback on April 15, 2021
 # RobotJS
 
