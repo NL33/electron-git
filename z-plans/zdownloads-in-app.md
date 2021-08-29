@@ -113,6 +113,20 @@ $ yarn add --dev @electron-forge/cli
     --info at: https://www.electronforge.io/import-existing-project
     --then imported with: 
         --yarn electron-forge import
+    --that didn't work, but this npm way worked, following the docs pasted in above:
+    --$ npm exec --package=@electron-forge/cli -c "electron-forge import"
+        --got this result: 
+            ✔ Checking your system
+            ✔ Initializing Git Repository
+            ✔ Writing modified package.json file
+            ✔ Installing dependencies
+            ✔ Writing modified package.json file
+            ✔ Fixing .gitignore
+
+
+            We have ATTEMPTED to convert your app to be in a format that electron-forge understands.
+
+            Thanks for using "electron-forge"!!!
 
 # Prior to rollback on April 15, 2021
 # RobotJS

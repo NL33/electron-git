@@ -1,9 +1,11 @@
 {
   "name": "electron-git",
+  "productName": "Race to Saturn",
   "version": "0.1.0",
   "description": "starter electron app",
   "main": "main.js",
   "scripts": {
+    "make-mac": "npx @electron-forge/cli make --platform darwin",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -37,7 +39,9 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "./assets/rts-iconr"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
