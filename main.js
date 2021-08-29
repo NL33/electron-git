@@ -195,7 +195,7 @@ function showDialog() {
         */
 }
 
-
+var breatheWindow
 /***BREATHE BIG WINDOW */
 function openBreatheBigWindow() {
     var theDisplay = screen.getPrimaryDisplay()
@@ -203,7 +203,7 @@ function openBreatheBigWindow() {
     var rightHeight = Math.floor((size.height)) - Math.floor((size.height) - 2)
     //var rightHeight = Math.floor((size.height)-170)
     var xSpot = Math.floor((size.width) / 2) - 112
-    var focusWindow = new BrowserWindow({
+      breatheWindow = new BrowserWindow({
         show: false,
         height: 165,
         width: 225,
@@ -214,23 +214,28 @@ function openBreatheBigWindow() {
         transparent: true,
         frame: false,
         alwaysOnTop: true,
+        webPreferences: {
+            nodeIntegration: true, 
+            contextIsolation: false, 
+            enableRemoteModule: true
+        }
         //backgroundColor: 'white'
     })
 
-    focusWindow.loadURL('file://' + __dirname + '/views/breathe-big-button.html');
+    breatheWindow.loadURL('file://' + __dirname + '/views/breathe-big-button.html');
 
     //focusWindow.webContents.on('did-finish-load', function() {
-    focusWindow.once('ready-to-show', function () {
+    breatheWindow.once('ready-to-show', function () {
         //focusWindow.webContents.send('focusText', arg);
-        focusWindow.showInactive();
-    });
-
-
-    ipcMain.on('close-focusWindow', function () {
-        focusWindow.destroy()
+        breatheWindow.showInactive();
     });
 
 }
+
+ipcMain.on('close-breathe-window', function () {
+    breatheWindow.destroy()
+});
+
 
 
 /***END BREATHE BIG WINDOW*** */
@@ -268,7 +273,6 @@ ipcMain.on('open-html-window', (event, arg1) => {
 
 var htmlWindow
 ipcMain.on("toMain", (event, arg) => {
-    console.log('received call to read file. path = ' + arg)
     fs.readFile(arg, 'utf8', (error, data) => {
         var cleanData = sanitizeHtml(data);
         htmlWindow.webContents.send("fromMain", cleanData);
@@ -277,7 +281,6 @@ ipcMain.on("toMain", (event, arg) => {
 
 function openHTMLWindow(thePath) {
     var filePath = thePath
-    console.log('the Path = ' + thePath)
     //in the case of viewing an old version of an html file, the path will include the worktree, like: [randomnumber]worktree3a7c1e4g7/
     //want to remove that worktree reference, bc otherwise will be confusing to user
     var fullPathName = path.dirname(filePath)

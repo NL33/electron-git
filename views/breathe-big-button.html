@@ -1,11 +1,12 @@
 <html>
-
-<style>
-
-#focusCircleBreathe {
+<head>
+  <meta charset="UTF-8">
+  <style>
+   
+#breatheCircle {
   -webkit-user-select: none;
   display: inline-block;
-  border: 25px solid #FF7200;
+  border: 15px solid #FF7200;
   border-radius: 50%;
   background: white;
   text-align: center;
@@ -17,32 +18,35 @@
   overflow: hidden;
   position: relative;
   margin-top: 2px;
-  box-shadow:  0px 0px 0px 6px #3399FF;
+  box-shadow:  0px 0px 0px 8px #3399FF;
 }
 
 
-.flashButtonBreathe {
-  -webkit-user-select: none;
- display: inline-block;
-  border: 14px solid #FF7200;
-  //background: #B2F8DC !important;
-  box-shadow:  0px 0px 0px 6px #3399FF !important;
-  border-radius: 50%;
+.alternateClass {
+  background: #FF7200 !important;
+  color: white;
   text-align: center;
-  font-size: 24pt;
-  padding: 20px;
+  font-size: 22pt;
+  padding-top: 15px;
   padding-right: 15px;
   padding-left: 15px;
+  padding-bottom:12px;
   overflow: hidden;
-  //position: relative;
-  //margin-top: 50px;
+  position: relative;
+  margin-top: 2px;
+  box-shadow:  0px 0px 0px 8px #3399FF;
 }
+  </style>
+  <title>Showing Changes</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+
 </style>
 
-<body id="focusBody">
+<body id="breatheBody">
 
-    <div class="focusCircleOverview" id="focusCircleBreathe">
-        <span id="focusText">Breathe</br>Big</span>
+    <div class="breatheCircleOverview" id="breatheCircle">
+        <span id="breatheText">Breathe</br>Big</span>
     </div>
 <script src="../javascripts/breathe-big-window.js"></script>
 </body>

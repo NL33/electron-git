@@ -1,55 +1,57 @@
-var ipc = require("electron").ipcRenderer
+const { ipcRenderer  } = require('electron')
 
-/****MENU ITEM***/
-const { remote } = require('electron')
-const { Menu, MenuItem } = remote
 
-const menu = new Menu()
-menu.append(new MenuItem({
-    label: "Close", click: function () {
-        ipc.send('stop-focus-timer')
-        window.close();
-    }
-}))
+var focusText = document.getElementById('breatheCircle')
 
-window.addEventListener('contextmenu', (e) => {
-    e.preventDefault()
-    menu.popup(remote.getCurrentWindow())
-}, false)
-
-/**END RIGHT CLICK MENU***/
-
-$(window).dblclick(function () {
-    ipc.send('stop-focus-timer')
-    window.close();
-})
-if ($('#focusText').closest('.focusCircleOverview').attr('id') === 'focusCircleBreathe') {
-    var $flash = $('#focusCircleBreathe')
+/*
+    var flash = document.getElementById('focusCircleBreathe')
     var backgroundInterval = setInterval(function () {
-        if ($flash.is(":visible")) {
-            $flash.fadeOut();
+        if (flash.is(":visible")) {
+            flash.fadeOut();
         }
         else {
-            $flash.fadeIn();
+            flash.fadeIn();
         }
     }, 2500)
+*/
+var aClass1 = setTimeout(function () {
+    focusText.classList.add('alternateClass')
+}, 5000);
 
-} else if ($('#focusText').closest('.focusCircleOverview').attr('id') === 'focusCircleFantastic') {
+var aClass2 = setTimeout(function () {
+    focusText.classList.remove('alternateClass')
+}, 10400);
 
-    var $flash = $('#focusCircleFantastic')
-    var backgroundInterval = setInterval(function () {
-        $flash.toggleClass('flashButtonFantastic')
-    }, 2000)
+var aClass3 = setTimeout(function () {
+    focusText.classList.add('alternateClass')
+}, 17000);
 
-} else {
+var aClass4 = setTimeout(function () {
+    focusText.classList.remove('alternateClass')
+}, 22200);
 
-    var $flash = $('#focusCircleLookStrong')
-    var backgroundInterval = setInterval(function () {
-        $flash.toggleClass('flashButtonLookStrong')
-    }, 1500)
+var aClass5 = setTimeout(function () {
+    focusText.classList.add('alternateClass')
+}, 27700);
+
+//final time stays with the class until the end
+
+var timeFunc = setTimeout(function () {
+    //clearInterval(backgroundInterval);
+    closeWindow()
+}, 34000); //after 30.2 seconds: stop backgroundInterval function and send note to close window. Note that it is 30.2 seconds, not 30 seconds, because this executes faster than the play chime function in mainBar.js. I want to chime sound to go off first, so I delay this slightly.
+
+document.getElementById('breatheBody').addEventListener("dblclick", () => {
+    closeWindow()
+})
+
+function closeWindow(){
+    clearTimeout(timeFunc)
+    clearTimeout(aClass1)
+    clearTimeout(aClass2)
+    clearTimeout(aClass3)
+    clearTimeout(aClass4)
+    clearTimeout(aClass5)
+    ipcRenderer.send('close-breathe-window')
+    window.close()
 }
-
-setTimeout(function () {
-    clearInterval(backgroundInterval);
-    ipc.send('close-focusWindow');
-}, 31000); //after 30.2 seconds: stop backgroundInterval function and send note to close window. Note that it is 30.2 seconds, not 30 seconds, because this executes faster than the play chime function in mainBar.js. I want to chime sound to go off first, so I delay this slightly.

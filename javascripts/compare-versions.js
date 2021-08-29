@@ -666,7 +666,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                             fs.rm(folderOld, { recursive: true }, (err) => {
 
                                 if (err) {
-                                    //error here could occur if there are left over worktrees that haven't been removed before running the new function (example: worktree created to do a word comparison, but app stopped before complete). If mroe than one worktree left over, would then run the remove the old temp folder twice. In that case, the temp folder won't be there on the second run through, creating an error. However, this catches the error, so no concern
+                                    //error here could occur if there are left over worktrees that haven't been removed before running the new functgition (example: worktree created to do a word comparison, but app stopped before complete). If mroe than one worktree left over, would then run the remove the old temp folder twice. In that case, the temp folder won't be there on the second run through, creating an error. However, this catches the error, so no concern
                                 } else {
                                     //tempfolderold deleted
                                 }
