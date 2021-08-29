@@ -87,6 +87,10 @@ $ npm install dexie-export-import
     --July 31, 2021
     --uninstalled on Aug 2, 2021. Provides ability to export and import database (for example, to send the database somewhere else). Not clear this is useful for current requirements.
 
+$ npm install sanitize-html
+    --August 29, 2021
+    --used to sanitize html when loaded in load-html-window.js
+
 # Prior to rollback on April 15, 2021
 # RobotJS
 
