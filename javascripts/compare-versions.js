@@ -15,6 +15,7 @@ var cp = require("child_process");
 const { promisify } = require('util')
 */
 var diff2html = require("diff2html").Diff2Html
+const { version } = require('moment')
 let projectFolderPath
 let laterVersionInfo
 let earlierVersionInfo
@@ -109,10 +110,9 @@ function showChangedDocNames(result) {
                 var newId = newId1.slice(0, - 5)
             } else {
                 var newId = newId1.trim()
-                console.log('new id = ' + newId)
             }
             var contents = `
-            <div>
+            <div id="fileListingDiv">
                <span><a href="${newId}">${file}</a></span>
                <span class="showThisDocClass" onclick='diffSingleFile("${file}")'>Show Full Document</span>
             </div>`
@@ -131,6 +131,8 @@ function showChangedDocNames(result) {
     })
     if (areThereWordDocs === true) {
         startWordDiffProcess() //if there are word docs in the changed files, run the function to convert those to md and show the changes among those
+    } else {
+        document.getElementById('processingMessage').style.display="none"
     }
 }
 
@@ -140,6 +142,8 @@ function showChangedDocNames(result) {
 /****************** SHOW INTEGRATED DIFF ******************* */
 
 function showIntegratedDiffResult(result, type) { //type can be full file ("full") or summary of changes
+   console.log('in show integrated dif result function')
+    try {
     var red = result.replace(/\[-/g, '<del style="color: #c00">')
     var endred = red.replace(/-]/g, '</del>')
     //var green = endred.replace(/{\+/g, '<ins style="color: #0c0">')//lighter green color
@@ -179,6 +183,10 @@ function showIntegratedDiffResult(result, type) { //type can be full file ("full
             }
         }
     }
+    document.getElementById('processingMessage').style.display='none'
+} catch(e){
+    console.log('error in showing integrated diff result = ' + e)
+}
 }
 
 
@@ -186,9 +194,13 @@ function showIntegratedDiffResult(result, type) { //type can be full file ("full
 //*******************IF FOR SINGLE FILE: For when showing "full document" changes *********************** */
 let showFullDoc = false
 async function diffSingleFile(file) {
+    var missingMessage = document.getElementById('fileMissingMessage')
+    if (missingMessage){
+        missingMessage.style.display = 'none'
+    }
     showFullDoc = false //showDoc=false is just for diffing micro word docs. Why? For non-micro-word-docs, it's just one other function, and we can include the specification of singleFile ('full') in the param, and it's more efficient. For micro-word docs, there are multiple functions to get through until this specification is relevant, and it's less efficient to carry this param through those functions (where they are not used until the end function)
-
-    if (!(path.extname(file).includes('doc'))) { //f not word file
+    document.getElementById('processingMessage').style.display="block"
+    if (!(path.extname(file).includes('doc'))) { //if not word file
         var filePath = projectFolderPath + '/' + file
         try {
             await git.cwd(projectFolderPath).then(result => {
@@ -199,6 +211,7 @@ async function diffSingleFile(file) {
                 if (laterCommitNumber !== 'current-changes') {
                     await git.raw('diff', '--word-diff', '-U9999999', earlierCommitNumber, laterCommitNumber, filePath).then(result => {
                         //with -U99999, will produce up to 99,999 lins around the changes in the output
+                       //note: seems to show error if trying to show full file and full file is in older commit but not later commit. That is addressed in the error catch below
                         showIntegratedDiffResult(result, 'full')
                     })
                 } else {
@@ -207,7 +220,7 @@ async function diffSingleFile(file) {
                     })
                 }
             } else { //block dif
-
+                
                 if (laterCommitNumber !== 'current-changes') {
                     await git.raw('diff', '-U9999999', earlierCommitNumber, laterCommitNumber, filePath).then(result => {
                         doTopDiffFunction(result, 'full')
@@ -221,6 +234,17 @@ async function diffSingleFile(file) {
         } catch (e) {
             console.log('error in git diff one file function = ')
             console.log(e)
+            if (e.toString().indexOf('unknown revision or path') > -1){
+                //likely that a file is being compared that was in old commit but not new commit
+                var contents = `
+                <span style="font-size: 12pt; margin-left: 4px; font-style: italic; cursor: pointer" id="fileMissingMessage"> The file <span style="font-style:normal">${file}</span> has been deleted in the newer version, so we don't have a full doc to display. <span style="vertical-align: top; font-size: 11pt; font-style:normal">x</span></span>
+                `
+            document.getElementById('noticeDiv').insertAdjacentHTML('beforeend', contents)
+            }
+            document.getElementById('fileMissingMessage').addEventListener('click', ()=>{
+                document.getElementById('fileMissingMessage').remove()
+            })
+            document.getElementById('processingMessage').style.display = "none"
         }
     } else {//if it is a micro word file
         if (file.substring(0, 2) !== '~$') {
@@ -486,11 +510,11 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
     if ((markDownDocPath) && (markDownDocPath !== 'no-path')) { //it would be no-path if there is not a word doc at this location (because there either wasn't an old version, or not a new version, of that word doc). So no need to write the file in that case. We still are in this function irrespective to keep going with the flow of comparing all word docs that need to be compared
         writeFile(markDownDocPath, dataCleaned, (err) => {//^7. send the file to the temp folder
             writeFileRun++
-            console.log('write file run = ' + writeFileRun)
-            console.log('numberOfWordDocsToConvert = ' + numberOfWordDocsToConvert)
-            console.log('mammoth counter = ' + mammothCounter)
-            console.log('mammoth needs to run = ' + mammothNeedsToRun)
-            console.log('revert tree function counter = ' + revertTreeFunctionCounter)
+            //console.log('write file run = ' + writeFileRun)
+           // console.log('numberOfWordDocsToConvert = ' + numberOfWordDocsToConvert)
+           // console.log('mammoth counter = ' + mammothCounter)
+           // console.log('mammoth needs to run = ' + mammothNeedsToRun)
+           // console.log('revert tree function counter = ' + revertTreeFunctionCounter)
             //NOTE: after revert tree function has been run twice, we look again at whether the word file is in the new tree. (it might or might not have been in the old tree). As a result, these numbers can change, becasue we could remove items from mammoth needs to run and numberofdocs to convert
             if (err) {
                 console.log('error in write file action = ' + err)
@@ -516,11 +540,11 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
         })
     } else { //don't need to write the file (because no file there), but still move on.
         writeFileRun++
-        console.log('5^^ dont write the file and do move on')
-        console.log('write file run = ' + writeFileRun)
-        console.log('numberOfWordDocsToConvert = ' + numberOfWordDocsToConvert)
-        console.log('mammoth counter = ' + mammothCounter)
-        console.log('mammoth needs to run = ' + mammothNeedsToRun)
+     //   console.log('5^^ dont write the file and do move on')
+     //   console.log('write file run = ' + writeFileRun)
+     //   console.log('numberOfWordDocsToConvert = ' + numberOfWordDocsToConvert)
+       // console.log('mammoth counter = ' + mammothCounter)
+       // console.log('mammoth needs to run = ' + mammothNeedsToRun)
 
 
         
@@ -602,6 +626,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                                     document.getElementById('showDiff').style.display = "inline-block"
                                     document.getElementById('showFullFile').innerHTML = ''
                                     document.getElementById('backToSummaryButton').style.display = "none"
+                                    document.getElementById('processingMessage').style.display = "none"
                                 })
                             }
                         }
@@ -651,6 +676,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                                     //error in removing temp folder. could be bc tempfolder already removed.
                                 } else {
                                     //tempfolder new deleted
+                                    document.getElementById('processingMessage').style.display="none"
                                 }
                             })
                         })
@@ -724,6 +750,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
             }
         } catch (e) {
             console.log('error in git diff top function = ' + e)
+            document.getElementById('processingMessage').style.display="none"
         }
     }
     var topDiffCounter = 0
@@ -767,7 +794,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                         //var fileListHeader = selectedDiv.closest('.d2h-file-list')
                         // fileListHeader.insertAdjacentElement('beforeend', selectedDiv)
                         let contents = `
-                    <div>
+                    <div id="fileListingDiv">
                     <span><a href="${newId}">${fileName}</a></span>
                     <span class="showThisDocClass" onclick='diffSingleFile("${fileName}")'>Show Full Document</span>
                     </div>`
@@ -775,7 +802,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                     } else {
                         var newId = '#' + fileName
                         let contents = `
-                    <div>
+                    <div id="fileListingDiv">
                     <span><a href="${newId}">${fileName}</a></span>
                     <span class="showThisDocClass" onclick='diffSingleFile("${fileName}")'>Show Full Document</span>
                     </div>`
