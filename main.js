@@ -247,8 +247,9 @@ ipcMain.on('hide-main-window', (event, arg) => {
 /*******GET CONTENT FROM Clipboard For Paste FILE */
 
 ipcMain.on('create-paste-file', (event, divId, folderPath, newDocPath, updatedFileName, newIndent) => {
-    var content = clipboard.readHTML()
-    fs.writeFile(newDocPath, content, (err, result) => {
+    var content1 = clipboard.readHTML()
+    var cleanContent = sanitizeHtml(content1);
+    fs.writeFile(newDocPath, cleanContent, (err, result) => {
         if (err) {
             console.log(err)
             alert('Sorry, there was an error creating this paste file. Please try again.')
