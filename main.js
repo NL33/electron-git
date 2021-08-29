@@ -269,9 +269,7 @@ ipcMain.on('open-html-window', (event, arg1, arg2) => {
 var htmlWindow
 ipcMain.on("toMain", (event, arg) => {
     fs.readFile(arg, 'utf8', (error, data) => {
-        var cleanData = sanitizeHtml(data, {
-            selfClosing: ['img']
-        });
+        var cleanData = sanitizeHtml(data);
         htmlWindow.webContents.send("fromMain", cleanData);
     });
 });
