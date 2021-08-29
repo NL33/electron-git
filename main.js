@@ -245,8 +245,18 @@ ipcMain.on('hide-main-window', (event, arg) => {
 
 /******OPEN HTML FILES *********** */
 ipcMain.on('open-html-window', (event, arg1, arg2) => {
+    var filePath = arg1
+    var content = arg2
    openHTMLWindow(arg1, arg2)
 })
+
+var htmlWindow
+ipcMain.on("toMain", (event, arg) => {
+    console.log('GOT THE MESSAG1E = ' + JSON.stringify(arg))
+    fs.readFile(arg, 'utf8', (error, data) => {
+        htmlWindow.webContents.send("fromMain", data);
+    });
+});
 
 function openHTMLWindow(thePath, content) {
     var filePath = thePath
@@ -282,7 +292,7 @@ function openHTMLWindow(thePath, content) {
    }
    //if a file with that fileTitle is not opened yet:
    if (openTheFile === true){
-        var htmlWindow = new BrowserWindow({
+        htmlWindow = new BrowserWindow({
             width: 670, //320,
             height: 650,
             title: fileTitle,
@@ -290,16 +300,16 @@ function openHTMLWindow(thePath, content) {
             y: 0,
         // alwaysOnTop: true,
             webPreferences: {
-               // preload: path.join(__dirname, './preload.js'), //path.join(app.getAppPath(), 'preload.js'),
+                preload: path.join(__dirname, './preload.js'), //path.join(app.getAppPath(), 'preload.js'),
                 nodeIntegration: false, 
-                contextIsolation: false, 
+                contextIsolation: true, 
                 enableRemoteModule: false,
                 sandbox: true,
-                additionalArguments: [thePath, content],
+                additionalArguments: [thePath],
             }
             
         })
-       var queryString = '?queryParam870988=' + thePath + 'queryParam870988=' + content
+       var queryString = '?queryParam870988=' + thePath
        //window.loadURL('file:' + filePath);
        htmlWindow.loadURL('file://' + __dirname + '/views/loaded-html-window.html?${hi}' + queryString);
 

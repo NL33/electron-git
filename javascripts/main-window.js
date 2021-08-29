@@ -1300,7 +1300,7 @@ function createPasteFile(divId, folderPath, indent) {
 
         var newIndent = parseInt(indent) + 15
         var element = document.getElementById(divId)
-        var content = clipboard.readText()//clipboard.readHTML()
+        var content = clipboard.readHTML()
         fs.writeFile(newDocPath, content, function (err) {
             if (err) {
                 console.log(err)
@@ -1947,7 +1947,6 @@ async function saveGitVersion() {
     document.getElementById('savingProgress').style.display = "inline-block"
     document.getElementById('saveProjectHeader').style.display = "none"
     try {
-
 
         /**STEPS FROM HERE: Create file with commit notes (including checking if already exists). Create file if necessary. Then, after notes file has been updated, run the commit */
 

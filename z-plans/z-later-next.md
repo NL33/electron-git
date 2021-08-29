@@ -1,5 +1,19 @@
 **Later To-Dos**
 
+# security
+
+using context bridges seems to be most secure, if there is any chance of some remote content being brought in or questionable dependencies.
+
+I am using context bridge for loading html content. See: https://stackoverflow.com/questions/57807459/how-to-use-preload-js-properly-in-electron
+
+leading potential vulnerability now: "reading" clipboard data. Not clear that is a concern.
+
+Potentially add context bridge for that too. 
+
+But then big question: should I use the context bridge structure for every function? If so, then how to I organize main.js and preload.js? They would be enormous files.
+
+
+
 # mammoth security vulnerability
 needs to fix jzip issue
 https://github.com/mwilliamson/mammoth.js/issues/290
@@ -128,7 +142,7 @@ right now, the action to set the value is in an initializer. But, that code just
 
 - comparison: right now, if try to run a comparison too quickly after running another, the first comparison's temp folders could still be there. Make sure this doesn't cause issues. **THis SHOULD BE ok, bc when the second comparison is run, it should delete any temp folders, whether from that one or another one**
 
-- Issue: when running a conversion, if there is a "<" in there, everything afterward is stripped away. This can have strange implications, like if that section was in the deleted sections, then the result would be a start of <del> without an end. So everything from then on would show up as deleted. **STILL TO BE ADDRESSED**
+- Issue: when running a conversion, if there is a "<" in there, everything afterward is stripped away. This can have strange implications, like if that section was in the deleted sections, then the result would be a start of <del> without an end. So everything from then on would show up as deleted. **STILL TO BE ADDRESSED. NOT HIGH PRIORITY**
     - see z-later-next.md file for more on this
 
 - when want to select different versions, getting “unexpected token” in html, line 1, for comparing versions, if I just recently did something else (like save a version or open old versions). **ADDRESSED FOR NOW: not able to replicate on Aug28**
