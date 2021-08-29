@@ -1,7 +1,7 @@
 var filePath
 window.onload = function () {
     var params = window.location.search.split('queryParam870988=') //Get the params from Main process
-    
+    console.log('params = ' + params)
     filePath = params[1]
 
     window.electron.send("toMain", filePath); //send file path to preload.js, which sends it to main

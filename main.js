@@ -261,22 +261,23 @@ ipcMain.on('create-paste-file', (event, divId, folderPath, newDocPath, updatedFi
 
 
 /******OPEN HTML FILES *********** */
-ipcMain.on('open-html-window', (event, arg1, arg2) => {
+ipcMain.on('open-html-window', (event, arg1) => {
     var filePath = arg1
-    var content = arg2
-    openHTMLWindow(arg1, arg2)
+    openHTMLWindow(filePath)
 })
 
 var htmlWindow
 ipcMain.on("toMain", (event, arg) => {
+    console.log('received call to read file. path = ' + arg)
     fs.readFile(arg, 'utf8', (error, data) => {
         var cleanData = sanitizeHtml(data);
         htmlWindow.webContents.send("fromMain", cleanData);
     });
 });
 
-function openHTMLWindow(thePath, content) {
+function openHTMLWindow(thePath) {
     var filePath = thePath
+    console.log('the Path = ' + thePath)
     //in the case of viewing an old version of an html file, the path will include the worktree, like: [randomnumber]worktree3#&7#&1#&4/
     //want to remove that worktree reference, bc otherwise will be confusing to user
     var fullPathName = path.dirname(filePath)

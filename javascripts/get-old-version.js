@@ -41,14 +41,9 @@ var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
 
 function openDoc(thePath) {
     let theExtension = path.extname(thePath)
+    console.log('in old version js. path = ' + thePath)
     if (theExtension.includes('html')) {
-        fs.readFile(thePath, 'utf8', function (err, data) {
-            if (err) {
-                console.log(err)
-            } else {
-                ipcRenderer.send('open-html-window', thePath, data)
-            }
-        })
+        ipcRenderer.send('open-html-window', thePath)
 
     } else {
         shell.openPath(thePath)

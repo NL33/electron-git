@@ -932,13 +932,7 @@ async function openDoc(thePath) {
             console.log('the note id = ' + theNoteId)
 
         } else if (theExtension.includes('html')) { //if not apple note but is an html file, open that file
-            fs.readFile(thePath, 'utf8', function (err, data) {
-                if (err) {
-                    console.log(err)
-                } else {
-                    ipcRenderer.send('open-html-window', thePath, data)
-                }
-            })
+            ipcRenderer.send('open-html-window', thePath)
 
         } else { //open the file directly
             shell.openPath(thePath)
