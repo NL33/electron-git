@@ -836,11 +836,9 @@ margin-bottom: 0px
             if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
                 //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
                 showNewFolderOrDoc(divId, folderPath, newDocPath, fileName, newIndent)
-                console.log('here 1')
             } else {
                 //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
                 showFolderContents(divId, folderPath, newIndent)
-                console.log('here 2')
             }
         }
     })
@@ -876,7 +874,6 @@ async function openDoc(thePath) {
     try {
         let theExtension = path.extname(thePath)
         if (thePath.includes('(apple-note)')) { //if apple note. then open the apple note doc directly
-            console.log('open apple doc')
             var theNoteId
             try {
                 var data = fs.readFileSync(thePath, 'utf8')
@@ -911,7 +908,6 @@ async function openDoc(thePath) {
                     }
                 })
             }
-            console.log('the note id = ' + theNoteId)
 
         } else if (theExtension.includes('html')) { //if not apple note but is an html file, open that file
             ipcRenderer.send('open-html-window', thePath)
