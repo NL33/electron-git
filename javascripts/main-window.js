@@ -1080,6 +1080,7 @@ function menuFunction() {
                             enterNewFolder(divId, thePath, indent)
                         }
                     }))
+
                     contextMenu.append(new MenuItem({
                         label: "New File",
                         click: () => {
@@ -1088,6 +1089,7 @@ function menuFunction() {
                             enterNewFile(divId, thePath, indent)
                         }
                     }))
+                   contextMenu.append(new MenuItem({ type: "separator" }))
                     contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
                         label: "New Paste File",
                         click: () => {
@@ -1096,6 +1098,7 @@ function menuFunction() {
                             enterNewPasteFile(divId, thePath, indent)
                         }
                     }))
+                    contextMenu.append(new MenuItem({ type: "separator" }))
                     contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
                         label: "Add Apple Note File",
                         click: () => {
@@ -1104,6 +1107,7 @@ function menuFunction() {
                             addAppleNote(divId, thePath, indent)
                         }
                     }))
+                    contextMenu.append(new MenuItem({ type: "separator" }))
                     contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
                         label: "View Folder to Search",
                         click: () => {
@@ -1120,18 +1124,21 @@ function menuFunction() {
                         }
                     }))
                     /**NOTE: Consider having this appear only for files that I can write, like md, txt, rtf, html, etc. */
+                   /*
                     contextMenu.append(new MenuItem({
                         label: "Update File with copied content",
                         click: () => {
                             updatePasteFile(e)
                         }
                     }))
+                    */
+                    
                 }
 
                 contextMenu.popup(remote.getCurrentWindow());
             } //end if contains docOrDirectory
         } catch (e) {
-            console.log('error in adding menu function')
+            console.log('error in adding menu function = ' + e)
         }
     }, false);
 }
