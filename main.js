@@ -3,6 +3,8 @@ const path = require('path') //import the path package which provides utility fu
 
 const fs = require('fs');
 
+const sanitizeHtml = require('sanitize-html');
+
 //const { systemPreferences } = require('electron')
 // Prompt to access System Preferences by setting the prompt "true"
 
@@ -29,7 +31,7 @@ function menuApp() {
 
 
 //prevent electron from opening a second instance of the app (for example, as a result of the protocol being called on windows)
-let newVersionWindow= null
+let newVersionWindow = null
 let basicWindow = null
 
 const gotTheLock = app.requestSingleInstanceLock()
@@ -40,25 +42,25 @@ if (!gotTheLock) {
     app.on('second-instance', (event, commandLine, workingDirectory) => {
         // Someone tried to run a second instance, we should focus our window.
         if (newVersionWindow) {
-            if (basicWindow){
+            if (basicWindow) {
                 basicWindow.hide()
             }
             if (newVersionWindow.isMinimized()) newVersionWindow.restore()
             newVersionWindow.focus()
         } else {
-            if (basicWindow){
+            if (basicWindow) {
                 basicWindow.show()
             }
-           
+
         }
     })
 }
 /****#OPEN BASIC (Mini) WINDOW******** */
 
-function openBasicWindow(){
+function openBasicWindow() {
     var theDisplay = screen.getPrimaryDisplay()
     var screenWidth = theDisplay.bounds.width
-    basicWindow= new BrowserWindow({
+    basicWindow = new BrowserWindow({
         width: 40,
         height: 52,
         icon: 'rts-icon2.png',
@@ -88,7 +90,7 @@ async function saveNewVersionWindow(windowTitle) {
         width: 222, //320,
         height: 620,
         x: screenWidth - 209,
-        icon: 'file://' + __dirname  +  '/rts-icon2.png',
+        icon: 'file://' + __dirname + '/rts-icon2.png',
         y: 0,
         alwaysOnTop: true,
         webPreferences: {
@@ -100,7 +102,7 @@ async function saveNewVersionWindow(windowTitle) {
 
     newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
-    
+
     //newVersionWindow.openDevTools()
     /*
     newVersionWindow.webContents.on('did-finish-load', function () {
@@ -172,7 +174,7 @@ function showDialog() {
         title: "Select Your Project Folder",
         buttonLabel: "Select",
     }).then(result => {
-       // clearInterval(interval)
+        // clearInterval(interval)
         if (!result.canceled) {
             newVersionWindow.webContents.send('selected-folder', result.filePaths)
         }
@@ -180,17 +182,17 @@ function showDialog() {
         console.log(err)
     })
 
-/*
-    try {
-        dialog.showOpenDialogSync(newVersionWindow, {
-            properties: ['openDirectory'],
-            title: "Select Your Project Folder",
-            buttonLabel: "Select",
-        })
-    } catch(e){
-        console.log('error in opening dialog = ' + e)
-    }
-    */
+    /*
+        try {
+            dialog.showOpenDialogSync(newVersionWindow, {
+                properties: ['openDirectory'],
+                title: "Select Your Project Folder",
+                buttonLabel: "Select",
+            })
+        } catch(e){
+            console.log('error in opening dialog = ' + e)
+        }
+        */
 }
 
 
@@ -244,33 +246,33 @@ ipcMain.on('hide-main-window', (event, arg) => {
 
 /*******GET CONTENT FROM Clipboard For Paste FILE */
 
-
-ipcMain.on('create-paste-file', (event, filePath) =>{
+ipcMain.on('create-paste-file', (event, divId, folderPath, newDocPath, updatedFileName, newIndent) => {
     var content = clipboard.readHTML()
-    try {
-    fs.writeFile(newDocPath, content, function (err) {
+    fs.writeFile(newDocPath, content, (err, result) => {
         if (err) {
             console.log(err)
+            alert('Sorry, there was an error creating this paste file. Please try again.')
         } else {
-            newVersionWindow.webContents.send('finished-paste-file' '')
+            newVersionWindow.webContents.send('finished-paste-file', divId, folderPath, newDocPath, updatedFileName, newIndent)
         }
-        } catch(e){
-        console.log('error in creating paste file')
-    }
-} )
+    })
+})
+
 
 /******OPEN HTML FILES *********** */
 ipcMain.on('open-html-window', (event, arg1, arg2) => {
     var filePath = arg1
     var content = arg2
-   openHTMLWindow(arg1, arg2)
+    openHTMLWindow(arg1, arg2)
 })
 
 var htmlWindow
 ipcMain.on("toMain", (event, arg) => {
-    console.log('GOT THE MESSAG1E = ' + JSON.stringify(arg))
     fs.readFile(arg, 'utf8', (error, data) => {
-        htmlWindow.webContents.send("fromMain", data);
+        var cleanData = sanitizeHtml(data, {
+            selfClosing: ['img']
+        });
+        htmlWindow.webContents.send("fromMain", cleanData);
     });
 });
 
@@ -279,7 +281,7 @@ function openHTMLWindow(thePath, content) {
     //in the case of viewing an old version of an html file, the path will include the worktree, like: [randomnumber]worktree3#&7#&1#&4/
     //want to remove that worktree reference, bc otherwise will be confusing to user
     var fullPathName = path.dirname(filePath)
-    if (filePath.includes('worktree3#&7#&1#&4/')){
+    if (filePath.includes('worktree3#&7#&1#&4/')) {
         var fpArray1 = filePath.split('worktree3#&7#&1#&4/') //array now has [].../randomNumber, /filename]. Next, get rid of the random number
         var firstPart = fpArray1[0]
         var cleanedFirstPart = firstPart.substring(0, firstPart.lastIndexOf("/") + 1) //this would be fpArray1 without the random number on the end. Bc it's removed everything after the last "/"
@@ -298,38 +300,38 @@ function openHTMLWindow(thePath, content) {
     var windowArray = BrowserWindow.getAllWindows()
     var openTheFile = true
 
-   //THIS IS WHY I NEED THE FILE NAME TO HAVE THE PATH directories IN IT: check each opened app window to see if a window with that dirName/fileName is opened. If there is a window with that dirName/fileName already opened, then don't open a new window. Rather, show that window (bring it to foreground/unminimize it)  
-   for (var i = 0; i<windowArray.length; i++){
-       let thisWindowTitle = windowArray[i].getTitle()
-       if (fileTitle === thisWindowTitle){
-          openTheFile = false
-          windowArray[i].show()
-       }
-   }
-   //if a file with that fileTitle is not opened yet:
-   if (openTheFile === true){
+    //THIS IS WHY I NEED THE FILE NAME TO HAVE THE PATH directories IN IT: check each opened app window to see if a window with that dirName/fileName is opened. If there is a window with that dirName/fileName already opened, then don't open a new window. Rather, show that window (bring it to foreground/unminimize it)  
+    for (var i = 0; i < windowArray.length; i++) {
+        let thisWindowTitle = windowArray[i].getTitle()
+        if (fileTitle === thisWindowTitle) {
+            openTheFile = false
+            windowArray[i].show()
+        }
+    }
+    //if a file with that fileTitle is not opened yet:
+    if (openTheFile === true) {
         htmlWindow = new BrowserWindow({
             width: 670, //320,
             height: 650,
             title: fileTitle,
             x: 0,
             y: 0,
-        // alwaysOnTop: true,
+            // alwaysOnTop: true,
             webPreferences: {
                 preload: path.join(__dirname, './preload.js'), //path.join(app.getAppPath(), 'preload.js'),
-                nodeIntegration: false, 
-                contextIsolation: true, 
+                nodeIntegration: false,
+                contextIsolation: true,
                 enableRemoteModule: false,
                 sandbox: true,
                 additionalArguments: [thePath],
             }
-            
-        })
-       var queryString = '?queryParam870988=' + thePath
-       //window.loadURL('file:' + filePath);
-       htmlWindow.loadURL('file://' + __dirname + '/views/loaded-html-window.html?${hi}' + queryString);
 
-       //QUERY PARAMS DO NOT WORK FOR CONTENT, BECAUSE IT INTERPRETS STUFF LIKE SPACES, ADDING IN %22, ETC. HAVE TO FIND ANOTHER WAY
+        })
+        var queryString = '?queryParam870988=' + thePath
+        //window.loadURL('file:' + filePath);
+        htmlWindow.loadURL('file://' + __dirname + '/views/loaded-html-window.html?${hi}' + queryString);
+
+        //QUERY PARAMS DO NOT WORK FOR CONTENT, BECAUSE IT INTERPRETS STUFF LIKE SPACES, ADDING IN %22, ETC. HAVE TO FIND ANOTHER WAY
     }
 
 }
@@ -354,25 +356,25 @@ ipcMain.on('open-discourse-auth-window', (event, arg1) => {
 })
 
 function openDiscourseAuthWindow(discourseUrl) {
-        var discourseWindow = new BrowserWindow({
-            width: 670, //320,
-            height: 650,
-            title: 'Authorize',
-           // x: 0,
-           // y: 0,
-            alwaysOnTop: true,
-            webPreferences: {
-                nodeIntegration: true,
-                contextIsolation: false,
-                enableRemoteModule: true,
-               // additionalArguments: [thePath, content],
-            }
-        })
-        //window.loadURL('file:' + filePath);
-        discourseWindow.loadURL(discourseUrl);
-        discourseWindow.webContents.on('will-navigate', function(event, newUrl){
-            discourseWindow.webContents.send('discourse-payload-url', newUrl )
-        })
+    var discourseWindow = new BrowserWindow({
+        width: 670, //320,
+        height: 650,
+        title: 'Authorize',
+        // x: 0,
+        // y: 0,
+        alwaysOnTop: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true,
+            // additionalArguments: [thePath, content],
+        }
+    })
+    //window.loadURL('file:' + filePath);
+    discourseWindow.loadURL(discourseUrl);
+    discourseWindow.webContents.on('will-navigate', function (event, newUrl) {
+        discourseWindow.webContents.send('discourse-payload-url', newUrl)
+    })
 }
 
 
@@ -387,7 +389,7 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
     if (oldVersionWindowCreated === true) {
         /**close any existing old version window before opening a new one */
         oldVersionWindow.destroy()
-     }
+    }
 
     oldVersionWindow = new BrowserWindow({
         width: 400,
@@ -457,18 +459,18 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
     openBasicWindow()
     saveNewVersionWindow()
     menuApp()
-   // createWindow()
+    // createWindow()
     app.on('activate', () => {
 
         if (BrowserWindow.getAllWindows().length === 0) { //create a new browswer window only if app has no visible windows after being activated, such as when launching the app for the first time or relaunching the already running app
             // createWindow()
         }
-    })  
+    })
 })
 
 
 if (process.platform === 'win32') {
-    
+
     // Register the private URI scheme differently for Windows
     // https://stackoverflow.com/questions/45570589/electron-protocol-handler-not-working-on-windows
     app.setAsDefaultProtocolClient(
@@ -489,7 +491,7 @@ app.on('open-url', function (event, data) {
     console.log('*********************')
     console.log('payload = ' + payload)
     newVersionWindow.webContents.send('discourse-payload-url', payload)
-    
+
 });
 
 

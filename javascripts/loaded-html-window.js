@@ -1,40 +1,20 @@
-
-
-var contentToLoad
 var filePath
 window.onload = function () {
     console.log('loaded the file' + window.location.search)
-    var params = window.location.search.split('queryParam870988=') //THIS DOESN"T WORK. HAVE TO FIND ANOTHER WAY
+    var params = window.location.search.split('queryParam870988=') //Get the params from Main process
     
-    filePath = params[1]//window.process.argv.slice(-2)[0]
+    filePath = params[1]
     console.log('file path = ' + filePath)
-    window.electron.send("toMain", filePath);
-   // contentToLoad = params[2]//window.process.argv.slice(-2)[1]
-
-
-    
-    
+    window.electron.send("toMain", filePath); //send file path to preload.js, which sends it to main
 }      
-window.electron.receive("fromMain", (data) => {
-    console.log(`Received ${data} from main process = ` + data);
-    document.getElementById('htmlContentHere').innerHTML = contentToLoad
+
+window.electron.receiveFromMainSendToRenderer('fromMain', (event, data) => { //receives data from preload.js, which got it from main
+    try {
+    document.getElementById('htmlContentHere').innerHTML = data
+    } catch(e){
+        console.log('error in loading html (could be just some images missing, which is ok) = ' + e)
+    }
 });
-async function sendTheFilePath(){
-try {
-    /*
-    window.postMessage({
-        myTypeField: "toMain1",
-        data: filePath
-    })
-    */
-  
-  
-    
-} catch(e){
-    console.log('error in sending the file path for html window = ' + e)
-    //alert('Sorry, there was an error opening this file. Please try again.')
-}
-}
 
 
 

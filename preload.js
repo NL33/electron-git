@@ -3,7 +3,29 @@ const {
     ipcRenderer
 } = require("electron");
 
-/** THIS ALSO WORKS: 
+/***Load HTML WINDOW */
+// Expose protected methods that allow the renderer process to use
+// the ipcRenderer without exposing the entire object
+contextBridge.exposeInMainWorld(
+    "electron", {
+    send: (channel, data) => { //receives from renderer. sends to main
+        // whitelist channels
+        let validChannels = ["toMain"];
+        if (validChannels.includes(channel)) {
+            ipcRenderer.send(channel, data);
+        }
+    },
+    receiveFromMainSendToRenderer: (channel, func) => { //receives from main, sends to renderer
+        let validChannels = ["fromMain"];
+        if (validChannels.includes(channel)) {
+            ipcRenderer.on(channel, func);
+        }
+    }
+}
+);
+
+
+/** THIS ALSO WORKS:
 process.once('loaded', () => {
     window.addEventListener('message', event => {
         // do something with custom event
@@ -15,38 +37,6 @@ process.once('loaded', () => {
     });
 });
 */
-
-// Expose protected methods that allow the renderer process to use
-// the ipcRenderer without exposing the entire object
-contextBridge.exposeInMainWorld(
-    "electron", {
-    
-    send: (channel, data) => {
-        // whitelist channels
-        let validChannels = ["toMain"];
-        if (validChannels.includes(channel)) {
-            console.log('preload received data from loaded html window')
-            ipcRenderer.send(channel, data);
-        }
-    },
-    receive: (channel, event) => { 
-        let validChannels = ["fromMain"];
-        if (validChannels.includes(channel)) {
-            // Deliberately strip event as it includes `sender` 
-            
-            ipcRenderer.on(channel, (event, data) => {
-                console.log('preload got data from main. now send out data = ' + data)
-                document.getElementById('htmlContentHere').innerHTML = data
-                //return data
-            })
-
-        }
-    }
-}
-);
-
-
-
 
 
 

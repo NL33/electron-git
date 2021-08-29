@@ -1299,28 +1299,24 @@ function createPasteFile(divId, folderPath, indent) {
         }
 
         var newIndent = parseInt(indent) + 15
-        var element = document.getElementById(divId)
-        var content = clipboard.readHTML()
-        fs.writeFile(newDocPath, content, function (err) {
-            if (err) {
-                console.log(err)
-            } else {
-                //var newItems = div.nextElementSibling
-                // newItems.innerHTML = ''
-                //   e.target.classList.remove('clicked') //removed so that it can run showFolderContents function
-                if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
-                    //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
-                    showNewFolderOrDoc(divId, folderPath, newDocPath, updatedFileName, newIndent)
-                } else {
-                    //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
-                    showFolderContents(divId, folderPath, newIndent)
-                }
-            }
-        })
+        ipcRenderer.send('create-paste-file', divId, folderPath, newDocPath, updatedFileName, newIndent)
     } catch (e) {
         console.log('Sorry, there was an error in creating the file. Please try again.')
     }
 }
+
+ipcRenderer.on('finished-paste-file', (event, divId, folderPath, newDocPath, updatedFileName, newIndent) =>{
+    console.log('received finished-paste-file')
+    var element = document.getElementById(divId)
+    if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
+        //the folder that's getting the new folder is already open (ie, showing its contents), so just add the single new folder
+        showNewFolderOrDoc(divId, folderPath, newDocPath, updatedFileName, newIndent)
+    } else {
+        //folder that's getting the new folder is not displaying its contents, so just show all contents like normal
+        showFolderContents(divId, folderPath, newIndent)
+    }
+})
+
 
 function updatePasteFile(e) {
     var content = clipboard.readText()

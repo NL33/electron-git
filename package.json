@@ -22,6 +22,7 @@
     "mammoth": "^1.4.18",
     "moment": "^2.29.1",
     "run-jxa": "^2.0.0",
+    "sanitize-html": "^2.4.0",
     "save-dev": "0.0.1-security",
     "simple-git": "^2.38.0",
     "trash": "^7.1.1",
