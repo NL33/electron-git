@@ -101,6 +101,19 @@ $ npm install --save-dev @electron-forge/cli
     --electron forge. meant for packaging and distributing
     --UNINSTALLED on Aug 29, 2021, bc on install it didn't seem to work right and said that there were now 2 high severity vulnerabilities that I was not abele to fix.
 
+$ yarn add electron-builder --dev
+    --August 29, 2021
+    --goal: package and distribute electron app
+    --uninstalled with npm uninstall and then yarn remove electron-builder --dev [and then deleted from package.json] on Aug 28
+    --uninstalled bc tutorials and documents made it seem like forge was better
+
+$ yarn add --dev @electron-forge/cli
+    --Aug 29, 2021
+    --receive warning of 2 high severity vulnerabilities. But on github they say this is ok: https://github.com/electron-userland/electron-forge/issues/2377
+    --info at: https://www.electronforge.io/import-existing-project
+    --then imported with: 
+        --yarn electron-forge import
+
 # Prior to rollback on April 15, 2021
 # RobotJS
 
