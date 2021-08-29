@@ -91,6 +91,11 @@ $ npm install sanitize-html
     --August 29, 2021
     --used to sanitize html when loaded in load-html-window.js
 
+$  npm install del
+    --Aug 29, 2021
+    --used for deleting docs directly
+    --uninstalled on Aug 29, 2021. BC fs.rm('path), {recursive: true}... seems to be working fine.
+
 # Prior to rollback on April 15, 2021
 # RobotJS
 

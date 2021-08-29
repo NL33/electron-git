@@ -9,7 +9,6 @@ var TurndownService = require('turndown')
 var turndownService = new TurndownService()
 var mammoth = require("mammoth");
 const trash = require('trash');
-
 const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
@@ -848,8 +847,8 @@ margin-bottom: 0px
 
 async function removeSavedWorkTree(treePath) {
     try {
-        await trash([treePath]).then((error) => {
-            console.log('removed work tree = ' + treePath)
+        await fs.rm(treePath, { recursive: true }, (err) => {
+            console.log('deleted: removed work tree = ' + treePath)
             if (error) {
                 console.log(error)
             } else {
