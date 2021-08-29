@@ -2,7 +2,7 @@ const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog,
 const path = require('path') //import the path package which provides utility functions for the file paths
 
 const fs = require('fs');
-
+const runJxa = require('run-jxa')
 const sanitizeHtml = require('sanitize-html');
 
 //const { systemPreferences } = require('electron')
@@ -20,9 +20,7 @@ var mainWindow
 function menuApp() {
     tray = new Tray('rts-icon2.png')
     const contextMenu = Menu.buildFromTemplate([
-        { label: 'Save New Version', click() { saveNewVersionWindow() } },
-        { label: 'Get the Window', click() { sendTheWindow() } }, //getthewindow = get the active window
-        { label: 'Save HTML File', click() { saveActiveWindow() } },
+        { label: 'Hide Windows', click() { minimizeWindows() } },
         { label: 'Breathe Big', click() { openBreatheBigWindow() } },
     ])
     tray.setToolTip('This is my application.')
@@ -56,7 +54,25 @@ if (!gotTheLock) {
     })
 }
 /****#OPEN BASIC (Mini) WINDOW******** */
+async function minimizeWindows() {
+    try {
+        const result = await runJxa(`
+            const evalAS2 = s => {
+                    const a = Application.currentApplication();
+                    const sa = (a.includeStandardAdditions = true, a);
+                    return sa.runScript(s);
+            };
+           evalAS2('tell application "System Events" to set visible of every application process to false')
+          `)
+        return result
+        function openMain() {
+            ipcRenderer.send('open-main-window', '') //doesn't get called bc window is minimized. right now, it closes all windows
+        }
 
+    } catch (error) {
+        console.log('error in minimize windows' + error)
+    }
+}
 function openBasicWindow() {
     var theDisplay = screen.getPrimaryDisplay()
     var screenWidth = theDisplay.bounds.width

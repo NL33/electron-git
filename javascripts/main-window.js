@@ -706,25 +706,7 @@ function decryptAttempt() {
 
 /*****close all windows with appletext ***********/
 
-async function minimizeWindows() {
-    try {
-        const result = await runJxa(`
-            const evalAS2 = s => {
-                    const a = Application.currentApplication();
-                    const sa = (a.includeStandardAdditions = true, a);
-                    return sa.runScript(s);
-            };
-           evalAS2('tell application "System Events" to set visible of every application process to false')
-          `)
-        return result
-        function openMain() {
-            ipcRenderer.send('open-main-window', '') //doesn't get called bc window is minimized. right now, it closes all windows
-        }
 
-    } catch (error) {
-        console.log('error in minimize windows' + error)
-    }
-}
 
 
 /********CONTROLLING APPLE NOTES ************************* */
