@@ -13,9 +13,9 @@ const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
 const runJxa = require('run-jxa')
-const environmentVariables = require('../z-environments-1.js')
-var token = environmentVariables.discourseToken
-var discourseUser = environmentVariables.discourseUser
+//const environmentVariables = require('../z-environments-1.js')
+//var token = environmentVariables.discourseToken
+//var discourseUser = environmentVariables.discourseUser
 
 var projectFolderPath
 var projectFolderName
@@ -328,8 +328,8 @@ function createDiscoursePostFromFile1(filePath, createTime, data) {
             //"User-Api-Key": environmentVariables.decodedUserKey,
             //"Api-Username": 'SeanRtS'
             // for local testing: make sure to add localHost as url, and remove category and tags
-            "Api-Key": environmentVariables.wsKey,
-            "Api-Username": environmentVariables.wsName
+          //  "Api-Key": environmentVariables.wsKey,
+            //"Api-Username": environmentVariables.wsName
         },
         dataType: 'json'
     }).then(response => {
@@ -395,7 +395,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE
             //"created_at": "string"
         },
         headers: {
-            "User-Api-Key": environmentVariables.decodedUserKey,
+          //  "User-Api-Key": environmentVariables.decodedUserKey,
             //"Api-Username": 'SeanRtS'
             /* for local testing: make sure to add localHost as url, and remove category and tags
             "Api-Key": environmentVariables.wsKey,
@@ -442,7 +442,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId) {
             "tags": [tagName]
         },
         headers: {
-            "User-Api-Key": environmentVariables.decodedUserKey,
+            //"User-Api-Key": environmentVariables.decodedUserKey,
             //"Api-Username": 'SeanRtS'
         },
         dataType: 'json'
@@ -495,7 +495,7 @@ function createDiscoursePost() {
             //"created_at": "string"
         },
         headers: {
-            "User-Api-Key": environmentVariables.decodedUserKey,
+            //"User-Api-Key": environmentVariables.decodedUserKey,
             //"Api-Username": 'SeanRtS'
         },
         dataType: 'json'
@@ -670,8 +670,8 @@ function decodeTheKey(payload) {
 
 
 function decryptAttempt1() {
-    var privateKey = environmentVariables.privateKeyForDecoding.trim()
-    var encodedKey = environmentVariables.encodedUserKey.trim()
+   // var privateKey = environmentVariables.privateKeyForDecoding.trim()
+    //var encodedKey = environmentVariables.encodedUserKey.trim()
     const buffer = Buffer.from(encodedKey, "base64");
     const decrypted = privateDecrypt({
         key: privateKey, padding:
@@ -683,8 +683,8 @@ function decryptAttempt1() {
 function decryptAttempt() {
     var forge = require('node-forge')
     var pki = require('node-forge').pki;
-    var privateKey1 = environmentVariables.privateKeyForDecoding1.trim()
-    var encodedKey = environmentVariables.encodedUserKey1.trim()
+    //var privateKey1 = environmentVariables.privateKeyForDecoding1.trim()
+    //var encodedKey = environmentVariables.encodedUserKey1.trim()
     // var private_key = pki.privateKeyFromPem(privateKey);
     try {
         var privateKey = forge.pki.privateKeyFromPem(privateKey1);
