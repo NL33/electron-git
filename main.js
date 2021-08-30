@@ -18,7 +18,7 @@ const sanitizeHtml = require('sanitize-html');
 let tray = null
 var mainWindow
 function menuApp() {
-    tray = new Tray('rts-icon2.png')
+    tray = new Tray('file://' + __dirname + '/assets/rts-icon2')
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Hide Windows', click() { minimizeWindows() } },
         { label: 'Breathe Big', click() { openBreatheBigWindow() } },
