@@ -13,9 +13,9 @@ const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
 const runJxa = require('run-jxa')
-//const environmentVariables = require('../z-environments-1.js')
-//var token = environmentVariables.discourseToken
-//var discourseUser = environmentVariables.discourseUser
+const environmentVariables = require('../z-environments-1.js')
+var token = environmentVariables.discourseToken
+var discourseUser = environmentVariables.discourseUser
 
 var projectFolderPath
 var projectFolderName
@@ -395,7 +395,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE
             //"created_at": "string"
         },
         headers: {
-          //  "User-Api-Key": environmentVariables.decodedUserKey,
+            "User-Api-Key": environmentVariables.decodedUserKey,
             //"Api-Username": 'SeanRtS'
             /* for local testing: make sure to add localHost as url, and remove category and tags
             "Api-Key": environmentVariables.wsKey,

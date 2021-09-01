@@ -18,13 +18,17 @@ const sanitizeHtml = require('sanitize-html');
 let tray = null
 var mainWindow
 function menuApp() {
-    tray = new Tray('file://' + __dirname + '/assets/rts-icon2')
+    try {
+    tray = new Tray(__dirname + '/assets/rts-icon2.png')
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Hide Windows', click() { minimizeWindows() } },
         { label: 'Breathe Big', click() { openBreatheBigWindow() } },
     ])
     tray.setToolTip('This is my application.')
     tray.setContextMenu(contextMenu)
+} catch (e){
+    console.log('error in loading tray menu = ' + e)
+}
 }
 
 
