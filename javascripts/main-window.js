@@ -439,7 +439,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId) {
         data: {
             "title": topicShowPath,
             "raw": topicContent,
-            "tags": [tagName]
+           // "tags": [tagName]
         },
         headers: {
             "User-Api-Key": environmentVariables.tokenSep2,
@@ -470,103 +470,8 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId) {
 }
 
 
-/*****Create discourse post  */
-function createDiscoursePost() {
-    console.log('now in create Post')
-    var url = 'https://go.racetosaturn.com/posts.json'
-    var key = token
-    var userName = discourseUser
-    var topicContent = `
-        Here is a post using the generated api user key. check it out.
-    `
-    axios({
-        method: 'post',
-        url: url,
-        contentType: 'multipart/form-data',
-        data: {
-            "title": "Great Word Doc 3",
-            "raw": topicContent,
-            //"topic_id": 0,
-            "category": 36,
-            //  "target_recipients": "blake,sam",
-            //"target_usernames": "string",
-            //"archetype": "private_message",
-            //"created_at": "string"
-        },
-        headers: {
-            //"User-Api-Key": environmentVariables.decodedUserKey,
-            //"Api-Username": 'SeanRtS'
-        },
-        dataType: 'json'
-    }).then(response => {
-        console.log('post response = ')
-        console.log(response)
-    }).catch(error => {
-        console.log('error in create post =')
-        console.log(error)
-    })
-}
-
-function getDiscoursePostId() {
-    console.log('now in get postid ')
-    var topicId = '421' //looking for post id = 586
-    var url = 'https://go.racetosaturn.com/t/' + topicId + '.json'
-    var key = token
-    var userName = discourseUser
-    axios({
-        method: 'get',
-        url: url,
-        //contentType: 'multipart/form-data',
-        headers: {
-            "Api-Key": key,
-            "Api-Username": userName
-        },
-        dataType: 'application/json'
-    }).then(response => {
-        console.log('initial response = ' + JSON.stringify(response))
-        var postId = response.data.post_stream.posts[0].id
-        console.log('post response = ' + postId)
-        updatePost(postId, userName, key)
-    }).catch(error => {
-        console.log('error in get post Id =')
-        console.log(error)
-    })
-}
-
-function updatePost(postId, userName, key) {
-    console.log('now in update Post')
-    var url = 'https://go.racetosaturn.com/posts/' + postId + '.json'
-    var topicContent = 'Update content as of 1:151 from GroupInfoUser. How does it look?'
-    axios({
-        method: 'put',
-        url: url,
-        contentType: 'multipart/form-data',
-        data: {
-            //  "title": "Great Word Doc 2",
-            "raw": topicContent,
-            //"topic_id": 0,
-            //"category": 36,
-            //  "target_recipients": "blake,sam",
-            //"target_usernames": "string",
-            //"archetype": "private_message",
-            //"created_at": "string"
-        },
-        headers: {
-            "Api-Key": key,
-            "Api-Username": userName
-        },
-        dataType: 'json'
-    }).then(response => {
-        console.log('post response = ')
-        console.log(response)
-    }).catch(error => {
-        console.log('error in update post =')
-        console.log(error)
-    })
-}
-
 /*******GENERATE PUBLIC AND PRIVATE KEY */
-//steps:
+//steps: detailed here: https://meta.discourse.org/t/user-api-keys-specification/48536/45
 //1. duscourseAPITest: send rsa keys to discourse. opens up discourse. where user hits authorize
 //2. discourse redirects with payload. paypload based on default protocol set up with setAsDefaultProtocolClient in main.js: saturnproto
 //3 app picks that up in "app.on('open-url')" function in main.js
