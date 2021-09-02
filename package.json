@@ -2,7 +2,7 @@
   "name": "electron-git",
   "productName": "Race to Saturn",
   "version": "0.1.0",
-  "description": "starter electron app",
+  "description": "Save your versions and share your projects",
   "main": "main.js",
   "scripts": {
     "make-mac": "npx @electron-forge/cli make --platform darwin",
@@ -28,6 +28,7 @@
     "axios": "^0.21.1",
     "dexie": "^3.0.3",
     "diff2html": "^3.4.5",
+    "electron-reloader": "^1.2.1",
     "electron-squirrel-startup": "^1.0.0",
     "mammoth": "^1.4.18",
     "moment": "^2.29.1",
@@ -39,6 +40,12 @@
     "turndown": "^7.0.0"
   },
   "config": {
+    "protocols": [
+      {
+      "name": "saturnproto",
+      "schemes": ["saturnproto"]
+      }
+    ],
     "forge": {
       "packagerConfig": {
         "icon": "./assets/rts-iconr",

@@ -395,8 +395,8 @@ function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE
             //"created_at": "string"
         },
         headers: {
-            "User-Api-Key": environmentVariables.decodedUserKey,
-            //"Api-Username": 'SeanRtS'
+            "User-Api-Key": environmentVariables.tokenSep2, //This works to send in documents as of Sep 2. using the key back from the payload. Do not need to provide anything else, like api-username. environmentVariables.decodedUserKey,
+           // "Api-Username": 'SeanRtS'
             /* for local testing: make sure to add localHost as url, and remove category and tags
             "Api-Key": environmentVariables.wsKey,
             "Api-Username": 'ADD IN'
@@ -442,8 +442,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId) {
             "tags": [tagName]
         },
         headers: {
-            //"User-Api-Key": environmentVariables.decodedUserKey,
-            //"Api-Username": 'SeanRtS'
+            "User-Api-Key": environmentVariables.tokenSep2,
         },
         dataType: 'json'
     }).then(response => {
@@ -577,7 +576,7 @@ function updatePost(postId, userName, key) {
 //7. API key is saved securely
 //8. when user wants to send something to discourse, the fucntion gets the API Key from the secure spot
 
-var privateKey1
+var privateKey
 var publicKey
 function discourseAPITest1() {
     const { publicKey, privateKey } = generateKeyPairSync('rsa', {
@@ -607,7 +606,7 @@ function discourseAPITest1() {
     url.searchParams.append('client_id', hostname())
     url.searchParams.append('scopes', 'write')
     url.searchParams.append('public_key', publicKey)
-    //url.searchParams.append('auth_redirect', redirectUrl) /***LEAVE OUT IF YOU WANT THE SITE TO GIVE YOU THE KEY DIRECTLY */
+    url.searchParams.append('auth_redirect', redirectUrl) /***LEAVE OUT IF YOU WANT THE SITE TO GIVE YOU THE KEY DIRECTLY */
     url.searchParams.append('nonce', '1')
     console.log(`redirect URL is ${url.href}`)
     shell.openExternal(url.href)
@@ -643,16 +642,40 @@ function discourseAPITest1() {
 
 }
 
+
 ipcRenderer.on('discourse-payload-url', (event, payload) => {
-    decodeTheKey(payload)
+    decryptAttempt1(payload)
 })
 
-function decodeTheKey(payload) {
+function decryptAttempt1(payload) {
+    //payload will normally include the keytodecode, and the privatekey value will normally be saved as a variable in the window. For testing I am using these "#2" values
+    var privateKey2 = environmentVariables.privateKeySep2.trim()
+    var encodedKey2 = decodeURIComponent(environmentVariables.keyToDecodeSep2)
+
+    //var privateKey1 = privateKey.trim()
+    //var encodedKey =  decodeURIComponent(payload)//environmentVariables.encodedUserKey//.trim().replace(/\s/g, '')
+   // var cleanURL = decodeURIComponent(encodedKey)
+    //console.log('encoded key = ' + encodedKey)
+    const buffer = Buffer.from(encodedKey2, "base64");
+    const decrypted = privateDecrypt({
+        key: privateKey2, padding:
+            constants.RSA_PKCS1_PADDING
+    }, buffer);
+    console.log(decrypted.toString("utf8"))
+}
+
+
+function decodeTheKey(payload) {/***THIS WORKS**** */
     console.log('decode the key now')
-    var privateKey2 = privateKey1.trim() //environmentVariables.privateKeyForDecoding.trim()
-    //  var encodedKey = environmentVariables.encodedUserKey
-    console.log('private key2 = ' + privateKey2)
-    const trimmedKey = payload.trim().replace(/\s/g, '')
+    var privateKey2 = environmentVariables.privateKeyForDecoding1.trim() //privateKey1.trim() //environmentVariables.privateKeyForDecoding.trim()
+    var encodedKeyRaw = environmentVariables.encodedUserKey
+    var rawURL = 'saturnproto://redirect?payload=' + encodedKeyRaw
+    var cleanURL = decodeURIComponent(encodedKeyRaw)
+   // console.log('encoded key raw = ' + encodedKeyRaw)
+    console.log('*****clean url = ' + cleanURL)
+    //return 'done'
+    //console.log('private key2 = ' + privateKey2)
+    const trimmedKey = cleanURL.trim().replace(/\s/g, '')
     console.log(`trimmed encoded key is:*******= ${trimmedKey}`)
     const decriptedKey = privateDecrypt(
         {
@@ -669,23 +692,14 @@ function decodeTheKey(payload) {
 
 
 
-function decryptAttempt1() {
-   // var privateKey = environmentVariables.privateKeyForDecoding.trim()
-    //var encodedKey = environmentVariables.encodedUserKey.trim()
-    const buffer = Buffer.from(encodedKey, "base64");
-    const decrypted = privateDecrypt({
-        key: privateKey, padding:
-            constants.RSA_PKCS1_PADDING
-    }, buffer);
-    console.log(decrypted.toString("utf8"))
-}
+
 
 function decryptAttempt() {
     var forge = require('node-forge')
     var pki = require('node-forge').pki;
-    //var privateKey1 = environmentVariables.privateKeyForDecoding1.trim()
-    //var encodedKey = environmentVariables.encodedUserKey1.trim()
-    // var private_key = pki.privateKeyFromPem(privateKey);
+    var privateKey1 = environmentVariables.privateKeyForDecoding1.trim()
+    var encodedKey = environmentVariables.encodedUserKey1.trim()
+    var private_key = pki.privateKeyFromPem(privateKey);
     try {
         var privateKey = forge.pki.privateKeyFromPem(privateKey1);
         var ctBytes = forge.util.decode64(encodedKey);
