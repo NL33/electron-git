@@ -551,85 +551,23 @@ function discourseAPITest1() {
 
 
 ipcRenderer.on('discourse-payload-url', (event, payload) => {
-    decryptAttempt1(payload)
+    decodeKey(payload)
 })
 
-function decryptAttempt1(payload) {
-    console.log('in decrypt attempt and private key = ' + privateKey)
-    //payload will normally include the keytodecode, and the privatekey value will normally be saved as a variable in the window. For testing I am using these "#2" values
-   // var privateKey2 = environmentVariables.privateKeySep2.trim()
-   // var encodedKey2 = decodeURIComponent(environmentVariables.keyToDecodeSep2)
-
+function decodeKey(payload) {
     var privateKey1 = sessionStorage.getItem('pKey').trim()
     sessionStorage.removeItem('pKey')
-    var encodedKey =  decodeURIComponent(payload)//environmentVariables.encodedUserKey//.trim().replace(/\s/g, '')
-   // var cleanURL = decodeURIComponent(encodedKey)
-    //console.log('encoded key = ' + encodedKey)
+    var encodedKey =  decodeURIComponent(payload)
     const buffer = Buffer.from(encodedKey, "base64");
     const decrypted = privateDecrypt({
         key: privateKey1, padding:
             constants.RSA_PKCS1_PADDING
     }, buffer);
     console.log(decrypted.toString("utf8"))
+    //next: 1. get the token from JSON and 2. save the token to be used if user makes api calls.
 }
-
-
-function decodeTheKey(payload) {/***THIS WORKS**** */
-    console.log('decode the key now')
-    var privateKey2 = environmentVariables.privateKeyForDecoding1.trim() //privateKey1.trim() //environmentVariables.privateKeyForDecoding.trim()
-    var encodedKeyRaw = environmentVariables.encodedUserKey
-    var rawURL = 'saturnproto://redirect?payload=' + encodedKeyRaw
-    var cleanURL = decodeURIComponent(encodedKeyRaw)
-   // console.log('encoded key raw = ' + encodedKeyRaw)
-    console.log('*****clean url = ' + cleanURL)
-    //return 'done'
-    //console.log('private key2 = ' + privateKey2)
-    const trimmedKey = cleanURL.trim().replace(/\s/g, '')
-    console.log(`trimmed encoded key is:*******= ${trimmedKey}`)
-    const decriptedKey = privateDecrypt(
-        {
-            key: privateKey2,
-            padding: constants.RSA_PKCS1_PADDING,
-        },
-        Buffer.from(trimmedKey, 'base64')
-    )
-    const jsonKey = decriptedKey.toString('ascii')
-    console.log('the decoded key = ')
-    console.log(jsonKey)
-}
-
-
-
-
-
-
-function decryptAttempt() {
-    var forge = require('node-forge')
-    var pki = require('node-forge').pki;
-    var privateKey1 = environmentVariables.privateKeyForDecoding1.trim()
-    var encodedKey = environmentVariables.encodedUserKey1.trim()
-    var private_key = pki.privateKeyFromPem(privateKey);
-    try {
-        var privateKey = forge.pki.privateKeyFromPem(privateKey1);
-        var ctBytes = forge.util.decode64(encodedKey);
-
-        var plaintextBytes = privateKey.decrypt(ctBytes);
-        // rsaMessage.val(plaintextBytes.toString('utf8')); <-- old
-        console.log('key result = ' + forge.util.decodeUtf8(plaintextBytes));
-    }
-    catch (e) {
-        console.log(e);
-        alert("cannot decrypt");
-    }
-    console.log('result = ')
-    //console.log(result)
-}
-//https://stackoverflow.com/questions/47306186/node-decrypt-content-with-private-key-and-padding
 
 /*****close all windows with appletext ***********/
-
-
-
 
 /********CONTROLLING APPLE NOTES ************************* */
 

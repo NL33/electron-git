@@ -507,7 +507,6 @@ if (process.platform === 'win32') {
 
 app.on('open-url', function (event, data) {
     event.preventDefault();
-    //data is the 
     var payload = data.split('redirect?payload=')[1]
     console.log('received data')
     newVersionWindow.webContents.send('discourse-payload-url', payload)
