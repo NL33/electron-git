@@ -43,6 +43,7 @@ var db = new Dexie("FileDatabase")
 //Dexie.debug = false //set to false for production. During development, gives more thorough error logs
 /*****Button Set Up *****/
 window.onload = async function () {
+    sessionStorage.removeItem('pKey')
     try {
         try {
             await db.version(3).stores({
@@ -497,6 +498,7 @@ function discourseAPITest1() {
     })
     console.log('api test1')
     console.log('private key = ' + privateKey)
+    sessionStorage.setItem('pKey', privateKey)
     const http = require('url')
     var myUrl = 'https://go.racetosaturn.com/user-api-key/new'
 
@@ -553,17 +555,19 @@ ipcRenderer.on('discourse-payload-url', (event, payload) => {
 })
 
 function decryptAttempt1(payload) {
+    console.log('in decrypt attempt and private key = ' + privateKey)
     //payload will normally include the keytodecode, and the privatekey value will normally be saved as a variable in the window. For testing I am using these "#2" values
-    var privateKey2 = environmentVariables.privateKeySep2.trim()
-    var encodedKey2 = decodeURIComponent(environmentVariables.keyToDecodeSep2)
+   // var privateKey2 = environmentVariables.privateKeySep2.trim()
+   // var encodedKey2 = decodeURIComponent(environmentVariables.keyToDecodeSep2)
 
-    //var privateKey1 = privateKey.trim()
-    //var encodedKey =  decodeURIComponent(payload)//environmentVariables.encodedUserKey//.trim().replace(/\s/g, '')
+    var privateKey1 = sessionStorage.getItem('pKey').trim()
+    sessionStorage.removeItem('pKey')
+    var encodedKey =  decodeURIComponent(payload)//environmentVariables.encodedUserKey//.trim().replace(/\s/g, '')
    // var cleanURL = decodeURIComponent(encodedKey)
     //console.log('encoded key = ' + encodedKey)
-    const buffer = Buffer.from(encodedKey2, "base64");
+    const buffer = Buffer.from(encodedKey, "base64");
     const decrypted = privateDecrypt({
-        key: privateKey2, padding:
+        key: privateKey1, padding:
             constants.RSA_PKCS1_PADDING
     }, buffer);
     console.log(decrypted.toString("utf8"))
