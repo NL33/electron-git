@@ -229,7 +229,7 @@ function openBreatheBigWindow() {
         width: 225,
         x: xSpot,
         y: rightHeight,
-        title: "Focus",
+        title: "Breathe",
         hasShadow: false,
         transparent: true,
         frame: false,
@@ -477,7 +477,7 @@ function folderWindowFunction() {
 /*******BASIC SETUP**** */
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
-
+    console.log('process.env = ' + process.env.VAR_A)
     openBasicWindow()
     saveNewVersionWindow()
     menuApp()

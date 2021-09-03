@@ -81,3 +81,5 @@ environments
 /z-environments.js
 */environmental-variables.js
 environmental-variables.js
+env
+.env
