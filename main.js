@@ -1,6 +1,6 @@
 const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, webContents, protocol } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
-
+require('dotenv').config()
 const fs = require('fs');
 const runJxa = require('run-jxa')
 const sanitizeHtml = require('sanitize-html');
@@ -477,10 +477,11 @@ function folderWindowFunction() {
 /*******BASIC SETUP**** */
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
-    console.log('process.env = ' + process.env.VAR_A)
+   
     openBasicWindow()
     saveNewVersionWindow()
     menuApp()
+    console.log('process.env now = ' + process.env.VAR_A)
     // createWindow()
     app.on('activate', () => {
 

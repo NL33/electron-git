@@ -13,9 +13,7 @@ const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
 const runJxa = require('run-jxa')
-const environmentVariables = require('../z-environments-1.js')
-var token = environmentVariables.discourseToken
-var discourseUser = environmentVariables.discourseUser
+const environmentVariables = ''//require('../z-environments-1.js')
 
 var projectFolderPath
 var projectFolderName
@@ -120,8 +118,49 @@ window.onload = async function () {
     }
 }   //end window onload
 
+async function openWindow(){
+    //current-code: not working yet
+    var thescript  = `tell application "Google Chrome"
+	set i to 0
+	repeat with t in (tabs of (first window whose index is 1))
+		set i to i + 1
+		if title of t is "discord - stkellman@gmail.com - Gmail" then
+			set (active tab index of (first window whose index is 1)) to i
+		end if
+	end repeat
+end tell
+    `
+    console.log(thescript)
+    try {
+        const result = await runJxa(`
+        console.log('running')
+            const evalAS2 = s => {
+                    const a = Application.currentApplication();
+                    const sa = (a.includeStandardAdditions = true, a);
+                    return sa.runScript(s);
+            };
+            return evalAS2('tell application "Google Chrome" "\n"
+	set i to 0"\n"
+	repeat with t in (tabs of (first window whose index is 1))"\n"
+		set i to i + 1"\n"
+		if title of t is "discord - stkellman@gmail.com - Gmail" then"\n"
+			set (active tab index of (first window whose index is 1)) to i"\n"
+		end if"\n"
+	end repeat"\n"
+end tell')
+`)
+        return result
+    } catch (error) {
+        console.log('error in chrome tab ' + error)
+    }
+    //shell.openExternal('https://nytimes.com') //will always open new window
+    //npm install puppeteer
+    //https://github.com/puppeteer/puppeteer
+}
+
 
 function tabFunction() {
+    //hit tab in save project version and activate the save action
     try {
         document.getElementById('noteForSave').addEventListener('keydown', (event) => {
             if (event.which == 9) {

@@ -2,15 +2,16 @@ module.exports = {
     "packagerConfig": {
         "icon": "./assets/rts-iconr",
         "osxSign": {
-            "identity": "environmental-variables.developerId",
+            "identity": 'Developer ID Application: Race to Saturn, LLC (V68AY8BCU4)',
             "hardened-runtime": true,
+            "gatekeeper-assess": false,
             "entitlements": "static/entitlements.plist",
             "entitlements-inherit": "static/entitlements.plist",
             "signature-flags": "library"
         },
         "osxNotarize": {
-            "appleId": "environmental-variables.appleId",
-            "appleIdPassword": "environmental-variables.applePassword"
+            "appleId": 'info112233@racetosaturn.com',
+            "appleIdPassword": 'usrh-nkik-qguk-uhpw'
         }
     },
     "makers": [
