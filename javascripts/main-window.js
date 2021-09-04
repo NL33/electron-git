@@ -120,7 +120,8 @@ window.onload = async function () {
 
 async function openWindow(){
     //current-code: not working yet
-    var thescript  = `tell application "Google Chrome"
+    var theScript  = `
+    tell application "Google Chrome"
 	set i to 0
 	repeat with t in (tabs of (first window whose index is 1))
 		set i to i + 1
@@ -130,7 +131,6 @@ async function openWindow(){
 	end repeat
 end tell
     `
-    console.log(thescript)
     try {
         const result = await runJxa(`
         console.log('running')
@@ -138,17 +138,19 @@ end tell
                     const a = Application.currentApplication();
                     const sa = (a.includeStandardAdditions = true, a);
                     return sa.runScript(s);
-            };
-            return evalAS2('tell application "Google Chrome" "\n"
-	set i to 0"\n"
-	repeat with t in (tabs of (first window whose index is 1))"\n"
-		set i to i + 1"\n"
-		if title of t is "discord - stkellman@gmail.com - Gmail" then"\n"
-			set (active tab index of (first window whose index is 1)) to i"\n"
-		end if"\n"
-	end repeat"\n"
-end tell')
-`)
+            }; 
+            return evalAS2('tell application "Google Chrome"
+	set i to 0
+	repeat with t in (tabs of(first window whose index is 1))
+        set i to i + 1
+        if title of t is "discord - stkellman@gmail.com - Gmail" then
+        set(active tab index of(first window whose index is 1)) to i
+        end if
+	end repeat
+        end tell'
+        )
+        `)
+            
         return result
     } catch (error) {
         console.log('error in chrome tab ' + error)
