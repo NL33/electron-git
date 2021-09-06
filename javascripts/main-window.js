@@ -9,9 +9,6 @@ var TurndownService = require('turndown')
 var turndownService = new TurndownService()
 var mammoth = require("mammoth");
 const trash = require('trash');
-const homeDir = require('os').homedir();
-const desktopDir = `${homeDir}/Desktop`;
-var appFolder = desktopDir + '/app-versions'
 const runJxa = require('run-jxa')
 const environmentVariables = ''//require('../z-environments-1.js')
 
@@ -291,76 +288,6 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, postId) {
     }
 }
 
-function createDiscoursePostFromFile1(filePath, createTime, data) {
-    //***NOTE: I have experimented with getting a user key, but have not updated z-environments yet. So it's possible those keys are no longer valid. And just go through the process of getting the key again using the discourse api test code. */ */
-    var url1 = 'https://go.racetosaturn.com/posts.json'
-    var url = 'http://localhost:4200/posts.json'
-    var title = path.basename(filePath)
-    var topicContent = data
-    var topicShowPath = filePath.substring(filePath.indexOf(projectFolderName) + (projectFolderName.length + 1)) /*
-    example:
-    project name (projectFolderName) = 'rocking-research'
-    doc path = rocking-research/post-enlightenment/platos-influences.docx
-    topicShowPath = 'post-enlightenment/platos-influences.docx' ; and that will be the title of the post.
-   */
-    var userName = 'SeanRtS' //***Have to get this programmatically*****/
-    var tagName = userName + '-project-' + projectFolderName
-    axios({
-        method: 'post',
-        url: url,
-        contentType: 'multipart/form-data',
-        data: {
-            "title": topicShowPath,
-            "raw": topicContent,
-            //"project_main": "wow-main-project",
-            "project_comments": 'wow-main-project',
-            //"topic_id": 0,
-            "category": 11,
-            //   "tags": [tagName],
-            /*VERIFIED THAT THIS WORKS: "project_name": 'test-project-name'*/
-            //  "target_recipients": "blake,sam",
-            //"target_usernames": "string",
-            //"archetype": "private_message",
-            //"created_at": "string"
-        },
-        headers: {
-            //"User-Api-Key": environmentVariables.decodedUserKey,
-            //"Api-Username": 'SeanRtS'
-            // for local testing: make sure to add localHost as url, and remove category and tags
-          //  "Api-Key": environmentVariables.wsKey,
-            //"Api-Username": environmentVariables.wsName
-        },
-        dataType: 'json'
-    }).then(response => {
-        console.log('created new post for = ' + filePath)
-        console.log('heres the response = ')
-        console.log(response)
-        var postId = response.data.id
-        var timeNow1 = new Date();
-        var timeNow = timeNow1.getTime()
-        db.fileInfo.add({
-            fileId: createTime,
-            fileName: title,
-            filePath: filePath,
-            postId: postId,
-            lastSentTime: timeNow,
-            projectTagName: tagName
-            //project?
-        })
-    }).catch(error => {
-        console.log('error in api post test =')
-        console.log(error)
-    })
-}
-
-//my-new-micro-word
-//new-text-doc
-//amazing stuff email
-//z-version notes
-//simple-text
-//social-interactions notes
-//word-test-doc
-//
 
 
 function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE FUNCTION TO create discourse post on main app through electron. sometimes I add 1 when I want to use the alternative function to create on local site.
@@ -375,7 +302,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE
     doc path = rocking-research/post-enlightenment/platos-influences.docx
     topicShowPath = 'post-enlightenment/platos-influences.docx' ; and that will be the title of the post.
    */
-    var userName = 'seanrts' //***Have to get this programmatically*****/
+    var userName = '' //***Have to get this programmatically*****/
     var projectName = userName + '-project-' + projectFolderName
     axios({
         method: 'post',
@@ -395,11 +322,6 @@ function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE
         },
         headers: {
             "User-Api-Key": environmentVariables.tokenSep2, //This works to send in documents as of Sep 2. using the key back from the payload. Do not need to provide anything else, like api-username. environmentVariables.decodedUserKey,
-           // "Api-Username": 'SeanRtS'
-            /* for local testing: make sure to add localHost as url, and remove category and tags
-            "Api-Key": environmentVariables.wsKey,
-            "Api-Username": 'ADD IN'
-            */
         },
         dataType: 'json'
     }).then(response => {
@@ -429,7 +351,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId) {
     var title = path.basename(filePath)
     var topicContent = data
     var topicShowPath = filePath.substring(filePath.indexOf(projectFolderName) + (projectFolderName.length + 1))
-    var userName = 'SeanRtS' //***Have to get this programmatically*****/
+    var userName = '' //***Have to get this programmatically*****/
     var tagName = userName + '-project-' + projectFolderName
     axios({
         method: 'put',
