@@ -1225,21 +1225,6 @@
   "resolved" "https://registry.npmjs.org/dexie/-/dexie-3.0.3.tgz"
   "version" "3.0.3"
 
-"diff@5.0.0":
-  "integrity" "sha512-/VTCrvm5Z0JGty/BWHljh+BAiw3IK+2j87NGMu8Nwc/f48WoDAC395uomO9ZD117ZOBaHmkX1oyLvkVM/aIT3w=="
-  "resolved" "https://registry.npmjs.org/diff/-/diff-5.0.0.tgz"
-  "version" "5.0.0"
-
-"diff2html@^3.4.5":
-  "integrity" "sha512-EvLFeEq4ZAG3URzajoNr2T1C2oQSRYpG+wlPj6d7xKua1+GY6XjZglTobERZUkMm4LyETTmzqHf19kpQljAcgA=="
-  "resolved" "https://registry.npmjs.org/diff2html/-/diff2html-3.4.5.tgz"
-  "version" "3.4.5"
-  dependencies:
-    "diff" "5.0.0"
-    "hogan.js" "3.0.2"
-  optionalDependencies:
-    "highlight.js" "10.7.2"
-
 "dingbat-to-unicode@^1.0.1":
   "integrity" "sha512-98l0sW87ZT58pU4i61wa2OHwxbiYSbuxsCBozaVnYX2iCnr3bLM3fIes1/ej7h1YdOKuKt/MLs706TVnALA65w=="
   "resolved" "https://registry.npmjs.org/dingbat-to-unicode/-/dingbat-to-unicode-1.0.1.tgz"
@@ -2059,19 +2044,6 @@
   dependencies:
     "function-bind" "^1.1.1"
 
-"highlight.js@10.7.2":
-  "integrity" "sha512-oFLl873u4usRM9K63j4ME9u3etNF0PLiJhSQ8rdfuL51Wn3zkD6drf9ZW0dOzjnZI22YYG24z30JcmfCZjMgYg=="
-  "resolved" "https://registry.npmjs.org/highlight.js/-/highlight.js-10.7.2.tgz"
-  "version" "10.7.2"
-
-"hogan.js@3.0.2":
-  "integrity" "sha1-TNnhq9QpQUbnZ55B14mHMrAse/0="
-  "resolved" "https://registry.npmjs.org/hogan.js/-/hogan.js-3.0.2.tgz"
-  "version" "3.0.2"
-  dependencies:
-    "mkdirp" "0.3.0"
-    "nopt" "1.0.10"
-
 "homedir-polyfill@^1.0.1":
   "integrity" "sha512-eSmmWE5bZTK2Nou4g0AI3zZ9rswp7GRKoKXS1BLUkvPviOqs4YTN1djQIqrXy9k5gEtdLPy86JjRwsNM9tnDcA=="
   "resolved" "https://registry.npmjs.org/homedir-polyfill/-/homedir-polyfill-1.0.3.tgz"
@@ -2731,11 +2703,6 @@
   "resolved" "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   "version" "1.0.4"
 
-"mkdirp@0.3.0":
-  "integrity" "sha1-G79asbqCevI1dRQ0kEJkVfSB/h4="
-  "resolved" "https://registry.npmjs.org/mkdirp/-/mkdirp-0.3.0.tgz"
-  "version" "0.3.0"
-
 "moment@^2.29.1":
   "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="
   "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
@@ -2852,13 +2819,6 @@
   "integrity" "sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ=="
   "resolved" "https://registry.npmjs.org/nopt/-/nopt-5.0.0.tgz"
   "version" "5.0.0"
-  dependencies:
-    "abbrev" "1"
-
-"nopt@1.0.10":
-  "integrity" "sha1-bd0hvSoxQXuScn3Vhfim83YI6+4="
-  "resolved" "https://registry.npmjs.org/nopt/-/nopt-1.0.10.tgz"
-  "version" "1.0.10"
   dependencies:
     "abbrev" "1"
 
@@ -2992,7 +2952,7 @@
   dependencies:
     "mimic-fn" "^2.1.0"
 
-"open@^8.1.0", "open@^8.2.1":
+"open@^8.1.0":
   "integrity" "sha512-rXILpcQlkF/QuFez2BJDf3GsqpjGKbkUUToAIGo9A0Q6ZkoSGogZJulrUdwRkrAsoQvoZsrjCYt8+zblOk7JQQ=="
   "resolved" "https://registry.npmjs.org/open/-/open-8.2.1.tgz"
   "version" "8.2.1"

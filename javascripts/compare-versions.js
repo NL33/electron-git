@@ -14,7 +14,7 @@ let spawn = require("child_process").spawn
 var cp = require("child_process");
 const { promisify } = require('util')
 */
-var diff2html = require("diff2html").Diff2Html
+
 const { version } = require('moment')
 let projectFolderPath
 let laterVersionInfo
@@ -695,8 +695,11 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
 
     /****************BLOCK DIFF***************************** */
 
-    /**********NOTE: REMOVED BUTTON FOR NOW (Aug20,2021) TO JUST DO THE INTEGRATED DIFF. THat seems more natural for non-coders, and I prefer to simplify for now. Simplify choices for users, and simplify coding requirements */
+    /**********NOTE: REMOVED BUTTON FOR NOW (Aug20,2021) TO JUST DO THE INTEGRATED DIFF. THat seems more natural for non-coders, and I prefer to simplify for now. Simplify choices for users, and simplify coding requirements 
+     * To work, need diff2html nodejs package
+    */
 
+    /*
     async function gitDiffFunctionBlock() { //for file summary [full file handled under diffSingleFile()]
         diffIntegrated = false
         diffBlocks = true
@@ -767,7 +770,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
             //NOTE: IN the block diff situation, steps: 1. show the whole diff, 2. get the files from the diff TOC, and 3. adjust file listing. In the integrated diff, steps: 1. run summary diff to show file names, and show them, then 2. run diff, and show full diff.
             //Why the difference? In the block diff, we use diff2html, which does the file TOC automatically. So we show the whole diff first (including the doc TOC), then get the filenames from the TOC In the integrated diff, we need to produce the file TOC with a separate diff -name-only process. 
 
-            /****SHOW THE DIFF******* */
+           //SHOW THE DIFF
             if (type === 'summary') {
                 document.getElementById('showDiff').insertAdjacentHTML('beforeend', contents)
             } else {
@@ -781,7 +784,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                 })
             }
 
-            /***MANIPULATE THE FILE LISTING AT THE TOP***/
+            //MANIPULATE THE FILE LISTING AT THE TOP
             if (topDiffCounter < 2) { //we can run this function at least twice in the case that there are normal docs and micro-word docs; but we only want to adjust the TOC once.
                 var tocFiles = document.querySelectorAll('.d2h-file-list-line')
                 for (var i = 0; i < tocFiles.length; i++) {
@@ -821,7 +824,7 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
                 }
             }
 
-            /****ADJUST FILE NAME BEFORE DIFF IF FROM A WORD CONVERSION****** */
+            //ADJUST FILE NAME BEFORE DIFF IF FROM A WORD CONVERSION
             var fileHeaders = document.querySelectorAll('.d2h-file-wrapper .d2h-file-name')
             //remove reference to tempfolders and remove .md extension for any file that is from a word conversion to md.
             for (var i = 0; i < fileHeaders.length; i++) {
@@ -844,3 +847,4 @@ async function writeFileFunction(markDownDocPath, dataCleaned) {
             console.log(e)
         }
     }
+*/

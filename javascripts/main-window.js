@@ -25,7 +25,6 @@ const { promisify } = require('util')
 const { resolve } = require('path')
 const { O_DIRECTORY } = require('constants')
 
-var diff2html = require("diff2html").Diff2Html
 const { default: axios } = require('axios')
 
 // Including generateKeyPairSync from crypto module. This is for generating an api key for authenticating with discourse
@@ -117,48 +116,6 @@ window.onload = async function () {
         console.log('error in onload function')
     }
 }   //end window onload
-
-async function openWindow(){
-    //current-code: not working yet
-    var theScript  = `
-    tell application "Google Chrome"
-	set i to 0
-	repeat with t in (tabs of (first window whose index is 1))
-		set i to i + 1
-		if title of t is "discord - stkellman@gmail.com - Gmail" then
-			set (active tab index of (first window whose index is 1)) to i
-		end if
-	end repeat
-end tell
-    `
-    try {
-        const result = await runJxa(`
-        console.log('running')
-            const evalAS2 = s => {
-                    const a = Application.currentApplication();
-                    const sa = (a.includeStandardAdditions = true, a);
-                    return sa.runScript(s);
-            }; 
-            return evalAS2('tell application "Google Chrome"
-	set i to 0
-	repeat with t in (tabs of(first window whose index is 1))
-        set i to i + 1
-        if title of t is "discord - stkellman@gmail.com - Gmail" then
-        set(active tab index of(first window whose index is 1)) to i
-        end if
-	end repeat
-        end tell'
-        )
-        `)
-            
-        return result
-    } catch (error) {
-        console.log('error in chrome tab ' + error)
-    }
-    //shell.openExternal('https://nytimes.com') //will always open new window
-    //npm install puppeteer
-    //https://github.com/puppeteer/puppeteer
-}
 
 
 function tabFunction() {
