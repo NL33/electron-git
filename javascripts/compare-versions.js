@@ -15,7 +15,6 @@ var cp = require("child_process");
 const { promisify } = require('util')
 */
 
-const { version } = require('moment')
 let projectFolderPath
 let laterVersionInfo
 let earlierVersionInfo
