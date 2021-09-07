@@ -890,6 +890,13 @@ function menuFunction() {
                             viewFolder(e, thePath)
                         }
                     }))
+                    contextMenu.append(new MenuItem({  
+                        label: "Refresh",
+                        click: () => {
+                            document.getElementById('folderContents').innerHTML = ''
+                            showFolderContents('projectDirectory', projectFolderPath, 0)
+                        }
+                    }))
                 }
 
                 if (fullId !== 'projectDirectory') {

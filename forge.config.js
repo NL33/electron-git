@@ -2,7 +2,7 @@ module.exports = {
     "packagerConfig": {
         "icon": "./assets/rts-iconr",
         "osxSign": {
-            "identity": 'Developer ID Application: Race to Saturn, LLC (V68AY8BCU4)',
+            "identity": process.env.DEVID,
             "hardened-runtime": true,
             "gatekeeper-assess": false,
             "entitlements": "static/entitlements.plist",
@@ -10,11 +10,17 @@ module.exports = {
             "signature-flags": "library"
         },
         "osxNotarize": {
-            "appleId": 'info112233@racetosaturn.com',
-            "appleIdPassword": 'usrh-nkik-qguk-uhpw'
-        }
+            "appleId": process.env.APPLEID,
+            "appleIdPassword": process.env.APPIDPASS
+        },
     },
     "makers": [
+        {
+            "name": "@electron-forge/maker-dmg",
+            "config": {
+                "format": "ULFO"
+            }
+        },
         {
             "name": "@electron-forge/maker-squirrel",
             "config": {
@@ -37,3 +43,4 @@ module.exports = {
         }
     ]
 }
+

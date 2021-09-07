@@ -83,3 +83,6 @@ environments
 environmental-variables.js
 env
 .env
+
+forge.config.js
+./forge.config.js

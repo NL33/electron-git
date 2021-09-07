@@ -480,7 +480,6 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
     openBasicWindow()
     saveNewVersionWindow()
     menuApp()
-    console.log('process.env now = ' + process.env.VAR_A)
     // createWindow()
     app.on('activate', () => {
 
