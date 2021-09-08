@@ -10,7 +10,8 @@
     "start": "electron-forge start",
     "go": "electron .",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
   },
   "keywords": [],
   "author": "Race to Saturn, LLC",

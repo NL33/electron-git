@@ -9,8 +9,13 @@ var TurndownService = require('turndown')
 var turndownService = new TurndownService()
 var mammoth = require("mammoth");
 const trash = require('trash');
+const homeDir = require('os').homedir();
+const desktopDir = `${homeDir}/Desktop`;
+var appFolder = desktopDir + '/app-versions'
 const runJxa = require('run-jxa')
-const environmentVariables = ''//require('../z-environments-1.js')
+const environmentVariables = require('../z-environments-1.js')
+var token = environmentVariables.discourseToken
+var discourseUser = environmentVariables.discourseUser
 
 var projectFolderPath
 var projectFolderName
@@ -22,6 +27,7 @@ const { promisify } = require('util')
 const { resolve } = require('path')
 const { O_DIRECTORY } = require('constants')
 
+var diff2html = require("diff2html").Diff2Html
 const { default: axios } = require('axios')
 
 // Including generateKeyPairSync from crypto module. This is for generating an api key for authenticating with discourse
@@ -37,7 +43,6 @@ var db = new Dexie("FileDatabase")
 //Dexie.debug = false //set to false for production. During development, gives more thorough error logs
 /*****Button Set Up *****/
 window.onload = async function () {
-    sessionStorage.removeItem('pKey')
     try {
         try {
             await db.version(3).stores({
@@ -46,6 +51,16 @@ window.onload = async function () {
         } catch (error) {
             console.log('error = ' + error)
         }
+
+        window.addEventListener('click', function (e) {
+            if (document.getElementById('folderContents').contains(e.target)) {
+                // Clicked in box
+            } else {
+                var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
+                while (highlightedDivs.length)
+                    highlightedDivs[0].classList.remove('highlightFolderOrFile')
+            }
+        });
 
         /*
         catch(function (error) {
@@ -67,15 +82,15 @@ window.onload = async function () {
                 })
             }
         }
-
-        document.getElementById('viewPriorVersionsSelect').addEventListener('click', () => {
-            viewPriorVersionsFunction()
-        })
-
-        document.getElementById('compareChangesSelect').addEventListener('click', () => {
-            showCompareChangesFunction()
-        })
-
+        /*
+                document.getElementById('viewPriorVersionsSelect').addEventListener('click', () => {
+                    viewPriorVersionsFunction()
+                })
+        
+                document.getElementById('compareChangesSelect').addEventListener('click', () => {
+                    showCompareChangesFunction()
+                })
+        */
         //get last project folder info
         if (localStorage.getItem('lastProjectFolder')) {
             let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
@@ -114,9 +129,21 @@ window.onload = async function () {
     }
 }   //end window onload
 
+function showSaveVersion() {
+    document.getElementById('saveProjectVersion').style.display = 'block'
+    document.getElementById('optionsAtBottom').style.display = 'none'
+    document.getElementById('folderContents').style.marginBottom = '180px'
+    document.getElementById('noteForSave').focus()
+}
+
+function closeSaveView() {
+    document.getElementById('savingProgress').style.display = "none"
+    document.getElementById('saveProjectVersion').style.display = 'none'
+    document.getElementById('optionsAtBottom').style.display = 'block'
+    document.getElementById('folderContents').style.marginBottom = '90px'
+}
 
 function tabFunction() {
-    //hit tab in save project version and activate the save action
     try {
         document.getElementById('noteForSave').addEventListener('keydown', (event) => {
             if (event.which == 9) {
@@ -288,6 +315,76 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, postId) {
     }
 }
 
+function createDiscoursePostFromFile1(filePath, createTime, data) {
+    //***NOTE: I have experimented with getting a user key, but have not updated z-environments yet. So it's possible those keys are no longer valid. And just go through the process of getting the key again using the discourse api test code. */ */
+    var url1 = 'https://go.racetosaturn.com/posts.json'
+    var url = 'http://localhost:4200/posts.json'
+    var title = path.basename(filePath)
+    var topicContent = data
+    var topicShowPath = filePath.substring(filePath.indexOf(projectFolderName) + (projectFolderName.length + 1)) /*
+    example:
+    project name (projectFolderName) = 'rocking-research'
+    doc path = rocking-research/post-enlightenment/platos-influences.docx
+    topicShowPath = 'post-enlightenment/platos-influences.docx' ; and that will be the title of the post.
+   */
+    var userName = 'SeanRtS' //***Have to get this programmatically*****/
+    var tagName = userName + '-project-' + projectFolderName
+    axios({
+        method: 'post',
+        url: url,
+        contentType: 'multipart/form-data',
+        data: {
+            "title": topicShowPath,
+            "raw": topicContent,
+            //"project_main": "wow-main-project",
+            "project_comments": 'wow-main-project',
+            //"topic_id": 0,
+            "category": 11,
+            //   "tags": [tagName],
+            /*VERIFIED THAT THIS WORKS: "project_name": 'test-project-name'*/
+            //  "target_recipients": "blake,sam",
+            //"target_usernames": "string",
+            //"archetype": "private_message",
+            //"created_at": "string"
+        },
+        headers: {
+            //"User-Api-Key": environmentVariables.decodedUserKey,
+            //"Api-Username": 'SeanRtS'
+            // for local testing: make sure to add localHost as url, and remove category and tags
+            "Api-Key": environmentVariables.wsKey,
+            "Api-Username": environmentVariables.wsName
+        },
+        dataType: 'json'
+    }).then(response => {
+        console.log('created new post for = ' + filePath)
+        console.log('heres the response = ')
+        console.log(response)
+        var postId = response.data.id
+        var timeNow1 = new Date();
+        var timeNow = timeNow1.getTime()
+        db.fileInfo.add({
+            fileId: createTime,
+            fileName: title,
+            filePath: filePath,
+            postId: postId,
+            lastSentTime: timeNow,
+            projectTagName: tagName
+            //project?
+        })
+    }).catch(error => {
+        console.log('error in api post test =')
+        console.log(error)
+    })
+}
+
+//my-new-micro-word
+//new-text-doc
+//amazing stuff email
+//z-version notes
+//simple-text
+//social-interactions notes
+//word-test-doc
+//
 
 
 function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE FUNCTION TO create discourse post on main app through electron. sometimes I add 1 when I want to use the alternative function to create on local site.
@@ -302,7 +399,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE
     doc path = rocking-research/post-enlightenment/platos-influences.docx
     topicShowPath = 'post-enlightenment/platos-influences.docx' ; and that will be the title of the post.
    */
-    var userName = '' //***Have to get this programmatically*****/
+    var userName = 'seanrts' //***Have to get this programmatically*****/
     var projectName = userName + '-project-' + projectFolderName
     axios({
         method: 'post',
@@ -321,7 +418,12 @@ function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE
             //"created_at": "string"
         },
         headers: {
-            "User-Api-Key": environmentVariables.tokenSep2, //This works to send in documents as of Sep 2. using the key back from the payload. Do not need to provide anything else, like api-username. environmentVariables.decodedUserKey,
+            "User-Api-Key": environmentVariables.decodedUserKey,
+            //"Api-Username": 'SeanRtS'
+            /* for local testing: make sure to add localHost as url, and remove category and tags
+            "Api-Key": environmentVariables.wsKey,
+            "Api-Username": 'ADD IN'
+            */
         },
         dataType: 'json'
     }).then(response => {
@@ -351,7 +453,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId) {
     var title = path.basename(filePath)
     var topicContent = data
     var topicShowPath = filePath.substring(filePath.indexOf(projectFolderName) + (projectFolderName.length + 1))
-    var userName = '' //***Have to get this programmatically*****/
+    var userName = 'SeanRtS' //***Have to get this programmatically*****/
     var tagName = userName + '-project-' + projectFolderName
     axios({
         method: 'put',
@@ -360,10 +462,11 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId) {
         data: {
             "title": topicShowPath,
             "raw": topicContent,
-           // "tags": [tagName]
+            "tags": [tagName]
         },
         headers: {
-            "User-Api-Key": environmentVariables.tokenSep2,
+            "User-Api-Key": environmentVariables.decodedUserKey,
+            //"Api-Username": 'SeanRtS'
         },
         dataType: 'json'
     }).then(response => {
@@ -391,8 +494,103 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId) {
 }
 
 
+/*****Create discourse post  */
+function createDiscoursePost() {
+    console.log('now in create Post')
+    var url = 'https://go.racetosaturn.com/posts.json'
+    var key = token
+    var userName = discourseUser
+    var topicContent = `
+        Here is a post using the generated api user key. check it out.
+    `
+    axios({
+        method: 'post',
+        url: url,
+        contentType: 'multipart/form-data',
+        data: {
+            "title": "Great Word Doc 3",
+            "raw": topicContent,
+            //"topic_id": 0,
+            "category": 36,
+            //  "target_recipients": "blake,sam",
+            //"target_usernames": "string",
+            //"archetype": "private_message",
+            //"created_at": "string"
+        },
+        headers: {
+            "User-Api-Key": environmentVariables.decodedUserKey,
+            //"Api-Username": 'SeanRtS'
+        },
+        dataType: 'json'
+    }).then(response => {
+        console.log('post response = ')
+        console.log(response)
+    }).catch(error => {
+        console.log('error in create post =')
+        console.log(error)
+    })
+}
+
+function getDiscoursePostId() {
+    console.log('now in get postid ')
+    var topicId = '421' //looking for post id = 586
+    var url = 'https://go.racetosaturn.com/t/' + topicId + '.json'
+    var key = token
+    var userName = discourseUser
+    axios({
+        method: 'get',
+        url: url,
+        //contentType: 'multipart/form-data',
+        headers: {
+            "Api-Key": key,
+            "Api-Username": userName
+        },
+        dataType: 'application/json'
+    }).then(response => {
+        console.log('initial response = ' + JSON.stringify(response))
+        var postId = response.data.post_stream.posts[0].id
+        console.log('post response = ' + postId)
+        updatePost(postId, userName, key)
+    }).catch(error => {
+        console.log('error in get post Id =')
+        console.log(error)
+    })
+}
+
+function updatePost(postId, userName, key) {
+    console.log('now in update Post')
+    var url = 'https://go.racetosaturn.com/posts/' + postId + '.json'
+    var topicContent = 'Update content as of 1:151 from GroupInfoUser. How does it look?'
+    axios({
+        method: 'put',
+        url: url,
+        contentType: 'multipart/form-data',
+        data: {
+            //  "title": "Great Word Doc 2",
+            "raw": topicContent,
+            //"topic_id": 0,
+            //"category": 36,
+            //  "target_recipients": "blake,sam",
+            //"target_usernames": "string",
+            //"archetype": "private_message",
+            //"created_at": "string"
+        },
+        headers: {
+            "Api-Key": key,
+            "Api-Username": userName
+        },
+        dataType: 'json'
+    }).then(response => {
+        console.log('post response = ')
+        console.log(response)
+    }).catch(error => {
+        console.log('error in update post =')
+        console.log(error)
+    })
+}
+
 /*******GENERATE PUBLIC AND PRIVATE KEY */
-//steps: detailed here: https://meta.discourse.org/t/user-api-keys-specification/48536/45
+//steps:
 //1. duscourseAPITest: send rsa keys to discourse. opens up discourse. where user hits authorize
 //2. discourse redirects with payload. paypload based on default protocol set up with setAsDefaultProtocolClient in main.js: saturnproto
 //3 app picks that up in "app.on('open-url')" function in main.js
@@ -402,7 +600,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, postId) {
 //7. API key is saved securely
 //8. when user wants to send something to discourse, the fucntion gets the API Key from the secure spot
 
-var privateKey
+var privateKey1
 var publicKey
 function discourseAPITest1() {
     const { publicKey, privateKey } = generateKeyPairSync('rsa', {
@@ -418,7 +616,6 @@ function discourseAPITest1() {
     })
     console.log('api test1')
     console.log('private key = ' + privateKey)
-    sessionStorage.setItem('pKey', privateKey)
     const http = require('url')
     var myUrl = 'https://go.racetosaturn.com/user-api-key/new'
 
@@ -433,7 +630,7 @@ function discourseAPITest1() {
     url.searchParams.append('client_id', hostname())
     url.searchParams.append('scopes', 'write')
     url.searchParams.append('public_key', publicKey)
-    url.searchParams.append('auth_redirect', redirectUrl) /***LEAVE OUT IF YOU WANT THE SITE TO GIVE YOU THE KEY DIRECTLY */
+    //url.searchParams.append('auth_redirect', redirectUrl) /***LEAVE OUT IF YOU WANT THE SITE TO GIVE YOU THE KEY DIRECTLY */
     url.searchParams.append('nonce', '1')
     console.log(`redirect URL is ${url.href}`)
     shell.openExternal(url.href)
@@ -469,25 +666,70 @@ function discourseAPITest1() {
 
 }
 
-
 ipcRenderer.on('discourse-payload-url', (event, payload) => {
-    decodeKey(payload)
+    decodeTheKey(payload)
 })
 
-function decodeKey(payload) {
-    var privateKey1 = sessionStorage.getItem('pKey').trim()
-    sessionStorage.removeItem('pKey')
-    var encodedKey =  decodeURIComponent(payload)
+function decodeTheKey(payload) {
+    console.log('decode the key now')
+    var privateKey2 = privateKey1.trim() //environmentVariables.privateKeyForDecoding.trim()
+    //  var encodedKey = environmentVariables.encodedUserKey
+    console.log('private key2 = ' + privateKey2)
+    const trimmedKey = payload.trim().replace(/\s/g, '')
+    console.log(`trimmed encoded key is:*******= ${trimmedKey}`)
+    const decriptedKey = privateDecrypt(
+        {
+            key: privateKey2,
+            padding: constants.RSA_PKCS1_PADDING,
+        },
+        Buffer.from(trimmedKey, 'base64')
+    )
+    const jsonKey = decriptedKey.toString('ascii')
+    console.log('the decoded key = ')
+    console.log(jsonKey)
+}
+
+
+
+
+function decryptAttempt1() {
+    var privateKey = environmentVariables.privateKeyForDecoding.trim()
+    var encodedKey = environmentVariables.encodedUserKey.trim()
     const buffer = Buffer.from(encodedKey, "base64");
     const decrypted = privateDecrypt({
-        key: privateKey1, padding:
+        key: privateKey, padding:
             constants.RSA_PKCS1_PADDING
     }, buffer);
     console.log(decrypted.toString("utf8"))
-    //next: 1. get the token from JSON and 2. save the token to be used if user makes api calls.
 }
 
+function decryptAttempt() {
+    var forge = require('node-forge')
+    var pki = require('node-forge').pki;
+    var privateKey1 = environmentVariables.privateKeyForDecoding1.trim()
+    var encodedKey = environmentVariables.encodedUserKey1.trim()
+    // var private_key = pki.privateKeyFromPem(privateKey);
+    try {
+        var privateKey = forge.pki.privateKeyFromPem(privateKey1);
+        var ctBytes = forge.util.decode64(encodedKey);
+
+        var plaintextBytes = privateKey.decrypt(ctBytes);
+        // rsaMessage.val(plaintextBytes.toString('utf8')); <-- old
+        console.log('key result = ' + forge.util.decodeUtf8(plaintextBytes));
+    }
+    catch (e) {
+        console.log(e);
+        alert("cannot decrypt");
+    }
+    console.log('result = ')
+    //console.log(result)
+}
+//https://stackoverflow.com/questions/47306186/node-decrypt-content-with-private-key-and-padding
+
 /*****close all windows with appletext ***********/
+
+
+
 
 /********CONTROLLING APPLE NOTES ************************* */
 
@@ -788,7 +1030,7 @@ async function showFolderContents(divId, mainPath, indent) {
                         if ((subStats.isDirectory() === true) && (hasExtension1 === false)) {
                             var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
                             contents = `<div style='margin-left: ${indent}px'>
-                        <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'> <img src="../clear-folder-fntawesome.svg" style="padding-right: 3px; height: 11pt; width: 9pt; vertical-align: text-top"></img>` + item + `</div>
+                        <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'> <img src="../clear-folder-fntawesome.svg" style="padding-right: 3px; height: 11pt; width: 9pt; vertical-align: text-top; color: red"></img>` + item + `</div>
                         <div class="newItems"></div>
                         </div>`
                         } else {
@@ -865,7 +1107,7 @@ function menuFunction() {
                             enterNewFile(divId, thePath, indent)
                         }
                     }))
-                   contextMenu.append(new MenuItem({ type: "separator" }))
+                    contextMenu.append(new MenuItem({ type: "separator" }))
                     contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
                         label: "New Paste File",
                         click: () => {
@@ -890,7 +1132,8 @@ function menuFunction() {
                             viewFolder(e, thePath)
                         }
                     }))
-                    contextMenu.append(new MenuItem({  
+
+                    contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
                         label: "Refresh",
                         click: () => {
                             document.getElementById('folderContents').innerHTML = ''
@@ -907,15 +1150,15 @@ function menuFunction() {
                         }
                     }))
                     /**NOTE: Consider having this appear only for files that I can write, like md, txt, rtf, html, etc. */
-                   /*
-                    contextMenu.append(new MenuItem({
-                        label: "Update File with copied content",
-                        click: () => {
-                            updatePasteFile(e)
-                        }
-                    }))
-                    */
-                    
+                    /*
+                     contextMenu.append(new MenuItem({
+                         label: "Update File with copied content",
+                         click: () => {
+                             updatePasteFile(e)
+                         }
+                     }))
+                     */
+
                 }
 
                 contextMenu.popup(remote.getCurrentWindow());
@@ -1071,7 +1314,7 @@ function createPasteFile(divId, folderPath, indent) {
     }
 }
 
-ipcRenderer.on('finished-paste-file', (event, divId, folderPath, newDocPath, updatedFileName, newIndent) =>{
+ipcRenderer.on('finished-paste-file', (event, divId, folderPath, newDocPath, updatedFileName, newIndent) => {
     console.log('received finished-paste-file')
     var element = document.getElementById(divId)
     if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
@@ -1809,34 +2052,14 @@ async function doTheCommit(text) { //Where the actual version commit is done.
         })
 
         await git.commit(text).then(result => {
-            /*
-            var overviewS = document.getElementById("ifNewVersionSaved")
-            var overviewN = document.getElementById("ifNoNewVersion")
-            var showResults = document.getElementById("showResults")
-            if (result.summary.changes != "0") {
-                overviewN.style.display = "none"
-                showResults.textContent = JSON.stringify(result.summary)
-                overviewS.style.display = "inline-block"
-            } else {
-                overviewS.style.display = "none"
-                showResults.textContent = ""
-                overviewN.style.display = "inline-block"
-            }
-            */
 
-            /*
-            
-            document.getElementById('saveProjectItems').style.display = "none"
-            document.getElementById('saveProjectHeader').style.display = "none"
-            document.getElementById('sendOptions').style.display = 'block'
-            document.getElementById('localSaveNotice').style.display = 'block'
-            */
             document.getElementById('savingProgress').style.display = "none"
             document.getElementById('saveProjectHeader').style.display = "block"
             document.getElementById('noteForSave').textContent = ''
             document.getElementById('saveProjectItems').style.display = "block"
             document.getElementById('saveProjectHeader').style.display = "block"
             console.log('commit result = ' + JSON.stringify(result))
+            closeSaveView()
         })
     } catch (e) {
         console.log('error in do the commit = ' + e)
@@ -1844,7 +2067,7 @@ async function doTheCommit(text) { //Where the actual version commit is done.
             ipcRenderer.send('open-get-git-window', '')
         } else {
             alert("Sorry, there was an error saving this version. Please try again.")
-        }   
+        }
     }
 }
 
@@ -2211,4 +2434,121 @@ function mammothFunction(wordDocPath) {
             })
         })
     })
+}
+
+
+
+//NEW JXA CODE /////////////////////////////////////////////////////
+async function getWindows1() {
+    var result = await runJxa(() => {
+        const chrome = Application('Google Chrome')
+        chrome.includeStandardAdditions = true
+        var count = 0
+        chrome.windows().forEach((window, winIdx) => {
+            window.tabs().forEach((tab, tabIdx) => {
+                console.log('****NEW ENTRY**********')
+                console.log(tab.title(), tab.url())
+                count = count + 1
+                console.log('count = ' + count)
+            })
+        })
+
+    }, [])
+    console.log('^^^^^^count = ' + count)
+    // console.log('result = ' + result)
+    //return result
+
+}
+
+async function getAllOpenW1() {
+    //gives name of all processes that are active
+    var result = await runJxa(() => {
+        const evalAS2 = s => {
+            const a = Application.currentApplication();
+            const sa = (a.includeStandardAdditions = true, a);
+            return sa.runScript(s);
+        };
+
+        return evalAS2(`
+        tell application "System Events"
+	set appNameList to (name of every process where background only is false)
+end tell
+
+set AppleScript's text item delimiters to linefeed
+return appNameList as text
+        `)
+    }, [])
+    console.log('result = ' + result)
+    getWindows()
+}
+
+async function getAllOpenW() {
+    //gives name of all processes that are active
+    var result = await runJxa(() => {
+        /*
+        var SE = Application("System Events").processes.whose(
+            { backgroundOnly: { '=': false } }).windows.name();
+        return SE
+        */
+        var winList = Application("System Events").processes.whose(
+            { backgroundOnly: { '=': false } }).windows.name();
+
+        // REF: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+
+        //--- Flatten 2D Array into 1D ---
+        var winList2 = winList.reduce(
+            function (accumulator, currentValue) {
+                return accumulator.concat(currentValue);
+            },
+            []
+        );
+
+        //--- Remove Windows with No Title ---
+        winList2 = winList2.filter(e => (e !== ""));
+
+        //--- Create CSV List of Window Names ---
+        //    (use .join('\n') if you'd prefer each name on separate line)
+        var scriptResults = winList2.join('\n')
+
+        return scriptResults;
+
+    }, [])
+    console.log('result = ')
+    console.log(result)
+    // getWindows()
+}
+
+
+
+async function getWindows() {
+    //better performance for https://github.com/bit2pixel/chrome-control/pull/7/commits/a1d01c8bcb3f1d3a43e7e9a82c2730735506bb3d
+    var result = await runJxa(() => {
+        const chrome = Application('Google Chrome')
+        chrome.includeStandardAdditions = true
+
+        let allTabsTitle = chrome.windows.tabs.title()
+        let allTabsUrls = chrome.windows.tabs.url()
+        let allTabsIcons = chrome.windows.tabs.icon()
+
+        var titleToUrl = {}
+        for (var winIdx = 0; winIdx < allTabsTitle.length; winIdx++) {
+            for (var tabIdx = 0; tabIdx < allTabsTitle[winIdx].length; tabIdx++) {
+                let title = allTabsTitle[winIdx][tabIdx]
+                let url = allTabsUrls[winIdx][tabIdx]
+                let icon = allTabsIcons[winIdx][tabIdx]
+                titleToUrl[title] = {
+                    'title': title || 'No Title',
+                    'url': url,
+                    'winIdx': winIdx,
+                    'tabIdx': tabIdx,
+                }
+                console.log('****TITLE = ' + title + '; url = ' + url)
+                console.log('icon = ' + icon)
+            }
+        }
+
+    }, [])
+    console.log('^^^^^^count = ' + count)
+    // console.log('result = ' + result)
+    //return result
 }
