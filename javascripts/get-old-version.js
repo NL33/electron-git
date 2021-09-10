@@ -32,12 +32,8 @@ window.onload = function () {
 }
 
 
-/*****Open Doc***** */
-var markdownDoc = '/Users/sean/Desktop/markdown-docs/wordtest-markdown.md'
-var wordDoc = '/Users/sean/Desktop/word-versions/test-stockholders-agreement-1.docx'
-var txtDoc = '/Users/sean/Desktop/txt-docs/converttest-test.txt'
-var appleDoc = 'https://www.icloud.com/notes/0hZOhxE5di_MSCv7bX-hYHY8w#Contribution_is_the_Focus'
-var notionDoc = 'https://www.notion.so/4d76e0d1943a41b7be78be514c230fd8'
+/*************************VIEW PRIOR VERSIONS ********************* */
+
 
 function openDoc(thePath) {
     let theExtension = path.extname(thePath)
@@ -74,77 +70,88 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 /******Loop through contents of Selected Folder and display results************* */
 
 async function showFolderContents(divId, mainPath, indent) {
-    var element = document.getElementById(divId)
+    console.log(divId, mainPath, indent)
+    try {
+        var element = document.getElementById(divId)
+        var highlightedDivs = document.getElementsByClassName('highlightFolderOrFile')
+        while (highlightedDivs.length)
+            highlightedDivs[0].classList.remove('highlightFolderOrFile')
+        if (element.id !== 'projectDirectory') {
+            element.classList.add('highlightFolderOrFile')
+        }
+        var extension = path.extname(mainPath)
+        var hasExtension = false
 
-    var extension = path.extname(mainPath)
-    var hasExtension = false
+        var newName = 'n/a'
+        if (extension) {
+            hasExtension = true
+        }
+        /*
+        //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
+        */
+        if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
+            var stats = fs.statSync(mainPath)
 
-    var newName = 'n/a'
-    if (extension) {
-        hasExtension = true
-    }
-    /*
-    //why this? Below, with stats.isDirectory(), you can check if something is a directory. However, this misses a few special types of "directories"--which are really complex files. For example logicX files. These files show up as directories with isDirectory(), but when you click on them, you normally want to open them, not view the contents. So this code pickes up these cases.
-    */
-    if ((divId === 'projectDirectory') || (!(element.classList.contains('clicked')))) {
-        var stats = fs.statSync(mainPath)
-
-        if ((stats.isDirectory() === true) && (hasExtension === false)) { //determine if a directory (instead of file).
-            //show folder contents
-            var contentArray = []
-            try {
-                contentArray = fs.readdirSync(mainPath)
-            } catch (e) {
-                console.log(e)
-            }
-            var contents = ""
-            var newIndent = parseInt(indent) + 15
-            contentArray.forEach((item) => {
-                if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3a7c1e4g7')))) {
-                    var fullPath = mainPath + '/' + item
-                    var subStats = fs.statSync(fullPath)
-                    var itemExtension = path.extname(fullPath)
-                    if ((subStats.isDirectory() === true) && (!(itemExtension))) {  //item extension is to pick up times when fs doesn't show a directory but it has an extension, like logicx docs
-                        var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
-                        contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+            if ((stats.isDirectory() === true) && (hasExtension === false)) { //determine if a directory (instead of file).
+                //show folder contents
+                var contentArray = []
+                try {
+                    contentArray = fs.readdirSync(mainPath)
+                } catch (e) {
+                    console.log(e)
+                }
+                var contents = ""
+                var newIndent = parseInt(indent) + 15
+                contentArray.forEach((item) => {
+                    if ((item != '.DS_Store') && (item != ".git") && (!(item.includes('worktree3a7c1e4g7')))) {
+                        var fullPath = mainPath + '/' + item
+                        var subStats = fs.statSync(fullPath)
+                        var itemExtension = path.extname(fullPath)
+                        if ((subStats.isDirectory() === true) && (!(itemExtension))) {  //item extension is to pick up times when fs doesn't show a directory but it has an extension, like logicx docs
+                            var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
+                            contents = `<div >
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><img src="../clear-folder-fntawesome.svg" class="folderIcon"></img>` + item + `</div>
                         <div class="newItems"></div>
                         </div>`
-                    } else {
-                        var newNamePath = fullPath
-                        var theName = item
-                        if (!(item.includes('*OLD*'))) {
-                            var currentFullPath = mainPath + '/' + item
-                            var newNamePath = mainPath + '/*OLD*' + item
-                            theName = '*OLD*' + item
-                            fs.rename(currentFullPath, newNamePath, function (err) {
-                                if (err) console.log('error = ' + err)
-                            })
-                        }
+                        } else {
+                            var newNamePath = fullPath
+                            var theName = item
+                            if (!(item.includes('*OLD*'))) {
+                                var currentFullPath = mainPath + '/' + item
+                                var newNamePath = mainPath + '/*OLD*' + item
+                                theName = '*OLD*' + item
+                                fs.rename(currentFullPath, newNamePath, function (err) {
+                                    if (err) console.log('error = ' + err)
+                                })
+                            }
 
-                        var newId = "**is-document**^^^" + newNamePath + "^^^" + indent
-                        contents = `<div >
+                            var newId = "**is-document**^^^" + newNamePath + "^^^" + indent
+                            contents = `<div >
                         <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${newNamePath}", "${newIndent}")'>` + theName + `</div>
                         </div>`
+                        }
                     }
-                }
-                if (divId !== "projectDirectory") {
-                    var newItems = element.nextElementSibling  //gets "newItems" div
-                    newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
-                    element.classList.add('clicked') //add clicked class so don't run this again if click again
-                } else {
-                    var contentsDiv = document.getElementById('folderContents')
-                    contentsDiv.insertAdjacentHTML("beforeEnd", contents)
-                }
-            })
-        } else {  //if not a directory. /***START HERE: FOR ITEM THAT IS PICKED UP AS NOT DIRECTORY BUT HAS EXTENSION, ADD the "OLD" TO IT */
-            openDoc(mainPath)
+                    if (divId !== "projectDirectory") {
+                        var newItems = element.nextElementSibling  //gets "newItems" div
+                        newItems.insertAdjacentHTML("beforeEnd", contents)  //insert into newItems
+                        element.classList.add('clicked') //add clicked class so don't run this again if click again
+                    } else {
+                        var contentsDiv = document.getElementById('folderContents')
+                        contentsDiv.insertAdjacentHTML("beforeEnd", contents)
+                    }
+                })
+            } else {  //if not a directory. /***START HERE: FOR ITEM THAT IS PICKED UP AS NOT DIRECTORY BUT HAS EXTENSION, ADD the "OLD" TO IT */
+                openDoc(mainPath)
 
+            }
+        } else { //if not projectstart and DO have clicked (so a folder that is already open)
+            element.classList.remove('clicked')
+            var newItems = element.nextElementSibling
+            newItems.innerHTML = '' //remove items in newItems
         }
-    } else { //if not projectstart and DO have clicked (so a folder that is already open)
-        element.classList.remove('clicked')
-        var newItems = element.nextElementSibling
-        newItems.innerHTML = '' //remove items in newItems
+    } catch (e) {
+        console.log('e in show folder contents function = ' + e)
+        alert("There was an error loading the files. Sorry about that. Please close this window and try again.")
     }
 }
 
@@ -220,87 +227,3 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
 
 }
 
-
-
-
-/***************************** NOT CURRENTLY IN USE  *************************************/
-
-
-
-/*********APPLE SCRIPT / JXA***************** */
-async function controlTheWindow() {
-
-    try {
-        await runJxa(`
-    // evalAS :: String -> IO String
-   
-    const evalAS = s => {
-        const
-            a = Application.currentApplication(),
-            sa = (a.includeStandardAdditions = true, a);
-        return sa.doShellScript(
-            ['osascript -l AppleScript <<OSA_END 2>/dev/null']
-            .concat([s])
-            .concat('OSA_END')
-            .join('\n')
-        );
-    };
-    var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();
-    var frontApp = Application(frontAppName);
-        var insert = 'bounds of first window of application (path to frontmost application as text)'
-          return evalAS(insert);
-       `
-        )
-    } catch (e) {
-        console.log('error = ' + e)
-    }
-}
-
-/*
-  await runJxa(`
-      var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();
-      console.log('front app name = ' + frontAppName)
-      var frontApp = Application(frontAppName); //gets the application with that name
-     var info = frontApp.windows[0].path()
-      console.log('info = ' + info)
-      frontApp.windows[0].bounds = {
-      "x": 80,
-      "y": 80,
-      "width": 50,
-      "height": 50
-      }
-
-      console.log('done')
-  `)
-  */
-
-/* working function
-var its = se.processes.byName('iTunes');
-
-
-
-async function controlTheWindow() {
-    await runJxa(`
-     const wordApp = Application("Microsoft Word")
-    //wordDoc.activate()
-    wordApp.windows[0].bounds = {
-      "x": 2,
-      "y": 4,
-      "width": 200,
-      "height": 200
-    }
-  `)
-}
-//this one puts the first window of foreground app in a position:
-   await runJxa(`
-        var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();  //gets the name of the process that is currently in front
-        var frontApp = Application(frontAppName); //gets the application with that name
-        frontApp.windows[0].bounds = {
-        "x": 2,
-        "y": 4,
-        "width": 200,
-        "height": 200
-        }
-    `)
-
-*/

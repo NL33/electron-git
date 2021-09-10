@@ -4,11 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        #bodyId {
-            padding: 10px;
-            padding-top: 5px
-        }
-
         /*****SELECTING FOLDER****/
         #folderOverview {
             margin-bottom: 5px
@@ -59,6 +54,7 @@
         #newFolderButton:hover,
         #newDocButton:hover {
             background-color: #d4eff7;
+            box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;
         }
 
         /****Folder Contents****/
@@ -72,73 +68,19 @@
             padding-left: 5px;
             padding-top: 6px;
             padding-bottom: 6px;
+
         }
 
         .subFolder:hover {
-            background-color: #EFF9FC
+            background-color: #d4eff7;
+            box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;
         }
 
-        .parentDiv {
-            border: 2px solid red
+        .highlightFolderOrFile {
+            background-color: #EFF9FC;
+            box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;
         }
 
-        /***COMMIT MESSAGE****/
-        [contenteditable]:empty:before {
-            content: attr(data-placeholder);
-            color: #778899;
-        }
-
-        #noteForSave {
-            border: 1px solid black;
-            border-radius: 7px;
-            padding: 10px;
-            outline: none;
-            font-size: 13pt;
-            margin-top: 15px;
-        }
-
-        #selectedDoc {
-            font-size: 14pt
-        }
-
-        #addProjectButton {
-            display: none;
-            cursor: pointer;
-            text-align: center;
-            /*font-size: 10pt;*/
-            border-radius: 12px;
-            padding: 7px;
-            border: 2px solid #3399FF;
-            outline: none;
-            margin-top: 15px;
-        }
-
-        #addProjectButton:hover {
-            background-color: #3399FF;
-            color: white;
-            border: 3px solid #3399FF;
-        }
-
-        #savingProgress {
-            display: none;
-            margin-top: 25px;
-            font-style: italic;
-            font-size: 14pt
-        }
-
-        #saveButton {
-            display: inline-block;
-            cursor: pointer;
-            text-align: center;
-            /*font-size: 10pt;*/
-            border-radius: 8px;
-            padding: 5px;
-            border: 2px solid #32cd53;
-            outline: none;
-            margin-top: 15px;
-            /* margin-left: 35px;
-            vertical-align: 20%;*/
-        }
 
         /***MAKING THE COMMIT****/
 
@@ -202,18 +144,55 @@
             margin-left: 3px;
             font-size: 14pt;
         }
+
+        #highlightFolderOverview {
+            box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;
+        }
+
+        .highlightFolderOrFile {
+            background-color: #EFF9FC;
+            box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;
+        }
+
+        .folderIcon {
+            padding-right: 3px;
+            height: 11pt;
+            width: 9pt;
+            vertical-align: text-top;
+        }
+
+
+        .parentDiv {
+            border: 2px solid red;
+            box-sizing: border-box;
+        }
+
+        #bodyId {
+            padding: 15px;
+            padding-top: 30px;
+            border: 3px solid red;
+            border-radius: 10px;
+            /* margin: 0px; */
+            margin: 10px;
+            display: block;
+            background-color: white;
+            min-height: 530px;
+            padding-top: 5px;
+            box-shadow: 0 7px 6px 0 rgb(0 0 0 / 20%), 0 8px 10px 5px rgb(0 0 0 / 19%) !important
+        }
     </style>
     <title>Saved Version</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
 
-<body id="bodyId" style="border: 3px solid red; margin: 0px; display: block; background-color: white; min-height: 575px; padding-top: 5px">
+<body id="bodyId" style="">
     <div id="folderOverview">
         <div>
+            <img src="../clear-folder-fntawesome.svg"
+                style="padding-right: 1px; height: 13pt; width: 12pt; vertical-align: text-top"></img>
             <span id="projectDirectory" class="docOrDirectory"></span>
             <div></div>
-            <!--new folder/doc box goes heret-->
-            <!---- <span style="margin-right: 15px" id="newFolderButton">nf+</span><span id="newDocButton">nd+</span>-->
+
         </div>
 
     </div>
@@ -225,13 +204,12 @@
             <span id="versionNumberId"></span>
         </span>
         <span class="versionDateTime" id="versionDateId"></span><span id="versionTimeId"></span>
-<hr style="width: 80%; margin-bottom: 15px; border: 2px solid  #f5f5f5">
+    </div>
+    </div>
+    <hr style="width: 80%; margin-bottom: 15px; border: 2px solid  #f5f5f5">
 
     <!------List out contents of the folder------>
     <div id="folderContents"></div>
-
-
-
 
     <script src="../javascripts/get-old-version.js"></script>
 
