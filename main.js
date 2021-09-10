@@ -399,7 +399,45 @@ function openDiscourseAuthWindow(discourseUrl) {
 }
 
 
-/*********VIEW PRIOR VERSION************* */
+/*********Prior Versions Overview Window************* */
+ipcMain.on('open-prior-version-overview', (event, projectFolderPath, projectFolderName) => {
+    priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName)
+})
+
+var priorVersionOvWindowShowing = false /*******NEED TO CHANGE THIS BACK WHEN WINDOW DESTROYED OR WINDOW CLOSED**************** */
+var priorVersionOvWindow
+function priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName) {
+    if (priorVersionOvWindowShowing === true) {
+        priorVersionOvWindow.restore()
+        priorVersionOvWindow.focus()
+    } else {
+        priorVersionOvWindow = new BrowserWindow({
+            //width: 400,
+            //height: 620,
+            // transparent: true,
+            // x: 415,
+            //y: 0,
+            webPreferences: {
+                additionalArguments: [projectFolderPath, projectFolderName],
+                nodeIntegration: true,
+                contextIsolation: false,
+                enableRemoteModule: true
+            }
+        })
+        priorWindowPath = projectFolderPath
+        priorVersionOvWindow.loadURL('file://' + __dirname + '/views/prior-versions-overview.html');
+
+        priorVersionOvWindowShowing = true
+
+        priorVersionOvWindow.on('close', function () {
+            priorVersionOvWindowShowing = false
+            //NOTE: a worktree is created NOT by the priorVersionOvWindow, but by the oldVersionWindow--the window where the actual files of the old window are shown. When that window is closed, it sends a close-worktree call to the main-window. It is not necessary to send that call for this window 
+        })
+    }
+}
+
+
+/*******************Prior Version Window With Prior Version Contents************** */
 async function viewOldVersion() {
     newVersionWindow.webContents.send('view-old-version', 'cool')
 }
@@ -409,7 +447,7 @@ var oldVersionWindowCreated = false
 async function oldVersionWindowFunction(receivedPath, receivedName, versionNumber, date, time, notes) {
     if (oldVersionWindowCreated === true) {
         /**close any existing old version window before opening a new one */
-        oldVersionWindow.destroy()
+        oldVersionWindow.close()
     }
 
     oldVersionWindow = new BrowserWindow({
@@ -432,6 +470,7 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
     oldVersionWindowCreated = true
     oldVersionWindow.loadURL('file://' + __dirname + '/views/get-old-version.html')
+    priorVersionOvWindow.close()
 }
 
 
@@ -439,7 +478,6 @@ ipcMain.on('open-old-version-window', (event, args) => {
     var receivedInfo = JSON.parse(args)
     oldVersionWindowFunction(receivedInfo[0], receivedInfo[1], receivedInfo[2], receivedInfo[3], receivedInfo[4], receivedInfo[5])
 })
-
 
 
 

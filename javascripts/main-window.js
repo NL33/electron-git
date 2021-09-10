@@ -1,4 +1,4 @@
-const { ipcRenderer, ipcMain, clipboard, shell, remote } = require('electron')
+const { ipcRenderer, clipboard, shell, remote } = require('electron')
 const { Menu, MenuItem } = remote
 const { writeFile, fstat } = require('fs')
 const fs = require("fs")
@@ -51,7 +51,7 @@ window.onload = async function () {
         } catch (error) {
             console.log('error = ' + error)
         }
-
+/*
         window.addEventListener('click', function (e) {
             if (document.getElementById('folderContents').contains(e.target)) {
                 // Clicked in box
@@ -61,7 +61,7 @@ window.onload = async function () {
                     highlightedDivs[0].classList.remove('highlightFolderOrFile')
             }
         });
-
+*/
         /*
         catch(function (error) {
             alert('Uh oh : ' + error);
@@ -82,15 +82,15 @@ window.onload = async function () {
                 })
             }
         }
-        /*
-                document.getElementById('viewPriorVersionsSelect').addEventListener('click', () => {
-                    viewPriorVersionsFunction()
-                })
-        
-                document.getElementById('compareChangesSelect').addEventListener('click', () => {
-                    showCompareChangesFunction()
-                })
-        */
+/*
+        document.getElementById('viewPriorVersionsSelect').addEventListener('click', () => {
+            viewPriorVersionsFunction()
+        })
+
+        document.getElementById('compareChangesSelect').addEventListener('click', () => {
+            showCompareChangesFunction()
+        })
+*/
         //get last project folder info
         if (localStorage.getItem('lastProjectFolder')) {
             let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
@@ -129,18 +129,22 @@ window.onload = async function () {
     }
 }   //end window onload
 
-function showSaveVersion() {
+function showSaveVersion(){
     document.getElementById('saveProjectVersion').style.display = 'block'
     document.getElementById('optionsAtBottom').style.display = 'none'
     document.getElementById('folderContents').style.marginBottom = '180px'
     document.getElementById('noteForSave').focus()
 }
 
-function closeSaveView() {
+function closeSaveView(){
     document.getElementById('savingProgress').style.display = "none"
     document.getElementById('saveProjectVersion').style.display = 'none'
     document.getElementById('optionsAtBottom').style.display = 'block'
     document.getElementById('folderContents').style.marginBottom = '90px'
+}
+
+function priorVersionsFunction(){
+    ipcRenderer.send('open-prior-version-overview', projectFolderPath, projectFolderName)
 }
 
 function tabFunction() {
@@ -872,8 +876,8 @@ async function removeSavedWorkTree(treePath) {
     try {
         await fs.rm(treePath, { recursive: true }, (err) => {
             console.log('deleted: removed work tree = ' + treePath)
-            if (error) {
-                console.log(error)
+            if (err) {
+                console.log(err)
             } else {
                 let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
                 let index = treeArray.indexOf(treePath)
@@ -885,9 +889,45 @@ async function removeSavedWorkTree(treePath) {
             }
         })
     } catch (e) {
-        console.log('error in removing work tree')
+        console.log('error in removing work tree = ' + e)
     }
 }
+
+/*****REMOVE WORKTREE CREATED IN THE PRIOR VERSION OVERVIEW WINDOW WHEN CLOSE THE WINDOW***** */
+ipcRenderer.on('close-worktree', (event, arg) => {
+    removeWorkTree(arg)
+})
+
+
+async function removeWorkTree(treePath) {
+    var thisTreeName = path.basename(treePath)
+    console.log('inremove tree. name = ' + thisTreeName)
+    try {
+        await git.cwd(projectFolderPath).then(result => {
+            // console.log('cwd resultss' + JSON.stringify(result))
+        })
+        if (thisTreeName) {
+            /*"--force" is included because its necessary if you are deleting a worktree with modified files.In this case, that is required: 1. user could change files(accidentally), 2. by adding a notation like "old" to the front of files you are modifying the folder.*/
+            await git.raw('worktree', 'remove', thisTreeName, '--force').then((result) => {
+                if (localStorage.getItem('working-trees-present')) {  //local storage array is to keep track of worktrees created, so as to delete them in the case the app is not shut down properly (they would be deleted on startup)
+                    let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
+                    let theTreePath = projectFolderPath + '/' + thisTreeName
+                    let index = treeArray.indexOf(theTreePath)
+                    if (index > -1) {
+                        treeArray.splice(index, 1)
+                        localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
+                        console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
+                    }
+                }
+            }) //delete that folder
+            await git.raw('worktree', 'prune').then((result) => { //removes info about worktrees which no longer exist
+            })
+        }
+    } catch (e) {
+        console.log('error in removework = ' + e)
+    }
+}
+
 
 
 /*****Open Doc***** */
@@ -1030,7 +1070,7 @@ async function showFolderContents(divId, mainPath, indent) {
                         if ((subStats.isDirectory() === true) && (hasExtension1 === false)) {
                             var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
                             contents = `<div style='margin-left: ${indent}px'>
-                        <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'> <img src="../clear-folder-fntawesome.svg" style="padding-right: 3px; height: 11pt; width: 9pt; vertical-align: text-top; color: red"></img>` + item + `</div>
+                        <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'> <img src="../clear-folder-fntawesome.svg" class="folderIcon"></img>` + item + `</div>
                         <div class="newItems"></div>
                         </div>`
                         } else {
@@ -1107,7 +1147,7 @@ function menuFunction() {
                             enterNewFile(divId, thePath, indent)
                         }
                     }))
-                    contextMenu.append(new MenuItem({ type: "separator" }))
+                   contextMenu.append(new MenuItem({ type: "separator" }))
                     contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
                         label: "New Paste File",
                         click: () => {
@@ -1150,15 +1190,15 @@ function menuFunction() {
                         }
                     }))
                     /**NOTE: Consider having this appear only for files that I can write, like md, txt, rtf, html, etc. */
-                    /*
-                     contextMenu.append(new MenuItem({
-                         label: "Update File with copied content",
-                         click: () => {
-                             updatePasteFile(e)
-                         }
-                     }))
-                     */
-
+                   /*
+                    contextMenu.append(new MenuItem({
+                        label: "Update File with copied content",
+                        click: () => {
+                            updatePasteFile(e)
+                        }
+                    }))
+                    */
+                    
                 }
 
                 contextMenu.popup(remote.getCurrentWindow());
@@ -1314,7 +1354,7 @@ function createPasteFile(divId, folderPath, indent) {
     }
 }
 
-ipcRenderer.on('finished-paste-file', (event, divId, folderPath, newDocPath, updatedFileName, newIndent) => {
+ipcRenderer.on('finished-paste-file', (event, divId, folderPath, newDocPath, updatedFileName, newIndent) =>{
     console.log('received finished-paste-file')
     var element = document.getElementById(divId)
     if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
@@ -1442,179 +1482,27 @@ async function deleteItem(e) {
 
 /*************************************VIEW PRIOR VERSIONS *****************************************/
 
-async function viewPriorVersionsFunction() {
-    document.getElementById('showPriorCommits').innerHTML = ''
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
 
-        await git.log().then(result => {
-            var resultArray = result.all
-            var totalNumber = resultArray.length
-            var commitDiv = document.getElementById('showPriorCommits')
-            var savedVersionsHeader = document.getElementById('savedVersionsOverview')
-            savedVersionsHeader.style.display = "block"
-            resultArray.forEach((commit) => {
-                var versionNumber = totalNumber--
-                var versionMessage = commit.message
-                var dateTime = commit.date
-                var commitNumber = commit.hash
+//Current Code. Start here:
+/*
+plan: click prior versions window, and it opens a new prior versions window. Default view is just prior versions. click version and window closes, and you open a new window for the version
 
-                var dateObject = new Date(dateTime)
-                var showDate = dateObject.toLocaleDateString('en-us', {
-                    weekday: 'short',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                })
-                var showTime = dateObject.toLocaleTimeString('en-us', {
-                    timeStyle: 'short'
-                })
-                var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
-                contents = `
-                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}", "${versionMessage}")'>
-                    <div class="versionMessage">${versionMessage}</div>
-                    <span class="versionNumber">Version ${versionNumber}</span>
-                    <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
-                </div>   
-                `
-                commitDiv.insertAdjacentHTML("beforeEnd", contents)
-            })
-        })
-        document.getElementById('showPriorVersions').style.display = 'block'
-        document.getElementById('saveProjectVersion').style.display = 'none'
-        document.getElementById('folderContents').style.display = "none"
-        document.getElementById('closePriorVersionsView').addEventListener('click', () => {
-            document.getElementById('showPriorVersions').style.display = 'none'
-            document.getElementById('folderContents').style.display = "block"
-            document.getElementById('showPriorCommits').innerHTML = ''
-            document.getElementById('optionsAtBottom').style.display = 'block'
-            document.getElementById('saveProjectVersion').style.display = 'block'
-        })
-        document.getElementById('optionsAtBottom').style.display = 'none'
-    }
-    catch (e) {
-        console.log('error in view prior versions = ' + e)
-        if (e.toString().indexOf('not a git repository') > -1) {
-            alert('To view Prior Versions, please first save a project version.')
-        } else {
-            alert('Sorry, there was an error in viewing prior versions. Please try again.')
-        }
-    }
-}
-var treeName = 'n/a'
-async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
+in that new window, there is also option (at bottom click?) to compare changes, which loads compare changes window. Same thing--select your changes, and new window opens with compare changes, and existing window closes.
 
-        //prior to creating a new worktree, delete any worktree that's there
-        var folderArray = await fs.readdirSync(projectFolderPath)
-        /* remove any existing worktree in the project, prior to creating a new one. 
-        Note: this means you can't view two different old versions at once. I think that is ok for now.
-        */
-        folderArray.forEach((item) => {
-            if (item.includes('worktree3a7c1e4g7')) { //if a folder exists that matches the worktree naming convention
-                removeWorkTree(item)
-            }
-        })
+So the key changes is to move the javascript and html of prior versions/compare changes that's currently in main-window, into prior-versions-overview window. 
 
-        //done removing any existing worktree
+then just need to call that window from main window to main.js
 
-        //now move on
-        //create worktree, with different name then before
-        var randomNumber = Math.floor(Math.random() * 10000)
-        var randomMultiple = Math.floor(Math.random() * 500)
-        var theNumber = randomNumber * randomMultiple
-        treeName = theNumber.toString() + 'worktree3a7c1e4g7'
-        await git.raw('worktree', 'add', treeName).then(result => {
-            if (result) {
-                console.log(result)
-                if (localStorage.getItem('working-trees-present')) {  //local storage array is to keep track of worktrees created, so as to delete them in the case the app is not shut down properly (they would be deleted on startup)
-                    let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
-                    treeArray.push(projectFolderPath + '/' + treeName)
-                    localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
-                    console.log('trees exist')
-                } else {
-                    let treeArray = []
-                    treeArray.push(projectFolderPath + '/' + treeName)
-                    localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
-                    console.log('trees didnt exist yet')
-                }
-            } else {
-                console.log('error = ')
-            }
-        })
-        //now should have a folder in the directory that is a copy of the directory, with its own git file.
-        revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes)
-    } catch (e) {
-        console.log('error in showOldVersion = ' + e)
-        alert('Sorry, there was an error in viewing prior versions. Please try again.')
-    }
-}
+STATUS:
 
-/*****REMOVE WORKTREE CREATED IN THE PRIOR VERSION WINDOW WHEN CLOSE THE WINDOW***** */
-ipcRenderer.on('close-worktree', (event, arg) => {
-    removeWorkTree(arg)
-})
+I just created a new view: prior-versions-overview. and added initial html code
+next: move the right javacsript code for viewing prior versions into prior-versions-overview.
 
 
-async function removeWorkTree(treePath) {
-    var thisTreeName = path.basename(treePath)
-    console.log('inremove tree. name = ' + thisTreeName)
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-        if (thisTreeName) {
-            /*"--force" is included because its necessary if you are deleting a worktree with modified files.In this case, that is required: 1. user could change files(accidentally), 2. by adding a notation like "old" to the front of files you are modifying the folder.*/
-            await git.raw('worktree', 'remove', thisTreeName, '--force').then((result) => {
-                if (localStorage.getItem('working-trees-present')) {  //local storage array is to keep track of worktrees created, so as to delete them in the case the app is not shut down properly (they would be deleted on startup)
-                    let treeArray = JSON.parse(localStorage.getItem('working-trees-present'))
-                    let theTreePath = projectFolderPath + '/' + thisTreeName
-                    let index = treeArray.indexOf(theTreePath)
-                    if (index > -1) {
-                        treeArray.splice(index, 1)
-                        localStorage.setItem('working-trees-present', JSON.stringify(treeArray))
-                        console.log('local storage now = ' + localStorage.getItem('working-trees-present'))
-                    }
-                }
-            }) //delete that folder
-            await git.raw('worktree', 'prune').then((result) => { //removes info about worktrees which no longer exist
-            })
-        }
-    } catch (e) {
-        console.log('error in removework = ' + e)
-    }
-}
-
-async function revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes) {
-    var theArray = []
-    var treePath = projectFolderPath + '/' + treeName
-    theArray.push(treePath)
-    theArray.push(projectFolderName)
-    theArray.push(versionNumber)
-    theArray.push(date)
-    theArray.push(time)
-    theArray.push(notes)
-    var infoToSend = JSON.stringify(theArray)
-    try {
-        await git.cwd(treePath).then(result => {
-        })
-
-        await git.checkout(commitNumber).then(result => {
-            console.log('checkout result = ' + result)
-            ipcRenderer.send('open-old-version-window', infoToSend)
-        })
 
 
-    } catch (e) {
-        console.log('error in revert function = ' + e)
-    }
+*/
 
-}
 
 
 /******************************************* COMPARE CHANGES *************************************************/
@@ -2052,7 +1940,7 @@ async function doTheCommit(text) { //Where the actual version commit is done.
         })
 
         await git.commit(text).then(result => {
-
+     
             document.getElementById('savingProgress').style.display = "none"
             document.getElementById('saveProjectHeader').style.display = "block"
             document.getElementById('noteForSave').textContent = ''
@@ -2067,7 +1955,7 @@ async function doTheCommit(text) { //Where the actual version commit is done.
             ipcRenderer.send('open-get-git-window', '')
         } else {
             alert("Sorry, there was an error saving this version. Please try again.")
-        }
+        }   
     }
 }
 
@@ -2439,7 +2327,7 @@ function mammothFunction(wordDocPath) {
 
 
 //NEW JXA CODE /////////////////////////////////////////////////////
-async function getWindows1() {
+async function getWindows1(){
     var result = await runJxa(() => {
         const chrome = Application('Google Chrome')
         chrome.includeStandardAdditions = true
@@ -2455,7 +2343,7 @@ async function getWindows1() {
 
     }, [])
     console.log('^^^^^^count = ' + count)
-    // console.log('result = ' + result)
+   // console.log('result = ' + result)
     //return result
 
 }
@@ -2515,7 +2403,7 @@ async function getAllOpenW() {
     }, [])
     console.log('result = ')
     console.log(result)
-    // getWindows()
+   // getWindows()
 }
 
 
@@ -2525,7 +2413,7 @@ async function getWindows() {
     var result = await runJxa(() => {
         const chrome = Application('Google Chrome')
         chrome.includeStandardAdditions = true
-
+       
         let allTabsTitle = chrome.windows.tabs.title()
         let allTabsUrls = chrome.windows.tabs.url()
         let allTabsIcons = chrome.windows.tabs.icon()

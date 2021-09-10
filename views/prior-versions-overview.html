@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /*** COMPARING VERSIONS***/
+        .showChangesButton {
+            margin-right: 10px;
+            padding: 4px;
+            border: 3px solid #32cd53;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: inline-block;
+            font-size: 13pt
+        }
+
+        .folderIcon {
+            padding-right: 3px;
+            height: 11pt;
+            width: 9pt;
+            vertical-align: text-top;
+        }
+
+        .showChangesButton:hover {
+            background-color: #32cd53;
+            border: 3px solid #32cd53;
+            color: white
+        }
+
+        .d2h-code-line,
+        .d2h-code-line-ctn {
+            white-space: normal !important;
+        }
+
+        .d2h-ins {
+            background-color: #d6ebd5
+        }
+
+        .d2h-del {
+            background-color: #fbe9ec;
+            // background-color: #fdf0c5  //more of a tannish background color
+        }
+
+        tr ins {
+            background-color: #9df2af
+        }
+
+        tr del {
+            background-color: #f1a7b3
+        }
+
+        /****BODY ***/
+
+
+
+        /***MAKING THE COMMIT****/
+
+        .closeViewButton {
+            text-align: right;
+            margin-right: 10%;
+            font-size: 13pt;
+            padding-left: 6px;
+            padding-right: 6px;
+            cursor: pointer;
+            display: inline-block;
+            /* width: 20%; */
+        }
+
+        .closeViewButton:hover {
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
+        }
+
+
+
+        #saveButton:hover {
+            background-color: #3399FF;
+            color: white;
+            border: 2px solid #3399FF;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
+        }
+
+        #sendButton:hover {
+            background-color: #3399FF;
+            color: white;
+        }
+
+
+
+        /*****PRIOR VERSIONS*****/
+
+        #viewPriorVersionsButton {
+            display: inline-block;
+            font-size: 12pt;
+            border: 3px solid #d4eff7;
+            border-radius: 15px;
+            padding: 2px;
+            padding-left: 8px;
+            padding-right: 8px;
+            cursor: pointer;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 19%) !important;
+        }
+
+        #viewPriorVersionsButton:hover {
+            background-color: #d4eff7;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
+        }
+
+
+        .versionOverviewClass {
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 2px solid #d4eff7;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #1a1a1a;
+            // box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 19%) !important;
+
+        }
+
+        .versionOverviewClass:hover {
+            background-color: #d4eff7;
+            border: 2px solid #d4eff7;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
+        }
+
+        .versionMessage {
+            margin-bottom: 8px;
+            font-size: 14pt
+        }
+
+        .versionNumber {
+            margin-right: 10px;
+            padding-right: 10px;
+            border-right: 2px solid #2db94b;
+        }
+
+        .versionDateTime {
+            margin-right: 10px;
+            padding-right: 10px;
+            border-right: 2px solid #2db94b;
+        }
+
+        .versionNumberOverview {
+            font-size: 14pt
+        }
+
+        #selectVersionsHeader {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            margin-left: 3px;
+            /*font-size: 14pt;*/
+        }
+
+        .selectedChangeClass {
+            border: 3px solid #a9dfef
+        }
+    </style>
+    <title>Prior Versions</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+
+<body id="bodyId" style="margin-top: 5px; padding: 10px; padding-top: 5px; overflow: auto; font-family: serif">
+
+
+    <!--***************View Prior Versions**************-->
+    <div id="showPriorVersions">
+        <div id="projectNameOverview" style="margin-bottom: 15px;">
+            <img src="../clear-folder-fntawesome.svg"
+                style="padding-right: 1px; height: 13pt; width: 12pt; vertical-align: text-top"></img>
+            <span id="projectName" style="font-weight: bold; font-size: 16pt"></span>
+        </div>
+        <div id="savedVersionsId" style="margin-bottom: 5px; font-size: 12pt">Click to View Version:</div>
+        <div id="showPriorCommits" style="margin-top: 10px; width: 93%">
+        </div>
+    </div>
+
+
+    <!--**********COMPARE CHANGES***********************-->
+    <div id="showViewPriorVersionsForCompare"
+        style=" margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #3399FF; display: none "
+        class="padding-class">
+        <div style="margin-top: 0px; ">
+            <div class="closeViewButton" id="closeCompareChangesView">x</div>
+            <div style="font-weight: bold; margin-bottom: 15px;">Compare Changes Between Versions</div>
+        </div>
+        <div style="margin-left: 5px; margin-right: 3px; word-wrap: break-word">
+            <div style="margin-bottom: 15px" id="displayNewerVersion">
+                <span>Newer Version: </span>
+                <span id="laterVersionOverview">
+                    <span class="selectedForChangesClass" id="laterVersionForChanges"></span>
+                    <span class="versionNumberOverview">
+                        <span class="versionWordLater"></span>
+                        <span id="versionNumberLater">Current Changes</span>
+                    </span>
+                    <div id="versionMessageLater" style="display:none">n/a</div>
+                    <span id="versionDateLater" style="display:none">n/a</span><span id="versionTimeLater"
+                        style="display:none">n/a</span>
+                    <span id="commitNumberLater" style="display: none">current-changes</span>
+                </span>
+                </span>
+            </div>
+
+            <div style="margin-bottom: 15px" id="displayOlderVersion">
+                <span>Older Version: </span>
+                <span id="earlierVersionOverview">
+                </span>
+            </div>
+
+
+            <div style=" margin-right: 5px" id="runChangesIntegrated" class="showChangesButton">Show Changes
+            </div>
+            <!-- Removed as option for now just to keep things simple: <div class="showChangesButton" id="runChangesBlock">show block changes
+            </div>-->
+            <div id="savedVersionsOverview" style="margin-top: 15px; display: none;">
+                <div id="selectVersionsHeader">Selected Versions:</div>
+            </div>
+
+            <div id="showPriorCommitsForCompare" style="margin-top: 10px; width: 93%;"></div>
+        </div>
+    </div>
+
+    <!--*************END OF FILE******************-->
+    <script src="../javascripts/prior-versions-overview.js"></script>
+</body>
+
+</html>
