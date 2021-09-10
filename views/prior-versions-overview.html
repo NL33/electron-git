@@ -7,13 +7,12 @@
         /*** COMPARING VERSIONS***/
         .showChangesButton {
             margin-right: 10px;
-            padding: 4px;
-            border: 3px solid #32cd53;
+            padding: 3px;
+            border: 2px solid #32cd53;
             border-radius: 12px;
             cursor: pointer;
-            margin-bottom: 20px;
             display: inline-block;
-            font-size: 13pt
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
         }
 
         .folderIcon {
@@ -26,7 +25,8 @@
         .showChangesButton:hover {
             background-color: #32cd53;
             border: 3px solid #32cd53;
-            color: white
+            color: white;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
         }
 
         .d2h-code-line,
@@ -56,23 +56,6 @@
 
 
         /***MAKING THE COMMIT****/
-
-        .closeViewButton {
-            text-align: right;
-            margin-right: 10%;
-            font-size: 13pt;
-            padding-left: 6px;
-            padding-right: 6px;
-            cursor: pointer;
-            display: inline-block;
-            /* width: 20%; */
-        }
-
-        .closeViewButton:hover {
-            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
-        }
-
-
 
         #saveButton:hover {
             background-color: #3399FF;
@@ -115,8 +98,7 @@
             border-radius: 10px;
             cursor: pointer;
             color: #1a1a1a;
-            // box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 19%) !important;
-
+            // box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 19%) !important;     
         }
 
         .versionOverviewClass:hover {
@@ -133,13 +115,13 @@
         .versionNumber {
             margin-right: 10px;
             padding-right: 10px;
-            border-right: 2px solid #2db94b;
+            border-right: 2px solid #6fdc87;
         }
 
         .versionDateTime {
             margin-right: 10px;
             padding-right: 10px;
-            border-right: 2px solid #2db94b;
+            border-right: 2px solid #6fdc87;
         }
 
         .versionNumberOverview {
@@ -154,7 +136,31 @@
         }
 
         .selectedChangeClass {
-            border: 3px solid #a9dfef
+            border: 3px solid #6fdc87;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 2px 0 rgba(0, 0, 0, 0.19) !important;
+        }
+
+        .changeView {
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+            margin-right: 50px;
+            font-size: 13pt;
+            /*font-size: 10pt;*/
+            border-radius: 10px;
+            padding: 5px;
+            border: 2px solid #d4eff7;
+            outline: none;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 2px 0 rgba(0, 0, 0, 0.19) !important;
+            /* margin-left: 35px;
+            vertical-align: 20%;*/
+        }
+
+        .changeView:hover {
+            background-color: #3399FF;
+            border: 2px solid #3399FF;
+            color: white;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
         }
     </style>
     <title>Prior Versions</title>
@@ -165,61 +171,88 @@
     <div style='font-size: 13pt; margin-bottom: 8px; font-style: italic;' id="processingMessage">processing...</div>
 
     <!--***************View Prior Versions**************-->
-    <div id="showPriorVersions" style="display: none">
-        <div id="projectNameOverview" style="margin-bottom: 15px;">
-            <img src="../clear-folder-fntawesome.svg"
-                style="padding-right: 1px; height: 13pt; width: 12pt; vertical-align: text-top"></img>
-            <span id="projectName" style="font-weight: bold; font-size: 16pt"></span>
+    <div id="showPriorVersions" style="display: none;">
+        <div
+            style="position: fixed; width: 100%; margin-right: 20px; z-index: 1000; background-color: white; top: 0; border-bottom: 3px solid #3399FF; padding-bottom: 20px">
+            <div style="display: inline-block">
+                <div id="projectNameOverview" style="margin-bottom: 15px; padding-top: 15px">
+                    <img src="../clear-folder-fntawesome.svg"
+                        style="padding-right: 1px; height: 13pt; width: 12pt; vertical-align: text-top"></img>
+                    <span id="projectName" style="font-weight: bold; font-size: 16pt"></span>
+                </div>
+                <div id="savedVersionsId" style="font-size: 12pt">Click to Open Version:</div>
+            </div>
+            <span style="float: right">
+                <div onclick="compareVersionsFunction()" class="changeView" id="closeCompareChangesView"
+                    style="margin-top: 15px; margin-right: 70px">Compare Versions</div>
+            </span>
         </div>
-        <div id="savedVersionsId" style="margin-bottom: 5px; font-size: 12pt">Click to View Version:</div>
-        <div id="showPriorCommits" style="margin-top: 10px; width: 93%">
-        </div>
+
+        <div id="showPriorCommits" style="width: 93%; margin-top: 115px"></div>
     </div>
 
 
     <!--**********COMPARE CHANGES***********************-->
-    <div id="showViewPriorVersionsForCompare"
-        style=" margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #3399FF; display: none "
-        class="padding-class">
-        <div style="margin-top: 0px; ">
-            <div class="closeViewButton" id="closeCompareChangesView">x</div>
-            <div style="font-weight: bold; margin-bottom: 15px;">Compare Changes Between Versions</div>
+    <div id="showViewPriorVersionsForCompare" style="display: none">
+        <div
+            style="margin-top: 0px; position: fixed; background-color: white; z-index: 1000; width: 95%; top: 0; padding-top: 15px; border-bottom: 3px solid #3399FF;">
+            <div style="margin-top: 0px; display: inline-block;">
+
+                <div id="projectNameOverview" style="margin-top: 0px; margin-bottom: 15px;">
+                    <img src="../clear-folder-fntawesome.svg"
+                        style="padding-right: 1px; height: 13pt; width: 12pt; vertical-align: text-top"></img>
+                    <span id="projectNameCompare" style="font-weight: bold; font-size: 16pt"></span>
+                </div>
+                <div style="text-align: center; font-weight: 250; display: inline-block; margin-bottom: 10px">Compare
+                    Versions:</div>
+
+
+                <div>
+                    <div style="margin-left: 10px; margin-right: 3px; word-wrap: break-word; float: left">
+                        <div style="margin-bottom: 8px" id="displayNewerVersion">
+                            <span>Newer Version: </span>
+                            <span id="laterVersionOverview">
+                                <span class="selectedForChangesClass" id="laterVersionForChanges"></span>
+                                <span class="versionNumberOverview">
+                                    <span class="versionWordLater"></span>
+                                    <span id="versionNumberLater">Current Changes</span>
+                                </span>
+                                <div id="versionMessageLater" style="display:none">n/a</div>
+                                <span id="versionDateLater" style="display:none">n/a</span><span id="versionTimeLater"
+                                    style="display:none">n/a</span>
+                                <span id="commitNumberLater" style="display: none">current-changes</span>
+                            </span>
+                            </span>
+                        </div>
+
+                        <div style="margin-bottom: 10px" id="displayOlderVersion">
+                            <span>Older Version: </span>
+                            <span id="earlierVersionOverview">
+                            </span>
+                        </div>
+                    </div>
+
+                    <div style=" margin-right: 5px; margin-left: 50px; margin-top: 5px" id="runChangesIntegrated"
+                        class="showChangesButton">Show Changes
+                    </div>
+                </div>
+                <!-- Removed as option for now just to keep things simple: <div class="showChangesButton" id="runChangesBlock">show block changes
+                </div>-->
+                <div id="savedVersionsOverview" style="margin-top: 30px; clear: both">
+                    <div id="selectVersionsHeader">Click to select versions to compare:</div>
+                </div>
+            </div>
+            <span style="display: inline-block; float: right">
+                <div onclick="openPriorVersionsFunction()" class="changeView" id="closeCompareChangesView">Open Prior
+                    Versions</div>
+            </span>
         </div>
-        <div style="margin-left: 5px; margin-right: 3px; word-wrap: break-word">
-            <div style="margin-bottom: 15px" id="displayNewerVersion">
-                <span>Newer Version: </span>
-                <span id="laterVersionOverview">
-                    <span class="selectedForChangesClass" id="laterVersionForChanges"></span>
-                    <span class="versionNumberOverview">
-                        <span class="versionWordLater"></span>
-                        <span id="versionNumberLater">Current Changes</span>
-                    </span>
-                    <div id="versionMessageLater" style="display:none">n/a</div>
-                    <span id="versionDateLater" style="display:none">n/a</span><span id="versionTimeLater"
-                        style="display:none">n/a</span>
-                    <span id="commitNumberLater" style="display: none">current-changes</span>
-                </span>
-                </span>
-            </div>
 
-            <div style="margin-bottom: 15px" id="displayOlderVersion">
-                <span>Older Version: </span>
-                <span id="earlierVersionOverview">
-                </span>
-            </div>
-
-
-            <div style=" margin-right: 5px" id="runChangesIntegrated" class="showChangesButton">Show Changes
-            </div>
-            <!-- Removed as option for now just to keep things simple: <div class="showChangesButton" id="runChangesBlock">show block changes
-            </div>-->
-            <div id="savedVersionsOverview" style="margin-top: 15px; display: none;">
-                <div id="selectVersionsHeader">Selected Versions:</div>
-            </div>
-
-            <div id="showPriorCommitsForCompare" style="margin-top: 10px; width: 93%;"></div>
-        </div>
     </div>
+    <div id="showPriorCommitsForCompare" style="clear: both; margin-left: 15px; margin-top: 200px; width: 93%;"></div>
+    </div>
+
+
 
     <!--*************END OF FILE******************-->
     <script src="../javascripts/prior-versions-overview.js"></script>
