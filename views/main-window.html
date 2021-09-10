@@ -429,6 +429,17 @@
         #addDescriptionButton:hover {
             box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
         }
+
+        #noteForSave {
+            border: 2px solid #e6f2ff;
+    border-radius: 7px;
+    padding: 10px;
+    outline: none;
+    font-size: 13pt;
+    margin-top: 10px;
+    min-height: 30pt;
+    box-shadow: 0 5px 10px 0 rgb(0 0 0 / 20%), 0 5px 4px 0 rgb(0 0 0 / 19%) !important;
+}
     </style>
     <title>Your Project</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
@@ -503,17 +514,6 @@
     <!--
 
 -->
-
-    <!--***************View Prior Versions**************-->
-    <div id="showPriorVersions"
-        style="margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #32cd53; display: none"
-        class="padding-class">
-        <div class="closeViewButton" id="closePriorVersionsView">x</div>
-        <div id="savedVersionsId" style="font-weight: bold">Click to View Version:</div>
-        <div id="showPriorCommits" style="margin-top: 10px; width: 93%">
-        </div>
-    </div>
-
 
     <!--**********COMPARE CHANGES***********************-->
     <div id="showViewPriorVersionsForCompare"
