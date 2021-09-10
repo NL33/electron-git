@@ -20,7 +20,12 @@
             font-size: 13pt
         }
 
-
+        .folderIcon {
+            padding-right: 3px;
+            height: 11pt;
+            width: 9pt;
+            vertical-align: text-top;
+        }
 
         .showChangesButton:hover {
             background-color: #32cd53;
@@ -89,7 +94,7 @@
         #changeFolder {
             display: inline-block;
             font-size: 11pt;
-            border: 1px solid #d4eff7;
+            //border: 1px solid #d4eff7;
             border-radius: 15px;
             padding: 2px;
             padding-left: 8px;
@@ -390,7 +395,8 @@
         }
 
         #bodyId {
-            font-family: 'serif'
+            font-family: 'serif';
+
         }
 
         #priorVersionsButton {
@@ -417,6 +423,7 @@
             display: none;
             cursor: pointer;
             border-radius: 5px;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 19%) !important;
         }
 
         #addDescriptionButton:hover {
@@ -557,7 +564,7 @@
         style="border-top: 3px solid #d4eff7;  font-size: 13pt; text-align: center; padding-top: 8px">
         <div id="showSave" onclick="showSaveVersion()">Save Version</div>
         <div style="border-top: 2px solid #d4eff7; padding-top: 8px">
-            <div id="priorVersionsButton">Prior Versions</div>
+            <div id="priorVersionsButton" onclick="priorVersionsFunction()">Prior Versions</div>
 
             <!--   
             <span id="viewPriorVersionsSelect"

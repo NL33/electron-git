@@ -6,29 +6,18 @@ const git = simpleGit()
 
 var projectFolderPath
 var projectFolderName
-
 /***NEXT:
- 1. Have working version of show prior version window.
- 2. But, when try to open prior version window again, if already open, get a remove worktree error for main.js line 880. Is that being called when it shouldn't?
- 
- 3. then, add compare versions to overview window
- * 
- * 
- * 
- * 
- * 
- *
+
+3. then, add compare versions to overview window
  */
-
-
-
-
 
 window.onload = function () {
     projectFolderPath = window.process.argv.slice(-2)[0]
     projectFolderName = window.process.argv.slice(-2)[1]
     viewPriorVersionsFunction()
     document.getElementById('projectName').textContent = projectFolderName
+    document.getElementById('processingMessage').style.display = 'none'
+    document.getElementById('showPriorVersions').style.display = 'block'
 }
 
 async function viewPriorVersionsFunction() {

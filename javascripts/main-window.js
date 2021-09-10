@@ -13,21 +13,15 @@ const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
 const runJxa = require('run-jxa')
-const environmentVariables = require('../z-environments-1.js')
+const environmentVariables = ''//require('../z-environments-1.js')
 var token = environmentVariables.discourseToken
 var discourseUser = environmentVariables.discourseUser
 
 var projectFolderPath
 var projectFolderName
-var fileName
 
-let spawn = require("child_process").spawn
-var cp = require("child_process");
 const { promisify } = require('util')
-const { resolve } = require('path')
-const { O_DIRECTORY } = require('constants')
 
-var diff2html = require("diff2html").Diff2Html
 const { default: axios } = require('axios')
 
 // Including generateKeyPairSync from crypto module. This is for generating an api key for authenticating with discourse

@@ -451,11 +451,11 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
     }
 
     oldVersionWindow = new BrowserWindow({
-        width: 400,
+        //width: 400,
         //height: 620,
         // transparent: true,
-        x: 415,
-        y: 0,
+       // x: 415,
+        //y: 0,
         webPreferences: {
             additionalArguments: [receivedPath, receivedName, versionNumber, date, time, notes],
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
