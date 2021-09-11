@@ -29,45 +29,6 @@
             box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
         }
 
-        .d2h-code-line,
-        .d2h-code-line-ctn {
-            white-space: normal !important;
-        }
-
-        .d2h-ins {
-            background-color: #d6ebd5
-        }
-
-        .d2h-del {
-            background-color: #fbe9ec;
-            // background-color: #fdf0c5  //more of a tannish background color
-        }
-
-        tr ins {
-            background-color: #9df2af
-        }
-
-        tr del {
-            background-color: #f1a7b3
-        }
-
-        /****BODY ***/
-
-
-
-        /***MAKING THE COMMIT****/
-
-        #saveButton:hover {
-            background-color: #3399FF;
-            color: white;
-            border: 2px solid #3399FF;
-            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
-        }
-
-        #sendButton:hover {
-            background-color: #3399FF;
-            color: white;
-        }
 
 
 
@@ -173,14 +134,14 @@
     <!--***************View Prior Versions**************-->
     <div id="showPriorVersions" style="display: none;">
         <div
-            style="position: fixed; width: 100%; margin-right: 20px; z-index: 1000; background-color: white; top: 0; border-bottom: 3px solid #3399FF; padding-bottom: 20px">
+            style="position: fixed; width: 100%; margin-right: 20px; z-index: 1000; background-color: white; top: 0; border-bottom: 3px solid #f2f2f2; padding-bottom: 20px;">
             <div style="display: inline-block">
                 <div id="projectNameOverview" style="margin-bottom: 15px; padding-top: 15px">
                     <img src="../clear-folder-fntawesome.svg"
                         style="padding-right: 1px; height: 13pt; width: 12pt; vertical-align: text-top"></img>
                     <span id="projectName" style="font-weight: bold; font-size: 16pt"></span>
                 </div>
-                <div id="savedVersionsId" style="font-size: 12pt">Click to Open Version:</div>
+                <div id="savedVersionsId" style="font-size: 12pt">Click to open version files:</div>
             </div>
             <span style="float: right">
                 <div onclick="compareVersionsFunction()" class="changeView" id="closeCompareChangesView"
@@ -188,14 +149,14 @@
             </span>
         </div>
 
-        <div id="showPriorCommits" style="width: 93%; margin-top: 115px"></div>
+        <div id="showPriorCommits" style="width: 93%; margin-top: 115px; margin-left: 15px"></div>
     </div>
 
 
     <!--**********COMPARE CHANGES***********************-->
     <div id="showViewPriorVersionsForCompare" style="display: none">
         <div
-            style="margin-top: 0px; position: fixed; background-color: white; z-index: 1000; width: 95%; top: 0; padding-top: 15px; border-bottom: 3px solid #3399FF;">
+            style="margin-top: 0px; position: fixed; background-color: white; z-index: 1000; width: 95%; top: 0; padding-top: 15px; border-bottom: 3px solid #f2f2f2;">
             <div style="margin-top: 0px; display: inline-block;">
 
                 <div id="projectNameOverview" style="margin-top: 0px; margin-bottom: 15px;">
@@ -232,14 +193,14 @@
                         </div>
                     </div>
 
-                    <div style=" margin-right: 5px; margin-left: 50px; margin-top: 5px" id="runChangesIntegrated"
+                    <div style=" margin-right: 5px; margin-left: 70px; margin-top: 5px" id="runChangesIntegrated"
                         class="showChangesButton">Show Changes
                     </div>
                 </div>
                 <!-- Removed as option for now just to keep things simple: <div class="showChangesButton" id="runChangesBlock">show block changes
                 </div>-->
                 <div id="savedVersionsOverview" style="margin-top: 30px; clear: both">
-                    <div id="selectVersionsHeader">Click to select versions to compare:</div>
+                    <div id="selectVersionsHeader">Select versions to compare:</div>
                 </div>
             </div>
             <span style="display: inline-block; float: right">
@@ -247,9 +208,8 @@
                     Versions</div>
             </span>
         </div>
-
-    </div>
-    <div id="showPriorCommitsForCompare" style="clear: both; margin-left: 15px; margin-top: 200px; width: 93%;"></div>
+        <div id="showPriorCommitsForCompare" style="clear: both; margin-left: 15px; margin-top: 200px; width: 93%;">
+        </div>
     </div>
 
 

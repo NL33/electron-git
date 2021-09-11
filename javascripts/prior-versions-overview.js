@@ -1,13 +1,16 @@
-const { ipcRenderer, ipcMain, clipboard, remote } = require('electron')
+const { ipcRenderer } = require('electron')
 const { writeFile, fstat } = require('fs')
 const fs = require("fs")
 const simpleGit = require('simple-git')
 const git = simpleGit()
 
 var projectFolderPath
-var projectFolderName 
+var projectFolderName
+
+var resultArray
 /***NEXT:
 --just did styling for showing either compare versions or open versions in same window
+--next: close prior version window when run show changes
 --next: styling of compare versions window, borrowing from saved versions window (box shadow and larger window)
 --then, run compare changes and issue spot that.
 --then, colored icons for main window
@@ -17,15 +20,14 @@ var projectFolderName
 window.onload = function () {
     projectFolderPath = window.process.argv.slice(-2)[0]
     projectFolderName = window.process.argv.slice(-2)[1]
-    console.log('path = ' + projectFolderPath)
     viewPriorVersionsFunction()
     document.getElementById('projectName').textContent = projectFolderName
     document.getElementById('projectNameCompare').textContent = projectFolderName
     document.getElementById('processingMessage').style.display = 'none'
-   document.getElementById('showPriorVersions').style.display = 'block'
+    document.getElementById('showPriorVersions').style.display = 'block'
 }
 
-function openPriorVersionsFunction(){
+function openPriorVersionsFunction() {
     console.log('clicked')
     document.getElementById('showPriorVersions').style.display = 'block'
     document.getElementById('showViewPriorVersionsForCompare').style.display = 'none'
@@ -34,10 +36,11 @@ var compareRun = false
 
 function compareVersionsFunction() {
     document.getElementById('showPriorVersions').style.display = 'none'
-    document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
     if (compareRun === false) {
-        showCompareChangesFunction()
+        showCompareChangesFunction(resultArray)
         compareRun = true
+    } else {
+        document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
     }
 }
 
@@ -49,7 +52,7 @@ async function viewPriorVersionsFunction() {
         })
 
         await git.log().then(result => {
-            var resultArray = result.all
+            resultArray = result.all
             var totalNumber = resultArray.length
             var commitDiv = document.getElementById('showPriorCommits')
             var savedVersionsHeader = document.getElementById('savedVersionsOverview')
@@ -92,6 +95,7 @@ async function viewPriorVersionsFunction() {
     }
 }
 var treeName = 'n/a'
+
 async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
     try {
         await git.cwd(projectFolderPath).then(result => {
@@ -205,7 +209,7 @@ async function removeWorkTree(treePath) {
 /*******************COMPARE CHANGES************** */
 
 
-async function showCompareChangesFunction() {
+async function showCompareChangesFunction(resultArray) {
     document.getElementById('showPriorCommitsForCompare').innerHTML = ''
     /****Refresh display of the versions that will be compared******************* */
     var versionSummaryNewer = `
@@ -233,20 +237,15 @@ async function showCompareChangesFunction() {
     document.getElementById('displayOlderVersion').innerHTML = ''
     document.getElementById('displayOlderVersion').insertAdjacentHTML('afterbegin', versionSummaryOlder)
     /*********Get the prior versions******** */
-    console.log('project folder path = ' + projectFolderPath)
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd results' + JSON.stringify(result))
-        })
 
-        await git.log().then(result => {
-            var resultArray = result.all
-            var totalNumber = resultArray.length
-            var commitForCompareDiv = document.getElementById('showPriorCommitsForCompare')
-            var savedVersionsHeader = document.getElementById('savedVersionsOverview')
-            savedVersionsHeader.style.display = "block"
-            /**Load Current Change info into the prior versions list */
-            var currentChangesContent = `
+    try {
+
+        var totalNumber = resultArray.length
+        var commitForCompareDiv = document.getElementById('showPriorCommitsForCompare')
+        var savedVersionsHeader = document.getElementById('savedVersionsOverview')
+        savedVersionsHeader.style.display = "block"
+        /**Load Current Change info into the prior versions list */
+        var currentChangesContent = `
             <div class="versionOverviewClass selectedChangeClass" id="selectedChangeId1"
             onclick="selectVersionToViewChanges(event, 'current', 'Current Changes', 'current', 'n/a', 'n/a')">
                  <div class="versionMessage" id="currentChanges">Current locally saved changes</div>
@@ -255,29 +254,28 @@ async function showCompareChangesFunction() {
                 <span class="commitNumber" style="display: none">current-changes</span>
             </div>
             `
-            commitForCompareDiv.insertAdjacentHTML('beforeend', currentChangesContent)
-console.log('here we go')
-            /***PRIOR VERSIONS LIST: Load all prior versions into the prior versions list** */
-            for (var i = 0; i < resultArray.length; i++) {
-                var commit = resultArray[i]
-                var versionNumber = totalNumber--
-                var versionMessage = commit.message
-                var dateTime = commit.date
-                var commitNumber = commit.hash
+        commitForCompareDiv.insertAdjacentHTML('beforeend', currentChangesContent)
+        /***PRIOR VERSIONS LIST: Load all prior versions into the prior versions list** */
+        for (var i = 0; i < resultArray.length; i++) {
+            var commit = resultArray[i]
+            var versionNumber = totalNumber--
+            var versionMessage = commit.message
+            var dateTime = commit.date
+            var commitNumber = commit.hash
 
-                var dateObject = new Date(dateTime)
-                var showDate = dateObject.toLocaleDateString('en-us', {
-                    weekday: 'short',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                })
-                var showTime = dateObject.toLocaleTimeString('en-us', {
-                    timeStyle: 'short'
-                })
-                var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
-                /***CLEAN UP HERE: Do not need (probably) to have the params other than even in the selectversiontoviewchanges function */
-                contents = `
+            var dateObject = new Date(dateTime)
+            var showDate = dateObject.toLocaleDateString('en-us', {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })
+            var showTime = dateObject.toLocaleTimeString('en-us', {
+                timeStyle: 'short'
+            })
+            var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
+            /***CLEAN UP HERE: Do not need (probably) to have the params other than even in the selectversiontoviewchanges function */
+            contents = `
                 <div class="versionOverviewClass" onclick='selectVersionToViewChanges(event, "${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}", "${versionMessage}")'>
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumberWord">Version </span><span class="versionNumber">${versionNumber}</span>
@@ -285,13 +283,13 @@ console.log('here we go')
                     <span class="commitNumber" style="display:none">${commitNumber}</span>
                 </div>   
                 `
-                commitForCompareDiv.insertAdjacentHTML("beforeend", contents)
+            commitForCompareDiv.insertAdjacentHTML("beforeend", contents)
 
-                /**SUMMARY HEADER: Take the first prior version, and add it to the summary header as the earlier version. The current changes are already listed as the later version */
-                if (i === 0) {
-                    //this is the insert at the top summary header.
-                    //NOTE: the current change selection is already hard-coded as the later change for comparison in the html
-                    var headerInsert = `
+            /**SUMMARY HEADER: Take the first prior version, and add it to the summary header as the earlier version. The current changes are already listed as the later version */
+            if (i === 0) {
+                //this is the insert at the top summary header.
+                //NOTE: the current change selection is already hard-coded as the later change for comparison in the html
+                var headerInsert = `
                     <span class="selectedForChangesClass" id="earlierVersionForChanges">
                         <span class="versionNumberOverview"><span id="versionWordEarlier">Version </span><span id="versionNumberEarlier">${versionNumber}</span></span>
                         <div id="versionMessageEarlier" style="display:none">${versionMessage}</div>
@@ -299,22 +297,21 @@ console.log('here we go')
                          <span id="commitNumberEarlier" style="display:none">${commitNumber}</span>
                     </span>   
                     `
-                    document.getElementById('earlierVersionOverview').innerHTML = headerInsert
+                document.getElementById('earlierVersionOverview').innerHTML = headerInsert
 
-                    //this applies to the items in the list below
-                    document.getElementById('showPriorCommitsForCompare').children[1].id = "selectedChangeId2"
-                    document.getElementById('selectedChangeId2').classList.add('selectedChangeClass')
-                }
+                //this applies to the items in the list below
+                document.getElementById('showPriorCommitsForCompare').children[1].id = "selectedChangeId2"
+                document.getElementById('selectedChangeId2').classList.add('selectedChangeClass')
             }
-            document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
-        })
+        }
+        document.getElementById('showViewPriorVersionsForCompare').style.display = 'block'
     }
     catch (e) {
         console.log('error in show versions to compare = ' + e)
         if (e.toString().indexOf('not a git repository') > -1) {
             alert('To Compare Changes, please first save a project version.')
         } else {
-         //   alert('Sorry, there was an error in comparing changes. Please try again.')
+            //   alert('Sorry, there was an error in comparing changes. Please try again.')
         }
     }
 }
@@ -325,6 +322,8 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
     //After the selection numbers are sorted out, then there is a separate process to determine which version will be listed as later (newer) and which as earlier(older). This process is redone every time there is a selection.
 
     //***MAKE SURE THE ID IS LINKED TO THE OVERVIEW CLASS OF THE ELEMENT (no matter where it was clicked) ********/
+    document.getElementById('selectVersionsHeader').style.display = 'none'
+    document.getElementById('savedVersionsOverview').style.marginTop = '40px'
     try {
         if (event.target.classList.contains('versionOverviewClass')) {
             var selectedDiv = event.target
@@ -455,7 +454,7 @@ function selectVersionToViewChanges(event, commitNumber, versionNumber, showDate
         }
     } catch (e) {
         console.log('error in select versions to view changes = ' + e)
-     //   alert('Sorry, there was an error in comparing changes. Please close this item and try again.')
+        //   alert('Sorry, there was an error in comparing changes. Please close this item and try again.')
     }
 }
 

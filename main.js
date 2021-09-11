@@ -10,24 +10,38 @@ const sanitizeHtml = require('sanitize-html');
 //const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
 //console.log("Does the client have accessibility permissions?", isTrusted)
 
-
 /*** TOOLBAR MENU ICON****** */
 
 //const activeWindow = require('active-win');
 let tray = null
 var mainWindow
 function menuApp() {
-    try {
-    tray = new Tray(__dirname + '/assets/rts-icon2.png')
+    tray = new Tray('rts-icon2.png')
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Hide Windows', click() { minimizeWindows() } },
         { label: 'Breathe Big', click() { openBreatheBigWindow() } },
+        { label: 'Get Window Info', click() { getTheWindowWithNut() } },
     ])
     tray.setToolTip('This is my application.')
     tray.setContextMenu(contextMenu)
-} catch (e){
-    console.log('error in loading tray menu = ' + e)
 }
+
+async function getTheWindowWithNut() {
+    const foregroundWindow = await getWindows()
+    foregroundWindow.forEach((window) => {
+
+        getWinTitle(window)
+    })
+}
+
+async function getWinTitle(win) {
+    try {
+        var title = await win.title
+        console.log('***title = ' + title)
+    }
+    catch (e) {
+        console.log('error in get windows = ' + e)
+    }
 }
 
 
@@ -153,30 +167,7 @@ async function getGitWindow(windowTitle) {
     getGitWindow.loadURL('file://' + __dirname + '/views/get-git-window.html');
 }
 
-/******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
 
-ipcMain.on('open-compare-versions-window', (event, arg1, arg2, arg3, arg4) => {
-    compareVersionsWindowFunction(arg1, arg2, arg3, arg4)
-})
-
-async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earlierVersionInfo, comparisonType) {
-    oldVersionWindow = new BrowserWindow({
-        width: 700,
-        //height: 620,
-        // transparent: true,
-        x: 415,
-        y: 0,
-        webPreferences: {
-            additionalArguments: [projectPath, laterVersionInfo, earlierVersionInfo, comparisonType],
-            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
-            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
-            enableRemoteModule: true
-        }
-    })
-    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
-
-    oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
-}
 
 
 
@@ -222,20 +213,20 @@ function openBreatheBigWindow() {
     var rightHeight = Math.floor((size.height)) - Math.floor((size.height) - 2)
     //var rightHeight = Math.floor((size.height)-170)
     var xSpot = Math.floor((size.width) / 2) - 112
-      breatheWindow = new BrowserWindow({
+    breatheWindow = new BrowserWindow({
         show: false,
         height: 165,
         width: 225,
         x: xSpot,
         y: rightHeight,
-        title: "Breathe",
+        title: "Focus",
         hasShadow: false,
         transparent: true,
         frame: false,
         alwaysOnTop: true,
         webPreferences: {
-            nodeIntegration: true, 
-            contextIsolation: false, 
+            nodeIntegration: true,
+            contextIsolation: false,
             enableRemoteModule: true
         }
         //backgroundColor: 'white'
@@ -451,11 +442,11 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
     }
 
     oldVersionWindow = new BrowserWindow({
-        //width: 400,
+        // width: 400,
         //height: 620,
-        // transparent: true,
-       // x: 415,
-        //y: 0,
+        //transparent: true,
+        //x: 415,
+        //frame: false,
         webPreferences: {
             additionalArguments: [receivedPath, receivedName, versionNumber, date, time, notes],
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
@@ -479,34 +470,30 @@ ipcMain.on('open-old-version-window', (event, args) => {
     oldVersionWindowFunction(receivedInfo[0], receivedInfo[1], receivedInfo[2], receivedInfo[3], receivedInfo[4], receivedInfo[5])
 })
 
+/******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
 
+ipcMain.on('open-compare-versions-window', (event, arg1, arg2, arg3, arg4) => {
+    compareVersionsWindowFunction(arg1, arg2, arg3, arg4)
+})
 
-/****FOLDER WINDOW (NOT CURRENTLY IN USE) ********/
-
-function folderWindowFunction() {
-    let display = screen.getPrimaryDisplay();
-    let width = display.bounds.width
-    let height = display.bounds.height
-    folderWindow = new BrowserWindow({
-        width: 600,
-        height: 300,
-        x: width - 5,
-        y: 0,
-        //alwaysOnTop: true,
+async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earlierVersionInfo, comparisonType) {
+    oldVersionWindow = new BrowserWindow({
+        //width: 700,
+        //height: 620,
+        // transparent: true,
+        //x: 415,
+        // y: 0,
         webPreferences: {
+            additionalArguments: [projectPath, laterVersionInfo, earlierVersionInfo, comparisonType],
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+            enableRemoteModule: true
         }
     })
-    folderWindow.loadURL('file://' + __dirname + '/views/folder-view.html');
-    //newVersionWindow.loadURL('/Users/sean/Desktop/word-convert-test-folder/word-convert-test.txt')
-    folderWindow.openDevTools()
-    /*
-    newVersionWindow.webContents.on('did-finish-load', function () {
-        newVersionWindow.show();
-    })
-    */
-    // convertWord()
+    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
+
+    oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
+    priorVersionOvWindow.close()
 }
 
 
@@ -514,7 +501,7 @@ function folderWindowFunction() {
 /*******BASIC SETUP**** */
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
-   
+
     openBasicWindow()
     saveNewVersionWindow()
     menuApp()
@@ -544,8 +531,11 @@ if (process.platform === 'win32') {
 
 app.on('open-url', function (event, data) {
     event.preventDefault();
+    //data is the 
     var payload = data.split('redirect?payload=')[1]
-    console.log('received data')
+    console.log('RECEIVED!!! data = ' + data)
+    console.log('*********************')
+    console.log('payload = ' + payload)
     newVersionWindow.webContents.send('discourse-payload-url', payload)
 
 });
