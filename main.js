@@ -10,38 +10,24 @@ const sanitizeHtml = require('sanitize-html');
 //const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
 //console.log("Does the client have accessibility permissions?", isTrusted)
 
+
 /*** TOOLBAR MENU ICON****** */
 
 //const activeWindow = require('active-win');
 let tray = null
 var mainWindow
 function menuApp() {
-    tray = new Tray('rts-icon2.png')
+    try {
+    tray = new Tray(__dirname + '/assets/rts-icon2.png')
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Hide Windows', click() { minimizeWindows() } },
         { label: 'Breathe Big', click() { openBreatheBigWindow() } },
-        { label: 'Get Window Info', click() { getTheWindowWithNut() } },
     ])
     tray.setToolTip('This is my application.')
     tray.setContextMenu(contextMenu)
+} catch (e){
+    console.log('error in loading tray menu = ' + e)
 }
-
-async function getTheWindowWithNut() {
-    const foregroundWindow = await getWindows()
-    foregroundWindow.forEach((window) => {
-
-        getWinTitle(window)
-    })
-}
-
-async function getWinTitle(win) {
-    try {
-        var title = await win.title
-        console.log('***title = ' + title)
-    }
-    catch (e) {
-        console.log('error in get windows = ' + e)
-    }
 }
 
 
@@ -169,8 +155,6 @@ async function getGitWindow(windowTitle) {
 
 
 
-
-
 /*****## OPEN DIALOG TO SELECT FOLDER ******/
 
 ipcMain.on('open-folder-dialog', (event, arg) => {
@@ -213,20 +197,20 @@ function openBreatheBigWindow() {
     var rightHeight = Math.floor((size.height)) - Math.floor((size.height) - 2)
     //var rightHeight = Math.floor((size.height)-170)
     var xSpot = Math.floor((size.width) / 2) - 112
-    breatheWindow = new BrowserWindow({
+      breatheWindow = new BrowserWindow({
         show: false,
         height: 165,
         width: 225,
         x: xSpot,
         y: rightHeight,
-        title: "Focus",
+        title: "Breathe",
         hasShadow: false,
         transparent: true,
         frame: false,
         alwaysOnTop: true,
         webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
+            nodeIntegration: true, 
+            contextIsolation: false, 
             enableRemoteModule: true
         }
         //backgroundColor: 'white'
@@ -390,6 +374,7 @@ function openDiscourseAuthWindow(discourseUrl) {
 }
 
 
+
 /*********Prior Versions Overview Window************* */
 ipcMain.on('open-prior-version-overview', (event, projectFolderPath, projectFolderName) => {
     priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName)
@@ -497,11 +482,10 @@ async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earl
 }
 
 
-
 /*******BASIC SETUP**** */
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
-
+   
     openBasicWindow()
     saveNewVersionWindow()
     menuApp()
@@ -531,11 +515,8 @@ if (process.platform === 'win32') {
 
 app.on('open-url', function (event, data) {
     event.preventDefault();
-    //data is the 
     var payload = data.split('redirect?payload=')[1]
-    console.log('RECEIVED!!! data = ' + data)
-    console.log('*********************')
-    console.log('payload = ' + payload)
+    console.log('received data')
     newVersionWindow.webContents.send('discourse-payload-url', payload)
 
 });
