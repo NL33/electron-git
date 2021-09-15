@@ -493,9 +493,9 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
    
     openBasicWindow()
    // saveNewVersionWindow()
-   openNavigatorWindow()
+   //openNavigatorWindow()
     menuApp()
-    // createWindow()
+    createWindow()
     app.on('activate', () => {
 
         if (BrowserWindow.getAllWindows().length === 0) { //create a new browswer window only if app has no visible windows after being activated, such as when launching the app for the first time or relaunching the already running app

@@ -1,22 +1,38 @@
 const { exec } = require('child_process');
 
+/**This code runs the Jxa in the app */
+function runJxaFunction(fn, ...arguments) {
+    try {
+        fn = fn + '', arguments = `const args = ${JSON.stringify(arguments)};`;
+        const start = fn.indexOf('{') + 1
+        const code = JSON.stringify(`(${fn.slice(0, start) + arguments + fn.slice(start)})()`).replace(/\\n/g, '');
+        return new Promise((resolve, reject) => exec(
+            `osascript -l JavaScript -e ${code}`,
+            (error, stdout, stderr) => error ? reject(stderr) : resolve(stdout)
+        ));
+        } catch(e){
+            console.log('error in runJXAFunction = ' + e)
+        }
+}
+
+
 /***GET LIST OF OPEN WINDOWS AND APPS******* */
 module.exports.macActive = function () {
     return runJxaFunction(() => {
         try {
-            const apps = Application("System Events").processes.whose({ backgroundOnly: { '=': false } });
-            const result = [];
+            var apps = Application("System Events").processes.whose({ backgroundOnly: { '=': false } });
+            var result = [];
 
             for (let i = 0; i < apps.length; i++) {
                 if (!apps[i].windows.length) continue;
 
 
-                const name = apps[i].file.name().replace('.app', '');
-                const path = apps[i].file.path().replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '');
-                const unixId = apps[i].unixId();
-                const bundleId = apps[i].bundleIdentifier();
+                var name = apps[i].file.name().replace('.app', '');
+                var path = apps[i].file.path().replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '');
+                var unixId = apps[i].unixId();
+                var bundleId = apps[i].bundleIdentifier();
 
-                let windows = [];
+                var windows = [];
                 for (let z = 0; z < apps[i].windows.length; z++) {
 
                     let tabs = false;
@@ -32,7 +48,7 @@ module.exports.macActive = function () {
             }
             return JSON.stringify(result);
         } catch (e) {
-            throw Error('something went wrong');
+            throw Error('something went wrong in retrieving the active windows = ' + e);
         }
     });
 }
@@ -64,12 +80,4 @@ module.exports.macFocus = function (unixId, windowIndex = 0, tabIndex = false) {
     }, unixId, windowIndex, tabIndex);
 }
 
-function runJxaFunction(fn, ...arguments) {
-    fn = fn + '', arguments = `const args = ${JSON.stringify(arguments)};`;
-    const start = fn.indexOf('{') + 1
-    const code = JSON.stringify(`(${fn.slice(0, start) + arguments + fn.slice(start)})()`).replace(/\\n/g, '');
-    return new Promise((resolve, reject) => exec(
-        `osascript -l JavaScript -e ${code}`,
-        (error, stdout, stderr) => error ? reject(stderr) : resolve(stdout)
-    ));
-}
+

@@ -1,0 +1,84 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+h2,
+h5 {
+  margin: 0;
+}
+ul {
+  list-style-type: none;
+  padding-inline-start: 0px;
+  margin: 0;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#card {
+  display: grid;
+  grid-template: "img h2" 50px ". windows" auto / 50px;
+  align-items: center;
+  box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+#card > img {
+  grid-area: img;
+}
+#card > img:hover {
+  cursor: pointer;
+}
+
+#card > h2 {
+  grid-area: h2;
+  padding-left: 1rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+#card > h2:hover {
+  cursor: pointer;
+}
+
+#card > ul {
+  grid-area: windows;
+  padding-left: 1rem;
+}
+
+#card > ul > li {
+  display: grid;
+  grid-template: "windowIcon windowName" 24px ". tabs" auto / 24px;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+#card > ul > li > h5 {
+  grid-area: windowName;
+  font-weight: 300;
+}
+#card > ul > li > h5:hover {
+  cursor: pointer;
+}
+
+#card > ul > li > span {
+  grid-area: windowIcon;
+}
+#card > ul > li > span:hover {
+  cursor: pointer;
+}
+
+#card > ul > li > div {
+  grid-area: tabs;
+}
+
+#card > ul > li > div > span {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  padding-bottom: 0.5rem;
+}
+#card > ul > li > div > span:hover {
+  cursor: pointer;
+}

@@ -1,1 +1,7 @@
-{}
+{
+  "com.apple.Notes": "icons/standard.png",
+  "com.microsoft.VSCode": "icons/standard.png",
+  "com.google.Chrome": "icons/standard.png",
+  "com.hnc.Discord": "icons/standard.png",
+  "com.github.Electron": "icons/standard.png"
+}
