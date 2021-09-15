@@ -30,52 +30,9 @@ function menuApp() {
 }
 }
 
-
-//prevent electron from opening a second instance of the app (for example, as a result of the protocol being called on windows)
-let newVersionWindow = null
-let basicWindow = null
-
-const gotTheLock = app.requestSingleInstanceLock()
-
-if (!gotTheLock) {
-    app.quit()
-} else {
-    app.on('second-instance', (event, commandLine, workingDirectory) => {
-        // Someone tried to run a second instance, we should focus our window.
-        if (newVersionWindow) {
-            if (basicWindow) {
-                basicWindow.hide()
-            }
-            if (newVersionWindow.isMinimized()) newVersionWindow.restore()
-            newVersionWindow.focus()
-        } else {
-            if (basicWindow) {
-                basicWindow.show()
-            }
-
-        }
-    })
-}
 /****#OPEN BASIC (Mini) WINDOW******** */
-async function minimizeWindows() {
-    try {
-        const result = await runJxa(`
-            const evalAS2 = s => {
-                    const a = Application.currentApplication();
-                    const sa = (a.includeStandardAdditions = true, a);
-                    return sa.runScript(s);
-            };
-           evalAS2('tell application "System Events" to set visible of every application process to false')
-          `)
-        return result
-        function openMain() {
-            ipcRenderer.send('open-main-window', '') //doesn't get called bc window is minimized. right now, it closes all windows
-        }
 
-    } catch (error) {
-        console.log('error in minimize windows' + error)
-    }
-}
+
 function openBasicWindow() {
     var theDisplay = screen.getPrimaryDisplay()
     var screenWidth = theDisplay.bounds.width
@@ -98,7 +55,6 @@ function openBasicWindow() {
     basicWindow.loadURL('file://' + __dirname + '/views/basic-window.html');
     basicWindow.hide()
 }
-
 
 /* **** #OPEN MAIN WINDOW********/
 
@@ -131,6 +87,110 @@ async function saveNewVersionWindow(windowTitle) {
 }
 /********************************************************* */
 
+/*********Prior Versions Overview Window************* */
+ipcMain.on('open-prior-version-overview', (event, projectFolderPath, projectFolderName) => {
+    priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName)
+})
+
+var priorVersionOvWindowShowing = false
+var priorVersionOvWindow
+function priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName) {
+    if (priorVersionOvWindowShowing === true) {
+        priorVersionOvWindow.restore()
+        priorVersionOvWindow.focus()
+    } else {
+        priorVersionOvWindow = new BrowserWindow({
+            //width: 400,
+            //height: 620,
+            // transparent: true,
+            // x: 415,
+            //y: 0,
+            webPreferences: {
+                additionalArguments: [projectFolderPath, projectFolderName],
+                nodeIntegration: true,
+                contextIsolation: false,
+                enableRemoteModule: true
+            }
+        })
+        priorWindowPath = projectFolderPath
+        priorVersionOvWindow.loadURL('file://' + __dirname + '/views/prior-versions-overview.html');
+
+        priorVersionOvWindowShowing = true
+
+        priorVersionOvWindow.on('close', function () {
+            priorVersionOvWindowShowing = false
+            //NOTE: a worktree is created NOT by the priorVersionOvWindow, but by the oldVersionWindow--the window where the actual files of the old window are shown. When that window is closed, it sends a close-worktree call to the main-window. It is not necessary to send that call for this window 
+        })
+    }
+}
+
+/*******************Prior Version Window With Prior Version Contents************** */
+async function viewOldVersion() {
+    newVersionWindow.webContents.send('view-old-version', 'cool')
+}
+
+var oldVersionWindow
+var oldVersionWindowCreated = false
+async function oldVersionWindowFunction(receivedPath, receivedName, versionNumber, date, time, notes) {
+    if (oldVersionWindowCreated === true) {
+        /**close any existing old version window before opening a new one */
+        oldVersionWindow.close()
+    }
+
+    oldVersionWindow = new BrowserWindow({
+        // width: 400,
+        //height: 620,
+        //transparent: true,
+        //x: 415,
+        //frame: false,
+        webPreferences: {
+            additionalArguments: [receivedPath, receivedName, versionNumber, date, time, notes],
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+            enableRemoteModule: true
+        }
+    })
+    oldVersionWindow.on('close', function () {
+        oldVersionWindowCreated = false
+        newVersionWindow.webContents.send('close-worktree', receivedPath)
+    })
+    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
+    oldVersionWindowCreated = true
+    oldVersionWindow.loadURL('file://' + __dirname + '/views/get-old-version.html')
+    priorVersionOvWindow.close()
+}
+
+
+ipcMain.on('open-old-version-window', (event, args) => {
+    var receivedInfo = JSON.parse(args)
+    oldVersionWindowFunction(receivedInfo[0], receivedInfo[1], receivedInfo[2], receivedInfo[3], receivedInfo[4], receivedInfo[5])
+})
+
+/******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
+
+ipcMain.on('open-compare-versions-window', (event, arg1, arg2, arg3, arg4) => {
+    compareVersionsWindowFunction(arg1, arg2, arg3, arg4)
+})
+
+async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earlierVersionInfo, comparisonType) {
+    oldVersionWindow = new BrowserWindow({
+        //width: 700,
+        //height: 620,
+        // transparent: true,
+        //x: 415,
+        // y: 0,
+        webPreferences: {
+            additionalArguments: [projectPath, laterVersionInfo, earlierVersionInfo, comparisonType],
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+            enableRemoteModule: true
+        }
+    })
+    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
+
+    oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
+    priorVersionOvWindow.close()
+}
 
 /************NEED GIT WINDOW ********************* */
 ipcMain.on('open-get-git-window', () => {
@@ -189,8 +249,32 @@ function showDialog() {
         */
 }
 
+
+/****MINIMIZE WINDOWS Menu function *****/
+async function minimizeWindows() {
+    try {
+        const result = await runJxa(`
+            const evalAS2 = s => {
+                    const a = Application.currentApplication();
+                    const sa = (a.includeStandardAdditions = true, a);
+                    return sa.runScript(s);
+            };
+           evalAS2('tell application "System Events" to set visible of every application process to false')
+          `)
+        return result
+        function openMain() {
+            ipcRenderer.send('open-main-window', '') //doesn't get called bc window is minimized. right now, it closes all windows
+        }
+
+    } catch (error) {
+        console.log('error in minimize windows' + error)
+    }
+}
+
+
+/****************BREATHE BIG WINDOW */
 var breatheWindow
-/***BREATHE BIG WINDOW */
+
 function openBreatheBigWindow() {
     var theDisplay = screen.getPrimaryDisplay()
     var size = theDisplay.workAreaSize
@@ -230,9 +314,7 @@ ipcMain.on('close-breathe-window', function () {
     breatheWindow.destroy()
 });
 
-
-
-/***END BREATHE BIG WINDOW*** */
+//end breath big window
 ipcMain.on('open-main-window', (event, arg) => {
     newVersionWindow.show()
     basicWindow.hide()
@@ -334,7 +416,7 @@ function openHTMLWindow(thePath) {
 
 
 /****SAVE FOCUSED HTML WINDOW***** */
-
+//not currently in use
 function saveActiveWindow() {
     //get the in focus browser window
     var focusedWindow = BrowserWindow.getFocusedWindow()
@@ -375,111 +457,7 @@ function openDiscourseAuthWindow(discourseUrl) {
 
 
 
-/*********Prior Versions Overview Window************* */
-ipcMain.on('open-prior-version-overview', (event, projectFolderPath, projectFolderName) => {
-    priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName)
-})
 
-var priorVersionOvWindowShowing = false /*******NEED TO CHANGE THIS BACK WHEN WINDOW DESTROYED OR WINDOW CLOSED**************** */
-var priorVersionOvWindow
-function priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName) {
-    if (priorVersionOvWindowShowing === true) {
-        priorVersionOvWindow.restore()
-        priorVersionOvWindow.focus()
-    } else {
-        priorVersionOvWindow = new BrowserWindow({
-            //width: 400,
-            //height: 620,
-            // transparent: true,
-            // x: 415,
-            //y: 0,
-            webPreferences: {
-                additionalArguments: [projectFolderPath, projectFolderName],
-                nodeIntegration: true,
-                contextIsolation: false,
-                enableRemoteModule: true
-            }
-        })
-        priorWindowPath = projectFolderPath
-        priorVersionOvWindow.loadURL('file://' + __dirname + '/views/prior-versions-overview.html');
-
-        priorVersionOvWindowShowing = true
-
-        priorVersionOvWindow.on('close', function () {
-            priorVersionOvWindowShowing = false
-            //NOTE: a worktree is created NOT by the priorVersionOvWindow, but by the oldVersionWindow--the window where the actual files of the old window are shown. When that window is closed, it sends a close-worktree call to the main-window. It is not necessary to send that call for this window 
-        })
-    }
-}
-
-
-/*******************Prior Version Window With Prior Version Contents************** */
-async function viewOldVersion() {
-    newVersionWindow.webContents.send('view-old-version', 'cool')
-}
-
-var oldVersionWindow
-var oldVersionWindowCreated = false
-async function oldVersionWindowFunction(receivedPath, receivedName, versionNumber, date, time, notes) {
-    if (oldVersionWindowCreated === true) {
-        /**close any existing old version window before opening a new one */
-        oldVersionWindow.close()
-    }
-
-    oldVersionWindow = new BrowserWindow({
-        // width: 400,
-        //height: 620,
-        //transparent: true,
-        //x: 415,
-        //frame: false,
-        webPreferences: {
-            additionalArguments: [receivedPath, receivedName, versionNumber, date, time, notes],
-            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
-            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
-            enableRemoteModule: true
-        }
-    })
-    oldVersionWindow.on('close', function () {
-        oldVersionWindowCreated = false
-        newVersionWindow.webContents.send('close-worktree', receivedPath)
-    })
-    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
-    oldVersionWindowCreated = true
-    oldVersionWindow.loadURL('file://' + __dirname + '/views/get-old-version.html')
-    priorVersionOvWindow.close()
-}
-
-
-ipcMain.on('open-old-version-window', (event, args) => {
-    var receivedInfo = JSON.parse(args)
-    oldVersionWindowFunction(receivedInfo[0], receivedInfo[1], receivedInfo[2], receivedInfo[3], receivedInfo[4], receivedInfo[5])
-})
-
-/******* OPEN NEW WINDOW TO VIEW COMPARISONS ********/
-
-ipcMain.on('open-compare-versions-window', (event, arg1, arg2, arg3, arg4) => {
-    compareVersionsWindowFunction(arg1, arg2, arg3, arg4)
-})
-
-async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earlierVersionInfo, comparisonType) {
-    oldVersionWindow = new BrowserWindow({
-        //width: 700,
-        //height: 620,
-        // transparent: true,
-        //x: 415,
-        // y: 0,
-        webPreferences: {
-            additionalArguments: [projectPath, laterVersionInfo, earlierVersionInfo, comparisonType],
-            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
-            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
-            enableRemoteModule: true
-        }
-    })
-    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
-
-    oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
-    priorVersionOvWindow.close()
-}
 
 
 /*******BASIC SETUP**** */
@@ -545,5 +523,33 @@ app.on('window-all-closed', () => { //quit the application when it no longer has
 try {
     require('electron-reloader')(module)
 } catch (_) { }
+
+
+/***************prevent electron from opening a second instance of the app (for example, as a result of the protocol being called on windows)***********************************/
+let newVersionWindow = null
+let basicWindow = null
+
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
+    app.quit()
+} else {
+    app.on('second-instance', (event, commandLine, workingDirectory) => {
+        // Someone tried to run a second instance, we should focus our window.
+        if (newVersionWindow) {
+            if (basicWindow) {
+                basicWindow.hide()
+            }
+            if (newVersionWindow.isMinimized()) newVersionWindow.restore()
+            newVersionWindow.focus()
+        } else {
+            if (basicWindow) {
+                basicWindow.show()
+            }
+
+        }
+    })
+}
+
 
 
