@@ -85,7 +85,34 @@ async function saveNewVersionWindow(windowTitle) {
     })
     */
 }
-/********************************************************* */
+
+
+/*****OPEN NAVIGATOR WINDOW********************* */
+
+function openNavigatorWindow(){
+    var theDisplay = screen.getPrimaryDisplay()
+    var height = theDisplay.workAreaSize.height
+    var screenWidth = theDisplay.bounds.width
+    var  navigatorWindow = new BrowserWindow({
+       // show: false,
+        height: height,
+        width: 450,
+        x: screenWidth-440,
+        y: 0,
+        title: "Navigate",
+        alwaysOnTop: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true
+        }
+        //backgroundColor: 'white'
+    })
+
+    navigatorWindow.loadURL('file://' + __dirname + '/views/navigator-window.html');
+    navigatorWindow.openDevTools()
+}
+
 
 /*********Prior Versions Overview Window************* */
 ipcMain.on('open-prior-version-overview', (event, projectFolderPath, projectFolderName) => {
@@ -465,7 +492,8 @@ function openDiscourseAuthWindow(discourseUrl) {
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
    
     openBasicWindow()
-    saveNewVersionWindow()
+   // saveNewVersionWindow()
+   openNavigatorWindow()
     menuApp()
     // createWindow()
     app.on('activate', () => {
