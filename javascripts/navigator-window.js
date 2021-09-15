@@ -1,6 +1,6 @@
-const { macActive } = require('../../scripts/navigator-jxa');
-const addIcons = require('../../scripts/navigator-add-icons');
-const cards = require('../cards');
+const { macActive } = require('../scripts/navigator-jxa');
+const addIcons = require('../scripts/navigator-add-icons');
+//const cards = require('../cards');
 
 
 /****THIS IS THE JS FILE THAT GETS CALLLED when the app opens */
@@ -12,19 +12,22 @@ const cards = require('../cards');
 //bug when you switch spaces while it loops over windows. reason: windows change
 //updates with setInterval and with page reload on window click
 async function loop() {
-    console.log(1);
     let activeApps = await macActive().then(d => JSON.parse(d));
     // EXCLUDING OWN APP
     //temp, better to filter in jxa by pid.
     //therefore we need to pid of the main process, with ipc com.
     activeApps = activeApps.filter(x => x.bundleId !== 'com.github.Electron');
     activeApps = await addIcons(activeApps, 'icons');
+
+
+    /*
     cards(activeApps.map(x => ({
         appName: x.name,
         appIcon: `../../${x.icon}`,
         windows: x.windows,
         unixId: x.unixId,
     })));
+    */
 }
 
 loop().catch(e => alert(e));
