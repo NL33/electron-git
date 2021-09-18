@@ -33,9 +33,6 @@ const { hostname } = require('os')
 const { setUpDexie, sendProject } = require('../scripts/post-api');
 
 
-//Dexie.debug = false //set to false for production. During development, gives more thorough error logs
-
-
 function discourseAPI(){
     sendProject(projectFolderPath, projectFolderName)
 }
@@ -43,7 +40,7 @@ function discourseAPI(){
 window.onload = async function () {
     try {
         await setUpDexie()
-        console.log('done with dexie')
+        //done with dexie
         window.addEventListener('click', function (e) {
             if (document.getElementById('folderContents').contains(e.target)) {
                 // Clicked in box
@@ -157,13 +154,13 @@ function hideWindow() {
 /**SHOW PROJECT DESCRIPTION************** */
 async function checkIfDescriptionExists() {
     try {
-        var descFilePath = projectFolderPath + '/project-description.md'
+        var descFilePath = projectFolderPath + '/project-summary.md'
         fs.stat(descFilePath, function (err, stat) {
             if (err == null) {
                 //file exists
-                document.getElementById('addDescriptionButton').style.display = 'none'
+                document.getElementById('addSummaryButton').style.display = 'none'
             } else if (err.code === 'ENOENT') {
-                document.getElementById('addDescriptionButton').style.display = 'inline-block'
+                document.getElementById('addSummaryButton').style.display = 'inline-block'
             } else {
                 console.log('Some other error: ', err.code);
             }
@@ -174,14 +171,14 @@ async function checkIfDescriptionExists() {
     }
 }
 
-async function addDescription() {
+async function addSummary() {
     try {
-        /*Make a file of project-description:*/
-        var descFilePath = projectFolderPath + '/project-description.md'
+        /*Make a file of project-summary:*/
+        var descFilePath = projectFolderPath + '/project-summary.md'
         fs.stat(descFilePath, function (err, stat) { //just a doublecheck in case file already exists. In most instances, this will already be done through checkIfDescriptionExists function
             if (err == null) {
                 //file exists
-                document.getElementById('addDescriptionButton').style.display = 'none'
+                document.getElementById('addSummaryButton').style.display = 'none'
             } else if (err.code === 'ENOENT') {
                 // file does not exist
                 fs.writeFile(descFilePath, '', (err) => {
@@ -194,7 +191,7 @@ async function addDescription() {
                         var newId = "**is-document**^^^" + descFilePath + "^^^" + indent
                         var newId = "**is-document**^^^" + descFilePath + "^^^" + indent
                         contents = `<div>
-                                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${descFilePath}", "${newIndent}")'>` + 'project-description.md' + `</div>
+                                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${descFilePath}", "${newIndent}")'><span class="material-icons greenFile icon" >insert_drive_file </span>` + 'project-summary.md' + `</div>
                                 </div>`
                         var contentsDiv = document.getElementById('folderContents')
                         contentsDiv.insertAdjacentHTML("afterbegin", contents)
@@ -203,7 +200,7 @@ async function addDescription() {
                         while (highlightedDivs.length)
                             highlightedDivs[0].classList.remove('highlightFolderOrFile')
                         document.getElementById(newId).classList.add('highlightFolderOrFile')
-                        document.getElementById('addDescriptionButton').style.display = 'none'
+                        document.getElementById('addSummaryButton').style.display = 'none'
                     }
                 })
             } else {
@@ -583,7 +580,7 @@ async function showFolderContents(divId, mainPath, indent) {
                         element.classList.add('clicked') //add clicked class so don't run this again if click again
                     } else {
                         var contentsDiv = document.getElementById('folderContents')
-                        if (item.indexOf('project-description') > -1) {
+                        if (item.indexOf('project-summary') > -1) {
                             contentsDiv.insertAdjacentHTML("afterBegin", contents)
                         } else {
                             contentsDiv.insertAdjacentHTML("beforeEnd", contents)
@@ -964,7 +961,7 @@ async function deleteItem(e) {
                 item.remove()
             }
             item.remove()
-            if (thePath.indexOf('project-description') > -1) {
+            if (thePath.indexOf('project-summary') > -1) {
                 checkIfDescriptionExists()
             }
 

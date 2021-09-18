@@ -2,7 +2,9 @@
 //dexie database for linking project files to discourse posts
 const Dexie = require('dexie')
 var db = new Dexie("ProjectDatabase")
-
+//Dexie.debug = false //set to false for production. During development, gives more thorough error logs
+let projectName
+let projectPath
 
 module.exports.setUpDexie = async function(){
     try {
@@ -18,24 +20,30 @@ module.exports.setUpDexie = async function(){
 
 module.exports.sendProject = function (projectFolderPath, projectFolderName){
     console.log(projectFolderPath +','+ projectFolderName)
-    projectFolder
+    projectName = projectFolderName
+    projectPath = projectFolderPath
+    loopThroughFolder()
     console.log('got it!')
 }
 
 /************** Testing Discourse API *******************************/
 
 //current-code
-async function loopThroughFolder(thePath) {
+async function loopThroughFolder() {
     var currentTime = new Date()
     console.log('current time = ' + currentTime.getTime())
+    /*
     if (thePath === 'start') {
         var projectPath = projectFolderPath //overall project path
     } else {
         var projectPath = thePath
     }
+    */
 
     var projectContents1 = await fs.readdirSync(projectPath) //produces array of all top-level contents of a folder
     var projectContents = projectContents1.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item)); //excludes hidden files like .ds-store and .git files 
+    console.log('project contents = ' + projectContents)
+    return 'done'
     for (var i = 0; i < projectContents.length; i++) {
         if (projectContents[i].substring(0, 2) !== '~$') { //stop if a temp word file
             var itemPath = path.join(projectPath, projectContents[i])
@@ -79,6 +87,8 @@ async function checkDatabase(filePath, wordOrNot) {
 }
 
 function setUpDocForCreate(itemPath, createTime, wordOrNot) {
+    console.log('setup doc for create, for: ' + itemPath)
+    return 'done'
     if (wordOrNot === 'word') {
         mammoth.convertToHtml({ path: itemPath }).then(function (result) {
             var htmlWord = result.value
@@ -96,6 +106,8 @@ function setUpDocForCreate(itemPath, createTime, wordOrNot) {
 }
 
 function setUpDocForUpdate(itemPath, createTime, wordOrNot, topicId) {
+    console.log('setup doc for Update, for: ' + itemPath)
+    return 'done'
     if (wordOrNot === 'word') {
         mammoth.convertToHtml({ path: itemPath }).then(function (result) {
             var htmlWord = result.value
