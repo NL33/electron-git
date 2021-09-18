@@ -62,8 +62,8 @@ async function saveNewVersionWindow(windowTitle) {
     var theDisplay = screen.getPrimaryDisplay()
     var screenWidth = theDisplay.bounds.width
     newVersionWindow = new BrowserWindow({
-        width: 222, //320,
-        height: 620,
+        width: 275, //320,
+        height: 640,
         x: screenWidth - 209,
         icon: 'file://' + __dirname + '/rts-icon2.png',
         y: 0,
@@ -492,10 +492,10 @@ function openDiscourseAuthWindow(discourseUrl) {
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
    
     openBasicWindow()
-   // saveNewVersionWindow()
+    saveNewVersionWindow()
    //openNavigatorWindow()
     menuApp()
-    createWindow()
+   // createWindow()
     app.on('activate', () => {
 
         if (BrowserWindow.getAllWindows().length === 0) { //create a new browswer window only if app has no visible windows after being activated, such as when launching the app for the first time or relaunching the already running app

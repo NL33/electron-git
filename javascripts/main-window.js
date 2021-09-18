@@ -34,6 +34,9 @@ const Dexie = require('dexie')
 var db = new Dexie("FileDatabase")
 
 
+const { sendProject } = require('../scripts/post-api');
+
+
 //Dexie.debug = false //set to false for production. During development, gives more thorough error logs
 /*****Button Set Up *****/
 window.onload = async function () {
@@ -123,6 +126,12 @@ window.onload = async function () {
     }
 }   //end window onload
 
+function getDomTree(){
+    var domTree = document.getElementById('folderContents').innerHTML
+    console.log('dom tree = ')
+    console.log(domTree)
+
+}
 function showSaveVersion(){
     document.getElementById('saveProjectVersion').style.display = 'block'
     document.getElementById('optionsAtBottom').style.display = 'none'
@@ -1036,7 +1045,7 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
 })
 
 /******Loop through contents of Selected Folder and display results************* */
-
+//main-function
 async function showFolderContents(divId, mainPath, indent) {
     try {
         var element = document.getElementById(divId)
@@ -1075,13 +1084,13 @@ async function showFolderContents(divId, mainPath, indent) {
                         if ((subStats.isDirectory() === true) && (hasExtension1 === false)) {
                             var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
                             contents = `<div style='margin-left: ${indent}px'>
-                        <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'> <img src="../clear-folder-fntawesome.svg" class="folderIcon"></img>` + item + `</div>
+                        <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><span class="material-icons blueFolder icon">folder_open</span>` + item + `</div>
                         <div class="newItems"></div>
                         </div>`
                         } else {
                             var newId = "**is-document**^^^" + fullPath + "^^^" + indent
                             contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + item + `</div>
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><span class="material-icons greenFile icon" >insert_drive_file </span>` + item + `</div>
                         </div>`
                         }
                     }
@@ -1418,13 +1427,13 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
         if (statsHere.isDirectory() === true) {
             var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
             contents = `<div>
-                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><img src="../clear-folder-fntawesome.svg" style="padding-right: 3px; height: 11pt; width: 9pt; vertical-align: text-top"></img>` + folderName + `</div>
+                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><span class="material-icons blueFolder icon">folder_open</span>` + folderName + `</div>
                 <div class="newItems"></div>
                 </div>`
         } else {
             var newId = "**is-document**^^^" + fullPath + "^^^" + indent
             contents = `<div>
-                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>` + folderName + `</div>
+                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><span class="material-icons greenFile icon" >insert_drive_file </span>` + folderName + `</div>
                 </div>`
         }
 

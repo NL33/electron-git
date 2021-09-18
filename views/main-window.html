@@ -7,8 +7,11 @@
 
 <head>
     <meta charset="UTF-8">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <style>
         /*** COMPARING VERSIONS***/
+        
         .showChangesButton {
             margin-right: 10px;
             padding: 4px;
@@ -63,11 +66,21 @@
         }
 
         #projectDirectory {
+            display: table-cell;
+            padding-left: 4px;
             font-weight: bold;
             margin-right: 5px;
             font-size: 16pt;
             cursor: pointer;
+            color: #262626;
         }
+
+        #folderContents {
+            font-size: 13pt;
+            cursor: pointer;
+            color: #262626;
+        }
+
 
         projectOverview {
             // box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2),0 5px 4px 0 rgba(0,0,0,0.19) !important; 
@@ -440,6 +453,36 @@
     min-height: 30pt;
     box-shadow: 0 5px 10px 0 rgb(0 0 0 / 20%), 0 5px 4px 0 rgb(0 0 0 / 19%) !important;
 }
+
+/**icons**/
+
+.folderTopic {
+    display: table-cell;
+    margin-left: 20px;
+    padding-left: 4px
+}
+
+.blueFolderHeader{
+    display: table-cell;
+    color:  #4da6ff;//#3399FF;  
+    font-size: 23px !important;
+    vertical-align: top;
+}
+
+.blueFolder{
+  //  display: table-cell;
+    color:  #4da6ff;//#3399FF;
+    font-size: 18px !important;
+    margin-right: 3px;
+    vertical-align: top;
+}
+
+.greenFile{
+  //  display: table-cell;
+    color: #84e198;//#32cd53;
+    font-size: 14px !important;
+    margin-right: 3px
+}
     </style>
     <title>Your Project</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
@@ -447,6 +490,9 @@
 
 <body id="bodyId"
     style="margin-top: 4px; padding: 10px; padding-top: 5px; padding-left: 0px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; overflow: auto">
+    <div onclick="getDomTree()"
+        style="cursor: pointer; border: 2px solid #3399ff; margin-left: 5px; margin-bottom: 9px; padding: 6px; border-radius: 15px">
+        Get Tree</div>
     <div onclick="getWindows()"
         style="cursor: pointer; border: 2px solid #3399ff; margin-left: 5px; margin-bottom: 9px; padding: 6px; display: none; border-radius: 15px">
         Get Window</div>
@@ -478,8 +524,7 @@
         </div>
         <div class="projectOverview">
             <div class="padding-class ">
-                <img src="../clear-folder-fntawesome.svg"
-                    style="padding-right: 1px; height: 13pt; width: 12pt; vertical-align: text-top"></img>
+                <span class="material-icons blueFolderHeader">folder_open</span>
                 <span id="projectDirectory" class="docOrDirectory"></span>
                 <div></div>
             </div>
@@ -515,49 +560,7 @@
 
 -->
 
-    <!--**********COMPARE CHANGES***********************-->
-    <div id="showViewPriorVersionsForCompare"
-        style=" margin-top: 10px; width: 100%; margin-left: 0px; border-top: 4px solid #3399FF; display: none "
-        class="padding-class">
-        <div style="margin-top: 0px; ">
-            <div class="closeViewButton" id="closeCompareChangesView">x</div>
-            <div style="font-weight: bold; margin-bottom: 15px;">Compare Changes Between Versions</div>
-        </div>
-        <div style="margin-left: 5px; margin-right: 3px; word-wrap: break-word">
-            <div style="margin-bottom: 15px" id="displayNewerVersion">
-                <span>Newer Version: </span>
-                <span id="laterVersionOverview">
-                    <span class="selectedForChangesClass" id="laterVersionForChanges"></span>
-                    <span class="versionNumberOverview">
-                        <span class="versionWordLater"></span>
-                        <span id="versionNumberLater">Current Changes</span>
-                    </span>
-                    <div id="versionMessageLater" style="display:none">n/a</div>
-                    <span id="versionDateLater" style="display:none">n/a</span><span id="versionTimeLater"
-                        style="display:none">n/a</span>
-                    <span id="commitNumberLater" style="display: none">current-changes</span>
-                </span>
-                </span>
-            </div>
 
-            <div style="margin-bottom: 15px" id="displayOlderVersion">
-                <span>Older Version: </span>
-                <span id="earlierVersionOverview">
-                </span>
-            </div>
-
-
-            <div style=" margin-right: 5px" id="runChangesIntegrated" class="showChangesButton">Show Changes
-            </div>
-            <!-- Removed as option for now just to keep things simple: <div class="showChangesButton" id="runChangesBlock">show block changes
-            </div>-->
-            <div id="savedVersionsOverview" style="margin-top: 15px; display: none;">
-                <div id="selectVersionsHeader">Selected Versions:</div>
-            </div>
-
-            <div id="showPriorCommitsForCompare" style="margin-top: 10px; width: 93%;"></div>
-        </div>
-    </div>
 
     <!--**************OPTIONS AT BOTTOM**************************-->
     <div id="optionsAtBottom"
