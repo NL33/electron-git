@@ -1,5 +1,6 @@
 const { readFile, readdirSync, statSync } = require("fs");
 var mammoth = require("mammoth");
+const sanitizeHtml = require('sanitize-html');
 //dexie database for linking project files to discourse posts
 const Dexie = require("dexie");
 var db = new Dexie("ProjectDatabase");
@@ -167,7 +168,12 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
 
   var filePathArray = filePath.split(projectName)
   var pathForTopic = projectName + filePathArray[1]
-  console.log('path for topic = ' + pathForTopic)
+
+  var summaryText = ''
+  if (title.includes('project-summary.')){
+      var summaryTextRaw = data
+      summaryText = sanitizeHtml(summaryTextRaw).trim();
+  }
 
   return 'done'
   var topicShowPath = filePath.substring( /****START HERE!!!!!!!!!!! */
@@ -188,7 +194,8 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
       raw: topicContent,
       category: category,
       project_main: projectName,
-      pathForTopic: pathForTopic,
+      path_for_topic: pathForTopic,
+      summary_text: summaryText,
       tags: [tagName],
 
     },
