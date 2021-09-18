@@ -30,7 +30,7 @@ const { generateKeyPairSync, privateDecrypt, constants } = require('crypto');
 const { hostname } = require('os')
 
 
-const { setUpDexie, sendProject } = require('../scripts/post-api');
+const { setUpDatabase, sendProject } = require('../scripts/post-api');
 
 
 function discourseAPI(){
@@ -39,8 +39,7 @@ function discourseAPI(){
 /*****Button Set Up *****/
 window.onload = async function () {
     try {
-        await setUpDexie()
-        //done with dexie
+        await setUpDatabase()
         window.addEventListener('click', function (e) {
             if (document.getElementById('folderContents').contains(e.target)) {
                 // Clicked in box

@@ -8,7 +8,7 @@ var db = new Dexie("ProjectDatabase");
 let projectName;
 let projectPath;
 
-module.exports.setUpDexie = async function () {
+module.exports.setUpDatabase = async function () {
   try {
     await db.version(2).stores({
       fileInfo:
@@ -26,7 +26,6 @@ module.exports.sendProject = function (projectFolderPath, projectFolderName) {
   projectName = projectFolderName;
   projectPath = projectFolderPath;
   loopThroughFolder("start");
-  console.log("got it!");
 };
 
 /************** Testing Discourse API *******************************/
@@ -147,42 +146,42 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, topicId) {
 
 
 function createDiscoursePostFromFile(filePath, createTime, data) {
-  var testOrLive = 'test'
-  if (testOrLive === 'live'){
+  var testOrLive = "test";
+  if (testOrLive === "live") {
     var url = "https://go.racetosaturn.com/posts.json";
-    var category = 36
-    var userName = 'seanrts'
-    var apiKey = environmentVariables.decodedUserKey
+    var category = 36;
+    var userName = "seanrts";
+    var apiKey = environmentVariables.decodedUserKey;
   } else {
-      var url = "http://localhost:4200/posts.json";
-      var category = 11;
-      var userName = 'winst1143'
-      var apiKey= ''//environmentVariables.wsKey,
-      var apiUserName=''// environmentVariables.wsName,
+    var url = "http://localhost:4200/posts.json";
+    var category = 11;
+    var userName = "winst1143";
+    var apiKey = ""; //environmentVariables.wsKey,
+    var apiUserName = ""; // environmentVariables.wsName,
   }
 
   var title = path.basename(filePath);
   var topicContent = data;
 
-  var tagName = 'music'
+  var tagName = "music";
 
-  var filePathArray = filePath.split(projectName)
-  var pathForTopic = projectName + filePathArray[1]
+  var filePathArray = filePath.split(projectName);
+  var pathForTopic = projectName + filePathArray[1];
 
-  var summaryText = ''
-  if (title.includes('project-summary.')){
-      var summaryTextRaw = data
-      summaryText = sanitizeHtml(summaryTextRaw).trim();
+  var summaryText = "";
+  if (title.includes("project-summary.")) {
+    var summaryTextRaw = data;
+    summaryText = sanitizeHtml(summaryTextRaw).trim();
   }
 
+  console.log('good')
   return 'done'
-  var topicShowPath = filePath.substring( /****START HERE!!!!!!!!!!! */
-    filePath.indexOf(projectFolderName) + (projectFolderName.length + 1)
-  ); /*
+
+  /*
     example:
     project name (projectFolderName) = 'rocking-research'
-    doc path = rocking-research/post-enlightenment/platos-influences.docx
-    topicShowPath = 'post-enlightenment/platos-influences.docx' ; and that will be the title of the post.
+    doc path = Users/win/desktop/rocking-research/post-enlightenment/platos-influences.docx
+    topicpathForTopic = 'rocking-research/post-enlightenment/platos-influences.docx'
    */
 
   axios({
@@ -197,12 +196,11 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
       path_for_topic: pathForTopic,
       summary_text: summaryText,
       tags: [tagName],
-
     },
     headers: {
       //"User-Api-Key": environmentVariables.decodedUserKey,
       apiKey: apiKey,
-      apiUserName: apiUserName
+      apiUserName: apiUserName,
     },
     dataType: "json",
   })
@@ -212,7 +210,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
       console.log(response);
       var topicId = response.data.id;
       var timeNow1 = new Date();
-      var userName = 'GET USER NAME'
+      var userName = "GET USER NAME";
       /*GET USER NAME ^^^^^^^^^^^^^^^*/
       var timeNow = timeNow1.getTime();
       db.fileInfo.add({
@@ -223,9 +221,9 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
         lastSentTime: timeNow,
         projectName: projectName,
         pathForTopic: pathForTopic,
-        linkAddress: '',
-        summaryText: '',
-        topicUserName: userName
+        linkAddress: "",
+        summaryText: "",
+        topicUserName: userName,
         //project?
       });
     })
