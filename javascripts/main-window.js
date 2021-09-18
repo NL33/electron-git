@@ -29,31 +29,21 @@ const { generateKeyPairSync, privateDecrypt, constants } = require('crypto');
 
 const { hostname } = require('os')
 
-//dexie database for linking project files to discourse posts
-const Dexie = require('dexie')
-var db = new Dexie("FileDatabase")
 
-
-const { sendProject } = require('../scripts/post-api');
+const { setUpDexie, sendProject } = require('../scripts/post-api');
 
 
 //Dexie.debug = false //set to false for production. During development, gives more thorough error logs
 
 
 function discourseAPI(){
-    sendProject()
+    sendProject(projectFolderPath, projectFolderName)
 }
 /*****Button Set Up *****/
 window.onload = async function () {
     try {
-        try {
-            await db.version(3).stores({
-                fileInfo: "++id,fileId, fileName, lastSentTime, filePath,postId, projectTagName"
-            })
-        } catch (error) {
-            console.log('error = ' + error)
-        }
-/*
+        await setUpDexie()
+        console.log('done with dexie')
         window.addEventListener('click', function (e) {
             if (document.getElementById('folderContents').contains(e.target)) {
                 // Clicked in box
@@ -63,12 +53,7 @@ window.onload = async function () {
                     highlightedDivs[0].classList.remove('highlightFolderOrFile')
             }
         });
-*/
-        /*
-        catch(function (error) {
-            alert('Uh oh : ' + error);
-        });
-        */
+
         //will send file to discourse, linking with postId. how will it link with project? When send to site, project will probably be named after main-folder-name/subfolder. Can get this from the filepath. And then add the tag with this name and a hash to the post, so it will be tagged that way on discourse.
         //start out this way. Issues in future: if change path name, will that change project? maybe it's ok for it to work that way?
 

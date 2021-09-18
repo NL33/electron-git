@@ -1,5 +1,24 @@
 
-module.exports.sendProject = function (){
+//dexie database for linking project files to discourse posts
+const Dexie = require('dexie')
+var db = new Dexie("ProjectDatabase")
+
+
+module.exports.setUpDexie = async function(){
+    try {
+            await db.version(1).stores({
+                fileInfo: "++id,fileId, fileName, lastSentTime, filePath, topicId, projectName, projectTagName, pathForTopic, linkAddress, summaryText"
+            })
+            console.log('setup dexie')
+            return 'done'
+        } catch (error) {
+            console.log('error in setUpDexie = ' + error)
+        }
+}
+
+module.exports.sendProject = function (projectFolderPath, projectFolderName){
+    console.log(projectFolderPath +','+ projectFolderName)
+    projectFolder
     console.log('got it!')
 }
 
@@ -49,10 +68,10 @@ async function checkDatabase(filePath, wordOrNot) {
     } else { //already a discourse topic
         var lastModifiedTime = stats.mtime //mtime is when file last modified. ctime includes that time, but also includes if file properties change, like file permissions, name or location. Ctime would be better, but it also updates when the file is opened (even if no other change). So I am going with mtime--and if you want to update the version online, you need to be sure to save it.
         var lastSentTime = dbEntry.lastSentTime
-        var postId = dbEntry.postId
+        var topicId = dbEntry.topicId
         if (lastModifiedTime > lastSentTime) {
             console.log('time to update for  = ' + filePath)
-            setUpDocForUpdate(filePath, createTime, wordOrNot, postId)
+            setUpDocForUpdate(filePath, createTime, wordOrNot, topicId)
         } else {
             console.log('dont update for ' + filePath)
         }
@@ -76,18 +95,18 @@ function setUpDocForCreate(itemPath, createTime, wordOrNot) {
     }
 }
 
-function setUpDocForUpdate(itemPath, createTime, wordOrNot, postId) {
+function setUpDocForUpdate(itemPath, createTime, wordOrNot, topicId) {
     if (wordOrNot === 'word') {
         mammoth.convertToHtml({ path: itemPath }).then(function (result) {
             var htmlWord = result.value
-            updateDiscoursePostFromFile(itemPath, createTime, htmlWord, postId)
+            updateDiscoursePostFromFile(itemPath, createTime, htmlWord, topicId)
         })
     } else {
         fs.readFile(itemPath, 'utf8', function (err, data) {
             if (err) {
                 console.log('error in reading file in send doc = ' + err)
             } else {
-                updateDiscoursePostFromFile(itemPath, createTime, data, postId)
+                updateDiscoursePostFromFile(itemPath, createTime, data, topicId)
             }
         })
     }
@@ -138,14 +157,14 @@ function createDiscoursePostFromFile1(filePath, createTime, data) {
         console.log('created new post for = ' + filePath)
         console.log('heres the response = ')
         console.log(response)
-        var postId = response.data.id
+        var topicId = response.data.id
         var timeNow1 = new Date();
         var timeNow = timeNow1.getTime()
         db.fileInfo.add({
             fileId: createTime,
             fileName: title,
             filePath: filePath,
-            postId: postId,
+            topicId: topicId,
             lastSentTime: timeNow,
             projectTagName: tagName
             //project?
@@ -209,14 +228,14 @@ function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE
         console.log('created new post for = ' + filePath)
         console.log('heres the response = ')
         console.log(response)
-        var postId = response.data.id
+        var topicId = response.data.id
         var timeNow1 = new Date();
         var timeNow = timeNow1.getTime()
         db.fileInfo.add({
             fileId: createTime,
             fileName: title,
             filePath: filePath,
-            postId: postId,
+            topicId: topicId,
             lastSentTime: timeNow,
             projectTagName: projectName
             //project?
@@ -227,8 +246,8 @@ function createDiscoursePostFromFile(filePath, createTime, data) { //THIS IS THE
     })
 }
 //wsKey
-function updateDiscoursePostFromFile(filePath, createTime, data, postId) {
-    var url = 'https://go.racetosaturn.com/posts/' + postId + '.json'
+function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
+    var url = 'https://go.racetosaturn.com/posts/' + topicId + '.json'
     var title = path.basename(filePath)
     var topicContent = data
     var topicShowPath = filePath.substring(filePath.indexOf(projectFolderName) + (projectFolderName.length + 1))
@@ -310,8 +329,8 @@ function createDiscoursePost() {
     })
 }
 
-function getDiscoursePostId() {
-    console.log('now in get postid ')
+function getDiscoursetopicId() {
+    console.log('now in get topicId ')
     var topicId = '421' //looking for post id = 586
     var url = 'https://go.racetosaturn.com/t/' + topicId + '.json'
     var key = token
@@ -327,18 +346,18 @@ function getDiscoursePostId() {
         dataType: 'application/json'
     }).then(response => {
         console.log('initial response = ' + JSON.stringify(response))
-        var postId = response.data.post_stream.posts[0].id
-        console.log('post response = ' + postId)
-        updatePost(postId, userName, key)
+        var topicId = response.data.post_stream.posts[0].id
+        console.log('post response = ' + topicId)
+        updatePost(topicId, userName, key)
     }).catch(error => {
         console.log('error in get post Id =')
         console.log(error)
     })
 }
 
-function updatePost(postId, userName, key) {
+function updatePost(topicId, userName, key) {
     console.log('now in update Post')
-    var url = 'https://go.racetosaturn.com/posts/' + postId + '.json'
+    var url = 'https://go.racetosaturn.com/posts/' + topicId + '.json'
     var topicContent = 'Update content as of 1:151 from GroupInfoUser. How does it look?'
     axios({
         method: 'put',
