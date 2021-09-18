@@ -1,4 +1,4 @@
-
+const { readFile, readdirSync, statSync } = require('fs')
 //dexie database for linking project files to discourse posts
 const Dexie = require('dexie')
 var db = new Dexie("ProjectDatabase")
@@ -40,15 +40,14 @@ async function loopThroughFolder() {
     }
     */
 
-    var projectContents1 = await fs.readdirSync(projectPath) //produces array of all top-level contents of a folder
+    var projectContents1 = await readdirSync(projectPath) //produces array of all top-level contents of a folder
     var projectContents = projectContents1.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item)); //excludes hidden files like .ds-store and .git files 
     console.log('project contents = ' + projectContents)
-    return 'done'
     for (var i = 0; i < projectContents.length; i++) {
         if (projectContents[i].substring(0, 2) !== '~$') { //stop if a temp word file
             var itemPath = path.join(projectPath, projectContents[i])
             //await fs.stat(itemPath) //fsStat would be used to determine metadata info about the given file, such as when it was last updated
-            if (fs.statSync(itemPath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
+            if (statSync(itemPath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
                 loopThroughFolder(itemPath)
             } else { //if it's a file, then see if a word doc. If so, perform magic. 
                 //console.log('in a document')
@@ -67,7 +66,7 @@ async function loopThroughFolder() {
 }
 
 async function checkDatabase(filePath, wordOrNot) {
-    var stats = fs.statSync(filePath)
+    var stats = statSync(filePath)
     var createTime = stats.birthtimeMs
     var dbEntry = await db.fileInfo.get({ fileId: createTime })
     if (!dbEntry) {
@@ -95,7 +94,7 @@ function setUpDocForCreate(itemPath, createTime, wordOrNot) {
             createDiscoursePostFromFile(itemPath, createTime, htmlWord)
         })
     } else {
-        fs.readFile(itemPath, 'utf8', function (err, data) {
+        readFile(itemPath, 'utf8', function (err, data) {
             if (err) {
                 console.log('error in reading file in send doc = ' + err)
             } else {
@@ -114,7 +113,7 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, topicId) {
             updateDiscoursePostFromFile(itemPath, createTime, htmlWord, topicId)
         })
     } else {
-        fs.readFile(itemPath, 'utf8', function (err, data) {
+        readFile(itemPath, 'utf8', function (err, data) {
             if (err) {
                 console.log('error in reading file in send doc = ' + err)
             } else {

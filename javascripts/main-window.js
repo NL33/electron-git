@@ -1,6 +1,6 @@
 const { ipcRenderer, clipboard, shell, remote } = require('electron')
 const { Menu, MenuItem } = remote
-const { writeFile, fstat } = require('fs')
+const { writeFile, fstat, readFile, readdirSync, statSync } = require('fs') //can specify what is used here and remove general fs reference below
 const fs = require("fs")
 var path = require('path')
 const simpleGit = require('simple-git')
