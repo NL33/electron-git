@@ -22,23 +22,21 @@ module.exports.sendProject = function (projectFolderPath, projectFolderName){
     console.log(projectFolderPath +','+ projectFolderName)
     projectName = projectFolderName
     projectPath = projectFolderPath
-    loopThroughFolder()
+    loopThroughFolder('start')
     console.log('got it!')
 }
 
 /************** Testing Discourse API *******************************/
 
 //current-code
-async function loopThroughFolder() {
+async function loopThroughFolder(thePath) {
     var currentTime = new Date()
     console.log('current time = ' + currentTime.getTime())
-    /*
-    if (thePath === 'start') {
+    if (thePath === 'start') {  //why do we specify the path here, including start? Because below in this function, if an item is a directory, we run this loopThroughFolder again, only this time, the starting point is that (sub) directory. So we need a way of distinguishing what directory we are looking at
         var projectPath = projectFolderPath //overall project path
     } else {
         var projectPath = thePath
     }
-    */
 
     var projectContents1 = await readdirSync(projectPath) //produces array of all top-level contents of a folder
     var projectContents = projectContents1.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item)); //excludes hidden files like .ds-store and .git files 
