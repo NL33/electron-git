@@ -9,9 +9,9 @@ let projectPath;
 
 module.exports.setUpDexie = async function () {
   try {
-    await db.version(1).stores({
+    await db.version(2).stores({
       fileInfo:
-        "++id,fileId, fileName, lastSentTime, filePath, topicId, projectName, projectTagName, pathForTopic, linkAddress, summaryText",
+        "++id,fileId, fileName, lastSentTime, filePath, topicId, projectName, pathForTopic, linkAddress, summaryText, topicUserName",
     });
     console.log("setup dexie");
     return "done";
@@ -156,14 +156,21 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
       var url = "http://localhost:4200/posts.json";
       var category = 11;
       var userName = 'winst1143'
-      var apiKey= '',//environmentVariables.wsKey,
-      var apiUserName='',// environmentVariables.wsName,
+      var apiKey= ''//environmentVariables.wsKey,
+      var apiUserName=''// environmentVariables.wsName,
   }
-  //THIS IS THE FUNCTION TO create discourse post on main app through electron. sometimes I add 1 when I want to use the alternative function to create on local site.
-  //***NOTE: I have experimented with getting a user key, but have not updated z-environments yet. So it's possible those keys are no longer valid. And just go through the process of getting the key again using the discourse api test code. */ */
+
   var title = path.basename(filePath);
   var topicContent = data;
-  var topicShowPath = filePath.substring(
+
+  var tagName = 'music'
+
+  var filePathArray = filePath.split(projectName)
+  var pathForTopic = projectName + filePathArray[1]
+  console.log('path for topic = ' + pathForTopic)
+
+  return 'done'
+  var topicShowPath = filePath.substring( /****START HERE!!!!!!!!!!! */
     filePath.indexOf(projectFolderName) + (projectFolderName.length + 1)
   ); /*
     example:
@@ -171,8 +178,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
     doc path = rocking-research/post-enlightenment/platos-influences.docx
     topicShowPath = 'post-enlightenment/platos-influences.docx' ; and that will be the title of the post.
    */
- 
-  var projectName = userName + "-project-" + projectFolderName;
+
   axios({
     method: "post",
     url: url,
@@ -180,14 +186,11 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
     data: {
       title: topicShowPath,
       raw: topicContent,
-      //"topic_id": 0,
       category: category,
       project_main: projectName,
-      /*VERIFIED THAT THIS WORKS: "project_name": 'test-project-name'*/
-      //  "target_recipients": "blake,sam",
-      //"target_usernames": "string",
-      //"archetype": "private_message",
-      //"created_at": "string"
+      pathForTopic: pathForTopic,
+      tags: [tagName],
+
     },
     headers: {
       //"User-Api-Key": environmentVariables.decodedUserKey,
@@ -202,6 +205,8 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
       console.log(response);
       var topicId = response.data.id;
       var timeNow1 = new Date();
+      var userName = 'GET USER NAME'
+      /*GET USER NAME ^^^^^^^^^^^^^^^*/
       var timeNow = timeNow1.getTime();
       db.fileInfo.add({
         fileId: createTime,
@@ -209,7 +214,11 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
         filePath: filePath,
         topicId: topicId,
         lastSentTime: timeNow,
-        projectTagName: projectName,
+        projectName: projectName,
+        pathForTopic: pathForTopic,
+        linkAddress: '',
+        summaryText: '',
+        topicUserName: userName
         //project?
       });
     })
