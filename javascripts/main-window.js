@@ -19,27 +19,31 @@ var discourseUser = environmentVariables.discourseUser
 
 var proj
 
-
-
-ectFolderPath
 var projectFolderName
 
 const { promisify } = require('util')
 
 const { default: axios } = require('axios')
 
-// Including generateKeyPairSync from crypto module. This is for generating an api key for authenticating with discourse
-const { generateKeyPairSync, privateDecrypt, constants } = require('crypto');
-
-const { hostname } = require('os')
 
 
 const { setUpDatabase, sendProject } = require('../scripts/post-api');
+
+const { sendKeysToSite, decodeTheKey } = require('../scripts/get-key')
 
 
 function discourseAPI(){
     sendProject(projectFolderPath, projectFolderName)
 }
+
+function startAPIKeyProcess(){
+    sendKeysToSite()
+
+}
+
+ipcRenderer.on("discourse-payload-url", (event, payload) => {
+    decodeTheKey(payload);
+});
 /*****Button Set Up *****/
 window.onload = async function () {
     try {
