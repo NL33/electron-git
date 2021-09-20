@@ -16,7 +16,7 @@ const { ipcRenderer } = require('electron')
 const { generateKeyPairSync, privateDecrypt, constants } = require('crypto');
 
 const { hostname } = require('os')
-
+const { default: axios } = require('axios')
 
 
 var privateKeyRaw
@@ -73,19 +73,54 @@ module.exports.decodeTheKey = async function (payload) {
     );
     const jsonKey = decriptedKey.toString("ascii");
     const theKey = JSON.parse(jsonKey).key
-    console.log('the key = ' + theKey)
-    await keytar.setPassword('saturn_app_api_token', 'account', theKey)
-    console.log('set the key. It = ' + theKey);
+    userName = await getUserName(theKey)
+    console.log('username in key action = ' + userName)
+    localStorage.setItem('logged-in-saturn-username', userName)
+    await keytar.setPassword('saturn_app_api_token', userName, theKey)
+    /***NEXT: Set account to discourse username */
     } catch(e) {
         console.log('error decoding the key = ' + e)
     }
 }
 
+async function getUserName(key){
+  try {
+    return new Promise((resolve, reject)=>{
+        axios({
+            method: "get",
+            url: 'https://go.racetosaturn.com/site.json',//site.json',
+            contentType: "multipart/form-data",
+            headers: {
+                "User-Api-Key": key,
+            } //,
+            //dataType: "json",
+        })
+            .then((response) => {
+                //headers response should include: "x-discourse-username":"username"
+                var headersRaw = JSON.stringify(response.headers)
+                var headersArray = headersRaw.split(',')
+                headersArray.forEach((header) => {
+                    if (header.includes('x-discourse-username')) {
+                        var userNameRaw = header.split(':')[1]
+                        var theUserName = userNameRaw.replaceAll('"', '').trim()
+                        resolve(theUserName)
+                    }
+                })
+
+            })
+    })
+
+  } catch(e){
+      console.log('error in getting username function = ' + e)
+  }
+
+}
 
 module.exports.getSecureToken = async function(){
     try {
     const keytar = require('keytar')
-    await keytar.getPassword('saturn_app_api_token', 'account').then((result)=>{
+    var storedUserName = await localStorage.getItem('logged-in-saturn-username')
+    await keytar.getPassword('saturn_app_api_token', storedUserName).then((result)=>{
         console.log('the token = ' + result)
     })
     } catch(e){

@@ -6,6 +6,7 @@ const Dexie = require("dexie");
 var db = new Dexie("ProjectDatabase");
 //Dexie.debug = false //set to false for production. During development, gives more thorough error logs
 let projectName;
+const { default: axios } = require('axios')
 
 
 module.exports.setUpDatabase = async function () {

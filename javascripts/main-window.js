@@ -40,6 +40,7 @@ function startAPIKeyProcess(){
 
 function getTokenSecure(){
     getSecureToken()
+
 }
 
 ipcRenderer.on("discourse-payload-url", (event, payload) => {

@@ -524,7 +524,6 @@ app.on('open-url', function (event, data) {
     var payload = data.split('redirect?payload=')[1]
     console.log('received data')
     newVersionWindow.webContents.send('discourse-payload-url', payload)
-
 });
 
 
