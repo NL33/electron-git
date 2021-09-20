@@ -25,11 +25,9 @@ const { promisify } = require('util')
 
 const { default: axios } = require('axios')
 
-
-
 const { setUpDatabase, sendProject } = require('../scripts/post-api');
 
-const { sendKeysToSite, decodeTheKey } = require('../scripts/get-key')
+const { sendKeysToSite, decodeTheKey, getSecureToken } = require('../scripts/get-key')
 
 
 function discourseAPI(){
@@ -38,7 +36,10 @@ function discourseAPI(){
 
 function startAPIKeyProcess(){
     sendKeysToSite()
+}
 
+function getTokenSecure(){
+    getSecureToken()
 }
 
 ipcRenderer.on("discourse-payload-url", (event, payload) => {

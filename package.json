@@ -31,6 +31,7 @@
     "dexie": "^3.0.3",
     "electron-reloader": "^1.2.1",
     "electron-squirrel-startup": "^1.0.0",
+    "keytar": "^7.7.0",
     "mammoth": "^1.4.18",
     "run-jxa": "^2.0.0",
     "sanitize-html": "^2.4.0",
