@@ -17,7 +17,7 @@ const { generateKeyPairSync, privateDecrypt, constants } = require('crypto');
 
 const { hostname } = require('os')
 
-const keytar = require('keytar')
+
 
 var privateKeyRaw
 var publicKey;
@@ -60,6 +60,7 @@ module.exports.sendKeysToSite = async function () {
 
 module.exports.decodeTheKey = async function (payload) {
   try {
+    const keytar = require('keytar')
     var privateKey1 = privateKeyRaw.trim(); //environmentVariables.privateKeyForDecoding.trim()
     //  var encodedKey = environmentVariables.encodedUserKey
     const trimmedKey = decodeURIComponent(payload)//.trim().replace(/\s/g, "");
@@ -71,8 +72,9 @@ module.exports.decodeTheKey = async function (payload) {
         Buffer.from(trimmedKey, "base64")
     );
     const jsonKey = decriptedKey.toString("ascii");
-    const theKey = jsonKey.key
-    await keytar.setPassword('saturn_app_api_token', theKey)
+    const theKey = JSON.parse(jsonKey).key
+    console.log('the key = ' + theKey)
+    await keytar.setPassword('saturn_app_api_token', 'account', theKey)
     console.log('set the key. It = ' + theKey);
     } catch(e) {
         console.log('error decoding the key = ' + e)
@@ -82,8 +84,10 @@ module.exports.decodeTheKey = async function (payload) {
 
 module.exports.getSecureToken = async function(){
     try {
-    var theToken = await keytar.getPassword('saturn_app_api_token', theToken)
-    console.log('the token = ' + theToken)
+    const keytar = require('keytar')
+    await keytar.getPassword('saturn_app_api_token', 'account').then((result)=>{
+        console.log('the token = ' + result)
+    })
     } catch(e){
         console.log('error in getting the token = ' + e)
     }
