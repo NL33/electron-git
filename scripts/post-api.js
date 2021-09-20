@@ -6,8 +6,10 @@ const Dexie = require("dexie");
 var db = new Dexie("ProjectDatabase");
 //Dexie.debug = false //set to false for production. During development, gives more thorough error logs
 let projectName;
-const { default: axios } = require('axios')
-
+const { default: axios } = require('axios');
+const { addListener } = require("process");
+var userKey
+var storedUserName
 
 module.exports.setUpDatabase = async function () {
   try {
@@ -23,10 +25,26 @@ module.exports.setUpDatabase = async function () {
 };
 
 module.exports.sendProject = function (projectFolderPath, projectFolderName) {
-  console.log(projectFolderPath + "," + projectFolderName);
-  projectName = projectFolderName;
-  projectPath = projectFolderPath;
-  loopThroughFolder("start");
+  try {
+    projectName = projectFolderName;
+    projectPath = projectFolderPath;
+    const keytar = require('keytar')
+    storedUserName = await localStorage.getItem('logged-in-saturn-username')
+    await keytar.getPassword('saturn_app_api_token', storedUserName).then((result, err) => {
+      if (result) {
+        userKey = result
+        //get user permission, saying: Make project ${projectName} from user ${storedUserName} visible on RacetoSaturn.com? [Yes].then:
+        loopThroughFolder("start");
+      } else {
+        console.log(err)
+        //open window to guide user through authorization process
+        return 'done'
+      }
+    })
+
+  } catch (e) {
+    console.log('error in sending project.')
+  }
 };
 
 /************** Testing Discourse API *******************************/
@@ -151,8 +169,8 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
   if (testOrLive === "live") {
     var url = "https://go.racetosaturn.com/posts.json";
     var category = 36;
-    var userName = "seanrts";
-    var apiKey = environmentVariables.decodedUserKey;
+    var userName = storedUserName;
+    var apiKey = userKey;
   } else {
     var url = "http://localhost:4200/posts.json";
     var category = 11;
@@ -197,9 +215,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
       tags: [tagName],
     },
     headers: {
-      //"User-Api-Key": environmentVariables.decodedUserKey,
-      apiKey: apiKey,
-      apiUserName: apiUserName,
+      "User-Api-Key": apiKey,
     },
     dataType: "json",
   })
@@ -209,7 +225,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
       console.log(response);
       var topicId = response.data.id;
       var timeNow1 = new Date();
-      var userName = "GET USER NAME";
+      var userName = storedUserName
       /*GET USER NAME ^^^^^^^^^^^^^^^*/
       var timeNow = timeNow1.getTime();
       db.fileInfo.add({
@@ -233,14 +249,25 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
 }
 //wsKey
 function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
-  var url = "https://go.racetosaturn.com/posts/" + topicId + ".json";
+  var testOrLive = "test";
+  if (testOrLive === "live") {
+    var url = "https://go.racetosaturn.com/posts.json";
+    var userName = storedUserName;
+    var apiKey = userKey;
+  } else {
+    var url = "http://localhost:4200/posts.json";
+    var category = 11;
+    var userName = "winst1143";
+    var apiKey = ""; //environmentVariables.wsKey,
+    var apiUserName = ""; // environmentVariables.wsName,
+  }
   var title = path.basename(filePath);
   var topicContent = data;
   var topicShowPath = filePath.substring(
     filePath.indexOf(projectFolderName) + (projectFolderName.length + 1)
   );
-  var userName = "SeanRtS"; //***Have to get this programmatically*****/
-  var tagName = userName + "-project-" + projectFolderName;
+  var userName = storedUserName; //***Have to get this programmatically*****/
+  var tagName = 'music'
   axios({
     method: "put",
     url: url,
@@ -251,8 +278,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
       tags: [tagName],
     },
     headers: {
-      "User-Api-Key": environmentVariables.decodedUserKey,
-      //"Api-Username": 'SeanRtS'
+      "User-Api-Key": userKey,
     },
     dataType: "json",
   })
@@ -265,6 +291,9 @@ function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
           fileName: title, //most of the time will be the same. but would be updated if user changes the title
           filePath: filePath, //most of the time will be the same. but would be updated if user changes the path
           lastSentTime: timeNow,
+          projectName: projectName, //just in case this changes
+          linkAddress: "",
+          summaryText: "",
         });
         const viewEntry = await db.fileInfo
           .where({ fileId: createTime })

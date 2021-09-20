@@ -86,6 +86,7 @@ async function saveNewVersionWindow(windowTitle) {
     */
 }
 
+/*****OPEN  */
 
 /*****OPEN NAVIGATOR WINDOW********************* */
 
