@@ -17,7 +17,11 @@ const environmentVariables = ''//require('../z-environments-1.js')
 var token = environmentVariables.discourseToken
 var discourseUser = environmentVariables.discourseUser
 
-var projectFolderPath
+var proj
+
+
+
+ectFolderPath
 var projectFolderName
 
 const { promisify } = require('util')
