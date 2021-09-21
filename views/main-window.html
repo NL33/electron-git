@@ -7,8 +7,9 @@
 
 <head>
     <meta charset="UTF-8">
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
     <style>
         /*** COMPARING VERSIONS***/
         
@@ -100,6 +101,7 @@
         }
 
         #hideWindowButton {
+
             //box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 19%) !important
         }
 
@@ -119,6 +121,7 @@
             padding-right: 8px;
             cursor: pointer;
             margin-left: 8px;
+            margin-right: 20px;
             box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 19%) !important
         }
 
@@ -489,21 +492,39 @@
     font-size: 14px !important;
     margin-right: 3px
 }
+
+.shareProjectButton{
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 9px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 19%) !important;
+    //background: -webkit-linear-gradient(#3399ff, #2cb5e8, #1fc8db);
+    background-color: #3399ff;
+    color: white
+}
+
+.shareProjectButton:hover{
+    cursor: pointer;
+    font-size: 13pt !important;
+    box-shadow: 0 5px 10px 0 rgb(0 0 0 / 20%), 0 5px 4px 0 rgb(0 0 0 / 19%) !important;
+}
     </style>
     <title>Your Project</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
 
 <body id="bodyId"
-    style="margin-top: 4px; padding: 10px; padding-top: 5px; padding-left: 0px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; overflow: auto">
-    <span onclick="discourseAPI()"
-        style="cursor: pointer; border: 2px solid #3399ff; margin-left: 5px; margin-bottom: 9px; padding: 6px; border-radius: 15px; display: inline-block">
-        Discourse API</span>
+    style="margin-top: 4px; padding: 10px; padding-top: 5px; padding-left: 0px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; overflow: auto;">
+    <div style="text-align:center">
+    <span onclick="discourseAPI()" class="shareProjectButton">Share Project</span>
+    </div>
     <span onclick="startAPIKeyProcess()"
-        style="cursor: pointer; border: 2px solid #3399ff; margin-left: 5px; margin-bottom: 9px; padding: 6px; border-radius: 15px; display: inline-block; margin-left: 10px">
+        style="cursor: pointer; border: 2px solid #3399ff; margin-left: 5px; margin-bottom: 9px; padding: 6px; border-radius: 15px; display: none; margin-left: 10px">
         Start API Key Process</span>
         <span onclick="getTokenSecure()"
-            style="cursor: pointer; border: 2px solid #3399ff; margin-left: 5px; margin-bottom: 9px; padding: 6px; border-radius: 15px; display: inline-block; margin-left: 10px">
+            style="cursor: pointer; border: 2px solid #3399ff; margin-left: 5px; margin-bottom: 9px; padding: 6px; border-radius: 15px; display: none; margin-left: 10px">
             Get Token</span>
     <div onclick="getWindows()"
         style="cursor: pointer; border: 2px solid #3399ff; margin-left: 5px; margin-bottom: 9px; padding: 6px; display: none; border-radius: 15px">
@@ -527,7 +548,7 @@
                 <span id="changeFolder">change project folder</span>
             </span>
             <span id="hideWindowButton"
-                style="margin-left: 8px; border-radius: 4px; cursor: pointer; display: inline-block; padding: 5px; padding-top: 3px; padding-bottom: 3px; font-size: 14pt; color:  #737373"
+                style="margin-left: 10px; border-radius: 4px; cursor: pointer; display: inline-block; padding: 5px; padding-top: 3px; padding-bottom: 3px; font-size: 14pt; color:  #737373"
                 onclick="hideWindow()"> >> </span>
             <div style="text-align: right">
                 <div style="margin-top: 7px; text-align:right;" id='addSummaryButton' onclick="addSummary()">+
