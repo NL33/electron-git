@@ -15,7 +15,7 @@ module.exports.setUpDatabase = async function () {
   try {
     await db.version(2).stores({
       fileInfo:
-        "++id,fileId, fileName, lastSentTime, filePath, topicId, projectName, pathForTopic, linkAddress, summaryText, topicUserName",
+        "++id, fileId, fileName, lastSentTime, filePath, topicId, projectName, pathForTopic, linkAddress, summaryText, topicUserName",
     });
     console.log("setup dexie");
     return "done";
@@ -24,7 +24,7 @@ module.exports.setUpDatabase = async function () {
   }
 };
 
-module.exports.sendProject = function (projectFolderPath, projectFolderName) {
+module.exports.sendProject = async function (projectFolderPath, projectFolderName) {
   try {
     projectName = projectFolderName;
     projectPath = projectFolderPath;
@@ -168,15 +168,15 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
   var testOrLive = "test";
   if (testOrLive === "live") {
     var url = "https://go.racetosaturn.com/posts.json";
-    var category = 36;
+    var category = 37;
     var userName = storedUserName;
     var apiKey = userKey;
   } else {
+    const { localSiteKey, localSiteUserName } = require('../environments/environments')
     var url = "http://localhost:4200/posts.json";
-    var category = 11;
-    var userName = "winst1143";
-    var apiKey = ""; //environmentVariables.wsKey,
-    var apiUserName = ""; // environmentVariables.wsName,
+    var category = 10;
+    var userName = localSiteUserName;
+    var apiKey = localSiteKey; 
   }
 
   var title = path.basename(filePath);
@@ -205,17 +205,19 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
     url: url,
     contentType: "multipart/form-data",
     data: {
-      title: topicShowPath,
+      title: title,
       raw: topicContent,
       category: category,
       project_main: projectName,
       path_for_topic: pathForTopic,
       summary_text: summaryText,
-      doc_create_time: topicId, //don't need this now but good to have there in case switch db structure in the future.
+      doc_create_time: createTime, //don't need this now but good to have there in case switch db structure in the future.
       tags: [tagName],
     },
     headers: {
-      "User-Api-Key": apiKey,
+      //"User-Api-Key": apiKey, //for live
+      "Api-Key": apiKey, //for local testing
+      "Api-Username": userName //for local testing
     },
     dataType: "json",
   })
@@ -225,21 +227,20 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
       console.log(response);
       var topicId = response.data.id;
       var timeNow1 = new Date();
-      var userName = storedUserName
       /*GET USER NAME ^^^^^^^^^^^^^^^*/
       var timeNow = timeNow1.getTime();
       db.fileInfo.add({
         fileId: createTime,
         fileName: title,
         filePath: filePath,
-        topicId: topicId,
         lastSentTime: timeNow,
+        topicId: topicId,    
         projectName: projectName,
         pathForTopic: pathForTopic,
         linkAddress: "",
-        summaryText: "",
+        summaryText: summaryText,
         topicUserName: userName,
-        //project?
+
       });
     })
     .catch((error) => {
@@ -249,36 +250,42 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
 }
 //wsKey
 function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
-  var testOrLive = "test";
+  var testOrLive = "live";
   if (testOrLive === "live") {
     var url = "https://go.racetosaturn.com/posts.json";
     var userName = storedUserName;
     var apiKey = userKey;
   } else {
+    const { localSiteKey, localSiteUserName } = require('../environments/environments')
     var url = "http://localhost:4200/posts.json";
-    var category = 11;
-    var userName = "winst1143";
-    var apiKey = ""; //environmentVariables.wsKey,
-    var apiUserName = ""; // environmentVariables.wsName,
+    var category = 10;
+    var userName = localSiteUserName;
+    var apiKey = localSiteKey;
   }
   var title = path.basename(filePath);
   var topicContent = data;
   var topicShowPath = filePath.substring(
     filePath.indexOf(projectFolderName) + (projectFolderName.length + 1)
   );
-  var userName = storedUserName; //***Have to get this programmatically*****/
+  var summaryTextUpdate = "";
+  if (title.includes("project-summary.")) {
+    var summaryTextRawUpdate = data;
+    summaryTextUpdate = sanitizeHtml(summaryTextRaw).trim();
+  }
   var tagName = 'music'
   axios({
     method: "put",
     url: url,
     contentType: "multipart/form-data",
     data: {
-      title: topicShowPath,
+      title: title,
       raw: topicContent,
       tags: [tagName],
     },
     headers: {
-      "User-Api-Key": userKey,
+      //"User-Api-Key": apiKey, //for live
+      "Api-Key": apiKey, //for local testing
+      "Api-Username": userName //for local testing
     },
     dataType: "json",
   })
@@ -293,7 +300,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
           lastSentTime: timeNow,
           projectName: projectName, //just in case this changes
           linkAddress: "",
-          summaryText: "",
+          summaryText: summaryTextUpdate,
         });
         const viewEntry = await db.fileInfo
           .where({ fileId: createTime })
