@@ -165,7 +165,32 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, topicId) {
 
 
 function createDiscoursePostFromFile(filePath, createTime, data) {
-  var testOrLive = "test";
+  console.log('filepath = ' + filePath)
+  if ((filePath.includes('.m4a')) || (filePath.includes('.wav'))){
+    console.log('upload file')
+    let fileUrl = "https://go.racetosaturn.com/uploads.json"
+    var apiKey = userKey;
+    axios({
+      method: "post",
+      url: fileUrl,
+      contentType: "multipart/form-data",
+      data: {
+        type: "composer",
+        file: filePath
+      },
+      headers: {
+        "User-Api-Key": apiKey, //for live
+        //"Api-Key": apiKey, //for local testing
+       // "Api-Username": userName //for local testing
+      },
+      dataType: "json",
+    }).then((response)=>{
+      console.log('response = ' + response)
+    }).catch((error)=>{
+      console.log('error in uploading file = ' + error)
+    })
+} else {
+  var testOrLive = "live";
   if (testOrLive === "live") {
     var url = "https://go.racetosaturn.com/posts.json";
     var category = 37;
@@ -215,9 +240,9 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
       tags: [tagName],
     },
     headers: {
-      //"User-Api-Key": apiKey, //for live
-      "Api-Key": apiKey, //for local testing
-      "Api-Username": userName //for local testing
+      "User-Api-Key": apiKey, //for live
+      //"Api-Key": apiKey, //for local testing
+      //"Api-Username": userName //for local testing
     },
     dataType: "json",
   })
@@ -247,12 +272,13 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
       console.log("error in api post test =");
       console.log(error);
     });
+  }
 }
 //wsKey
 function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
   var testOrLive = "live";
   if (testOrLive === "live") {
-    var url = "https://go.racetosaturn.com/posts.json";
+    var url = "https://go.racetosaturn.com/posts/" + topicId + '.json';
     var userName = storedUserName;
     var apiKey = userKey;
   } else {
@@ -283,9 +309,9 @@ function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
       tags: [tagName],
     },
     headers: {
-      //"User-Api-Key": apiKey, //for live
-      "Api-Key": apiKey, //for local testing
-      "Api-Username": userName //for local testing
+      "User-Api-Key": apiKey, //for live
+      //"Api-Key": apiKey, //for local testing
+      //"Api-Username": userName //for local testing
     },
     dataType: "json",
   })
