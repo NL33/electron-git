@@ -651,6 +651,7 @@ function menuFunction() {
                             enterNewFile(divId, thePath, indent)
                         }
                     }))
+                    /* REMOVE PASTE FILE FOR NOW
                    contextMenu.append(new MenuItem({ type: "separator" }))
                     contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
                         label: "New Paste File",
@@ -660,7 +661,9 @@ function menuFunction() {
                             enterNewPasteFile(divId, thePath, indent)
                         }
                     }))
+                    */
                     contextMenu.append(new MenuItem({ type: "separator" }))
+                    /* REMOVE APPLE NOTE FILE
                     contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
                         label: "Add Apple Note File",
                         click: () => {
@@ -669,6 +672,7 @@ function menuFunction() {
                             addAppleNote(divId, thePath, indent)
                         }
                     }))
+                    */
                     contextMenu.append(new MenuItem({ type: "separator" }))
                     contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
                         label: "View Folder to Search",

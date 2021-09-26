@@ -13,7 +13,12 @@ var storedUserName
 
 module.exports.setUpDatabase = async function () {
   try {
-    await db.version(2).stores({
+    /*
+    db.delete().then((response)=>{
+      console.log('db deleted')
+    })
+    */
+    await db.version(1).stores({
       fileInfo:
         "++id, fileId, fileName, lastSentTime, filePath, topicId, projectName, pathForTopic, linkAddress, summaryText, topicUserName",
     });
@@ -160,11 +165,39 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, topicId) {
 }
 
 
-
 /**************SEND THE DOCS TO THE WEB APP ************************ */
-
-
 function createDiscoursePostFromFile(filePath, createTime, data) {
+  //TEST CODE FOR testing uploading files.
+  console.log('filepath = ' + filePath)
+  if ((filePath.includes('.m4a')) || (filePath.includes('.wav'))) {
+    console.log('upload file')
+    let fileUrl = "https://go.racetosaturn.com/uploads.json"
+    var apiKey = userKey;
+    axios({
+      method: "post",
+      url: fileUrl,
+      contentType: "multipart/form-data",
+      data: {
+        type: "composer",
+        file: filePath,
+        synchronous: true
+      },
+      headers: {
+        "User-Api-Key": apiKey, //for live
+        //"Api-Key": apiKey, //for local testing
+        // "Api-Username": userName //for local testing
+      },
+      dataType: "json",
+    }).then((response) => {
+      console.log('response = ' + response)
+    }).catch((error) => {
+      console.log('error in uploading file = ' + error)
+    })
+  } 
+}
+
+function createDiscoursePostFromFile1(filePath, createTime, data) {
+  //THE REAL CREATE POST CODE
   console.log('filepath = ' + filePath)
   if ((filePath.includes('.m4a')) || (filePath.includes('.wav'))){
     console.log('upload file')
@@ -207,7 +240,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
   var title = path.basename(filePath);
   var topicContent = data;
 
-  var tagName = "music";
+  var tagName = "business";
 
   var filePathArray = filePath.split(projectName);
   var pathForTopic = projectName + filePathArray[1];
@@ -290,15 +323,15 @@ function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
   }
   var title = path.basename(filePath);
   var topicContent = data;
-  var topicShowPath = filePath.substring(
-    filePath.indexOf(projectFolderName) + (projectFolderName.length + 1)
-  );
+  var filePathArray = filePath.split(projectName);
+  var pathForTopic = projectName + filePathArray[1];
   var summaryTextUpdate = "";
+  var summaryText = "";
   if (title.includes("project-summary.")) {
-    var summaryTextRawUpdate = data;
-    summaryTextUpdate = sanitizeHtml(summaryTextRaw).trim();
+    var summaryTextRaw = data;
+    summaryText = sanitizeHtml(summaryTextRaw).trim();
   }
-  var tagName = 'music'
+  var tagName = 'business'
   axios({
     method: "put",
     url: url,
@@ -307,6 +340,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
       title: title,
       raw: topicContent,
       tags: [tagName],
+      path_for_topic: pathForTopic,
     },
     headers: {
       "User-Api-Key": apiKey, //for live
@@ -316,7 +350,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
     dataType: "json",
   })
     .then((response) => {
-      console.log("discourse post updated for = " + topicShowPath);
+      console.log("discourse post updated for = " + filePath);
       var timeNow1 = new Date();
       var timeNow = timeNow1.getTime();
       db.transaction("rw", db.fileInfo, async () => {
