@@ -12,7 +12,6 @@ const trash = require('trash');
 const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 var appFolder = desktopDir + '/app-versions'
-const runJxa = require('run-jxa')
 const environmentVariables = ''//require('../z-environments-1.js')
 var token = environmentVariables.discourseToken
 var discourseUser = environmentVariables.discourseUser
@@ -225,7 +224,7 @@ async function addSummary() {
 
 
 /********CONTROLLING APPLE NOTES ************************* */
-
+/*
 var appleNoteHtmlContent
 async function addAppleNote(divId, mainPath, indent) {
     var newIndent = parseInt(indent) + 17
@@ -272,12 +271,11 @@ async function getFrontNote() { //get the text of the apple note in the foregrou
 
 async function createAppleNoteFile(divId, folderPath, indent, noteId) {
     //this checks if an apple note with that id already exists.
-    /*
-        when click "add apple note", it should automatically check if there is an existing matching note before it gives you the chance to rename. If there is an existing matching note, DON't show the spot to name the file. Just update the existing file with the name of the note on the system.
-        If you then want to change the name, you can do so with the right click menu.
+    //when click "add apple note", it should automatically check if there is an existing matching note before it gives you the chance to rename. If there is an existing matching note, DON't show the spot to name the file. Just update the existing file with the name of the note on the system.
+    //If you then want to change the name, you can do so with the right click menu.
         will have to show a spinner while the activity is happening, and then a confirmation message once the note has been updated
         will also want to check that the async timing is working ok
-    */
+
     var fileName = document.getElementById('appleNoteNameEntry').value
     document.getElementById('addAppleNoteForm').remove()
     var newDocPath = folderPath + '/' + fileName
@@ -358,7 +356,7 @@ margin-bottom: 0px
         }
     })
 }
-
+*/
 /******************FUNCTION TO REMOVE ANY WORK TREES CREATED BY THE APP******************************** */
 
 async function removeSavedWorkTree(treePath) {
@@ -439,6 +437,7 @@ async function removeWorkTree(treePath) {
 async function openDoc(thePath) {
     try {
         let theExtension = path.extname(thePath)
+        /*
         if (thePath.includes('(apple-note)')) { //if apple note. then open the apple note doc directly
             var theNoteId
             try {
@@ -475,7 +474,8 @@ async function openDoc(thePath) {
                 })
             }
 
-        } else if (theExtension.includes('html')) { //if not apple note but is an html file, open that file
+        } else */
+        if (theExtension.includes('html')) { //if not apple note but is an html file, open that file
             ipcRenderer.send('open-html-window', thePath)
 
         } else { //open the file directly
@@ -1286,7 +1286,7 @@ async function sendToGithubFunction() {
 
 /*********APPLE SCRIPT / JXA***************** */
 async function controlTheWindow() {
-
+/*
     try {
         await runJxa(`
     // evalAS :: String -> IO String
@@ -1311,6 +1311,7 @@ async function controlTheWindow() {
     } catch (e) {
         console.log('error = ' + e)
     }
+    */
 }
 /*
     async function getFrontNote(){
@@ -1514,8 +1515,9 @@ function mammothFunction(wordDocPath) {
 
 
 //NEW JXA CODE /////////////////////////////////////////////////////
+/*
 async function getWindows1(){
-    var result = await runJxa(() => {
+        var result = await runJxa(() => {
         const chrome = Application('Google Chrome')
         chrome.includeStandardAdditions = true
         var count = 0
@@ -1532,7 +1534,6 @@ async function getWindows1(){
     console.log('^^^^^^count = ' + count)
    // console.log('result = ' + result)
     //return result
-
 }
 
 async function getAllOpenW1() {
@@ -1560,11 +1561,7 @@ return appNameList as text
 async function getAllOpenW() {
     //gives name of all processes that are active
     var result = await runJxa(() => {
-        /*
-        var SE = Application("System Events").processes.whose(
-            { backgroundOnly: { '=': false } }).windows.name();
-        return SE
-        */
+
         var winList = Application("System Events").processes.whose(
             { backgroundOnly: { '=': false } }).windows.name();
 
@@ -1627,3 +1624,4 @@ async function getWindows() {
     // console.log('result = ' + result)
     //return result
 }
+*/

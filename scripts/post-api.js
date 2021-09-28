@@ -166,11 +166,35 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, topicId) {
 
 
 /**************SEND THE DOCS TO THE WEB APP ************************ */
-function createDiscoursePostFromFile(filePath, createTime, data) {
+async function createDiscoursePostFromFile(filePath, createTime, data) {
   //TEST CODE FOR testing uploading files.
-  console.log('filepath = ' + filePath)
+/*
+when just uploading:
+https://go.racetosaturn.com/uploads.json?client_id=90fa67320d8b404a87570981c25587ec
+//client_id is going to be equivalent to apikey--so that's already there
+route: uploads/create
+username: SeanRtS
+options: noopen
+****
+headers:
+
+method: post
+path: uploads.json?client_id=90fa67320d8b404a87570981c25587ec
+accept: appliation/json, text/javascript
+scheme: https
+
+type: composer
+files[]: (binary)
+
+
+
+  */
+  const { shell } = require('electron')
+ 
   if ((filePath.includes('.m4a')) || (filePath.includes('.wav'))) {
+   // var fileOpen = await shell.openPath(filePath)
     console.log('upload file')
+    console.log('filepath = ' + filePath)
     let fileUrl = "https://go.racetosaturn.com/uploads.json"
     var apiKey = userKey;
     axios({
@@ -180,6 +204,10 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
       data: {
         type: "composer",
         file: filePath,
+        name: 'Moment Simple',
+        username: "SeanRtS",
+        options: "noopen",
+       // user_id: 1,
         synchronous: true
       },
       headers: {

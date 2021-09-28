@@ -1,7 +1,6 @@
 const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, webContents, protocol } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
 const path = require('path') //import the path package which provides utility functions for the file paths
 const fs = require('fs');
-const runJxa = require('run-jxa')
 const sanitizeHtml = require('sanitize-html');
 
 //const { systemPreferences } = require('electron')
@@ -20,7 +19,7 @@ function menuApp() {
     try {
     tray = new Tray(__dirname + '/assets/rts-icon2.png')
     const contextMenu = Menu.buildFromTemplate([
-        { label: 'Hide Windows', click() { minimizeWindows() } },
+       // { label: 'Hide Windows', click() { minimizeWindows() } },
         { label: 'Breathe Big', click() { openBreatheBigWindow() } },
     ])
     tray.setToolTip('This is my application.')
@@ -281,6 +280,7 @@ function showDialog() {
 /****MINIMIZE WINDOWS Menu function *****/
 async function minimizeWindows() {
     try {
+        /*
         const result = await runJxa(`
             const evalAS2 = s => {
                     const a = Application.currentApplication();
@@ -293,7 +293,7 @@ async function minimizeWindows() {
         function openMain() {
             ipcRenderer.send('open-main-window', '') //doesn't get called bc window is minimized. right now, it closes all windows
         }
-
+        */
     } catch (error) {
         console.log('error in minimize windows' + error)
     }

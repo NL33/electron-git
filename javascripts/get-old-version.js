@@ -3,8 +3,6 @@ const { writeFile, fstat } = require('fs')
 const fs = require("fs")
 var path = require('path')
 
-const runJxa = require('run-jxa')
-
 var projectFolderPath
 var folderName
 var versionNumber
