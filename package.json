@@ -19,9 +19,11 @@
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.59",
     "@electron-forge/maker-deb": "^6.0.0-beta.59",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.61",
     "@electron-forge/maker-rpm": "^6.0.0-beta.59",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.59",
     "@electron-forge/maker-zip": "^6.0.0-beta.59",
+    "dotenv": "^10.0.0",
     "electron": "^12.0.2",
     "electron-notarize": "^1.1.1"
   },
@@ -37,7 +39,8 @@
     "save-dev": "0.0.1-security",
     "simple-git": "^2.38.0",
     "trash": "^7.1.1",
-    "turndown": "^7.0.0"
+    "turndown": "^7.0.0",
+    "uglify-js": "^3.14.2"
   },
   "config": {
     "protocols": [

@@ -166,7 +166,7 @@ function setUpDocForUpdate(itemPath, createTime, wordOrNot, topicId) {
 
 
 /**************SEND THE DOCS TO THE WEB APP ************************ */
-async function createDiscoursePostFromFile(filePath, createTime, data) {
+async function createDiscoursePostFromFile1(filePath, createTime, data) {
   //TEST CODE FOR testing uploading files.
 /*
 when just uploading:
@@ -224,7 +224,7 @@ files[]: (binary)
   } 
 }
 
-function createDiscoursePostFromFile1(filePath, createTime, data) {
+function createDiscoursePostFromFile(filePath, createTime, data) {
   //THE REAL CREATE POST CODE
   console.log('filepath = ' + filePath)
   if ((filePath.includes('.m4a')) || (filePath.includes('.wav'))){
@@ -268,7 +268,7 @@ function createDiscoursePostFromFile1(filePath, createTime, data) {
   var title = path.basename(filePath);
   var topicContent = data;
 
-  var tagName = "business";
+  var tagName = "everything";
 
   var filePathArray = filePath.split(projectName);
   var pathForTopic = projectName + filePathArray[1];

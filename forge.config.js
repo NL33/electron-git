@@ -1,3 +1,8 @@
+const uglify = require('./hooks/uglify');
+const excludeMeta = require('./hooks/exclude-meta');
+require('dotenv').config();
+
+
 module.exports = {
     "packagerConfig": {
         "icon": "./assets/rts-iconr",
@@ -13,6 +18,21 @@ module.exports = {
             "appleId": process.env.APPLEID,
             "appleIdPassword": process.env.APPIDPASS
         },
+        "ignore": [
+            'forge.config.js',
+            '.env',
+            '.gitignore',
+            'hooks',
+            'readme.md',
+        ],
+        "ignorePackageJson": [
+            'devDependencies',
+            'author',
+            'scripts',
+            'keywords',
+        ],
+        "asar": true,
+
     },
     "makers": [
         {
@@ -41,6 +61,13 @@ module.exports = {
             "name": "@electron-forge/maker-rpm",
             "config": {}
         }
-    ]
+    ],
+    "hooks": {
+        packageAfterCopy: async (_, location) => {
+            await uglify(location, 'javascripts').then(console.log('ug done'));
+            excludeMeta(location, _.packagerConfig.ignorePackageJson);
+            console.log('✔ selected package.json properties are excluded');
+        },
+    }
 }
 
