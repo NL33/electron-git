@@ -39,6 +39,9 @@ function openWindow() {
            } else {
                console.log('show it')
                newVersionWindow.show()
+               if (basicWindow){
+                  // basicWindow.hide()
+               }
            }
            if (basicWindow.isDestroyed()){
                openBasicWindow()
@@ -371,8 +374,12 @@ ipcMain.on('open-main-window', (event, arg) => {
 })
 
 ipcMain.on('hide-main-window', (event, arg) => {
-    basicWindow.show()
-    newVersionWindow.hide()
+    try {
+        basicWindow.show()
+        newVersionWindow.hide()
+    } catch(e){
+        console.log('error in hide main window = ' + e)
+    }
 })
 
 /*******GET CONTENT FROM Clipboard For Paste FILE */
