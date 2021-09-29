@@ -7,31 +7,25 @@ const simpleGit = require('simple-git')
 const git = simpleGit()
 var TurndownService = require('turndown')
 var turndownService = new TurndownService()
-var mammoth = require("mammoth");
 const trash = require('trash');
-const homeDir = require('os').homedir();
-const desktopDir = `${homeDir}/Desktop`;
-var appFolder = desktopDir + '/app-versions'
-const environmentVariables = ''//require('../z-environments-1.js')
-var token = environmentVariables.discourseToken
-var discourseUser = environmentVariables.discourseUser
 
-var proj
+var proj 
 
 var projectFolderName
 
-const { promisify } = require('util')
+//const { promisify } = require('util')
 
-const { default: axios } = require('axios')
+//const { default: axios } = require('axios')
 
-const { setUpDatabase, sendProject } = require('../scripts/post-api');
+//const { setUpDatabase, sendProject } = require('../scripts/post-api');
 
-const { sendKeysToSite, decodeTheKey, getSecureToken } = require('../scripts/get-key')
+//const { sendKeysToSite, decodeTheKey, getSecureToken } = require('../scripts/get-key')
 
-
+/*
 function discourseAPI(){
     sendProject(projectFolderPath, projectFolderName)
 }
+*/
 /*
 function startAPIKeyProcess(){
     sendKeysToSite()
@@ -42,14 +36,15 @@ function getTokenSecure(){
 
 }
 */
-
+/*
 ipcRenderer.on("discourse-payload-url", (event, payload) => {
     decodeTheKey(payload);
 });
+*/
 /*****Button Set Up *****/
 window.onload = async function () {
     try {
-        await setUpDatabase()
+       // await setUpDatabase()
         window.addEventListener('click', function (e) {
             if (document.getElementById('folderContents').contains(e.target)) {
                 // Clicked in box
@@ -1157,473 +1152,12 @@ async function doTheCommit(text) { //Where the actual version commit is done.
 /*************************************************************************************** */
 
 /***************************** NOT CURRENTLY IN USE  *************************************/
-/*
- //SAVING INDIVIDUAL FILES. NOT CURRENTLY IN USE.
- //receives info from main.js about the active window
- ipcRenderer.on('window-title', (event, data) => {
-     document.getElementById('selectedDoc').textContent = data
-     fileName = data
- })
- */
-
-
-
-/****NOT IN USE: SEND PROJECT TO GITHUB**************** */
 
 /*
-Github commands:
-   /*
-        .add('./*')
-        .commit("first commit!")
-        .addRemote('origin', 'some-repo-url')
-        .push(['-u', 'origin', 'master'], () => console.log('done'));
-    ***
-    github remote repo commands:
-
-    touch README.md
-    git init
-    git add README.md
-    git commit -m "first commit"
-    git remote add origin git@github.com:alexpchin/<reponame>.git
-    git push -u origin master
-
-    */
-
-
-async function showSendOptions() {
-    try {
-        document.getElementById('saveProjectItems').style.display = "none"
-        document.getElementById('saveProjectHeader').style.display = "none"
-        document.getElementById('sendOptions').style.display = "block"
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-        await git.raw('remote', 'get-url', '--push', 'origin').then(result => {
-            console.log('get remote result = ' + JSON.stringify(result))
-            //if lists a remote at github that doesn't exist, will send back an error
-            document.getElementById('remoteName').innerHTML = result
-        })
-    } catch (e) {
-        console.log('error = ' + e)
-    }
-}
-
-function closeSendView() {
-    document.getElementById('sendOptions').style.display = "none"
-    document.getElementById('saveProjectItems').style.display = "block"
-    document.getElementById('saveProjectHeader').style.display = "block"
-}
-
-function openPushTarget() {
-    var target = document.getElementById('remoteName').textContent
-    shell.openExternal(target)
-}
-
-async function sendToGithubFunction() {
-    const USER = 'NL33'
-    const PASS = ''
-    const REPO = 'github.com/nl33/remote-test-repo'
-    const remote1 = `https://${USER}:${PASS}@${REPO}`
-    const remote2 = 'https://nl33@github.com/nl33/remote-test-repo'
-    var newRemoteUrl = 'https://github.com/IrSg/test-remote-repo.git'
-    try {
-        await git.cwd(projectFolderPath).then(result => {
-            // console.log('cwd resultss' + JSON.stringify(result))
-        })
-
-        await git.raw('remote', '--v').then(result => {
-            console.log('get remote result = ' + result)
-        })
-
-
-        /*if already has remote and want to change remote:
-
-        await git.raw('remote', 'set-url', 'origin', newRemoteUrl).then(result => {
-            console.log('setting new remote url result = ' + result)
-        })
-       */
-
-        /*if no remote yet:
-        await git.addRemote('origin', 'https://github.com/IrSg/test-remote-repo.git').then(result => {
-            console.log('adding remote result = ' + result)
-        })
+REMOVED ON SEPTEMBER 29, 2021, around 7:15am US ET:
+--show send options (for sending to github)
+--control the window (for controlling notes)
+--check gitchanges, and then if change, convert word to md
+--early code for controlling apple notes
 */
 
-        /* first push of code to remote
-                await git.raw("push", "-u", "origin", "master").then(result => {
-                    console.log('result of first push = ' + JSON.stringify(result))
-                    if (result){
-                        document.getElementById('sendOptions').style.display = "none"
-                        document.getElementById('saveProjectItems').style.display = "block"
-                        document.getElementById('saveProjectHeader').style.display = "block"
-                    } else if (error){
-                        console.log('error in git push function = ')
-                        console.log(error)
-                    }
-                })
-        
-                //needs -u, origin, main as first commit to remote.
-                //using git.push("-u", "origin", "master") did not seem to work. git.push() probably works, but not for the first commit to the master
-        */
-
-        await git.push().then(result => {
-            console.log('result of push = ' + JSON.stringify(result))
-        })
-
-    }
-    catch (e) {
-        console.log('error in sendToGithubFunction = ' + e)
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-/*********APPLE SCRIPT / JXA***************** */
-async function controlTheWindow() {
-/*
-    try {
-        await runJxa(`
-    // evalAS :: String -> IO String
-   
-    const evalAS = s => {
-        const
-            a = Application.currentApplication(),
-            sa = (a.includeStandardAdditions = true, a);
-        return sa.doShellScript(
-            ['osascript -l AppleScript <<OSA_END 2>/dev/null']
-            .concat([s])
-            .concat('OSA_END')
-            .join('\n')
-        );
-    };
-    var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();
-    var frontApp = Application(frontAppName);
-        var insert = 'bounds of first window of application (path to frontmost application as text)'
-          return evalAS(insert);
-       `
-        )
-    } catch (e) {
-        console.log('error = ' + e)
-    }
-    */
-}
-/*
-    async function getFrontNote(){
-        try {
-            await runJxa(`
-                  (() => {
-            'use strict';
-
-            // evalAS2 :: String -> IO a
-            const evalAS2 = s => {
-                const a = Application.currentApplication();
-                const sa = (a.includeStandardAdditions = true, a);                
-                return sa.runScript(s);
-            };
-    	
-            return evalAS2("use scripting additions\n\
-                tell application "Notes"
-                set noteName to name of item 1 of(get selection)
-            end tell
-            ");
-            })();
-          `)
-
-        } catch (error) {
-            console.log('error in get front note = ' + error)
-        }
-
-    }
-    */
-/*
-  await runJxa(`
-      var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();
-      console.log('front app name = ' + frontAppName)
-      var frontApp = Application(frontAppName); //gets the application with that name
-     var info = frontApp.windows[0].path()
-      console.log('info = ' + info)
-      frontApp.windows[0].bounds = {
-      "x": 80,
-      "y": 80,
-      "width": 50,
-      "height": 50
-      }
- 
-      console.log('done')
-  `)
-  */
-
-/* working function
-var its = se.processes.byName('iTunes');
- 
- 
- 
-async function controlTheWindow() {
-    await runJxa(`
-     const wordApp = Application("Microsoft Word")
-    //wordDoc.activate()
-    wordApp.windows[0].bounds = {
-      "x": 2,
-      "y": 4,
-      "width": 200,
-      "height": 200
-    }
-  `)
-}
-//this one puts the first window of foreground app in a position:
-   await runJxa(`
-        var frontAppName = Application("System Events").processes.whose({frontmost: {'=': true }})[0].name();  //gets the name of the process that is currently in front
-        var frontApp = Application(frontAppName); //gets the application with that name
-        frontApp.windows[0].bounds = {
-        "x": 2,
-        "y": 4,
-        "width": 200,
-        "height": 200
-        }
-    `)
- 
-*/
-
-/****************FUNCTIONS TO CONVERT WORD DOCS TO MD ON GIT SAVE ******************/
-/*These functions are not currently in use.
-The purpose of these functios is to 1. determine last time git file was saved, 2. go through and determine if any word docs have been saved since that time (ie, they are more updated then the last git file), and 3. take those word docs and create markdown file equivalents of them. 
-*/
-async function checkGitChangeTime(theFilePath) { //check the last time the git file was created
-    var newStat = promisify(fs.stat)
-    console.log('a. check changes function')
-    //if a doc is md, txt, html, etc.--> then I don't need to create a copy of it.
-    //if a doc is a word doc (and specific others), then I need to create a copy of it.
-    //so one strategy is to find all the word docs in a project, and then see if they have been updated, and then update the copy if they have
-    var lastSaveTime
-    var gitFile = theFilePath + '/.git'
-    if (gitFile) {
-        await newStat(gitFile).then((stats, err) => {
-            lastSaveTime = stats.mtime
-            console.log('b. last save time = ' + lastSaveTime)
-            return checkChangesFunction(theFilePath, lastSaveTime) //once have the last updated time, run the function to see what folders have changed since then
-            // }).catch((e) => {
-            //   console.log('error = ' + e)
-        })
-    } else {
-        lastSaveTime = 0
-        return checkChangesFunction(theFilePath, lastSaveTime) //once have the last updated time, run the function to see what folders have changed since then
-    }
-}
-
-
-/**THe below function runs a loop. When it analyzes and converts a word doc, that goes on a different track and happens slower. That is ok
- the question is: how to call the next stage (git actions), only once all word docs have been addressed?
- Potential Answer:
- in the first loop, don't do the asynchronous work. use that work to get all the filePaths for word docs that need to be worked on.
- Then, for all those filepaths, do the asynchronous magic work.
- once you've done so for all the paths in the word array, then and only then call the git function
- */
-var wordDocs = []
-var count = 0
-async function checkChangesFunction(theFilePath, lastSaveTime) {
-    var newStat = promisify(fs.stat)
-    var projectFolder = theFilePath
-    var projectContents = await fs.readdirSync(projectFolder)
-    count++
-    if (count === 1) { //only do this the first time you run through this array, so only do this for the top line of the directory. This will add a fake name at the end of the project contents (not actually adding a file--just for purposes of the loop below). It's a way to know when we've reached the end of the project contents
-        var fakeFileName = 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g'
-        projectContents.push(fakeFileName)
-    }
-    for (var i = 0; i < projectContents.length; i++) {
-
-        if ((projectContents[i] != 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g') && (projectContents[i] != ".DS_Store") && (projectContents[i] != ".git")) {
-            var filePath = path.join(projectFolder, projectContents[i]); //get full path of item in the project we're focused on
-            console.log('1. filepath = ' + filePath)
-            await newStat(filePath).then((stats, err) => {  //gets stats then. and convert fs.stat to a promise that resolves to be sure: 1. it does the analysis of the relevant file before moving on the loop and 2. it resolves, so it does move on when it's done
-                if (err) {
-                    throw (err)
-                }
-                let timeModified = stats.mtime //get modified time of item
-                if (timeModified > lastSaveTime) { //has it been modified since the last git save? If so, we need to look closer.
-                    if (fs.statSync(filePath).isDirectory() === true) { //if a directory, then run this again, until you get to a document
-                        //note it may not get here aagain if no contents
-                        console.log('2a. file path = ' + filePath + ", **is a directory")
-                        return checkChangesFunction(filePath, lastSaveTime)
-                    } else { //if it's a file, then see if a word doc. If so, perform magic. If not, then no action necessary cause git can handle file as is.
-                        //console.log('in a document')
-                        var extension = path.extname(filePath)
-                        if (extension.includes('doc')) {
-                            wordDocs.push(filePath)
-                            console.log('2.b word doc = ' + filePath)
-                            return 'done'
-                        } else {
-                            console.log('2ba. doc but not word doc ')
-                            return 'done'
-                        }
-                    }
-                } else { //if it has not been modified since the last git save, then we are done with this item in the loop
-                    console.log('2c. has not been modified since last git save')
-                    return 'done'
-                }
-
-            }).catch((e) => {
-                console.log('error hereo= ' + JSON.stringify(e))
-            })  //end stat
-
-        } else if (projectContents[i] === 'zzz3%$#j488*MN3#@1q9*mxSzp9L0(*g') {
-            console.log('^^^^^^^^^^END LOOP THROUGH PROJECT CONTENTS************')
-            console.log('word doc lenght = ')
-            console.log(wordDocs.length)
-
-            let promises = []
-            for (let i = 0; i < wordDocs.length; i++) {
-                promises.push(mammothFunction(wordDocs[i]))
-                //mammothFunction(wordDocs[i])
-            }
-
-
-            Promise.all(promises).then(function (result) {
-                console.log('*&*&*&*&*&*& promise all done *&*&*&*&*&*&*&*&*&*&*&*&*&*&')
-                saveGitVersion()
-            })
-
-
-        }//end if not ds_store or git
-    } //end projectContents loop
-} //end check Changes Function
-
-function mammothFunction(wordDocPath) {
-    return new Promise((resolve, reject) => {
-        mammoth.convertToHtml({ path: wordDocPath }).then(function (result) {
-            var htmlWord = result.value
-            var data = turndownService.turndown(htmlWord)
-            var dataCleaned = data.replace(/<!--.*?-->/s, "");  //at this point, have converted the word doc to markdown, and removed the first commented out code that word docs have that take up a lot of space but are not necessary from the markdown version
-            var removeDocExtension = wordDocPath.replace(/\.[^/.]+$/, "")
-            var markDownPath = removeDocExtension + '.md'
-            writeFile(markDownPath, dataCleaned, (err) => {
-                if (err) {
-                    console.log('error = ' + err)
-                } else {
-                    resolve(dataCleaned)   //completed the conversion for the doc. sends it back to promise.all(promises)
-                }
-            })
-        })
-    })
-}
-
-
-
-//NEW JXA CODE /////////////////////////////////////////////////////
-/*
-async function getWindows1(){
-        var result = await runJxa(() => {
-        const chrome = Application('Google Chrome')
-        chrome.includeStandardAdditions = true
-        var count = 0
-        chrome.windows().forEach((window, winIdx) => {
-            window.tabs().forEach((tab, tabIdx) => {
-                console.log('****NEW ENTRY**********')
-                console.log(tab.title(), tab.url())
-                count = count + 1
-                console.log('count = ' + count)
-            })
-        })
-
-    }, [])
-    console.log('^^^^^^count = ' + count)
-   // console.log('result = ' + result)
-    //return result
-}
-
-async function getAllOpenW1() {
-    //gives name of all processes that are active
-    var result = await runJxa(() => {
-        const evalAS2 = s => {
-            const a = Application.currentApplication();
-            const sa = (a.includeStandardAdditions = true, a);
-            return sa.runScript(s);
-        };
-
-        return evalAS2(`
-        tell application "System Events"
-	set appNameList to (name of every process where background only is false)
-end tell
-
-set AppleScript's text item delimiters to linefeed
-return appNameList as text
-        `)
-    }, [])
-    console.log('result = ' + result)
-    getWindows()
-}
-
-async function getAllOpenW() {
-    //gives name of all processes that are active
-    var result = await runJxa(() => {
-
-        var winList = Application("System Events").processes.whose(
-            { backgroundOnly: { '=': false } }).windows.name();
-
-        // REF: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-
-        //--- Flatten 2D Array into 1D ---
-        var winList2 = winList.reduce(
-            function (accumulator, currentValue) {
-                return accumulator.concat(currentValue);
-            },
-            []
-        );
-
-        //--- Remove Windows with No Title ---
-        winList2 = winList2.filter(e => (e !== ""));
-
-        //--- Create CSV List of Window Names ---
-        //    (use .join('\n') if you'd prefer each name on separate line)
-        var scriptResults = winList2.join('\n')
-
-        return scriptResults;
-
-    }, [])
-    console.log('result = ')
-    console.log(result)
-   // getWindows()
-}
-
-
-
-async function getWindows() {
-    //better performance for https://github.com/bit2pixel/chrome-control/pull/7/commits/a1d01c8bcb3f1d3a43e7e9a82c2730735506bb3d
-    var result = await runJxa(() => {
-        const chrome = Application('Google Chrome')
-        chrome.includeStandardAdditions = true
-       
-        let allTabsTitle = chrome.windows.tabs.title()
-        let allTabsUrls = chrome.windows.tabs.url()
-        let allTabsIcons = chrome.windows.tabs.icon()
-
-        var titleToUrl = {}
-        for (var winIdx = 0; winIdx < allTabsTitle.length; winIdx++) {
-            for (var tabIdx = 0; tabIdx < allTabsTitle[winIdx].length; tabIdx++) {
-                let title = allTabsTitle[winIdx][tabIdx]
-                let url = allTabsUrls[winIdx][tabIdx]
-                let icon = allTabsIcons[winIdx][tabIdx]
-                titleToUrl[title] = {
-                    'title': title || 'No Title',
-                    'url': url,
-                    'winIdx': winIdx,
-                    'tabIdx': tabIdx,
-                }
-                console.log('****TITLE = ' + title + '; url = ' + url)
-                console.log('icon = ' + icon)
-            }
-        }
-
-    }, [])
-    console.log('^^^^^^count = ' + count)
-    // console.log('result = ' + result)
-    //return result
-}
-*/

@@ -11,26 +11,44 @@ const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
 
 
 /*** TOOLBAR MENU ICON****** */
-
+var newVersionWindowOpen = false
 //const activeWindow = require('active-win');
 let tray = null
 var mainWindow
 function menuApp() {
     try {
-    tray = new Tray(__dirname + '/assets/rts-icon2.png')
-    const contextMenu = Menu.buildFromTemplate([
-       // { label: 'Hide Windows', click() { minimizeWindows() } },
-        { label: 'Breathe Big', click() { openBreatheBigWindow() } },
-    ])
-    tray.setToolTip('This is my application.')
-    tray.setContextMenu(contextMenu)
-} catch (e){
-    console.log('error in loading tray menu = ' + e)
-}
+        tray = new Tray(__dirname + '/assets/rts-icon2.png')
+        const contextMenu = Menu.buildFromTemplate([
+            { label: 'Open Window', click() { openWindow() } },
+            // { label: 'Hide Windows', click() { minimizeWindows() } },
+            { label: 'Breathe Big', click() { openBreatheBigWindow() } },
+        ])
+        tray.setToolTip('This is my application.')
+        tray.setContextMenu(contextMenu)
+    } catch (e) {
+        console.log('error in loading tray menu = ' + e)
+    }
 }
 
 /****#OPEN BASIC (Mini) WINDOW******** */
-
+function openWindow() {
+    try {
+       // if (newVersionWindowOpen === false) {
+           if (newVersionWindow.isDestroyed()){
+               saveNewVersionWindow()
+           } else {
+               console.log('show it')
+               newVersionWindow.show()
+           }
+           if (basicWindow.isDestroyed()){
+               openBasicWindow()
+           }
+      //  }
+           
+    } catch (e) {
+        console.log('error in opening window = ' + e)
+    }
+}
 
 function openBasicWindow() {
     var theDisplay = screen.getPrimaryDisplay()
@@ -75,6 +93,10 @@ async function saveNewVersionWindow(windowTitle) {
     })
 
     newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
+    newVersionWindowOpen = true
+    newVersionWindow.on('close', () => {
+        newVersionWindowOpen = false
+    })
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
 
     //newVersionWindow.openDevTools()
@@ -89,15 +111,15 @@ async function saveNewVersionWindow(windowTitle) {
 
 /*****OPEN NAVIGATOR WINDOW********************* */
 
-function openNavigatorWindow(){
+function openNavigatorWindow() {
     var theDisplay = screen.getPrimaryDisplay()
     var height = theDisplay.workAreaSize.height
     var screenWidth = theDisplay.bounds.width
-    var  navigatorWindow = new BrowserWindow({
-       // show: false,
+    var navigatorWindow = new BrowserWindow({
+        // show: false,
         height: height,
         width: 450,
-        x: screenWidth-440,
+        x: screenWidth - 440,
         y: 0,
         title: "Navigate",
         alwaysOnTop: true,
@@ -309,7 +331,7 @@ function openBreatheBigWindow() {
     var rightHeight = Math.floor((size.height)) - Math.floor((size.height) - 2)
     //var rightHeight = Math.floor((size.height)-170)
     var xSpot = Math.floor((size.width) / 2) - 112
-      breatheWindow = new BrowserWindow({
+    breatheWindow = new BrowserWindow({
         show: false,
         height: 165,
         width: 225,
@@ -321,8 +343,8 @@ function openBreatheBigWindow() {
         frame: false,
         alwaysOnTop: true,
         webPreferences: {
-            nodeIntegration: true, 
-            contextIsolation: false, 
+            nodeIntegration: true,
+            contextIsolation: false,
             enableRemoteModule: true
         }
         //backgroundColor: 'white'
@@ -491,12 +513,12 @@ function openDiscourseAuthWindow(discourseUrl) {
 /*******BASIC SETUP**** */
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
-   
+
     openBasicWindow()
     saveNewVersionWindow()
-   //openNavigatorWindow()
+    //openNavigatorWindow()
     menuApp()
-   // createWindow()
+    // createWindow()
     app.on('activate', () => {
 
         if (BrowserWindow.getAllWindows().length === 0) { //create a new browswer window only if app has no visible windows after being activated, such as when launching the app for the first time or relaunching the already running app
