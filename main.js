@@ -3,10 +3,10 @@ const path = require('path') //import the path package which provides utility fu
 const fs = require('fs');
 const sanitizeHtml = require('sanitize-html');
 
-//const { systemPreferences } = require('electron')
+const { systemPreferences } = require('electron')
 // Prompt to access System Preferences by setting the prompt "true"
 
-//const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
+const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
 //console.log("Does the client have accessibility permissions?", isTrusted)
 
 
@@ -260,7 +260,7 @@ function showDialog() {
             newVersionWindow.webContents.send('selected-folder', result.filePaths)
         }
     }).catch(err => {
-        console.log(err)
+        console.log('error in opening dialog = ' + err)
     })
 
     /*

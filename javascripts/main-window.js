@@ -99,6 +99,7 @@ window.onload = async function () {
         //change project folder button
         var changeFolderButton = document.getElementById('changeFolder')
         changeFolderButton.addEventListener('click', () => {
+            console.log('clicked change folder button')
             changeFolder()
             //openDocFunction()
             //openDocSpawn()
@@ -515,6 +516,7 @@ function openDocSpawn() {
 /*************************************Select Project Folder to show folder contents*******************************/
 
 function changeFolder() {
+    console.log('send change folder')
     ipcRenderer.send('open-folder-dialog', '')
 }
 

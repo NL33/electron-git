@@ -22,7 +22,6 @@ module.exports.setUpDatabase = async function () {
       fileInfo:
         "++id, fileId, fileName, lastSentTime, filePath, topicId, projectName, pathForTopic, linkAddress, summaryText, topicUserName",
     });
-    console.log("setup dexie");
     return "done";
   } catch (error) {
     console.log("error in setUpDexie = " + error);
