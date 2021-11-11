@@ -153,6 +153,7 @@ async function saveNewVersionWindow(windowTitle) {
 
     newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
     newVersionWindowOpen = true
+    newVersionWindow.hide()
     newVersionWindow.on('close', () => {
         newVersionWindowOpen = false
     })
@@ -528,8 +529,8 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
     
     createNavWindow()
     keyBoardShortCut()
-   // openBasicWindow()
-    //saveNewVersionWindow()
+    openBasicWindow()
+    saveNewVersionWindow()
     menuApp()
 
     app.on('activate', () => {

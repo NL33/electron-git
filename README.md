@@ -11,3 +11,19 @@ This is an app that uses electron and javascript to make it easy to use git when
 ## Notes for Packaging
 
 - clear out icons/memory.json.  and any icons built up in the icons folder. Unless want to have a few there for faster load.
+
+## Next
+- when select item in navigator, minimize the navigator window
+- keyboard shortcut (command+2) for calling up project focus window
+- update main window code for updated electron--coordinating remote modules
+- update other windows code for updated electron
+
+- icon activity
+    - add icon for chrome when tab icon doesn't work
+    - add microsoft word icon manually
+    - add another default icon for if other windows' icons don't work       
+    - add chrome icon manually to show up if chrome tab icon doesn't work       
+    - add google folder and doc icon for project focus manually
+
+-   Display flex does some wierd things: counters display : none (overriden here with !important in the hidewhileloading clas); and cuts off images in columns.
+- instead of display flex: can it work to make the tabs li s, and the image as the bullet point?

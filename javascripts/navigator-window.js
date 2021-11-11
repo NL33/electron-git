@@ -562,6 +562,8 @@ function searchNamesFunction() {
 
 /**END SEARCH NAMES** */
 
+
+/***MENU Function ******/
 function menuFunction() {
     window.addEventListener('contextmenu', (e) => {
         if (e.target.status === 'window') {
@@ -587,3 +589,11 @@ ipcRenderer.on('close-tab', (event, arg) => {
     var target = arg
     closeTab(target)
 })
+
+
+/****project focus ********/
+
+function projectFocus(){
+    ipcRenderer.send('open-main-window', '')
+}
+
