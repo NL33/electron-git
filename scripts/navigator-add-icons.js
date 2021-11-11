@@ -9,7 +9,6 @@ module.exports = async function (appsInfo, iconsFolder = "icons") {
             const pathId = appsInfo.paths[i]
             const pathZ1 = appsInfo.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('Macintosh HD', '')
             if (memory[pathId]) {
-                console.log(memory[pathId])
                 appsInfo.icons[i] = memory[pathId];
                 continue;
             }
