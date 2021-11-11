@@ -3,6 +3,10 @@
   color: #778899;
 }
 
+.names {
+  word-break: break-word;
+}
+
 .hideWhileLoading{
   display: none !important;  /*the important here is to override any display: flex; which counteracts display: none.*/
 }

@@ -9,8 +9,9 @@ const { systemPreferences } = require('electron')
 const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
 //console.log("Does the client have accessibility permissions?", isTrusted)
 
-var navWindow
-
+let navWindow = null
+let newVersionWindow = null
+let basicWindow = null
 /*** TOOLBAR MENU ICON****** */
 var newVersionWindowOpen = false
 //const activeWindow = require('active-win');
@@ -20,6 +21,7 @@ function menuApp() {
     try {
         tray = new Tray(__dirname + '/assets/rts-icon2.png')
         const contextMenu = Menu.buildFromTemplate([
+            { label: 'Open Navigator Window', click() { openNavWindow() } },
             { label: 'Toggle Navigator Columns', click() { columnChoice() } },
             { label: 'Toggle Navigator Chrome Position', click() { chromePosition() } },
             { type: 'separator' },
@@ -38,9 +40,16 @@ function menuApp() {
 /********************Navigator Window ************************/
 
 const createNavWindow = () => {
-    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+  try {
+    var theDisplay = screen.getPrimaryDisplay()
+    var width = theDisplay.bounds.width
+    var height= theDisplay.bounds.height
     navWindow = new BrowserWindow({
-        width: 610, height,
+        width: 610,
+        height: height,
+        x: width - 611,
+        y: 0,
+        alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
@@ -49,12 +58,31 @@ const createNavWindow = () => {
     })
     navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));
     navWindow.openDevTools() /**********remove-in-production*****/
+    navWindow.on('close', () => {
+        navWindow = null
+    })
+  } catch(e) {
+    console.log('error in creating nav window = ' + e)
+  }
 };
 
 
 
 function keyBoardShortCut() {
     globalShortcut.register('Cmd+1', () => {
+       openNavWindow()
+    })
+
+    globalShortcut.register('Cmd+2', () => {
+        openWindow()
+    })
+}
+
+function openNavWindow(){
+  try {
+    if (navWindow === null) {
+        createNavWindow()
+    } else {
         var isVisible = navWindow.isVisible()
         if (isVisible === false) {
             navWindow.webContents.send('run-loop-function', '')
@@ -65,12 +93,10 @@ function keyBoardShortCut() {
             navWindow.webContents.send('run-loop-function', '')
             navWindow.focus()
         }
-    })
-
-    globalShortcut.register('Cmd+2', () => {
-        var isVisible = navWindow.isVisible()
-        openWindow()
-    })
+    }
+} catch (e) {
+          console.log('error in opening nav window = ' + e)
+      }
 }
 
 ipcMain.on('focus-the-window', (event, target) => {
@@ -109,7 +135,7 @@ function openWindow() {
       //  }
            
     } catch (e) {
-        console.log('error in opening window = ' + e)
+        console.log('error in opening project window = ' + e)
     }
 }
 
@@ -593,8 +619,7 @@ try {
 
 
 /***************prevent electron from opening a second instance of the app (for example, as a result of the protocol being called on windows)***********************************/
-let newVersionWindow = null
-let basicWindow = null
+
 
 const gotTheLock = app.requestSingleInstanceLock()
 

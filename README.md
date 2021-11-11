@@ -12,6 +12,10 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 - clear out icons/memory.json.  and any icons built up in the icons folder. Unless want to have a few there for faster load.
 
+- remove dev tools in menu
+
+- and remove open dev tools call in opening windows
+
 ## Next
 - when select item in navigator, minimize the navigator window
 - keyboard shortcut (command+2) for calling up project focus window. DONE
