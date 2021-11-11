@@ -90,10 +90,9 @@ function chromePosition() {
 function openWindow() {
     try {
        // if (newVersionWindowOpen === false) {
-           if (newVersionWindow.isDestroyed()){
+           if ((!newVersionWindow) || (newVersionWindow.isDestroyed())){
                saveNewVersionWindow()
            } else {
-               console.log('show it')
                newVersionWindow.show()
                if (basicWindow){
                   // basicWindow.hide()
@@ -153,7 +152,6 @@ async function saveNewVersionWindow(windowTitle) {
 
     newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
     newVersionWindowOpen = true
-    newVersionWindow.hide()
     newVersionWindow.on('close', () => {
         newVersionWindowOpen = false
     })
@@ -375,7 +373,7 @@ ipcMain.on('close-breathe-window', function () {
 
 //end breath big window
 ipcMain.on('open-main-window', (event, arg) => {
-    newVersionWindow.show()
+    openWindow()
     basicWindow.hide()
 })
 
@@ -530,7 +528,7 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
     createNavWindow()
     keyBoardShortCut()
     openBasicWindow()
-    saveNewVersionWindow()
+   // saveNewVersionWindow()
     menuApp()
 
     app.on('activate', () => {
