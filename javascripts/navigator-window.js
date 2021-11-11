@@ -1,8 +1,7 @@
 const { exec, execFile, spawn, spawnSync } = require('child_process');
-const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTab, macCloseWindow, macCloseApp, macCloseChromeTab } = require('../../scripts/navigator-jxa');
-const { keyDownFunction } = require('../../scripts/navigator-keyboard-functions')
-const addIcons = require('../../scripts/navigator-add-icons');
-const cards = require('../cards');
+const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTab, macCloseWindow, macCloseApp, macCloseChromeTab } = require('../scripts/navigator-jxa');
+const { keyDownFunction } = require('../scripts/navigator-keyboard-functions')
+const addIcons = require('../scripts/navigator-add-icons');
 
 const { ipcRenderer } = require('electron')
 menuFunction()

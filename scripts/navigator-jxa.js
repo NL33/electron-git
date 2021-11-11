@@ -1,5 +1,4 @@
 const { exec, execFile } = require('child_process');
-const runJXA = require('run-jxa');
 const fs = require('fs')
 
 /*****GET LIST OF APPS, WINDOWS, AND TABS********/

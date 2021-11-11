@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, globalShortcut, webContents, protocol } = require('electron') 
+const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, webContents, protocol } = require('electron') 
 const path = require('path');
 const fs = require('fs');
 const sanitizeHtml = require('sanitize-html');
@@ -47,7 +47,7 @@ const createNavWindow = () => {
             enableRemoteModule: true
         }
     })
-    navWindow.loadFile(path.join(__dirname, '/app/app.html'));
+    navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));
     navWindow.openDevTools() /**********remove-in-production*****/
 };
 
@@ -584,7 +584,7 @@ app.on('window-all-closed', () => { //quit the application when it no longer has
 
 //for hot reloading (ie, auto-reloading):
 try {
-    require('electron-reloader')(module)
+    require('electron-reloader')(module, { ignore: './icons' })
 } catch (_) { }
 
 
