@@ -66,6 +66,11 @@ function keyBoardShortCut() {
             navWindow.focus()
         }
     })
+
+    globalShortcut.register('Cmd+2', () => {
+        var isVisible = navWindow.isVisible()
+        openWindow()
+    })
 }
 
 ipcMain.on('focus-the-window', (event, target) => {

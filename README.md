@@ -14,7 +14,8 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 ## Next
 - when select item in navigator, minimize the navigator window
-- keyboard shortcut (command+2) for calling up project focus window
+- keyboard shortcut (command+2) for calling up project focus window. DONE
+- keyboard command+1 still calls up navigator window, even if window has been previously destroyed
 - add open navigator window to menu tray
 - update main window code for updated electron--coordinating remote modules
 - update other windows code for updated electron
