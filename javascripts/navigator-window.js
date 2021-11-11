@@ -593,7 +593,7 @@ ipcRenderer.on('close-tab', (event, arg) => {
 
 /****project focus ********/
 
-function projectFocus(){
+function projectWindow(){
     ipcRenderer.send('open-main-window', '')
 }
 
