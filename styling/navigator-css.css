@@ -1,84 +1,130 @@
+[contenteditable]:empty:before {
+  content: attr(data-placeholder);
+  color: #778899;
+}
+
+.hideWhileLoading{
+  display: none !important;  /*the important here is to override any display: flex; which counteracts display: none.*/
+}
+
+#refresh:hover {
+  background: #5bd776;
+  border: 3px solid #5bd776;
+  color: white
+}
+
+#showResults {
+  margin-top: 15px;
+  margin-right: 5px;
+  word-wrap: break-word;
+}
+
+.appOverview {
+  margin-left: 5px;
+}
+
+.columnView {
+ columns: 2;
+  column-rule-style: solid;
+  column-rule:1px solid #d9d9d9;
+}
+
+ul.nextItems {
+  margin: 0px;
+  list-style-position: inside;
+  list-style-type: circle;
+}
+
+ul li {
+  color: #3399ff;
+}
+
+.chromeNextItems {
+  margin-left: 45px
+}
+
+.nonChromeNextItems {
+  margin-left: 50px
+}
+
+.hideDiv {
+  display: none !important;
+}
+
+.windowName {
+  padding: 5px;
+  padding-left: 7px;
+  cursor: pointer;
+}
+
+.tabOverview {
+  padding: 5px;
+  padding-left: 7px;
+  padding-bottom: 1px;
+}
+
+.windowName:hover, .tabOverview:hover, :focus{
+   background-color:#eaf7fb;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;
+  outline: none !important;
+}
+
+.appDetails {
+  cursor: pointer;
+}
+
+.appDetails:hover{
+  background-color: #EFF9FC;
+   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
 * {
   font-family: "Roboto", sans-serif;
-}
-h2,
-h5 {
-  margin: 0;
-}
-ul {
-  list-style-type: none;
-  padding-inline-start: 0px;
-  margin: 0;
+  font-size: 11.5pt;
 }
 
-#container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+/*****SEARCH **************/
+
+#nameSearch {
+  border: 3px solid #3399ff;
+  outline: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 8px;
 }
 
-#card {
-  display: grid;
-  grid-template: "img h2" 50px ". windows" auto / 50px;
-  align-items: center;
-  box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+#loadingMessage{
+  border: 3px solid white;
+  font-size: 13pt;
+  font-weight: 400;
+  outline: none;
+  padding: 10px;
+  margin-bottom: 8px;
 }
 
-#card > img {
-  grid-area: img;
-}
-#card > img:hover {
-  cursor: pointer;
-}
-
-#card > h2 {
-  grid-area: h2;
-  padding-left: 1rem;
-  font-weight: bold;
-  text-transform: capitalize;
-}
-#card > h2:hover {
-  cursor: pointer;
-}
-
-#card > ul {
-  grid-area: windows;
-  padding-left: 1rem;
+/****Breathe Circle**********/
+#breatheCircle {
+  -webkit-user-select: none;
+  display: inline-block;
+  border: 15px solid #FF7200;
+  border-radius: 50%;
+  background: white;
+  text-align: center;
+  font-size: 22pt;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom:12px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 2px;
+  box-shadow:  0px 0px 0px 8px #3399FF;
 }
 
-#card > ul > li {
-  display: grid;
-  grid-template: "windowIcon windowName" 24px ". tabs" auto / 24px;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-#card > ul > li > h5 {
-  grid-area: windowName;
-  font-weight: 300;
-}
-#card > ul > li > h5:hover {
-  cursor: pointer;
-}
-
-#card > ul > li > span {
-  grid-area: windowIcon;
-}
-#card > ul > li > span:hover {
-  cursor: pointer;
-}
-
-#card > ul > li > div {
-  grid-area: tabs;
-}
-
-#card > ul > li > div > span {
-  display: flex;
-  gap: 0.25rem;
-  align-items: center;
-  padding-bottom: 0.5rem;
-}
-#card > ul > li > div > span:hover {
-  cursor: pointer;
+.breatheCircleOnPage {
+  font-weight: 400;
+  padding-top: 25px !important;
+  height: 80px;
+  width: 90px;
+ box-shadow: 0 3px 5px 12px #3399FF(0, 0, 0, 0.2), 0 2px 3px  12px #3399FF(0, 0, 0, 0.19) !important;
 }

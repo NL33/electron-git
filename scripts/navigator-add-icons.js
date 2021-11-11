@@ -1,45 +1,64 @@
 const { exec } = require('child_process');
 const { readFile, writeFile } = require('fs');
-//get icons for windows and apps
+
 module.exports = async function (appsInfo, iconsFolder = "icons") {
-    const memory = await read(`${iconsFolder}/memory.json`).then(d => JSON.parse(d));
-    const promises = [];
-    for (let i = 0; i < appsInfo.length; i++) {
-        const { path, bundleId } = appsInfo[i];
-        if (memory[bundleId]) {
-            appsInfo[i].icon = memory[bundleId];
-            continue;
+    try {
+        const memory = await read(`${iconsFolder}/memory.json`).then(d => JSON.parse(d));
+        const promises = [];
+        for (let i = 0; i < appsInfo.paths.length; i++) {
+            const pathId = appsInfo.paths[i]
+            const pathZ1 = appsInfo.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('Macintosh HD', '')
+            if (memory[pathId]) {
+                appsInfo.icons[i] = memory[pathId];
+                continue;
+            }
+            promises.push(
+                read(`${pathZ1}/Contents/Info.plist`)
+                    .then(async infoplist => {
+                        const iconName = extractIconName(infoplist);
+                        if (!iconName) {
+                            //throw Error();
+                        }
+                        const iconFile = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `${iconsFolder}/${pathId}.png`);
+
+                        memory[pathId] = iconFile;
+                        appsInfo.icons[i] = iconFile;
+                    }).catch(e => {
+                        console.log('***error = ' + e)
+                        /***ADD ICON HERE IF ERROR IN APP ICON ********/
+                        // memory[pathId] = `${iconsFolder}/standard.png`;
+                        //appsInfo.icons[i] = `${iconsFolder}/standard.png`;
+                    })
+            );
         }
-        promises.push(
-            read(`${appsInfo[i].path}/Contents/Info.plist`)
-                .then(async infoplist => {
-                    const iconName = extractIconName(infoplist);
-                    if (!iconName) throw Error();
-                    const iconFile = await icon2png(`${path}/Contents/Resources/${iconName}`, `${iconsFolder}/${bundleId}.png`);
-                    memory[bundleId] = iconFile;
-                    appsInfo[i].icon = iconFile;
-                }).catch(e => {
-                    memory[bundleId] = `${iconsFolder}/standard.png`;
-                    appsInfo[i].icon = `${iconsFolder}/standard.png`;
-                })
-        );
+
+
+        await Promise.all(promises);
+        await write(`${iconsFolder}/memory.json`, JSON.stringify(memory, null, 2));
+        return appsInfo;
+    } catch (e) {
+        console.log('error in add icons = ' + e)
     }
-
-
-    await Promise.all(promises);
-    await write(`${iconsFolder}/memory.json`, JSON.stringify(memory, null, 2));
-    return appsInfo;
 }
 
 function extractIconName(infoplist) {
-    const keys = ['CFBundleIconFile', 'CFBundleIconName'];
+    const keys = ['Icon file', 'Icon name'];
     let info = {};
 
     for (let i = 0; i < keys.length; i++) {
-        const offset = infoplist.indexOf(keys[i]);
+        const offsetRaw = infoplist.indexOf(keys[i]);
+        var offset = -1
+        if ((offsetRaw === -1) && (keys[i] === 'Icon file')) {
+            offset = infoplist.indexOf('CFBundleIconFile')
+        } else if ((offsetRaw === -1) && (keys[i] === 'Icon name')) {
+            offset = infoplist.indexOf('CFBundleIconName')
+        } else {
+            offset = offsetRaw
+        }
         const start = infoplist.indexOf('<string>', offset) + '<string>'.length;
         const end = infoplist.indexOf('</string>', offset);
-        info[keys[i]] = start !== -1 && end !== -1 && offset !== -1 ? infoplist.slice(start, end) : false;
+        info[keys[i]] = start !== -1 && end !== -1 && offset !== -1 ? infoplist.slice(start, end) : 'AppIcon';
+        //Note: currently there will be an error for plist files where it has a format that does NOT print icon after listing out icon name
     }
 
     let iconName = info[keys[0]] ?? response[keys[1]];
@@ -55,6 +74,7 @@ function icon2png(inputPath, outPutPath) {
 }
 
 function read(path) {
+
     return new Promise((resolve, reject) =>
         readFile(path, (err, data) => err ? reject(err) : resolve(data.toString())));
 }
@@ -63,4 +83,3 @@ function write(path, data) {
     return new Promise((resolve, reject) =>
         writeFile(path, data, (err) => err ? reject(err) : resolve(true)));
 }
-
