@@ -27,11 +27,9 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 /*****LOAD APPS, WINDOWS, AND TABS ***************/
 var child = 'n/a'
 startLoop()
-
-
 var activeElementText = ''
-ipcRenderer.on('run-loop-function', (event, arg) => {
 
+ipcRenderer.on('run-loop-function', (event, arg) => {
     startLoop()
 })
 
@@ -46,7 +44,6 @@ async function startLoop() {
         document.getElementById('nameSearch').style.display = 'block'
         document.getElementById('nameSearch').focus()
     }
-
 
     var tApps = document.querySelectorAll('.appOverview')
     activeElementText = document.activeElement.textContent //get currently focused element right before we transition to the updated results. And then below (where we check "matched") focus that element after the new results show
@@ -72,8 +69,6 @@ async function startLoop() {
                 el.classList.remove('hideWhileLoading')
                 el.classList.remove('oldWindow')
             }
-
-
         }
     }
 
@@ -86,7 +81,6 @@ async function startLoop() {
             el.classList.remove('hideWhileLoading')
         }
     }
-
 
     var tTabs = document.querySelectorAll('.tabOverview')
     for (var b = 0; b < tTabs.length; b++) {
@@ -137,33 +131,29 @@ async function loop() {
         theApps[w].classList.add('oldApp')
     }
 
-
     var theWindows = document.querySelectorAll('.windowName')
     for (var t = 0; t < theWindows.length; t++) {
         theWindows[t].classList.add('oldWindow')
     }
-
 
     var theTabs = document.querySelectorAll('.tabOverview')
     for (var k = 0; k < theTabs.length; k++) {
         theTabs[k].classList.add('oldTab')
     }
 
-
     getChromePosition()
     getColumnPreference()
 
     activeApps = await macActive(chromePosition).then(d => JSON.parse(d));
-
     chromeFunctionRun = 0
-
     activeApps = await addIcons(activeApps, 'icons');
+
     for (var i = 0; i < activeApps.paths.length; i++) { //Get name of all apps and put it into DOM
         var appNameRaw = activeApps.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
         var appName = appNameRaw.split('/').at(-1)
         var unixId = activeApps.unixId[i]
         var indexId = 'index=' + i
-        var icon = '../../' + activeApps.icons[i]
+        var icon = '../' + activeApps.icons[i]
         var nextItemsId = 'nextItems+' + indexId + '+refreshNumber=' + refreshNumber
         if ((appName.trim().toLowerCase().includes('google chrome')) || (appName.trim().toLowerCase().includes('googlechrome'))) {
             var extraClass = 'chromeNextItems'
@@ -171,7 +161,6 @@ async function loop() {
         } else {
             var extraClass = "nonChromeNextItems"
         }
-
         var content = `
      <div id="${indexId}" style="margin-bottom: 8px" class="appOverview hideWhileLoading">
      <div tabindex="1" class="appDetails  thisAppName keyTabHere" >
@@ -271,8 +260,6 @@ async function loop() {
             }
         }
     }
-
-
 }
 
 /****************** END LOOP FUNCTION ************************************ */
@@ -351,8 +338,6 @@ function noIcon() {
     element.src = 'HIHIHIIH'
 }
 
-
-
 /*********************COLUMN AND CHROME PREFERENCES ***************** */
 
 /***** COLUMN VIEW PREFERENCE *********** */
@@ -363,7 +348,6 @@ function getColumnPreference() {
         document.getElementById('showResults').classList.add('columnView')
     }
 }
-
 
 ipcRenderer.on('change-column-preference', (event, arg) => {
     changeColumns();
@@ -390,8 +374,6 @@ ipcRenderer.on('change-chrome-position', (event, arg) => {
     changeChromePosition();
 })
 
-
-
 function changeChromePosition() {
     if ((chromePosition === 'chromeLast') || (chromePosition === 'n/a')) {  //chrome position = n/a would be for when app is first starting and have not changed chrome position. goes to default, which is last.
         chromePosition = 'chromeFirst'
@@ -405,7 +387,6 @@ function changeChromePosition() {
 
     }
 }
-
 
 /*****FOCUS ON APPS, WINDOWS, AND TABS ******* */
 
@@ -491,7 +472,6 @@ function closeWindow(target1) {
     }
 }
 
-
 function closeTab(target1) {
     try {
         var target = JSON.parse(target1)
@@ -524,10 +504,7 @@ function closeTab(target1) {
     }
 }
 
-
-
 /**SEARCH NAMES** */
-
 
 function searchNamesFunction() {
     var hiddenDivs = document.querySelectorAll('.hideDiv')

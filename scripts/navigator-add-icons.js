@@ -9,6 +9,7 @@ module.exports = async function (appsInfo, iconsFolder = "icons") {
             const pathId = appsInfo.paths[i]
             const pathZ1 = appsInfo.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('Macintosh HD', '')
             if (memory[pathId]) {
+                console.log(memory[pathId])
                 appsInfo.icons[i] = memory[pathId];
                 continue;
             }
@@ -58,7 +59,6 @@ function extractIconName(infoplist) {
         const start = infoplist.indexOf('<string>', offset) + '<string>'.length;
         const end = infoplist.indexOf('</string>', offset);
         info[keys[i]] = start !== -1 && end !== -1 && offset !== -1 ? infoplist.slice(start, end) : 'AppIcon';
-        //Note: currently there will be an error for plist files where it has a format that does NOT print icon after listing out icon name
     }
 
     let iconName = info[keys[0]] ?? response[keys[1]];
