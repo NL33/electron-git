@@ -1,5 +1,5 @@
-const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, webContents, protocol } = require('electron') //import app and browser window modules of electron package to be able to manage app lifecycle events, and create and control browser windows
-const path = require('path') //import the path package which provides utility functions for the file paths
+const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, globalShortcut, webContents, protocol } = require('electron') 
+const path = require('path');
 const fs = require('fs');
 const sanitizeHtml = require('sanitize-html');
 
@@ -9,6 +9,7 @@ const { systemPreferences } = require('electron')
 const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
 //console.log("Does the client have accessibility permissions?", isTrusted)
 
+var navWindow
 
 /*** TOOLBAR MENU ICON****** */
 var newVersionWindowOpen = false
@@ -19,7 +20,11 @@ function menuApp() {
     try {
         tray = new Tray(__dirname + '/assets/rts-icon2.png')
         const contextMenu = Menu.buildFromTemplate([
-            { label: 'Open Window', click() { openWindow() } },
+            { label: 'Toggle Navigator Columns', click() { columnChoice() } },
+            { label: 'Toggle Navigator Chrome Position', click() { chromePosition() } },
+            { type: 'separator' },
+            { label: 'Open Project Window', click() { openWindow() } },
+            { type: 'separator' },
             // { label: 'Hide Windows', click() { minimizeWindows() } },
             { label: 'Breathe Big', click() { openBreatheBigWindow() } },
         ])
@@ -29,6 +34,57 @@ function menuApp() {
         console.log('error in loading tray menu = ' + e)
     }
 }
+
+/********************Navigator Window ************************/
+
+const createNavWindow = () => {
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+    navWindow = new BrowserWindow({
+        width: 610, height,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true
+        }
+    })
+    navWindow.loadFile(path.join(__dirname, '/app/app.html'));
+    navWindow.openDevTools() /**********remove-in-production*****/
+};
+
+
+
+function keyBoardShortCut() {
+    globalShortcut.register('Cmd+1', () => {
+        var isVisible = navWindow.isVisible()
+        if (isVisible === false) {
+            navWindow.webContents.send('run-loop-function', '')
+            navWindow.show()
+            navWindow.focus()
+            /*navWindow.webContents.send('focus-search', '')*/
+        } else {
+            navWindow.webContents.send('run-loop-function', '')
+            navWindow.focus()
+        }
+    })
+}
+
+ipcMain.on('focus-the-window', (event, target) => {
+    navWindow.show()
+    navWindow.focus()
+    /* navWindow.webContents.send('focus-search', '')*/
+})
+
+function columnChoice() {
+    navWindow.webContents.send('change-column-preference', '')
+}
+
+function chromePosition() {
+    navWindow.webContents.send('change-chrome-position', '')
+}
+
+
+
+/*********************Project Window *********************** */
 
 /****#OPEN BASIC (Mini) WINDOW******** */
 function openWindow() {
@@ -108,34 +164,6 @@ async function saveNewVersionWindow(windowTitle) {
         newVersionWindow.show();
     })
     */
-}
-
-/*****OPEN  */
-
-/*****OPEN NAVIGATOR WINDOW********************* */
-
-function openNavigatorWindow() {
-    var theDisplay = screen.getPrimaryDisplay()
-    var height = theDisplay.workAreaSize.height
-    var screenWidth = theDisplay.bounds.width
-    var navigatorWindow = new BrowserWindow({
-        // show: false,
-        height: height,
-        width: 450,
-        x: screenWidth - 440,
-        y: 0,
-        title: "Navigate",
-        alwaysOnTop: true,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-            enableRemoteModule: true
-        }
-        //backgroundColor: 'white'
-    })
-
-    navigatorWindow.loadURL('file://' + __dirname + '/views/navigator-window.html');
-    navigatorWindow.openDevTools()
 }
 
 
@@ -243,29 +271,6 @@ async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earl
     oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
     priorVersionOvWindow.close()
 }
-
-/************NEED GIT WINDOW ********************* */
-ipcMain.on('open-get-git-window', () => {
-    getGitWindow()
-})
-
-async function getGitWindow(windowTitle) {
-    var getGitWindow
-    getGitWindow = new BrowserWindow({
-        title: 'Check for Git',
-        width: 1000,
-        height: 600,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
-
-        }
-    })
-
-    getGitWindow.loadURL('file://' + __dirname + '/views/get-git-window.html');
-}
-
-
 
 /*****## OPEN DIALOG TO SELECT FOLDER ******/
 
@@ -520,12 +525,13 @@ function openDiscourseAuthWindow(discourseUrl) {
 /*******BASIC SETUP**** */
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
-
-    openBasicWindow()
-    saveNewVersionWindow()
-    //openNavigatorWindow()
+    
+    createNavWindow()
+    keyBoardShortCut()
+   // openBasicWindow()
+    //saveNewVersionWindow()
     menuApp()
-    // createWindow()
+
     app.on('activate', () => {
 
         if (BrowserWindow.getAllWindows().length === 0) { //create a new browswer window only if app has no visible windows after being activated, such as when launching the app for the first time or relaunching the already running app
