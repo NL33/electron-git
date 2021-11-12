@@ -219,7 +219,6 @@ async function loop() {
                     let window = windows[k]
                     let windowShow = window
                     if (window.includes('—')){
-                        console.log('it does. window = ' + window)
                         let windowArray = window.split('—')
                         let windowFirst = windowArray[1]
                         let windowSecond = windowArray[0]

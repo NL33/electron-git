@@ -21,14 +21,14 @@ function menuApp() {
     try {
         tray = new Tray(__dirname + '/assets/rts-icon2.png')
         const contextMenu = Menu.buildFromTemplate([
-            { label: 'Open Navigator Window', click() { openNavWindow() } },
+            { label: 'Open Navigator Window', accelerator: "CmdOrCtrl+1", click() { openNavWindow() } },
             { label: 'Toggle Navigator Columns', click() { columnChoice() } },
             { label: 'Toggle Navigator Chrome Position', click() { chromePosition() } },
             { type: 'separator' },
-            { label: 'Open Project Window', click() { openWindow() } },
+            { label: 'Open Project Window', accelerator: "CmdOrCtrl+2", click() { openWindow() } },
             { type: 'separator' },
             // { label: 'Hide Windows', click() { minimizeWindows() } },
-            { label: 'Breathe Big', click() { openBreatheBigWindow() } },
+            { label: 'Breathe Big', accelerator: "CmdOrCtrl+3", click() { openBreatheBigWindow() } },
         ])
         tray.setToolTip('This is my application.')
         tray.setContextMenu(contextMenu)
@@ -71,12 +71,20 @@ const createNavWindow = () => {
 
 
 function keyBoardShortCut() {
-    globalShortcut.register('Cmd+1', () => {
+    globalShortcut.register('CommandOrControl+1', () => {
        openNavWindow()
     })
 
-    globalShortcut.register('Cmd+2', () => {
+    globalShortcut.register('CommandOrControl+2', () => {
         openWindow()
+    })
+
+    globalShortcut.register('CommandOrControl+3', () => {
+        openBreatheBigWindow()
+    })
+
+    globalShortcut.register('CommandOrControl+4', () => {
+        hideNavWindow()
     })
 }
 
@@ -108,9 +116,14 @@ ipcMain.on('focus-the-window', (event, target) => {
 })
 
 ipcMain.on('minimize-nav-window', (event, target)=>{
-    navWindow.hide()
-   // navWindow.minimize()
+    hideNavWindow()
 })
+
+function hideNavWindow(){
+    if (navWindow !== null){
+        navWindow.hide()
+    }
+}
 
 function columnChoice() {
     navWindow.webContents.send('change-column-preference', '')

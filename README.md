@@ -23,7 +23,7 @@ This is an app that uses electron and javascript to make it easy to use git when
 - add open navigator window to menu tray. DONE
 - arrange window order so name of window appears first, and if there is a tab in the window, have that be second. DONE
 - add right click menu to main.js. DONE 
-- add keyboard shortcut to menu items
+- add keyboard shortcut symbol to menu items. DONE
 - add navigator button to project window
 - update main window code for updated electron--coordinating remote modules
 - update other windows code for updated electron
