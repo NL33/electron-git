@@ -109,7 +109,7 @@ ipcMain.on('focus-the-window', (event, target) => {
 
 ipcMain.on('minimize-nav-window', (event, target)=>{
     navWindow.hide()
-    navWindow.minimize()
+   // navWindow.minimize()
 })
 
 function columnChoice() {
