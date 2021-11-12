@@ -25,7 +25,8 @@ This is an app that uses electron and javascript to make it easy to use git when
 - add right click menu to main.js. DONE 
 - add keyboard shortcut symbol to menu items. DONE
 - hide navwindow with shortcut command+4. DONE
-- add navigator button to project window
+- add navigator button to project window. DONE
+- click navigator button on project window to open Navigator.
 - update main window code for updated electron--coordinating remote modules
 - update other windows code for updated electron
 

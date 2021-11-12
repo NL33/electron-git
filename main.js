@@ -86,6 +86,10 @@ function keyBoardShortCut() {
     })
 }
 
+ipcMain.on('open-nav-window', ()=>{
+    openNavWindow()
+})
+
 function openNavWindow(){
   try {
     if (navWindow === null) {

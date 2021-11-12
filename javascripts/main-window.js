@@ -156,6 +156,12 @@ function hideWindow() {
     ipcRenderer.send('hide-main-window', '')
 }
 
+/****open Navigator Window *********/
+
+function openNavigator(){
+    ipcRenderer.send('open-nav-window', '')
+}
+
 /**SHOW PROJECT DESCRIPTION************** */
 async function checkIfDescriptionExists() {
     try {
