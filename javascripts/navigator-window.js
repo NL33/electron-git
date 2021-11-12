@@ -166,10 +166,10 @@ async function loop() {
             var extraClass = "nonChromeNextItems"
         }
         var content = `
-     <div id="${indexId}" style="margin-bottom: 8px" class="appOverview hideWhileLoading">
+     <div id="${indexId}" style="margin-bottom: 5px" class="appOverview hideWhileLoading">
      <div tabindex="1" class="appDetails  thisAppName keyTabHere" >
-       <img style="height: 37px; width: 37px; vertical-align: middle" class="notChromeTab "src="${icon}"></img>
-        <span style="margin-left: 5px; cursor: pointer" class="appName names" >${appName}</span>
+       <img style="height: 35px; width: 35px; vertical-align: middle" class="notChromeTab "src="${icon}"></img>
+        <span style="margin-left: 3px; cursor: pointer" class="appName names" >${appName}</span>
       </div>
       <ul class="nextItems ${extraClass}" id="${nextItemsId}"></ul>
      </div>
