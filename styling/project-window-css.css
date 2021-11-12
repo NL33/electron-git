@@ -87,6 +87,16 @@
             border-radius: 5px;
         }
 
+        #topLineOverview {
+            margin-bottom: 15px;
+        }
+
+        @media only screen and (max-width: 212px) {
+           #topLineOverview {
+             margin-bottom: 5px;
+            }
+       }
+
         #hideWindowButton {
             float: right;
             margin-left: 10px;
@@ -99,14 +109,23 @@
             padding-top: 3px; 
             padding-bottom: 3px; 
             font-size: 14pt; 
-            color:  #737373
+            color:  #737373;
         }
+
+       @media only screen and (max-width: 212px) {
+           #hideWindowButton {
+               float: none;
+                margin-top: 10px !important
+            }
+       }
 
         #hideWindowButton:hover {
             background-color: #66b5ff;
             color: black !important;
             box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
         }
+
+    
 
         #changeFolder {
             display: inline-block;
@@ -142,6 +161,14 @@
             margin-right: 20px;
             box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 19%) !important
         }
+
+           @media only screen and (max-width: 212px) {
+           #openNavWindow {
+               float: none;
+                margin-top: 10px !important;
+                margin-left: 10px;
+            }
+       }
 
         #openNavWindow:hover {
             background-color: #d4eff7;
@@ -466,6 +493,12 @@
             //margin-right: 15px;
             box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 19%) !important;
         }
+
+           @media only screen and (max-width: 212px) {
+           #addSummaryButton {
+             margin-bottom: 5px;
+            }
+       }
 
         #addSummaryButton:hover {
             box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
