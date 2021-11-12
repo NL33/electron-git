@@ -17,10 +17,10 @@ This is an app that uses electron and javascript to make it easy to use git when
 - and remove open dev tools call in opening windows
 
 ## Next
-- when select item in navigator, minimize the navigator window
+- when select item in navigator, minimize the navigator window. DONE (currently hides it)
 - keyboard shortcut (command+2) for calling up project focus window. DONE
-- keyboard command+1 still calls up navigator window, even if window has been previously destroyed
-- add open navigator window to menu tray
+- keyboard command+1 still calls up navigator window, even if window has been previously destroyed. DONE
+- add open navigator window to menu tray. DONE
 - update main window code for updated electron--coordinating remote modules
 - update other windows code for updated electron
 
@@ -30,6 +30,8 @@ This is an app that uses electron and javascript to make it easy to use git when
     - add another default icon for if other windows' icons don't work       
     - add chrome icon manually to show up if chrome tab icon doesn't work       
     - add google folder and doc icon for project focus manually
+
+- open dev tools, but only if in development
 
 -   Display flex does some wierd things: counters display : none (overriden here with !important in the hidewhileloading clas); and cuts off images in columns.
 - instead of display flex: can it work to make the tabs li s, and the image as the bullet point?

@@ -49,6 +49,7 @@ const createNavWindow = () => {
         height: height,
         x: width - 611,
         y: 0,
+        title: "Navigator",
         alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,
@@ -58,6 +59,7 @@ const createNavWindow = () => {
     })
     navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));
     navWindow.openDevTools() /**********remove-in-production*****/
+      navWindow.focus()
     navWindow.on('close', () => {
         navWindow = null
     })
@@ -103,6 +105,11 @@ ipcMain.on('focus-the-window', (event, target) => {
     navWindow.show()
     navWindow.focus()
     /* navWindow.webContents.send('focus-search', '')*/
+})
+
+ipcMain.on('minimize-nav-window', (event, target)=>{
+    navWindow.hide()
+    navWindow.minimize()
 })
 
 function columnChoice() {
@@ -183,6 +190,7 @@ async function saveNewVersionWindow(windowTitle) {
 
     newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
     newVersionWindowOpen = true
+    openBasicWindow()
     newVersionWindow.on('close', () => {
         newVersionWindowOpen = false
     })
@@ -558,7 +566,7 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
     
     createNavWindow()
     keyBoardShortCut()
-    openBasicWindow()
+    //openBasicWindow()
    // saveNewVersionWindow()
     menuApp()
 

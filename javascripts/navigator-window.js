@@ -33,6 +33,10 @@ ipcRenderer.on('run-loop-function', (event, arg) => {
     startLoop()
 })
 
+function mimizeWindow(){
+    ipcRenderer.send('minimize-nav-window', '')
+}
+
 async function startLoop() {
     child = spawn('osascript')
     chromeApps = 0
@@ -395,6 +399,7 @@ async function focusApp(e) {
     var name = e.target.name
     macFocusAppName(unixId, name).then((result, error) => {
         if (result) {
+            mimizeWindow()
         } else {
             console.log('error = ' + error)
         }
@@ -410,6 +415,7 @@ function focusWindow(e) {
     var windowNumber = e.target.number
     macFocusWindow(unixId, windowName, windowNumber).then((result, error) => {
         if (result) {
+            mimizeWindow()
             console.log('result = ' + result)
         } else {
             console.log('error = ' + error)
@@ -425,6 +431,7 @@ function focusChromeTab(e) {
     var chromeTabName = e.target.chromeTabName
     macFocusChromeTab(unixId, theChromeWindowId, chromeTabName).then((result, error) => {
         if (result) {
+            mimizeWindow()
             console.log('result = ' + result)
         } else {
             console.log('error = ' + error)
