@@ -120,6 +120,30 @@ function chromePosition() {
     navWindow.webContents.send('change-chrome-position', '')
 }
 
+/****Navigator Window: Right Click Menu ***************/
+
+ipcMain.on('show-context-menu-window-name', (event, target) => {
+    const template = [
+        {
+            label: 'Close Window',
+            click: () => { event.sender.send('close-window-name', target) }
+        }
+    ]
+    const menu = Menu.buildFromTemplate(template)
+    menu.popup(BrowserWindow.fromWebContents(event.sender))
+})
+
+ipcMain.on('show-context-menu-chrome-tab', (event, target) => {
+    const template = [
+        {
+            label: 'Close Tab',
+            click: () => { event.sender.send('close-tab', target) }
+        }
+    ]
+    const menu = Menu.buildFromTemplate(template)
+    menu.popup(BrowserWindow.fromWebContents(event.sender))
+})
+
 
 
 /*********************Project Window *********************** */

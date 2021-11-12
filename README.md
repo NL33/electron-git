@@ -22,7 +22,9 @@ This is an app that uses electron and javascript to make it easy to use git when
 - keyboard command+1 still calls up navigator window, even if window has been previously destroyed. DONE
 - add open navigator window to menu tray. DONE
 - arrange window order so name of window appears first, and if there is a tab in the window, have that be second. DONE
-- add right click menu to main.js 
+- add right click menu to main.js. DONE 
+- add keyboard shortcut to menu items
+- add navigator button to project window
 - update main window code for updated electron--coordinating remote modules
 - update other windows code for updated electron
 
