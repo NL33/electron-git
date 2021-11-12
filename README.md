@@ -26,9 +26,20 @@ This is an app that uses electron and javascript to make it easy to use git when
 - add keyboard shortcut symbol to menu items. DONE
 - hide navwindow with shortcut command+4. DONE
 - add navigator button to project window. DONE
-- click navigator button on project window to open Navigator.
-- update main window code for updated electron--coordinating remote modules
+- click navigator button on project window to open Navigator. DONE.
+- update main window code for updated electron--coordinating remote modules. START HERE:
+    - just revised code at main window.js 620 on.
+    - AND main.js 165 on.
+    - just got it working to right click on folder and show menu options
+    - next:
+        -   main.js menu code: 
+            - send back to functions in main-window.js
+            - confirm working for right clicking folders
+            - working right click menu for clicking project name 
+            - working right click menu for doc (see code for fullId !== projectDirectory in main-window.js)
+    - look for anywhere else in main.js that has remote module.
 - update other windows code for updated electron
+    - will need to remove anywhere that requires the remote module in the js file
 
 - icon activity
     - add icon for chrome when tab icon doesn't work

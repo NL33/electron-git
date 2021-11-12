@@ -1,5 +1,5 @@
 const { ipcRenderer, clipboard, shell, remote } = require('electron')
-const { Menu, MenuItem } = remote
+//const { Menu, MenuItem } = remote
 const { writeFile, fstat, readFile, readdirSync, statSync } = require('fs') //can specify what is used here and remove general fs reference below
 const fs = require("fs")
 var path = require('path')
@@ -9,7 +9,7 @@ var TurndownService = require('turndown')
 var turndownService = new TurndownService()
 const trash = require('trash');
 
-var proj 
+var proj
 
 var projectFolderName
 
@@ -44,7 +44,7 @@ ipcRenderer.on("discourse-payload-url", (event, payload) => {
 /*****Button Set Up *****/
 window.onload = async function () {
     try {
-       // await setUpDatabase()
+        // await setUpDatabase()
         window.addEventListener('click', function (e) {
             if (document.getElementById('folderContents').contains(e.target)) {
                 // Clicked in box
@@ -70,15 +70,15 @@ window.onload = async function () {
                 })
             }
         }
-/*
-        document.getElementById('viewPriorVersionsSelect').addEventListener('click', () => {
-            viewPriorVersionsFunction()
-        })
-
-        document.getElementById('compareChangesSelect').addEventListener('click', () => {
-            showCompareChangesFunction()
-        })
-*/
+        /*
+                document.getElementById('viewPriorVersionsSelect').addEventListener('click', () => {
+                    viewPriorVersionsFunction()
+                })
+        
+                document.getElementById('compareChangesSelect').addEventListener('click', () => {
+                    showCompareChangesFunction()
+                })
+        */
         //get last project folder info
         if (localStorage.getItem('lastProjectFolder')) {
             let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
@@ -118,21 +118,21 @@ window.onload = async function () {
     }
 }   //end window onload
 
-function showSaveVersion(){
+function showSaveVersion() {
     document.getElementById('saveProjectVersion').style.display = 'block'
     document.getElementById('optionsAtBottom').style.display = 'none'
     document.getElementById('folderContents').style.marginBottom = '180px'
     document.getElementById('noteForSave').focus()
 }
 
-function closeSaveView(){
+function closeSaveView() {
     document.getElementById('savingProgress').style.display = "none"
     document.getElementById('saveProjectVersion').style.display = 'none'
     document.getElementById('optionsAtBottom').style.display = 'block'
     document.getElementById('folderContents').style.marginBottom = '90px'
 }
 
-function priorVersionsFunction(){
+function priorVersionsFunction() {
     ipcRenderer.send('open-prior-version-overview', projectFolderPath, projectFolderName)
 }
 
@@ -158,7 +158,7 @@ function hideWindow() {
 
 /****open Navigator Window *********/
 
-function openNavigator(){
+function openNavigator() {
     ipcRenderer.send('open-nav-window', '')
 }
 
@@ -459,8 +459,8 @@ async function openDoc(thePath) {
             // evalAS2 :: String -> IO a
             const evalAS2 = s => {
                 const a = Application.currentApplication();
-				const sa = (a.includeStandardAdditions = true, a);
-				return sa.runScript(s);
+                const sa = (a.includeStandardAdditions = true, a);
+                return sa.runScript(s);
             };
 
              return evalAS2('tell application "Notes" to show note id "${theNoteId}"')
@@ -618,106 +618,45 @@ async function showFolderContents(divId, mainPath, indent) {
 /*****************************************Menu Function***************************************************/
 
 function menuFunction() {
-    const contextMenu = new Menu();
-
     window.addEventListener('contextmenu', (e) => {
         try {
-
             if ((e.target.id) && (e.target.classList.contains('docOrDirectory'))) {
                 var fullId = e.target.id
-                contextMenu.clear() //remove prior menuItem
+                console.log('clicked folder')
+                /*
+                contextMenu.clear() //remove prior menuItem. PROBABLY NEED THIS
                 e.preventDefault();
-
+*/
                 if (fullId.includes('**is-directory**')) { //show this menu only if a directory
+                    console.log('is directory')
                     var idArray = fullId.split("^^^")
                     var thePath = idArray[1]
                     var indent = idArray[2]
                 } else if (fullId === "projectDirectory") {
+                    console.log("project directory")
                     var thePath = projectFolderPath
                     var indent = -15
                 }
-                if ((fullId.includes('**is-directory**')) || (fullId === 'projectDirectory')) {
-                    contextMenu.append(new MenuItem({
-                        label: "New Folder",
-                        click: () => {
-                            // addFolder(e, thePath, indent)
-                            var divId = fullId
-                            enterNewFolder(divId, thePath, indent)
-                        }
-                    }))
+                var divId = fullId
+               console.log('prir to send')
+                ipcRenderer.send('show-context-menu-projwindow-directory', JSON.stringify(e.target), divId, thePath, indent)
+            }
 
-                    contextMenu.append(new MenuItem({
-                        label: "New File",
-                        click: () => {
-                            // addFolder(e, thePath, indent)
-                            var divId = fullId
-                            enterNewFile(divId, thePath, indent)
-                        }
-                    }))
-                    /* REMOVE PASTE FILE FOR NOW
-                   contextMenu.append(new MenuItem({ type: "separator" }))
-                    contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
-                        label: "New Paste File",
-                        click: () => {
-                            // addFolder(e, thePath, indent)
-                            var divId = fullId
-                            enterNewPasteFile(divId, thePath, indent)
-                        }
-                    }))
-                    */
-                    contextMenu.append(new MenuItem({ type: "separator" }))
-                    /* REMOVE APPLE NOTE FILE
-                    contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
-                        label: "Add Apple Note File",
-                        click: () => {
-                            // addFolder(e, thePath, indent)
-                            var divId = fullId
-                            addAppleNote(divId, thePath, indent)
-                        }
-                    }))
-                    */
-                    contextMenu.append(new MenuItem({ type: "separator" }))
-                    contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
-                        label: "View Folder to Search",
-                        click: () => {
-                            viewFolder(e, thePath)
-                        }
-                    }))
+            if (fullId !== 'projectDirectory') {
+                /* IF DOC, FOR DELETING IT:
+                contextMenu.append(new MenuItem({
+                    label: "Move to Trash",
+                    click: () => {
+                        deleteItem(e)
+                    }
+                }))
+              */
+            }
 
-                    contextMenu.append(new MenuItem({  //paste file = file where it automatically pastes in the content on the clipboard (so you can easily create a doc for, example, your email content--copy your email content and easily create a file in your project with that content)
-                        label: "Refresh",
-                        click: () => {
-                            document.getElementById('folderContents').innerHTML = ''
-                            showFolderContents('projectDirectory', projectFolderPath, 0)
-                        }
-                    }))
-                }
-
-                if (fullId !== 'projectDirectory') {
-                    contextMenu.append(new MenuItem({
-                        label: "Move to Trash",
-                        click: () => {
-                            deleteItem(e)
-                        }
-                    }))
-                    /**NOTE: Consider having this appear only for files that I can write, like md, txt, rtf, html, etc. */
-                   /*
-                    contextMenu.append(new MenuItem({
-                        label: "Update File with copied content",
-                        click: () => {
-                            updatePasteFile(e)
-                        }
-                    }))
-                    */
-                    
-                }
-
-                contextMenu.popup(remote.getCurrentWindow());
-            } //end if contains docOrDirectory
         } catch (e) {
-            console.log('error in adding menu function = ' + e)
-        }
-    }, false);
+        console.log('error in adding menu function = ' + e)
+    }
+}, false);
 }
 
 function viewFolder(e, thePath) {
@@ -865,7 +804,7 @@ function createPasteFile(divId, folderPath, indent) {
     }
 }
 
-ipcRenderer.on('finished-paste-file', (event, divId, folderPath, newDocPath, updatedFileName, newIndent) =>{
+ipcRenderer.on('finished-paste-file', (event, divId, folderPath, newDocPath, updatedFileName, newIndent) => {
     console.log('received finished-paste-file')
     var element = document.getElementById(divId)
     if ((element.classList.contains('clicked')) || (divId === "projectDirectory")) {
@@ -1130,7 +1069,7 @@ async function doTheCommit(text) { //Where the actual version commit is done.
         })
 
         await git.commit(text).then(result => {
-     
+
             document.getElementById('savingProgress').style.display = "none"
             document.getElementById('saveProjectHeader').style.display = "block"
             document.getElementById('noteForSave').textContent = ''
@@ -1145,7 +1084,7 @@ async function doTheCommit(text) { //Where the actual version commit is done.
             ipcRenderer.send('open-get-git-window', '')
         } else {
             alert("Sorry, there was an error saving this version. Please try again.")
-        }   
+        }
     }
 }
 

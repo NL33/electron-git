@@ -160,6 +160,47 @@ ipcMain.on('show-context-menu-chrome-tab', (event, target) => {
 })
 
 
+/*******Project Window: Right Click Menu */
+
+ipcMain.on('show-context-menu-projwindow-directory', (event, target, divId, thePath, indent)=>{
+    console.log('received items.')
+    const template = [
+        {
+            label: "New Folder",
+            click: () => {
+                //var divId = fullId
+               // enterNewFolder(divId, thePath, indent)
+            }
+        },
+        {
+            label: "New File",
+            click: () => {
+                // addFolder(e, thePath, indent)
+                //var divId = fullId
+               // enterNewFile(divId, thePath, indent)
+            }
+        },
+        {
+            type: "separator"
+        },
+        {
+        label: "View Folder", /**THIS IS JUST FOR THE MAIN PROJECT NAME */
+        click: () => {
+           // viewFolder(event, thePath)
+        }
+       },
+       {
+           label: "Refresh",
+           click: () => {
+             //  document.getElementById('folderContents').innerHTML = ''
+              // showFolderContents('projectDirectory', projectFolderPath, 0)
+           }
+       }
+
+    ]
+    const menu = Menu.buildFromTemplate(template)
+    menu.popup(BrowserWindow.fromWebContents(event.sender))
+})
 
 /*********************Project Window *********************** */
 
