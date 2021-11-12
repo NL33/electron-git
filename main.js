@@ -68,8 +68,6 @@ const createNavWindow = () => {
   }
 };
 
-
-
 function keyBoardShortCut() {
     globalShortcut.register('CommandOrControl+1', () => {
        openNavWindow()

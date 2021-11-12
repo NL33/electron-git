@@ -24,6 +24,7 @@ This is an app that uses electron and javascript to make it easy to use git when
 - arrange window order so name of window appears first, and if there is a tab in the window, have that be second. DONE
 - add right click menu to main.js. DONE 
 - add keyboard shortcut symbol to menu items. DONE
+- hide navwindow with shortcut command+4. DONE
 - add navigator button to project window
 - update main window code for updated electron--coordinating remote modules
 - update other windows code for updated electron
@@ -39,3 +40,5 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 -   Display flex does some wierd things: counters display : none (overriden here with !important in the hidewhileloading clas); and cuts off images in columns.
 - instead of display flex: can it work to make the tabs li s, and the image as the bullet point?
+
+- open app at startup
