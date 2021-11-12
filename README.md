@@ -21,6 +21,8 @@ This is an app that uses electron and javascript to make it easy to use git when
 - keyboard shortcut (command+2) for calling up project focus window. DONE
 - keyboard command+1 still calls up navigator window, even if window has been previously destroyed. DONE
 - add open navigator window to menu tray. DONE
+- arrange window order so name of window appears first, and if there is a tab in the window, have that be second. DONE
+- add right click menu to main.js 
 - update main window code for updated electron--coordinating remote modules
 - update other windows code for updated electron
 

@@ -168,7 +168,7 @@ async function loop() {
         var content = `
      <div id="${indexId}" style="margin-bottom: 5px" class="appOverview hideWhileLoading">
      <div tabindex="1" class="appDetails  thisAppName keyTabHere" >
-       <img style="height: 35px; width: 35px; vertical-align: middle" class="notChromeTab "src="${icon}"></img>
+       <img style="height: 36px; width: 36px; vertical-align: middle" class="notChromeTab "src="${icon}"></img>
         <span style="margin-left: 3px; cursor: pointer" class="appName names" >${appName}</span>
       </div>
       <ul class="nextItems ${extraClass}" id="${nextItemsId}"></ul>
@@ -217,11 +217,20 @@ async function loop() {
             if ((windows.length > 0) && (windows != 'undefined')) {
                 for (var k = 0; k < windows.length; k++) {  //get the windows of each app, and put it into DOM (k = window number within app)
                     let window = windows[k]
+                    let windowShow = window
+                    if (window.includes('—')){
+                        console.log('it does. window = ' + window)
+                        let windowArray = window.split('—')
+                        let windowFirst = windowArray[1]
+                        let windowSecond = windowArray[0]
+                        windowShow = windowFirst + ' — ' + windowSecond
+
+                    }
                     if (window != null) {
                         if ((window.length > 0) && (window != 'undefined') && (!window.startsWith('Find in page'))) {
                             /*Why include "window doesn't start with "Find in Page"? The Find in page window shows up in chrome if you are doing a control+f / search on the page. The Mac treats it as it's own window. So it would show up in the results, but be confusing to the user (who wouldn't expect the find box to be a window) and makes it complicated to focus correctly. So I've removed it*/
                             var content = `
-              <li class="thisOne windowName windowTabName names notChromeTab keyTabHere hideWhileLoading" tabindex="1"><span style="color: black">${window}</span></li>
+              <li class="thisOne windowName windowTabName names notChromeTab keyTabHere hideWhileLoading" tabindex="1"><span style="color: black; margin-left: -7px">${windowShow}</span></li>
             `
                             if ((appName1.toLowerCase().includes('google chrome')) && ((window.toLowerCase().includes('google chrome')) || (window.includes('googlechrome')))) {
                                 await chromeFunction(j, k, unixId, window)
