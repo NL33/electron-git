@@ -49,6 +49,8 @@
         /****BODY ***/
 
         /*****SELECTING FOLDER****/
+
+
         #folderOverview {
             margin-bottom: 0px
         }
@@ -65,7 +67,8 @@
         }
 
         .docOrDirectory {
-            outline: none
+            outline: none;
+             user-select: none;
         }
 
         #folderContents {
