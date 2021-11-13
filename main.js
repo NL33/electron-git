@@ -193,8 +193,6 @@ ipcMain.on('show-context-menu-projwindow-directory', (event, divId, thePath, ind
        }
     ]
     if (notProject === 'true') {
-        console.log('target = ')
-        console.log(target)
         template.push(
         {
             type: "separator"
@@ -207,9 +205,19 @@ ipcMain.on('show-context-menu-projwindow-directory', (event, divId, thePath, ind
         }
         )
     }
+    const menu = Menu.buildFromTemplate(template)
+    menu.popup(BrowserWindow.fromWebContents(event.sender))
+})
 
-
-
+ipcMain.on('show-context-menu-projwindow-doc', (event, divId) => {
+    const template = [
+        {
+            label: "Move to Trash",
+            click: () => {
+                event.sender.send('delete-item', divId)
+            }
+        }
+    ]
     const menu = Menu.buildFromTemplate(template)
     menu.popup(BrowserWindow.fromWebContents(event.sender))
 })

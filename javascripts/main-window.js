@@ -1,5 +1,4 @@
-const { ipcRenderer, clipboard, shell, remote } = require('electron')
-//const { Menu, MenuItem } = remote
+const { ipcRenderer, clipboard, shell} = require('electron')
 const { writeFile, fstat, readFile, readdirSync, statSync } = require('fs') //can specify what is used here and remove general fs reference below
 const fs = require("fs")
 var path = require('path')
@@ -622,18 +621,15 @@ function menuFunction() {
         try {
             if ((e.target.id) && (e.target.classList.contains('docOrDirectory'))) {
                 var fullId = e.target.id
-
                 /*
-                contextMenu.clear() //remove prior menuItem. PROBABLY NEED THIS
+                contextMenu.clear() //from prior menu structure, before removing remote module and having menu action occur in main js
                 e.preventDefault();
 */
                 if (fullId.includes('**is-directory**')) { //show this menu only if a directory
-                    console.log('is directory')
                     var idArray = fullId.split("^^^")
                     var thePath = idArray[1]
                     var indent = idArray[2]
                 } else if (fullId === "projectDirectory") {
-                    console.log("project directory")
                     var thePath = projectFolderPath
                     var indent = -15
                 }
@@ -642,19 +638,16 @@ function menuFunction() {
                 if (fullId === 'projectDirectory') {
                     notProject = 'false'
                 }
-                ipcRenderer.send('show-context-menu-projwindow-directory', divId, thePath, indent, notProject)
-            }
-
-            if (fullId !== 'projectDirectory') {
-                /* IF DOC, FOR DELETING IT:
-                contextMenu.append(new MenuItem({
-                    label: "Move to Trash",
-                    click: () => {
-                        deleteItem(e)
-                    }
-                }))
-              */
-            }
+              
+                if ((fullId.includes('**is-directory**')) || (fullId === 'projectDirectory')) {
+                    ipcRenderer.send('show-context-menu-projwindow-directory', divId, thePath, indent, notProject)
+                } else if (fullId !== 'projectDirectory') {
+                    console.log('here we are') 
+                    ipcRenderer.send('show-context-menu-projwindow-doc', e.target.id)
+                }
+            
+            
+            }     
 
         } catch (e) {
         console.log('error in adding menu function = ' + e)

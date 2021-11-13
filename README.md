@@ -27,22 +27,22 @@ This is an app that uses electron and javascript to make it easy to use git when
 - hide navwindow with shortcut command+4. DONE
 - add navigator button to project window. DONE
 - click navigator button on project window to open Navigator. DONE.
-- hover action:
-    - After result comes back from selection, then:
-    - if hover off of nav window, then hide nav window
+
 - update main window code for updated electron--coordinating remote modules. START HERE:
     - just revised code at main window.js 620 on. DONE.
     - AND main.js 165 on.
-    - just got it working to right click on folder and show menu options
+    - just got it working to right click on folder and show menu options. DONE
     - next:
         -   main.js menu code: 
-            - send back to functions in main-window.js
-            - confirm working for right clicking folders
-            - working right click menu for clicking project name 
-            - working right click menu for doc (see code for fullId !== projectDirectory in main-window.js)
+            - send back to functions in main-window.js. DONE
+            - confirm working for right clicking folders. DONE
+            - working right click menu for clicking project name. DONE 
+            - working right click menu for doc (see code for fullId !== projectDirectory in main-window.js). DONE
     - look for anywhere else in main.js that has remote module.
-
-
+- hover action:
+    - After result comes back from selection, then:
+    - if hover off of nav window, then hide nav window
+- remove extra init in project window
 -menu options:
     -project name:
         - new folder
