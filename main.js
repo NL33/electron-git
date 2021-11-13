@@ -163,11 +163,11 @@ ipcMain.on('show-context-menu-chrome-tab', (event, target) => {
 /*******Project Window: Right Click Menu */
 
 ipcMain.on('show-context-menu-projwindow-directory', (event, target, divId, thePath, indent)=>{
-    console.log('received items.')
     const template = [
         {
             label: "New Folder",
-            click: () => {
+            click: () => { 
+                event.sender.send('enter-new-folder', divId, thePath, indent)
                 //var divId = fullId
                // enterNewFolder(divId, thePath, indent)
             }

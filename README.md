@@ -27,8 +27,11 @@ This is an app that uses electron and javascript to make it easy to use git when
 - hide navwindow with shortcut command+4. DONE
 - add navigator button to project window. DONE
 - click navigator button on project window to open Navigator. DONE.
+- hover action:
+    - After result comes back from selection, then:
+    - if hover off of nav window, then hide nav window
 - update main window code for updated electron--coordinating remote modules. START HERE:
-    - just revised code at main window.js 620 on.
+    - just revised code at main window.js 620 on. DONE.
     - AND main.js 165 on.
     - just got it working to right click on folder and show menu options
     - next:
@@ -50,6 +53,9 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 - open dev tools, but only if in development
 
+- possibility for showing window
+    - have a thin, transparant window over to the right side of screen.
+    - hover over that, and show main window
 -   Display flex does some wierd things: counters display : none (overriden here with !important in the hidewhileloading clas); and cuts off images in columns.
 - instead of display flex: can it work to make the tabs li s, and the image as the bullet point?
 

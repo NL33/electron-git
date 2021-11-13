@@ -639,6 +639,7 @@ function menuFunction() {
                 }
                 var divId = fullId
                console.log('prir to send')
+               console.log('div id = ' + divId)
                 ipcRenderer.send('show-context-menu-projwindow-directory', JSON.stringify(e.target), divId, thePath, indent)
             }
 
@@ -672,8 +673,13 @@ function viewFolder(e, thePath) {
 2. add folder does mkdir code., then goes to
 3. showNewFolderOrDoc or showFolderContents to show the new folder
 */
+ipcRenderer.on('enter-new-folder', (event, divId, thePath, indent)=>{
+    enterNewFolder(divId, thePath, indent)
+})
 
 function enterNewFolder(divId, mainPath, indent) {
+    console.log(divId + ' ; ' + mainPath + ' ; ' + indent)
+    console.log('enter new folder now')
     var newIndent = parseInt(indent) + 17
     var element = document.getElementById(divId)
     contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px" onsubmit='addFolder("${divId}", "${mainPath}", "${indent}")'>
@@ -686,6 +692,7 @@ function enterNewFolder(divId, mainPath, indent) {
 }
 
 function enterNewFile(divId, mainPath, indent) {
+   
     var newIndent = parseInt(indent) + 17
     var element = document.getElementById(divId)
     contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px" onsubmit='createFile("${divId}", "${mainPath}", "${indent}")'>
