@@ -622,7 +622,7 @@ function menuFunction() {
         try {
             if ((e.target.id) && (e.target.classList.contains('docOrDirectory'))) {
                 var fullId = e.target.id
-                console.log('clicked folder')
+
                 /*
                 contextMenu.clear() //remove prior menuItem. PROBABLY NEED THIS
                 e.preventDefault();
@@ -638,9 +638,11 @@ function menuFunction() {
                     var indent = -15
                 }
                 var divId = fullId
-               console.log('prir to send')
-               console.log('div id = ' + divId)
-                ipcRenderer.send('show-context-menu-projwindow-directory', JSON.stringify(e.target), divId, thePath, indent)
+                var notProject = 'true'
+                if (fullId === 'projectDirectory') {
+                    notProject = 'false'
+                }
+                ipcRenderer.send('show-context-menu-projwindow-directory', divId, thePath, indent, notProject)
             }
 
             if (fullId !== 'projectDirectory') {
@@ -660,7 +662,7 @@ function menuFunction() {
 }, false);
 }
 
-function viewFolder(e, thePath) {
+function viewFolder(thePath) {
     var theFolder = thePath
     shell.openPath(theFolder)
 }
@@ -677,9 +679,24 @@ ipcRenderer.on('enter-new-folder', (event, divId, thePath, indent)=>{
     enterNewFolder(divId, thePath, indent)
 })
 
+ipcRenderer.on('enter-new-file', (event, divId, thePath, indent) => {
+    enterNewFile(divId, thePath, indent)
+})
+
+ipcRenderer.on('view-folder', (event, thePath ) => {
+    viewFolder( thePath)
+})
+
+ipcRenderer.on('refresh', (event, args) => {
+    document.getElementById('folderContents').innerHTML = ''
+    showFolderContents('projectDirectory', projectFolderPath, 0)
+})
+
+ipcRenderer.on('delete-item', (event, targetId) => {
+    deleteItem(targetId)
+})
+
 function enterNewFolder(divId, mainPath, indent) {
-    console.log(divId + ' ; ' + mainPath + ' ; ' + indent)
-    console.log('enter new folder now')
     var newIndent = parseInt(indent) + 17
     var element = document.getElementById(divId)
     contents = `<form action="#" id="addForm" style="margin-left: ${newIndent}px" onsubmit='addFolder("${divId}", "${mainPath}", "${indent}")'>
@@ -909,9 +926,9 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
 
 /*******************DELETE A FOLDER****************************/
 
-async function deleteItem(e) {
+async function deleteItem(targetId) {
     try {
-        var fullId = e.target.id
+        var fullId = targetId
         var item = document.getElementById(fullId)
         var idArray = fullId.split("^^^")
         var thePath = idArray[1]

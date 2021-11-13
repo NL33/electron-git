@@ -41,6 +41,24 @@ This is an app that uses electron and javascript to make it easy to use git when
             - working right click menu for clicking project name 
             - working right click menu for doc (see code for fullId !== projectDirectory in main-window.js)
     - look for anywhere else in main.js that has remote module.
+
+
+-menu options:
+    -project name:
+        - new folder
+        - new file
+        - view folder to search
+        - refresh
+    - normal folder
+        - new folder
+        - new file
+        - view folder to search
+        - move to trash
+        - refresh
+    - file 
+        - move to trash
+
+
 - update other windows code for updated electron
     - will need to remove anywhere that requires the remote module in the js file
 

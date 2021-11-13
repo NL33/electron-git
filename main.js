@@ -162,42 +162,54 @@ ipcMain.on('show-context-menu-chrome-tab', (event, target) => {
 
 /*******Project Window: Right Click Menu */
 
-ipcMain.on('show-context-menu-projwindow-directory', (event, target, divId, thePath, indent)=>{
+ipcMain.on('show-context-menu-projwindow-directory', (event, divId, thePath, indent, notProject)=>{
     const template = [
         {
             label: "New Folder",
             click: () => { 
                 event.sender.send('enter-new-folder', divId, thePath, indent)
-                //var divId = fullId
-               // enterNewFolder(divId, thePath, indent)
             }
         },
         {
             label: "New File",
             click: () => {
-                // addFolder(e, thePath, indent)
-                //var divId = fullId
-               // enterNewFile(divId, thePath, indent)
+                event.sender.send('enter-new-file', divId, thePath, indent)
             }
         },
         {
             type: "separator"
         },
         {
-        label: "View Folder", /**THIS IS JUST FOR THE MAIN PROJECT NAME */
+        label: "View Folder",
         click: () => {
-           // viewFolder(event, thePath)
+            event.sender.send('view-folder', thePath)
         }
        },
        {
            label: "Refresh",
            click: () => {
-             //  document.getElementById('folderContents').innerHTML = ''
-              // showFolderContents('projectDirectory', projectFolderPath, 0)
+               event.sender.send('refresh', '')
            }
        }
-
     ]
+    if (notProject === 'true') {
+        console.log('target = ')
+        console.log(target)
+        template.push(
+        {
+            type: "separator"
+        },
+        {
+            label: "Move to Trash",
+                click: () => {
+                    event.sender.send('delete-item', divId)
+                }
+        }
+        )
+    }
+
+
+
     const menu = Menu.buildFromTemplate(template)
     menu.popup(BrowserWindow.fromWebContents(event.sender))
 })
