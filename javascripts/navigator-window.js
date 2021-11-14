@@ -25,12 +25,11 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 */
 
 /*****LOAD APPS, WINDOWS, AND TABS ***************/
-window.onload = function(){
+var hoverAway = function(){
     window.addEventListener('mouseout', function (evt) {
-
         if (evt.toElement == null && evt.relatedTarget == null) {
-            console.log("left window");
-        ipcRenderer.send('minimize-nav-window', '')
+            console.log('nav away')
+             ipcRenderer.send('minimize-nav-window', '')
         }
     });
 }
@@ -42,7 +41,7 @@ ipcRenderer.on('run-loop-function', (event, arg) => {
     startLoop()
 })
 
-function minimizeWindow(){
+function minimizeWindow(){ //currently not called--instead of closing when you focus on a window, now close either: 1. when navigate off window or 2. when do keycode to call it up
     ipcRenderer.send('minimize-nav-window', '')
 }
 
@@ -51,6 +50,7 @@ async function startLoop() {
     chromeApps = 0
     ipcRenderer.send('focus-the-window', '')
     await loop()
+
     if (newWindow === 'yes') {
         document.getElementById('loadingMessage').style.display = 'none'
         document.getElementById('breatheOverviewDiv').style.display = 'none'
@@ -416,6 +416,7 @@ async function focusApp(e) {
     var name = e.target.name
     macFocusAppName(unixId, name).then((result, error) => {
         if (result) {
+            hoverAway()
           //  minimizeWindow()
         } else {
             console.log('error = ' + error)
