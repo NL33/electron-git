@@ -23,15 +23,15 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 }
 ]
 */
-
+var activeHover = false
 /*****LOAD APPS, WINDOWS, AND TABS ***************/
-var hoverAway = function(){
-    window.addEventListener('mouseout', function (evt) {
-        if (evt.toElement == null && evt.relatedTarget == null) {
-            console.log('nav away')
-             ipcRenderer.send('minimize-nav-window', '')
-        }
-    });
+function hoverAway() {
+        window.addEventListener('mouseout', goFunction = function (evt) {
+            if (evt.toElement == null && evt.relatedTarget == null) {
+                ipcRenderer.send('minimize-nav-window', '')
+                window.removeEventListener('mouseout', goFunction)
+            }
+        });
 }
 var child = 'n/a'
 startLoop()
@@ -41,11 +41,12 @@ ipcRenderer.on('run-loop-function', (event, arg) => {
     startLoop()
 })
 
-function minimizeWindow(){ //currently not called--instead of closing when you focus on a window, now close either: 1. when navigate off window or 2. when do keycode to call it up
+function minimizeWindow() { //currently not called--instead of closing when you focus on a window, now close either: 1. when navigate off window or 2. when do keycode to call it up
     ipcRenderer.send('minimize-nav-window', '')
 }
 
 async function startLoop() {
+    activeHover = false
     child = spawn('osascript')
     chromeApps = 0
     ipcRenderer.send('focus-the-window', '')
@@ -227,7 +228,7 @@ async function loop() {
                 for (var k = 0; k < windows.length; k++) {  //get the windows of each app, and put it into DOM (k = window number within app)
                     let window = windows[k]
                     let windowShow = window
-                    if (window.includes('—')){
+                    if (window.includes('—')) {
                         let windowArray = window.split('—')
                         let windowFirst = windowArray[1]
                         let windowSecond = windowArray[0]
@@ -416,8 +417,9 @@ async function focusApp(e) {
     var name = e.target.name
     macFocusAppName(unixId, name).then((result, error) => {
         if (result) {
+            activeHover = true
             hoverAway()
-          //  minimizeWindow()
+            //  minimizeWindow()
         } else {
             console.log('error = ' + error)
         }
@@ -433,8 +435,10 @@ function focusWindow(e) {
     var windowNumber = e.target.number
     macFocusWindow(unixId, windowName, windowNumber).then((result, error) => {
         if (result) {
-               //  minimizeWindow()
+            //  minimizeWindow()
             console.log('result = ' + result)
+            activeHover = true
+            hoverAway()
         } else {
             console.log('error = ' + error)
         }
@@ -449,8 +453,10 @@ function focusChromeTab(e) {
     var chromeTabName = e.target.chromeTabName
     macFocusChromeTab(unixId, theChromeWindowId, chromeTabName).then((result, error) => {
         if (result) {
-                //  minimizeWindow()
+            //  minimizeWindow()
             console.log('result = ' + result)
+            activeHover = true
+            hoverAway()
         } else {
             console.log('error = ' + error)
         }
@@ -618,7 +624,7 @@ ipcRenderer.on('close-tab', (event, arg) => {
 
 /****project focus ********/
 
-function projectWindow(){
+function projectWindow() {
     ipcRenderer.send('open-main-window', '')
 }
 
