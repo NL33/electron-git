@@ -38,10 +38,19 @@ This is an app that uses electron and javascript to make it easy to use git when
             - confirm working for right clicking folders. DONE
             - working right click menu for clicking project name. DONE 
             - working right click menu for doc (see code for fullId !== projectDirectory in main-window.js). DONE
-    - look for anywhere else in main.js that has remote module.
+    - look for anywhere else in main.js that has remote module. DONE (currently exists in compare versions--that can be removed another time)
+- add new code for speeding things up. START HERE.
 - hover action:
     - After result comes back from selection, then:
     - if hover off of nav window, then hide nav window
+
+    working hover code on window:
+        document.body.addEventListener("mousemove", function (event) {
+            console.log('hover!!!!')
+            event.preventDefault()
+        }) 
+
+
 - remove extra init in project window
 -menu options:
     -project name:

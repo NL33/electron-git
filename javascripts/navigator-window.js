@@ -25,6 +25,15 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 */
 
 /*****LOAD APPS, WINDOWS, AND TABS ***************/
+window.onload = function(){
+    window.addEventListener('mouseout', function (evt) {
+
+        if (evt.toElement == null && evt.relatedTarget == null) {
+            console.log("left window");
+        ipcRenderer.send('minimize-nav-window', '')
+        }
+    });
+}
 var child = 'n/a'
 startLoop()
 var activeElementText = ''
@@ -33,7 +42,7 @@ ipcRenderer.on('run-loop-function', (event, arg) => {
     startLoop()
 })
 
-function mimizeWindow(){
+function minimizeWindow(){
     ipcRenderer.send('minimize-nav-window', '')
 }
 
@@ -407,7 +416,7 @@ async function focusApp(e) {
     var name = e.target.name
     macFocusAppName(unixId, name).then((result, error) => {
         if (result) {
-            mimizeWindow()
+          //  minimizeWindow()
         } else {
             console.log('error = ' + error)
         }
@@ -423,7 +432,7 @@ function focusWindow(e) {
     var windowNumber = e.target.number
     macFocusWindow(unixId, windowName, windowNumber).then((result, error) => {
         if (result) {
-            mimizeWindow()
+               //  minimizeWindow()
             console.log('result = ' + result)
         } else {
             console.log('error = ' + error)
@@ -439,7 +448,7 @@ function focusChromeTab(e) {
     var chromeTabName = e.target.chromeTabName
     macFocusChromeTab(unixId, theChromeWindowId, chromeTabName).then((result, error) => {
         if (result) {
-            mimizeWindow()
+                //  minimizeWindow()
             console.log('result = ' + result)
         } else {
             console.log('error = ' + error)

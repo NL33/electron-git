@@ -53,7 +53,7 @@ window.onload = async function () {
                     highlightedDivs[0].classList.remove('highlightFolderOrFile')
             }
         });
-
+      
         //will send file to discourse, linking with postId. how will it link with project? When send to site, project will probably be named after main-folder-name/subfolder. Can get this from the filepath. And then add the tag with this name and a hash to the post, so it will be tagged that way on discourse.
         //start out this way. Issues in future: if change path name, will that change project? maybe it's ok for it to work that way?
 
