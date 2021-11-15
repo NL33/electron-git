@@ -171,6 +171,18 @@ async function loop() {
         var indexId = 'index=' + i
         var icon = '../' + activeApps.icons[i]
         var nextItemsId = 'nextItems+' + indexId + '+refreshNumber=' + refreshNumber
+        if (!icon.includes('undefined')){
+            var iconContent = `
+            <img style="height: 36px; width: 36px; vertical-align: middle" class="notChromeTab" src="${icon}"></img>
+            `
+        } else {
+            var appNameArray = appName.trim().split(' ')
+            console.log('appNameArray = ' + appNameArray)
+            var firstLetter = appNameArray.at(-1).charAt(0)
+            var iconContent = `
+                  <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px">${firstLetter}</span>
+                `
+        }
         if ((appName.trim().toLowerCase().includes('google chrome')) || (appName.trim().toLowerCase().includes('googlechrome'))) {
             var extraClass = 'chromeNextItems'
 
@@ -180,7 +192,7 @@ async function loop() {
         var content = `
      <div id="${indexId}" style="margin-bottom: 5px" class="appOverview hideWhileLoading">
      <div tabindex="1" class="appDetails  thisAppName keyTabHere" >
-       <img style="height: 36px; width: 36px; vertical-align: middle" class="notChromeTab "src="${icon}"></img>
+        ${iconContent}
         <span style="margin-left: 3px; cursor: pointer" class="appName names" >${appName}</span>
       </div>
       <ul class="nextItems ${extraClass}" id="${nextItemsId}"></ul>
@@ -199,8 +211,22 @@ async function loop() {
                 document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
             }
         }
+        /*
+        var runAppIconError = 1
+        if document.getElementById(iconId).src
+        document.getElementById(iconId).onerror = () => {
+          
+            if (runAppIconError === 1) {
+                console.log('error in icon for = ' + appName)
+                var firstLetter = appName.charAt(0)
+                var newIcon = 
+                //document.getElementById(iconId).remove()
+                document.getElementById(indexId).firstElementChild.insertAdjacentHTML('afterbegin', newIcon)
+                runIconError = 2
+            }
+        }
+        */
         var element = document.querySelector('.thisAppName')
-        var go1 = element
         element.addEventListener('click', focusApp)
         element.addEventListener('keydown', keyDownFunction)
         var children = element.children
@@ -325,7 +351,7 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
             var runIconError = 1
             document.querySelector('.' + classN).onerror = () => {
                 if (runIconError === 1){
-                    document.querySelector('.' + classN).src = '../icons/Macintosh HD:Applications:Google Chrome.app:.png' /*****CHANGE THIS TO A PERMANENT ICON *****/
+                    document.querySelector('.' + classN).src = '../icons/Macintosh HD:Applications:Google Chrome.app:.png' 
                  runIconError = 2                
                 }
             }

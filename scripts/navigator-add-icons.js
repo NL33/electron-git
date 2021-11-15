@@ -38,7 +38,6 @@ module.exports = async function (appsInfo, iconsFolder = "icons") {
                             } else if (appName === 'Microsoft PowerPoint') {
                                 var iconNameRaw = 'PPPT3'
                                 iconName = iconNameRaw.replace('.icns', '') + '.icns'
-
                             } else if (appName === 'Microsoft OneNote') {
                                 var iconNameRaw = 'OneNote'
                                 iconName = iconNameRaw.replace('.icns', '') + '.icns'
