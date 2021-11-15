@@ -322,8 +322,12 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
       `
             /*removed: <div class="nextItems" style="margin-left: 50px; margin-top: 3px" id="${nextItemsId}"></div> */
             document.querySelector('.chromeNextItems').insertAdjacentHTML('beforeend', content) //using 'chromeNextItems' as the relevant spot to put in the chrome tabs. the alternative is using the app index that corresponds to chrome, but there have been times when that index number was not reliable. This has happened to me when using script editor / dictionary / google chrome (lookng up google chrome details in the script)
+            var runIconError = 1
             document.querySelector('.' + classN).onerror = () => {
-                document.querySelector('.' + classN).src = '../../icons/com.google.Chrome.png' /*****CHANGE THIS TO A PERMANENT ICON *****/
+                if (runIconError === 1){
+                    document.querySelector('.' + classN).src = '../icons/Macintosh HD:Applications:Google Chrome.app:.png' /*****CHANGE THIS TO A PERMANENT ICON *****/
+                 runIconError = 2                
+                }
             }
             var element = document.querySelector('.thisTab')
             element.addEventListener('click', focusChromeTab)
