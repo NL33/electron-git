@@ -56,8 +56,8 @@
         }
 
         #projectDirectory {
-            display: table-cell;
-            padding-left: 4px;
+           /* display: table-cell;*/
+            padding-left: 0px;
             font-weight: bold;
             margin-right: 5px;
             font-size: 16pt;
@@ -526,19 +526,30 @@
             padding-left: 4px
         }
 
-        .blueFolderHeader {
-            display: table-cell;
+          .blueFolderHeader {
+           /* display: table-cell;*/
             color: #4da6ff; //#3399FF;  
             font-size: 23px !important;
             vertical-align: top;
+            margin-right: 0px;
+            filter: invert(51%) sepia(80%) saturate(619%) hue-rotate(182deg) brightness(102%) contrast(101%);
         }
 
         .blueFolder {
-            //  display: table-cell;
-            color: #4da6ff; //#3399FF;
-            font-size: 18px !important;
+            /*  display: table-cell;*/
+            /*  color: #4da6ff;*/  
+            height: 18px;
+            width: 18px;
             margin-right: 3px;
             vertical-align: top;
+            filter: invert(51%) sepia(80%) saturate(619%) hue-rotate(182deg) brightness(102%) contrast(101%);
+        }
+
+        .filter-green {
+            height: 14px;
+            width: 14px;
+            margin-right: 3px;
+            filter: invert(88%) sepia(4%) saturate(3721%) hue-rotate(75deg) brightness(90%) contrast(100%);
         }
 
         .greenFile {

@@ -27,12 +27,13 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 function hoverAway() {
-        window.addEventListener('mouseout', goFunction = function (evt) {
-            if (evt.toElement == null && evt.relatedTarget == null) {
-                ipcRenderer.send('minimize-nav-window', '')
-                window.removeEventListener('mouseout', goFunction)
-            }
-        });
+    console.log('start hover away function')
+    window.addEventListener('mouseout', goFunction = function (evt) {
+        if (evt.toElement == null && evt.relatedTarget == null) {
+            ipcRenderer.send('minimize-nav-window', '')
+            window.removeEventListener('mouseout', goFunction)
+        }
+    });
 }
 
 /*****LOAD APPS, WINDOWS, AND TABS ***************/
@@ -43,153 +44,160 @@ ipcRenderer.on('run-loop-function', (event, arg) => {
     startLoop()
 })
 
+
+
 function minimizeWindow() { //currently not called--instead of closing when you focus on a window, now close either: 1. when navigate off window or 2. when do keycode to call it up
     ipcRenderer.send('minimize-nav-window', '')
 }
 
 async function startLoop() {
-    console.log('run start loop')
-    chromeApps = 0
-    ipcRenderer.send('focus-the-window', '')
-    await loop()
+    try {
+        console.log('run start loop')
+        chromeApps = 0
+        ipcRenderer.send('focus-the-window', '')
+        await loop()
 
-    if (newWindow === 'yes') {
-        document.getElementById('loadingMessage').style.display = 'none'
-        document.getElementById('breatheOverviewDiv').style.display = 'none'
-        document.getElementById('nameSearch').style.display = 'block'
-        document.getElementById('nameSearch').focus()
-    }
+        if (newWindow === 'yes') {
+            document.getElementById('loadingMessage').style.display = 'none'
+            document.getElementById('breatheOverviewDiv').style.display = 'none'
+            document.getElementById('nameSearch').style.display = 'block'
+            document.getElementById('nameSearch').focus()
+        }
 
-    var tApps = document.querySelectorAll('.appOverview')
-    activeElementText = document.activeElement.textContent //get currently focused element right before we transition to the updated results. And then below (where we check "matched") focus that element after the new results show
-    for (var j = 0; j < tApps.length; j++) {
-        var el = tApps[j]
-        if (!el.children[1].classList.contains('chromeNextItems')) {
-            if (el.classList.contains('oldApp')) {
-                el.remove()
+        var tApps = document.querySelectorAll('.appOverview')
+        activeElementText = document.activeElement.textContent //get currently focused element right before we transition to the updated results. And then below (where we check "matched") focus that element after the new results show
+        for (var j = 0; j < tApps.length; j++) {
+            var el = tApps[j]
+            if (!el.children[1].classList.contains('chromeNextItems')) {
+                if (el.classList.contains('oldApp')) {
+                    el.remove()
+                } else {
+                    el.classList.remove('hideWhileLoading')
+                }
             } else {
-                el.classList.remove('hideWhileLoading')
-            }
-        } else {
-            chromeApps++
-            if (chromeApps > 1) {
-                el.remove()
-                /*
-                Goal: Each time you refresh the page, leave the first chrome app, and remove the others. Why?
-                chrome tabs get added to the first chrome app window that appears.
-                so above, that removes the first chrome app, which gets rid of all the tabs under it.
-                So don't get rid of that first chrome app. But leave the others.
-                */
-            } else {
-                el.classList.remove('hideWhileLoading')
-                el.classList.remove('oldWindow')
-            }
-        }
-    }
-
-    var tWindows = document.querySelectorAll('.windowName')
-    for (var s = 0; s < tWindows.length; s++) {
-        var el = tWindows[s]
-        if (el.classList.contains('oldWindow')) {
-            el.remove()
-        } else {
-            el.classList.remove('hideWhileLoading')
-        }
-    }
-  
-    var tTabs = document.querySelectorAll('.tabOverview')
-    for (var b = 0; b < tTabs.length; b++) {
-        var el = tTabs[b]
-        if (el.classList.contains('oldTab')) {
-            el.remove()
-        } else {
-            el.classList.remove('hideWhileLoading')
-        }
-    }
-
-    if (newWindow !== 'yes') {
-        document.getElementById('theTitle').textContent = 'Navigator'
-        var matched = 'no'
-        var divs = document.querySelectorAll('span')
-        if (activeElementText.length > 0) {
-            for (var m = 0; m < divs.length; m++) {
-                if (divs[m].textContent.trim() === activeElementText.trim()) {
-                    divs[m].parentElement.focus()
-                    matched = 'yes'
-                    break
+                chromeApps++
+                if (chromeApps > 1) {
+                    el.remove()
+                    /*
+                    Goal: Each time you refresh the page, leave the first chrome app, and remove the others. Why?
+                    chrome tabs get added to the first chrome app window that appears.
+                    so above, that removes the first chrome app, which gets rid of all the tabs under it.
+                    So don't get rid of that first chrome app. But leave the others.
+                    */
+                } else {
+                    el.classList.remove('hideWhileLoading')
+                    el.classList.remove('oldWindow')
                 }
             }
         }
-        if (matched === 'no') {
-            document.getElementById('nameSearch').focus()
+
+        var tWindows = document.querySelectorAll('.windowName')
+        for (var s = 0; s < tWindows.length; s++) {
+            var el = tWindows[s]
+            if (el.classList.contains('oldWindow')) {
+                el.remove()
+            } else {
+                el.classList.remove('hideWhileLoading')
+            }
         }
+
+        var tTabs = document.querySelectorAll('.tabOverview')
+        for (var b = 0; b < tTabs.length; b++) {
+            var el = tTabs[b]
+            if (el.classList.contains('oldTab')) {
+                el.remove()
+            } else {
+                el.classList.remove('hideWhileLoading')
+            }
+        }
+
+        if (newWindow !== 'yes') {
+            document.getElementById('theTitle').textContent = 'Navigator'
+            var matched = 'no'
+            var divs = document.querySelectorAll('span')
+            if (activeElementText.length > 0) {
+                for (var m = 0; m < divs.length; m++) {
+                    if (divs[m].textContent.trim() === activeElementText.trim()) {
+                        divs[m].parentElement.focus()
+                        matched = 'yes'
+                        break
+                    }
+                }
+            }
+            if (matched === 'no') {
+                document.getElementById('nameSearch').focus()
+            }
+        }
+        if (document.getElementById('nameSearch').textContent.length > 0) {
+            searchNamesFunction()
+        }
+        newWindow = 'no' //at end of first loading, change newWindow to 'no'. it will stay like that until another closing and reopening of app
+        ipcRenderer.send('nav-loading-complete', '')
+    } catch (e) {
+        console.log('error in start loop function = ' + e)
     }
-    if (document.getElementById('nameSearch').textContent.length > 0) {
-        searchNamesFunction()
-    }
-    newWindow = 'no' //at end of first loading, change newWindow to 'no'. it will stay like that until another closing and reopening of app
-    ipcRenderer.send('nav-loading-complete', '')
 }
 
 /***************** LOOP FUNCTION ***************************** */
 async function loop() {
-    if (newWindow === 'yes') { //new window = app has just been opened, so a full loading
-        document.getElementById('loadingMessage').style.display = 'block'
-        document.getElementById('breatheOverviewDiv').style.display = 'block'
-        document.getElementById('nameSearch').style.display = 'none'
-    } else {
-        refreshNumber++
-        document.getElementById('theTitle').textContent = 'Loading ...'
-    }
+    try {
+        if (newWindow === 'yes') { //new window = app has just been opened, so a full loading
+            document.getElementById('loadingMessage').style.display = 'block'
+            document.getElementById('breatheOverviewDiv').style.display = 'block'
+            document.getElementById('nameSearch').style.display = 'none'
+        } else {
+            refreshNumber++
+            document.getElementById('theTitle').textContent = 'Loading ...'
+        }
 
-    var theApps = document.querySelectorAll('.appOverview')
-    for (var w = 0; w < theApps.length; w++) {
-        theApps[w].classList.add('oldApp')
-    }
+        var theApps = document.querySelectorAll('.appOverview')
+        for (var w = 0; w < theApps.length; w++) {
+            theApps[w].classList.add('oldApp')
+        }
 
-    var theWindows = document.querySelectorAll('.windowName')
-    for (var t = 0; t < theWindows.length; t++) {
-        theWindows[t].classList.add('oldWindow')
-    }
+        var theWindows = document.querySelectorAll('.windowName')
+        for (var t = 0; t < theWindows.length; t++) {
+            theWindows[t].classList.add('oldWindow')
+        }
 
-    var theTabs = document.querySelectorAll('.tabOverview')
-    for (var k = 0; k < theTabs.length; k++) {
-        theTabs[k].classList.add('oldTab')
-    }
+        var theTabs = document.querySelectorAll('.tabOverview')
+        for (var k = 0; k < theTabs.length; k++) {
+            theTabs[k].classList.add('oldTab')
+        }
 
-    getChromePosition()
-    getColumnPreference()
+        getChromePosition()
+        getColumnPreference()
 
-    activeApps = await macActive(chromePosition).then(d => JSON.parse(d));
-    chromeFunctionRun = 0
-    activeApps = await addIcons(activeApps, 'icons');
+        activeApps = await macActive(chromePosition).then(d => JSON.parse(d));
+        chromeFunctionRun = 0
+        activeApps = await addIcons(activeApps, 'icons');
 
-    for (var i = 0; i < activeApps.paths.length; i++) { //Get name of all apps and put it into DOM
-        var appNameRaw = activeApps.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
-        var appName = appNameRaw.split('/').at(-1)
-        var unixId = activeApps.unixId[i]
-        var indexId = 'index=' + i
-        var icon = '../' + activeApps.icons[i]
-        var nextItemsId = 'nextItems+' + indexId + '+refreshNumber=' + refreshNumber
-        if (!icon.includes('undefined')){
-            var iconContent = `
+        for (var i = 0; i < activeApps.paths.length; i++) { //Get name of all apps and put it into DOM
+            var appNameRaw = activeApps.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
+            var appName = appNameRaw.split('/').at(-1)
+            var unixId = activeApps.unixId[i]
+            var indexId = 'index=' + i
+            var icon = '../' + activeApps.icons[i]
+            var nextItemsId = 'nextItems+' + indexId + '+refreshNumber=' + refreshNumber
+            if (!icon.includes('undefined')) {
+                var iconContent = `
             <img style="height: 36px; width: 36px; vertical-align: middle" class="notChromeTab" src="${icon}"></img>
             `
-        } else {
-            var appNameArray = appName.trim().split(' ')
-            console.log('appNameArray = ' + appNameArray)
-            var firstLetter = appNameArray.at(-1).charAt(0)
-            var iconContent = `
+            } else {
+                var appNameArray = appName.trim().split(' ')
+                console.log('appNameArray = ' + appNameArray)
+                var firstLetter = appNameArray.at(-1).charAt(0)
+                var iconContent = `
                   <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px">${firstLetter}</span>
                 `
-        }
-        if ((appName.trim().toLowerCase().includes('google chrome')) || (appName.trim().toLowerCase().includes('googlechrome'))) {
-            var extraClass = 'chromeNextItems'
+            }
+            if ((appName.trim().toLowerCase().includes('google chrome')) || (appName.trim().toLowerCase().includes('googlechrome'))) {
+                var extraClass = 'chromeNextItems'
 
-        } else {
-            var extraClass = "nonChromeNextItems"
-        }
-        var content = `
+            } else {
+                var extraClass = "nonChromeNextItems"
+            }
+            var content = `
      <div id="${indexId}" style="margin-bottom: 5px" class="appOverview hideWhileLoading">
      <div tabindex="1" class="appDetails  thisAppName keyTabHere" >
         ${iconContent}
@@ -198,101 +206,104 @@ async function loop() {
       <ul class="nextItems ${extraClass}" id="${nextItemsId}"></ul>
      </div>
   `
-        if (chromePosition === 'chromeLast') { //change order depending on selection of chrome position
-            if (extraClass === 'chromeNextItems') {
-                document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
+            if (chromePosition === 'chromeLast') { //change order depending on selection of chrome position
+                if (extraClass === 'chromeNextItems') {
+                    document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
+                } else {
+                    document.getElementById('showResults').insertAdjacentHTML('afterbegin', content)
+                }
             } else {
-                document.getElementById('showResults').insertAdjacentHTML('afterbegin', content)
+                if (extraClass === 'chromeNextItems') {
+                    document.getElementById('showResults').insertAdjacentHTML('afterbegin', content)
+                } else {
+                    document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
+                }
             }
-        } else {
-            if (extraClass === 'chromeNextItems') {
-                document.getElementById('showResults').insertAdjacentHTML('afterbegin', content)
-            } else {
-                document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
+            var element = document.querySelector('.thisAppName')
+            element.addEventListener('click', focusApp)
+            element.addEventListener('keydown', keyDownFunction)
+            var children = element.children
+            element.name = appName
+            element.unixId = unixId
+            element.parentId = indexId
+            element.status = 'app'
+            element.classList.remove('thisAppName')
+            for (var l = 0; l < children.length; l++) {
+                var child = children[l]
+                child.name = appName
+                child.unixId = unixId
+                child.parentId = indexId
+                child.status = 'app'
             }
         }
-        var element = document.querySelector('.thisAppName')
-        element.addEventListener('click', focusApp)
-        element.addEventListener('keydown', keyDownFunction)
-        var children = element.children
-        element.name = appName
-        element.unixId = unixId
-        element.parentId = indexId
-        element.status = 'app'
-        element.classList.remove('thisAppName')
-        for (var l = 0; l < children.length; l++) {
-            var child = children[l]
-            child.name = appName
-            child.unixId = unixId
-            child.parentId = indexId
-            child.status = 'app'
-        }
-    }
 
-    for (var j = 0; j < activeApps.windows.length; j++) { //for each app  (j = app number):
-        var windows = activeApps.windows[j]
-        var appNameRaw1 = activeApps.paths[j].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
-        var appName1 = appNameRaw1.split('/').at(-1)
-        var unixId = activeApps.unixId[j]
-        var position = activeApps.windows[j]
-        if (windows != null) {
-            if ((windows.length > 0) && (windows != 'undefined')) {
-                for (var k = 0; k < windows.length; k++) {  //get the windows of each app, and put it into DOM (k = window number within app)
-                    let window = windows[k]
-                    let windowShow = window
-                    if (window.includes('—')) {
-                        let windowArray = window.split('—')
-                        let windowFirst = windowArray[1]
-                        let windowSecond = windowArray[0]
-                        windowShow = windowFirst + ' — ' + windowSecond
+        for (var j = 0; j < activeApps.windows.length; j++) { //for each app  (j = app number):
+            var windows = activeApps.windows[j]
+            var appNameRaw1 = activeApps.paths[j].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
+            var appName1 = appNameRaw1.split('/').at(-1)
+            var unixId = activeApps.unixId[j]
+            var position = activeApps.windows[j]
+            if (windows != null) {
+                if ((windows.length > 0) && (windows != 'undefined')) {
+                    for (var k = 0; k < windows.length; k++) {  //get the windows of each app, and put it into DOM (k = window number within app)
+                        let window = windows[k]
+                        let windowShow = window
+                        if (window.includes('—')) {
+                            let windowArray = window.split('—')
+                            let windowFirst = windowArray[1]
+                            let windowSecond = windowArray[0]
+                            windowShow = windowFirst + ' — ' + windowSecond
 
-                    }
-                    if (window != null) {
-                        if ((window.length > 0) && (window != 'undefined') && (!window.startsWith('Find in page'))) {
-                            /*Why include "window doesn't start with "Find in Page"? The Find in page window shows up in chrome if you are doing a control+f / search on the page. The Mac treats it as it's own window. So it would show up in the results, but be confusing to the user (who wouldn't expect the find box to be a window) and makes it complicated to focus correctly. So I've removed it*/
-                            var content = `
+                        }
+                        if (window != null) {
+                            if ((window.length > 0) && (window != 'undefined') && (!window.startsWith('Find in page'))) {
+                                /*Why include "window doesn't start with "Find in Page"? The Find in page window shows up in chrome if you are doing a control+f / search on the page. The Mac treats it as it's own window. So it would show up in the results, but be confusing to the user (who wouldn't expect the find box to be a window) and makes it complicated to focus correctly. So I've removed it*/
+                                var content = `
               <li class="thisOne windowName windowTabName names notChromeTab keyTabHere hideWhileLoading" tabindex="1"><span style="color: black; margin-left: -7px">${windowShow}</span></li>
             `
-                            if ((appName1.toLowerCase().includes('google chrome')) && ((window.toLowerCase().includes('google chrome')) || (window.includes('googlechrome')))) {
-                                await chromeFunction(j, k, unixId, window)
-                            } else {
-                                var nextItemsId = 'nextItems+' + 'index=' + j + '+refreshNumber=' + refreshNumber //why refresh number? Because nextItemsId without it would be just the index number of the app itself; and on refresh, there can be two entries for the app at the time the windows are loaded. So the window will be added to the first id--the first app appearance, and this app is removed 
-                                document.getElementById(nextItemsId).insertAdjacentHTML('beforeend', content)
-                                var element = document.querySelector('.thisOne')
-                                element.addEventListener('click', focusWindow)
-                                element.addEventListener('keydown', keyDownFunction)
-                                element.appName = appName1
-                                element.name = window
-                                element.number = k
-                                element.unixId = unixId
-                                element.parentId = nextItemsId
-                                element.status = 'window'
-                                document.querySelector('.thisOne').classList.remove('thisOne')
-                                var children2 = element.children
-                                for (var l = 0; l < children2.length; l++) {
-                                    var child = children2[l]
-                                    child.appName = appName1
-                                    child.name = window
-                                    child.number = k
-                                    child.unixId = unixId
-                                    child.parentId = nextItemsId
-                                    child.status = 'window'
+                                if ((appName1.toLowerCase().includes('google chrome')) && ((window.toLowerCase().includes('google chrome')) || (window.includes('googlechrome')))) {
+                                    await chromeFunction(j, k, unixId, window)
+                                } else {
+                                    var nextItemsId = 'nextItems+' + 'index=' + j + '+refreshNumber=' + refreshNumber //why refresh number? Because nextItemsId without it would be just the index number of the app itself; and on refresh, there can be two entries for the app at the time the windows are loaded. So the window will be added to the first id--the first app appearance, and this app is removed 
+                                    document.getElementById(nextItemsId).insertAdjacentHTML('beforeend', content)
+                                    var element = document.querySelector('.thisOne')
+                                    element.addEventListener('click', focusWindow)
+                                    element.addEventListener('keydown', keyDownFunction)
+                                    element.appName = appName1
+                                    element.name = window
+                                    element.number = k
+                                    element.unixId = unixId
+                                    element.parentId = nextItemsId
+                                    element.status = 'window'
+                                    document.querySelector('.thisOne').classList.remove('thisOne')
+                                    var children2 = element.children
+                                    for (var l = 0; l < children2.length; l++) {
+                                        var child = children2[l]
+                                        child.appName = appName1
+                                        child.name = window
+                                        child.number = k
+                                        child.unixId = unixId
+                                        child.parentId = nextItemsId
+                                        child.status = 'window'
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-        } else {
-            // console.log('no windows')
-            document.getElementById('index=' + j).style.display = 'none'
-            if (newWindow === 'yes') {
-                document.getElementById('loadingMessage').style.display = 'none'
-                document.getElementById('breatheOverviewDiv').style.display = 'none'
-                document.getElementById('nameSearch').style.display = 'block'
-                document.getElementById('nameSearch').focus()
+            } else {
+                // console.log('no windows')
+                document.getElementById('index=' + j).style.display = 'none'
+                if (newWindow === 'yes') {
+                    document.getElementById('loadingMessage').style.display = 'none'
+                    document.getElementById('breatheOverviewDiv').style.display = 'none'
+                    document.getElementById('nameSearch').style.display = 'block'
+                    document.getElementById('nameSearch').focus()
+                }
             }
         }
+    } catch (e) {
+        console.log('error in loop function = ' + e)
     }
 }
 
@@ -335,9 +346,9 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
             document.querySelector('.chromeNextItems').insertAdjacentHTML('beforeend', content) //using 'chromeNextItems' as the relevant spot to put in the chrome tabs. the alternative is using the app index that corresponds to chrome, but there have been times when that index number was not reliable. This has happened to me when using script editor / dictionary / google chrome (lookng up google chrome details in the script)
             var runIconError = 1
             document.querySelector('.' + classN).onerror = () => {
-                if (runIconError === 1){
-                    document.querySelector('.' + classN).src = '../icons/Macintosh HD:Applications:Google Chrome.app:.png' 
-                 runIconError = 2                
+                if (runIconError === 1) {
+                    document.querySelector('.' + classN).src = '../icons/Macintosh HD:Applications:Google Chrome.app:.png'
+                    runIconError = 2
                 }
             }
             var element = document.querySelector('.thisTab')
@@ -433,7 +444,7 @@ async function focusApp(e) {
     var name = e.target.name
     macFocusAppName(unixId, name).then((result, error) => {
         if (result) {
-            activeHover = true
+            //activeHover = true
             hoverAway()
             //  minimizeWindow()
         } else {
@@ -453,7 +464,7 @@ function focusWindow(e) {
         if (result) {
             //  minimizeWindow()
             console.log('result = ' + result)
-            activeHover = true
+            //activeHover = true
             hoverAway()
         } else {
             console.log('error = ' + error)
@@ -471,7 +482,7 @@ function focusChromeTab(e) {
         if (result) {
             //  minimizeWindow()
             console.log('result = ' + result)
-            activeHover = true
+            //activeHover = true
             hoverAway()
         } else {
             console.log('error = ' + error)
@@ -554,55 +565,59 @@ function closeTab(target1) {
 /**SEARCH NAMES** */
 
 function searchNamesFunction() {
-    var hiddenDivs = document.querySelectorAll('.hideDiv')
-    for (var c = 0; c < hiddenDivs.length; c++) {
-        hiddenDivs[c].classList.remove('hideDiv')
-    }
-    var enteredText = (document.getElementById('nameSearch').textContent).toLowerCase().trim()
-
-    //search through app names
-    var appNameDivs = document.querySelectorAll('.appName')
-    for (var b = 0; b < appNameDivs.length; b++) {
-        var theAppNameText = (appNameDivs[b].textContent).toLowerCase()
-        if (theAppNameText.indexOf(enteredText) === -1) {
-            appNameDivs[b].parentElement.classList.add('hideDiv') /*this would be the div with class: "appDetails" of the specific app*/
+    try {
+        var hiddenDivs = document.querySelectorAll('.hideDiv')
+        for (var c = 0; c < hiddenDivs.length; c++) {
+            hiddenDivs[c].classList.remove('hideDiv')
         }
-    }
+        var enteredText = (document.getElementById('nameSearch').textContent).toLowerCase().trim()
 
-    //search through window names and tab names
-    var windowTabNameDivs = document.querySelectorAll('.windowTabName')
-    for (var a = 0; a < windowTabNameDivs.length; a++) {
-        var theText = (windowTabNameDivs[a].textContent).toLowerCase()
-        if (theText.indexOf(enteredText) === -1) {
-            if (windowTabNameDivs[a].classList.contains('chromeTabs')) {
-                windowTabNameDivs[a].parentElement.classList.add('hideDiv') //This is the div "tabOverview" for the specific chrome tab. Note chrome tab dom display is structured differently than other window display--there is a parent window on topof the tab icon and tab name
-            } else {
-                windowTabNameDivs[a].classList.add('hideDiv') //corresponds to the windowName div of the specific window
-            }
-        } else { //un-hide the app names
-            if (windowTabNameDivs[a].classList.contains('chromeTabs')) {
-                windowTabNameDivs[a].parentElement.parentElement.previousElementSibling.classList.remove('hideDiv') //corresponds to div "tabOverview" for the specific chrome tab. Prior "search app" loop has hidden the app names, so if there is a chrome tab match, we want to un-hide the app.
-                // Note that the chrome tab text search below will normally include the name of the tab itself, so it will probably make this line unnecessary--because there will be a match to the name of the tab in that text search, which will take care of showing the
-            } else {
-                windowTabNameDivs[a].parentElement.previousElementSibling.classList.remove('hideDiv')  //. From the "search through app names" action above, the app name has potentially been hidden. So, if the window is a match, remove the hideDiv from the appName. this would be the div with class: "appDetails" of the specific app.  
+        //search through app names
+        var appNameDivs = document.querySelectorAll('.appName')
+        for (var b = 0; b < appNameDivs.length; b++) {
+            var theAppNameText = (appNameDivs[b].textContent).toLowerCase()
+            if (theAppNameText.indexOf(enteredText) === -1) {
+                appNameDivs[b].parentElement.classList.add('hideDiv') /*this would be the div with class: "appDetails" of the specific app*/
             }
         }
-    }
 
-    //search through chrome tab text
-
-    for (let i = 0; i < chromeTabResults.length; i++) {
-        var windowTabs = chromeTabResults[i]
-        for (let j = 0; j < windowTabs.length; j++) {
-            var tab = windowTabs[j]
-            var content = tab.content
-            if (content.toLowerCase().indexOf(enteredText) > -1) {
-                var chromeNameDiv = document.querySelector('.chromeNextItems').previousElementSibling //corresponds to the appDetails div that contains the div for the chrome icon and chrome app name
-                chromeNameDiv.classList.remove('hideDiv') //if a tab shows up in search results, show the Chrome app name..
-                var theTabId = tab.chromeWindowNumber + '+' + tab.tabNumber
-                document.getElementById(theTabId).classList.remove('hideDiv') //corresponds to the tabOverview div for the specific tab
+        //search through window names and tab names
+        var windowTabNameDivs = document.querySelectorAll('.windowTabName')
+        for (var a = 0; a < windowTabNameDivs.length; a++) {
+            var theText = (windowTabNameDivs[a].textContent).toLowerCase()
+            if (theText.indexOf(enteredText) === -1) {
+                if (windowTabNameDivs[a].classList.contains('chromeTabs')) {
+                    windowTabNameDivs[a].parentElement.classList.add('hideDiv') //This is the div "tabOverview" for the specific chrome tab. Note chrome tab dom display is structured differently than other window display--there is a parent window on topof the tab icon and tab name
+                } else {
+                    windowTabNameDivs[a].classList.add('hideDiv') //corresponds to the windowName div of the specific window
+                }
+            } else { //un-hide the app names
+                if (windowTabNameDivs[a].classList.contains('chromeTabs')) {
+                    windowTabNameDivs[a].parentElement.parentElement.previousElementSibling.classList.remove('hideDiv') //corresponds to div "tabOverview" for the specific chrome tab. Prior "search app" loop has hidden the app names, so if there is a chrome tab match, we want to un-hide the app.
+                    // Note that the chrome tab text search below will normally include the name of the tab itself, so it will probably make this line unnecessary--because there will be a match to the name of the tab in that text search, which will take care of showing the
+                } else {
+                    windowTabNameDivs[a].parentElement.previousElementSibling.classList.remove('hideDiv')  //. From the "search through app names" action above, the app name has potentially been hidden. So, if the window is a match, remove the hideDiv from the appName. this would be the div with class: "appDetails" of the specific app.  
+                }
             }
         }
+
+        //search through chrome tab text
+
+        for (let i = 0; i < chromeTabResults.length; i++) {
+            var windowTabs = chromeTabResults[i]
+            for (let j = 0; j < windowTabs.length; j++) {
+                var tab = windowTabs[j]
+                var content = tab.content
+                if (content.toLowerCase().indexOf(enteredText) > -1) {
+                    var chromeNameDiv = document.querySelector('.chromeNextItems').previousElementSibling //corresponds to the appDetails div that contains the div for the chrome icon and chrome app name
+                    chromeNameDiv.classList.remove('hideDiv') //if a tab shows up in search results, show the Chrome app name..
+                    var theTabId = tab.chromeWindowNumber + '+' + tab.tabNumber
+                    document.getElementById(theTabId).classList.remove('hideDiv') //corresponds to the tabOverview div for the specific tab
+                }
+            }
+        }
+    } catch (e) {
+        console.log('error in search names function = ' + e)
     }
 
 }

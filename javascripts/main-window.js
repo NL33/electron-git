@@ -201,7 +201,7 @@ async function addSummary() {
                         var newId = "**is-document**^^^" + descFilePath + "^^^" + indent
                         var newId = "**is-document**^^^" + descFilePath + "^^^" + indent
                         contents = `<div>
-                                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${descFilePath}", "${newIndent}")'><span class="material-icons-outlined greenFile icon" >insert_drive_file </span>` + 'project-summary.md' + `</div>
+                                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${descFilePath}", "${newIndent}")'><img class="filter-green icon" src="../assets/drive_file_google_icon.svg"></img>` + 'project-summary.md' + `</div>
                                 </div>`
                         var contentsDiv = document.getElementById('folderContents')
                         contentsDiv.insertAdjacentHTML("afterbegin", contents)
@@ -576,13 +576,15 @@ async function showFolderContents(divId, mainPath, indent) {
                         if ((subStats.isDirectory() === true) && (hasExtension1 === false)) {
                             var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
                             contents = `<div style='margin-left: ${indent}px'>
-                        <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><span class="material-icons-outlined blueFolder icon">folder_open</span>` + item + `</div>
+                        <div class='subFolder docOrDirectory' style="padding-left: 3px; padding-right: 3px" id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>
+                        <img class="blueFolder icon" src="../assets/folder_open_google_icon.svg"></img>` + item + `</div>
                         <div class="newItems"></div>
                         </div>`
                         } else {
                             var newId = "**is-document**^^^" + fullPath + "^^^" + indent
                             contents = `<div >
-                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><span class="material-icons-outlined greenFile icon" >insert_drive_file </span>` + item + `</div>
+                        <div class='subFolder docOrDirectory' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'>
+                        <img class="filter-green icon" src="../assets/drive_file_google_icon.svg"></img>` + item + `</div>
                         </div>`
                         }
                     }
@@ -880,13 +882,13 @@ function showNewFolderOrDoc(divId, mainPath, newPath, folderName, indent) {
         if (statsHere.isDirectory() === true) {
             var newId = "**is-directory**^^^" + fullPath + "^^^" + indent
             contents = `<div>
-                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><span class="material-icons-outlined blueFolder icon">folder_open</span>` + folderName + `</div>
+                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><img class="blueFolder icon" src="../assets/folder_open_google_icon.svg"></img>` + folderName + `</div>
                 <div class="newItems"></div>
                 </div>`
         } else {
             var newId = "**is-document**^^^" + fullPath + "^^^" + indent
             contents = `<div>
-                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><span class="material-icons-outlined greenFile icon" >insert_drive_file </span>` + folderName + `</div>
+                <div class='subFolder docOrDirectory newDiv' style='margin-left: ${indent}px' id="${newId}" onclick='showFolderContents("${newId}", "${fullPath}", "${newIndent}")'><img class="filter-green icon" src="../assets/drive_file_google_icon.svg"></img>` + folderName + `</div>
                 </div>`
         }
 

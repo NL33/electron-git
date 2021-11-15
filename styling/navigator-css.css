@@ -78,6 +78,7 @@ ul li {
 .appDetails:focus, .windowName:focus, .tabOverview:focus{
   outline: none !important;
   border: 2px solid #3399ff !important;
+  border-radius: 5px;
 }
 
 

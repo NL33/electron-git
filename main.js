@@ -59,7 +59,7 @@ const createNavWindow = () => {
     })
     navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));
     navWindow.openDevTools() /**********remove-in-production*****/
-      navWindow.focus()
+    navWindow.focus()
     navWindow.on('close', () => {
         navWindow = null
         navLoadingDone = true
@@ -137,6 +137,7 @@ ipcMain.on('minimize-nav-window', (event, target)=>{
 function hideNavWindow(){
     if (navWindow !== null){
         navWindow.hide()
+        //navWindow.webContents.send('nav-window-hidden', '')
     }
     okToLoadNavWindow = true
 }
