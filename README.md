@@ -47,12 +47,6 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 - Make sure if hit keyboard shortcut or hover too many times, it only calls the start loop function 1 time. in other words: start loop function should not be called when it's already being run. DONE
 
-
-
-
-- update other windows code for updated electron
-    - will need to remove anywhere that requires the remote module in the js file
-
 - icon activity
     - add icon for chrome when tab icon doesn't work
     - add microsoft word icon manually
@@ -71,6 +65,9 @@ This is an app that uses electron and javascript to make it easy to use git when
 - option to open app at startup
 
 - remove extra init in project window
+
+- update other windows code for updated electron
+    - will need to remove anywhere that requires the remote module in the js file
 
 
 ***

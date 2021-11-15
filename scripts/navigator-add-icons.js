@@ -17,18 +17,45 @@ module.exports = async function (appsInfo, iconsFolder = "icons") {
                     .then(async infoplist => {
                         const iconName = extractIconName(infoplist);
                         if (!iconName) {
+                            console.log('no icon name')
                             //throw Error();
                         }
                         const iconFile = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `${iconsFolder}/${pathId}.png`);
-
                         memory[pathId] = iconFile;
                         appsInfo.icons[i] = iconFile;
-                    }).catch(e => {
-                        console.log('***error = ' + e)
-                        /***ADD ICON HERE IF ERROR IN APP ICON ********/
-                        // memory[pathId] = `${iconsFolder}/standard.png`;
-                        //appsInfo.icons[i] = `${iconsFolder}/standard.png`;
+                    }).catch(async e => {
+                        try {
+                            var appName = pathZ1.split('/').at(-1).replace('.app', '').trim()
+                            if (appName == 'Microsoft Word') {
+                                var iconNameRaw = 'MSWD'
+                                iconName = iconNameRaw.replace('.icns', '') + '.icns'
+                            } else if (appName == 'Microsoft Excel') {
+                                var iconNameRaw = 'XCEL'
+                                iconName = iconNameRaw.replace('.icns', '') + '.icns'
+                            } else if (appName == 'Microsoft Outlook') {
+                                var iconNameRaw = 'Outlook'
+                                iconName = iconNameRaw.replace('.icns', '') + '.icns'
+                            } else if (appName === 'Microsoft PowerPoint') {
+                                var iconNameRaw = 'PPPT3'
+                                iconName = iconNameRaw.replace('.icns', '') + '.icns'
+
+                            } else if (appName === 'Microsoft OneNote') {
+                                var iconNameRaw = 'OneNote'
+                                iconName = iconNameRaw.replace('.icns', '') + '.icns'
+                            } else if (appName === 'Xcode') {
+                                var iconNameRaw = 'Xcode'
+                                iconName = iconNameRaw.replace('.icns', '') + '.icns'
+                            } else {
+                                console.log('use another icon')
+                            }  
+                            var iconFile = await addInIcon(pathZ1, pathId, iconName, iconsFolder)
+                            memory[pathId] = iconFile;
+                            appsInfo.icons[i] = iconFile;
+                        } catch (errorNow) {
+                            console.log('error in retrieving icon function = ' + errorNow)
+                        }
                     })
+                 
             );
         }
 
@@ -38,6 +65,15 @@ module.exports = async function (appsInfo, iconsFolder = "icons") {
         return appsInfo;
     } catch (e) {
         console.log('error in add icons = ' + e)
+    }
+}
+
+async function addInIcon(pathZ1, pathId, iconName, iconsFolder){
+    try {
+        const iconFile = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `${iconsFolder}/${pathId}.png`);
+        return iconFile
+    } catch (e){
+        console.log('error in addInIcon function = ' + e)
     }
 }
 
