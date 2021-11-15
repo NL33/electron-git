@@ -8,6 +8,10 @@ Notwithstanding anything written elsewhere in the code of this app, any use outs
 
 This is an app that uses electron and javascript to make it easy to use git when you are doing work, including work beyond code.
 
+## Package App Commits
+
+cd4567f, packaged November 15, 2021, 1:20pm EST
+
 ## Notes for Packaging
 
 - clear out icons/memory.json.  and any icons built up in the icons folder. Unless want to have a few there for faster load.
