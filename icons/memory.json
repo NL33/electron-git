@@ -1,24 +1,3 @@
 {
-  "Macintosh HD:Users:sean:Desktop:companycd:electron-git:node_modules:electron:dist:Electron.app:": "icons/Macintosh HD:Users:sean:Desktop:companycd:electron-git:node_modules:electron:dist:Electron.app:.png",
-  "Macintosh HD:System:Applications:Notes.app:": "icons/Macintosh HD:System:Applications:Notes.app:.png",
-  "Macintosh HD:Applications:Safari.app:": "icons/Macintosh HD:Applications:Safari.app:.png",
-  "Macintosh HD:Applications:Google Chrome.app:": "icons/Macintosh HD:Applications:Google Chrome.app:.png",
-  "Macintosh HD:Applications:Visual Studio Code.app:": "icons/Macintosh HD:Applications:Visual Studio Code.app:.png",
-  "Macintosh HD:System:Applications:Utilities:Script Editor.app:": "icons/Macintosh HD:System:Applications:Utilities:Script Editor.app:.png",
-  "Macintosh HD:System:Applications:Utilities:Terminal.app:": "icons/Macintosh HD:System:Applications:Utilities:Terminal.app:.png",
-  "Macintosh HD:System:Library:CoreServices:Finder.app:": "icons/Macintosh HD:System:Library:CoreServices:Finder.app:.png",
-  "Macintosh HD:Applications:Logic Pro X.app:": "icons/Macintosh HD:Applications:Logic Pro X.app:.png",
-  "Macintosh HD:System:Applications:Utilities:Activity Monitor.app:": "icons/Macintosh HD:System:Applications:Utilities:Activity Monitor.app:.png",
-  "Macintosh HD:System:Applications:Music.app:": "icons/Macintosh HD:System:Applications:Music.app:.png",
-  "Macintosh HD:Applications:Notion.app:": "icons/Macintosh HD:Applications:Notion.app:.png",
-  "Macintosh HD:Applications:Discord.app:": "icons/Macintosh HD:Applications:Discord.app:.png",
-  "Macintosh HD:System:Applications:Preview.app:": "icons/Macintosh HD:System:Applications:Preview.app:.png",
-  "Macintosh HD:System:Applications:App Store.app:": "icons/Macintosh HD:System:Applications:App Store.app:.png",
-  "Macintosh HD:System:Applications:TextEdit.app:": "icons/Macintosh HD:System:Applications:TextEdit.app:.png",
-  "Macintosh HD:Applications:QuickTime Player.app:": "icons/Macintosh HD:Applications:QuickTime Player.app:.png",
-  "Macintosh HD:Applications:zoom.us.app:": "icons/Macintosh HD:Applications:zoom.us.app:.png",
-  "Macintosh HD:Applications:Microsoft Word.app:": "icons/Macintosh HD:Applications:Microsoft Word.app:.png",
-  "Macintosh HD:Applications:Microsoft Excel.app:": "icons/Macintosh HD:Applications:Microsoft Excel.app:.png",
-  "Macintosh HD:Applications:Xcode.app:": "icons/Macintosh HD:Applications:Xcode.app:.png",
-  "Macintosh HD:Applications:Sublime Text.app:": "icons/Macintosh HD:Applications:Sublime Text.app:.png"
+
 }
