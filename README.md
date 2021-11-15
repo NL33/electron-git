@@ -47,21 +47,7 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 - Make sure if hit keyboard shortcut or hover too many times, it only calls the start loop function 1 time. in other words: start loop function should not be called when it's already being run. DONE
 
-- remove extra init in project window
--menu options:
-    -project name:
-        - new folder
-        - new file
-        - view folder to search
-        - refresh
-    - normal folder
-        - new folder
-        - new file
-        - view folder to search
-        - move to trash
-        - refresh
-    - file 
-        - move to trash
+
 
 
 - update other windows code for updated electron
@@ -82,7 +68,9 @@ This is an app that uses electron and javascript to make it easy to use git when
 -   Display flex does some wierd things: counters display : none (overriden here with !important in the hidewhileloading clas); and cuts off images in columns.
 - instead of display flex: can it work to make the tabs li s, and the image as the bullet point?
 
-- open app at startup
+- option to open app at startup
+
+- remove extra init in project window
 
 
 ***

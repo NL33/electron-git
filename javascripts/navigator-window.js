@@ -24,6 +24,7 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 ]
 */
 
+
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 function hoverAway() {
         window.addEventListener('mouseout', goFunction = function (evt) {
@@ -95,7 +96,7 @@ async function startLoop() {
             el.classList.remove('hideWhileLoading')
         }
     }
-
+  
     var tTabs = document.querySelectorAll('.tabOverview')
     for (var b = 0; b < tTabs.length; b++) {
         var el = tTabs[b]
@@ -185,7 +186,6 @@ async function loop() {
       <ul class="nextItems ${extraClass}" id="${nextItemsId}"></ul>
      </div>
   `
-
         if (chromePosition === 'chromeLast') { //change order depending on selection of chrome position
             if (extraClass === 'chromeNextItems') {
                 document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
