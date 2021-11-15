@@ -1,9 +1,9 @@
 const { exec } = require('child_process');
 const { readFile, writeFile } = require('fs');
-
+const memoryInfo = require('../icons/memory.json')
 module.exports = async function (appsInfo, iconsFolder = "icons") {
     try {
-        const memory = await read(`${iconsFolder}/memory.json`).then(d => JSON.parse(d));
+        const memory = memoryInfo//await read(iconFile).then(d => JSON.parse(d));
         const promises = [];
         for (let i = 0; i < appsInfo.paths.length; i++) {
             const pathId = appsInfo.paths[i]

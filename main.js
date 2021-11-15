@@ -54,7 +54,7 @@ const createNavWindow = () => {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            devTools: false
+            devTools: true
            // enableRemoteModule: true
         }
     })
@@ -688,9 +688,9 @@ function openDiscourseAuthWindow(discourseUrl) {
 /*******BASIC SETUP**** */
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
-    createNavWindow()
+   createNavWindow()
     keyBoardShortCut()
-    //openBasicWindow()
+    openBasicWindow()
    // saveNewVersionWindow()
     menuApp()
 

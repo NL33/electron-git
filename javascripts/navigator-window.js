@@ -12,6 +12,7 @@ var columnChoice
 var chromePosition = 'n/a'
 var newWindow = 'yes'
 var chromeApps
+var hoverAwayVar = false
 var refreshNumber = 0  //this number is added to the id of next items, so windows are added to the right apps (the apps that are new on that refresh)
 var chromeTabResults = [] /*Chrome tab results is an array where we put the tab results from the chromeFunction. In the chromeFunction, each Chrome window returns an array of its tabs. For each window, we put its array in chromeTabResults. And each tab is itself an array. So, chromeTabResults is an array = 
 [
@@ -27,12 +28,14 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 function hoverAway() {
-    console.log('start hover away function')
     window.addEventListener('mouseout', goFunction = function (evt) {
+        if (hoverAwayVar === true){
         if (evt.toElement == null && evt.relatedTarget == null) {
+            hoverAwayVar = false
             ipcRenderer.send('minimize-nav-window', '')
             window.removeEventListener('mouseout', goFunction)
         }
+       }
     });
 }
 
@@ -53,6 +56,7 @@ function minimizeWindow() { //currently not called--instead of closing when you 
 async function startLoop() {
     try {
         console.log('run start loop')
+        hoverAwayVar = false
         chromeApps = 0
         ipcRenderer.send('focus-the-window', '')
         await loop()
@@ -168,10 +172,16 @@ async function loop() {
         getChromePosition()
         getColumnPreference()
 
-        activeApps = await macActive(chromePosition).then(d => JSON.parse(d));
+        activeApps1 = await macActive(chromePosition).then(d => JSON.parse(d));
         chromeFunctionRun = 0
-        activeApps = await addIcons(activeApps, 'icons');
+        console.log('active apps pre icons = ')
+        console.log(activeApps1)
+        activeApps = await addIcons(activeApps1, 'icons');
+        if (!activeApps){
+            activeApps = activeApps1
+        }
 
+        console.log(activeApps)
         for (var i = 0; i < activeApps.paths.length; i++) { //Get name of all apps and put it into DOM
             var appNameRaw = activeApps.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
             var appName = appNameRaw.split('/').at(-1)
@@ -185,7 +195,6 @@ async function loop() {
             `
             } else {
                 var appNameArray = appName.trim().split(' ')
-                console.log('appNameArray = ' + appNameArray)
                 var firstLetter = appNameArray.at(-1).charAt(0)
                 var iconContent = `
                   <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px">${firstLetter}</span>
@@ -444,7 +453,7 @@ async function focusApp(e) {
     var name = e.target.name
     macFocusAppName(unixId, name).then((result, error) => {
         if (result) {
-            //activeHover = true
+            hoverAwayVar = true
             hoverAway()
             //  minimizeWindow()
         } else {
@@ -464,7 +473,7 @@ function focusWindow(e) {
         if (result) {
             //  minimizeWindow()
             console.log('result = ' + result)
-            //activeHover = true
+            hoverAwayVar = true
             hoverAway()
         } else {
             console.log('error = ' + error)
@@ -482,7 +491,7 @@ function focusChromeTab(e) {
         if (result) {
             //  minimizeWindow()
             console.log('result = ' + result)
-            //activeHover = true
+            hoverAwayVar = true
             hoverAway()
         } else {
             console.log('error = ' + error)

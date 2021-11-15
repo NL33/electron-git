@@ -10,7 +10,7 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 ## Package App Commits
 
-cd4567f, packaged November 15, 2021, 1:20pm EST
+a042c1b, packaged November 15, 2021, 1:20pm EST
 
 ## Notes for Packaging
 
