@@ -62,6 +62,7 @@ const createNavWindow = () => {
       navWindow.focus()
     navWindow.on('close', () => {
         navWindow = null
+        navLoadingDone = true
     })
   } catch(e) {
     console.log('error in creating nav window = ' + e)
@@ -89,6 +90,10 @@ function keyBoardShortCut() {
 ipcMain.on('open-nav-window', ()=>{
     openNavWindow()
 })
+var okToLoadNavWindow = true
+ipcMain.on('nav-loading-complete', ()=>{
+    okToLoadNavWindow = true
+})
 
 function openNavWindow(){
   try {
@@ -97,12 +102,20 @@ function openNavWindow(){
     } else {
         var isVisible = navWindow.isVisible()
         if (isVisible === false) {
-            navWindow.webContents.send('run-loop-function', '')
+            if (okToLoadNavWindow === true){
+                navWindow.webContents.send('run-loop-function', '')
+                okToLoadNavWindow = false 
+                //don't reload nav function until get message that navloading is complete (so don't reload multiple times while it's loading)
+            }
             navWindow.show()
             navWindow.focus()
             /*navWindow.webContents.send('focus-search', '')*/
         } else {
-            navWindow.webContents.send('run-loop-function', '')
+            if (okToLoadNavWindow === true) {
+                navWindow.webContents.send('run-loop-function', '')
+                okToLoadNavWindow = false 
+                //don't reload nav function until get message that navloading is complete (so don't reload multiple times while it's loading)
+            }
             navWindow.focus()
         }
     }
@@ -125,6 +138,7 @@ function hideNavWindow(){
     if (navWindow !== null){
         navWindow.hide()
     }
+    okToLoadNavWindow = true
 }
 
 function columnChoice() {
@@ -221,6 +235,8 @@ ipcMain.on('show-context-menu-projwindow-doc', (event, divId) => {
     const menu = Menu.buildFromTemplate(template)
     menu.popup(BrowserWindow.fromWebContents(event.sender))
 })
+
+
 
 /*********************Project Window *********************** */
 
@@ -663,7 +679,6 @@ function openDiscourseAuthWindow(discourseUrl) {
 /*******BASIC SETUP**** */
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
-    
     createNavWindow()
     keyBoardShortCut()
     //openBasicWindow()

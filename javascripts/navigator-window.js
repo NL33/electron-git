@@ -23,8 +23,8 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 }
 ]
 */
-var activeHover = false
-/*****LOAD APPS, WINDOWS, AND TABS ***************/
+
+/**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 function hoverAway() {
         window.addEventListener('mouseout', goFunction = function (evt) {
             if (evt.toElement == null && evt.relatedTarget == null) {
@@ -33,7 +33,8 @@ function hoverAway() {
             }
         });
 }
-var child = 'n/a'
+
+/*****LOAD APPS, WINDOWS, AND TABS ***************/
 startLoop()
 var activeElementText = ''
 
@@ -46,8 +47,7 @@ function minimizeWindow() { //currently not called--instead of closing when you 
 }
 
 async function startLoop() {
-    activeHover = false
-    child = spawn('osascript')
+    console.log('run start loop')
     chromeApps = 0
     ipcRenderer.send('focus-the-window', '')
     await loop()
@@ -127,6 +127,7 @@ async function startLoop() {
         searchNamesFunction()
     }
     newWindow = 'no' //at end of first loading, change newWindow to 'no'. it will stay like that until another closing and reopening of app
+    ipcRenderer.send('nav-loading-complete', '')
 }
 
 /***************** LOOP FUNCTION ***************************** */

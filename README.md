@@ -42,14 +42,10 @@ This is an app that uses electron and javascript to make it easy to use git when
 - add new code for speeding things up. START HERE.
 - hover action:
     - After result comes back from selection, then:
-    - if hover off of nav window, then hide nav window
+    - if hover off of nav window, then hide nav window. DONE
 
-    working hover code on window:
-        document.body.addEventListener("mousemove", function (event) {
-            console.log('hover!!!!')
-            event.preventDefault()
-        }) 
 
+- Make sure if hit keyboard shortcut or hover too many times, it only calls the start loop function 1 time. in other words: start loop function should not be called when it's already being run. DONE
 
 - remove extra init in project window
 -menu options:
@@ -87,3 +83,59 @@ This is an app that uses electron and javascript to make it easy to use git when
 - instead of display flex: can it work to make the tabs li s, and the image as the bullet point?
 
 - open app at startup
+
+
+***
+
+Attempt to have hover window:
+function openHoverWindow() {
+    var theDisplay = screen.getPrimaryDisplay()
+    var screenWidth = theDisplay.bounds.width
+    var hoverWindow = new BrowserWindow({
+        width: 1,
+        height: 500,
+        x: screenWidth - 10,
+        y: 1,
+        alwaysOnTop: true,
+        transparent: true,
+      //  frameless: true,
+        //show: false,
+        //hasShadow: false,
+        maximizable: false,
+        webPreferences: {
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+        }
+    })
+
+    hoverWindow.loadURL('file://' + __dirname + '/views/hover-window.html');
+    hoverWindow.openDevTools()
+}
+
+html:
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+    </style>
+    <title></title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+
+<body id="bodyId" style="height: 100%; ">
+
+    
+    <!--THis is a test comment for the basic window file-->
+    <!--*************END OF FILE******************-->
+    <script src="../javascripts/hover-window.js"></script>
+</body>
+
+
+JS:
+
+
+
