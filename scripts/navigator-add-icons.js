@@ -1,7 +1,8 @@
 const { exec } = require('child_process');
 const { readFile, writeFile } = require('fs');
-const memoryInfo = require('../icons/memory.json')
-module.exports = async function (appsInfo, iconsFolder = "icons") {
+var iconName = 'AppIcon'
+var iconFile = ''
+module.exports = async function (appsInfo, memoryInfo, iconsFolder = "icons") {
     try {
         const memory = memoryInfo//await read(iconFile).then(d => JSON.parse(d));
         const promises = [];
@@ -15,12 +16,8 @@ module.exports = async function (appsInfo, iconsFolder = "icons") {
             promises.push(
                 read(`${pathZ1}/Contents/Info.plist`)
                     .then(async infoplist => {
-                        const iconName = extractIconName(infoplist);
-                        if (!iconName) {
-                            console.log('no icon name')
-                            //throw Error();
-                        }
-                        const iconFile = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `${iconsFolder}/${pathId}.png`);
+                        iconName = await extractIconName(infoplist);
+                         iconFile = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `${iconsFolder}/${pathId}.png`);
                         memory[pathId] = iconFile;
                         appsInfo.icons[i] = iconFile;
                     }).catch(async e => {
@@ -47,7 +44,7 @@ module.exports = async function (appsInfo, iconsFolder = "icons") {
                             } else {
                                 console.log('use another icon')
                             }  
-                            var iconFile = await addInIcon(pathZ1, pathId, iconName, iconsFolder)
+                            iconFile = await addInIcon(pathZ1, pathId, iconName, iconsFolder)
                             memory[pathId] = iconFile;
                             appsInfo.icons[i] = iconFile;
                         } catch (errorNow) {
@@ -69,8 +66,8 @@ module.exports = async function (appsInfo, iconsFolder = "icons") {
 
 async function addInIcon(pathZ1, pathId, iconName, iconsFolder){
     try {
-        const iconFile = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `${iconsFolder}/${pathId}.png`);
-        return iconFile
+        let iconFile1 = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `${iconsFolder}/${pathId}.png`);
+        return iconFile1
     } catch (e){
         console.log('error in addInIcon function = ' + e)
     }

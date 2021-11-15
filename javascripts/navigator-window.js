@@ -2,7 +2,7 @@ const { exec, execFile, spawn, spawnSync } = require('child_process');
 const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTab, macCloseWindow, macCloseApp, macCloseChromeTab } = require('../scripts/navigator-jxa');
 const { keyDownFunction } = require('../scripts/navigator-keyboard-functions')
 const addIcons = require('../scripts/navigator-add-icons');
-
+const memoryInfo = require('../icons/memory.json')
 const { ipcRenderer } = require('electron')
 menuFunction()
 var activeApps = []
@@ -29,13 +29,13 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 function hoverAway() {
     window.addEventListener('mouseout', goFunction = function (evt) {
-        if (hoverAwayVar === true){
-        if (evt.toElement == null && evt.relatedTarget == null) {
-            hoverAwayVar = false
-            ipcRenderer.send('minimize-nav-window', '')
-            window.removeEventListener('mouseout', goFunction)
+        if (hoverAwayVar === true) {
+            if (evt.toElement == null && evt.relatedTarget == null) {
+                hoverAwayVar = false
+                ipcRenderer.send('minimize-nav-window', '')
+                window.removeEventListener('mouseout', goFunction)
+            }
         }
-       }
     });
 }
 
@@ -174,10 +174,8 @@ async function loop() {
 
         activeApps1 = await macActive(chromePosition).then(d => JSON.parse(d));
         chromeFunctionRun = 0
-        console.log('active apps pre icons = ')
-        console.log(activeApps1)
-        activeApps = await addIcons(activeApps1, 'icons');
-        if (!activeApps){
+        activeApps = await addIcons(activeApps1, memoryInfo, 'icons');
+        if (!activeApps) {
             activeApps = activeApps1
         }
 
