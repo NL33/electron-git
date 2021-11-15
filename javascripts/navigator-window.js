@@ -211,21 +211,6 @@ async function loop() {
                 document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
             }
         }
-        /*
-        var runAppIconError = 1
-        if document.getElementById(iconId).src
-        document.getElementById(iconId).onerror = () => {
-          
-            if (runAppIconError === 1) {
-                console.log('error in icon for = ' + appName)
-                var firstLetter = appName.charAt(0)
-                var newIcon = 
-                //document.getElementById(iconId).remove()
-                document.getElementById(indexId).firstElementChild.insertAdjacentHTML('afterbegin', newIcon)
-                runIconError = 2
-            }
-        }
-        */
         var element = document.querySelector('.thisAppName')
         element.addEventListener('click', focusApp)
         element.addEventListener('keydown', keyDownFunction)

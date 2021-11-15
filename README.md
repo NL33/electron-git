@@ -48,13 +48,16 @@ This is an app that uses electron and javascript to make it easy to use git when
 - Make sure if hit keyboard shortcut or hover too many times, it only calls the start loop function 1 time. in other words: start loop function should not be called when it's already being run. DONE
 
 - icon activity
-    - add icon for chrome when tab icon doesn't work
-    - add microsoft word icon manually
-    - add another default icon for if other windows' icons don't work       
-    - add chrome icon manually to show up if chrome tab icon doesn't work       
+    - add icon for chrome when tab icon doesn't work. DONE
+    - add microsoft word icon manually. DONE
+    - add another default icon for if other app's icons don't work. DONE          
     - add google folder and doc icon for project focus manually
 
 - open dev tools, but only if in development
+
+- any way to speed up starting of loop function when app runs? 
+
+- remove search box when app is going to run.
 
 - possibility for showing window
     - have a thin, transparant window over to the right side of screen.
