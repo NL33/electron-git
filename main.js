@@ -53,7 +53,8 @@ const createNavWindow = () => {
         alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,
-            contextIsolation: false
+            contextIsolation: false,
+            devTools: false
            // enableRemoteModule: true
         }
     })
@@ -279,6 +280,7 @@ function openBasicWindow() {
         webPreferences: {
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+            devTools: false
         }
     })
 
@@ -302,6 +304,7 @@ async function saveNewVersionWindow(windowTitle) {
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
            // enableRemoteModule: true
+            devTools: false
         }
     })
 
@@ -344,6 +347,7 @@ function priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName
                 additionalArguments: [projectFolderPath, projectFolderName],
                 nodeIntegration: true,
                 contextIsolation: false,
+                devTools: false
                // enableRemoteModule: true
             }
         })
@@ -383,6 +387,7 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
             //enableRemoteModule: true
+            devTools: false
         }
     })
     oldVersionWindow.on('close', function () {
@@ -419,6 +424,7 @@ async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earl
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
           //  enableRemoteModule: true
+            devTools: false
         }
     })
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
@@ -508,6 +514,7 @@ function openBreatheBigWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
+            devTools: false
            // enableRemoteModule: true
         }
         //backgroundColor: 'white'
@@ -619,6 +626,7 @@ function openHTMLWindow(thePath) {
                 contextIsolation: true,
                // enableRemoteModule: false,
                 sandbox: true,
+                devTools: false
             }
 
         })
