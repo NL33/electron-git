@@ -272,12 +272,14 @@ async function loop() {
                     for (var k = 0; k < windows.length; k++) {  //get the windows of each app, and put it into DOM (k = window number within app)
                         let window = windows[k]
                         let windowShow = window
-                        if (window.includes('—')) {
-                            let windowArray = window.split('—')
-                            let windowFirst = windowArray[1]
-                            let windowSecond = windowArray[0]
-                            windowShow = windowFirst + ' — ' + windowSecond
+                        if (window){
+                            if (window.indexOf('—') > -1) {
+                                let windowArray = window.split('—')
+                                let windowFirst = windowArray[1]
+                                let windowSecond = windowArray[0]
+                                windowShow = windowFirst + ' — ' + windowSecond
 
+                            }
                         }
                         if (window != null) {
                             if ((window.length > 0) && (window != 'undefined') && (!window.startsWith('Find in page'))) {
