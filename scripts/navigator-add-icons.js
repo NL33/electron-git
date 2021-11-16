@@ -8,7 +8,6 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
         const memoryInfo = require(__dirname + '/../icons/memory.json')
         const iconsFolder = path.join(__dirname + '/../icons')
         console.log('memory info = ' + JSON.stringify(memoryInfo))
-        console.log('iconsFolder = ' + iconsFolder)
         if (!memoryInfo) {
             console.log('NO Memory info')
             return appsInfo
@@ -22,18 +21,20 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
                 const pathZ1 = appsInfo.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('Macintosh HD', '')
                 if (memory[pathId]) {
                     appsInfo.icons[i] = memory[pathId];
-                    console.log('there is apps info = ' + appsInfo.icons[i])
                     continue;
                 }
                 promises.push(
                     read(`${pathZ1}/Contents/Info.plist`)
                         .then(async infoplist => {
+                          
                             iconName = await extractIconName(infoplist);
-                            iconFile = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `${iconsFolder}/${pathId}.png`);
-
+                            console.log('after read for ' + iconName)
+                            iconFile =  await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `icons/${pathId}.png`);
+                            console.log('icon file = ' + iconFile)
                             memory[pathId] = iconFile;
                             appsInfo.icons[i] = iconFile;
                         }).catch(async e => {
+                          
                             try {
                                 var appName = pathZ1.split('/').at(-1).replace('.app', '').trim()
                                 if (appName == 'Microsoft Word') {
@@ -57,11 +58,9 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
                                 } else {
                                     console.log('use another icon')
                                 }
-                                console.log('path = ' + pathZ1)
-                                console.log('icons folder = ' + iconsFolder)
-                                console.log('path ID = ' + pathId)
-                                console.log('icon file 1 = ' + iconFile)
-                                iconFile = await addInIcon(pathZ1, pathId, iconName, iconsFolder)
+                                console.log('in error for ' + iconName)
+                                console.log('icon file = ' + iconFile)
+                                iconFile = 'icons/' + pathId + '.png' //await addInIcon(pathZ1, pathId, iconName, iconsFolder)
                                 memory[pathId] = iconFile;
                                 appsInfo.icons[i] = iconFile;
                             } catch (errorNow) {
@@ -114,6 +113,8 @@ function extractIconName(infoplist) {
 }
 
 function icon2png(inputPath, outPutPath) {
+    console.log('input path = ' + inputPath)
+    console.log('output path = ' + outPutPath)
     return new Promise((resolve, reject) => exec(
         `sips -Z 50 -s format png "${inputPath}" --out "${outPutPath}"`,
         (_, stdout, stderr) => stderr ? reject(stderr) : resolve(outPutPath)
@@ -121,7 +122,6 @@ function icon2png(inputPath, outPutPath) {
 }
 
 function read(path) {
-
     return new Promise((resolve, reject) =>
         readFile(path, (err, data) => err ? reject(err) : resolve(data.toString())));
 }

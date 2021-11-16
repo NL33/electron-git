@@ -59,6 +59,8 @@ ffd17bf, packaged November 15, 2021, 6:15pm EST
 
 -ADD Icons locally and carry over to app itself
 
+- stop reloading if already loading the app for the first time
+
 - open dev tools, but only if in development
 
 - any way to speed up starting of loop function when app runs? 

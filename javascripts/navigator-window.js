@@ -186,7 +186,7 @@ async function loop() {
             var appName = appNameRaw.split('/').at(-1)
             var unixId = activeApps.unixId[i]
             var indexId = 'index=' + i
-            var icon ='../' + activeApps.icons[i]
+            var icon= '../' + activeApps.icons[i]
             var iconId = 'iconId='+indexId + '+' + refreshNumber + '**' + appName
             var nextItemsId = 'nextItems+' + indexId + '+refreshNumber=' + refreshNumber
             if ((!icon.includes('undefined')) || (!icon) ){
@@ -229,8 +229,7 @@ async function loop() {
                     document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
                 }
             }
-            console.log('1 + ' + appName)
-            var runAppIconError = 1
+
             var iconImage = document.getElementById(iconId)
             iconImage.addEventListener('error', imageError)
             iconImage.appName = appName
