@@ -2,7 +2,6 @@ const { exec, execFile, spawn, spawnSync } = require('child_process');
 const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTab, macCloseWindow, macCloseApp, macCloseChromeTab } = require('../scripts/navigator-jxa');
 const { keyDownFunction } = require('../scripts/navigator-keyboard-functions')
 const addIcons = require('../scripts/navigator-add-icons');
-const memoryInfo = require('../icons/memory.json')
 const { ipcRenderer } = require('electron')
 menuFunction()
 var activeApps = []
@@ -174,15 +173,17 @@ async function loop() {
 
         activeApps1 = await macActive(chromePosition).then(d => JSON.parse(d));
         chromeFunctionRun = 0
-        activeApps = await addIcons(activeApps1, memoryInfo, 'icons');
+        activeApps = await addIcons(activeApps1,  'icons');
         if (!activeApps) {
             activeApps = activeApps1
         }
 
         console.log(activeApps)
+      
         for (var i = 0; i < activeApps.paths.length; i++) { //Get name of all apps and put it into DOM
             var appNameRaw = activeApps.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
             var appName = appNameRaw.split('/').at(-1)
+            console.log('getting app info for: ' + appName)
             var unixId = activeApps.unixId[i]
             var indexId = 'index=' + i
             var icon = '../' + activeApps.icons[i]
@@ -317,22 +318,25 @@ async function loop() {
 /****************** END LOOP FUNCTION ************************************ */
 
 async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, windowName) {
-    chromeFunctionRun++
-    var chromeWindowNumber = chromeFunctionRun - 1
-    /* Why chromeFunctionRun?
-    this is supposed to help us identify the right Chrome Window Number. Normally, the chromeWindowNumberInput, received from the loop function, would be fine. 
-    But, if there is a search window box open on a chrome tab, then the Mac treats it as it's own window. The Loop function runs through all windows--so these search boxes get added to the loop length. So, when there is a search box (1 or more), the chromeWindowNumberInput includes these boxes, and gives a window number we don't want to use.
-    
-    In the loop function, we correct for this by only calling the chromeFunction if it is NOT one of those search boxes (see code that excludes if "Find in page" starts the window name). And the loop function calls the chromeFunction syncronously. So the number of times the chromeFunction is called corresponds to the Chrome window number, without the search box windows counted. And this is what we want.
-    */
+    console.log('getting info for Google Chrome')
     try {
+        chromeFunctionRun++
+        var chromeWindowNumber = chromeFunctionRun - 1
+        /* Why chromeFunctionRun?
+        this is supposed to help us identify the right Chrome Window Number. Normally, the chromeWindowNumberInput, received from the loop function, would be fine. 
+        But, if there is a search window box open on a chrome tab, then the Mac treats it as it's own window. The Loop function runs through all windows--so these search boxes get added to the loop length. So, when there is a search box (1 or more), the chromeWindowNumberInput includes these boxes, and gives a window number we don't want to use.
+        
+        In the loop function, we correct for this by only calling the chromeFunction if it is NOT one of those search boxes (see code that excludes if "Find in page" starts the window name). And the loop function calls the chromeFunction syncronously. So the number of times the chromeFunction is called corresponds to the Chrome window number, without the search box windows counted. And this is what we want.
+        */
         let theTabs1 = await chromeTabs(parseInt(chromeWindowNumber))//.then(d => (d));
         //console.log('chrome window number = ' + chromeWindowNumber)
         theTabs = JSON.parse(theTabs1)
         chromeTabResults.push(theTabs)
         //var nextItemsId = 'nextItems+index=' + chromeAppNumber //no longer used for chrome tabs. left in for reference. Using class "chromeNextItems" instad
         for (var m = 0; m < theTabs.length; m++) {
+            
             var thisTab = theTabs[m]
+            console.log('getting info for Chrome tab = ' + thisTab.name)
             var theIcon = thisTab.favicon
             var chromeWindowId = thisTab.chromeWindowId
             let classN = 'tabNumber' + m + 'windowNumber' + chromeAppNumber

@@ -10,7 +10,7 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 ## Package App Commits
 
-a042c1b, packaged November 15, 2021, 1:20pm EST
+ffd17bf, packaged November 15, 2021, 6:15pm EST
 
 ## Notes for Packaging
 
@@ -56,6 +56,8 @@ a042c1b, packaged November 15, 2021, 1:20pm EST
     - add microsoft word icon manually. DONE
     - add another default icon for if other app's icons don't work. DONE          
     - add google folder and doc icon for project focus manually
+
+-ADD Icons locally and carry over to app itself
 
 - open dev tools, but only if in development
 

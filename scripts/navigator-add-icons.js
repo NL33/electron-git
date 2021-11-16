@@ -1,10 +1,18 @@
 const { exec } = require('child_process');
 const { readFile, writeFile } = require('fs');
+
 var iconName = 'AppIcon'
 var iconFile = ''
-module.exports = async function (appsInfo, memoryInfo, iconsFolder = "icons") {
+module.exports = async function (appsInfo, iconsFolder = "icons") {
     try {
+    const memoryInfo = require('../' + __dirname + '/icons/memory.json')
+   
+        if (!memoryInfo){
+            return appsInfo
+        } else {
+
         const memory = memoryInfo//await read(iconFile).then(d => JSON.parse(d));
+        console.log('in add-icons, got the memoryInfo')
         const promises = [];
         for (let i = 0; i < appsInfo.paths.length; i++) {
             const pathId = appsInfo.paths[i]
@@ -54,11 +62,10 @@ module.exports = async function (appsInfo, memoryInfo, iconsFolder = "icons") {
                  
             );
         }
-
-
         await Promise.all(promises);
         await write(`${iconsFolder}/memory.json`, JSON.stringify(memory, null, 2));
         return appsInfo;
+     }//end if memoryInfo
     } catch (e) {
         console.log('error in add icons = ' + e)
     }

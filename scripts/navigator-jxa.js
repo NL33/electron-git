@@ -3,7 +3,6 @@ const fs = require('fs')
 
 /*****GET LIST OF APPS, WINDOWS, AND TABS********/
 module.exports.macActive = async function (chromePosition) {
-    console.log('now in mac active function')
     return runJxaFunction(() => {
         try {
             apps = Application("System Events").processes.whose({ backgroundOnly: { '=': false } });

@@ -24,11 +24,12 @@ function menuApp() {
             { label: 'Open Navigator Window', accelerator: "CmdOrCtrl+1", click() { openNavWindow() } },
             { label: 'Toggle Navigator Columns', click() { columnChoice() } },
             { label: 'Toggle Navigator Chrome Position', click() { chromePosition() } },
+            { label: 'Close Navigator Window', accelerator: "CmdOrCtrl+2", click() { hideNavWindow() } },
             { type: 'separator' },
-            { label: 'Open Project Window', accelerator: "CmdOrCtrl+2", click() { openWindow() } },
+            { label: 'Open Project Window', accelerator: "CmdOrCtrl+3", click() { openWindow() } },
             { type: 'separator' },
             // { label: 'Hide Windows', click() { minimizeWindows() } },
-            { label: 'Breathe Big', accelerator: "CmdOrCtrl+3", click() { openBreatheBigWindow() } },
+            { label: 'Breathe Big', accelerator: "CmdOrCtrl+4", click() { openBreatheBigWindow() } },
         ])
         tray.setToolTip('This is my application.')
         tray.setContextMenu(contextMenu)
@@ -76,15 +77,15 @@ function keyBoardShortCut() {
     })
 
     globalShortcut.register('CommandOrControl+2', () => {
-        openWindow()
+        hideNavWindow()   
     })
 
     globalShortcut.register('CommandOrControl+3', () => {
-        openBreatheBigWindow()
+        openWindow()
     })
 
     globalShortcut.register('CommandOrControl+4', () => {
-        hideNavWindow()
+        openBreatheBigWindow()
     })
 }
 
