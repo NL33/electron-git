@@ -31,7 +31,7 @@ function menuApp() {
             // { label: 'Hide Windows', click() { minimizeWindows() } },
             { label: 'Breathe Big', accelerator: "CmdOrCtrl+4", click() { openBreatheBigWindow() } },
         ])
-        tray.setToolTip('This is my application.')
+        tray.setToolTip('Be extraordinary.')
         tray.setContextMenu(contextMenu)
     } catch (e) {
         console.log('error in loading tray menu = ' + e)

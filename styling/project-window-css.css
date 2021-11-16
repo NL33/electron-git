@@ -546,8 +546,8 @@
         }
 
         .filter-green {
-            height: 14px;
-            width: 14px;
+            height: 15px;
+            width: 15px;
             margin-right: 3px;
             filter: invert(88%) sepia(4%) saturate(3721%) hue-rotate(75deg) brightness(90%) contrast(100%);
         }

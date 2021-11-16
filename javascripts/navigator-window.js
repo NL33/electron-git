@@ -186,20 +186,27 @@ async function loop() {
             var appName = appNameRaw.split('/').at(-1)
             var unixId = activeApps.unixId[i]
             var indexId = 'index=' + i
-            var icon= '../' + activeApps.icons[i]
+            var icon = '../' + activeApps.icons[i] 
             var iconId = 'iconId='+indexId + '+' + refreshNumber + '**' + appName
             var nextItemsId = 'nextItems+' + indexId + '+refreshNumber=' + refreshNumber
-            if ((!icon.includes('undefined')) || (!icon) ){
-                var iconContent = `
-            <img style="height: 36px; width: 36px; vertical-align: middle" id="${iconId}" notChromeTab" src="${icon}"></img>
-            `
-            } else {
+            if (!icon){ 
                 var appNameArray = appName.trim().split(' ')
                 var firstLetter = appNameArray.at(-1).charAt(0)
                 var iconContent = `
                   <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px" id="${iconId}">${firstLetter}</span>
                 `
-            }
+            } else if (icon.indexOf('undefined') > -1) {
+                var appNameArray = appName.trim().split(' ')
+                var firstLetter = appNameArray.at(-1).charAt(0)
+                var iconContent = `
+                  <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px" id="${iconId}">${firstLetter}</span>
+                `
+            } else {
+
+                var iconContent = `
+            <img style="height: 36px; width: 36px; vertical-align: middle" id="${iconId}" notChromeTab" src="${icon}"></img>
+            `
+             }
 
             if ((appName.trim().toLowerCase().includes('google chrome')) || (appName.trim().toLowerCase().includes('googlechrome'))) {
                 var extraClass = 'chromeNextItems'
@@ -400,7 +407,6 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
 }
 
 function imageError(e){
-    console.log('got an image error ' + e.target.id)
     var appNameArray = e.target.appName.trim().split(' ')
     var firstLetter = appNameArray.at(-1).charAt(0)
     var iconContent = `

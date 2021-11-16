@@ -7,14 +7,11 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
     try {
         const memoryInfo = require(__dirname + '/../icons/memory.json')
         const iconsFolder = path.join(__dirname + '/../icons')
-        console.log('memory info = ' + JSON.stringify(memoryInfo))
         if (!memoryInfo) {
             console.log('NO Memory info')
             return appsInfo
         } else {
-
             const memory = memoryInfo//await read(iconFile).then(d => JSON.parse(d));
-            console.log('in add-icons, got the memoryInfo')
             const promises = [];
             for (let i = 0; i < appsInfo.paths.length; i++) {
                 const pathId = appsInfo.paths[i]
@@ -26,15 +23,11 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
                 promises.push(
                     read(`${pathZ1}/Contents/Info.plist`)
                         .then(async infoplist => {
-                          
                             iconName = await extractIconName(infoplist);
-                            console.log('after read for ' + iconName)
-                            iconFile =  await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `icons/${pathId}.png`);
-                            console.log('icon file = ' + iconFile)
+                            iconFile = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `icons/${pathId}.png`);
                             memory[pathId] = iconFile;
                             appsInfo.icons[i] = iconFile;
                         }).catch(async e => {
-                          
                             try {
                                 var appName = pathZ1.split('/').at(-1).replace('.app', '').trim()
                                 if (appName == 'Microsoft Word') {
@@ -47,7 +40,7 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
                                     var iconNameRaw = 'Outlook'
                                     iconName = iconNameRaw.replace('.icns', '') + '.icns'
                                 } else if (appName === 'Microsoft PowerPoint') {
-                                    var iconNameRaw = 'PPPT3'
+                                    var iconNameRaw = 'PPT3'
                                     iconName = iconNameRaw.replace('.icns', '') + '.icns'
                                 } else if (appName === 'Microsoft OneNote') {
                                     var iconNameRaw = 'OneNote'
@@ -55,12 +48,18 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
                                 } else if (appName === 'Xcode') {
                                     var iconNameRaw = 'Xcode'
                                     iconName = iconNameRaw.replace('.icns', '') + '.icns'
-                                } else {
+                                } else if (appName = "iMovie"){
+                                    var iconNameRaw = 'iMovieAppIcon'
+                                    iconName = iconNameRaw.replace('.icns', '') + '.icns' 
+                                } else if (appName = "OneDrive"){
+                                    var iconNameRaw = 'OneDrive'
+                                    iconName = iconNameRaw.replace('.icns', '') + '.icns'
+                                }  else {
                                     console.log('use another icon')
+                                    iconName = 'AppIcon.icns'
                                 }
-                                console.log('in error for ' + iconName)
-                                console.log('icon file = ' + iconFile)
-                                iconFile = 'icons/' + pathId + '.png' //await addInIcon(pathZ1, pathId, iconName, iconsFolder)
+                               
+                                iconFile = await addInIcon(pathZ1, pathId, iconName, iconsFolder)
                                 memory[pathId] = iconFile;
                                 appsInfo.icons[i] = iconFile;
                             } catch (errorNow) {
@@ -81,7 +80,7 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
 
 async function addInIcon(pathZ1, pathId, iconName, iconsFolder) {
     try {
-        let iconFile1 = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `${iconsFolder}/${pathId}.png`);
+        let iconFile1 = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `icons/${pathId}.png`);
         return iconFile1
     } catch (e) {
         console.log('error in addInIcon function = ' + e)
@@ -113,8 +112,6 @@ function extractIconName(infoplist) {
 }
 
 function icon2png(inputPath, outPutPath) {
-    console.log('input path = ' + inputPath)
-    console.log('output path = ' + outPutPath)
     return new Promise((resolve, reject) => exec(
         `sips -Z 50 -s format png "${inputPath}" --out "${outPutPath}"`,
         (_, stdout, stderr) => stderr ? reject(stderr) : resolve(outPutPath)
