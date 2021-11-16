@@ -1,7 +1,7 @@
 const { exec, execFile, spawn, spawnSync } = require('child_process');
 const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTab, macCloseWindow, macCloseApp, macCloseChromeTab } = require('../scripts/navigator-jxa');
 const { keyDownFunction } = require('../scripts/navigator-keyboard-functions')
-const addIcons = require('../scripts/navigator-add-icons');
+const addIcons = require('../navigator-add-icons');
 const { ipcRenderer } = require('electron')
 menuFunction()
 var activeApps = []
@@ -181,14 +181,15 @@ async function loop() {
         console.log(activeApps)
       
         for (var i = 0; i < activeApps.paths.length; i++) { //Get name of all apps and put it into DOM
+            try {
             var appNameRaw = activeApps.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
             var appName = appNameRaw.split('/').at(-1)
             console.log('getting app info for: ' + appName)
             var unixId = activeApps.unixId[i]
             var indexId = 'index=' + i
-            var icon = '../' + activeApps.icons[i]
+            var icon = activeApps.icons[i]
             var nextItemsId = 'nextItems+' + indexId + '+refreshNumber=' + refreshNumber
-            if (!icon.includes('undefined')) {
+            if ((!icon.includes('undefined')) || (!icon) ){
                 var iconContent = `
             <img style="height: 36px; width: 36px; vertical-align: middle" class="notChromeTab" src="${icon}"></img>
             `
@@ -199,6 +200,7 @@ async function loop() {
                   <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px">${firstLetter}</span>
                 `
             }
+
             if ((appName.trim().toLowerCase().includes('google chrome')) || (appName.trim().toLowerCase().includes('googlechrome'))) {
                 var extraClass = 'chromeNextItems'
 
@@ -242,6 +244,9 @@ async function loop() {
                 child.unixId = unixId
                 child.parentId = indexId
                 child.status = 'app'
+            }
+            } catch(e){
+                console.log('error in loading apps and windows = ' + e)
             }
         }
 

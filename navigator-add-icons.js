@@ -3,11 +3,12 @@ const { readFile, writeFile } = require('fs');
 
 var iconName = 'AppIcon'
 var iconFile = ''
-module.exports = async function (appsInfo, iconsFolder = "icons") {
+module.exports = async function (appsInfo, iconsFolder1 = "icons") {
     try {
-    const memoryInfo = require('../' + __dirname + '/icons/memory.json')
-   
+    const memoryInfo = require(__dirname + '/icons/memory.json')
+    const iconsFolder = __dirname + '/icons'
         if (!memoryInfo){
+            console.log('NO Memory info')
             return appsInfo
         } else {
 
@@ -19,6 +20,7 @@ module.exports = async function (appsInfo, iconsFolder = "icons") {
             const pathZ1 = appsInfo.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('Macintosh HD', '')
             if (memory[pathId]) {
                 appsInfo.icons[i] = memory[pathId];
+                console.log('there is apps info = ' + appsInfo.icons[i])
                 continue;
             }
             promises.push(
@@ -26,6 +28,7 @@ module.exports = async function (appsInfo, iconsFolder = "icons") {
                     .then(async infoplist => {
                         iconName = await extractIconName(infoplist);
                          iconFile = await icon2png(`${pathZ1}/Contents/Resources/${iconName}`, `${iconsFolder}/${pathId}.png`);
+
                         memory[pathId] = iconFile;
                         appsInfo.icons[i] = iconFile;
                     }).catch(async e => {
@@ -51,7 +54,11 @@ module.exports = async function (appsInfo, iconsFolder = "icons") {
                                 iconName = iconNameRaw.replace('.icns', '') + '.icns'
                             } else {
                                 console.log('use another icon')
-                            }  
+                            } 
+                            console.log('path = ' + pathZ1)
+                            console.log('icons folder = ' + iconsFolder)
+                            console.log('path ID = ' + pathId)
+                            console.log('icon file 1 = ' + iconFile)
                             iconFile = await addInIcon(pathZ1, pathId, iconName, iconsFolder)
                             memory[pathId] = iconFile;
                             appsInfo.icons[i] = iconFile;
