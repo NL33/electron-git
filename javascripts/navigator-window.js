@@ -1,7 +1,7 @@
 const { exec, execFile, spawn, spawnSync } = require('child_process');
 const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTab, macCloseWindow, macCloseApp, macCloseChromeTab } = require('../scripts/navigator-jxa');
 const { keyDownFunction } = require('../scripts/navigator-keyboard-functions')
-const addIcons = require('../navigator-add-icons');
+const addIcons = require('../scripts/navigator-add-icons');
 const { ipcRenderer } = require('electron')
 menuFunction()
 var activeApps = []
@@ -184,20 +184,20 @@ async function loop() {
             try {
             var appNameRaw = activeApps.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
             var appName = appNameRaw.split('/').at(-1)
-            console.log('getting app info for: ' + appName)
             var unixId = activeApps.unixId[i]
             var indexId = 'index=' + i
-            var icon = activeApps.icons[i]
+            var icon ='../' + activeApps.icons[i]
+            var iconId = 'iconId='+indexId + '+' + refreshNumber + '**' + appName
             var nextItemsId = 'nextItems+' + indexId + '+refreshNumber=' + refreshNumber
             if ((!icon.includes('undefined')) || (!icon) ){
                 var iconContent = `
-            <img style="height: 36px; width: 36px; vertical-align: middle" class="notChromeTab" src="${icon}"></img>
+            <img style="height: 36px; width: 36px; vertical-align: middle" id="${iconId}" notChromeTab" src="${icon}"></img>
             `
             } else {
                 var appNameArray = appName.trim().split(' ')
                 var firstLetter = appNameArray.at(-1).charAt(0)
                 var iconContent = `
-                  <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px">${firstLetter}</span>
+                  <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px" id="${iconId}">${firstLetter}</span>
                 `
             }
 
@@ -229,6 +229,11 @@ async function loop() {
                     document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
                 }
             }
+            console.log('1 + ' + appName)
+            var runAppIconError = 1
+            var iconImage = document.getElementById(iconId)
+            iconImage.addEventListener('error', imageError)
+            iconImage.appName = appName
             var element = document.querySelector('.thisAppName')
             element.addEventListener('click', focusApp)
             element.addEventListener('keydown', keyDownFunction)
@@ -339,9 +344,7 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
         chromeTabResults.push(theTabs)
         //var nextItemsId = 'nextItems+index=' + chromeAppNumber //no longer used for chrome tabs. left in for reference. Using class "chromeNextItems" instad
         for (var m = 0; m < theTabs.length; m++) {
-            
             var thisTab = theTabs[m]
-            console.log('getting info for Chrome tab = ' + thisTab.name)
             var theIcon = thisTab.favicon
             var chromeWindowId = thisTab.chromeWindowId
             let classN = 'tabNumber' + m + 'windowNumber' + chromeAppNumber
@@ -397,11 +400,18 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
     }
 }
 
-function noIcon() {
-    console.log('noIcon function called')
-    var element = e.target
-    element.src = 'HIHIHIIH'
+function imageError(e){
+    console.log('got an image error ' + e.target.id)
+    var appNameArray = e.target.appName.trim().split(' ')
+    var firstLetter = appNameArray.at(-1).charAt(0)
+    var iconContent = `
+                  <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px" id="${e.target.id}" >${firstLetter}</span>
+                `
+    var parent = e.target.parentElement
+    e.target.remove()
+    parent.insertAdjacentHTML('afterbegin', iconContent)
 }
+
 
 /*********************COLUMN AND CHROME PREFERENCES ***************** */
 
