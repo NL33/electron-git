@@ -74,16 +74,14 @@ dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
                 - appears resolved through removing "always on top" from nav window
 
 - *stop reloading if already loading the app for the first time. DONE
-
+- *remove search box when app is going to run. DONE
 - *open dev tools, but only if in development*
 
 - *any way to speed up starting of loop function when app runs? 
     -Seems to return apps very fast, but then can be slow to get chrome windows.
         --load other windows and show them 
 
-- *remove search box when app is going to run.
-
-- save your apps.
+- save your apps. (so when navwindow opens the app appears, even if not done). I've created file about that at load save apps.
 
 - add menu item that says howto (write out the instructions separately, and then style)
 
