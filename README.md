@@ -57,13 +57,15 @@ ffd17bf, packaged November 15, 2021, 6:15pm EST
     - add another default icon for if other app's icons don't work. DONE          
     - add google folder and doc icon for project focus manually
 
--ADD Icons locally and carry over to app itself
+-ADD Icons locally and carry over to app itself. DONE
 
 - stop reloading if already loading the app for the first time
 
-- open dev tools, but only if in development
+- *open dev tools, but only if in development*
 
 - any way to speed up starting of loop function when app runs? 
+    -Seems to return apps very fast, but then can be slow to get chrome windows.
+        --load other windows and show them 
 
 - remove search box when app is going to run.
 
