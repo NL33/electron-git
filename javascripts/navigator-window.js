@@ -27,6 +27,7 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 */
 startLoop()
 
+
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 function hoverAway() {
     window.addEventListener('mouseout', goFunction = function (evt) {

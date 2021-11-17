@@ -60,8 +60,8 @@ dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
 -ADD Icons locally and carry over to app itself. DONE
 
 
-- potential bug: bringing a window to the front
-    - flow: have app and window (1). Then open new app (2) in front of it. When try to open window 1, it won't go to the front--if app(2) (not windows of app 2) have been selected. 
+- potential bug: bringing a window to the front. DONE
+    - problem: have app and window (1). Then open new app (2) in front of it. When try to open window 1, it won't go to the front--if app(2) (not windows of app 2) have been selected. 
         - If app is brought to the front, it is taking precedence over other app windows?
         - if last selected item from app is an app, then other app windows won't take precedence over it
         - if the window is minimized, and maximize it-it will open, but then go behind the window in front
@@ -73,7 +73,7 @@ dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
                 - Note that clicking on an app to bring it entirely to the front doens't seem to bring all open windows to the front.--that seems to only bring one window to the front anyway. That does not seem to be related to the code here.
                 - appears resolved through removing "always on top" from nav window
 
-- *stop reloading if already loading the app for the first time
+- *stop reloading if already loading the app for the first time. DONE
 
 - *open dev tools, but only if in development*
 

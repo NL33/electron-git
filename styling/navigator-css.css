@@ -77,9 +77,9 @@ ul li {
 }
 
 .appDetails:hover, .windowName:hover, .tabOverview:hover{
-   background-color: #d9f6fc;// #d5f2f7;
-    border: 2px solid #d9f6fc;// #d5f2f7;
- //box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;
+   background-color: #d9f6fc;
+    border: 2px solid #d9f6fc;
+ /*box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;*/
   outline: none !important;
 }
 
