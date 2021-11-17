@@ -55,12 +55,12 @@ const createNavWindow = () => {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            devTools: true
+           // devTools: false
            // enableRemoteModule: true
         }
     })
     navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));
-    navWindow.openDevTools() /**********remove-in-production*****/
+   // navWindow.openDevTools() /**********remove-in-production*****/
     navWindow.focus()
     navWindow.on('close', () => {
         navWindow = null

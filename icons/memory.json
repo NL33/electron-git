@@ -29,5 +29,7 @@
   "Macintosh HD:Applications:Microsoft Excel.app:": "icons/Macintosh HD:Applications:Microsoft Excel.app:.png",
   "Macintosh HD:Applications:iMovie.app:": "icons/Macintosh HD:Applications:iMovie.app:.png",
   "Macintosh HD:Applications:Microsoft PowerPoint.app:": "icons/Macintosh HD:Applications:Microsoft PowerPoint.app:.png",
-  "Macintosh HD:Applications:QuickTime Player.app:": "icons/Macintosh HD:Applications:QuickTime Player.app:.png"
+  "Macintosh HD:Applications:QuickTime Player.app:": "icons/Macintosh HD:Applications:QuickTime Player.app:.png",
+  "Macintosh HD:Users:sean:Desktop:companycd:electron-git:node_modules:electron:dist:Electron.app:": "icons/Macintosh HD:Users:sean:Desktop:companycd:electron-git:node_modules:electron:dist:Electron.app:.png",
+  "Macintosh HD:Users:sean:Applications:Chrome Apps.localized:YouTube Music.app:": "icons/Macintosh HD:Users:sean:Applications:Chrome Apps.localized:YouTube Music.app:.png"
 }

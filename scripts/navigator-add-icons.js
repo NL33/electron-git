@@ -19,7 +19,10 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
                 if (memory[pathId]) {
                     appsInfo.icons[i] = memory[pathId];
                     continue;
-                }
+                } else {
+                    appsInfo.icons[i] = 'undefined'
+                    continue;
+                    /*commented out the bottom bc in production its not working*/
                 promises.push(
                     read(`${pathZ1}/Contents/Info.plist`)
                         .then(async infoplist => {
@@ -69,9 +72,11 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
 
                 );
             }
+        
             await Promise.all(promises);
             await write(`${iconsFolder}/memory.json`, JSON.stringify(memory, null, 2));
             return appsInfo;
+        }
         }//end if memoryInfo
     } catch (e) {
         console.log('error in add icons = ' + e)
