@@ -12,6 +12,8 @@ var chromePosition = 'n/a'
 var newWindow = 'yes'
 var chromeApps
 var hoverAwayVar = false
+
+var okToRunStartLoop = true
 var refreshNumber = 0  //this number is added to the id of next items, so windows are added to the right apps (the apps that are new on that refresh)
 var chromeTabResults = [] /*Chrome tab results is an array where we put the tab results from the chromeFunction. In the chromeFunction, each Chrome window returns an array of its tabs. For each window, we put its array in chromeTabResults. And each tab is itself an array. So, chromeTabResults is an array = 
 [
@@ -23,7 +25,7 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 }
 ]
 */
-
+startLoop()
 
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 function hoverAway() {
@@ -39,11 +41,13 @@ function hoverAway() {
 }
 
 /*****LOAD APPS, WINDOWS, AND TABS ***************/
-startLoop()
+
 var activeElementText = ''
 
 ipcRenderer.on('run-loop-function', (event, arg) => {
-    startLoop()
+   if (okToRunStartLoop){
+        startLoop()
+   }
 })
 
 
@@ -53,18 +57,19 @@ function minimizeWindow() { //currently not called--instead of closing when you 
 }
 
 async function startLoop() {
+    okToRunStartLoop = false
     try {
-        console.log('run start loop')
+        console.log('*****run start loop')
         hoverAwayVar = false
         chromeApps = 0
         ipcRenderer.send('focus-the-window', '')
         await loop()
-
+        console.log('***Done with loop')
         if (newWindow === 'yes') {
             document.getElementById('loadingMessage').style.display = 'none'
             document.getElementById('breatheOverviewDiv').style.display = 'none'
             document.getElementById('nameSearch').style.display = 'block'
-            document.getElementById('nameSearch').focus()
+           document.getElementById('nameSearch').focus()
         }
 
         var tApps = document.querySelectorAll('.appOverview')
@@ -81,12 +86,12 @@ async function startLoop() {
                 chromeApps++
                 if (chromeApps > 1) {
                     el.remove()
-                    /*
-                    Goal: Each time you refresh the page, leave the first chrome app, and remove the others. Why?
-                    chrome tabs get added to the first chrome app window that appears.
-                    so above, that removes the first chrome app, which gets rid of all the tabs under it.
-                    So don't get rid of that first chrome app. But leave the others.
-                    */
+                    
+                    //Goal: Each time you refresh the page, leave the first chrome app, and remove the others. Why?
+                    //chrome tabs get added to the first chrome app window that appears.
+                    //so above, that removes the first chrome app, which gets rid of all the tabs under it.
+                    //So don't get rid of that first chrome app. But leave the others.
+                    
                 } else {
                     el.classList.remove('hideWhileLoading')
                     el.classList.remove('oldWindow')
@@ -136,6 +141,7 @@ async function startLoop() {
         }
         newWindow = 'no' //at end of first loading, change newWindow to 'no'. it will stay like that until another closing and reopening of app
         ipcRenderer.send('nav-loading-complete', '')
+        okToRunStartLoop = true
     } catch (e) {
         console.log('error in start loop function = ' + e)
     }
@@ -150,7 +156,7 @@ async function loop() {
             document.getElementById('nameSearch').style.display = 'none'
         } else {
             refreshNumber++
-            document.getElementById('theTitle').textContent = 'Loading ...'
+            document.getElementById('theTitle').textContent = 'Updating ...'
         }
 
         var theApps = document.querySelectorAll('.appOverview')
@@ -189,7 +195,12 @@ async function loop() {
             var icon = '../' + activeApps.icons[i] 
             var iconId = 'iconId='+indexId + '+' + refreshNumber + '**' + appName
             var nextItemsId = 'nextItems+' + indexId + '+refreshNumber=' + refreshNumber
-            if (!icon){ 
+            if (appName.includes("Race to Saturn")){
+                var source = '../assets/rts-iconr.png'
+                var iconContent = `
+                     <img style="height: 36px; width: 36px; vertical-align: middle" id="${iconId}" notChromeTab" src="${source}"></  img>
+                `
+            } else if (!icon){ 
                 var appNameArray = appName.trim().split(' ')
                 var firstLetter = appNameArray.at(-1).charAt(0)
                 var iconContent = `
@@ -202,7 +213,6 @@ async function loop() {
                   <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px" id="${iconId}">${firstLetter}</span>
                 `
             } else {
-
                 var iconContent = `
             <img style="height: 36px; width: 36px; vertical-align: middle" id="${iconId}" notChromeTab" src="${icon}"></img>
             `
@@ -215,7 +225,7 @@ async function loop() {
                 var extraClass = "nonChromeNextItems"
             }
             var content = `
-     <div id="${indexId}" style="margin-bottom: 5px" class="appOverview hideWhileLoading">
+     <div id="${indexId}" class="appOverview hideWhileLoading">
      <div tabindex="1" class="appDetails  thisAppName keyTabHere" >
         ${iconContent}
         <span style="margin-left: 3px; cursor: pointer" class="appName names" >${appName}</span>
@@ -262,6 +272,7 @@ async function loop() {
         }
 
         for (var j = 0; j < activeApps.windows.length; j++) { //for each app  (j = app number):
+            console.log('now load windows')
             var windows = activeApps.windows[j]
             var appNameRaw1 = activeApps.paths[j].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
             var appName1 = appNameRaw1.split('/').at(-1)
@@ -354,6 +365,7 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
         for (var m = 0; m < theTabs.length; m++) {
             var thisTab = theTabs[m]
             var theIcon = thisTab.favicon
+            console.log('loading chrome tab = ' + thisTab.name)
             var chromeWindowId = thisTab.chromeWindowId
             let classN = 'tabNumber' + m + 'windowNumber' + chromeAppNumber
             if ((theIcon === undefined) || (theIcon === null)) {
@@ -477,9 +489,9 @@ async function focusApp(e) {
     var name = e.target.name
     macFocusAppName(unixId, name).then((result, error) => {
         if (result) {
+            console.log(result)
             hoverAwayVar = true
             hoverAway()
-            //  minimizeWindow()
         } else {
             console.log('error = ' + error)
         }
@@ -493,10 +505,11 @@ function focusWindow(e) {
     var unixId = e.target.unixId
     var windowName = e.target.name
     var windowNumber = e.target.number
-    macFocusWindow(unixId, windowName, windowNumber).then((result, error) => {
+    var appName = e.target.appName.trim()
+    //console.log('focus window = ' + unixId, windowName, windowNumber)
+    macFocusWindow(unixId, windowName, windowNumber, appName).then((result, error) => {
         if (result) {
-            //  minimizeWindow()
-            console.log('result = ' + result)
+            console.log(result)
             hoverAwayVar = true
             hoverAway()
         } else {
@@ -513,8 +526,7 @@ function focusChromeTab(e) {
     var chromeTabName = e.target.chromeTabName
     macFocusChromeTab(unixId, theChromeWindowId, chromeTabName).then((result, error) => {
         if (result) {
-            //  minimizeWindow()
-            console.log('result = ' + result)
+            console.log('chrome tab result = ' + result)
             hoverAwayVar = true
             hoverAway()
         } else {

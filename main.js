@@ -21,9 +21,9 @@ function menuApp() {
     try {
         tray = new Tray(__dirname + '/assets/rts-icon2.png')
         const contextMenu = Menu.buildFromTemplate([
-            { label: 'Open Navigator Window', accelerator: "CmdOrCtrl+1", click() { openNavWindow() } },
-            { label: 'Toggle Navigator Columns', click() { columnChoice() } },
-            { label: 'Toggle Navigator Chrome Position', click() { chromePosition() } },
+            { label: 'Open / Refresh Navigator Window', accelerator: "CmdOrCtrl+1", click() { openNavWindow() } },
+            { label: 'Toggle Columns', click() { columnChoice() } },
+            { label: 'Toggle Chrome Position', click() { chromePosition() } },
             { label: 'Close Navigator Window', accelerator: "CmdOrCtrl+2", click() { hideNavWindow() } },
             { type: 'separator' },
             { label: 'Open Project Window', accelerator: "CmdOrCtrl+3", click() { openWindow() } },
@@ -51,16 +51,16 @@ const createNavWindow = () => {
         x: width - 611,
         y: 0,
         title: "Navigator",
-        alwaysOnTop: true,
+    //    alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            devTools: false
+            //devTools: false
            // enableRemoteModule: true
         }
     })
     navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));
-   // navWindow.openDevTools() /**********remove-in-production*****/
+    navWindow.openDevTools() /**********remove-in-production*****/
     navWindow.focus()
     navWindow.on('close', () => {
         navWindow = null
@@ -92,7 +92,7 @@ function keyBoardShortCut() {
 ipcMain.on('open-nav-window', ()=>{
     openNavWindow()
 })
-var okToLoadNavWindow = true
+var okToLoadNavWindow = false
 ipcMain.on('nav-loading-complete', ()=>{
     okToLoadNavWindow = true
 })

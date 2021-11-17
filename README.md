@@ -10,7 +10,7 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 ## Package App Commits
 
-ffd17bf, packaged November 15, 2021, 6:15pm EST
+dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
 
 ## Notes for Packaging
 
@@ -55,19 +55,39 @@ ffd17bf, packaged November 15, 2021, 6:15pm EST
     - add icon for chrome when tab icon doesn't work. DONE
     - add microsoft word icon manually. DONE
     - add another default icon for if other app's icons don't work. DONE          
-    - add google folder and doc icon for project focus manually
+    - add google folder and doc icon for project focus manually. DONE
 
 -ADD Icons locally and carry over to app itself. DONE
 
-- stop reloading if already loading the app for the first time
+
+- potential bug: bringing a window to the front
+    - flow: have app and window (1). Then open new app (2) in front of it. When try to open window 1, it won't go to the front--if app(2) (not windows of app 2) have been selected. 
+        - If app is brought to the front, it is taking precedence over other app windows?
+        - if last selected item from app is an app, then other app windows won't take precedence over it
+        - if the window is minimized, and maximize it-it will open, but then go behind the window in front
+        - maybe because it changes the index of the app
+        - possible solutions
+            - Application('name').active() //seems to work--so if call windows with that, then it should work. Issue=this calls all app windows to the front (and activate only works on apps)
+            - things seem to work fine when close the nav window and re-open. Then this issue goes away. But not if just reload the nav window (or hide and then show it). Why? Not clear. 
+            - if remove "always on top" from nav window--then it seems to mostly take care of this issue. Why? Not clear. 
+                - Note that clicking on an app to bring it entirely to the front doens't seem to bring all open windows to the front.--that seems to only bring one window to the front anyway. That does not seem to be related to the code here.
+                - appears resolved through removing "always on top" from nav window
+
+- *stop reloading if already loading the app for the first time
 
 - *open dev tools, but only if in development*
 
-- any way to speed up starting of loop function when app runs? 
+- *any way to speed up starting of loop function when app runs? 
     -Seems to return apps very fast, but then can be slow to get chrome windows.
         --load other windows and show them 
 
-- remove search box when app is going to run.
+- *remove search box when app is going to run.
+
+- save your apps.
+
+- add menu item that says howto (write out the instructions separately, and then style)
+
+- one more shot at making it faster (for focusing and closing windows and tabs)
 
 - possibility for showing window
     - have a thin, transparant window over to the right side of screen.

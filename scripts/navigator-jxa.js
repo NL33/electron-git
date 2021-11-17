@@ -57,7 +57,8 @@ module.exports.macFocusAppName = function (unixId, name) {
             var name = args[1];
             Application(name).launch();
             Application(name).activate();
-            return true
+            var summary = "focus app done: appName= " + name;
+            return summary;
         } catch (e) {
             throw Error('something went wrong in macFocusAppName function = ' + e);
         }
@@ -66,11 +67,11 @@ module.exports.macFocusAppName = function (unixId, name) {
 
 //var result = await runJxa((unixId, name) => {
 
-module.exports.macFocusWindow = function (unixId, windowName, windowNumber) {
+module.exports.macFocusWindow = function (unixId, windowName, windowNumber, appName) {
     return runJxaFunction(() => {
         try {
-            const unixId = args[0], windowName = args[1], windowNumber = args[2];
-
+            const unixId = args[0], windowName = args[1], windowNumber = args[2], appName = args[3];
+            var summary = "focusWindow complete";
             let process = Application('System Events').processes.whose({ unixId, backgroundOnly: { '=': false } })[0];
             if (!process.length) throw Error('process doesnt exist');
             var theWindowsNames = process.windows.name();
@@ -83,16 +84,20 @@ module.exports.macFocusWindow = function (unixId, windowName, windowNumber) {
                     break;
                 };
             };
+             summary = "focus window done: name= " + windowName + "; unixId= " + unixId +  "; windowIndex=" + windowIndex;
             if ((windowIndex != undefined)) {
                 process.windows[windowIndex].actions['AXRaise'].perform(); /*Focus action*/
             } else {
-                throw Error('there is no windowIndex');
+                Application(appName).launch();
+                Application(appName).activate();
+                summary = "no index in focusWindow. Call app name: " + appName;
+
             };
-            return true;
+            return summary;
         } catch (e) {
             throw Error('something went wrong in macFocus function = ' + e);
         }
-    }, unixId, windowName, windowNumber);
+    }, unixId, windowName, windowNumber, appName);
 }
 
 module.exports.macFocusChromeTab = function (unixId, chromeWindowId, chromeTabName) {

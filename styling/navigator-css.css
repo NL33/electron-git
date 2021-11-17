@@ -25,6 +25,7 @@
 
 .appOverview {
   margin-left: 5px;
+  margin-bottom: 3px;
 }
 
 .columnView {
@@ -56,21 +57,29 @@ ul li {
   display: none !important;
 }
 
+.appDetails {
+  cursor: pointer;
+  border: 2px solid white;
+}
+
 .windowName {
   padding: 5px;
   padding-left: 7px;
   cursor: pointer;
+  border: 2px solid white;
 }
 
 .tabOverview {
   padding: 5px;
   padding-left: 7px;
   padding-bottom: 1px;
+  border: 2px solid white;
 }
 
-.windowName:hover, .tabOverview:hover{
-   background-color:#eaf7fb;
-  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;
+.appDetails:hover, .windowName:hover, .tabOverview:hover{
+   background-color: #d9f6fc;// #d5f2f7;
+    border: 2px solid #d9f6fc;// #d5f2f7;
+ //box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;
   outline: none !important;
 }
 
@@ -83,14 +92,7 @@ ul li {
 
 
 /*removed :focus from above css*/
-.appDetails {
-  cursor: pointer;
-}
 
-.appDetails:hover{
-  background-color: #EFF9FC;
-   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;
-}
 
 * {
   font-family: "Roboto", sans-serif;
