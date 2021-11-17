@@ -51,7 +51,7 @@ const createNavWindow = () => {
         x: width - 611,
         y: 0,
         title: "Navigator",
-    //    alwaysOnTop: true,
+    //    alwaysOnTop: true, /*remove always on top, because it messes with the app index. The result is that, if this is true, if an app is focused, then other app's windows will not be able to be focused*/
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,

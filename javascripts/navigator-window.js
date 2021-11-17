@@ -30,9 +30,11 @@ startLoop()
 
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 function hoverAway() {
+    console.log('call hover away')
     window.addEventListener('mouseout', goFunction = function (evt) {
         if (hoverAwayVar === true) {
             if (evt.toElement == null && evt.relatedTarget == null) {
+                console.log('hover away now')
                 hoverAwayVar = false
                 ipcRenderer.send('minimize-nav-window', '')
                 window.removeEventListener('mouseout', goFunction)
@@ -199,7 +201,7 @@ async function loop() {
             if (appName.includes("Race to Saturn")){
                 var source = '../assets/rts-iconr.png'
                 var iconContent = `
-                     <img style="height: 36px; width: 36px; vertical-align: middle" id="${iconId}" notChromeTab" src="${source}"></  img>
+                     <img style="height: 34px; width: 34px; vertical-align: middle" id="${iconId}" notChromeTab" src="${source}"></  img>
                 `
             } else if (!icon){ 
                 var appNameArray = appName.trim().split(' ')
@@ -215,7 +217,7 @@ async function loop() {
                 `
             } else {
                 var iconContent = `
-            <img style="height: 36px; width: 36px; vertical-align: middle" id="${iconId}" notChromeTab" src="${icon}"></img>
+            <img style="height: 34px; width: 34px; vertical-align: middle" id="${iconId}" notChromeTab" src="${icon}"></img>
             `
              }
 
@@ -491,8 +493,8 @@ async function focusApp(e) {
     macFocusAppName(unixId, name).then((result, error) => {
         if (result) {
             console.log(result)
-            hoverAwayVar = true
-            hoverAway()
+            //hoverAwayVar = true. Removed hover function for apps, because it was closing window when mouse moved at all after focusing on an app. And to see if its better to not automatically close nav window after focus then hover
+            //hoverAway()
         } else {
             console.log('error = ' + error)
         }
