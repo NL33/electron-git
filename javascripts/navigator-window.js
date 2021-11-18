@@ -228,13 +228,13 @@ async function loop() {
                 var extraClass = "nonChromeNextItems"
             }
             var content = `
-     <div id="${indexId}" class="appOverview hideWhileLoading">
-     <div tabindex="1" class="appDetails  thisAppName keyTabHere" >
-        ${iconContent}
-        <span style="margin-left: 3px; cursor: pointer" class="appName names" >${appName}</span>
-      </div>
-      <ul class="nextItems ${extraClass}" id="${nextItemsId}"></ul>
-     </div>
+            <div id="${indexId}" class="appOverview hideWhileLoading">
+            <div tabindex="1" class="appDetails  thisAppName keyTabHere" >
+                ${iconContent}
+                <span style="margin-left: 3px; cursor: pointer" class="appName names" >${appName}</span>
+            </div>
+            <ul class="nextItems ${extraClass}" id="${nextItemsId}"></ul>
+            </div>
   `
             if (chromePosition === 'chromeLast') { //change order depending on selection of chrome position
                 if (extraClass === 'chromeNextItems') {
@@ -296,11 +296,12 @@ async function loop() {
                             }
                         }
                         if (window != null) {
-                            if ((window.length > 0) && (window != 'undefined') && (!window.startsWith('Find in page'))) {
-                                /*Why include "window doesn't start with "Find in Page"? The Find in page window shows up in chrome if you are doing a control+f / search on the page. The Mac treats it as it's own window. So it would show up in the results, but be confusing to the user (who wouldn't expect the find box to be a window) and makes it complicated to focus correctly. So I've removed it*/
+                            if ((window.length > 0) && (window != 'undefined') && (!window.startsWith('Find in page'))  && ( window !== 'Updating ...')) {
+                                /*Why include "window doesn't start with "Find in Page"? The Find in page window shows up in chrome if you are doing a control+f / search on the page. The Mac treats it as it's own window. So it would show up in the results, but be confusing to the user (who wouldn't expect the find box to be a window) and makes it complicated to focus correctly. So I've removed it
+                                Why not updating: to prevent the RtS window showing up with title "Updating", which was confusing people*/
                                 var content = `
-              <li class="thisOne windowName windowTabName names notChromeTab keyTabHere hideWhileLoading" tabindex="1"><span style="color: black; margin-left: -7px">${windowShow}</span></li>
-            `
+                                <li class="thisOne windowName windowTabName names notChromeTab keyTabHere hideWhileLoading" tabindex="1"><span style="color: black; margin-left: -7px">${windowShow}</span></li>
+                        `
                                 if ((appName1.toLowerCase().includes('google chrome')) && ((window.toLowerCase().includes('google chrome')) || (window.includes('googlechrome')))) {
                                     await chromeFunction(j, k, unixId, window)
                                 } else {
@@ -328,9 +329,9 @@ async function loop() {
                                     }
                                 }
                             }
+                            }
                         }
                     }
-                }
             } else {
                 // console.log('no windows')
                 document.getElementById('index=' + j).style.display = 'none'
