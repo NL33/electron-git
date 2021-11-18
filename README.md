@@ -10,6 +10,8 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 ## Package App Commits
 
+f24953d, packaged November 17, 2021. 2:53pm. Version 0.2.1.
+
 dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
 
 ## Notes for Packaging
@@ -96,7 +98,7 @@ dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
 - option to open app at startup
 
 - remove extra init in project window
-
+- minimize windows from navigator
 - update other windows code for updated electron
     - will need to remove anywhere that requires the remote module in the js file
 

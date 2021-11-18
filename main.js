@@ -17,6 +17,8 @@ var newVersionWindowOpen = false
 //const activeWindow = require('active-win');
 let tray = null
 var mainWindow
+var hoverWindowInEffect = true /* save preference with local storage*/
+var hoverWindow
 function menuApp() {
     try {
         tray = new Tray(__dirname + '/assets/rts-icon2.png')
@@ -24,6 +26,7 @@ function menuApp() {
             { label: 'Open / Refresh Navigator Window', accelerator: "CmdOrCtrl+1", click() { openNavWindow() } },
             { label: 'Toggle Columns', click() { columnChoice() } },
             { label: 'Toggle Chrome Position', click() { chromePosition() } },
+            { label: 'Toggle Mouse Right to Open', click() { checkHoverFunction() } },
             { label: 'Close Navigator Window', accelerator: "CmdOrCtrl+2", click() { hideNavWindow() } },
             { type: 'separator' },
             { label: 'Open Project Window', accelerator: "CmdOrCtrl+3", click() { openWindow() } },
@@ -55,12 +58,12 @@ const createNavWindow = () => {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            //devTools: false
+            devTools: false
            // enableRemoteModule: true
         }
     })
     navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));
-    navWindow.openDevTools() /**********remove-in-production*****/
+    //navWindow.openDevTools() /**********remove-in-production*****/
     navWindow.focus()
     navWindow.on('close', () => {
         navWindow = null
@@ -95,6 +98,14 @@ ipcMain.on('open-nav-window', ()=>{
 var okToLoadNavWindow = false
 ipcMain.on('nav-loading-complete', ()=>{
     okToLoadNavWindow = true
+})
+
+ipcMain.on('hover-nav-window', (event, target) => {
+    if (navWindow === null){
+        createNavWindow()
+    } else if (!navWindow.isVisible()){
+        openNavWindow()
+    }
 })
 
 function openNavWindow(){
@@ -150,6 +161,46 @@ function columnChoice() {
 
 function chromePosition() {
     navWindow.webContents.send('change-chrome-position', '')
+}
+
+function checkHoverFunction(){
+  try {
+    if (hoverWindowInEffect === false) {
+        openHoverWindow()
+    } else {
+        hoverWindow.destroy()
+        hoverWindowInEffect = false
+        /*Save preference with local storage */
+    }
+   } catch(e){
+        console.log('error in trying to change hover preference = ' + e)
+   }
+}
+
+function openHoverWindow() {
+    var theDisplay = screen.getPrimaryDisplay()
+    var screenWidth = theDisplay.bounds.width
+    var screenHeight = theDisplay.bounds.height
+    hoverWindow = new BrowserWindow({
+        width: 1,
+        height: screenHeight - 1,
+        x: screenWidth - 1,
+        y: 3,
+        alwaysOnTop: true,
+        transparent: true,
+        hasShadow: false,
+        maximizable: false,
+        webPreferences: {
+            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
+            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+            devTools: false
+        }
+    })
+
+    hoverWindow.loadURL('file://' + __dirname + '/views/hover-window.html');
+    hoverWindowInEffect = true
+   // hoverWindow.openDevTools()
+    //hoverWindow.hide()
 }
 
 /****Navigator Window: Right Click Menu ***************/
@@ -689,11 +740,13 @@ function openDiscourseAuthWindow(discourseUrl) {
 /*******BASIC SETUP**** */
 
 app.whenReady().then(() => { //once app is initialized, call the function to create the new browswer window
-   createNavWindow()
+    openHoverWindow()
+    createNavWindow()
     keyBoardShortCut()
     openBasicWindow()
    // saveNewVersionWindow()
     menuApp()
+
 
     app.on('activate', () => {
 
