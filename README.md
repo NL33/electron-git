@@ -10,6 +10,8 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 ## Package App Commits
 
+8de47c8, packaged November 19, 2021. Version .2.3. Posted November 19, 2021, 5:10pm US EST
+
 7239b72, packaged Nov 17, 2021, 9:15pm. Version .2.2. posted Nov 17, 2021, 9:00pm US EST
 
 f24953d, packaged November 17, 2021. 2:53pm. Version 0.2.1. posted Nov 17, 2021, 3:00pm
@@ -24,6 +26,9 @@ dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
   - navigator - window. js: put back in favicon code
   -navigator-jxa, adjust chrome tabs
 - clear out icons/memory.json.  and any icons built up in the icons folder. Unless want to have a few there for faster load.
+
+- when search, get this error almost all the time: Looks like the Navigator encountered an error doing a search. Sorry about that. You can press Command+1 to reload and try again. Here's the error (get ready for techno-speak): TypeError: Cannot read properties of null (reading 'classList')
+
 
 - remove dev tools in menu
 

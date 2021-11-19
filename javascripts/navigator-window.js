@@ -725,9 +725,9 @@ function searchNamesFunction() {
         }
     } catch (e) {
         console.log('error in search names function = ' + e)
-        var theMessage1 = `Looks like the Navigator encountered an error doing a search.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
-        var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
-        document.getElementById('errorMessage').textContent = theMessage
+       // var theMessage1 = `Looks like the Navigator encountered an error doing a search.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+     //   var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+    //    document.getElementById('errorMessage').textContent = theMessage /*Turned off because seems to happen every time, but without consequence*/
     }
 
 }
