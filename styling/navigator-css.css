@@ -102,6 +102,19 @@ ul li {
   font-size: 11.5pt;
 }
 
+#errorMessage:not(:empty) {
+  margin-top: 30px;
+  margin-bottom: 5px;
+  margin-right: 15px;
+  margin-left: 15px;
+  /*font-weight: 350;*/
+  font-style: italic;
+  padding: 7px;
+  border: 2px solid #d4eff7;
+  border-radius: 5px;
+  
+}
+
 /*****SEARCH **************/
 
 #nameSearch {

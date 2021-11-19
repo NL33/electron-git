@@ -61,6 +61,7 @@ function minimizeWindow() { //currently not called--instead of closing when you 
 
 async function startLoop() {
     okToRunStartLoop = false
+    document.getElementById('errorMessage').textContent = ''
     try {
         console.log('*****run start loop')
         hoverAwayVar = false
@@ -147,6 +148,7 @@ async function startLoop() {
         okToRunStartLoop = true
     } catch (e) {
         console.log('error in start loop function = ' + e)
+        document.getElementById('errorMessage').textContent = `Looks like the Navigator encountered an error when starting up.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
     }
 }
 
@@ -180,14 +182,20 @@ async function loop() {
         getChromePosition()
         getColumnPreference()
 
-        activeApps1 = await macActive(chromePosition).then(d => JSON.parse(d));
-        chromeFunctionRun = 0
-        activeApps = await addIcons(activeApps1,  'icons');
-        if (!activeApps) {
-            activeApps = activeApps1
+        try {
+            activeApps1 = await macActive(chromePosition).then(d => JSON.parse(d));
+            chromeFunctionRun = 0
+            activeApps = await addIcons(activeApps1,  'icons');
+            if (!activeApps) {
+                activeApps = activeApps1
+            }
+        } catch (e){
+            console.log('error in loop getting apps = ' + e)
+            document.getElementById('errorMessage').textContent = `
+                Looks like the Navigator encountered an error getting info about your apps. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
+            `
         }
 
-        console.log(activeApps)
       
         for (var i = 0; i < activeApps.paths.length; i++) { //Get name of all apps and put it into DOM
             try {
@@ -344,7 +352,10 @@ async function loop() {
             }
         }
     } catch (e) {
-        console.log('error in loop function = ' + e)
+        console.log('error in loop function generally = ' + e)
+        document.getElementById('errorMessage').textContent = `
+                Looks like the Navigator encountered an error info about your apps. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
+            `
     }
 }
 
@@ -420,7 +431,9 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
         //document.querySelector('.thisOne').classList.remove('thisOne')
     } catch (e) {
         console.log('error in chrome function = ' + e)
-
+        document.getElementById('errorMessage').textContent = `
+                Looks like the Navigator encountered an error getting info about your Chrome tabs. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
+            `
     }
 }
 
@@ -500,7 +513,10 @@ async function focusApp(e) {
             console.log('error = ' + error)
         }
     }).catch((e) => {
-        console.log('error in focus app name in apjs = ' + e)
+        console.log('error in appjs focus app function = ' + e)
+        document.getElementById('errorMessage').textContent = `
+                Looks like the Navigator encountered an error focusing on this app.  Sorry about that. You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
+            `
     })
 
 }
@@ -520,7 +536,10 @@ function focusWindow(e) {
             console.log('error = ' + error)
         }
     }).catch((e) => {
-        console.log('error in focus window in appjs = ' + e)
+        console.log('error in appjs focus window function = ' + e)
+        document.getElementById('errorMessage').textContent = `
+                Looks like the Navigator encountered an error focusing on this app window. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
+            `
     })
 }
 
@@ -537,7 +556,10 @@ function focusChromeTab(e) {
             console.log('error = ' + error)
         }
     }).catch((e) => {
-        console.log('error in chrome focus app in appjs = ' + e)
+        console.log('error in appjs focus chrome tab function = ' + e)
+        document.getElementById('errorMessage').textContent = `
+                Looks like the Navigator encountered an error focusing on this Chrome tab. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
+            `
     })
 }
 
@@ -608,6 +630,9 @@ function closeTab(target1) {
         }
     } catch (e) {
         console.log('error in close window functon  = ' + e)
+        document.getElementById('errorMessage').textContent = `
+                Looks like the Navigator encountered an error closing this Chrome tab. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
+            `
     }
 }
 
@@ -667,6 +692,9 @@ function searchNamesFunction() {
         }
     } catch (e) {
         console.log('error in search names function = ' + e)
+        document.getElementById('errorMessage').textContent = `
+                Looks like the Navigator encountered an error searching. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
+            `
     }
 
 }

@@ -1,7 +1,7 @@
 {
   "name": "electron-git",
   "productName": "Race to Saturn",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Save your versions and share your projects",
   "main": "main.js",
   "scripts": {

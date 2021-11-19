@@ -58,7 +58,7 @@ const createNavWindow = () => {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            devTools: false
+            //devTools: false
            // enableRemoteModule: true
         }
     })

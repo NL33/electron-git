@@ -10,17 +10,33 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 ## Package App Commits
 
-f24953d, packaged November 17, 2021. 2:53pm. Version 0.2.1.
+7239b72, packaged Nov 17, 2021, 9:15pm. Version .2.2. posted Nov 17, 2021, 9:00pm US EST
+
+f24953d, packaged November 17, 2021. 2:53pm. Version 0.2.1. posted Nov 17, 2021, 3:00pm
 
 dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
 
 ## Notes for Packaging
-
+- *CHANGE DEVTOOLS*
 - clear out icons/memory.json.  and any icons built up in the icons folder. Unless want to have a few there for faster load.
 
 - remove dev tools in menu
 
 - and remove open dev tools call in opening windows
+
+
+## Issues
+- chrome tabs: not able to gt tabs (Kelvin Chan had this issue on Nov 18, 2021 during zoom after downloading). Seems to me issue is permissions, specifically: Security*Privacy > Automation. RtS needs to be marked as being able to control the apps there, including Chrome.
+
+    -The other security and privacy item is Accessibility. Here, if RtS is not listed as given permission, app will show error: 
+     "Error: osascript is not allowed assistive access."
+
+- It looks like permission to Accessibility comes up with a prompt when opening the app. not clear if that's the case for Automation.
+
+- chrome tabs: getting error icon. could be from when have two or more tabs that don't have icons.
+
+- consider having background be off-white (silver); to get it looking like the icon quality on the dock (check the dock color)
+
 
 ## Next
 - when select item in navigator, minimize the navigator window. DONE (currently hides it)
@@ -83,13 +99,15 @@ dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
     -Seems to return apps very fast, but then can be slow to get chrome windows.
         --load other windows and show them 
 
+- close microsoft word docs from window. not working. why?
+
 - save your apps. (so when navwindow opens the app appears, even if not done). I've created file about that at load save apps.
 
 - add menu item that says howto (write out the instructions separately, and then style)
 
 - one more shot at making it faster (for focusing and closing windows and tabs)
 
-- possibility for showing window
+- possibility for showing window. DONE
     - have a thin, transparant window over to the right side of screen.
     - hover over that, and show main window
 -   Display flex does some wierd things: counters display : none (overriden here with !important in the hidewhileloading clas); and cuts off images in columns.
