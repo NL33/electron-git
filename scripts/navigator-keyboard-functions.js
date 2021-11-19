@@ -5,6 +5,13 @@ var theParent
 var nextWindow
 var priorItem
 
+module.exports.searchKeyDown = function (e){
+    if (e.key === 'ArrowDown') {
+       //arrowDownFunction(e)
+       //console.log('arrow wowo oowo')
+       //start here to add ability to hit down key to move out of name search
+    }
+}
 
 module.exports.keyDownFunction = function (e) {
     if ((e.keyCode === 13) || (e.key === "Enter") || (e.key === "Return")) { //press return
@@ -46,13 +53,13 @@ module.exports.keyDownFunction = function (e) {
 /****ARROW DOWN FUNCTIONS*********************** */
 
 function arrowDownFunction(e) {
-    if (e.target.status === 'app') {
+    if ((e.target.status === 'app')){
         var childCount = e.target.nextElementSibling.childElementCount  //count of children in "nextItems" under app
         if (childCount > 0) {
             nextWindow = nextWindowFromAppFunction(e.target.nextElementSibling) //param = nextItems div
             if (nextWindow !== 'n/a') {
                 nextWindow.focus()
-            } /***WHAT HAPPENS HERE ON ELSE? */
+            } 
         } else { //no matching windows in app, so move on to next app
             if (e.target.parentElement.nextElementSibling) {
                 nextApp = nextAppFromAppFunction(e.target.parentElement.nextElementSibling)

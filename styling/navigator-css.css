@@ -2,7 +2,9 @@
   content: attr(data-placeholder);
   color: #778899;
 }
-
+.titlebar {
+  background-color: red !important;
+}
 .names {
   word-break: break-all;
 }

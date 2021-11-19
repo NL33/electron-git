@@ -1,6 +1,6 @@
 const { exec, execFile, spawn, spawnSync } = require('child_process');
 const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTab, macCloseWindow, macCloseApp, macCloseChromeTab } = require('../scripts/navigator-jxa');
-const { keyDownFunction } = require('../scripts/navigator-keyboard-functions')
+const { searchKeyDown, keyDownFunction } = require('../scripts/navigator-keyboard-functions')
 const addIcons = require('../scripts/navigator-add-icons');
 const { ipcRenderer } = require('electron')
 menuFunction()
@@ -12,7 +12,7 @@ var chromePosition = 'n/a'
 var newWindow = 'yes'
 var chromeApps
 var hoverAwayVar = false
-
+var runIconError
 var okToRunStartLoop = true
 var refreshNumber = 0  //this number is added to the id of next items, so windows are added to the right apps (the apps that are new on that refresh)
 var chromeTabResults = [] /*Chrome tab results is an array where we put the tab results from the chromeFunction. In the chromeFunction, each Chrome window returns an array of its tabs. For each window, we put its array in chromeTabResults. And each tab is itself an array. So, chromeTabResults is an array = 
@@ -27,7 +27,9 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 */
 startLoop()
 
-
+window.onload = function(){
+    document.getElementById('nameSearch').addEventListener('keydown', searchKeyDown)
+}
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 function hoverAway() {
     console.log('call hover away')
@@ -382,33 +384,42 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
         chromeTabResults.push(theTabs)
         //var nextItemsId = 'nextItems+index=' + chromeAppNumber //no longer used for chrome tabs. left in for reference. Using class "chromeNextItems" instad
         for (var m = 0; m < theTabs.length; m++) {
+            runIconError = 1
             var thisTab = theTabs[m]
-            var theIcon = thisTab.favicon
-            console.log('loading chrome tab = ' + thisTab.name)
+            var theIcon = thisTab.favicon /*THIS IS NOT Active right now. The code for this relies on executing javascript from Apple Events. Still under consideration*/
+           // console.log('loading chrome tab = ' + thisTab.name)
             var chromeWindowId = thisTab.chromeWindowId
-            let classN = 'tabNumber' + m + 'windowNumber' + chromeAppNumber
-            if ((theIcon === undefined) || (theIcon === null)) {
+            let idN = 'tabNumber' + m + 'windowNumber' + chromeAppNumber + 'refreshNumber = ' + refreshNumber
+           // if ((theIcon === undefined) || (theIcon === null)) {
                 var url1 = thisTab.url.split('/')[2]
                 var useIcon = 'https://' + url1 + '/favicon.ico'
-            } else {
-                useIcon = theIcon
-            }
+            //} else {
+              //  useIcon = theIcon
+           // }
+    
+
             var tabId = chromeWindowNumber + '+' + m
             content = `
             <div style="margin-left: 0px; display: flex; cursor: pointer" class="tabOverview thisTab keyTabHere hideWhileLoading" id="${tabId}" tabindex="1">
-              <img style="height: 26px; width: 26px; vertical-align: middle; float: left" src="${useIcon}" class="${classN}" ></img>
+              <img style="height: 26px; width: 26px; vertical-align: middle; float: left" src="${useIcon}" id="${idN}" ></img>
               <span style="margin-left: 10px; cursor: pointer; float: right;" class="chromeTabs windowTabName names">${thisTab.name}</span>
             </div>
       `
             /*removed: <div class="nextItems" style="margin-left: 50px; margin-top: 3px" id="${nextItemsId}"></div> */
             document.querySelector('.chromeNextItems').insertAdjacentHTML('beforeend', content) //using 'chromeNextItems' as the relevant spot to put in the chrome tabs. the alternative is using the app index that corresponds to chrome, but there have been times when that index number was not reliable. This has happened to me when using script editor / dictionary / google chrome (lookng up google chrome details in the script)
-            var runIconError = 1
-            document.querySelector('.' + classN).onerror = () => {
-                if (runIconError === 1) {
-                    document.querySelector('.' + classN).src = '../icons/Macintosh HD:Applications:Google Chrome.app:.png'
+            var iconImage = document.getElementById(idN)
+            iconImage.addEventListener('error', chromeImageError)
+            iconImage.tabName = thisTab.name
+            /*
+            document.getElementById(idN).onerror = () => {
+                console.log('icon error for ' + thisTab.name)
+                if (runIconError != 2) {
+                    console.log('should replace for ' + thisTab.name)
+                    document.getElementById(idN).src = '../icons/Macintosh HD:Applications:Google Chrome.app:.png'
                     runIconError = 2
                 }
             }
+            */
             var element = document.querySelector('.thisTab')
             element.addEventListener('click', focusChromeTab)
             element.addEventListener('keydown', keyDownFunction)
@@ -452,6 +463,21 @@ function imageError(e){
     parent.insertAdjacentHTML('afterbegin', iconContent)
 }
 
+function chromeImageError(e){
+    try {
+    console.log('in chrome image error for ' + e.target.tabName)
+    var tabNameArray = e.target.tabName.trim().split(' ')
+    var firstLetter = tabNameArray[0].charAt(0) //tabNameArray.at(-1).charAt(0)
+    var iconContent = `
+                  <span style="font-size: 14pt; width: 24px; height: 24px; border-radius: 20px; border: 2px solid #78d6a7; display: inline-block; text-align:center;  padding: 2px; line-height: 24px" id="${e.target.id}" >${firstLetter}</span>
+                `
+    var parent = e.target.parentElement
+    e.target.remove()
+    parent.insertAdjacentHTML('afterbegin', iconContent)
+    } catch (e){
+        console.log('error for chrome image issue= ' + e)
+    }
+}
 
 /*********************COLUMN AND CHROME PREFERENCES ***************** */
 

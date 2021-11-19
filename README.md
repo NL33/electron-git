@@ -18,6 +18,11 @@ dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
 
 ## Notes for Packaging
 - *CHANGE DEVTOOLS*
+
+- Right now, searching chrome tabs is turned off, as is the favicon. because of issue of whether use has to turn on javascript from Apple Events. If this changes, change the following:
+  - search box: put back in search chrome tabs
+  - navigator - window. js: put back in favicon code
+  -navigator-jxa, adjust chrome tabs
 - clear out icons/memory.json.  and any icons built up in the icons folder. Unless want to have a few there for faster load.
 
 - remove dev tools in menu
