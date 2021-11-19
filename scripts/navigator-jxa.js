@@ -44,7 +44,7 @@ module.exports.chromeTabs = async function (number) {
             }));
             return JSON.stringify(tabs);
         } catch (e) {
-            throw Error('something went wrong in chromeTabs function = ' + e);
+            throw Error('Chrome tabs issue = ' + e);
         }
     }, number)
 
@@ -60,7 +60,7 @@ module.exports.macFocusAppName = function (unixId, name) {
             var summary = "focus app done: appName= " + name;
             return summary;
         } catch (e) {
-            throw Error('something went wrong in macFocusAppName function = ' + e);
+            throw Error('Focus on app name issue = ' + e);
         }
     }, unixId, name);
 }
@@ -95,7 +95,7 @@ module.exports.macFocusWindow = function (unixId, windowName, windowNumber, appN
             };
             return summary;
         } catch (e) {
-            throw Error('something went wrong in macFocus function = ' + e);
+            throw Error('Focusing windows issue = ' + e);
         }
     }, unixId, windowName, windowNumber, appName);
 }
@@ -121,7 +121,7 @@ module.exports.macFocusChromeTab = function (unixId, chromeWindowId, chromeTabNa
             };
             return chromeWindowId;
         } catch (e) {
-            throw Error('something went wrong in macfocus chrome tab function = ' + e)
+            throw Error('Focusing Chrome tabs issue = ' + e)
         }
     }, unixId, chromeWindowId, chromeTabName)
 }
@@ -135,7 +135,7 @@ module.exports.macCloseApp = function (name) {
             Application(name).quit();
             return true
         } catch (e) {
-            throw Error('something went wrong in maCloseApp function = ' + e);
+            throw Error('Close app issue = ' + e);
         }
     }, name);
 }
@@ -162,11 +162,11 @@ module.exports.macCloseWindow = function (unixId, windowName, windowNumber, appN
                 /*Application('Notion').windows[windowIndex].close();*/
                 Application(appName).windows[windowIndex].close();
             } else {
-                throw Error('there is no windowIndex');
+                throw Error('No window index in closing window attempt.');
             };
             return true;
         } catch (e) {
-            return Error('something went wrong in close window function = ' + e);
+            return Error('Close window issue = ' + e);
         }
     }, unixId, windowName, windowNumber, appName);
 }
@@ -191,7 +191,7 @@ module.exports.macCloseChromeTab = function (chromeWindowId, chromeTabName) {
             };
             return true;
         } catch (e) {
-            throw Error('something went wrong in macfocus chrome tab function = ' + e)
+            throw Error('Close Chrome tab issue = ' + e)
         }
     }, chromeWindowId, chromeTabName)
 }

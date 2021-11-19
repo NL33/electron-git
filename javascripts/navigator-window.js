@@ -148,7 +148,9 @@ async function startLoop() {
         okToRunStartLoop = true
     } catch (e) {
         console.log('error in start loop function = ' + e)
-        document.getElementById('errorMessage').textContent = `Looks like the Navigator encountered an error when starting up.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+        var theMessage1 = `Looks like the Navigator encountered an error when starting up.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+        var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+        document.getElementById('errorMessage').textContent = theMessage
     }
 }
 
@@ -191,9 +193,9 @@ async function loop() {
             }
         } catch (e){
             console.log('error in loop getting apps = ' + e)
-            document.getElementById('errorMessage').textContent = `
-                Looks like the Navigator encountered an error getting info about your apps. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
-            `
+            var theMessage1 = `Looks like the Navigator encountered an error getting your app info.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+            var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+            document.getElementById('errorMessage').textContent = theMessage
         }
 
       
@@ -278,7 +280,9 @@ async function loop() {
                 child.status = 'app'
             }
             } catch(e){
-                console.log('error in loading apps and windows = ' + e)
+                var theMessage1 = `Looks like the Navigator encountered an error loading your apps and windows.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+                var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+                document.getElementById('errorMessage').textContent = theMessage
             }
         }
 
@@ -353,9 +357,9 @@ async function loop() {
         }
     } catch (e) {
         console.log('error in loop function generally = ' + e)
-        document.getElementById('errorMessage').textContent = `
-                Looks like the Navigator encountered an error info about your apps. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
-            `
+        var theMessage1 = `Looks like the Navigator encountered an error gathering your app info.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+        var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+        document.getElementById('errorMessage').textContent = theMessage
     }
 }
 
@@ -431,9 +435,9 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
         //document.querySelector('.thisOne').classList.remove('thisOne')
     } catch (e) {
         console.log('error in chrome function = ' + e)
-        document.getElementById('errorMessage').textContent = `
-                Looks like the Navigator encountered an error getting info about your Chrome tabs. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
-            `
+        var theMessage1 = `Looks like the Navigator encountered an error getting your Chrome tab info.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+        var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+        document.getElementById('errorMessage').textContent = theMessage
     }
 }
 
@@ -514,9 +518,9 @@ async function focusApp(e) {
         }
     }).catch((e) => {
         console.log('error in appjs focus app function = ' + e)
-        document.getElementById('errorMessage').textContent = `
-                Looks like the Navigator encountered an error focusing on this app.  Sorry about that. You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
-            `
+        var theMessage1 = `Looks like the Navigator encountered an error focusing an app.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+        var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+        document.getElementById('errorMessage').textContent = theMessage
     })
 
 }
@@ -537,9 +541,9 @@ function focusWindow(e) {
         }
     }).catch((e) => {
         console.log('error in appjs focus window function = ' + e)
-        document.getElementById('errorMessage').textContent = `
-                Looks like the Navigator encountered an error focusing on this app window. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
-            `
+        var theMessage1 = `Looks like the Navigator encountered an error focusing a window.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+        var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+        document.getElementById('errorMessage').textContent = theMessage
     })
 }
 
@@ -557,9 +561,9 @@ function focusChromeTab(e) {
         }
     }).catch((e) => {
         console.log('error in appjs focus chrome tab function = ' + e)
-        document.getElementById('errorMessage').textContent = `
-                Looks like the Navigator encountered an error focusing on this Chrome tab. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
-            `
+        var theMessage1 = `Looks like the Navigator encountered an error focusing a Chrome tab.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+        var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+        document.getElementById('errorMessage').textContent = theMessage
     })
 }
 
@@ -598,6 +602,9 @@ function closeWindow(target1) {
         }
     } catch (e) {
         console.log('error in close window functon  = ' + e)
+        var theMessage1 = `Looks like the Navigator encountered an error closing a window.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+        var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+        document.getElementById('errorMessage').textContent = theMessage
     }
 }
 
@@ -630,9 +637,9 @@ function closeTab(target1) {
         }
     } catch (e) {
         console.log('error in close window functon  = ' + e)
-        document.getElementById('errorMessage').textContent = `
-                Looks like the Navigator encountered an error closing this Chrome tab. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
-            `
+        var theMessage1 = `Looks like the Navigator encountered an error closing a tab.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+        var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+        document.getElementById('errorMessage').textContent = theMessage
     }
 }
 
@@ -692,9 +699,9 @@ function searchNamesFunction() {
         }
     } catch (e) {
         console.log('error in search names function = ' + e)
-        document.getElementById('errorMessage').textContent = `
-                Looks like the Navigator encountered an error searching. Sorry about that.  You can press Command+1 to reload and try again.  Here's the error (get ready for techno-speak): ${e}
-            `
+        var theMessage1 = `Looks like the Navigator encountered an error doing a search.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+        var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+        document.getElementById('errorMessage').textContent = theMessage
     }
 
 }
