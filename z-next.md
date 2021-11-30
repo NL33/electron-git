@@ -17,6 +17,14 @@
 
 - when search, get this error almost all the time: Looks like the Navigator encountered an error doing a search. Sorry about that. You can press Command+1 to reload and try again. Here's the error (get ready for techno-speak): TypeError: Cannot read properties of null (reading 'classList')
 
+# make icons work in production
+-current get windows icon code in navigator-add-icons.js doesn't work in production, because icon2png doesn't work in production.
+-issue related to paths of files in production
+-for now, I have sidestepped the issue by just getting a lot of icons in the hard-coded code during local use. And then keeping those icons there when I package for production
+
+# make child process code work
+-code in draft navigator file, under "new-jxa"
+
 
 **Possible Next**
 
@@ -26,6 +34,8 @@
 # when search for app name in navigator window, show all the windows of that app
 
 -example: search for "word", and show word app + all the word docs open. It gives you an isolated view of just your word docs to navigate between
+
+# project window: prior versions window has online icon. change to saved icon
 
 # change color of title bar that says "Navigator"
 
