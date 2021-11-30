@@ -21,9 +21,11 @@ module.exports = {
         "ignore": [
             'forge.config.js',
             '.env',
-           // '.gitignore',
+            '.gitignore',
+            'z-changelog.md',
+            'z-next.md',
             'hooks',
-            'readme.md'
+            'README.md'
         ],
         "ignorePackageJson": [
             'devDependencies',
