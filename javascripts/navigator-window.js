@@ -534,6 +534,8 @@ function changeChromePosition() {
 async function focusApp(e) {
     var unixId = e.target.unixId
     var name = e.target.name
+    hoverAwayVar = true
+    hoverAway()
     macFocusAppName(unixId, name).then((result, error) => {
         if (result) {
             console.log(result)
@@ -556,12 +558,11 @@ function focusWindow(e) {
     var windowName = e.target.name
     var windowNumber = e.target.number
     var appName = e.target.appName.trim()
-    //console.log('focus window = ' + unixId, windowName, windowNumber)
+    hoverAwayVar = true
+    hoverAway()
     macFocusWindow(unixId, windowName, windowNumber, appName).then((result, error) => {
         if (result) {
             console.log(result)
-            hoverAwayVar = true
-            hoverAway()
         } else {
             console.log('error = ' + error)
         }
@@ -577,11 +578,11 @@ function focusChromeTab(e) {
     var unixId = e.target.unixId
     var theChromeWindowId = e.target.chromeWindowId
     var chromeTabName = e.target.chromeTabName
+    hoverAwayVar = true
+    hoverAway()
     macFocusChromeTab(unixId, theChromeWindowId, chromeTabName).then((result, error) => {
         if (result) {
             console.log('chrome tab result = ' + result)
-            hoverAwayVar = true
-            hoverAway()
         } else {
             console.log('error = ' + error)
         }

@@ -2,9 +2,8 @@
 
 *Gratitude Notes*
 
-*Javascript from Apple Events in Chrome*
-
-# Summary
+*General*
+# Javascript from Apple Events in Chrome
 
 - Right now, searching chrome tabs is turned off, as is the favicon. because of issue of whether use has to turn on javascript from Apple Events. If this changes, change the following:
   - search box: put back in search chrome tabs
@@ -14,13 +13,20 @@
 
 - Allow Javascript from Apple Events is an option in the view/developer menu item in Chrome. It needs to be turned on for code that includes "execute" javascript to work. In the prior app version, that code occurs when searching chrome tabs, and getting chrome icons
 
-*Error in Search function*
-# Summary
+# Error in search function
 
 - when search, get this error almost all the time: Looks like the Navigator encountered an error doing a search. Sorry about that. You can press Command+1 to reload and try again. Here's the error (get ready for techno-speak): TypeError: Cannot read properties of null (reading 'classList')
 
 
-*Old Next*
+**Possible Next**
+
+# when search for app name in navigator window, show all the windows of that app
+
+-example: search for "word", and show word app + all the word docs open. It gives you an isolated view of just your word docs to navigate between
+
+
+
+**Old Next**
 
 ## Next
 - when select item in navigator, minimize the navigator window. DONE (currently hides it)

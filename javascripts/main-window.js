@@ -962,18 +962,7 @@ So the key changes is to move the javascript and html of prior versions/compare 
 
 then just need to call that window from main window to main.js
 
-STATUS:
-
-I just created a new view: prior-versions-overview. and added initial html code
-next: move the right javacsript code for viewing prior versions into prior-versions-overview.
-
-
-
-
 */
-
-
-
 
 
 /********GIT ACTIONS*************** */
