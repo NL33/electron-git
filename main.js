@@ -33,6 +33,7 @@ function menuApp() {
             { type: 'separator' },
             // { label: 'Hide Windows', click() { minimizeWindows() } },
             { label: 'Breathe Big', accelerator: "CmdOrCtrl+4", click() { openBreatheBigWindow() } },
+            { label: 'Gratitude Notes', accelerator: "CmdOrCtrl+4", click() { openGratitudeNotes() } },
         ])
         tray.setToolTip('Be extraordinary.')
         tray.setContextMenu(contextMenu)
@@ -358,7 +359,7 @@ async function saveNewVersionWindow(windowTitle) {
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
            // enableRemoteModule: true
-            devTools: false
+            //devTools: false
         }
     })
 
@@ -370,7 +371,7 @@ async function saveNewVersionWindow(windowTitle) {
     })
     // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
 
-    //newVersionWindow.openDevTools()
+    newVersionWindow.openDevTools()
     /*
     newVersionWindow.webContents.on('did-finish-load', function () {
         newVersionWindow.show();

@@ -10,6 +10,8 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 ## Package App Commits
 
+1bc59f2 packaged November 19, 2021. Version .2.4. Posted November 19, 5:40.
+
 8de47c8, packaged November 19, 2021. Version .2.3. Posted November 19, 2021, 5:10pm US EST
 
 7239b72, packaged Nov 17, 2021, 9:15pm. Version .2.2. posted Nov 17, 2021, 9:00pm US EST
@@ -49,6 +51,7 @@ dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
 
 
 ## Next
+- *Gratitude Notes*
 - when select item in navigator, minimize the navigator window. DONE (currently hides it)
 - keyboard shortcut (command+2) for calling up project focus window. DONE
 - keyboard command+1 still calls up navigator window, even if window has been previously destroyed. DONE
@@ -132,56 +135,3 @@ dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
 
 
 ***
-
-Attempt to have hover window:
-function openHoverWindow() {
-    var theDisplay = screen.getPrimaryDisplay()
-    var screenWidth = theDisplay.bounds.width
-    var hoverWindow = new BrowserWindow({
-        width: 1,
-        height: 500,
-        x: screenWidth - 10,
-        y: 1,
-        alwaysOnTop: true,
-        transparent: true,
-      //  frameless: true,
-        //show: false,
-        //hasShadow: false,
-        maximizable: false,
-        webPreferences: {
-            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
-            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
-        }
-    })
-
-    hoverWindow.loadURL('file://' + __dirname + '/views/hover-window.html');
-    hoverWindow.openDevTools()
-}
-
-html:
-<!DOCTYPE html>
-<html>
-
-
-<head>
-    <meta charset="UTF-8">
-    <style>
-
-    </style>
-    <title></title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-</head>
-
-<body id="bodyId" style="height: 100%; ">
-
-    
-    <!--THis is a test comment for the basic window file-->
-    <!--*************END OF FILE******************-->
-    <script src="../javascripts/hover-window.js"></script>
-</body>
-
-
-JS:
-
-
-
