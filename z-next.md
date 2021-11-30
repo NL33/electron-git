@@ -28,6 +28,12 @@
 
 **Possible Next**
 
+# add default apps. ^^New Feature
+-when open an app, in the navigator, be able to right click and add to default apps. So it shows up no matter whether opened or not.
+
+# close apps from navigator, whether or not they have windows.
+-currently, not able to do that--gives error if try to close item that has no windows.
+
 # if in search box and hit down arrow, move out of search box and into the list to select item to focus on 
 -right now, the way to move out of the search box is with tab
 
@@ -36,6 +42,15 @@
 -example: search for "word", and show word app + all the word docs open. It gives you an isolated view of just your word docs to navigate between
 
 # project window: prior versions window has online icon. change to saved icon
+
+# nav window: take all the windows and tabs open, and be able to save that configuration. ^^New Feature.
+-can save the details in local storage with a name.
+-can then retrieve that set up later by clicking on the name.
+-can limit the amount to 10 or 20 different setups.
+-when then click on the saved setup, code will go through and open each item.
+-issue: might be slow to open all those iems 
+-andcheck if the item is already open first
+-basically, get a lit of everything you want to open. Open it. then update the navigator to reflect what's opened.
 
 # change color of title bar that says "Navigator"
 
