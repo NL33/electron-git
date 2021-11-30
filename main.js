@@ -402,7 +402,7 @@ function priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName
                 additionalArguments: [projectFolderPath, projectFolderName],
                 nodeIntegration: true,
                 contextIsolation: false,
-                devTools: false
+                //devTools: false
                // enableRemoteModule: true
             }
         })

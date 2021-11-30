@@ -8,14 +8,7 @@ var projectFolderPath
 var projectFolderName
 
 var resultArray
-/***NEXT:
---just did styling for showing either compare versions or open versions in same window
---next: close prior version window when run show changes
---next: styling of compare versions window, borrowing from saved versions window (box shadow and larger window)
---then, run compare changes and issue spot that.
---then, colored icons for main window
 
- */
 
 window.onload = function () {
     projectFolderPath = window.process.argv.slice(-2)[0]
@@ -60,6 +53,7 @@ async function viewPriorVersionsFunction() {
             resultArray.forEach((commit) => {
                 var versionNumber = totalNumber--
                 var versionMessage = commit.message
+                var versionMessageForFunction = commit.message.replaceAll("'", '`SINGLEQUOTE`').replaceAll('"', '`DOUBLEQUOTE`') //need to remove the quotes in what goes in the function in order for the function to work
                 var dateTime = commit.date
                 var commitNumber = commit.hash
 
@@ -75,7 +69,7 @@ async function viewPriorVersionsFunction() {
                 })
                 var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
                 contents = `
-                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}", "${versionMessage}")'>
+                <div class="versionOverviewClass" onclick='showOldVersion("${commitNumber}", "${versionNumber}", "${showDate}", "${cleanedTime}", "${versionMessageForFunction}")'>
                     <div class="versionMessage">${versionMessage}</div>
                     <span class="versionNumber">Version ${versionNumber}</span>
                     <span class="versionDateTime">${showDate}</span><span> ${cleanedTime}</span>
@@ -140,7 +134,8 @@ async function showOldVersion(commitNumber, versionNumber, date, time, notes) {
             }
         })
         //now should have a folder in the directory that is a copy of the directory, with its own git file.
-        revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes)
+        var notes1 = notes.replaceAll('`SINGLEQUOTE`', "'").replaceAll('`DOUBLEQUOTE`', '"') //adding back the quotes (if any) the user entered in their original message
+        revertWorkTree(commitNumber, versionNumber, treeName, date, time, notes1)
     } catch (e) {
         console.log('error in showOldVersion = ' + e)
         alert('Sorry, there was an error in viewing prior versions. Please try again.')
