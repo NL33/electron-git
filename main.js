@@ -104,11 +104,7 @@ ipcMain.on('nav-loading-complete', ()=>{
 })
 
 ipcMain.on('hover-nav-window', (event, target) => {
-    if (navWindow === null){
-        createNavWindow()
-    } else if (!navWindow.isVisible()){
-        openNavWindow()
-    }
+    openNavWindow()
 })
 
 function openNavWindow(){

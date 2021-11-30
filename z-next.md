@@ -20,10 +20,18 @@
 
 **Possible Next**
 
+# if in search box and hit down arrow, move out of search box and into the list to select item to focus on 
+-right now, the way to move out of the search box is with tab
+
 # when search for app name in navigator window, show all the windows of that app
 
 -example: search for "word", and show word app + all the word docs open. It gives you an isolated view of just your word docs to navigate between
 
+# change color of title bar that says "Navigator"
+
+# make font of nav window same as font of project window
+
+# change background color of nav window (something just slightly off-white)
 
 
 **Old Next**
