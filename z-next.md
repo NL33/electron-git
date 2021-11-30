@@ -1,6 +1,69 @@
 **Next**
 
 *Gratitude Notes*
+^^Start Here
+# steps
+- save note text
+- show note text in console log
+- save additional aspects: including date
+- show additional aspects, including date in console log
+- print note on window under the entry box
+- display notes by date
+- color the date display 
+
+- get all months that have been entered--and retrieve them in console log
+- show all months where entry made--start by showing on left side
+- click on month and show all notes from that month
+- add "view more notes" button
+- hide month view
+- show month view when click view more notes
+
+- add styling of month view
+- add styling of main note entry and view
+
+- add keyboard shortcut for gratitude notes
+- add main menu 
+
+# as of that stage, probably done with MVP for gratitude notes
+
+# other features
+- search notes
+- choose a note at random to display when window opens 
+- basic markup:one star for italics. two stars for bold on entry
+- edit note
+- backup note (time machine sufficient?)
+- change background color of window when entring a gratitude note
+- tags?
+# Possibilities
+- possibility 1: notes saved as documents
+ - create new
+    -   searches to see if there is a doc for the month yet. 
+    -   if not, create a new gratitude notes for that month
+    -   in the doc, adds a new entry for that date and time
+  - retrieve
+    -   open old folders
+  - benefits
+    -   easy to send to people
+    -   faster to set up
+    -   if app gets removed from computer, the documents are still there. 
+  - issues
+    -   location: saved to desktop
+        -   what if user wants to move the notes folder 
+            -   app needs to know where folder is
+                -   could have option to move the folder location through the app
+                -   if move the location on your own
+                -   not clear
+    -   not very customizable
+        -   but, could save the notes as docs. And then parse them through the app. 
+            so you can do the view through the app. But the actual docs are saved as docs on the computer. 
+- possibility 2: notes saved in app database
+ -  benefits
+    -   confusing to user to create a folder on their desktop, that opens up actual documents. 
+    -   can optimize for this purpose over time. 
+    -   can later be linked to user login
+        -   CURRENT IDEA: try the database solution, mainly bc of possibility of adding new items to it later. 
+            - like tags
+            - colors.
 
 *General*
 # Javascript from Apple Events in Chrome
@@ -27,6 +90,9 @@
 
 
 **Possible Next**
+
+# saving new version takes too long now. fix
+- likely because it runs a git init each time.
 
 # add default apps. ^^New Feature
 -when open an app, in the navigator, be able to right click and add to default apps. So it shows up no matter whether opened or not.

@@ -365,7 +365,6 @@ async function saveNewVersionWindow(windowTitle) {
     newVersionWindow.on('close', () => {
         newVersionWindowOpen = false
     })
-    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
 
     newVersionWindow.openDevTools()
     /*
@@ -541,6 +540,36 @@ async function minimizeWindows() {
     }
 }
 
+/****************GRATITUDE NOTES WINDOW ************* */
+function openGratitudeNotes(){
+    try {
+     //   var theDisplay = screen.getPrimaryDisplay()
+       // var width = theDisplay.bounds.width
+        //var height = theDisplay.bounds.height
+        gratitudeWindow = new BrowserWindow({
+         //   width: 610,
+           // height: height,
+          //  x: width - 611,
+          //  y: 0,
+            title: "Gratitude Notes",
+            // titleBarStyle: 'hidden',
+            //transparent: true,
+            //    alwaysOnTop: true, /*remove always on top, because it messes with the app index. The result is that, if this is true, if an app is focused, then other app's windows will not be able to be focused*/
+            webPreferences: {
+                nodeIntegration: true,
+                contextIsolation: false,
+                // devTools: false
+                // enableRemoteModule: true
+            }
+        })
+        gratitudeWindow.loadFile(path.join(__dirname, '/views/gratitude-window.html'));
+        gratitudeWindow.openDevTools() /**********remove-in-production*****/
+        gratitudeWindow.focus()
+    } catch (e) {
+        console.log('error in creating gratitude window = ' + e)
+    }
+}
+
 
 /****************BREATHE BIG WINDOW */
 var breatheWindow
@@ -599,6 +628,7 @@ ipcMain.on('hide-main-window', (event, arg) => {
         console.log('error in hide main window = ' + e)
     }
 })
+
 
 /*******GET CONTENT FROM Clipboard For Paste FILE */
 

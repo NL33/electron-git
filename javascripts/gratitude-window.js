@@ -1,3 +1,46 @@
+const { readFile, readdirSync, statSync } = require("fs");
+const Dexie = require("dexie");
+var db = new Dexie("GratitudeDatabase");
+
+async function setUpDatabase(){
+    try {
+        /*
+        db.delete().then((response)=>{
+          console.log('db deleted')
+        })
+        */
+        await db.version(1).stores({
+            noteInfo:
+                "++id, noteText, fullDate, day, year, month, time, userName, userId, ",
+        });
+        return "done";
+    } catch (error) {
+        console.log("error in setUpDexie = " + error);
+    }
+}
+
+/*
+  var dateObject = new Date()
+                var showDate = dateObject.toLocaleDateString('en-us', {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })
+                var showTime = dateObject.toLocaleTimeString('en-us', {
+                    timeStyle: 'short'
+                })
+                var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
+                var showTime = '**' + showDate + ' ' + cleanedTime + '**' + '\n\n'
+                var newData = showTime + text + '\n\n\n' + data
+
+
+
+*/
+
+
+/*
+const fs = require("fs")
 fs.stat(commitTextFilePath, function (err, stat) {
     if (err == null) {
         //file exists
@@ -22,7 +65,7 @@ fs.stat(commitTextFilePath, function (err, stat) {
                     if (err) {
                         console.log(err)
                     } else {
-                        //********FILE UPDATED. NOW MAKE THE COMMIT****** */
+                       
                         doTheCommit(text)
                     }
                 })
@@ -56,7 +99,7 @@ fs.stat(commitTextFilePath, function (err, stat) {
                                 </div>`
                 var contentsDiv = document.getElementById('folderContents')
                 contentsDiv.insertAdjacentHTML("beforeend", contents)
-                //********FILE CREATED. NOW MAKE THE COMMIT****** */
+                //FILE CREATED. NOW MAKE THE COMMIT
                 doTheCommit(text)
             }
         })
@@ -64,13 +107,7 @@ fs.stat(commitTextFilePath, function (err, stat) {
         console.log('Some other error: ', err.code);
     }
 });
-        /*
-        await git.raw('remote', 'get-url', '--push', 'origin').then(result => {  //thiswould be to push to github
-            console.log('get remote result = ' + JSON.stringify(result))
-            //if lists a remote at github that doesn't exist, will send back an error
-            document.getElementById('remoteName').textContent = result
-        })
-        */
+
 
     }
     catch (e) {
@@ -78,3 +115,4 @@ fs.stat(commitTextFilePath, function (err, stat) {
     alert("Sorry, there was an error saving this version. Please try again.")
 }
 }
+*/

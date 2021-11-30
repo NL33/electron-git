@@ -5,9 +5,32 @@
     <meta charset="UTF-8">
     <title id="theTitle">Gratitude Notes</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <style>
+        [contenteditable]:empty:before {
+            content: attr(data-placeholder);
+            color: #778899;
+        }
+
+        * {
+            font-family: "Roboto", sans-serif;
+            font-size: 11.5pt;
+        }
+
+        #noteEntry{
+            border: 3px solid #3399ff; 
+            border-radius: 10px; padding: 5px;
+            outline: none;
+            padding: 10px;
+            min-height: 40px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 
 <body>
+    <div contenteditable="true" tabindex="1" id="noteEntry" data-placeholder="Write a gratitude note here."></div>
+
     <script src="../javascripts/gratitude-window.js"></script>
 </body>
 
