@@ -68,7 +68,6 @@ async function saveNote() {
 
 async function showNotes(){
     var savedNotes = await db.noteInfo.toArray()
-    console.log('saved notes = ')
     console.log(savedNotes)
 }
 

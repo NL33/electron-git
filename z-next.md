@@ -7,7 +7,7 @@
 - show note text in console log. DONE
 - save additional aspects: including date. DONE
 - show additional aspects, including date in console log. DONE
-- print note on window under the entry box. ^^Start Here
+- print note on window under the entry box. Would be showNotes() function in gratitude-window.js ^^Start Here
 - display notes by date
 - color the date display 
 

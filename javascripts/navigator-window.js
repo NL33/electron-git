@@ -62,6 +62,14 @@ function minimizeWindow() { //currently not called--instead of closing when you 
 }
 
 async function startLoop() {
+    window.addEventListener('error', function (e) {
+       // console.log('we got an error in the taboos = ' + e);
+        if (e.target.classList.contains('chromeTabIcon')){
+           // if (!e.target.parentElement.parentElement.parentElement.classList.contains('oldApp')){
+                chromeImageError(e)
+         //   }
+        }
+    }, true);
     okToRunStartLoop = false
     document.getElementById('errorMessage').textContent = ''
     try {
@@ -70,6 +78,14 @@ async function startLoop() {
         chromeApps = 0
         ipcRenderer.send('focus-the-window', '')
         await loop()
+
+        //this is to catch errors in loading chrome tabs
+        var tabIcons = document.querySelectorAll('.chromeTabIcon')
+        for (var aa = 0; aa < tabIcons.length; aa++) {
+            var id = tabIcons[aa].id
+            document.getElementById(id).addEventListener('error', chromeImageError)
+        }
+
         console.log('***Done with loop')
         if (newWindow === 'yes') {
             document.getElementById('loadingMessage').style.display = 'none'
@@ -142,6 +158,7 @@ async function startLoop() {
                 document.getElementById('nameSearch').focus()
             }
         }
+     
         if (document.getElementById('nameSearch').textContent.length > 0) {
             searchNamesFunction()
         }
@@ -289,7 +306,6 @@ async function loop() {
         }
 
         for (var j = 0; j < activeApps.windows.length; j++) { //for each app  (j = app number):
-            console.log('now load windows')
             var windows = activeApps.windows[j]
             var appNameRaw1 = activeApps.paths[j].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
             var appName1 = appNameRaw1.split('/').at(-1)
@@ -396,20 +412,22 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
             //} else {
               //  useIcon = theIcon
            // }
-    
+
 
             var tabId = chromeWindowNumber + '+' + m
             content = `
             <div style="margin-left: 0px; display: flex; cursor: pointer" class="tabOverview thisTab keyTabHere hideWhileLoading" id="${tabId}" tabindex="1">
-              <img style="height: 26px; width: 26px; vertical-align: middle; float: left" src="${useIcon}" id="${idN}" ></img>
+              <img style="height: 26px; width: 26px; vertical-align: middle; float: left" src="${useIcon}" id="${idN}" class="chromeTabIcon"></img>
               <span style="margin-left: 10px; cursor: pointer; float: right;" class="chromeTabs windowTabName names">${thisTab.name}</span>
             </div>
       `
             /*removed: <div class="nextItems" style="margin-left: 50px; margin-top: 3px" id="${nextItemsId}"></div> */
             document.querySelector('.chromeNextItems').insertAdjacentHTML('beforeend', content) //using 'chromeNextItems' as the relevant spot to put in the chrome tabs. the alternative is using the app index that corresponds to chrome, but there have been times when that index number was not reliable. This has happened to me when using script editor / dictionary / google chrome (lookng up google chrome details in the script)
-            var iconImage = document.getElementById(idN)
-            iconImage.addEventListener('error', chromeImageError)
+            
+            var iconImage = document.getElementById(idN) //this item and next two about iconImage were previously there for error catching of tab icon. This is now done with adding the error event listener to the window itself in the startloop function. So these are likely no longer necessary.
+            //iconImage.addEventListener('error', chromeImageError)
             iconImage.tabName = thisTab.name
+
             /*
             document.getElementById(idN).onerror = () => {
                 console.log('icon error for ' + thisTab.name)
@@ -464,16 +482,20 @@ function imageError(e){
 }
 
 function chromeImageError(e){
+    //console.log('run chrome image error for ' + e.target.id)
     try {
-    console.log('in chrome image error for ' + e.target.tabName)
-    var tabNameArray = e.target.tabName.trim().split(' ')
-    var firstLetter = tabNameArray[0].charAt(0) //tabNameArray.at(-1).charAt(0)
-    var iconContent = `
-                  <span style="font-size: 14pt; width: 24px; height: 24px; border-radius: 20px; border: 2px solid #78d6a7; display: inline-block; text-align:center;  padding: 2px; line-height: 24px" id="${e.target.id}" >${firstLetter}</span>
-                `
-    var parent = e.target.parentElement
-    e.target.remove()
-    parent.insertAdjacentHTML('afterbegin', iconContent)
+        if (e.target.nextElementSibling){
+            var tabName = e.target.nextElementSibling.textContent
+            //var tabNameArray = e.target.src.replace('www', '').split('ps://')
+        //    var tabNameArray1 = e.target.tabName.trim().split(' ')
+            var firstLetter = tabName.charAt(0).toUpperCase() //tabNameArray.at(-1).charAt(0)
+            var iconContent = `
+                        <span style="font-size: 14pt; width: 24px; height: 24px; border-radius: 20px; border: 2px solid #78d6a7; display: inline-block; text-align:center;  padding: 2px; line-height: 24px" id="${e.target.id}" >${firstLetter}</span>
+                        `
+            var parent = e.target.parentElement
+            e.target.remove()
+            parent.insertAdjacentHTML('afterbegin', iconContent)
+        }
     } catch (e){
         console.log('error for chrome image issue= ' + e)
     }
