@@ -25,11 +25,37 @@
             margin-left: 10px;
             margin-right: 10px;
         }
+
+        #saveButton {
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+            /*font-size: 10pt;*/
+            border-radius: 8px;
+            padding: 5px;
+            border: 2px solid #d4eff7;
+            outline: none;
+            margin-top: 10px;
+            margin-right: 10px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 2px 0 rgba(0, 0, 0, 0.19) !important;
+            /* margin-left: 35px;
+            vertical-align: 20%;*/
+        }
+
+         #saveButton:hover {
+            background-color: #3399FF;
+            color: white;
+            border: 2px solid #3399FF;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
+        }
     </style>
 </head>
 
 <body>
     <div contenteditable="true" tabindex="1" id="noteEntry" data-placeholder="Write a gratitude note here."></div>
+    <div style="text-align: right">
+    <div id="saveButton" onclick="saveNote()">save note</div>
+    </div>
 
     <script src="../javascripts/gratitude-window.js"></script>
 </body>

@@ -1,13 +1,13 @@
 **Next**
 
 *Gratitude Notes*
-^^Start Here
+
 # steps
-- save note text
-- show note text in console log
-- save additional aspects: including date
-- show additional aspects, including date in console log
-- print note on window under the entry box
+- save note text. DONE
+- show note text in console log. DONE
+- save additional aspects: including date. DONE
+- show additional aspects, including date in console log. DONE
+- print note on window under the entry box. ^^Start Here
 - display notes by date
 - color the date display 
 
@@ -27,6 +27,7 @@
 # as of that stage, probably done with MVP for gratitude notes
 
 # other features
+- delete notes
 - search notes
 - choose a note at random to display when window opens 
 - basic markup:one star for italics. two stars for bold on entry

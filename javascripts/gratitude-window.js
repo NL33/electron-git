@@ -2,7 +2,15 @@ const { readFile, readdirSync, statSync } = require("fs");
 const Dexie = require("dexie");
 var db = new Dexie("GratitudeDatabase");
 
-async function setUpDatabase(){
+window.onload = async function () {
+    try {
+        await setUpDatabase()
+        await showNotes()
+    } catch (e) {
+        console.log('error in setting up gratitude note database = ' + e)
+    }
+}
+async function setUpDatabase() {
     try {
         /*
         db.delete().then((response)=>{
@@ -11,11 +19,104 @@ async function setUpDatabase(){
         */
         await db.version(1).stores({
             noteInfo:
-                "++id, noteText, fullDate, day, year, month, time, userName, userId, ",
+                "++id, noteText, fullDate, showDate, dayOfWeek, dayOfMonth, year, month, time, userName, userId",
         });
         return "done";
     } catch (error) {
         console.log("error in setUpDexie = " + error);
+    }
+}
+
+async function saveNote() {
+    try {
+        var text = document.getElementById('noteEntry').textContent
+        var currentDate = new Date();
+        var showDate = currentDate.toLocaleDateString('en-us', {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        })
+        var showTime = currentDate.toLocaleTimeString('en-us', {
+            timeStyle: 'short'
+        })
+        var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
+        var showFullDateTime = showDate + ' ' + cleanedTime
+        var dayOfWeek = getDayFunction(currentDate)
+        var dayOfMonth = currentDate.getDate()
+        var month = getMonthFunction(currentDate)
+        var year = currentDate.getFullYear()
+        var time = cleanedTime
+
+        db.noteInfo.add({
+            noteText: text,
+            fullDate: JSON.stringify(currentDate),
+            showDate: showFullDateTime,
+            dayOfWeek: dayOfWeek,
+            dayOfMonth: dayOfMonth,
+            month: month,
+            year: year,
+            time: time,
+            userName: '',
+            userId: ''
+        })
+        console.log('saved the note')
+    } catch (e) {
+        console.log('error in savenote function = ' + e)
+    }
+}
+
+async function showNotes(){
+    var savedNotes = await db.noteInfo.toArray()
+    console.log('saved notes = ')
+    console.log(savedNotes)
+}
+
+function getDayFunction(currentDate) {
+    var raw = currentDate.getDay()
+    if (raw === 0) {
+        return 'Sunday'
+    } else if (raw === 1) {
+        return 'Monday'
+    } else if (raw === 2) {
+        return 'Tuesday'
+    } else if (raw === 3) {
+        return 'Wednesday'
+    } else if (raw === 4) {
+        return 'Thursday'
+    } else if (raw === 5) {
+        return 'Friday'
+    } else if (raw === 6) {
+        return 'Saturday'
+    }
+}
+
+function getMonthFunction(currentDate) {
+    var raw = currentDate.getMonth()
+    if (raw === 0) {
+        return 'January'
+    } else if (raw === 1) {
+        return 'February'
+    } else if (raw === 2) {
+        return 'March'
+    } else if (raw === 3) {
+        return 'April'
+    } else if (raw === 4) {
+        return 'May'
+    } else if (raw === 5) {
+        return 'June'
+    } else if (raw === 6) {
+        return 'July'
+    } else if (raw === 7) {
+        return 'August'
+    } else if (raw === 8) {
+        return 'September'
+    } else if (raw === 9) {
+        return 'October'
+    } else if (raw === 10) {
+        return 'November'
+    } else if (raw === 11) {
+        return 'December'
     }
 }
 
@@ -65,7 +166,7 @@ fs.stat(commitTextFilePath, function (err, stat) {
                     if (err) {
                         console.log(err)
                     } else {
-                       
+
                         doTheCommit(text)
                     }
                 })
