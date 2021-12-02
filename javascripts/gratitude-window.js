@@ -17,9 +17,14 @@ async function setUpDatabase() {
           console.log('db deleted')
         })
         */
-        await db.version(1).stores({
+        await db.version(2).stores({
             noteInfo:
                 "++id, noteText, fullDate, showDate, dayOfWeek, dayOfMonth, year, month, time, userName, userId",
+            yearInfo:
+                "++id, year, userName, userId, noteIds",
+            monthInfo:
+                "++id, month, year, userName, userId, noteIds"
+            
         });
         return "done";
     } catch (error) {
@@ -42,13 +47,13 @@ async function saveNote() {
         })
         var cleanedTime = displayTime.replace("AM", "am").replace("PM", "pm")
         var showDate = displayDate + ' ' + cleanedTime
-        var dayOfWeek = getDayFunction(currentDate)
-        var dayOfMonth = currentDate.getDate()
-        var month = getMonthFunction(currentDate)
-        var year = currentDate.getFullYear()
+        var dayOfWeek = getDayFunction(currentDate).toString()
+        var dayOfMonth = currentDate.getDate().toString()
+        var month = getMonthFunction(currentDate).toString()
+        var year = currentDate.getFullYear().toString()
         var time = cleanedTime
 
-        db.noteInfo.add({
+        await db.noteInfo.add({
             noteText: noteText,
             fullDate: JSON.stringify(currentDate),
             showDate: showDate,
@@ -59,7 +64,34 @@ async function saveNote() {
             time: time,
             userName: '',
             userId: ''
+        }).then(async noteId =>{
+            var existingYear = await db.yearInfo.where('year').equalsIgnoreCase(year).first()
+            if (existingYear.length) {
+                console.log(1)
+                var yearId = existingYear.id 
+                console.log(2)
+                console.log('existing id = ' + yearId + '; note ids = ' + existingYear.noteIds)
+                var noteArray = JSON.parse(existingYear.noteIds)
+                console.log(3)
+                var updatedArray = noteArray.push(noteId)
+                await db.yearInfo.put({id: yearId, noteIds: JSON.stringify(updatedArray)})
+                console.log('year exists')
+            } else {
+                var noteIds = [noteId]
+                db.yearInfo.add({
+                    year: year,
+                    userName: '',
+                    userId: '',
+                    noteIds: JSON.stringify(noteIds)
+                })
+                console.log('year doesnt exist yet')
+            }
         })
+       
+       var existingYear = await db.yearInfo.where('year').equalsIgnoreCase(year)
+
+       console.log('existing year = ' + existingYear)
+
         console.log('saved the note')
         var content = `
           <div class="noteOverview">
@@ -74,6 +106,14 @@ async function saveNote() {
 }
 
 async function showNotes(){
+    var existingYear = await db.yearInfo.where('year').equalsIgnoreCase('2021').toArray()
+    if (existingYear.length){
+        console.log('year exists')
+    } else {
+        console.log('year doesnt exist yet')
+    }
+
+    console.log('existing year = ' + existingYear)
     var savedNotes = await db.noteInfo.toArray()
     console.log(savedNotes)
     for (var i = 0; i<savedNotes.length; i++){

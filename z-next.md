@@ -11,7 +11,7 @@
 - display notes by date. DONE.
 - color the date display. Done
 
-- get all months that have been entered--and retrieve them in console log
+- get all months that have been entered--and retrieve them in console log. START HERE
 - show all months where entry made--start by showing on left side
 - click on month and show all notes from that month
 - add "view more notes" button
@@ -29,6 +29,8 @@
 # other features
 - delete notes
 - search notes
+- add some kind of backup system on the computer--in case the database is accidentally deleted (for example, by a flawed update)
+- if dexie structure is: noteInfo, yearInfo, and monthInfo: then if you delete a note, it's possible that there could be no more notes in the year or month. So, you'd want to remove the year and month from the yearInfo and monthInfo, respectively. Possibly: do the deletion at the point of user trying to load notes from that time and nothing showing up. Only THEN delete. 
 - choose a note at random to display when window opens 
 - basic markup:one star for italics. two stars for bold on entry
 - edit note
