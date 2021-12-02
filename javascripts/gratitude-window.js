@@ -29,19 +29,19 @@ async function setUpDatabase() {
 
 async function saveNote() {
     try {
-        var text = document.getElementById('noteEntry').textContent
+        var noteText = document.getElementById('noteEntry').textContent
         var currentDate = new Date();
-        var showDate = currentDate.toLocaleDateString('en-us', {
+        var displayDate = currentDate.toLocaleDateString('en-us', {
             weekday: 'short',
             year: 'numeric',
             month: 'long',
             day: 'numeric'
         })
-        var showTime = currentDate.toLocaleTimeString('en-us', {
+        var displayTime = currentDate.toLocaleTimeString('en-us', {
             timeStyle: 'short'
         })
-        var cleanedTime = showTime.replace("AM", "am").replace("PM", "pm")
-        var showFullDateTime = showDate + ' ' + cleanedTime
+        var cleanedTime = displayTime.replace("AM", "am").replace("PM", "pm")
+        var showDate = displayDate + ' ' + cleanedTime
         var dayOfWeek = getDayFunction(currentDate)
         var dayOfMonth = currentDate.getDate()
         var month = getMonthFunction(currentDate)
@@ -49,9 +49,9 @@ async function saveNote() {
         var time = cleanedTime
 
         db.noteInfo.add({
-            noteText: text,
+            noteText: noteText,
             fullDate: JSON.stringify(currentDate),
-            showDate: showFullDateTime,
+            showDate: showDate,
             dayOfWeek: dayOfWeek,
             dayOfMonth: dayOfMonth,
             month: month,
@@ -61,6 +61,13 @@ async function saveNote() {
             userId: ''
         })
         console.log('saved the note')
+        var content = `
+          <div class="noteOverview">
+            <div class="showDate">${showDate}</div>
+            <div class="noteText">${noteText}</div>
+          </div>
+        `
+        document.getElementById('showCurrentNotes').insertAdjacentHTML('beforeend', content)
     } catch (e) {
         console.log('error in savenote function = ' + e)
     }
@@ -69,6 +76,17 @@ async function saveNote() {
 async function showNotes(){
     var savedNotes = await db.noteInfo.toArray()
     console.log(savedNotes)
+    for (var i = 0; i<savedNotes.length; i++){
+        var note = savedNotes[i]
+        var content = `
+          <div class="noteOverview">
+            <div class="showDate">${note.showDate}</div>
+            <div class="noteText">${note.noteText}</div>
+          </div>
+        `
+        document.getElementById('showCurrentNotes').insertAdjacentHTML('beforeend', content)
+    }
+  
 }
 
 function getDayFunction(currentDate) {

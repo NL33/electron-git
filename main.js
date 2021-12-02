@@ -547,6 +547,8 @@ function openGratitudeNotes(){
        // var width = theDisplay.bounds.width
         //var height = theDisplay.bounds.height
         gratitudeWindow = new BrowserWindow({
+            width: 900,
+            height: 615,
          //   width: 610,
            // height: height,
           //  x: width - 611,

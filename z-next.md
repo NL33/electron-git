@@ -7,9 +7,9 @@
 - show note text in console log. DONE
 - save additional aspects: including date. DONE
 - show additional aspects, including date in console log. DONE
-- print note on window under the entry box. Would be showNotes() function in gratitude-window.js ^^Start Here
-- display notes by date
-- color the date display 
+- print note on window under the entry box. Would be showNotes() function in gratitude-window.js. DONE.
+- display notes by date. DONE.
+- color the date display. Done
 
 - get all months that have been entered--and retrieve them in console log
 - show all months where entry made--start by showing on left side
