@@ -11,7 +11,7 @@
 - display notes by date. DONE.
 - color the date display. Done
 
-- get all months that have been entered--and retrieve them in console log. START HERE
+- get all months that have been entered--and retrieve them in console log. START HERE: go to line 74 in grat window.js in order to get the noteId into the year's noteIdarray. Why do that? should allow flexibility later for showing manipulating notes
 - show all months where entry made--start by showing on left side
 - click on month and show all notes from that month
 - add "view more notes" button
@@ -23,6 +23,8 @@
 
 - add keyboard shortcut for gratitude notes
 - add main menu 
+
+- only save note if more than 3 characters
 
 # as of that stage, probably done with MVP for gratitude notes
 

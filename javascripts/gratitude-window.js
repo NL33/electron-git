@@ -66,14 +66,17 @@ async function saveNote() {
             userId: ''
         }).then(async noteId =>{
             var existingYear = await db.yearInfo.where('year').equalsIgnoreCase(year).first()
-            if (existingYear.length) {
+           // console.log(existingYear)
+            if (Object.keys(existingYear).length) {
                 console.log(1)
                 var yearId = existingYear.id 
                 console.log(2)
                 console.log('existing id = ' + yearId + '; note ids = ' + existingYear.noteIds)
                 var noteArray = JSON.parse(existingYear.noteIds)
-                console.log(3)
+                console.log(noteArray)
                 var updatedArray = noteArray.push(noteId)
+                /*****START HERE: TRYING TO PUSH NOTEID Into noteId Array */
+                console.log('updated array = ' + updatedArray)
                 await db.yearInfo.put({id: yearId, noteIds: JSON.stringify(updatedArray)})
                 console.log('year exists')
             } else {
@@ -108,12 +111,13 @@ async function saveNote() {
 async function showNotes(){
     var existingYear = await db.yearInfo.where('year').equalsIgnoreCase('2021').toArray()
     if (existingYear.length){
-        console.log('year exists')
+       // console.log('year exists')
+        //console.log(existingYear)
     } else {
-        console.log('year doesnt exist yet')
+        //console.log('year doesnt exist yet')
     }
 
-    console.log('existing year = ' + existingYear)
+    console.log(existingYear)
     var savedNotes = await db.noteInfo.toArray()
     console.log(savedNotes)
     for (var i = 0; i<savedNotes.length; i++){
