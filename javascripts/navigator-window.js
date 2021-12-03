@@ -236,13 +236,13 @@ async function loop() {
                 var appNameArray = appName.trim().split(' ')
                 var firstLetter = appNameArray.at(-1).charAt(0)
                 var iconContent = `
-                  <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px" id="${iconId}">${firstLetter}</span>
+                  <span class="appIconSub" id="${iconId}">${firstLetter}</span>
                 `
             } else if (icon.indexOf('undefined') > -1) {
                 var appNameArray = appName.trim().split(' ')
                 var firstLetter = appNameArray.at(-1).charAt(0)
                 var iconContent = `
-                  <span style="font-size: 14pt; width: 32px; height: 32px; border-radius: 12px; border: 2px solid #3399ff; display: inline-block; text-align: center; line-height: 32px" id="${iconId}">${firstLetter}</span>
+                  <span class="appIconSub"  id="${iconId}">${firstLetter}</span>
                 `
             } else {
                 var iconContent = `
@@ -490,7 +490,7 @@ function chromeImageError(e){
         //    var tabNameArray1 = e.target.tabName.trim().split(' ')
             var firstLetter = tabName.charAt(0).toUpperCase() //tabNameArray.at(-1).charAt(0)
             var iconContent = `
-                        <span style="font-size: 14pt; width: 24px; height: 24px; border-radius: 20px; border: 2px solid #78d6a7; display: inline-block; text-align:center;  padding: 2px; line-height: 24px" id="${e.target.id}" >${firstLetter}</span>
+                        <span style="" class="chromeIconSub" id="${e.target.id}" >${firstLetter}</span>
                         `
             var parent = e.target.parentElement
             e.target.remove()

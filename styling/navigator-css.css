@@ -58,6 +58,32 @@ ul li {
   padding-left: 37px !important
 }
 
+.appIconSub {
+  font-size: 14pt; 
+  width: 30px; 
+  height: 30px; 
+  border-radius: 12px; 
+  border: 2px solid #3399ff; 
+  display: inline-block; 
+  text-align: center; 
+  line-height: 32px;
+   box-shadow: 0 3px 5px 0 rgb(0 0 0 / 20%), 0 2px 3px 0 rgb(0 0 0 / 19%) !important;
+}
+
+.chromeIconSub {
+  font-size: 14pt; 
+  width: 24px; 
+  height: 24px; 
+  border-radius: 20px; 
+  border: 2px solid #78d6a7; 
+  display: inline-block; 
+  text-align:center;  
+  padding: 2px; 
+  line-height: 24px;
+  box-shadow: 0 3px 5px 0 rgb(0 0 0 / 20%), 0 2px 3px 0 rgb(0 0 0 / 19%) !important;
+
+}
+
 .nonChromeNextItems {
   margin-left: 50px
 }

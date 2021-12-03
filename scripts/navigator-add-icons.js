@@ -21,7 +21,7 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
                     continue;
                 } else {
                     appsInfo.icons[i] = 'undefined'
-                    continue;
+                    /*continue;*/
                     /*commented out the bottom bc in production its not working*/
                 promises.push(
                     read(`${pathZ1}/Contents/Info.plist`)
