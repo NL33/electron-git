@@ -51,13 +51,16 @@ module.exports = async function (appsInfo, iconsFolder1 = "icons") {
                                 } else if (appName === 'Xcode') {
                                     var iconNameRaw = 'Xcode'
                                     iconName = iconNameRaw.replace('.icns', '') + '.icns'
-                                } else if (appName = "iMovie"){
+                                } else if (appName === "iMovie"){
                                     var iconNameRaw = 'iMovieAppIcon'
                                     iconName = iconNameRaw.replace('.icns', '') + '.icns' 
-                                } else if (appName = "OneDrive"){
+                                } else if (appName === "OneDrive"){
                                     var iconNameRaw = 'OneDrive'
                                     iconName = iconNameRaw.replace('.icns', '') + '.icns'
-                                }  else {
+                            } else if (appName === "Slack") {
+                                var iconNameRaw = 'electron'
+                                iconName = iconNameRaw.replace('.icns', '') + '.icns'
+                            } else {
                                     console.log('use another icon')
                                     iconName = 'AppIcon.icns'
                                 }

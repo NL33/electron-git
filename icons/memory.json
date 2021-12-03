@@ -31,5 +31,8 @@
   "Macintosh HD:Applications:Microsoft PowerPoint.app:": "icons/Macintosh HD:Applications:Microsoft PowerPoint.app:.png",
   "Macintosh HD:Applications:QuickTime Player.app:": "icons/Macintosh HD:Applications:QuickTime Player.app:.png",
   "Macintosh HD:Users:sean:Desktop:companycd:electron-git:node_modules:electron:dist:Electron.app:": "icons/Macintosh HD:Users:sean:Desktop:companycd:electron-git:node_modules:electron:dist:Electron.app:.png",
-  "Macintosh HD:Users:sean:Applications:Chrome Apps.localized:YouTube Music.app:": "icons/Macintosh HD:Users:sean:Applications:Chrome Apps.localized:YouTube Music.app:.png"
+  "Macintosh HD:Users:sean:Applications:Chrome Apps.localized:YouTube Music.app:": "icons/Macintosh HD:Users:sean:Applications:Chrome Apps.localized:YouTube Music.app:.png",
+  "Macintosh HD:System:Applications:Utilities:Digital Color Meter.app:": "icons/Macintosh HD:System:Applications:Utilities:Digital Color Meter.app:.png",
+  "Macintosh HD:System:Applications:App Store.app:": "icons/Macintosh HD:System:Applications:App Store.app:.png",
+  "Macintosh HD:Applications:Slack.app:": "icons/Macintosh HD:Applications:Slack.app:.png"
 }

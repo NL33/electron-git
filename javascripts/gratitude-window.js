@@ -23,7 +23,7 @@ async function setUpDatabase() {
             yearInfo:
                 "++id, year, userName, userId, noteIds",
             monthInfo:
-                "++id, month, year, userName, userId, noteIds"
+                "++id, month, monthNumber, year, userName, userId, noteIds"
             
         });
         return "done";

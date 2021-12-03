@@ -11,9 +11,16 @@
 - display notes by date. DONE.
 - color the date display. Done
 
-- get all months that have been entered--and retrieve them in console log. START HERE: go to line 74 in grat window.js in order to get the noteId into the year's noteIdarray. Why do that? should allow flexibility later for showing manipulating notes
-- show all months where entry made--start by showing on left side
+- get all months that have been entered--and retrieve them in console log. DONE.
+- show all months where entry made--start by showing on left side. START HERE.
+    -create month entry when you create note entry, just like year for now.
+    -retrieve one array for whole month schema (faster than getting different arrays per year)
+    -sort array by monthNumber
+    -then, when showing month, find the year that corresponds to the month entry's year, and load content in there
+        -
 - click on month and show all notes from that month
+- select month to see notes from that month
+- select year to see notes from that year 
 - add "view more notes" button
 - hide month view
 - show month view when click view more notes

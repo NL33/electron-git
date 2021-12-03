@@ -1,3 +1,10 @@
+body {
+  //background-color: #f3eef0;
+ // background: linear-gradient(to right,#f3eef0, white, white, white)
+}
+
+
+
 [contenteditable]:empty:before {
   content: attr(data-placeholder);
   color: #778899;
