@@ -5,10 +5,10 @@ var db = new Dexie("GratitudeDatabase");
 window.onload = async function () {
     try {
         await setUpDatabase()
-        await showNotes()
     } catch (e) {
         console.log('error in setting up gratitude note database = ' + e)
     }
+    await showNotes()
 }
 async function setUpDatabase() {
     try {
@@ -51,7 +51,7 @@ async function saveNote() {
         var dayOfMonth = currentDate.getDate().toString()
         var month = getMonthFunction(currentDate).toString()
         var year = currentDate.getFullYear().toString()
-        var time = cleanedTime
+        var time = cleanedTime.toString()
 
         await db.noteInfo.add({
             noteText: noteText,
@@ -65,20 +65,23 @@ async function saveNote() {
             userName: '',
             userId: ''
         }).then(async noteId =>{
-            var existingYear = await db.yearInfo.where('year').equalsIgnoreCase(year).first()
-           // console.log(existingYear)
-            if (Object.keys(existingYear).length) {
-                console.log(1)
-                var yearId = existingYear.id 
-                console.log(2)
-                console.log('existing id = ' + yearId + '; note ids = ' + existingYear.noteIds)
-                var noteArray = JSON.parse(existingYear.noteIds)
-                console.log(noteArray)
-                var updatedArray = noteArray.push(noteId)
-                /*****START HERE: TRYING TO PUSH NOTEID Into noteId Array */
-                console.log('updated array = ' + updatedArray)
-                await db.yearInfo.put({id: yearId, noteIds: JSON.stringify(updatedArray)})
-                console.log('year exists')
+            console.log(1)
+            console.log(year)
+            var existingYear = await db.yearInfo.where('year').equals(year).first()
+            console.log(2)
+            console.log(JSON.stringify(existingYear))
+            if ((existingYear !== undefined) && (Object.keys(existingYear).length)) {
+                var noteIdsRaw = existingYear.noteIds
+                var noteIds = JSON.parse(noteIdsRaw)
+                var yearId = existingYear.id
+                console.log(noteIdsRaw)
+                noteIds.push(noteId)
+                console.log(noteIds)
+                var updatedArray = JSON.stringify(noteIds)
+                console.log(updatedArray)
+                await db.yearInfo.where('id').equals(yearId).modify({noteIds:JSON.stringify(updatedArray)}).then((result)=>{
+                    console.log('updated year. = ' + result)
+                })
             } else {
                 var noteIds = [noteId]
                 db.yearInfo.add({
@@ -86,6 +89,8 @@ async function saveNote() {
                     userName: '',
                     userId: '',
                     noteIds: JSON.stringify(noteIds)
+                }).then((result)=>{
+                    console.log('saved the year. Result = ' + result)
                 })
                 console.log('year doesnt exist yet')
             }
@@ -109,17 +114,22 @@ async function saveNote() {
 }
 
 async function showNotes(){
-    var existingYear = await db.yearInfo.where('year').equalsIgnoreCase('2021').toArray()
-    if (existingYear.length){
-       // console.log('year exists')
-        //console.log(existingYear)
-    } else {
-        //console.log('year doesnt exist yet')
-    }
-
+    //await db.yearInfo.where('id').below(20).delete()
+    var existingYear = await db.yearInfo.where('year').equals('2021').first()
     console.log(existingYear)
+    if (existingYear !== undefined) {
+        console.log('existing year = ')
+        console.log(existingYear)
+        var noteIdsRaw = existingYear.noteIds
+        var noteIds = JSON.parse(noteIdsRaw)
+        console.log('noteids raw = ' )
+        console.log(noteIdsRaw)
+        console.log('parsed = ')
+        console.log(noteIds)
+    } else {
+        console.log('year doesnt exist yet')
+    }
     var savedNotes = await db.noteInfo.toArray()
-    console.log(savedNotes)
     for (var i = 0; i<savedNotes.length; i++){
         var note = savedNotes[i]
         var content = `
