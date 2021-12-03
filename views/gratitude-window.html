@@ -25,6 +25,7 @@
         }
 
         #noteEntry {
+            background-color: white;
             border: 3px solid #3399ff;
             border-radius: 10px;
             padding: 5px;
@@ -67,12 +68,14 @@
             border-radius: 10px;
             padding: 5px;
             padding-top: 10px;
+             background-color: white;
         }
 
         .noteOverview {
             margin-bottom: 5px;
             margin-right: 10px;
             padding: 10px;
+           
         }
 
         .showDate {
@@ -98,13 +101,22 @@
         .column2 {
             flex: 80%
         }
+
+        #showDateResults {
+           padding-top: 5px;
+        }
+
+        .showYear {
+            font-size: 14pt;
+            text-align: center;
+        }
     </style>
 </head>
 
-<body>
+<body style="background-color:  #76bbef">
     <div class="overviewDiv">
         <div class="column1" style="border-right: 3px solid #3399ff;">
-                <div>Hello there</div>
+                <div id="showDateResults"></div>
         </div>
         <div class="column2">
         <div id="noteEntryOverview">

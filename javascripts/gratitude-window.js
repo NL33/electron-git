@@ -114,21 +114,7 @@ async function saveNote() {
 }
 
 async function showNotes(){
-    //await db.yearInfo.where('id').below(20).delete()
-    var existingYear = await db.yearInfo.where('year').equals('2021').first()
-    console.log(existingYear)
-    if (existingYear !== undefined) {
-        console.log('existing year = ')
-        console.log(existingYear)
-        var noteIdsRaw = existingYear.noteIds
-        var noteIds = JSON.parse(noteIdsRaw)
-        console.log('noteids raw = ' )
-        console.log(noteIdsRaw)
-        console.log('parsed = ')
-        console.log(noteIds)
-    } else {
-        console.log('year doesnt exist yet')
-    }
+try {
     var savedNotes = await db.noteInfo.toArray()
     for (var i = 0; i<savedNotes.length; i++){
         var note = savedNotes[i]
@@ -140,6 +126,23 @@ async function showNotes(){
         `
         document.getElementById('showCurrentNotes').insertAdjacentHTML('beforeend', content)
     }
+    var years = await db.yearInfo.toArray()
+    for (var j = 0; j < years.length; j++) {
+        var year = years[j]
+        if (year.year.length){
+            var id = 'yearId=' + year
+            var content = `
+            <div class="yearOverview">
+                <div class="showYear" id="${id}">${year.year}</div>
+                <div class="monthsUnderYear"></div>
+            </div>
+            `
+            document.getElementById('showDateResults').insertAdjacentHTML('beforeend', content)
+        }
+    }
+} catch(e){
+    console.log('error in retrieving notes = ' + e)
+}
   
 }
 
