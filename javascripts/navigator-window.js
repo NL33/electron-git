@@ -230,7 +230,7 @@ async function loop() {
             if (appName.includes("Race to Saturn")){
                 var source = '../assets/rts-iconr.png'
                 var iconContent = `
-                     <img style="height: 35px; width: 35px; vertical-align: middle" id="${iconId}" notChromeTab" src="${source}"></  img>
+                     <img style="height: 37px; width: 37px; vertical-align: middle" id="${iconId}" notChromeTab" src="${source}"></  img>
                 `
             } else if (!icon){ 
                 var appNameArray = appName.trim().split(' ')
@@ -246,7 +246,7 @@ async function loop() {
                 `
             } else {
                 var iconContent = `
-            <img style="height: 35px; width: 35px; vertical-align: middle" id="${iconId}" notChromeTab" src="${icon}"></img>
+            <img style="height: 37px; width: 37px; vertical-align: middle" id="${iconId}" notChromeTab" src="${icon}"></img>
             `
              }
 
