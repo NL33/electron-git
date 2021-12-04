@@ -6,8 +6,14 @@
 
 ### hide navigator window after select item to focus on
 -Done.
--navigator window now will hide itself after 1) you select an item to focus on (app, window, or chrome tab), and 2) move the mouse off of the navigator window.
--to hide the window wihtout using the mouse--in the case you are using keyboard keys to select what to focus on, you can still close the navigator with command+2
+-navigator window now will hide itself after you select an item to focus on (app, window, or chrome tab)
+-I find this makes the experience of navigating faster and more clear.
+
+### clear search box, and search results, each the nav window gets hidden
+-Done.
+-previously, if you did a search, and then closed the nav window, when the nav window appeared again, it would still have the search query in the search box, and the related results. 
+-I changed this, because I found that after I did a search and selected the item I wanted from the search, I was done with that search, and the next time the nav window opened I was just as likely to search for something else. 
+- So clearing the search each time automatically saves me the step of having to clear the search myself.
 
 ### touch cursor to right side of screen shows the nav window, even if nav window is already open (but in the background)
 -previously, if opened nav window, and selected another window, moving the nav window behind that window, then the nav window is in the background behind the focused window, and moving mouse to right side of screen would not show the nav window.

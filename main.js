@@ -83,7 +83,7 @@ function keyBoardShortCut() {
     })
 
     globalShortcut.register('CommandOrControl+2', () => {
-        hideNavWindow()   
+        hideNavWindowKeycodeCalled()
     })
 
     globalShortcut.register('CommandOrControl+3', () => {
@@ -143,13 +143,20 @@ ipcMain.on('focus-the-window', (event, target) => {
 })
 
 ipcMain.on('minimize-nav-window', (event, target)=>{
-    hideNavWindow()
+    hideNavWindowRendererCalled()
 })
 
-function hideNavWindow(){
+function hideNavWindowRendererCalled(){
     if (navWindow !== null){
         navWindow.hide()
-        //navWindow.webContents.send('nav-window-hidden', '')
+    }
+    okToLoadNavWindow = true
+}
+
+function hideNavWindowKeycodeCalled() {
+    if (navWindow !== null) {
+        navWindow.hide()
+        navWindow.webContents.send('nav-window-hidden', '') //if keypress called to hide nav window, then want to tell renderer when done, so that it can clear search results. This is not necessary if the renderer itself called the hide nav window, because the renderer already cleared the search results when it did that.
     }
     okToLoadNavWindow = true
 }

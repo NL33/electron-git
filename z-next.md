@@ -36,6 +36,7 @@
 # as of that stage, probably done with MVP for gratitude notes
 
 # other features
+- tags. could call grat notes = free notes. And they are notes that you record to get elevated/feel free/get in a mindset of freedom. There could be a tags schema for listing out the tags. And then each note would have tags (in the schema, a *tags connotes there would be more than 1). My tags would be: gratitude, coincidences, electric ideas.
 - delete notes
 - search notes
 - add some kind of backup system on the computer--in case the database is accidentally deleted (for example, by a flawed update)
@@ -78,6 +79,13 @@
             - colors.
 
 *General*
+# bug:
+nav window was opened
+no chrome window present
+I hit "toggle chrome position"
+the apps doubled up.
+stayed that way until new update
+
 # Javascript from Apple Events in Chrome
 
 - Right now, searching chrome tabs is turned off, as is the favicon. because of issue of whether use has to turn on javascript from Apple Events. If this changes, change the following:
@@ -87,6 +95,29 @@
 - clear out icons/memory.json.  and any icons built up in the icons folder. Unless want to have a few there for faster load.
 
 - Allow Javascript from Apple Events is an option in the view/developer menu item in Chrome. It needs to be turned on for code that includes "execute" javascript to work. In the prior app version, that code occurs when searching chrome tabs, and getting chrome icons
+
+# navigator: when search, and hit return, open the first item in the search results
+-replicate spotlight ease of searching.
+-note: what about when search for a window, and the window shows, but so does the app (because current code shows the app for any returned window). Right now, if select first item, it will select the app. But should select the window. Correct.
+-how correct? either way, when hit return in search, select the first window if the window, and not the app, are in the results.
+
+maybe: if searching for window, show the app, but with opacity. and the return selects thefirst window.
+
+# clear search when close window
+
+a little slow to do that. culprit seems to be clearing the search term takes too long. 
+# through navigator, open any app.
+- this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:
+        -right click to save app to navigator. that app name gets saved in local storage, along with icon. when open navigator, create array based on local storage. then load the apps, and check if match in local storage--if match, then remove from the array to show. any remaining app names in array get shown in the navigator. click on those names, and call macFocusAppName, which just requires the app name. 
+- replicate spotlight search functionality. How?
+- get the names of the directories in the applications folders (/Applications). If not sure, see how I would do it in project window if focusing on applications directory.
+- those names are the names of the apps
+- when open nav window the first time, save names of those apps as a hidden div
+- update that list when open again  
+    -to see if want to run the update function, just get the number of apps in that folder, and see if the number of apps have changed. then if they have, run the function.
+- put those app names in hidden divs
+- then, when search in the box, search these names--manipulating the divs in the same way you do right now for the open apps. if there is a hit, show that after the open apps. 
+- if select that item, then open that app.
 
 # Error in search function
 

@@ -2,7 +2,7 @@ const { exec, execFile, spawn, spawnSync } = require('child_process');
 const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTab, macCloseWindow, macCloseApp, macCloseChromeTab } = require('../scripts/navigator-jxa');
 const { searchKeyDown, keyDownFunction } = require('../scripts/navigator-keyboard-functions')
 const addIcons = require('../scripts/navigator-add-icons');
-const { ipcRenderer } = require('electron')
+const { ipcRenderer, ipcMain } = require('electron')
 menuFunction()
 var activeApps = []
 var theTabs = ''
@@ -11,7 +11,7 @@ var columnChoice
 var chromePosition = 'n/a'
 var newWindow = 'yes'
 var chromeApps
-var hoverAwayVar = false
+var hideNavWindowVar = false
 var runIconError
 var okToRunStartLoop = true
 var refreshNumber = 0  //this number is added to the id of next items, so windows are added to the right apps (the apps that are new on that refresh)
@@ -28,21 +28,36 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 startLoop()
 
 window.onload = function(){
-    document.getElementById('nameSearch').addEventListener('keydown', searchKeyDown)
+    document.getElementById('nameSearch').focus()//addEventListener('keydown', searchKeyDown)
 }
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
-function hoverAway() {
-    console.log('call hover away')
+async function hideNavWindow() {
+    ipcRenderer.send('minimize-nav-window', '')
+    document.getElementById('nameSearch').textContent = '' //NOTE: this is a slower process--so it makes it appear there is a delay in clearing the search results
+    var hiddenDivs = document.querySelectorAll('.hideDiv')
+    for (var c = 0; c < hiddenDivs.length; c++) {
+        hiddenDivs[c].classList.remove('hideDiv')
+        console.log('remove = ' + c)
+    }
+    /* NOTE: This code below is from when the flow was: 1. select app/window/tab to focus on and 2. only when THEN move mouse off nav window, hide the nav window. You wouldneed to set hideNavWindowVar to true in the focus app/window/tab functions. This worked well. Issue was that if you were not using your mouse, and just using keys, this would not be called. So you would select an item to focus on, and nav window would stay.
     window.addEventListener('mouseout', goFunction = function (evt) {
-        if (hoverAwayVar === true) {
+        if (hideNavWindowVar === true) {
             if (evt.toElement == null && evt.relatedTarget == null) {
                 console.log('hover away now')
-                hoverAwayVar = false
+                hideNavWindowVar = false
+                document.getElementById('nameSearch').textContent = ''
+                var hiddenDivs = document.querySelectorAll('.hideDiv')
+                for (var c = 0; c < hiddenDivs.length; c++) {
+                    console.log('remove hidden divs')
+                    hiddenDivs[c].classList.remove('hideDiv')
+                }
                 ipcRenderer.send('minimize-nav-window', '')
                 window.removeEventListener('mouseout', goFunction)
+               
             }
         }
     });
+    */
 }
 
 /*****LOAD APPS, WINDOWS, AND TABS ***************/
@@ -50,12 +65,22 @@ function hoverAway() {
 var activeElementText = ''
 
 ipcRenderer.on('run-loop-function', (event, arg) => {
+    document.getElementById('nameSearch').focus() //goal here is that whenever the navigator window goes from hidden to in view, the search box is focused
    if (okToRunStartLoop){
         startLoop()
    }
 })
 
-
+ipcRenderer.on('nav-window-hidden', (event, arg) => {
+    console.log('call clear search from keypress')
+    document.getElementById('nameSearch').textContent = ''
+    var hiddenDivs = document.querySelectorAll('.hideDiv')
+    for (var c = 0; c < hiddenDivs.length; c++) {
+        console.log('remove hidden divs from nav window hidden')
+        hiddenDivs[c].classList.remove('hideDiv')
+    }
+    console.log('done with removing search')
+})
 
 function minimizeWindow() { //currently not called--instead of closing when you focus on a window, now close either: 1. when navigate off window or 2. when do keycode to call it up
     ipcRenderer.send('minimize-nav-window', '')
@@ -74,7 +99,7 @@ async function startLoop() {
     document.getElementById('errorMessage').textContent = ''
     try {
         console.log('*****run start loop')
-        hoverAwayVar = false
+        hideNavWindowVar = false
         chromeApps = 0
         ipcRenderer.send('focus-the-window', '')
         await loop()
@@ -172,6 +197,7 @@ async function startLoop() {
         document.getElementById('errorMessage').textContent = theMessage
     }
 }
+
 
 /***************** LOOP FUNCTION ***************************** */
 async function loop() {
@@ -384,7 +410,6 @@ async function loop() {
 /****************** END LOOP FUNCTION ************************************ */
 
 async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, windowName) {
-    console.log('getting info for Google Chrome')
     try {
         chromeFunctionRun++
         var chromeWindowNumber = chromeFunctionRun - 1
@@ -556,13 +581,13 @@ function changeChromePosition() {
 async function focusApp(e) {
     var unixId = e.target.unixId
     var name = e.target.name
-    hoverAwayVar = true
-    hoverAway()
+    hideNavWindowVar = true
+    hideNavWindow()
     macFocusAppName(unixId, name).then((result, error) => {
         if (result) {
             console.log(result)
-            //hoverAwayVar = true. Removed hover function for apps, because it was closing window when mouse moved at all after focusing on an app. And to see if its better to not automatically close nav window after focus then hover
-            //hoverAway()
+            //hideNavWindowVar = true. Removed hover function for apps, because it was closing window when mouse moved at all after focusing on an app. And to see if its better to not automatically close nav window after focus then hover
+            //hideNavWindow()
         } else {
             console.log('error = ' + error)
         }
@@ -575,13 +600,14 @@ async function focusApp(e) {
 
 }
 
-function focusWindow(e) {
+async function focusWindow(e) {
+   // return 'done'
     var unixId = e.target.unixId
     var windowName = e.target.name
     var windowNumber = e.target.number
     var appName = e.target.appName.trim()
-    hoverAwayVar = true
-    hoverAway()
+    hideNavWindowVar = true
+    hideNavWindow()
     macFocusWindow(unixId, windowName, windowNumber, appName).then((result, error) => {
         if (result) {
             console.log(result)
@@ -600,8 +626,8 @@ function focusChromeTab(e) {
     var unixId = e.target.unixId
     var theChromeWindowId = e.target.chromeWindowId
     var chromeTabName = e.target.chromeTabName
-    hoverAwayVar = true
-    hoverAway()
+    hideNavWindowVar = true
+    hideNavWindow()
     macFocusChromeTab(unixId, theChromeWindowId, chromeTabName).then((result, error) => {
         if (result) {
             console.log('chrome tab result = ' + result)
@@ -752,7 +778,6 @@ function searchNamesFunction() {
      //   var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
     //    document.getElementById('errorMessage').textContent = theMessage /*Turned off because seems to happen every time, but without consequence*/
     }
-
 }
 
 /**END SEARCH NAMES** */
