@@ -32,13 +32,16 @@ window.onload = function(){
 }
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 async function hideNavWindow() {
-    ipcRenderer.send('minimize-nav-window', '')
-    document.getElementById('nameSearch').textContent = '' //NOTE: this is a slower process--so it makes it appear there is a delay in clearing the search results
+    //clear search
+    document.getElementById('nameSearch').textContent = '' //NOTE: this is a slower process--so it makes it appear there is a delay in clearing the search results. Seems to (possibly) only makea difference when you call for the nav window while another process--like a prior window that has been called--is loading. If the prior called window is done loading, then (possibly) the clearing out process looks smooth
     var hiddenDivs = document.querySelectorAll('.hideDiv')
     for (var c = 0; c < hiddenDivs.length; c++) {
         hiddenDivs[c].classList.remove('hideDiv')
-        console.log('remove = ' + c)
     }
+   // setTimeout(() => {
+        ipcRenderer.send('minimize-nav-window', '')
+    //}, 1);
+    
     /* NOTE: This code below is from when the flow was: 1. select app/window/tab to focus on and 2. only when THEN move mouse off nav window, hide the nav window. You wouldneed to set hideNavWindowVar to true in the focus app/window/tab functions. This worked well. Issue was that if you were not using your mouse, and just using keys, this would not be called. So you would select an item to focus on, and nav window would stay.
     window.addEventListener('mouseout', goFunction = function (evt) {
         if (hideNavWindowVar === true) {
@@ -71,15 +74,13 @@ ipcRenderer.on('run-loop-function', (event, arg) => {
    }
 })
 
-ipcRenderer.on('nav-window-hidden', (event, arg) => {
-    console.log('call clear search from keypress')
+ipcRenderer.on('hide-nav-window', (event, arg) => {
+    //clear search
     document.getElementById('nameSearch').textContent = ''
     var hiddenDivs = document.querySelectorAll('.hideDiv')
     for (var c = 0; c < hiddenDivs.length; c++) {
-        console.log('remove hidden divs from nav window hidden')
         hiddenDivs[c].classList.remove('hideDiv')
     }
-    console.log('done with removing search')
 })
 
 function minimizeWindow() { //currently not called--instead of closing when you focus on a window, now close either: 1. when navigate off window or 2. when do keycode to call it up

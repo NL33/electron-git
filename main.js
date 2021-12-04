@@ -154,9 +154,10 @@ function hideNavWindowRendererCalled(){
 }
 
 function hideNavWindowKeycodeCalled() {
+    navWindow.webContents.send('hide-nav-window', '')
     if (navWindow !== null) {
         navWindow.hide()
-        navWindow.webContents.send('nav-window-hidden', '') //if keypress called to hide nav window, then want to tell renderer when done, so that it can clear search results. This is not necessary if the renderer itself called the hide nav window, because the renderer already cleared the search results when it did that.
+         //if keypress called to hide nav window, then want to tell renderer when done, so that it can clear search results. This is not necessary if the renderer itself called the hide nav window, because the renderer already cleared the search results when it did that.
     }
     okToLoadNavWindow = true
 }
