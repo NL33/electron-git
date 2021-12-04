@@ -32,8 +32,10 @@ window.onload = function(){
 }
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 async function hideNavWindow() {
+    document.getElementById('nameSearch').textContent = ''
+    activeElementText = ''
     //clear search
-    document.getElementById('nameSearch').textContent = '' //NOTE: this is a slower process--so it makes it appear there is a delay in clearing the search results. Seems to (possibly) only makea difference when you call for the nav window while another process--like a prior window that has been called--is loading. If the prior called window is done loading, then (possibly) the clearing out process looks smooth
+    //document.getElementById('nameSearch').textContent = '' //NOTE: this is a slower process--so it makes it appear there is a delay in clearing the search results. Seems to (possibly) only makea difference when you call for the nav window while another process--like a prior window that has been called--is loading. If the prior called window is done loading, then (possibly) the clearing out process looks smooth
     var hiddenDivs = document.querySelectorAll('.hideDiv')
     for (var c = 0; c < hiddenDivs.length; c++) {
         hiddenDivs[c].classList.remove('hideDiv')
