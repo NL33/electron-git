@@ -79,6 +79,12 @@
             - colors.
 
 *General*
+# Make project focus window bigger
+
+consider that people may end up just opening it to navigate and save versions--see if that is how I use it. (instead of having it open all the time).
+
+In that case, can make it bigger. bc it will be seen then disappear. Certainly make it the full length of the screen.
+
 # bug:
 nav window was opened
 no chrome window present
@@ -97,15 +103,17 @@ stayed that way until new update
 - Allow Javascript from Apple Events is an option in the view/developer menu item in Chrome. It needs to be turned on for code that includes "execute" javascript to work. In the prior app version, that code occurs when searching chrome tabs, and getting chrome icons
 
 # navigator: when search, and hit return, open the first item in the search results
--replicate spotlight ease of searching.
+-replicate spotlight ease of searching. START HERE...
 -note: what about when search for a window, and the window shows, but so does the app (because current code shows the app for any returned window). Right now, if select first item, it will select the app. But should select the window. Correct.
 -how correct? either way, when hit return in search, select the first window if the window, and not the app, are in the results.
 
 maybe: if searching for window, show the app, but with opacity. and the return selects thefirst window.
 
-# clear search when close window
+# clear search when close window-faster.
 
-a little slow to do that. culprit seems to be clearing the search term takes too long. 
+a little slow to do that. culprit seems to be clearing the search term takes too long. [note sure yet]
+
+
 # through navigator, open any app.
 - this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:
         -right click to save app to navigator. that app name gets saved in local storage, along with icon. when open navigator, create array based on local storage. then load the apps, and check if match in local storage--if match, then remove from the array to show. any remaining app names in array get shown in the navigator. click on those names, and call macFocusAppName, which just requires the app name. 

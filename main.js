@@ -352,10 +352,12 @@ function openBasicWindow() {
 async function saveNewVersionWindow(windowTitle) {
     var theDisplay = screen.getPrimaryDisplay()
     var screenWidth = theDisplay.bounds.width
+   // var width = theDisplay.bounds.width
+    var height = theDisplay.bounds.height
     newVersionWindow = new BrowserWindow({
-        width: 275, //320,
-        height: 640,
-        x: screenWidth - 209,
+        width: 400, //320,
+        height: height,
+        x: screenWidth - 405,
         icon: 'file://' + __dirname + '/rts-icon2.png',
         y: 0,
         alwaysOnTop: true,

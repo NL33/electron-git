@@ -30,3 +30,6 @@
 - So, when open up nav window by moving mouse to the right of the screen, you only need to move the mouse a little bit to click on an item from the right of the screen.
 -previously, there was a margin of 5px between the end of the hover bar and the end of the nav window. This has been removed.
 -most relevant for non-column view. In column view, the left column will still have a slight margin to its right. This seems to be the result of the default column styling. 
+
+### Project Window: make window larger
+- I've made the project window version larger when it's opened.

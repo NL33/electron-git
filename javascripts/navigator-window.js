@@ -38,7 +38,7 @@ async function hideNavWindow() {
     //document.getElementById('nameSearch').textContent = '' //NOTE: this is a slower process--so it makes it appear there is a delay in clearing the search results. Seems to (possibly) only makea difference when you call for the nav window while another process--like a prior window that has been called--is loading. If the prior called window is done loading, then (possibly) the clearing out process looks smooth
     var hiddenDivs = document.querySelectorAll('.hideDiv')
     for (var c = 0; c < hiddenDivs.length; c++) {
-        hiddenDivs[c].classList.remove('hideDiv')
+        await hiddenDivs[c].classList.remove('hideDiv') //putting await  will slightly slow closing of window, but should speed up clearing the list when show the window again
     }
    // setTimeout(() => {
         ipcRenderer.send('minimize-nav-window', '')
