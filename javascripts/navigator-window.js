@@ -29,6 +29,7 @@ startLoop()
 
 window.onload = function(){
     document.getElementById('nameSearch').focus()//addEventListener('keydown', searchKeyDown)
+    document.getElementById('nameSearch').addEventListener('keydown', searchKeyDown)
 }
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 async function hideNavWindow() {
@@ -582,6 +583,7 @@ function changeChromePosition() {
 /*****FOCUS ON APPS, WINDOWS, AND TABS ******* */
 
 async function focusApp(e) {
+    if (e.target){
     var unixId = e.target.unixId
     var name = e.target.name
     hideNavWindowVar = true
@@ -600,7 +602,23 @@ async function focusApp(e) {
         var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
         document.getElementById('errorMessage').textContent = theMessage
     })
-
+    } else { //from search directly
+        var name = e.textContent.trim()
+        hideNavWindowVar = true
+        hideNavWindow()
+        macFocusAppName('', name).then((result, error) => {
+            if (result) {
+                console.log(result)
+            } else {
+                console.log('error = ' + error)
+            }
+        }).catch((e) => {
+            console.log('error in appjs focus app function from search = ' + e)
+            var theMessage1 = `Looks like the Navigator encountered an error focusing an app.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+            var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+            document.getElementById('errorMessage').textContent = theMessage
+        })
+    }
 }
 
 async function focusWindow(e) {

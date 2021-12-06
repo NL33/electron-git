@@ -6,10 +6,26 @@ var nextWindow
 var priorItem
 
 module.exports.searchKeyDown = function (e){
+    if ((e.key === "Enter") || (e.key === "Return")){
+        e.preventDefault()
+        var div = document.querySelectorAll('.appDetails')[0]
+
+        nextAppFromSearchFunction(div)
+    }
     if (e.key === 'ArrowDown') {
        //arrowDownFunction(e)
        //console.log('arrow wowo oowo')
        //start here to add ability to hit down key to move out of name search
+    }
+}
+
+function nextAppFromSearchFunction(target) { //target = next appOverview
+    if (target.classList.contains('hideDiv')){
+        var nextApp = target.parentElement.nextElementSibling.children[0]
+        nextAppFromSearchFunction(nextApp)
+    } else {
+        var appItem = target
+        focusApp(appItem)
     }
 }
 

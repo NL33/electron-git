@@ -4,6 +4,9 @@
 
 ### Add gratitude notes
 
+### Faster selection of items from search
+-now, when you hit the enter (ie, "return") key from the search box, the Navigator will open the first item in the search results. So you can open the navigator, type in a few keys for what you want to view, hit return, and you're done.
+
 ### hide navigator window after select item to focus on
 -Done.
 -navigator window now will hide itself after you select an item to focus on (app, window, or chrome tab)

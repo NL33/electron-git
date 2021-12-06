@@ -79,11 +79,6 @@
             - colors.
 
 *General*
-# Make project focus window bigger
-
-consider that people may end up just opening it to navigate and save versions--see if that is how I use it. (instead of having it open all the time).
-
-In that case, can make it bigger. bc it will be seen then disappear. Certainly make it the full length of the screen.
 
 # bug:
 nav window was opened
@@ -93,6 +88,9 @@ the apps doubled up.
 stayed that way until new update
 
 # Javascript from Apple Events in Chrome
+-temp measure:
+    -turn this off unles people have the chrome option turned on.
+    -then, give people instructions about it.
 
 - Right now, searching chrome tabs is turned off, as is the favicon. because of issue of whether use has to turn on javascript from Apple Events. If this changes, change the following:
   - search box: put back in search chrome tabs
@@ -102,12 +100,18 @@ stayed that way until new update
 
 - Allow Javascript from Apple Events is an option in the view/developer menu item in Chrome. It needs to be turned on for code that includes "execute" javascript to work. In the prior app version, that code occurs when searching chrome tabs, and getting chrome icons
 
-# navigator: when search, and hit return, open the first item in the search results
--replicate spotlight ease of searching. START HERE...
--note: what about when search for a window, and the window shows, but so does the app (because current code shows the app for any returned window). Right now, if select first item, it will select the app. But should select the window. Correct.
--how correct? either way, when hit return in search, select the first window if the window, and not the app, are in the results.
+# navigator: when search, and hit return, open the first item in the search results. ^^START HERE. Then do Open Any App through Navigator.
+-just made it so that if click return you select the first app in the results. DONE.
+-next: if search for a window or tab, and show the app above because of the window or tab is being searched for, then give the app details of that app a temprorary class. 
+-when hit return from search, check if selected app has that class. If so, focus on the window selected
+-do the same if chrome window for chrome tabs.
+-make sure the class is removed once selected in the search function
 
-maybe: if searching for window, show the app, but with opacity. and the return selects thefirst window.
+-then, add the hover hightlight over the item in the search results that will be selected if hit return.
+-how?
+    -when doing the search function, replicate the functionality above for which item to focus on. 
+    -instead of calling the focus app function on the item. just make add to the class of that item a hover class.
+
 
 # clear search when close window-faster.
 
