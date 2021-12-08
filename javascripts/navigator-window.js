@@ -25,52 +25,26 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 }
 ]
 */
-
 startLoop()
 
-window.onload = function(){
+window.onload = function () {
     document.getElementById('nameSearch').focus()//addEventListener('keydown', searchKeyDown)
     document.getElementById('nameSearch').addEventListener('keydown', searchKeyDown)
 }
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 async function hideNavWindow() {
-    document.getElementById('nameSearch').focus()
     document.getElementById('nameSearch').textContent = ''
+    document.getElementById('nameSearch').focus()
     activeElementText = ''
-    //clear search
-    //document.getElementById('nameSearch').textContent = '' //NOTE: this is a slower process--so it makes it appear there is a delay in clearing the search results. Seems to (possibly) only makea difference when you call for the nav window while another process--like a prior window that has been called--is loading. If the prior called window is done loading, then (possibly) the clearing out process looks smooth
     var hiddenDivs = document.querySelectorAll('.hideDiv')
     for (var c = 0; c < hiddenDivs.length; c++) {
         await hiddenDivs[c].classList.remove('hideDiv') //putting await  will slightly slow closing of window, but should speed up clearing the list when show the window again
     }
-     var parentItems = document.querySelectorAll('.justThereBCOfChild')
-        for (var d = 0; d < parentItems.length; d++) {
-            parentItems[d].classList.remove('justThereBCOfChild')
-        }
-    
-   // setTimeout(() => { 
-        ipcRenderer.send('minimize-nav-window', '')
-    //}, 1);
-    
-    /* NOTE: This code below is from when the flow was: 1. select app/window/tab to focus on and 2. only when THEN move mouse off nav window, hide the nav window. You wouldneed to set hideNavWindowVar to true in the focus app/window/tab functions. This worked well. Issue was that if you were not using your mouse, and just using keys, this would not be called. So you would select an item to focus on, and nav window would stay.
-    window.addEventListener('mouseout', goFunction = function (evt) {
-        if (hideNavWindowVar === true) {
-            if (evt.toElement == null && evt.relatedTarget == null) {
-                console.log('hover away now')
-                hideNavWindowVar = false
-                document.getElementById('nameSearch').textContent = ''
-                var hiddenDivs = document.querySelectorAll('.hideDiv')
-                for (var c = 0; c < hiddenDivs.length; c++) {
-                    console.log('remove hidden divs')
-                    hiddenDivs[c].classList.remove('hideDiv')
-                }
-                ipcRenderer.send('minimize-nav-window', '')
-                window.removeEventListener('mouseout', goFunction)
-               
-            }
-        }
-    });
-    */
+    var parentItems = document.querySelectorAll('.justThereBCOfChild')
+    for (var d = 0; d < parentItems.length; d++) {
+        parentItems[d].classList.remove('justThereBCOfChild')
+    }
+    ipcRenderer.send('minimize-nav-window', '')
 }
 
 /*****LOAD APPS, WINDOWS, AND TABS ***************/
@@ -79,22 +53,29 @@ var activeElementText = ''
 
 ipcRenderer.on('run-loop-function', (event, arg) => {
     document.getElementById('nameSearch').focus() //goal here is that whenever the navigator window goes from hidden to in view, the search box is focused
-   if (okToRunStartLoop){
+    if (okToRunStartLoop) {
         startLoop()
-   }
+    }
 })
 
-ipcRenderer.on('hide-nav-window', (event, arg) => {
+ipcRenderer.on('hide-nav-window', (event, arg)  => {
     //clear search
     document.getElementById('nameSearch').textContent = ''
+    /* an alternative way to do it:
+    var els = document.getElementsByClassName('hideDiv')
+    while (els[0]) {
+        els[0].classList.remove('hideDiv')
+    }
+    */
     var hiddenDivs = document.querySelectorAll('.hideDiv')
     for (var c = 0; c < hiddenDivs.length; c++) {
-        hiddenDivs[c].classList.remove('hideDiv')
+        hiddenDivs[c].classList.remove('hideDiv') //putting await  will slightly slow closing of window, but should speed up clearing the list when show the window again
     }
-       var parentItems = document.querySelectorAll('.justThereBCOfChild')
-        for (var d = 0; d < parentItems.length; d++) {
-            parentItems[d].classList.remove('justThereBCOfChild')
-        }
+    var parentItems = document.querySelectorAll('.justThereBCOfChild')
+    for (var d = 0; d < parentItems.length; d++) {
+        parentItems[d].classList.remove('justThereBCOfChild')
+    }
+
 })
 
 function minimizeWindow() { //currently not called--instead of closing when you focus on a window, now close either: 1. when navigate off window or 2. when do keycode to call it up
@@ -102,15 +83,12 @@ function minimizeWindow() { //currently not called--instead of closing when you 
 }
 
 async function startLoop() {
-    if (newWindow === 'no'){
-         document.getElementById('nameSearch').focus()
-    }
     window.addEventListener('error', function (e) {
-       // console.log('we got an error in the taboos = ' + e);
-        if (e.target.classList.contains('chromeTabIcon')){
-           // if (!e.target.parentElement.parentElement.parentElement.classList.contains('oldApp')){
-                chromeImageError(e)
-         //   }
+        // console.log('we got an error in the taboos = ' + e);
+        if (e.target.classList.contains('chromeTabIcon')) {
+            // if (!e.target.parentElement.parentElement.parentElement.classList.contains('oldApp')){
+            chromeImageError(e)
+            //   }
         }
     }, true);
     okToRunStartLoop = false
@@ -134,7 +112,7 @@ async function startLoop() {
             document.getElementById('loadingMessage').style.display = 'none'
             document.getElementById('breatheOverviewDiv').style.display = 'none'
             document.getElementById('nameSearch').style.display = 'block'
-           document.getElementById('nameSearch').focus()
+            document.getElementById('nameSearch').focus()
         }
 
         var tApps = document.querySelectorAll('.appOverview')
@@ -151,12 +129,12 @@ async function startLoop() {
                 chromeApps++
                 if (chromeApps > 1) {
                     el.remove()
-                    
+
                     //Goal: Each time you refresh the page, leave the first chrome app, and remove the others. Why?
                     //chrome tabs get added to the first chrome app window that appears.
                     //so above, that removes the first chrome app, which gets rid of all the tabs under it.
                     //So don't get rid of that first chrome app. But leave the others.
-                    
+
                 } else {
                     el.classList.remove('hideWhileLoading')
                     el.classList.remove('oldWindow')
@@ -201,7 +179,7 @@ async function startLoop() {
                 document.getElementById('nameSearch').focus()
             }
         }
-     
+
         if (document.getElementById('nameSearch').textContent.length > 0) {
             searchNamesFunction()
         }
@@ -226,6 +204,7 @@ async function loop() {
             document.getElementById('nameSearch').style.display = 'none'
         } else {
             refreshNumber++
+            document.getElementById('nameSearch').focus()
             document.getElementById('theTitle').textContent = 'Updating ...'
         }
 
@@ -250,57 +229,57 @@ async function loop() {
         try {
             activeApps1 = await macActive(chromePosition).then(d => JSON.parse(d));
             chromeFunctionRun = 0
-            activeApps = await addIcons(activeApps1,  'icons');
+            activeApps = await addIcons(activeApps1, 'icons');
             if (!activeApps) {
                 activeApps = activeApps1
             }
-        } catch (e){
+        } catch (e) {
             console.log('error in loop getting apps = ' + e)
             var theMessage1 = `Looks like the Navigator encountered an error getting your app info.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
             var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
             document.getElementById('errorMessage').textContent = theMessage
         }
 
-      
+
         for (var i = 0; i < activeApps.paths.length; i++) { //Get name of all apps and put it into DOM
             try {
-            var appNameRaw = activeApps.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
-            var appName = appNameRaw.split('/').at(-1)
-            var unixId = activeApps.unixId[i]
-            var indexId = 'index=' + i
-            var icon = '../' + activeApps.icons[i] 
-            var iconId = 'iconId='+indexId + '+' + refreshNumber + '**' + appName
-            var nextItemsId = 'nextItems+' + indexId + '+refreshNumber=' + refreshNumber
-            if (appName.includes("Race to Saturn")){
-                var source = '../assets/rts-iconr.png'
-                var iconContent = `
+                var appNameRaw = activeApps.paths[i].replace(/:+$/, '').replace(/:/g, '/').replace('MacOS', '').replace('.app', '')
+                var appName = appNameRaw.split('/').at(-1)
+                var unixId = activeApps.unixId[i]
+                var indexId = 'index=' + i
+                var icon = '../' + activeApps.icons[i]
+                var iconId = 'iconId=' + indexId + '+' + refreshNumber + '**' + appName
+                var nextItemsId = 'nextItems+' + indexId + '+refreshNumber=' + refreshNumber
+                if (appName.includes("Race to Saturn")) {
+                    var source = '../assets/rts-iconr.png'
+                    var iconContent = `
                      <img style="height: 37px; width: 37px; vertical-align: middle" id="${iconId}" notChromeTab" src="${source}"></  img>
                 `
-            } else if (!icon){ 
-                var appNameArray = appName.trim().split(' ')
-                var firstLetter = appNameArray.at(-1).charAt(0)
-                var iconContent = `
+                } else if (!icon) {
+                    var appNameArray = appName.trim().split(' ')
+                    var firstLetter = appNameArray.at(-1).charAt(0)
+                    var iconContent = `
                   <span class="appIconSub" id="${iconId}">${firstLetter}</span>
                 `
-            } else if (icon.indexOf('undefined') > -1) {
-                var appNameArray = appName.trim().split(' ')
-                var firstLetter = appNameArray.at(-1).charAt(0)
-                var iconContent = `
+                } else if (icon.indexOf('undefined') > -1) {
+                    var appNameArray = appName.trim().split(' ')
+                    var firstLetter = appNameArray.at(-1).charAt(0)
+                    var iconContent = `
                   <span class="appIconSub"  id="${iconId}">${firstLetter}</span>
                 `
-            } else {
-                var iconContent = `
+                } else {
+                    var iconContent = `
             <img style="height: 37px; width: 37px; vertical-align: middle" id="${iconId}" notChromeTab" src="${icon}"></img>
             `
-             }
+                }
 
-            if ((appName.trim().toLowerCase().includes('google chrome')) || (appName.trim().toLowerCase().includes('googlechrome'))) {
-                var extraClass = 'chromeNextItems'
+                if ((appName.trim().toLowerCase().includes('google chrome')) || (appName.trim().toLowerCase().includes('googlechrome'))) {
+                    var extraClass = 'chromeNextItems'
 
-            } else {
-                var extraClass = "nonChromeNextItems"
-            }
-            var content = `
+                } else {
+                    var extraClass = "nonChromeNextItems"
+                }
+                var content = `
             <div id="${indexId}" class="appOverview hideWhileLoading">
             <div tabindex="1" class="appDetails  thisAppName keyTabHere" >
                 ${iconContent}
@@ -309,40 +288,40 @@ async function loop() {
             <ul class="nextItems ${extraClass}" id="${nextItemsId}"></ul>
             </div>
   `
-            if (chromePosition === 'chromeLast') { //change order depending on selection of chrome position
-                if (extraClass === 'chromeNextItems') {
-                    document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
+                if (chromePosition === 'chromeLast') { //change order depending on selection of chrome position
+                    if (extraClass === 'chromeNextItems') {
+                        document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
+                    } else {
+                        document.getElementById('showResults').insertAdjacentHTML('afterbegin', content)
+                    }
                 } else {
-                    document.getElementById('showResults').insertAdjacentHTML('afterbegin', content)
+                    if (extraClass === 'chromeNextItems') {
+                        document.getElementById('showResults').insertAdjacentHTML('afterbegin', content)
+                    } else {
+                        document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
+                    }
                 }
-            } else {
-                if (extraClass === 'chromeNextItems') {
-                    document.getElementById('showResults').insertAdjacentHTML('afterbegin', content)
-                } else {
-                    document.getElementById('showResults').insertAdjacentHTML('beforeend', content)
-                }
-            }
 
-            var iconImage = document.getElementById(iconId)
-            iconImage.addEventListener('error', imageError)
-            iconImage.appName = appName
-            var element = document.querySelector('.thisAppName')
-            element.addEventListener('click', focusApp)
-            element.addEventListener('keydown', keyDownFunction)
-            var children = element.children
-            element.name = appName
-            element.unixId = unixId
-            element.parentId = indexId
-            element.status = 'app'
-            element.classList.remove('thisAppName')
-            for (var l = 0; l < children.length; l++) {
-                var child = children[l]
-                child.name = appName
-                child.unixId = unixId
-                child.parentId = indexId
-                child.status = 'app'
-            }
-            } catch(e){
+                var iconImage = document.getElementById(iconId)
+                iconImage.addEventListener('error', imageError)
+                iconImage.appName = appName
+                var element = document.querySelector('.thisAppName')
+                element.addEventListener('click', focusApp)
+                element.addEventListener('keydown', keyDownFunction)
+                var children = element.children
+                element.name = appName
+                element.unixId = unixId
+                element.parentId = indexId
+                element.status = 'app'
+                element.classList.remove('thisAppName')
+                for (var l = 0; l < children.length; l++) {
+                    var child = children[l]
+                    child.name = appName
+                    child.unixId = unixId
+                    child.parentId = indexId
+                    child.status = 'app'
+                }
+            } catch (e) {
                 var theMessage1 = `Looks like the Navigator encountered an error loading your apps and windows.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
                 var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
                 document.getElementById('errorMessage').textContent = theMessage
@@ -360,7 +339,7 @@ async function loop() {
                     for (var k = 0; k < windows.length; k++) {  //get the windows of each app, and put it into DOM (k = window number within app)
                         let window = windows[k]
                         let windowShow = window
-                        if (window){
+                        if (window) {
                             if (window.indexOf('—') > -1) {
                                 let windowArray = window.split('—')
                                 let windowFirst = windowArray[1]
@@ -370,7 +349,7 @@ async function loop() {
                             }
                         }
                         if (window != null) {
-                            if ((window.length > 0) && (window != 'undefined') && (!window.startsWith('Find in page'))  && ( window !== 'Updating ...')) {
+                            if ((window.length > 0) && (window != 'undefined') && (!window.startsWith('Find in page')) && (window !== 'Updating ...')) {
                                 /*Why include "window doesn't start with "Find in Page"? The Find in page window shows up in chrome if you are doing a control+f / search on the page. The Mac treats it as it's own window. So it would show up in the results, but be confusing to the user (who wouldn't expect the find box to be a window) and makes it complicated to focus correctly. So I've removed it
                                 Why not updating: to prevent the RtS window showing up with title "Updating", which was confusing people*/
                                 var content = `
@@ -403,9 +382,9 @@ async function loop() {
                                     }
                                 }
                             }
-                            }
                         }
                     }
+                }
             } else {
                 // console.log('no windows')
                 document.getElementById('index=' + j).style.display = 'none'
@@ -446,15 +425,15 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
             runIconError = 1
             var thisTab = theTabs[m]
             var theIcon = thisTab.favicon /*THIS IS NOT Active right now. The code for this relies on executing javascript from Apple Events. Still under consideration*/
-           // console.log('loading chrome tab = ' + thisTab.name)
+            // console.log('loading chrome tab = ' + thisTab.name)
             var chromeWindowId = thisTab.chromeWindowId
             let idN = 'tabNumber' + m + 'windowNumber' + chromeAppNumber + 'refreshNumber = ' + refreshNumber
-           // if ((theIcon === undefined) || (theIcon === null)) {
-                var url1 = thisTab.url.split('/')[2]
-                var useIcon = 'https://' + url1 + '/favicon.ico'
+            // if ((theIcon === undefined) || (theIcon === null)) {
+            var url1 = thisTab.url.split('/')[2]
+            var useIcon = 'https://' + url1 + '/favicon.ico'
             //} else {
-              //  useIcon = theIcon
-           // }
+            //  useIcon = theIcon
+            // }
 
 
             var tabId = chromeWindowNumber + '+' + m
@@ -466,7 +445,7 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
       `
             /*removed: <div class="nextItems" style="margin-left: 50px; margin-top: 3px" id="${nextItemsId}"></div> */
             document.querySelector('.chromeNextItems').insertAdjacentHTML('beforeend', content) //using 'chromeNextItems' as the relevant spot to put in the chrome tabs. the alternative is using the app index that corresponds to chrome, but there have been times when that index number was not reliable. This has happened to me when using script editor / dictionary / google chrome (lookng up google chrome details in the script)
-            
+
             var iconImage = document.getElementById(idN) //this item and next two about iconImage were previously there for error catching of tab icon. This is now done with adding the error event listener to the window itself in the startloop function. So these are likely no longer necessary.
             //iconImage.addEventListener('error', chromeImageError)
             iconImage.tabName = thisTab.name
@@ -513,7 +492,7 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
     }
 }
 
-function imageError(e){
+function imageError(e) {
     var appNameArray = e.target.appName.trim().split(' ')
     var firstLetter = appNameArray.at(-1).charAt(0)
     var iconContent = `
@@ -524,13 +503,13 @@ function imageError(e){
     parent.insertAdjacentHTML('afterbegin', iconContent)
 }
 
-function chromeImageError(e){
+function chromeImageError(e) {
     //console.log('run chrome image error for ' + e.target.id)
     try {
-        if (e.target.nextElementSibling){
+        if (e.target.nextElementSibling) {
             var tabName = e.target.nextElementSibling.textContent
             //var tabNameArray = e.target.src.replace('www', '').split('ps://')
-        //    var tabNameArray1 = e.target.tabName.trim().split(' ')
+            //    var tabNameArray1 = e.target.tabName.trim().split(' ')
             var firstLetter = tabName.charAt(0).toUpperCase() //tabNameArray.at(-1).charAt(0)
             var iconContent = `
                         <span style="" class="chromeIconSub" id="${e.target.id}" >${firstLetter}</span>
@@ -539,7 +518,7 @@ function chromeImageError(e){
             e.target.remove()
             parent.insertAdjacentHTML('afterbegin', iconContent)
         }
-    } catch (e){
+    } catch (e) {
         console.log('error for chrome image issue= ' + e)
     }
 }
@@ -597,15 +576,15 @@ function changeChromePosition() {
 /*****FOCUS ON APPS, WINDOWS, AND TABS ******* */
 
 async function focusApp(e) {
-    if (e.target){
+    hideNavWindowVar = true
+    hideNavWindow()
+    if (e.target) {
         var unixId = e.target.unixId
         var name = e.target.name
     } else {
         var unixId = e.unixId
         var name = e.name
     }
-    hideNavWindowVar = true
-    hideNavWindow()
     macFocusAppName(unixId, name).then((result, error) => {
         if (result) {
             console.log(result)
@@ -623,19 +602,19 @@ async function focusApp(e) {
 }
 
 async function focusWindow(e) {
-   if (e.target){
-    var unixId = e.target.unixId
-    var windowName = e.target.name
-    var windowNumber = e.target.number
-    var appName = e.target.appName.trim()
-   } else {
-    var unixId = e.unixId
-    var windowName = e.name
-    var windowNumber = e.number
-    var appName = e.appName.trim()
-   }
     hideNavWindowVar = true
     hideNavWindow()
+    if (e.target) {
+        var unixId = e.target.unixId
+        var windowName = e.target.name
+        var windowNumber = e.target.number
+        var appName = e.target.appName.trim()
+    } else {
+        var unixId = e.unixId
+        var windowName = e.name
+        var windowNumber = e.number
+        var appName = e.appName.trim()
+    }
     macFocusWindow(unixId, windowName, windowNumber, appName).then((result, error) => {
         if (result) {
             console.log(result)
@@ -651,7 +630,9 @@ async function focusWindow(e) {
 }
 
 function focusChromeTab(e) {
-    if (e.target){
+    hideNavWindowVar = true
+    hideNavWindow()
+    if (e.target) {
         var unixId = e.target.unixId
         var theChromeWindowId = e.target.chromeWindowId
         var chromeTabName = e.target.chromeTabName
@@ -660,8 +641,6 @@ function focusChromeTab(e) {
         var theChromeWindowId = e.chromeWindowId
         var chromeTabName = e.chromeTabName
     }
-    hideNavWindowVar = true
-    hideNavWindow()
     macFocusChromeTab(unixId, theChromeWindowId, chromeTabName).then((result, error) => {
         if (result) {
             console.log('chrome tab result = ' + result)
@@ -814,9 +793,9 @@ function searchNamesFunction() {
         }
     } catch (e) {
         console.log('error in search names function = ' + e)
-       // var theMessage1 = `Looks like the Navigator encountered an error doing a search.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
-     //   var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
-    //    document.getElementById('errorMessage').textContent = theMessage /*Turned off because seems to happen every time, but without consequence*/
+        // var theMessage1 = `Looks like the Navigator encountered an error doing a search.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
+        //   var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
+        //    document.getElementById('errorMessage').textContent = theMessage /*Turned off because seems to happen every time, but without consequence*/
     }
 }
 
@@ -856,4 +835,3 @@ ipcRenderer.on('close-tab', (event, arg) => {
 function projectWindow() {
     ipcRenderer.send('open-main-window', '')
 }
-
