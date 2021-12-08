@@ -25,6 +25,7 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 }
 ]
 */
+
 startLoop()
 
 window.onload = function(){
@@ -33,6 +34,7 @@ window.onload = function(){
 }
 /**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
 async function hideNavWindow() {
+    document.getElementById('nameSearch').focus()
     document.getElementById('nameSearch').textContent = ''
     activeElementText = ''
     //clear search
@@ -45,6 +47,7 @@ async function hideNavWindow() {
         for (var d = 0; d < parentItems.length; d++) {
             parentItems[d].classList.remove('justThereBCOfChild')
         }
+    
    // setTimeout(() => { 
         ipcRenderer.send('minimize-nav-window', '')
     //}, 1);
@@ -99,6 +102,9 @@ function minimizeWindow() { //currently not called--instead of closing when you 
 }
 
 async function startLoop() {
+    if (newWindow === 'no'){
+         document.getElementById('nameSearch').focus()
+    }
     window.addEventListener('error', function (e) {
        // console.log('we got an error in the taboos = ' + e);
         if (e.target.classList.contains('chromeTabIcon')){
