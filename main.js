@@ -143,10 +143,10 @@ ipcMain.on('focus-the-window', (event, target) => {
 })
 
 ipcMain.on('minimize-nav-window', (event, target)=>{
-    hideNavWindowRendererCalled()
+    hideNavWindow()
 })
 
-function hideNavWindowRendererCalled(){
+function hideNavWindow(){
     if (navWindow !== null){
         navWindow.hide()
     }
@@ -308,8 +308,10 @@ function openWindow() {
        // if (newVersionWindowOpen === false) {
            if ((!newVersionWindow) || (newVersionWindow.isDestroyed())){
                saveNewVersionWindow()
+               hideNavWindow()
            } else {
                newVersionWindow.show()
+               hideNavWindow()
                if (basicWindow){
                   // basicWindow.hide()
                }

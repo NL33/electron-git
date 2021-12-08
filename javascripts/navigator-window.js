@@ -32,6 +32,7 @@ window.onload = function () {
     document.getElementById('nameSearch').addEventListener('keydown', searchKeyDown)
 }
 
+
 async function hideNavWindow() {
     document.getElementById('nameSearch').textContent = ''
     document.getElementById('nameSearch').focus()
@@ -840,4 +841,18 @@ ipcRenderer.on('close-tab', (event, arg) => {
 
 function projectWindow() {
     ipcRenderer.send('open-main-window', '')
+    document.getElementById('nameSearch').textContent = ''
+    document.getElementById('nameSearch').focus()
+    activeElementText = ''
+    var hiddenDivs = document.querySelectorAll('.hideDiv')
+    for (var c = 0; c < hiddenDivs.length; c++) {
+        hiddenDivs[c].classList.remove('hideDiv') //putting await  will slightly slow closing of window, but should speed up clearing the list when show the window again
+    }
+    var parentItems = document.querySelectorAll('.justThereBCOfChild')
+    for (var d = 0; d < parentItems.length; d++) {
+        parentItems[d].classList.remove('justThereBCOfChild')
+    }
+    if (document.querySelector('.hoverHighlight')) {
+        document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
+    }
 }

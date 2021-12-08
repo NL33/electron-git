@@ -38,3 +38,6 @@
 
 ### Project Window: make window larger
 - I've made the project window version larger when it's opened.
+
+### Project Window: close nav window when open project window
+- previously, the nav window would stay in the background when open the project window. Now it closes automatically.
