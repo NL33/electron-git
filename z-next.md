@@ -109,8 +109,13 @@ right now, if do a search, select an item, and nav closes. When you open nav aga
 
 # project window: when create new file or folder. get this warning in console:
 Form submission canceled because the form is not connected
+
 # bug: projct window: if try to save version and there is an error, it will hang. And the "saving versions" div will stay there, even if change project.
 -so need way to refresh that view
+
+# project window: make saving version faster.
+-I had thought removing the init running each time would help, but that doesn't seem to make a difference (and git docs say it's fine to do it)
+-maybe a way to speed up with child process code?
 
 # through navigator, open any app.
 - this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:

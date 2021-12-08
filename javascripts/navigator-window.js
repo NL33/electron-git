@@ -32,25 +32,9 @@ window.onload = function () {
     document.getElementById('nameSearch').addEventListener('keydown', searchKeyDown)
 }
 
-async function resetSearch(){ //not used right now.
-    activeElementText = ''
-    var hiddenDivs = document.querySelectorAll('.hideDiv')
-    for (var c = 0; c < hiddenDivs.length; c++) {
-        await hiddenDivs[c].classList.remove('hideDiv') //putting await  will slightly slow closing of window, but should speed up clearing the list when show the window again
-    }
-    var parentItems = document.querySelectorAll('.justThereBCOfChild')
-    for (var d = 0; d < parentItems.length; d++) {
-        parentItems[d].classList.remove('justThereBCOfChild')
-    }
-    if (document.querySelector('.hoverHighlight')) {
-        document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
-    }
-   // document.getElementById('nameSearch').focus()
-}
-
 async function hideNavWindow() {
-    document.getElementById('nameSearch').innerHTML = ''
-   // document.getElementById('nameSearch').focus() //if activate this, when select item by going into the results of the search (with tab) and then selecting item with "return", the return dom show comes in late, and the return dom indication is returned to the search box. Creating an extra space there.
+    document.getElementById('nameSearch').textContent = ''
+   // document.getElementById('nameSearch').focus() //why removed? if do a search, then tab out of search, and select an item and hit return, the dom reflects this later, and by the time it is registered, this focus call may put the cursor back in the search box, where it will add a line break
     activeElementText = ''
     var hiddenDivs = document.querySelectorAll('.hideDiv')
     for (var c = 0; c < hiddenDivs.length; c++) {
@@ -77,7 +61,7 @@ ipcRenderer.on('run-loop-function', (event, arg) => {
     }
 })
 
-ipcRenderer.on('hide-nav-window', (event, arg)  => {
+ipcRenderer.on('hide-nav-window', (event, arg) => {
     //clear search
     document.getElementById('nameSearch').textContent = ''
     /* an alternative way to do it:

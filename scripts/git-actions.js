@@ -99,8 +99,19 @@ module.exports.saveGitVersion = async function () {
         }
     }
 
+
+/*
+
+
+
+
+
+
+*/
+
+
+
     async function doTheCommit(text) { //Where the actual version commit is done.
-       console.log(1)
         try {
             await git.cwd(projectFolderPath).then(result => {
                 // console.log('cwd resultss' + JSON.stringify(result))
@@ -108,7 +119,6 @@ module.exports.saveGitVersion = async function () {
             await git.init().then(result => {
                 //console.log('init result = ' + JSON.stringify(result))
             })
-            console.log(2)
             await git.add('.').then(result => {
                 //console.log('add result = ' + JSON.stringify(result))
             })
