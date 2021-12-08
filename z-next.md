@@ -109,6 +109,8 @@ right now, if do a search, select an item, and nav closes. When you open nav aga
 
 # project window: when create new file or folder. get this warning in console:
 Form submission canceled because the form is not connected
+# bug: projct window: if try to save version and there is an error, it will hang. And the "saving versions" div will stay there, even if change project.
+-so need way to refresh that view
 
 # through navigator, open any app.
 - this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:
@@ -126,6 +128,9 @@ Form submission canceled because the form is not connected
 # Error in search function
 
 - when search, get this error almost all the time: Looks like the Navigator encountered an error doing a search. Sorry about that. You can press Command+1 to reload and try again. Here's the error (get ready for techno-speak): TypeError: Cannot read properties of null (reading 'classList')
+
+# put instructions for how to remove the version files (ie. .git) in folder
+
 
 # make icons work in production
 -current get windows icon code in navigator-add-icons.js doesn't work in production, because icon2png doesn't work in production.
