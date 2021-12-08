@@ -10,10 +10,10 @@ const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
 //console.log("Does the client have accessibility permissions?", isTrusted)
 
 let navWindow = null
-let newVersionWindow = null
+let projectWindow = null
 let basicWindow = null
 /*** TOOLBAR MENU ICON****** */
-var newVersionWindowOpen = false
+var projectWindowOpen = false
 //const activeWindow = require('active-win');
 let tray = null
 var mainWindow
@@ -29,7 +29,7 @@ function menuApp() {
             { label: 'Toggle Mouse Right to Open', click() { checkHoverFunction() } },
             { label: 'Close Navigator Window', accelerator: "CmdOrCtrl+2", click() { hideNavWindow() } },
             { type: 'separator' },
-            { label: 'Open Project Window', accelerator: "CmdOrCtrl+3", click() { openWindow() } },
+            { label: 'Open Project Window', accelerator: "CmdOrCtrl+3", click() { createBasicWindow() } },
             { type: 'separator' },
             // { label: 'Hide Windows', click() { minimizeWindows() } },
             { label: 'Breathe Big', accelerator: "CmdOrCtrl+4", click() { openBreatheBigWindow() } },
@@ -87,7 +87,7 @@ function keyBoardShortCut() {
     })
 
     globalShortcut.register('CommandOrControl+3', () => {
-        openWindow()
+        createBasicWindow()
     })
 
     globalShortcut.register('CommandOrControl+4', () => {
@@ -236,81 +236,17 @@ ipcMain.on('show-context-menu-chrome-tab', (event, target) => {
 })
 
 
-/*******Project Window: Right Click Menu */
-
-ipcMain.on('show-context-menu-projwindow-directory', (event, divId, thePath, indent, notProject)=>{
-    const template = [
-        {
-            label: "New Folder",
-            click: () => { 
-                event.sender.send('enter-new-folder', divId, thePath, indent)
-            }
-        },
-        {
-            label: "New File",
-            click: () => {
-                event.sender.send('enter-new-file', divId, thePath, indent)
-            }
-        },
-        {
-            type: "separator"
-        },
-        {
-        label: "View Folder",
-        click: () => {
-            event.sender.send('view-folder', thePath)
-        }
-       },
-       {
-           label: "Refresh",
-           click: () => {
-               event.sender.send('refresh', '')
-           }
-       }
-    ]
-    if (notProject === 'true') {
-        template.push(
-        {
-            type: "separator"
-        },
-        {
-            label: "Move to Trash",
-                click: () => {
-                    event.sender.send('delete-item', divId)
-                }
-        }
-        )
-    }
-    const menu = Menu.buildFromTemplate(template)
-    menu.popup(BrowserWindow.fromWebContents(event.sender))
-})
-
-ipcMain.on('show-context-menu-projwindow-doc', (event, divId) => {
-    const template = [
-        {
-            label: "Move to Trash",
-            click: () => {
-                event.sender.send('delete-item', divId)
-            }
-        }
-    ]
-    const menu = Menu.buildFromTemplate(template)
-    menu.popup(BrowserWindow.fromWebContents(event.sender))
-})
-
-
-
 /*********************Project Window *********************** */
 
 /****#OPEN BASIC (Mini) WINDOW******** */
-function openWindow() {
+function createBasicWindow() {
     try {
-       // if (newVersionWindowOpen === false) {
-           if ((!newVersionWindow) || (newVersionWindow.isDestroyed())){
-               saveNewVersionWindow()
+       // if (projectWindowOpen === false) {
+           if ((!projectWindow) || (projectWindow.isDestroyed())){
+               createProjectWindow()
                hideNavWindow()
            } else {
-               newVersionWindow.show()
+               projectWindow.show()
                hideNavWindow()
                if (basicWindow){
                   // basicWindow.hide()
@@ -340,8 +276,8 @@ function openBasicWindow() {
         hasShadow: false,
         maximizable: false,
         webPreferences: {
-            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
-            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
+            nodeIntegration: true,  
+            contextIsolation: false, 
             devTools: false
         }
     })
@@ -350,42 +286,104 @@ function openBasicWindow() {
     basicWindow.hide()
 }
 
-/* **** #OPEN MAIN WINDOW********/
+/* **************** #OPEN PROJECT WINDOW (AKA Main Window)********/
 
-async function saveNewVersionWindow(windowTitle) {
+async function createProjectWindow(windowTitle) {
     var theDisplay = screen.getPrimaryDisplay()
     var screenWidth = theDisplay.bounds.width
    // var width = theDisplay.bounds.width
     var height = theDisplay.bounds.height
-    newVersionWindow = new BrowserWindow({
+    projectWindow = new BrowserWindow({
         width: 400, //320,
         height: height,
-        x: screenWidth - 405,
+        x: screenWidth - 403,
         icon: 'file://' + __dirname + '/rts-icon2.png',
         y: 0,
         alwaysOnTop: true,
         webPreferences: {
-            nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
-            contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
-           // enableRemoteModule: true
+            nodeIntegration: true,  
+            contextIsolation: false, 
             //devTools: false
         }
     })
 
-    newVersionWindow.loadURL('file://' + __dirname + '/views/main-window.html');
-    newVersionWindowOpen = true
+    projectWindow.loadURL('file://' + __dirname + '/views/main-window.html');
+    projectWindowOpen = true
     openBasicWindow()
-    newVersionWindow.on('close', () => {
-        newVersionWindowOpen = false
+    projectWindow.on('close', () => {
+        projectWindowOpen = false
     })
 
-    newVersionWindow.openDevTools()
+    projectWindow.openDevTools()
     /*
-    newVersionWindow.webContents.on('did-finish-load', function () {
-        newVersionWindow.show();
+    projectWindow.webContents.on('did-finish-load', function () {
+        projectWindow.show();
     })
     */
 }
+
+/*******Project Window: Right Click Menu */
+
+ipcMain.on('show-context-menu-projwindow-directory', (event, divId, thePath, indent, notProject) => {
+    const template = [
+        {
+            label: "New Folder",
+            click: () => {
+                event.sender.send('enter-new-folder', divId, thePath, indent)
+            }
+        },
+        {
+            label: "New File",
+            click: () => {
+                event.sender.send('enter-new-file', divId, thePath, indent)
+            }
+        },
+        {
+            type: "separator"
+        },
+        {
+            label: "View Folder",
+            click: () => {
+                event.sender.send('view-folder', thePath)
+            }
+        },
+        {
+            label: "Refresh",
+            click: () => {
+                event.sender.send('refresh', '')
+            }
+        }
+    ]
+    if (notProject === 'true') {
+        template.push(
+            {
+                type: "separator"
+            },
+            {
+                label: "Move to Trash",
+                click: () => {
+                    event.sender.send('delete-item', divId)
+                }
+            }
+        )
+    }
+    const menu = Menu.buildFromTemplate(template)
+    menu.popup(BrowserWindow.fromWebContents(event.sender))
+})
+
+ipcMain.on('show-context-menu-projwindow-doc', (event, divId) => {
+    const template = [
+        {
+            label: "Move to Trash",
+            click: () => {
+                event.sender.send('delete-item', divId)
+            }
+        }
+    ]
+    const menu = Menu.buildFromTemplate(template)
+    menu.popup(BrowserWindow.fromWebContents(event.sender))
+})
+
 
 
 /*********Prior Versions Overview Window************* */
@@ -428,7 +426,7 @@ function priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName
 
 /*******************Prior Version Window With Prior Version Contents************** */
 async function viewOldVersion() {
-    newVersionWindow.webContents.send('view-old-version', 'cool')
+    projectWindow.webContents.send('view-old-version', 'cool')
 }
 
 var oldVersionWindow
@@ -455,9 +453,9 @@ async function oldVersionWindowFunction(receivedPath, receivedName, versionNumbe
     })
     oldVersionWindow.on('close', function () {
         oldVersionWindowCreated = false
-        newVersionWindow.webContents.send('close-worktree', receivedPath)
+        projectWindow.webContents.send('close-worktree', receivedPath)
     })
-    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
+    // projectWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
     oldVersionWindowCreated = true
     oldVersionWindow.loadURL('file://' + __dirname + '/views/get-old-version.html')
     priorVersionOvWindow.close()
@@ -490,7 +488,7 @@ async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earl
             devTools: false
         }
     })
-    // newVersionWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
+    // projectWindow.loadURL('/Users/sean/Desktop/txt-docs/converttest-test.txt')
 
     oldVersionWindow.loadURL('file://' + __dirname + '/views/compare-versions.html')
     priorVersionOvWindow.close()
@@ -504,14 +502,14 @@ ipcMain.on('open-folder-dialog', (event, arg) => {
 
 function showDialog() {
     //let interval = setInterval(() => { /* nothing */ }, 100)
-    dialog.showOpenDialog(newVersionWindow, {
+    dialog.showOpenDialog(projectWindow, {
         properties: ['openDirectory'],
         title: "Select Your Project Folder",
         buttonLabel: "Select",
     }).then(result => {
         // clearInterval(interval)
         if (!result.canceled) {
-            newVersionWindow.webContents.send('selected-folder', result.filePaths)
+            projectWindow.webContents.send('selected-folder', result.filePaths)
         }
     }).catch(err => {
         console.log('error in opening dialog = ' + err)
@@ -519,7 +517,7 @@ function showDialog() {
 
     /*
         try {
-            dialog.showOpenDialogSync(newVersionWindow, {
+            dialog.showOpenDialogSync(projectWindow, {
                 properties: ['openDirectory'],
                 title: "Select Your Project Folder",
                 buttonLabel: "Select",
@@ -631,14 +629,14 @@ ipcMain.on('close-breathe-window', function () {
 
 //end breath big window
 ipcMain.on('open-main-window', (event, arg) => {
-    openWindow()
+    createBasicWindow()
     basicWindow.hide()
 })
 
 ipcMain.on('hide-main-window', (event, arg) => {
     try {
         basicWindow.show()
-        newVersionWindow.hide()
+        projectWindow.hide()
     } catch(e){
         console.log('error in hide main window = ' + e)
     }
@@ -655,7 +653,7 @@ ipcMain.on('create-paste-file', (event, divId, folderPath, newDocPath, updatedFi
             console.log(err)
             alert('Sorry, there was an error creating this paste file. Please try again.')
         } else {
-            newVersionWindow.webContents.send('finished-paste-file', divId, folderPath, newDocPath, updatedFileName, newIndent)
+            projectWindow.webContents.send('finished-paste-file', divId, folderPath, newDocPath, updatedFileName, newIndent)
         }
     })
 })
@@ -788,7 +786,7 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
     createNavWindow()
     keyBoardShortCut()
     openBasicWindow()
-   // saveNewVersionWindow()
+   // createProjectWindow()
     menuApp()
 
 
@@ -819,7 +817,7 @@ app.on('open-url', function (event, data) {
     event.preventDefault();
     var payload = data.split('redirect?payload=')[1]
     console.log('received data')
-    newVersionWindow.webContents.send('discourse-payload-url', payload)
+    projectWindow.webContents.send('discourse-payload-url', payload)
 });
 
 
@@ -858,12 +856,12 @@ if (!gotTheLock) {
 } else {
     app.on('second-instance', (event, commandLine, workingDirectory) => {
         // Someone tried to run a second instance, we should focus our window.
-        if (newVersionWindow) {
+        if (projectWindow) {
             if (basicWindow) {
                 basicWindow.hide()
             }
-            if (newVersionWindow.isMinimized()) newVersionWindow.restore()
-            newVersionWindow.focus()
+            if (projectWindow.isMinimized()) projectWindow.restore()
+            projectWindow.focus()
         } else {
             if (basicWindow) {
                 basicWindow.show()

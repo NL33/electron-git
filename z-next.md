@@ -87,6 +87,8 @@ I hit "toggle chrome position"
 the apps doubled up.
 stayed that way until new update
 
+# make style and font the same between navigator and poject window
+
 # Javascript from Apple Events in Chrome
 -temp measure:
     -turn this off unles people have the chrome option turned on.
@@ -105,6 +107,8 @@ stayed that way until new update
 right now, if do a search, select an item, and nav closes. When you open nav again, it can take a few hundred miliseconds for the cursor to be visible in the search bar. (on my computer). It is slow to show while the system is doing other stuff. Especially, clearing out the prior search.
 -anything to do to make this smoother?
 
+# project window: when create new file or folder. get this warning in console:
+Form submission canceled because the form is not connected
 
 # through navigator, open any app.
 - this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:

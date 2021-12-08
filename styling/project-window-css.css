@@ -218,6 +218,7 @@
             padding-left: 5px;
             padding-top: 6px;
             padding-bottom: 6px;
+            word-break: break-all
         }
 
         .subFolder:hover {
