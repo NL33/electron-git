@@ -33,7 +33,7 @@ function menuApp() {
             { type: 'separator' },
             // { label: 'Hide Windows', click() { minimizeWindows() } },
             { label: 'Breathe Big', accelerator: "CmdOrCtrl+4", click() { openBreatheBigWindow() } },
-            { label: 'Gratitude Notes', accelerator: "CmdOrCtrl+4", click() { openGratitudeNotes() } },
+          /*  { label: 'Gratitude Notes', accelerator: "CmdOrCtrl+4", click() { openGratitudeNotes() } },*/
         ])
         tray.setToolTip('Be extraordinary.')
         tray.setContextMenu(contextMenu)
@@ -131,7 +131,8 @@ function openNavWindow(){
             navWindow.focus()
         }
     }
-    if (projectWindow){
+
+    if ((!projectWindow.isDestroyed()) && (projectWindow !== null)){
          projectWindow.minimize() //when call navwindow, assumption is you want that in front. The project Window is always on top. So you need to hide it to see the navwindow
     }
 } catch (e) {

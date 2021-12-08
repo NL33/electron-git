@@ -3,6 +3,8 @@
 *Gratitude Notes*
 
 # steps
+**removed from menu bar, pending working code**
+
 - save note text. DONE
 - show note text in console log. DONE
 - save additional aspects: including date. DONE
@@ -90,7 +92,7 @@ stayed that way until new update
 # make style and font the same between navigator and poject window
 
 # Javascript from Apple Events in Chrome
--temp measure:
+-temp measure: *START HERE*
     -turn this off unles people have the chrome option turned on.
     -then, give people instructions about it.
 -other idea: chrome extension to get the info then send it to the app. 
@@ -120,6 +122,8 @@ Form submission canceled because the form is not connected
 # through navigator, open any app.
 - this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:
         -right click to save app to navigator. that app name gets saved in local storage, along with icon. when open navigator, create array based on local storage. then load the apps, and check if match in local storage--if match, then remove from the array to show. any remaining app names in array get shown in the navigator. click on those names, and call macFocusAppName, which just requires the app name. 
+
+- note: for icon when doing the below, can just get it from the icon folder (ie, call for the app, and then check icon folder in case there is an item there with the same name as the app). Better than running get icon function
 - replicate spotlight search functionality. How?
 - get the names of the directories in the applications folders (/Applications). If not sure, see how I would do it in project window if focusing on applications directory.
 - those names are the names of the apps
