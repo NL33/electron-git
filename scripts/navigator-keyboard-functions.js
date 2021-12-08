@@ -11,7 +11,7 @@ module.exports.searchKeyDown = function (e){
         var div = document.querySelectorAll('.appDetails')[0]
         nextAppFromSearchFunction(div)
     } else {
-        if (document.querySelector('.hoverHighlight')){ /****START HERE: 1. any way to speed up dom loading in electron? 2. STill working to make the hover work right. When done with search make sure this class is removed from anyewhere it appears */
+        if (document.querySelector('.hoverHighlight')){ 
             document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
         }
         var div = document.querySelectorAll('.appDetails')[0]

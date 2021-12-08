@@ -28,10 +28,10 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 startLoop()
 
 window.onload = function () {
-    document.getElementById('nameSearch').focus()//addEventListener('keydown', searchKeyDown)
+    document.getElementById('nameSearch').focus()
     document.getElementById('nameSearch').addEventListener('keydown', searchKeyDown)
 }
-/**Hide Nav when hover away from it, but only after successfully focused on a window eachtime; so=hover away one time, then stop hover functionality, until start again after successfully focus a window********************/
+
 async function hideNavWindow() {
     document.getElementById('nameSearch').textContent = ''
     document.getElementById('nameSearch').focus()
@@ -43,6 +43,9 @@ async function hideNavWindow() {
     var parentItems = document.querySelectorAll('.justThereBCOfChild')
     for (var d = 0; d < parentItems.length; d++) {
         parentItems[d].classList.remove('justThereBCOfChild')
+    }
+    if (document.querySelector('.hoverHighlight')) {
+        document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
     }
     ipcRenderer.send('minimize-nav-window', '')
 }
@@ -74,6 +77,9 @@ ipcRenderer.on('hide-nav-window', (event, arg)  => {
     var parentItems = document.querySelectorAll('.justThereBCOfChild')
     for (var d = 0; d < parentItems.length; d++) {
         parentItems[d].classList.remove('justThereBCOfChild')
+    }
+    if (document.querySelector('.hoverHighlight')) {
+        document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
     }
 
 })
@@ -643,7 +649,7 @@ function focusChromeTab(e) {
     }
     macFocusChromeTab(unixId, theChromeWindowId, chromeTabName).then((result, error) => {
         if (result) {
-            console.log('chrome tab result = ' + result)
+            console.log('focus chrome tab result = ' + result)
         } else {
             console.log('error = ' + error)
         }

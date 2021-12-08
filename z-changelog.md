@@ -5,14 +5,16 @@
 ### Add gratitude notes
 
 ### Faster selection of items from search
--now, when you hit the enter (ie, "return") key from the search box, the Navigator will open the first item in the search results. So you can open the navigator, type in a few keys for what you want to view, hit return, and you're done.
+-when you open the navigator, your cursor will go right to the search box.
+-Then, when you search and you hit the enter (ie, "return") key from the search box, the Navigator will open the first item in the search results. So you can open the navigator, type in a few keys for what you want to view, hit return, and you're done.
+-While you're searching, the top result from the search will also be highlighted, to show you what item will be focused when you hit enter.
 
 ### hide navigator window after select item to focus on
 -Done.
 -navigator window now will hide itself after you select an item to focus on (app, window, or chrome tab)
 -I find this makes the experience of navigating faster and more clear.
 
-### clear search box, and search results, each the nav window gets hidden
+### clear search box, and search results, each time the nav window gets hidden
 -Done.
 -previously, if you did a search, and then closed the nav window, when the nav window appeared again, it would still have the search query in the search box, and the related results. 
 -I changed this, because I found that after I did a search and selected the item I wanted from the search, I was done with that search, and the next time the nav window opened I was just as likely to search for something else. 
