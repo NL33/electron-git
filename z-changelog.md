@@ -41,3 +41,6 @@
 
 ### Project Window: close nav window when open project window
 - previously, the nav window would stay in the background when open the project window. Now it closes automatically.
+
+### Navigator Window: minimize project window when navigator window opens
+-previously, if the project window was open and you called for the navigator window, the navigator window would stay behind the project window. That's been fixed--so now if you have the project window open and call the navigator window, the navigator window moves to the front and the project window gets minimized

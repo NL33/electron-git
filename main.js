@@ -131,6 +131,9 @@ function openNavWindow(){
             navWindow.focus()
         }
     }
+    if (projectWindow){
+         projectWindow.minimize() //when call navwindow, assumption is you want that in front. The project Window is always on top. So you need to hide it to see the navwindow
+    }
 } catch (e) {
           console.log('error in opening nav window = ' + e)
       }
@@ -239,7 +242,7 @@ ipcMain.on('show-context-menu-chrome-tab', (event, target) => {
 /*********************Project Window *********************** */
 
 /****#OPEN BASIC (Mini) WINDOW******** */
-function createBasicWindow() {
+function createBasicWindow() { //this is the function that opens the project window (and calls for opening the basic window if it is not done yet)
     try {
        // if (projectWindowOpen === false) {
            if ((!projectWindow) || (projectWindow.isDestroyed())){
@@ -296,7 +299,7 @@ async function createProjectWindow(windowTitle) {
     projectWindow = new BrowserWindow({
         width: 400, //320,
         height: height,
-        x: screenWidth - 403,
+        x: screenWidth - 405,
         icon: 'file://' + __dirname + '/rts-icon2.png',
         y: 0,
         alwaysOnTop: true,
