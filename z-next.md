@@ -91,6 +91,7 @@ stayed that way until new update
 -temp measure:
     -turn this off unles people have the chrome option turned on.
     -then, give people instructions about it.
+-other idea: chrome extension to get the info then send it to the app. 
 
 - Right now, searching chrome tabs is turned off, as is the favicon. because of issue of whether use has to turn on javascript from Apple Events. If this changes, change the following:
   - search box: put back in search chrome tabs
@@ -102,12 +103,12 @@ stayed that way until new update
 
 # navigator: when search, and hit return, open the first item in the search results. ^^START HERE. Then do Open Any App through Navigator.
 -just made it so that if click return you select the first app in the results. DONE.
--next: if search for a window or tab, and show the app above because of the window or tab is being searched for, then give the app details of that app a temprorary class. 
--when hit return from search, check if selected app has that class. If so, focus on the window selected
--do the same if chrome window for chrome tabs.
--make sure the class is removed once selected in the search function
+-next: if search for a window or tab, and show the app above because of the window or tab is being searched for, then give the app details of that app a temprorary class. DONE
+-when hit return from search, check if selected app has that class. If so, focus on the window selected. DONE
+-do the same if chrome window for chrome tabs. DONE
+-make sure the class is removed once selected in the search function. DONE
 
--then, add the hover hightlight over the item in the search results that will be selected if hit return.
+-then, add the hover hightlight over the item in the search results that will be selected if hit return. ^^^START HERE: See Line 14 of keycode functions^^^^^^^
 -how?
     -when doing the search function, replicate the functionality above for which item to focus on. 
     -instead of calling the focus app function on the item. just make add to the class of that item a hover class.

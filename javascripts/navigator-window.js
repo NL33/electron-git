@@ -41,7 +41,11 @@ async function hideNavWindow() {
     for (var c = 0; c < hiddenDivs.length; c++) {
         await hiddenDivs[c].classList.remove('hideDiv') //putting await  will slightly slow closing of window, but should speed up clearing the list when show the window again
     }
-   // setTimeout(() => {
+     var parentItems = document.querySelectorAll('.justThereBCOfChild')
+        for (var d = 0; d < parentItems.length; d++) {
+            parentItems[d].classList.remove('justThereBCOfChild')
+        }
+   // setTimeout(() => { 
         ipcRenderer.send('minimize-nav-window', '')
     //}, 1);
     
@@ -84,6 +88,10 @@ ipcRenderer.on('hide-nav-window', (event, arg) => {
     for (var c = 0; c < hiddenDivs.length; c++) {
         hiddenDivs[c].classList.remove('hideDiv')
     }
+       var parentItems = document.querySelectorAll('.justThereBCOfChild')
+        for (var d = 0; d < parentItems.length; d++) {
+            parentItems[d].classList.remove('justThereBCOfChild')
+        }
 })
 
 function minimizeWindow() { //currently not called--instead of closing when you focus on a window, now close either: 1. when navigate off window or 2. when do keycode to call it up
@@ -584,8 +592,12 @@ function changeChromePosition() {
 
 async function focusApp(e) {
     if (e.target){
-    var unixId = e.target.unixId
-    var name = e.target.name
+        var unixId = e.target.unixId
+        var name = e.target.name
+    } else {
+        var unixId = e.unixId
+        var name = e.name
+    }
     hideNavWindowVar = true
     hideNavWindow()
     macFocusAppName(unixId, name).then((result, error) => {
@@ -602,31 +614,20 @@ async function focusApp(e) {
         var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
         document.getElementById('errorMessage').textContent = theMessage
     })
-    } else { //from search directly
-        var name = e.textContent.trim()
-        hideNavWindowVar = true
-        hideNavWindow()
-        macFocusAppName('', name).then((result, error) => {
-            if (result) {
-                console.log(result)
-            } else {
-                console.log('error = ' + error)
-            }
-        }).catch((e) => {
-            console.log('error in appjs focus app function from search = ' + e)
-            var theMessage1 = `Looks like the Navigator encountered an error focusing an app.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
-            var theMessage = theMessage1.replace('error: Error: Error:', 'error:')
-            document.getElementById('errorMessage').textContent = theMessage
-        })
-    }
 }
 
 async function focusWindow(e) {
-   // return 'done'
+   if (e.target){
     var unixId = e.target.unixId
     var windowName = e.target.name
     var windowNumber = e.target.number
     var appName = e.target.appName.trim()
+   } else {
+    var unixId = e.unixId
+    var windowName = e.name
+    var windowNumber = e.number
+    var appName = e.appName.trim()
+   }
     hideNavWindowVar = true
     hideNavWindow()
     macFocusWindow(unixId, windowName, windowNumber, appName).then((result, error) => {
@@ -644,9 +645,15 @@ async function focusWindow(e) {
 }
 
 function focusChromeTab(e) {
-    var unixId = e.target.unixId
-    var theChromeWindowId = e.target.chromeWindowId
-    var chromeTabName = e.target.chromeTabName
+    if (e.target){
+        var unixId = e.target.unixId
+        var theChromeWindowId = e.target.chromeWindowId
+        var chromeTabName = e.target.chromeTabName
+    } else {
+        var unixId = e.unixId
+        var theChromeWindowId = e.chromeWindowId
+        var chromeTabName = e.chromeTabName
+    }
     hideNavWindowVar = true
     hideNavWindow()
     macFocusChromeTab(unixId, theChromeWindowId, chromeTabName).then((result, error) => {
@@ -747,6 +754,10 @@ function searchNamesFunction() {
         for (var c = 0; c < hiddenDivs.length; c++) {
             hiddenDivs[c].classList.remove('hideDiv')
         }
+        var hiddenDivs = document.querySelectorAll('.justThereBCOfChild')
+        for (var d = 0; d < hiddenDivs.length; d++) {
+            hiddenDivs[d].classList.remove('justThereBCOfChild')
+        }
         var enteredText = (document.getElementById('nameSearch').textContent).toLowerCase().trim()
 
         //search through app names
@@ -771,9 +782,11 @@ function searchNamesFunction() {
             } else { //un-hide the app names
                 if (windowTabNameDivs[a].classList.contains('chromeTabs')) {
                     windowTabNameDivs[a].parentElement.parentElement.previousElementSibling.classList.remove('hideDiv') //corresponds to div "tabOverview" for the specific chrome tab. Prior "search app" loop has hidden the app names, so if there is a chrome tab match, we want to un-hide the app.
-                    // Note that the chrome tab text search below will normally include the name of the tab itself, so it will probably make this line unnecessary--because there will be a match to the name of the tab in that text search, which will take care of showing the
+                    // Note that the chrome tab text search below will normally include the name of the tab itself, so it will probably make this line unnecessary--because there will be a match to the name of the tab in that text search, which will take care of showing 
+                    windowTabNameDivs[a].parentElement.parentElement.previousElementSibling.classList.add('justThereBCOfChild')
                 } else {
                     windowTabNameDivs[a].parentElement.previousElementSibling.classList.remove('hideDiv')  //. From the "search through app names" action above, the app name has potentially been hidden. So, if the window is a match, remove the hideDiv from the appName. this would be the div with class: "appDetails" of the specific app.  
+                    windowTabNameDivs[a].parentElement.previousElementSibling.classList.add('justThereBCOfChild')
                 }
             }
         }

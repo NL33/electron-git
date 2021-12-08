@@ -9,8 +9,13 @@ module.exports.searchKeyDown = function (e){
     if ((e.key === "Enter") || (e.key === "Return")){
         e.preventDefault()
         var div = document.querySelectorAll('.appDetails')[0]
-
         nextAppFromSearchFunction(div)
+    } else {
+        if (document.querySelector('.hoverHighlight')){ /****START HERE: STill working to make the hover work right. When done with search make sure this class is removed from anyewhere it appears */
+            document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
+        }
+        var div = document.querySelectorAll('.appDetails')[0]
+        nextAppFromSearchFunctionHover(div)
     }
     if (e.key === 'ArrowDown') {
        //arrowDownFunction(e)
@@ -20,14 +25,76 @@ module.exports.searchKeyDown = function (e){
 }
 
 function nextAppFromSearchFunction(target) { //target = next appOverview
+   try {
     if (target.classList.contains('hideDiv')){
         var nextApp = target.parentElement.nextElementSibling.children[0]
         nextAppFromSearchFunction(nextApp)
     } else {
-        var appItem = target
-        focusApp(appItem)
+        if (target.classList.contains('justThereBCOfChild')){
+            var firstChild = target.nextElementSibling.children[0]
+            selectChildFromAppForSearch(firstChild, target)
+        } else {
+            focusApp(target)
+        }
     }
+   } catch(e){
+       console.log('error getting search app = ' + e)
+   }
 }
+
+function selectChildFromAppForSearch(target, app){
+    try {
+        if (target.classList.contains('hideDiv')){
+            var nextItem = target.nextElementSibling
+            selectChildFromAppForSearch(nextItem, app)
+        } else {
+            if (target.classList.contains('tabOverview')){               
+               focusChromeTab(target) 
+            } else {
+                focusWindow(target)
+            }
+        }
+    } catch(e){
+        console.log('error getting next app = ' + e)
+        focusApp(app)
+    }
+
+}
+/***HIGHLIGHT TOP SEARCH RESULT*** */
+
+function nextAppFromSearchFunctionHover(target) { //target = next appOverview
+   try {
+    if (target.classList.contains('hideDiv')){
+        var nextApp = target.parentElement.nextElementSibling.children[0]
+        nextAppFromSearchFunctionHover(nextApp)
+    } else {
+        if (target.classList.contains('justThereBCOfChild')){
+            var firstChild = target.nextElementSibling.children[0]
+            selectChildFromAppForSearchHover(firstChild, target)
+        } else {
+            target.classList.add('hoverHighlight')
+        }
+    }
+   } catch(e){
+       console.log('error highlighting app from search = ' + e)
+   }
+}
+
+function selectChildFromAppForSearchHover(target, app){
+    try {
+        if (target.classList.contains('hideDiv')){
+            var nextItem = target.nextElementSibling
+            selectChildFromAppForSearchHover(nextItem, app)
+        } else {             
+               target.classList.add('hoverHighlight')
+        }
+    } catch(e){
+        console.log('error highlighting window app from search = ' + e)
+        focusApp(app)
+    }
+
+}
+/**END HIGHLIGHT*** */
 
 module.exports.keyDownFunction = function (e) {
     if ((e.keyCode === 13) || (e.key === "Enter") || (e.key === "Return")) { //press return

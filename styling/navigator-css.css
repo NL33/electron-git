@@ -114,7 +114,7 @@ ul li {
   border: 2px solid white;
 }
 
-.appDetails:hover, .windowName:hover, .tabOverview:hover{
+.appDetails:hover, .windowName:hover, .tabOverview:hover, .hoverHighlight{
    background-color: #d9f6fc;
     border: 2px solid #d9f6fc;
  /*box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;*/
