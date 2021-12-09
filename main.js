@@ -131,10 +131,12 @@ function openNavWindow(){
             navWindow.focus()
         }
     }
-
-    if ((!projectWindow.isDestroyed()) && (projectWindow !== null)){
-         projectWindow.minimize() //when call navwindow, assumption is you want that in front. The project Window is always on top. So you need to hide it to see the navwindow
-    }
+  if (projectWindow !== null){
+      if (!projectWindow.isDestroyed()) {
+          projectWindow.minimize() //when call navwindow, assumption is you want that in front. The project Window is always on top. So you need to hide it to see the navwindow
+      }
+  }
+ 
 } catch (e) {
           console.log('error in opening nav window = ' + e)
       }
@@ -161,6 +163,7 @@ function hideNavWindowKeycodeCalled() {
     
     if (navWindow !== null) {
         navWindow.hide()
+        
         navWindow.webContents.send('hide-nav-window', '')
          //if keypress called to hide nav window, then want to tell renderer when done, so that it can clear search results. This is not necessary if the renderer itself called the hide nav window, because the renderer already cleared the search results when it did that.
     }

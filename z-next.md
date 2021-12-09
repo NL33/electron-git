@@ -95,6 +95,9 @@ stayed that way until new update
 -temp measure: *START HERE*
     -turn this off unles people have the chrome option turned on.
     -then, give people instructions about it.
+    -in app, assume won't search text. Do chrome tabs and return results. And then, if user has item turned on, do the text search
+        could just do the search and catch any errors in case not turned on
+            and if turned on--or no errors, then add "search chrome text" to search bar
 -other idea: chrome extension to get the info then send it to the app. 
 
 - Right now, searching chrome tabs is turned off, as is the favicon. because of issue of whether use has to turn on javascript from Apple Events. If this changes, change the following:
