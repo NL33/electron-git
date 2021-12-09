@@ -91,12 +91,12 @@ module.exports.macFocusWindow = function (unixId, windowName, windowNumber, appN
             } else {
                 Application(appName).launch();
                 Application(appName).activate();
-                summary = "no index in focusWindow. Call app name: " + appName;
+                summary = "no index in focusWindow. Selected window doesn't seem to exist anymore. So called app name: " + appName;
 
             };
             return summary;
         } catch (e) {
-            throw Error('Focusing windows issue = ' + e);
+          throw Error('Error in focusing window: ' + e);
         }
     }, unixId, windowName, windowNumber, appName);
 }
@@ -104,25 +104,39 @@ module.exports.macFocusWindow = function (unixId, windowName, windowNumber, appN
 module.exports.macFocusChromeTab = function (unixId, chromeWindowId, chromeTabName) {
     return runJxaFunction(() => {
         try {
+            var tabMatch = false; 
+            var windowMatch = false;       
             const unixId = args[0], chromeWindowId = args[1], chromeTabName = args[2];
+            var summary = 'Selected chrome window id: ' + chromeWindowId;
             let process = Application('System Events').processes.whose({ unixId, backgroundOnly: { '=': false } })[0];
             const chrome = Application('Google Chrome');
             for (var i = 0; i < chrome.windows.length; i++) {
                 var window = chrome.windows[i];
                 var windowId = window.id();
                 if (windowId === chromeWindowId) {
+                    windowMatch = true;
                     var tabNames = window.tabs.title();
                     for (k = 0; k < tabNames.length; k++) {
-                        if (tabNames[k] === chromeTabName) {
+                        if (tabNames[k] === chromeTabName) {  
+                            tabMatch = true;                  
                             window.activeTabIndex = k + 1;
                             process.windows[i].actions['AXRaise'].perform();
                         }
                     }
+                    if (tabMatch != true){
+                        process.windows[i].actions['AXRaise'].perform();
+                        summary = 'Chrome tab selected no longer exists. But that chrome window does exist. So launched  chrome app itself, in relevant window';
+                    }
                 }
             };
-            return chromeWindowId;
+            if (windowMatch != true) {
+                Application('Google Chrome').launch();
+                Application('Google Chrome').activate();
+                summary = 'No match with selected chrome tab name or chrome window where that tab was. So launched chrome app itself';
+            };
+            return summary;
         } catch (e) {
-            throw Error('Focusing Chrome tabs issue = ' + e)
+            throw Error('error in chrome tab focus function: ' + e);
         }
     }, unixId, chromeWindowId, chromeTabName)
 }
