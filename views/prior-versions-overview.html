@@ -123,6 +123,14 @@
             color: white;
             box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
         }
+
+        .blueFolderEffect {
+                 //   height: 18px;
+            //width: 18px;
+            margin-right: 2px;
+            vertical-align: text-top;
+            filter: invert(51%) sepia(80%) saturate(619%) hue-rotate(182deg) brightness(102%) contrast(101%);
+        }
     </style>
     <title>Prior Versions</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
@@ -137,9 +145,8 @@
             style="position: fixed; width: 100%; margin-right: 20px; z-index: 1000; background-color: white; top: 0; border-bottom: 3px solid #f2f2f2; padding-bottom: 20px;">
             <div style="display: inline-block">
                 <div id="projectNameOverview" style="margin-bottom: 15px; padding-top: 15px">
-                    <img src="../clear-folder-fntawesome.svg"
-                        style="padding-right: 1px; height: 13pt; width: 12pt; vertical-align: text-top"></img>
-                    <span id="projectName" style="font-weight: bold; font-size: 16pt"></span>
+                <img class="blueFolderEffect icon" src="../assets/folder_open_google_icon.svg"></img>
+                    <span id="projectName" style="font-weight: bold; font-size: 16pt; vertical-align: top"></span>
                 </div>
                 <div id="savedVersionsId" style="font-size: 12pt">Click to open version files:</div>
             </div>

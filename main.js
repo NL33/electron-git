@@ -61,7 +61,7 @@ const createNavWindow = () => {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-           // devTools: false
+            devTools: false
            // enableRemoteModule: true
         }
     })
@@ -310,7 +310,7 @@ async function createProjectWindow(windowTitle) {
         webPreferences: {
             nodeIntegration: true,  
             contextIsolation: false, 
-            //devTools: false
+          //  devTools: false
         }
     })
 
@@ -321,7 +321,7 @@ async function createProjectWindow(windowTitle) {
         projectWindowOpen = false
     })
 
-    projectWindow.openDevTools()
+   // projectWindow.openDevTools()
     /*
     projectWindow.webContents.on('did-finish-load', function () {
         projectWindow.show();

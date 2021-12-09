@@ -46,5 +46,5 @@
 -previously, if the project window was open and you called for the navigator window, the navigator window would stay behind the project window. That's been fixed--so now if you have the project window open and call the navigator window, the navigator window moves to the front and the project window gets minimized
 
 ### Bug Fix: If select a window or a chrome tab, but that window or tab no longer exist at moment of selection, then open up the app itself
--It is possible (hopefully rare!) that when you call up the navigator a window or chrome tab shows up on the list prior to the navigator updating, which no longer is actually open. If you happen to click on that window or chrome tab, the navigagor will now call up the relevant app itself. 
+-It is possible (hopefully rare!) that when you call up the navigator, a window or chrome tab shows up on the list prior to the navigator updating, and that window or chrome tab is no longer is actually open. If you happen to click on that window or chrome tab, the navigator will now call up the relevant app itself. 
 -In the case of a chrome tab, it will call up the relevant chrome window where that tab was. If that chrome window itself doesn't exist anymore, it will now call up the chrome app itself.

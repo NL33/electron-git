@@ -21,7 +21,7 @@ module.exports = {
         "ignore": [
             'forge.config.js',
             '.env',
-            '.gitignore',
+           /* '.gitignore', for some reason creates error when include*/
             'z-changelog.md',
             'z-next.md',
             'hooks',
