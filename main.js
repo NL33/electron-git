@@ -55,14 +55,15 @@ const createNavWindow = () => {
         x: width - 611,
         y: 0,
         title: "Navigator",
-       // titleBarStyle: 'hidden',
-        //transparent: true,
-    //    alwaysOnTop: true, /*remove always on top, because it messes with the app index. The result is that, if this is true, if an app is focused, then other app's windows will not be able to be focused*/
+   /* These options make the window go with the background color: issue: harder to see the apps and text
+        transparency: true,
+        backgroundColor: "#00000000", 
+        vibrancy: "under-window",
+ */
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            devTools: false
-           // enableRemoteModule: true
+           // devTools: false
         }
     })
     navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));
@@ -310,7 +311,7 @@ async function createProjectWindow(windowTitle) {
         webPreferences: {
             nodeIntegration: true,  
             contextIsolation: false, 
-          //  devTools: false
+           // devTools: false
         }
     })
 
@@ -415,7 +416,7 @@ function priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName
                 additionalArguments: [projectFolderPath, projectFolderName],
                 nodeIntegration: true,
                 contextIsolation: false,
-                //devTools: false
+                devTools: false
                // enableRemoteModule: true
             }
         })

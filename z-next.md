@@ -82,6 +82,15 @@
 
 *General*
 
+# dark mode option
+-preference in tab bar: toggle dark mode
+-when dark mode selected, add class to the following (with !important for each change):
+    -body Id (with background-color: black)
+    -appDetails, windowName, windowSpan, tabOverview: (with border: 2px solid black; color: white)
+    -change hover text to lighter version of #3399ff (maybe can do document.getElementsByClassName(appDetails:hover))?
+    -change search text to white
+# change icon?
+- could change tray icon to something that fits with other icons. 
 # bug:
 nav window was opened
 no chrome window present
@@ -154,12 +163,6 @@ Form submission canceled because the form is not connected
 
 
 **Possible Next**
-
-# saving new version takes too long now. fix
-- likely because it runs a git init each time.
-
-# add default apps. ^^New Feature
--when open an app, in the navigator, be able to right click and add to default apps. So it shows up no matter whether opened or not.
 
 # close apps from navigator, whether or not they have windows.
 -currently, not able to do that--gives error if try to close item that has no windows.

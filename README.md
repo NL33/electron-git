@@ -10,7 +10,9 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 ## Package App Commits
 
-1bc59f2 packaged November 19, 2021. Version .2.4. Posted November 19, 5:40.
+a13cfd8 packaged December 9, 2021. Version .2.5. Posted December 9, 2021, 7:45pm US EST.
+
+1bc59f2 packaged November 19, 2021. Version .2.4. Posted November 19, 5:40 US EST.
 
 8de47c8, packaged November 19, 2021. Version .2.3. Posted November 19, 2021, 5:10pm US EST
 
@@ -18,7 +20,7 @@ This is an app that uses electron and javascript to make it easy to use git when
 
 f24953d, packaged November 17, 2021. 2:53pm. Version 0.2.1. posted Nov 17, 2021, 3:00pm
 
-dfaaeb9, packaged November 16, 2021, 7:11pm EST. Version 0.2.0
+dfaaeb9, packaged November 16, 2021, Version 0.2.0 (first release with Navigator functionality) 7:11pm EST. 
 
 ## Notes for Packaging
 - *CHANGE DEVTOOLS*
