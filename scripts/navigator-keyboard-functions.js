@@ -86,14 +86,17 @@ function nextAppFromSearchFunctionHover(target) { //target = next appOverview
 function selectChildFromAppForSearchHover(target, app){
     try {
         if (target.classList.contains('hideDiv')){
-            var nextItem = target.nextElementSibling
-            selectChildFromAppForSearchHover(nextItem, app)
-        } else {             
-               target.classList.add('hoverHighlight')
+            if (target.nextElementSibling) {
+                var nextItem = target.nextElementSibling
+                selectChildFromAppForSearchHover(nextItem, app)
+            }
+        } else {    
+            if (target.classList){         
+                target.classList.add('hoverHighlight')
+            }
         }
     } catch(e){
         console.log('error highlighting window app from search = ' + e)
-        focusApp(app)
     }
 
 }

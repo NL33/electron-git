@@ -1,6 +1,10 @@
 **Changelog**
 *REMINDER: Turn Off Dev Tools Prior to Packaging for Production*
 
+*V 2.7*
+### When search Chrome text, show a preview of the actual text from the Chrome tab, with searched text highlighted
+-The search results will show the first insance of the searched for text appearing in the Chrome tab, giving you a preview that helps you understand faster whether that's the Chrome tab you want.
+
 *V .2.6*
 
 ### -Working Chrome text searching if Chrome > View > Developer > Allow Javascript from Apple Events is turned on

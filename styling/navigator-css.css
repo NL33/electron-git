@@ -112,6 +112,21 @@ ul li {
   padding-top: 4px;
   padding-bottom: 1px;
   border: 2px solid white;
+  margin-left: 0px; 
+  cursor: pointer;
+  display: flex;
+  flex-wrap: flex;
+}
+
+.chromeTabs {
+  margin-left: 10px;
+  cursor: pointer;
+  float: right;
+  min-width: 60px;
+}
+
+.chromeSearchText {
+  margin-left: 15px;
 }
 
 .appDetails:hover, .windowName:hover, .tabOverview:hover, .hoverHighlight{

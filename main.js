@@ -63,7 +63,7 @@ const createNavWindow = () => {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            devTools: false
+           // devTools: false
         }
     })
     navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));

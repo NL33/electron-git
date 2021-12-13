@@ -37,13 +37,7 @@ async function hideNavWindow() {
    // document.getElementById('nameSearch').focus() //why removed? if do a search, then tab out of search, and select an item and hit return, the dom reflects this later, and by the time it is registered, this focus call may put the cursor back in the search box, where it will add a line break
     activeElementText = ''
     var hiddenDivs = document.querySelectorAll('.hideDiv')
-    for (var c = 0; c < hiddenDivs.length; c++) {
-        await hiddenDivs[c].classList.remove('hideDiv') //putting await  will slightly slow closing of window, but should speed up clearing the list when show the window again
-    }
-    var parentItems = document.querySelectorAll('.justThereBCOfChild')
-    for (var d = 0; d < parentItems.length; d++) {
-        parentItems[d].classList.remove('justThereBCOfChild')
-    }
+ clearSearch()
     if (document.querySelector('.hoverHighlight')) {
         document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
     }
@@ -70,19 +64,27 @@ ipcRenderer.on('hide-nav-window', (event, arg) => {
         els[0].classList.remove('hideDiv')
     }
     */
-    var hiddenDivs = document.querySelectorAll('.hideDiv')
-    for (var c = 0; c < hiddenDivs.length; c++) {
-        hiddenDivs[c].classList.remove('hideDiv') //putting await  will slightly slow closing of window, but should speed up clearing the list when show the window again
-    }
-    var parentItems = document.querySelectorAll('.justThereBCOfChild')
-    for (var d = 0; d < parentItems.length; d++) {
-        parentItems[d].classList.remove('justThereBCOfChild')
-    }
+    clearSearch()
     if (document.querySelector('.hoverHighlight')) {
         document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
     }
 
 })
+
+function clearSearch() {
+    var hiddenDivs = document.querySelectorAll('.hideDiv')
+    for (var c = 0; c < hiddenDivs.length; c++) {
+        hiddenDivs[c].classList.remove('hideDiv')
+    }
+    var hiddenDivs1 = document.querySelectorAll('.justThereBCOfChild')
+    for (var d = 0; d < hiddenDivs1.length; d++) {
+        hiddenDivs1[d].classList.remove('justThereBCOfChild')
+    }
+    var hiddenDivs2 = document.querySelectorAll('.chromeSearchText')
+    for (var e = 0; e < hiddenDivs2.length; e++) {
+        hiddenDivs2[e].remove()
+    }
+}
 
 function minimizeWindow() { //currently not called--instead of closing when you focus on a window, now close either: 1. when navigate off window or 2. when do keycode to call it up
     ipcRenderer.send('minimize-nav-window', '')
@@ -97,12 +99,14 @@ async function startLoop() {
             //   }
         }
     }, true);
+    clearSearch();
     okToRunStartLoop = false
     document.getElementById('errorMessage').textContent = ''
     try {
         console.log('*****run start loop')
         hideNavWindowVar = false
         chromeApps = 0
+        document.getElementById('nameSearch').textContent= ''
         ipcRenderer.send('focus-the-window', '')
         await loop()
 
@@ -426,6 +430,7 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
         //console.log('chrome window number = ' + chromeWindowNumber)
         theTabs = JSON.parse(theTabs1)
         chromeTabResults.push(theTabs)
+        console.log(theTabs)
         if (theTabs[0].content.length){
             document.getElementById('nameSearch').setAttribute('data-placeholder', "search names of everything that's open, and text of open Chrome tabs.")
         } else {
@@ -448,9 +453,9 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
 
             var tabId = chromeWindowNumber + '+' + m
             content = `
-            <div style="margin-left: 0px; display: flex; cursor: pointer" class="tabOverview thisTab keyTabHere hideWhileLoading" id="${tabId}" tabindex="1">
+            <div class="tabOverview thisTab keyTabHere hideWhileLoading" id="${tabId}" tabindex="1">
               <img style="height: 26px; width: 26px; vertical-align: middle; float: left" src="${useIcon}" id="${idN}" class="chromeTabIcon"></img>
-              <span style="margin-left: 10px; cursor: pointer; float: right;" class="chromeTabs windowTabName names">${thisTab.name}</span>
+              <span class="chromeTabs windowTabName names">${thisTab.name}</span>
             </div>
       `
             /*removed: <div class="nextItems" style="margin-left: 50px; margin-top: 3px" id="${nextItemsId}"></div> */
@@ -573,7 +578,7 @@ function changeChromePosition() {
     if ((chromePosition === 'chromeLast') || (chromePosition === 'n/a')) {  //chrome position = n/a would be for when app is first starting and have not changed chrome position. goes to default, which is last.
         chromePosition = 'chromeFirst'
         localStorage.setItem('chromePosition', 'chromeFirst')
-        startLoop()
+        startLoop() 
 
     } else {
         chromePosition = 'chromeLast'
@@ -743,16 +748,11 @@ function closeTab(target1) {
 
 /**SEARCH NAMES** */
 
+
 function searchNamesFunction() {
     try {
-        var hiddenDivs = document.querySelectorAll('.hideDiv')
-        for (var c = 0; c < hiddenDivs.length; c++) {
-            hiddenDivs[c].classList.remove('hideDiv')
-        }
-        var hiddenDivs = document.querySelectorAll('.justThereBCOfChild')
-        for (var d = 0; d < hiddenDivs.length; d++) {
-            hiddenDivs[d].classList.remove('justThereBCOfChild')
-        }
+        clearSearch()
+       
         var enteredText = (document.getElementById('nameSearch').textContent).toLowerCase().trim()
 
         //search through app names
@@ -792,12 +792,30 @@ function searchNamesFunction() {
             var windowTabs = chromeTabResults[i]
             for (let j = 0; j < windowTabs.length; j++) {
                 var tab = windowTabs[j]
-                var content = tab.content
-                if (content.toLowerCase().indexOf(enteredText) > -1) {
+                var content = tab.content.replaceAll('<input>', '').replaceAll('<textArea>', '') //otherwise text in search result can actually display the input or textArea
+                var index = content.toLowerCase().indexOf(enteredText)
+                if (index > -1) {
                     var chromeNameDiv = document.querySelector('.chromeNextItems').previousElementSibling //corresponds to the appDetails div that contains the div for the chrome icon and chrome app name
                     chromeNameDiv.classList.remove('hideDiv') //if a tab shows up in search results, show the Chrome app name..
+                    chromeNameDiv.classList.add('justThereBCOfChild')
                     var theTabId = tab.chromeWindowNumber + '+' + tab.tabNumber
-                    document.getElementById(theTabId).classList.remove('hideDiv') //corresponds to the tabOverview div for the specific tab
+                    var tabDiv = document.getElementById(theTabId)
+                    tabDiv.classList.remove('hideDiv') //corresponds to the tabOverview div for the specific tab
+                    //Show Text in Result:
+                    if (columnChoice !== 'yes-columns') { //only show if NOT in column view (formatting doesnt work now for showing text in column view)
+                        var indexLength = enteredText.length
+                        var result = content.substring((index+indexLength), (index+indexLength + 15))
+                        //add text to the chrome tab. only do it once entered text is at least 3 or more characters 
+                       if (!tabDiv.children[2]){
+                        if (enteredText.length > 2){
+                            var nContent = `
+                            <div class="chromeSearchText">
+                                ...<span style="background-color: #ffff99">${enteredText}</span><span>${result}...</span>
+                            </div>`
+                            tabDiv.insertAdjacentHTML('beforeEnd', nContent)
+                        }
+                       }
+                    } 
                 }
             }
         }
