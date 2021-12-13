@@ -66,8 +66,10 @@ function selectChildFromAppForSearch(target, app){
 function nextAppFromSearchFunctionHover(target) { //target = next appOverview
    try {
     if (target.classList.contains('hideDiv')){
-        var nextApp = target.parentElement.nextElementSibling.children[0]
-        nextAppFromSearchFunctionHover(nextApp)
+        if (target.parentElement.nextElementSibling){
+            var nextApp = target.parentElement.nextElementSibling.children[0]
+            nextAppFromSearchFunctionHover(nextApp)
+        }
     } else {
         if (target.classList.contains('justThereBCOfChild')){
             var firstChild = target.nextElementSibling.children[0]

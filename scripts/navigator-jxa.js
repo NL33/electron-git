@@ -44,7 +44,6 @@ module.exports.chromeTabs = async function (number) {
                 favicon: '', /*tab.execute({ javascript: "var links = document.head.querySelectorAll('link'); var link = undefined; for (let i = 0; i < links.length; i++) if (['icon', 'shortcut icon', 'apple-touch-icon'].includes(links[i].getAttribute('rel'))) { link = links[i].href; break; } link;" }),*/
                 /* REMOVED content and favicon for now because they execute javascript, and for that to work the user has to enable "Allow Javascript from Apple Events" at chrome > view > developer. Removed these while I consider whether this is a concern and whether there alternatives"*/
             }));
-            /*
             try {
                 for (var i=0; i<tabsRaw.length; i++){
                     var content = tabsRaw[i].execute({ javascript: "document.body.innerText" });
@@ -52,7 +51,6 @@ module.exports.chromeTabs = async function (number) {
                 }
             } catch (tabError){
             } 
-            */
             return JSON.stringify(tabs);
         } catch (e) {
             throw Error('Chrome tabs issue = ' + e);
