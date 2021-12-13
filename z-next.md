@@ -2,6 +2,13 @@
 
 *General*
 
+# Bug: if two (or more) chrome windows, the search chrome tabs causes errors
+-the search text will be associated with the same number tab from each window
+-seemed to also cause error in selecitng windows
+
+# Bug: navigator keyboard functions, lines 78 and 98
+-sometimes doesn't highlight and throws error. depending on where in the update it is.
+
 # dark mode option
 -preference in tab bar: toggle dark mode
 -when dark mode selected, add class to the following (with !important for each change):

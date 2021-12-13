@@ -35,6 +35,9 @@ function nextAppFromSearchFunction(target) { //target = next appOverview
             selectChildFromAppForSearch(firstChild, target)
         } else {
             focusApp(target)
+            if (document.querySelector('.hoverHighlight')) {
+                document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
+            }
         }
     }
    } catch(e){
@@ -51,13 +54,22 @@ function selectChildFromAppForSearch(target, app){
         } else {
             if (target.classList.contains('tabOverview')){               
                focusChromeTab(target) 
+                if (document.querySelector('.hoverHighlight')) {
+                    document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
+                }
             } else {
                 focusWindow(target)
+                if (document.querySelector('.hoverHighlight')) {
+                    document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
+                }
             }
         }
     } catch(e){
         console.log('error getting next app = ' + e)
         focusApp(app)
+        if (document.querySelector('.hoverHighlight')) {
+            document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
+        }
     }
 
 }
@@ -79,26 +91,25 @@ function nextAppFromSearchFunctionHover(target) { //target = next appOverview
         }
     }
    } catch(e){
-       console.log('error highlighting app from search = ' + e)
+          console.log('error highlighting app from search = ' + e)
    }
 }
 
 function selectChildFromAppForSearchHover(target, app){
     try {
+    if (target.classList) {  
         if (target.classList.contains('hideDiv')){
             if (target.nextElementSibling) {
                 var nextItem = target.nextElementSibling
                 selectChildFromAppForSearchHover(nextItem, app)
             }
-        } else {    
-            if (target.classList){         
+        } else {         
                 target.classList.add('hoverHighlight')
-            }
         }
+    }
     } catch(e){
         console.log('error highlighting window app from search = ' + e)
     }
-
 }
 /**END HIGHLIGHT*** */
 
