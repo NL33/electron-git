@@ -1,5 +1,107 @@
 **Next**
 
+*General*
+
+# dark mode option
+-preference in tab bar: toggle dark mode
+-when dark mode selected, add class to the following (with !important for each change):
+    -body Id (with background-color: black)
+    -appDetails, windowName, windowSpan, tabOverview: (with border: 2px solid black; color: white)
+    -change hover text to lighter version of #3399ff (maybe can do document.getElementsByClassName(appDetails:hover))?
+    -change search text to white
+# change icon?
+- could change tray icon to something that fits with other icons. 
+# bug:
+nav window was opened
+no chrome window present
+I hit "toggle chrome position"
+the apps doubled up.
+stayed that way until new update
+
+# make style and font the same between navigator and poject window
+
+# Javascript from Apple Events in Chrome, with Chrome Extension
+-chrome extension that gets text of tabs, and then sends to desktop app
+-that extension would need permission, but hope is that it would work without requiring blanket permission of javascript from apple events 
+    -goal is to achieve the same as "whitelisting" the desktop app to be able to do this, without enabling other apps to do it without express permission.
+
+
+# When open navigator, have cursor visible in search box faster
+right now, if do a search, select an item, and nav closes. When you open nav again, it can take a few hundred miliseconds for the cursor to be visible in the search bar. (on my computer). It is slow to show while the system is doing other stuff. Especially, clearing out the prior search.
+-anything to do to make this smoother?
+
+# project window: when create new file or folder. get this warning in console:
+Form submission canceled because the form is not connected
+
+# bug: projct window: if try to save version and there is an error, it will hang. And the "saving versions" div will stay there, even if change project.
+-so need way to refresh that view
+
+# project window: make saving version faster.
+-I had thought removing the init running each time would help, but that doesn't seem to make a difference (and git docs say it's fine to do it)
+-maybe a way to speed up with child process code?
+
+# through navigator, open any app.
+- this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:
+        -right click to save app to navigator. that app name gets saved in local storage, along with icon. when open navigator, create array based on local storage. then load the apps, and check if match in local storage--if match, then remove from the array to show. any remaining app names in array get shown in the navigator. click on those names, and call macFocusAppName, which just requires the app name. 
+
+- note: for icon when doing the below, can just get it from the icon folder (ie, call for the app, and then check icon folder in case there is an item there with the same name as the app). Better than running get icon function
+- replicate spotlight search functionality. How?
+- get the names of the directories in the applications folders (/Applications). If not sure, see how I would do it in project window if focusing on applications directory.
+- those names are the names of the apps
+- when open nav window the first time, save names of those apps as a hidden div
+- update that list when open again  
+    -to see if want to run the update function, just get the number of apps in that folder, and see if the number of apps have changed. then if they have, run the function.
+- put those app names in hidden divs
+- then, when search in the box, search these names--manipulating the divs in the same way you do right now for the open apps. if there is a hit, show that after the open apps. 
+- if select that item, then open that app.
+
+# Error in search function
+
+- when search, get this error almost all the time: Looks like the Navigator encountered an error doing a search. Sorry about that. You can press Command+1 to reload and try again. Here's the error (get ready for techno-speak): TypeError: Cannot read properties of null (reading 'classList')
+
+# put instructions for how to remove the version files (ie. .git) in folder
+
+
+# make icons work in production
+-current get windows icon code in navigator-add-icons.js doesn't work in production, because icon2png doesn't work in production.
+-issue related to paths of files in production
+-for now, I have sidestepped the issue by just getting a lot of icons in the hard-coded code during local use. And then keeping those icons there when I package for production
+
+# make child process code work
+-code in draft navigator file, under "new-jxa"
+
+
+**Possible Next**
+
+# close apps from navigator, whether or not they have windows.
+-currently, not able to do that--gives error if try to close item that has no windows.
+
+# if in search box and hit down arrow, move out of search box and into the list to select item to focus on 
+-right now, the way to move out of the search box is with tab
+
+# when search for app name in navigator window, show all the windows of that app
+
+-example: search for "word", and show word app + all the word docs open. It gives you an isolated view of just your word docs to navigate between
+
+# project window: prior versions window has online icon. change to saved icon
+
+# nav window: take all the windows and tabs open, and be able to save that configuration. ^^New Feature.
+-can save the details in local storage with a name.
+-can then retrieve that set up later by clicking on the name.
+-can limit the amount to 10 or 20 different setups.
+-when then click on the saved setup, code will go through and open each item.
+-issue: might be slow to open all those iems 
+-andcheck if the item is already open first
+-basically, get a lit of everything you want to open. Open it. then update the navigator to reflect what's opened.
+
+# change color of title bar that says "Navigator"
+
+# make font of nav window same as font of project window
+
+# change background color of nav window (something just slightly off-white)
+
+
+
 *Gratitude Notes*
 
 # steps
@@ -79,117 +181,6 @@
         -   CURRENT IDEA: try the database solution, mainly bc of possibility of adding new items to it later. 
             - like tags
             - colors.
-
-*General*
-
-# dark mode option
--preference in tab bar: toggle dark mode
--when dark mode selected, add class to the following (with !important for each change):
-    -body Id (with background-color: black)
-    -appDetails, windowName, windowSpan, tabOverview: (with border: 2px solid black; color: white)
-    -change hover text to lighter version of #3399ff (maybe can do document.getElementsByClassName(appDetails:hover))?
-    -change search text to white
-# change icon?
-- could change tray icon to something that fits with other icons. 
-# bug:
-nav window was opened
-no chrome window present
-I hit "toggle chrome position"
-the apps doubled up.
-stayed that way until new update
-
-# make style and font the same between navigator and poject window
-
-# Javascript from Apple Events in Chrome
--temp measure: *START HERE*
-    -turn this off unles people have the chrome option turned on.
-    -then, give people instructions about it.
-    -in app, assume won't search text. Do chrome tabs and return results. And then, if user has item turned on, do the text search
-        could just do the search and catch any errors in case not turned on
-            and if turned on--or no errors, then add "search chrome text" to search bar
--other idea: chrome extension to get the info then send it to the app. 
-
-- Right now, searching chrome tabs is turned off, as is the favicon. because of issue of whether use has to turn on javascript from Apple Events. If this changes, change the following:
-  - search box: put back in search chrome tabs
-  - navigator - window. js: put back in favicon code
-  -navigator-jxa, adjust chrome tabs
-- clear out icons/memory.json.  and any icons built up in the icons folder. Unless want to have a few there for faster load.
-
-- Allow Javascript from Apple Events is an option in the view/developer menu item in Chrome. It needs to be turned on for code that includes "execute" javascript to work. In the prior app version, that code occurs when searching chrome tabs, and getting chrome icons
-
-# When open navigator, have cursor visible in search box faster
-right now, if do a search, select an item, and nav closes. When you open nav again, it can take a few hundred miliseconds for the cursor to be visible in the search bar. (on my computer). It is slow to show while the system is doing other stuff. Especially, clearing out the prior search.
--anything to do to make this smoother?
-
-# project window: when create new file or folder. get this warning in console:
-Form submission canceled because the form is not connected
-
-# bug: projct window: if try to save version and there is an error, it will hang. And the "saving versions" div will stay there, even if change project.
--so need way to refresh that view
-
-# project window: make saving version faster.
--I had thought removing the init running each time would help, but that doesn't seem to make a difference (and git docs say it's fine to do it)
--maybe a way to speed up with child process code?
-
-# through navigator, open any app.
-- this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:
-        -right click to save app to navigator. that app name gets saved in local storage, along with icon. when open navigator, create array based on local storage. then load the apps, and check if match in local storage--if match, then remove from the array to show. any remaining app names in array get shown in the navigator. click on those names, and call macFocusAppName, which just requires the app name. 
-
-- note: for icon when doing the below, can just get it from the icon folder (ie, call for the app, and then check icon folder in case there is an item there with the same name as the app). Better than running get icon function
-- replicate spotlight search functionality. How?
-- get the names of the directories in the applications folders (/Applications). If not sure, see how I would do it in project window if focusing on applications directory.
-- those names are the names of the apps
-- when open nav window the first time, save names of those apps as a hidden div
-- update that list when open again  
-    -to see if want to run the update function, just get the number of apps in that folder, and see if the number of apps have changed. then if they have, run the function.
-- put those app names in hidden divs
-- then, when search in the box, search these names--manipulating the divs in the same way you do right now for the open apps. if there is a hit, show that after the open apps. 
-- if select that item, then open that app.
-
-# Error in search function
-
-- when search, get this error almost all the time: Looks like the Navigator encountered an error doing a search. Sorry about that. You can press Command+1 to reload and try again. Here's the error (get ready for techno-speak): TypeError: Cannot read properties of null (reading 'classList')
-
-# put instructions for how to remove the version files (ie. .git) in folder
-
-
-# make icons work in production
--current get windows icon code in navigator-add-icons.js doesn't work in production, because icon2png doesn't work in production.
--issue related to paths of files in production
--for now, I have sidestepped the issue by just getting a lot of icons in the hard-coded code during local use. And then keeping those icons there when I package for production
-
-# make child process code work
--code in draft navigator file, under "new-jxa"
-
-
-**Possible Next**
-
-# close apps from navigator, whether or not they have windows.
--currently, not able to do that--gives error if try to close item that has no windows.
-
-# if in search box and hit down arrow, move out of search box and into the list to select item to focus on 
--right now, the way to move out of the search box is with tab
-
-# when search for app name in navigator window, show all the windows of that app
-
--example: search for "word", and show word app + all the word docs open. It gives you an isolated view of just your word docs to navigate between
-
-# project window: prior versions window has online icon. change to saved icon
-
-# nav window: take all the windows and tabs open, and be able to save that configuration. ^^New Feature.
--can save the details in local storage with a name.
--can then retrieve that set up later by clicking on the name.
--can limit the amount to 10 or 20 different setups.
--when then click on the saved setup, code will go through and open each item.
--issue: might be slow to open all those iems 
--andcheck if the item is already open first
--basically, get a lit of everything you want to open. Open it. then update the navigator to reflect what's opened.
-
-# change color of title bar that says "Navigator"
-
-# make font of nav window same as font of project window
-
-# change background color of nav window (something just slightly off-white)
 
 
 **Old Next**

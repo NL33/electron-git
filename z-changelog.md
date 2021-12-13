@@ -1,5 +1,12 @@
 **Changelog**
+*V .2.6*
 
+### Working Chrome text searching if Chrome > View > Developer > Allow Javascript from Apple Events is turned on
+-if this is not turned on, then there won't be chrome text searching, but the rest of the chrome functionality will work fine.
+-the search bar's placeholder will indicate if chrome text searching is available.
+
+
+********
 *V .2.5*
 
 ### Add gratitude notes
