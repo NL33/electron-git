@@ -427,7 +427,7 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
         theTabs = JSON.parse(theTabs1)
         chromeTabResults.push(theTabs)
         if (theTabs[0].content.length){
-            document.getElementById('nameSearch').setAttribute('data-placeholder', "search names of everything that's open, and text of open chrome tabs.")
+            document.getElementById('nameSearch').setAttribute('data-placeholder', "search names of everything that's open, and text of open Chrome tabs.")
         } else {
             document.getElementById('nameSearch').setAttribute('data-placeholder', "search names of everything that's open.")
         }
