@@ -1,7 +1,9 @@
 **Changelog**
+*REMINDER: Turn Off Dev Tools Prior to Packaging for Production*
+
 *V .2.6*
 
-### Working Chrome text searching if Chrome > View > Developer > Allow Javascript from Apple Events is turned on
+### -Working Chrome text searching if Chrome > View > Developer > Allow Javascript from Apple Events is turned on
 -if this is not turned on, then there won't be chrome text searching, but the rest of the chrome functionality will work fine.
 -the search bar's placeholder will indicate if chrome text searching is available.
 -this code will also now return more icons for chrome tabs in the case that "Allow Javascript from Apple Events" is turned on
