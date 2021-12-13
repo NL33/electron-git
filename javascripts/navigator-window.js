@@ -435,16 +435,15 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
         for (var m = 0; m < theTabs.length; m++) {
             runIconError = 1
             var thisTab = theTabs[m]
-            var theIcon = thisTab.favicon /*THIS IS NOT Active right now. The code for this relies on executing javascript from Apple Events. Still under consideration*/
-            // console.log('loading chrome tab = ' + thisTab.name)
+            var theIcon = thisTab.favicon 
             var chromeWindowId = thisTab.chromeWindowId
             let idN = 'tabNumber' + m + 'windowNumber' + chromeAppNumber + 'refreshNumber = ' + refreshNumber
-            // if ((theIcon === undefined) || (theIcon === null)) {
+             if ((theIcon === 'n/a') || (theIcon === null)) {
             var url1 = thisTab.url.split('/')[2]
             var useIcon = 'https://' + url1 + '/favicon.ico'
-            //} else {
-            //  useIcon = theIcon
-            // }
+            } else {
+              useIcon = theIcon
+             }
 
 
             var tabId = chromeWindowNumber + '+' + m
