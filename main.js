@@ -154,6 +154,10 @@ ipcMain.on('minimize-nav-window', (event, target)=>{
     hideNavWindow()
 })
 
+ipcMain.on('open-nav-window-again', (event, target)=>{
+    openNavWindow()
+})
+
 function hideNavWindow(){
     if (navWindow !== null){
         navWindow.hide()

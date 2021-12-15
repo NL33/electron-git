@@ -13,8 +13,8 @@
 -preference in tab bar: toggle dark mode
 -when dark mode selected, add class to the following (with !important for each change):
     -body Id (with background-color: black)
-    -appUpDetails, windowPtName, windowUtSpan, tabNpOverview: (with border: 2px solid black; color: white)
-    -change hover text to lighter version of #3399ff (maybe can do document.getElementsByClassName(appUpDetails:hover))?
+    -appDetails, windowName, windowSpan, tabOverview: (with border: 2px solid black; color: white)
+    -change hover text to lighter version of #3399ff (maybe can do document.getElementsByClassName(appDetails:hover))?
     -change search text to white
 
 # through navigator, open any app.

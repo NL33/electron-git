@@ -88,16 +88,14 @@ function clearSearch() {
 }
 
 ipcRenderer.on('minimize-windows', (event, arg) => {
-    console.log('go')
-   minimizeAllWindows()
+   minimizeAllWindows().then((result, error)=>{
+       ipcRenderer.send('open-nav-window-again', '')
+   })
 })
 function minimizeWindow() { //currently not called--instead of closing when you focus on a window, now close either: 1. when navigate off window or 2. when do keycode to call it up
     ipcRenderer.send('minimize-nav-window', '')
 }
-async function minimizeWindows() {
-    navWindow.webContents.send('minimize-windows', '')
-   
-}
+
 async function startLoop() {
     window.addEventListener('error', function (e) {
         // console.log('we got an error in the taboos = ' + e);
