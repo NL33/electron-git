@@ -31,7 +31,7 @@ function menuApp() {
             { type: 'separator' },
             { label: 'Open Project Window', accelerator: "CmdOrCtrl+3", click() { createBasicWindow() } },
             { type: 'separator' },
-            { label: 'Hide Windows', click() { minimizeWindows() } },
+            { label: 'Minimize Windows', click() { minimizeWindows() } },
             { label: 'Breathe Big', accelerator: "CmdOrCtrl+4", click() { openBreatheBigWindow() } },
           /*  { label: 'Gratitude Notes', accelerator: "CmdOrCtrl+4", click() { openGratitudeNotes() } },*/
         ])
