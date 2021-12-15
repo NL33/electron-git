@@ -54,7 +54,7 @@ function readFileFunction(doc) {
     console.log('in read file function')
     fs.readFile(doc, 'utf8', function (err, data) {
         console.log('in read file 1')
-        let body = document.getElementById("bodyId")
+        let body = document.getElementById("bodyNPId")
         body.innerHTML = marked(data) //get markdown data and show in markdown
         console.log('done')
     })
@@ -96,7 +96,7 @@ function getDiscourseStuff() {
             console.log(response)
             let data = response.data.post_stream.posts[0].cooked
             //let data = response.data
-            let body = document.getElementById("bodyId")
+            let body = document.getElementById("bodyNPId")
             body.innerHTML = data
             doc = '/Users/sean/desktop/clipboard-text-test/discourse-test.md'
             writeNewFile(doc, data)
@@ -104,7 +104,7 @@ function getDiscourseStuff() {
             let data = response.data.post_stream.posts[0].raw
             // let data = response.data.body_changes.side_by_side
             console.log('data = ' + data)
-            let body = document.getElementById("bodyId")
+            let body = document.getElementById("bodyNPId")
             body.innerHTML = data
             */
             //  clipboard.writeHTML(response)
@@ -145,7 +145,7 @@ function readMarkDown(){
         console.log('in read file')
         let stuff = data
         
-        let body = document.getElementById("bodyId")
+        let body = document.getElementById("bodyNPId")
         body.innerHTML = stuff
 
         //clipboard.writeHTML(data)
@@ -157,7 +157,7 @@ function localStorageSave(){
     let data = clipboard.readText()
     localStorage.setItem("copiedText", data);
     let data1 = localStorage.getItem("copiedText")
-    let body = document.getElementById("bodyId")
+    let body = document.getElementById("bodyNPId")
     body.innerHTML = data1
 }
 
@@ -179,7 +179,7 @@ function convertToMarkdown(){
     fs.readFile(doc, 'utf8', function (err, data) {
         console.log('in read file')
         let stuff = data
-         let body = document.getElementById("bodyId")
+         let body = document.getElementById("bodyNPId")
          body.innerHTML = stuff
 
         //clipboard.writeHTML(data)
@@ -199,7 +199,7 @@ function convertToPlainText() {
     fs.readFile(doc, 'utf8', function (err, data) {
         console.log('in read file')
         let stuff = data
-        let body = document.getElementById("bodyId")
+        let body = document.getElementById("bodyNPId")
         body.innerHTML = stuff
 
         //clipboard.writeHTML(data)
@@ -240,7 +240,7 @@ function getFormatAndStore() {
        
      //   localStorage.setItem("copiedText", fileData);
        // let storageResult = localStorage.getItem("copiedText")
-         //let body = document.getElementById("bodyId")
+         //let body = document.getElementById("bodyNPId")
          //body.innerHTML = fileData
     //
         clipboard.writeRTF(fileData)
@@ -282,7 +282,7 @@ function writeFile(data1){
     fs.readFile(doc, 'utf8', function (err, data) {
         console.log('in read file')
         let stuff = data
-       // let body = document.getElementById("bodyId")
+       // let body = document.getElementById("bodyNPId")
         //body.innerHTML = stuff
        
         clipboard.writeHTML(data)

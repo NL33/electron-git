@@ -30,7 +30,7 @@ async function addToSavedApps() {
         appContent:
             `
       <div id="index=1" style="margin-bottom: 5px" class="appOverview">
-        <div tabindex="1" class="appDetails keyTabHere">
+        <div tabindex="1" class="appUpDetails keyTabHere">
         <img style="height: 36px; width: 36px; vertical-align: middle" class="notChromeTab " src="../icons/Macintosh HD:System:Applications:Music.app:.png" name="Music">
             <span style="margin-left: 3px; cursor: pointer" class="appName names">Music</span>
         </div>

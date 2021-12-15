@@ -82,10 +82,10 @@ module.exports.macFocusAppName = function (unixId, name) {
 
 //var result = await runJxa((unixId, name) => {
 
-module.exports.macFocusWindow = function (unixId, windowName, windowNumber, appName) {
+module.exports.macFocusWindow = function (unixId, windowPtName, windowNumber, appName) {
     return runJxaFunction(() => {
         try {
-            const unixId = args[0], windowName = args[1], windowNumber = args[2], appName = args[3];
+            const unixId = args[0], windowPtName = args[1], windowNumber = args[2], appName = args[3];
             var summary = "focusWindow complete";
             let process = Application('System Events').processes.whose({ unixId, backgroundOnly: { '=': false } })[0];
             if (!process.length) throw Error('process doesnt exist');
@@ -94,12 +94,12 @@ module.exports.macFocusWindow = function (unixId, windowName, windowNumber, appN
             var windowIndex = undefined;
 
             for (var i = 0; i < theLength; i++) {
-                if (theWindowsNames[i] === windowName) {
+                if (theWindowsNames[i] === windowPtName) {
                     windowIndex = i;
                     break;
                 };
             };
-             summary = "focus window done: name= " + windowName + "; unixId= " + unixId +  "; windowIndex=" + windowIndex;
+             summary = "focus window done: name= " + windowPtName + "; unixId= " + unixId +  "; windowIndex=" + windowIndex;
             if ((windowIndex != undefined)) {
                 process.windows[windowIndex].actions['AXRaise'].perform(); /*Focus action*/
             } else {
@@ -112,7 +112,7 @@ module.exports.macFocusWindow = function (unixId, windowName, windowNumber, appN
         } catch (e) {
           throw Error('Error in focusing window: ' + e);
         }
-    }, unixId, windowName, windowNumber, appName);
+    }, unixId, windowPtName, windowNumber, appName);
 }
 
 module.exports.macFocusChromeTab = function (unixId, chromeWindowId, chromeTabName) {
@@ -170,10 +170,10 @@ module.exports.macCloseApp = function (name) {
 }
 
 
-module.exports.macCloseWindow = function (unixId, windowName, windowNumber, appName) {
+module.exports.macCloseWindow = function (unixId, windowPtName, windowNumber, appName) {
     return runJxaFunction(() => {
         try {
-            const unixId = args[0], windowName = args[1], windowNumber = args[2], appName = args[3];
+            const unixId = args[0], windowPtName = args[1], windowNumber = args[2], appName = args[3];
             let process = Application('System Events').processes.whose({ unixId, backgroundOnly: { '=': false } })[0];
             if (!process.length) throw Error('process doesnt exist');
             var theWindowsNames = process.windows.name();
@@ -181,7 +181,7 @@ module.exports.macCloseWindow = function (unixId, windowName, windowNumber, appN
             var windowIndex = undefined;
 
             for (var i = 0; i < theLength; i++) {
-                if (theWindowsNames[i] === windowName) {
+                if (theWindowsNames[i] === windowPtName) {
                     windowIndex = i;
                     break;
                 };
@@ -197,7 +197,7 @@ module.exports.macCloseWindow = function (unixId, windowName, windowNumber, appN
         } catch (e) {
             return Error('Close window issue = ' + e);
         }
-    }, unixId, windowName, windowNumber, appName);
+    }, unixId, windowPtName, windowNumber, appName);
 }
 
 module.exports.macCloseChromeTab = function (chromeWindowId, chromeTabName) {
@@ -223,6 +223,23 @@ module.exports.macCloseChromeTab = function (chromeWindowId, chromeTabName) {
             throw Error('Close Chrome tab issue = ' + e)
         }
     }, chromeWindowId, chromeTabName)
+}
+
+module.exports.minimizeAllWindows = function(){
+    /* Works to minimize all windows but 1. And afterward opening the nav window by moving mouse to the right doesn't work. Have to command 1, and then moving mouse to right will work again.*/
+    return runJxaFunction(() => {
+     try {
+        const evalAS2 = s => {
+            const a = Application.currentApplication();
+            const sa = (a.includeStandardAdditions = true, a);
+            return sa.runScript(s);
+        };
+        evalAS2('tell application "System Events" to set visible of every application process to false');
+        return true;
+    } catch (e){
+        throw Error('error in minimizing all windows = ' + e)
+    }
+    })
 }
 
 function runJxaFunction(fn, ...arguments) {

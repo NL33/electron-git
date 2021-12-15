@@ -92,12 +92,12 @@ ul li {
   display: none !important;
 }
 
-.appDetails {
+.appUpDetails {
   cursor: pointer;
   border: 2px solid white;
 }
 
-.windowName {
+.windowPtName {
   padding: 5px;
   padding-left: 7px;
   padding-top: 4px;
@@ -106,7 +106,7 @@ ul li {
   border: 2px solid white;
 }
 
-.tabOverview {
+.tabNpOverview {
   padding: 5px;
   padding-left: 7px;
   padding-top: 4px;
@@ -129,7 +129,7 @@ ul li {
   margin-left: 15px;
 }
 
-.appDetails:hover, .windowName:hover, .tabOverview:hover, .hoverHighlight{
+.appUpDetails:hover, .windowPtName:hover, .tabNpOverview:hover, .hoverHighlight{
    background-color: #d9f6fc;
     border: 2px solid #d9f6fc;
  /*box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19) !important;*/
@@ -137,7 +137,7 @@ ul li {
 }
 
 
-.appDetails:focus, .windowName:focus, .tabOverview:focus{
+.appUpDetails:focus, .windowPtName:focus, .tabNpOverview:focus{
   outline: none !important;
   border: 2px solid #3399ff !important;
   border-radius: 5px;

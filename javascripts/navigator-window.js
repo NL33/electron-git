@@ -1,5 +1,5 @@
 const { exec, execFile, spawn, spawnSync } = require('child_process');
-const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTab, macCloseWindow, macCloseApp, macCloseChromeTab } = require('../scripts/navigator-jxa');
+const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTab, macCloseWindow, macCloseApp, macCloseChromeTab, minimizeAllWindows } = require('../scripts/navigator-jxa');
 const { searchKeyDown, keyDownFunction } = require('../scripts/navigator-keyboard-functions')
 const addIcons = require('../scripts/navigator-add-icons');
 const { ipcRenderer, ipcMain } = require('electron')
@@ -50,6 +50,7 @@ var activeElementText = ''
 
 ipcRenderer.on('run-loop-function', (event, arg) => {
     document.getElementById('nameSearch').focus() //goal here is that whenever the navigator window goes from hidden to in view, the search box is focused
+
     if (okToRunStartLoop) {
         startLoop()
     }
@@ -86,10 +87,17 @@ function clearSearch() {
     }
 }
 
+ipcRenderer.on('minimize-windows', (event, arg) => {
+    console.log('go')
+   minimizeAllWindows()
+})
 function minimizeWindow() { //currently not called--instead of closing when you focus on a window, now close either: 1. when navigate off window or 2. when do keycode to call it up
     ipcRenderer.send('minimize-nav-window', '')
 }
-
+async function minimizeWindows() {
+    navWindow.webContents.send('minimize-windows', '')
+   
+}
 async function startLoop() {
     window.addEventListener('error', function (e) {
         // console.log('we got an error in the taboos = ' + e);
@@ -152,7 +160,7 @@ async function startLoop() {
             }
         }
 
-        var tWindows = document.querySelectorAll('.windowName')
+        var tWindows = document.querySelectorAll('.windowPtName')
         for (var s = 0; s < tWindows.length; s++) {
             var el = tWindows[s]
             if (el.classList.contains('oldWindow')) {
@@ -162,7 +170,7 @@ async function startLoop() {
             }
         }
 
-        var tTabs = document.querySelectorAll('.tabOverview')
+        var tTabs = document.querySelectorAll('.tabNpOverview')
         for (var b = 0; b < tTabs.length; b++) {
             var el = tTabs[b]
             if (el.classList.contains('oldTab')) {
@@ -215,7 +223,7 @@ async function loop() {
         } else {
             refreshNumber++
             document.getElementById('nameSearch').focus()
-            document.getElementById('theTitle').textContent = 'Updating ...'
+           document.getElementById('theTitle').textContent = 'Updating ...'   
         }
 
         var theApps = document.querySelectorAll('.appOverview')
@@ -223,12 +231,12 @@ async function loop() {
             theApps[w].classList.add('oldApp')
         }
 
-        var theWindows = document.querySelectorAll('.windowName')
+        var theWindows = document.querySelectorAll('.windowPtName')
         for (var t = 0; t < theWindows.length; t++) {
             theWindows[t].classList.add('oldWindow')
         }
 
-        var theTabs = document.querySelectorAll('.tabOverview')
+        var theTabs = document.querySelectorAll('.tabNpOverview')
         for (var k = 0; k < theTabs.length; k++) {
             theTabs[k].classList.add('oldTab')
         }
@@ -277,6 +285,14 @@ async function loop() {
                     var iconContent = `
                   <span class="appIconSub"  id="${iconId}">${firstLetter}</span>
                 `
+                /*
+                  } else   if (appName.includes("Electron")) { 
+                    appName = 'Navigator'    
+                    var source = '../assets/rts-iconr.png'
+                        var iconContent = `
+                     <img style="height: 37px; width: 37px; vertical-align: middle" id="${iconId}" notChromeTab" src="${source}"></  img>
+                `
+                */
                 } else {
                     var iconContent = `
             <img style="height: 37px; width: 37px; vertical-align: middle" id="${iconId}" notChromeTab" src="${icon}"></img>
@@ -291,7 +307,7 @@ async function loop() {
                 }
                 var content = `
             <div id="${indexId}" class="appOverview hideWhileLoading">
-            <div tabindex="1" class="appDetails  thisAppName keyTabHere" >
+            <div tabindex="1" class="appUpDetails  thisAppName keyTabHere" >
                 ${iconContent}
                 <span style="margin-left: 3px; cursor: pointer" class="appName names" >${appName}</span>
             </div>
@@ -363,7 +379,7 @@ async function loop() {
                                 /*Why include "window doesn't start with "Find in Page"? The Find in page window shows up in chrome if you are doing a control+f / search on the page. The Mac treats it as it's own window. So it would show up in the results, but be confusing to the user (who wouldn't expect the find box to be a window) and makes it complicated to focus correctly. So I've removed it
                                 Why not updating: to prevent the RtS window showing up with title "Updating", which was confusing people*/
                                 var content = `
-                                <li class="thisOne windowName windowTabName names notChromeTab keyTabHere hideWhileLoading" tabindex="1"><span style="color: black; margin-left: -7px" class="windowSpan">${windowShow}</span></li>
+                                <li class="thisOne windowPtName windowTabName names notChromeTab keyTabHere hideWhileLoading" tabindex="1"><span style="color: black; margin-left: -7px" class="windowUtSpan">${windowShow}</span></li>
                         `
                                 if ((appName1.toLowerCase().includes('google chrome')) && ((window.toLowerCase().includes('google chrome')) || (window.includes('googlechrome')))) {
                                     await chromeFunction(j, k, unixId, window)
@@ -406,6 +422,7 @@ async function loop() {
                 }
             }
         }
+   
     } catch (e) {
         console.log('error in loop function generally = ' + e)
         var theMessage1 = `Looks like the Navigator encountered an error gathering your app info.  Sorry about that. You can press Command+1 to reload and try again.   Here's the error (get ready for techno-speak): ${e}`
@@ -416,7 +433,7 @@ async function loop() {
 
 /****************** END LOOP FUNCTION ************************************ */
 
-async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, windowName) {
+async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, windowPtName) {
     try {
         chromeFunctionRun++
         var chromeWindowNumber = chromeFunctionRun - 1
@@ -452,7 +469,7 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
 
             var tabId = chromeWindowNumber + '+' + m
             content = `
-            <div class="tabOverview thisTab keyTabHere hideWhileLoading" id="${tabId}" tabindex="1">
+            <div class="tabNpOverview thisTab keyTabHere hideWhileLoading" id="${tabId}" tabindex="1">
               <img style="height: 26px; width: 26px; vertical-align: middle; float: left" src="${useIcon}" id="${idN}" class="chromeTabIcon"></img>
               <span class="chromeTabs windowTabName names">${thisTab.name}</span>
             </div>
@@ -478,7 +495,7 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
             element.addEventListener('click', focusChromeTab)
             element.addEventListener('keydown', keyDownFunction)
             var children = element.children
-            element.name = windowName
+            element.name = windowPtName
             element.number = chromeWindowNumber
             element.unixId = unixId
             element.chromeWindowId = chromeWindowId
@@ -488,7 +505,7 @@ async function chromeFunction(chromeAppNumber, chromeWindowNumberInput, unixId, 
             element.classList.remove('thisTab')
             for (var j = 0; j < children.length; j++) {
                 var child = children[j]
-                child.name = windowName
+                child.name = windowPtName
                 child.number = chromeWindowNumber
                 child.unixId = unixId
                 child.chromeWindowId = chromeWindowId
@@ -620,16 +637,16 @@ async function focusWindow(e) {
     hideNavWindow()
     if (e.target) {
         var unixId = e.target.unixId
-        var windowName = e.target.name
+        var windowPtName = e.target.name
         var windowNumber = e.target.number
         var appName = e.target.appName.trim()
     } else {
         var unixId = e.unixId
-        var windowName = e.name
+        var windowPtName = e.name
         var windowNumber = e.number
         var appName = e.appName.trim()
     }
-    macFocusWindow(unixId, windowName, windowNumber, appName).then((result, error) => {
+    macFocusWindow(unixId, windowPtName, windowNumber, appName).then((result, error) => {
         if (result) {
             console.log(result)
         } else {
@@ -675,7 +692,7 @@ function closeWindow(target1) {
     try {
         var target = JSON.parse(target1)
         var unixId = target.unixId
-        var windowName = target.name
+        var windowPtName = target.name
         var windowNumber = target.number
         var appName = target.appName
         var parentId = target.parentId
@@ -691,7 +708,7 @@ function closeWindow(target1) {
                 }
             })
         } else {
-            macCloseWindow(unixId, windowName, windowNumber, appName).then((result, error) => {
+            macCloseWindow(unixId, windowPtName, windowNumber, appName).then((result, error) => {
                 if (result === true) {
                     var child = theParent.children[windowNumber]
                     child.remove()
@@ -759,7 +776,7 @@ function searchNamesFunction() {
         for (var b = 0; b < appNameDivs.length; b++) {
             var theAppNameText = (appNameDivs[b].textContent).toLowerCase()
             if (theAppNameText.indexOf(enteredText) === -1) {
-                appNameDivs[b].parentElement.classList.add('hideDiv') /*this would be the div with class: "appDetails" of the specific app*/
+                appNameDivs[b].parentElement.classList.add('hideDiv') /*this would be the div with class: "appUpDetails" of the specific app*/
             }
         }
 
@@ -769,17 +786,17 @@ function searchNamesFunction() {
             var theText = (windowTabNameDivs[a].textContent).toLowerCase()
             if (theText.indexOf(enteredText) === -1) {
                 if (windowTabNameDivs[a].classList.contains('chromeTabs')) {
-                    windowTabNameDivs[a].parentElement.classList.add('hideDiv') //This is the div "tabOverview" for the specific chrome tab. Note chrome tab dom display is structured differently than other window display--there is a parent window on topof the tab icon and tab name
+                    windowTabNameDivs[a].parentElement.classList.add('hideDiv') //This is the div "tabNpOverview" for the specific chrome tab. Note chrome tab dom display is structured differently than other window display--there is a parent window on topof the tab icon and tab name
                 } else {
-                    windowTabNameDivs[a].classList.add('hideDiv') //corresponds to the windowName div of the specific window
+                    windowTabNameDivs[a].classList.add('hideDiv') //corresponds to the windowPtName div of the specific window
                 }
             } else { //un-hide the app names
                 if (windowTabNameDivs[a].classList.contains('chromeTabs')) {
-                    windowTabNameDivs[a].parentElement.parentElement.previousElementSibling.classList.remove('hideDiv') //corresponds to div "tabOverview" for the specific chrome tab. Prior "search app" loop has hidden the app names, so if there is a chrome tab match, we want to un-hide the app.
+                    windowTabNameDivs[a].parentElement.parentElement.previousElementSibling.classList.remove('hideDiv') //corresponds to div "tabNpOverview" for the specific chrome tab. Prior "search app" loop has hidden the app names, so if there is a chrome tab match, we want to un-hide the app.
                     // Note that the chrome tab text search below will normally include the name of the tab itself, so it will probably make this line unnecessary--because there will be a match to the name of the tab in that text search, which will take care of showing 
                     windowTabNameDivs[a].parentElement.parentElement.previousElementSibling.classList.add('justThereBCOfChild')
                 } else {
-                    windowTabNameDivs[a].parentElement.previousElementSibling.classList.remove('hideDiv')  //. From the "search through app names" action above, the app name has potentially been hidden. So, if the window is a match, remove the hideDiv from the appName. this would be the div with class: "appDetails" of the specific app.  
+                    windowTabNameDivs[a].parentElement.previousElementSibling.classList.remove('hideDiv')  //. From the "search through app names" action above, the app name has potentially been hidden. So, if the window is a match, remove the hideDiv from the appName. this would be the div with class: "appUpDetails" of the specific app.  
                     windowTabNameDivs[a].parentElement.previousElementSibling.classList.add('justThereBCOfChild')
                 }
             }
@@ -794,12 +811,12 @@ function searchNamesFunction() {
                 var content = tab.content.replaceAll('<input>', '').replaceAll('<textArea>', '') //otherwise text in search result can actually display the input or textArea
                 var index = content.toLowerCase().indexOf(enteredText)
                 if (index > -1) {
-                    var chromeNameDiv = document.querySelector('.chromeNextItems').previousElementSibling //corresponds to the appDetails div that contains the div for the chrome icon and chrome app name
+                    var chromeNameDiv = document.querySelector('.chromeNextItems').previousElementSibling //corresponds to the appUpDetails div that contains the div for the chrome icon and chrome app name
                     chromeNameDiv.classList.remove('hideDiv') //if a tab shows up in search results, show the Chrome app name..
                     chromeNameDiv.classList.add('justThereBCOfChild')
                     var theTabId = tab.chromeWindowNumber + '+' + tab.tabNumber
                     var tabDiv = document.getElementById(theTabId)
-                    tabDiv.classList.remove('hideDiv') //corresponds to the tabOverview div for the specific tab
+                    tabDiv.classList.remove('hideDiv') //corresponds to the tabNpOverview div for the specific tab
                     //Show Text in Result:
                     if (columnChoice !== 'yes-columns') { //only show if NOT in column view (formatting doesnt work now for showing text in column view)
                         var indexLength = enteredText.length

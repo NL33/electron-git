@@ -8,13 +8,13 @@ var priorItem
 module.exports.searchKeyDown = function (e){
     if ((e.key === "Enter") || (e.key === "Return")){
         e.preventDefault()
-        var div = document.querySelectorAll('.appDetails')[0]
+        var div = document.querySelectorAll('.appUpDetails')[0]
         nextAppFromSearchFunction(div)
     } else {
         if (document.querySelector('.hoverHighlight')){ 
             document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
         }
-        var div = document.querySelectorAll('.appDetails')[0]
+        var div = document.querySelectorAll('.appUpDetails')[0]
         nextAppFromSearchFunctionHover(div)
     }
     if (e.key === 'ArrowDown') {
@@ -52,7 +52,7 @@ function selectChildFromAppForSearch(target, app){
             var nextItem = target.nextElementSibling
             selectChildFromAppForSearch(nextItem, app)
         } else {
-            if (target.classList.contains('tabOverview')){               
+            if (target.classList.contains('tabNpOverview')){               
                focusChromeTab(target) 
                 if (document.querySelector('.hoverHighlight')) {
                     document.querySelector('.hoverHighlight').classList.remove('hoverHighlight')
@@ -183,7 +183,7 @@ function arrowDownFunction(e) {
         } else if (e.target.parentElement.parentElement.nextElementSibling) {
             nextAppFromWindowFunction(e.target, 'windowLevel')
             if (theParent !== 'n/a') {
-                theParent.children[0].focus() //focus on appDetails level
+                theParent.children[0].focus() //focus on appUpDetails level
             } else {
                 document.getElementById('nameSearch').focus()
             }
@@ -212,7 +212,7 @@ function nextAppFromWindowFunction(target, startingPoint) {//for finding next ap
         var nextParent = target.nextElementSibling
     }
     if (nextParent) {
-        if (nextParent.children[0].classList.contains('hideDiv')) {  //hideDiv is added at level of appDetails
+        if (nextParent.children[0].classList.contains('hideDiv')) {  //hideDiv is added at level of appUpDetails
             nextAppFromWindowFunction(nextParent, 'appLevel')
         } else {
             theParent = nextParent

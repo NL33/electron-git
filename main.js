@@ -31,7 +31,7 @@ function menuApp() {
             { type: 'separator' },
             { label: 'Open Project Window', accelerator: "CmdOrCtrl+3", click() { createBasicWindow() } },
             { type: 'separator' },
-            // { label: 'Hide Windows', click() { minimizeWindows() } },
+            { label: 'Hide Windows', click() { minimizeWindows() } },
             { label: 'Breathe Big', accelerator: "CmdOrCtrl+4", click() { openBreatheBigWindow() } },
           /*  { label: 'Gratitude Notes', accelerator: "CmdOrCtrl+4", click() { openGratitudeNotes() } },*/
         ])
@@ -94,6 +94,7 @@ function keyBoardShortCut() {
     globalShortcut.register('CommandOrControl+4', () => {
         openBreatheBigWindow()
     })
+
 }
 
 ipcMain.on('open-nav-window', ()=>{
@@ -538,9 +539,10 @@ function showDialog() {
 
 
 /****MINIMIZE WINDOWS Menu function *****/
-async function minimizeWindows() {
+function minimizeWindows() {
+    navWindow.webContents.send('minimize-windows', '')
+    /*
     try {
-        /*
         const result = await runJxa(`
             const evalAS2 = s => {
                     const a = Application.currentApplication();
@@ -553,10 +555,10 @@ async function minimizeWindows() {
         function openMain() {
             ipcRenderer.send('open-main-window', '') //doesn't get called bc window is minimized. right now, it closes all windows
         }
-        */
     } catch (error) {
         console.log('error in minimize windows' + error)
     }
+    */
 }
 
 /****************GRATITUDE NOTES WINDOW ************* */

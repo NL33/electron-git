@@ -13,9 +13,29 @@
 -preference in tab bar: toggle dark mode
 -when dark mode selected, add class to the following (with !important for each change):
     -body Id (with background-color: black)
-    -appDetails, windowName, windowSpan, tabOverview: (with border: 2px solid black; color: white)
-    -change hover text to lighter version of #3399ff (maybe can do document.getElementsByClassName(appDetails:hover))?
+    -appUpDetails, windowPtName, windowUtSpan, tabNpOverview: (with border: 2px solid black; color: white)
+    -change hover text to lighter version of #3399ff (maybe can do document.getElementsByClassName(appUpDetails:hover))?
     -change search text to white
+
+# through navigator, open any app.
+- this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:
+        -right click to save app to navigator. that app name gets saved in local storage, along with icon. when open navigator, create array based on local storage. then load the apps, and check if match in local storage--if match, then remove from the array to show. any remaining app names in array get shown in the navigator. click on those names, and call macFocusAppName, which just requires the app name. 
+
+- note: for icon when doing the below, can just get it from the icon folder (ie, call for the app, and then check icon folder in case there is an item there with the same name as the app). Better than running get icon function
+- replicate spotlight search functionality. How?
+- get the names of the directories in the applications folders (/Applications). If not sure, see how I would do it in project window if focusing on applications directory.
+- those names are the names of the apps
+- when open nav window the first time, save names of those apps as a hidden div
+- update that list when open again  
+    -to see if want to run the update function, just get the number of apps in that folder, and see if the number of apps have changed. then if they have, run the function.
+- put those app names in hidden divs
+- then, when search in the box, search these names--manipulating the divs in the same way you do right now for the open apps. if there is a hit, show that after the open apps. 
+- if select that item, then open that app.
+
+
+
+
+
 # change icon?
 - could change tray icon to something that fits with other icons. 
 # bug:
@@ -47,20 +67,6 @@ Form submission canceled because the form is not connected
 -I had thought removing the init running each time would help, but that doesn't seem to make a difference (and git docs say it's fine to do it)
 -maybe a way to speed up with child process code?
 
-# through navigator, open any app.
-- this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:
-        -right click to save app to navigator. that app name gets saved in local storage, along with icon. when open navigator, create array based on local storage. then load the apps, and check if match in local storage--if match, then remove from the array to show. any remaining app names in array get shown in the navigator. click on those names, and call macFocusAppName, which just requires the app name. 
-
-- note: for icon when doing the below, can just get it from the icon folder (ie, call for the app, and then check icon folder in case there is an item there with the same name as the app). Better than running get icon function
-- replicate spotlight search functionality. How?
-- get the names of the directories in the applications folders (/Applications). If not sure, see how I would do it in project window if focusing on applications directory.
-- those names are the names of the apps
-- when open nav window the first time, save names of those apps as a hidden div
-- update that list when open again  
-    -to see if want to run the update function, just get the number of apps in that folder, and see if the number of apps have changed. then if they have, run the function.
-- put those app names in hidden divs
-- then, when search in the box, search these names--manipulating the divs in the same way you do right now for the open apps. if there is a hit, show that after the open apps. 
-- if select that item, then open that app.
 
 # Error in search function
 
