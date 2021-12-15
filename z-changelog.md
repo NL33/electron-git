@@ -2,10 +2,10 @@
 *REMINDER: Turn Off Dev Tools Prior to Packaging for Production*
 
 *V 2.7*
-### When search Chrome text, show a preview of the actual text from the Chrome tab, with searched text highlighted
+### -When search Chrome text, show a preview of the actual text from the Chrome tab, with searched text highlighted
 -The search results will show the first insance of the searched for text appearing in the Chrome tab, giving you a preview that helps you understand faster whether that's the Chrome tab you want.
 
-### Add "Minimize Windows" option.
+### -Add "Minimize Windows" option.
 -click this in the tray icon options (the icon at the top right of your screen), and it will minimize everything open on your computer except for (currently) one app. The Navigator window will open after as well.
 
 *V .2.6*
