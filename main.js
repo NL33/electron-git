@@ -316,7 +316,7 @@ async function createProjectWindow(windowTitle) {
         webPreferences: {
             nodeIntegration: true,  
             contextIsolation: false, 
-           // devTools: false
+            devTools: false
         }
     })
 

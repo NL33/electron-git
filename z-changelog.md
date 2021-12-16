@@ -1,9 +1,17 @@
 **Changelog**
 *REMINDER: Turn Off Dev Tools Prior to Packaging for Production*
 
+*V .2.8*
+### -Fixed issue with searching Chrome tabs if multiple windows
+
+- In previous update, if had more than 1 Chrome window open, searching the text of Chrome tabs could result search match previous showing up over several different tabs.
+
+- I've updated the code to address this issue. 
+
 *V 2.7*
 ### -When search Chrome text, show a preview of the actual text from the Chrome tab, with searched text highlighted
 -The search results will show the first insance of the searched for text appearing in the Chrome tab, giving you a preview that helps you understand faster whether that's the Chrome tab you want.
+-Note: Bug fix in v.2.8. should address an issue that was occuring when searching Chrome tab text with multiple windows.
 
 ### -Add "Minimize Windows" option.
 -click this in the tray icon options (the icon at the top right of your screen), and it will minimize everything open on your computer except for (currently) one app. The Navigator window will open after as well.

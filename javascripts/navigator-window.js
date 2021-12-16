@@ -2,7 +2,8 @@ const { exec, execFile, spawn, spawnSync } = require('child_process');
 const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTab, macCloseWindow, macCloseApp, macCloseChromeTab, minimizeAllWindows } = require('../scripts/navigator-jxa');
 const { searchKeyDown, keyDownFunction } = require('../scripts/navigator-keyboard-functions')
 const addIcons = require('../scripts/navigator-add-icons');
-const { ipcRenderer, ipcMain } = require('electron')
+const { ipcRenderer, ipcMain } = require('electron');
+const { logTask } = require('simple-git/src/lib/tasks/log');
 menuFunction()
 var activeApps = []
 var theTabs = ''
@@ -84,6 +85,7 @@ function clearSearch() {
     var hiddenDivs2 = document.querySelectorAll('.chromeSearchText')
     for (var e = 0; e < hiddenDivs2.length; e++) {
         hiddenDivs2[e].remove()
+        console.log('remove search text')
     }
 }
 
@@ -106,6 +108,7 @@ async function startLoop() {
         }
     }, true);
     clearSearch();
+    chromeTabResults = [] //clear out the Chrome tabs from the prior load. Otherwise, this array starts collecting all the chrome tabs every load. Searching chrome tabs, for example, will start doubling, tripling, etc. results
     okToRunStartLoop = false
     document.getElementById('errorMessage').textContent = ''
     try {
@@ -124,6 +127,7 @@ async function startLoop() {
         }
 
         console.log('***Done with loop')
+
         if (newWindow === 'yes') {
             document.getElementById('loadingMessage').style.display = 'none'
             document.getElementById('breatheOverviewDiv').style.display = 'none'
@@ -133,6 +137,8 @@ async function startLoop() {
 
         var tApps = document.querySelectorAll('.appOverview')
         activeElementText = document.activeElement.textContent //get currently focused element right before we transition to the updated results. And then below (where we check "matched") focus that element after the new results show
+       
+
         for (var j = 0; j < tApps.length; j++) {
             var el = tApps[j]
             if (!el.children[1].classList.contains('chromeNextItems')) {
@@ -195,9 +201,10 @@ async function startLoop() {
                 document.getElementById('nameSearch').focus()
             }
         }
-
+       
         if (document.getElementById('nameSearch').textContent.length > 0) {
             searchNamesFunction()
+            //idea: call the search function immediately after update in the case there is text in the search box
         }
         newWindow = 'no' //at end of first loading, change newWindow to 'no'. it will stay like that until another closing and reopening of app
         ipcRenderer.send('nav-loading-complete', '')
@@ -764,6 +771,7 @@ function closeTab(target1) {
 
 
 function searchNamesFunction() {
+    console.log('call search names func')
     try {
         clearSearch()
        
@@ -794,8 +802,11 @@ function searchNamesFunction() {
                     // Note that the chrome tab text search below will normally include the name of the tab itself, so it will probably make this line unnecessary--because there will be a match to the name of the tab in that text search, which will take care of showing 
                     windowTabNameDivs[a].parentElement.parentElement.previousElementSibling.classList.add('justThereBCOfChild')
                 } else {
-                    windowTabNameDivs[a].parentElement.previousElementSibling.classList.remove('hideDiv')  //. From the "search through app names" action above, the app name has potentially been hidden. So, if the window is a match, remove the hideDiv from the appName. this would be the div with class: "appUpDetails" of the specific app.  
-                    windowTabNameDivs[a].parentElement.previousElementSibling.classList.add('justThereBCOfChild')
+                    var parentApp = windowTabNameDivs[a].parentElement.previousElementSibling
+                    if (parentApp.textContent !== 'Race to Saturn'){
+                        windowTabNameDivs[a].parentElement.previousElementSibling.classList.remove('hideDiv')  //. From the "search through app names" action above, the app name has potentially been hidden. So, if the window is a match, remove the hideDiv from the appName. this would be the div with class: "appUpDetails" of the specific app.  
+                        windowTabNameDivs[a].parentElement.previousElementSibling.classList.add('justThereBCOfChild')
+                    }
                 }
             }
         }
@@ -806,6 +817,7 @@ function searchNamesFunction() {
             var windowTabs = chromeTabResults[i]
             for (let j = 0; j < windowTabs.length; j++) {
                 var tab = windowTabs[j]
+            
                 var content = tab.content.replaceAll('<input>', '').replaceAll('<textArea>', '') //otherwise text in search result can actually display the input or textArea
                 var index = content.toLowerCase().indexOf(enteredText)
                 if (index > -1) {
@@ -820,7 +832,7 @@ function searchNamesFunction() {
                         var indexLength = enteredText.length
                         var result = content.substring((index+indexLength), (index+indexLength + 15))
                         //add text to the chrome tab. only do it once entered text is at least 3 or more characters 
-                       if (!tabDiv.children[2]){
+                      // if (!tabDiv.children[2]){ 
                         if (enteredText.length > 2){
                             var nContent = `
                             <div class="chromeSearchText">
@@ -828,7 +840,7 @@ function searchNamesFunction() {
                             </div>`
                             tabDiv.insertAdjacentHTML('beforeEnd', nContent)
                         }
-                       }
+                      // }
                     } 
                 }
             }
