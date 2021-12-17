@@ -41,6 +41,35 @@ function menuApp() {
         console.log('error in loading tray menu = ' + e)
     }
 }
+/****Welcome Email Window******** */
+ipcMain.on('open-welcome-window', (args, event)=>{
+    welcomeWindow()
+})
+const welcomeWindow = () => {
+    try {
+        var theDisplay = screen.getPrimaryDisplay()
+        var width = theDisplay.bounds.width
+        var height = theDisplay.bounds.height
+        var welcomeWindow = new BrowserWindow({
+            width: 610,
+            height: 600,
+            x: width - 611,
+            y: 0,
+            hasShadow: false,
+            title: "Welcome",
+            webPreferences: {
+                nodeIntegration: true,
+                contextIsolation: false,
+                //devTools: false
+            }
+        })
+        welcomeWindow.loadFile(path.join(__dirname, '/views/email-window.html'));
+        welcomeWindow.openDevTools()
+    } catch (e) {
+        console.log('error in creating nav window = ' + e)
+    }
+};
+
 
 /********************Navigator Window ************************/
 

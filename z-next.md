@@ -2,6 +2,8 @@
 
 *General*
 
+# Get email 
+
 # Bug: if open project window, can't get rid of basic window.
 
 # Bug: navigator keyboard functions, lines 78 and 98

@@ -3,7 +3,6 @@ const { macActive, chromeTabs, macFocusWindow, macFocusAppName, macFocusChromeTa
 const { searchKeyDown, keyDownFunction } = require('../scripts/navigator-keyboard-functions')
 const addIcons = require('../scripts/navigator-add-icons');
 const { ipcRenderer, ipcMain } = require('electron');
-const { logTask } = require('simple-git/src/lib/tasks/log');
 menuFunction()
 var activeApps = []
 var theTabs = ''
@@ -26,7 +25,14 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 }
 ]
 */
-startLoop()
+//startLoop()
+var welcomeStatus = localStorage.getItem('welcomeDone')
+
+if (welcomeStatus === true){
+    startLoop()
+} else {
+    ipcRenderer.send('open-welcome-window', '')
+}
 
 window.onload = function () {
     document.getElementById('nameSearch').focus()
