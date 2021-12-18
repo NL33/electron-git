@@ -4,6 +4,13 @@
 
 # Get email 
 
+--working email process on front end
+--make lambda work to send info to dynamoDB and topic on discourse
+--move any info in lambda function into environmental variables (see prior examples for that)
+--put serverless on github
+--put lambda function into environmental variable?
+
+
 # Bug: if open project window, can't get rid of basic window.
 
 # Bug: navigator keyboard functions, lines 78 and 98
@@ -16,6 +23,8 @@
     -appDetails, windowName, windowSpan, tabOverview: (with border: 2px solid black; color: white)
     -change hover text to lighter version of #3399ff (maybe can do document.getElementsByClassName(appDetails:hover))?
     -change search text to white
+
+ # microsoft office products (word, excel, powerpoint): close items from navigator   
 
 # through navigator, open any app.
 - this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:

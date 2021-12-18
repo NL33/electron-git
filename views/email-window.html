@@ -178,7 +178,7 @@
             background-color: white;
             min-height: 525px;
             padding-top: 5px;
-           // box-shadow: 0 7px 6px 0 rgb(0 0 0 / 20%), 0 8px 10px 5px rgb(0 0 0 / 19%) !important
+            // box-shadow: 0 7px 6px 0 rgb(0 0 0 / 20%), 0 8px 10px 5px rgb(0 0 0 / 19%) !important
         }
 
         #welcomeBodyId {
@@ -214,13 +214,14 @@
         }
 
         #confirmButton {
-            margin-left: 8px; 
-            border-radius: 8px; 
-            padding: 5px; 
+            margin-left: 8px;
+            border-radius: 8px;
+            padding: 5px;
             display: inline-block;
-            border: 3px solid #3399ff; 
-            border-radius: 10px; 
-            cursor: pointer
+            border: 3px solid #3399ff;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: none;
         }
 
         #confirmButton:hover {
@@ -233,23 +234,36 @@
 </head>
 
 <body id="welcomeBodyId">
-    <div style="margin-left: 20px; margin-right: 20px; margin-top: 15px; font-size: 14pt">
-        <div style="margin-bottom: 15px">Hi! Thanks for trying the <span style="color: #3399ff">Navigator</span>.</div>
-        <div style="margin-bottom: 15px">We hope it helps you work faster and with more clarity.</div>
-        <div style="margin-bottom: 15px">To begin, please enter your email. This will help us let you know when updates are available.</div>
+    <div id="emailMessage">
+        <div style="margin-left: 20px; margin-right: 20px; margin-top: 15px; font-size: 14pt">
+            <div style="margin-bottom: 15px">Hi! Thanks for trying the <span style="color: #3399ff">Navigator</span>.
+            </div>
+            <div style="margin-bottom: 15px">We hope it helps you work faster and with more clarity.</div>
+            <div style="margin-bottom: 15px">To begin, please enter your email. This will help us let you know when
+                updates are available.</div>
 
-        <div oninput="enterEmail()" tabindex="1" contenteditable="true" id="emailEntry" data-placeholder="enter your email here"></div>
-        
-        <br>
-          <div>
-           <span>You entered: <span id="typedEmail" style="border-bottom: 2px solid #32cd53; min-width: 200px; display: inline-block; padding-bottom: 8px"></span> 
-          <span id="confirmButton" onsubmit="confirmedEmailFunction()" style="">Confirm</span>
-         </div>
-        <hr style="width: 70%; border: 1px solid  #f5f5f5; margin-top: 20px; margin-bottom: 20px">
-        <div style="font-size: 12pt; margin-top: 30px; margin-bottom: 20px"> We won't spam you.</div>
-        <div style="font-size: 12pt; margin-top: 20px; margin-bottom: 20px">The Navigator's functionality happens on your desktop. We don't receive or store info about the apps or documents you use.</div>
+            <div oninput="enterEmail()" tabindex="1" contenteditable="true" id="emailEntry"
+                data-placeholder="enter your email here"></div>
 
-
+            <br>
+            <div>
+                <span>You entered: <span id="typedEmail"
+                        style="border-bottom: 2px solid #32cd53; outline: none; min-width: 200px; display: inline-block; padding-bottom: 8px"></span>
+                    <span id="confirmButton" onclick="confirmedEmailFunction()" tabindex="2">Confirm</span>
+            </div>
+            <hr style="width: 70%; border: 1px solid  #f5f5f5; margin-top: 20px; margin-bottom: 20px">
+            <div style="font-size: 12pt; margin-top: 30px; margin-bottom: 20px"> We won't spam you.</div>
+            <div style="font-size: 12pt; margin-top: 20px; margin-bottom: 20px">The Navigator's functionality happens on
+                your desktop. We don't receive or store info about the apps or documents you use.</div>
+        </div>
+    </div>
+    <div id="thanksMessage" style="font-size: 18pt; text-align: center; margin-top: 30%; display: none">
+        <div>Thanks. You're ready to go.</div>
+    </div>
+    <div id="errorMessage" style="font-size: 18pt; text-align: center; margin-top: 30%; display: none">
+        <div style="margin-bottom: 20">Thanks, but something went wrong.</div>
+        <div>We'll ask for your email later.</div>
+    </div>
     <script src="../javascripts/email-window.js"></script>
 
 </body>

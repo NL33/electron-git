@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, webContents, protocol } = require('electron') 
+const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain, screen, dialog, clipboard, webContents, protocol } = require('electron')
 const path = require('path');
 const fs = require('fs');
 const sanitizeHtml = require('sanitize-html');
@@ -19,6 +19,7 @@ let tray = null
 var mainWindow
 var hoverWindowInEffect = true /* save preference with local storage*/
 var hoverWindow
+var welcomeDone = false
 function menuApp() {
     try {
         tray = new Tray(__dirname + '/assets/rts-icon2.png')
@@ -33,7 +34,7 @@ function menuApp() {
             { type: 'separator' },
             { label: 'Minimize Windows', click() { minimizeWindows() } },
             { label: 'Breathe Big', accelerator: "CmdOrCtrl+4", click() { openBreatheBigWindow() } },
-          /*  { label: 'Gratitude Notes', accelerator: "CmdOrCtrl+4", click() { openGratitudeNotes() } },*/
+            /*  { label: 'Gratitude Notes', accelerator: "CmdOrCtrl+4", click() { openGratitudeNotes() } },*/
         ])
         tray.setToolTip('Be extraordinary.')
         tray.setContextMenu(contextMenu)
@@ -42,74 +43,91 @@ function menuApp() {
     }
 }
 /****Welcome Email Window******** */
-ipcMain.on('open-welcome-window', (args, event)=>{
-    welcomeWindow()
+ipcMain.on('open-welcome-window', (args, event) => {
+    welcomeWindowFunction()
+    hideNavWindow()
 })
-const welcomeWindow = () => {
+
+ipcMain.on('already-did-welcome', (args, event) => {
+    welcomeDone = true
+})
+var welcomeWindow = 'n/a'
+function welcomeWindowFunction() {
+    if ((welcomeWindow === 'n/a') || (welcomeWindow === null) || (welcomeWindow.isDestroyed())) {
+        try {
+            var theDisplay = screen.getPrimaryDisplay()
+            var width = theDisplay.bounds.width
+            var height = theDisplay.bounds.height
+            welcomeWindow = new BrowserWindow({
+                width: 610,
+                height: 610,
+                // titleBarStyle: 'hidden',
+                x: width - 611,
+                y: 0,
+                // hasShadow: false,
+                title: "Welcome",
+                webPreferences: {
+                    nodeIntegration: true,
+                    contextIsolation: false,
+                    //devTools: false
+                }
+            })
+            welcomeWindow.loadFile(path.join(__dirname, '/views/email-window.html'));
+
+        } catch (e) {
+            console.log('error in creating nav window = ' + e)
+        }
+    } else {
+        welcomeWindow.show()
+    }
+};
+
+ipcMain.on('welcome-done', (args, event) => {
+    welcomeDone = true
+    openNavWindow()
+    welcomeWindow.destroy()
+})
+
+
+/********************Navigator Window ************************/
+
+const createNavWindow = () => {
     try {
         var theDisplay = screen.getPrimaryDisplay()
         var width = theDisplay.bounds.width
         var height = theDisplay.bounds.height
-        var welcomeWindow = new BrowserWindow({
+        navWindow = new BrowserWindow({
             width: 610,
-            height: 600,
+            height: height,
             x: width - 611,
             y: 0,
-            hasShadow: false,
-            title: "Welcome",
+            title: "Navigator",
+            /* These options make the window go with the background color: issue: harder to see the apps and text
+                 transparency: true,
+                 backgroundColor: "#00000000", 
+                 vibrancy: "under-window",
+          */
             webPreferences: {
                 nodeIntegration: true,
                 contextIsolation: false,
                 //devTools: false
             }
         })
-        welcomeWindow.loadFile(path.join(__dirname, '/views/email-window.html'));
-        welcomeWindow.openDevTools()
+        navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));
+        //navWindow.openDevTools() /**********remove-in-production*****/
+        navWindow.focus()
+        navWindow.on('close', () => {
+            navWindow = null
+            navLoadingDone = true
+        })
     } catch (e) {
         console.log('error in creating nav window = ' + e)
     }
 };
 
-
-/********************Navigator Window ************************/
-
-const createNavWindow = () => {
-  try {
-    var theDisplay = screen.getPrimaryDisplay()
-    var width = theDisplay.bounds.width
-    var height= theDisplay.bounds.height
-    navWindow = new BrowserWindow({
-        width: 610,
-        height: height,
-        x: width - 611,
-        y: 0,
-        title: "Navigator",
-   /* These options make the window go with the background color: issue: harder to see the apps and text
-        transparency: true,
-        backgroundColor: "#00000000", 
-        vibrancy: "under-window",
- */
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-            devTools: false
-        }
-    })
-    navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));
-    //navWindow.openDevTools() /**********remove-in-production*****/
-    navWindow.focus()
-    navWindow.on('close', () => {
-        navWindow = null
-        navLoadingDone = true
-    })
-  } catch(e) {
-    console.log('error in creating nav window = ' + e)
-  }
-};
-
 function keyBoardShortCut() {
     globalShortcut.register('CommandOrControl+1', () => {
-       openNavWindow()
+        openNavWindow()
     })
 
     globalShortcut.register('CommandOrControl+2', () => {
@@ -126,11 +144,11 @@ function keyBoardShortCut() {
 
 }
 
-ipcMain.on('open-nav-window', ()=>{
+ipcMain.on('open-nav-window', () => {
     openNavWindow()
 })
 var okToLoadNavWindow = false
-ipcMain.on('nav-loading-complete', ()=>{
+ipcMain.on('nav-loading-complete', () => {
     okToLoadNavWindow = true
 })
 
@@ -138,39 +156,43 @@ ipcMain.on('hover-nav-window', (event, target) => {
     openNavWindow()
 })
 
-function openNavWindow(){
-  try {
-    if (navWindow === null) {
-        createNavWindow()
-    } else {
-        var isVisible = navWindow.isVisible()
-        if (isVisible === false) {
-            if (okToLoadNavWindow === true){
-                navWindow.webContents.send('run-loop-function', '')
-                okToLoadNavWindow = false 
-                //don't reload nav function until get message that navloading is complete (so don't reload multiple times while it's loading)
+function openNavWindow() {
+    try {
+        if (welcomeDone === true) {
+            if (navWindow === null) {
+                createNavWindow()
+            } else {
+                var isVisible = navWindow.isVisible()
+                if (isVisible === false) {
+                    if (okToLoadNavWindow === true) {
+                        navWindow.webContents.send('run-loop-function', '')
+                        okToLoadNavWindow = false
+                        //don't reload nav function until get message that navloading is complete (so don't reload multiple times while it's loading)
+                    }
+                    navWindow.show()
+                    navWindow.focus()
+                    /*navWindow.webContents.send('focus-search', '')*/
+                } else {
+                    if (okToLoadNavWindow === true) {
+                        navWindow.webContents.send('run-loop-function', '')
+                        okToLoadNavWindow = false
+                        //don't reload nav function until get message that navloading is complete (so don't reload multiple times while it's loading)
+                    }
+                    navWindow.focus()
+                }
             }
-            navWindow.show()
-            navWindow.focus()
-            /*navWindow.webContents.send('focus-search', '')*/
+            if (projectWindow !== null) {
+                if (!projectWindow.isDestroyed()) {
+                    projectWindow.minimize() //when call navwindow, assumption is you want that in front. The project Window is always on top. So you need to hide it to see the navwindow
+                }
+            }
         } else {
-            if (okToLoadNavWindow === true) {
-                navWindow.webContents.send('run-loop-function', '')
-                okToLoadNavWindow = false 
-                //don't reload nav function until get message that navloading is complete (so don't reload multiple times while it's loading)
-            }
-            navWindow.focus()
-        }
+            createNavWindow()
+        }//end if welcomeDone = true
+
+    } catch (e) {
+        console.log('error in opening nav window = ' + e)
     }
-  if (projectWindow !== null){
-      if (!projectWindow.isDestroyed()) {
-          projectWindow.minimize() //when call navwindow, assumption is you want that in front. The project Window is always on top. So you need to hide it to see the navwindow
-      }
-  }
- 
-} catch (e) {
-          console.log('error in opening nav window = ' + e)
-      }
 }
 
 ipcMain.on('focus-the-window', (event, target) => {
@@ -179,28 +201,28 @@ ipcMain.on('focus-the-window', (event, target) => {
     /* navWindow.webContents.send('focus-search', '')*/
 })
 
-ipcMain.on('minimize-nav-window', (event, target)=>{
+ipcMain.on('minimize-nav-window', (event, target) => {
     hideNavWindow()
 })
 
-ipcMain.on('open-nav-window-again', (event, target)=>{
+ipcMain.on('open-nav-window-again', (event, target) => {
     openNavWindow()
 })
 
-function hideNavWindow(){
-    if (navWindow !== null){
+function hideNavWindow() {
+    if (navWindow !== null) {
         navWindow.hide()
     }
     okToLoadNavWindow = true
 }
 
 function hideNavWindowKeycodeCalled() {
-    
+
     if (navWindow !== null) {
         navWindow.hide()
-        
+
         navWindow.webContents.send('hide-nav-window', '')
-         //if keypress called to hide nav window, then want to tell renderer when done, so that it can clear search results. This is not necessary if the renderer itself called the hide nav window, because the renderer already cleared the search results when it did that.
+        //if keypress called to hide nav window, then want to tell renderer when done, so that it can clear search results. This is not necessary if the renderer itself called the hide nav window, because the renderer already cleared the search results when it did that.
     }
     okToLoadNavWindow = true
 }
@@ -213,18 +235,18 @@ function chromePosition() {
     navWindow.webContents.send('change-chrome-position', '')
 }
 
-function checkHoverFunction(){
-  try {
-    if (hoverWindowInEffect === false) {
-        openHoverWindow()
-    } else {
-        hoverWindow.destroy()
-        hoverWindowInEffect = false
-        /*Save preference with local storage */
-    }
-   } catch(e){
+function checkHoverFunction() {
+    try {
+        if (hoverWindowInEffect === false) {
+            openHoverWindow()
+        } else {
+            hoverWindow.destroy()
+            hoverWindowInEffect = false
+            /*Save preference with local storage */
+        }
+    } catch (e) {
         console.log('error in trying to change hover preference = ' + e)
-   }
+    }
 }
 
 function openHoverWindow() {
@@ -249,7 +271,7 @@ function openHoverWindow() {
 
     hoverWindow.loadURL('file://' + __dirname + '/views/hover-window.html');
     hoverWindowInEffect = true
-   // hoverWindow.openDevTools()
+    // hoverWindow.openDevTools()
     //hoverWindow.hide()
 }
 
@@ -283,22 +305,22 @@ ipcMain.on('show-context-menu-chrome-tab', (event, target) => {
 /****#OPEN BASIC (Mini) WINDOW******** */
 function createBasicWindow() { //this is the function that opens the project window (and calls for opening the basic window if it is not done yet)
     try {
-       // if (projectWindowOpen === false) {
-           if ((!projectWindow) || (projectWindow.isDestroyed())){
-               createProjectWindow()
-               hideNavWindow()
-           } else {
-               projectWindow.show()
-               hideNavWindow()
-               if (basicWindow){
-                  // basicWindow.hide()
-               }
-           }
-           if (basicWindow.isDestroyed()){
-               openBasicWindow()
-           }
-      //  }
-           
+        // if (projectWindowOpen === false) {
+        if ((!projectWindow) || (projectWindow.isDestroyed())) {
+            createProjectWindow()
+            hideNavWindow()
+        } else {
+            projectWindow.show()
+            hideNavWindow()
+            if (basicWindow) {
+                // basicWindow.hide()
+            }
+        }
+        if (basicWindow.isDestroyed()) {
+            openBasicWindow()
+        }
+        //  }
+
     } catch (e) {
         console.log('error in opening project window = ' + e)
     }
@@ -318,8 +340,8 @@ function openBasicWindow() {
         hasShadow: false,
         maximizable: false,
         webPreferences: {
-            nodeIntegration: true,  
-            contextIsolation: false, 
+            nodeIntegration: true,
+            contextIsolation: false,
             devTools: false
         }
     })
@@ -333,7 +355,7 @@ function openBasicWindow() {
 async function createProjectWindow(windowTitle) {
     var theDisplay = screen.getPrimaryDisplay()
     var screenWidth = theDisplay.bounds.width
-   // var width = theDisplay.bounds.width
+    // var width = theDisplay.bounds.width
     var height = theDisplay.bounds.height
     projectWindow = new BrowserWindow({
         width: 400, //320,
@@ -343,8 +365,8 @@ async function createProjectWindow(windowTitle) {
         y: 0,
         alwaysOnTop: true,
         webPreferences: {
-            nodeIntegration: true,  
-            contextIsolation: false, 
+            nodeIntegration: true,
+            contextIsolation: false,
             devTools: false
         }
     })
@@ -356,7 +378,7 @@ async function createProjectWindow(windowTitle) {
         projectWindowOpen = false
     })
 
-   // projectWindow.openDevTools()
+    // projectWindow.openDevTools()
     /*
     projectWindow.webContents.on('did-finish-load', function () {
         projectWindow.show();
@@ -451,7 +473,7 @@ function priorVersionOverviewWindowFunction(projectFolderPath, projectFolderName
                 nodeIntegration: true,
                 contextIsolation: false,
                 devTools: false
-               // enableRemoteModule: true
+                // enableRemoteModule: true
             }
         })
         priorWindowPath = projectFolderPath
@@ -526,7 +548,7 @@ async function compareVersionsWindowFunction(projectPath, laterVersionInfo, earl
             additionalArguments: [projectPath, laterVersionInfo, earlierVersionInfo, comparisonType],
             nodeIntegration: true,  //set to false by default for security reasons. TO access node.js API (eg, use require(...)) in a renderer, this has to be set to true
             contextIsolation: false, //set to true by default. False if want to use node api in renderer process,
-          //  enableRemoteModule: true
+            //  enableRemoteModule: true
             devTools: false
         }
     })
@@ -595,18 +617,18 @@ function minimizeWindows() {
 }
 
 /****************GRATITUDE NOTES WINDOW ************* */
-function openGratitudeNotes(){
+function openGratitudeNotes() {
     try {
-     //   var theDisplay = screen.getPrimaryDisplay()
-       // var width = theDisplay.bounds.width
+        //   var theDisplay = screen.getPrimaryDisplay()
+        // var width = theDisplay.bounds.width
         //var height = theDisplay.bounds.height
         gratitudeWindow = new BrowserWindow({
             width: 900,
             height: 615,
-         //   width: 610,
-           // height: height,
-          //  x: width - 611,
-          //  y: 0,
+            //   width: 610,
+            // height: height,
+            //  x: width - 611,
+            //  y: 0,
             title: "Gratitude Notes",
             // titleBarStyle: 'hidden',
             //transparent: true,
@@ -651,7 +673,7 @@ function openBreatheBigWindow() {
             nodeIntegration: true,
             contextIsolation: false,
             devTools: false
-           // enableRemoteModule: true
+            // enableRemoteModule: true
         }
         //backgroundColor: 'white'
     })
@@ -680,7 +702,7 @@ ipcMain.on('hide-main-window', (event, arg) => {
     try {
         basicWindow.show()
         projectWindow.hide()
-    } catch(e){
+    } catch (e) {
         console.log('error in hide main window = ' + e)
     }
 })
@@ -761,7 +783,7 @@ function openHTMLWindow(thePath) {
                 preload: path.join(__dirname, './preload.js'), //path.join(app.getAppPath(), 'preload.js'),
                 nodeIntegration: false,
                 contextIsolation: true,
-               // enableRemoteModule: false,
+                // enableRemoteModule: false,
                 sandbox: true,
                 devTools: false
             }
@@ -806,7 +828,7 @@ function openDiscourseAuthWindow(discourseUrl) {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-          //  enableRemoteModule: true,
+            //  enableRemoteModule: true,
             // additionalArguments: [thePath, content],
         }
     })
@@ -829,7 +851,7 @@ app.whenReady().then(() => { //once app is initialized, call the function to cre
     createNavWindow()
     keyBoardShortCut()
     openBasicWindow()
-   // createProjectWindow()
+    // createProjectWindow()
     menuApp()
 
 
