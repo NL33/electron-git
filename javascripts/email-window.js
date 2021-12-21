@@ -1,10 +1,30 @@
-const { ipcRenderer } = require('electron')
+const { ipcRenderer, app } = require('electron')
 const { default: axios } = require('axios')
-const { sendEmailUrl } = require('../environments/environments.js')
+const { sendEmailUrl, sendEmailKey, sendEmailIv } = require('../environments/environments.js')
+
+const algorithm = 'aes256'; // or any other algorithm supported by OpenSSL
+var appVersion = 'n/a'
+var enteredEmail 
+var randomId 
+var currentDate
+var showDate 
+var confirmClicked = false
+
+function encrypt(text){
+    var crypto = require('crypto');
+    const key = sendEmailKey;
+    const iv = sendEmailIv; 
+
+    let cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), iv);
+    var encrypted = cipher.update(text, 'utf8', 'hex') + cipher.final('hex');
+    sendFunction(encrypted)
+}
 
 
 window.onload = function () {
     document.getElementById('emailEntry').focus()
+    appVersion = window.process.argv.slice(-1)[0]
+    console.log(appVersion)
 }
 
 function enterEmail() {
@@ -13,6 +33,8 @@ function enterEmail() {
 }
 
 function confirmedEmailFunction() {
+    if (confirmClicked === false){
+    confirmedClicked = true //to prevent multiple submissions
     var enteredEmail = (document.getElementById('typedEmail').textContent).trim()
     if ((enteredEmail.length > 4) && (enteredEmail.includes('@') && (enteredEmail.includes('.') && (!enteredEmail.includes(' '))))) {
         var timeRaw = new Date()
@@ -35,17 +57,17 @@ function confirmedEmailFunction() {
         var infoObject = {
             email: enteredEmail,
             id: randomId,
+            appVersion: appVersion,
             firstOpenDate: currentDate,
-            firstOpenShowDate: showDate
+            firstOpenDateShow: showDate
         }
-        console.log('Info object = ')
-        console.log(infoObject)
         var info = JSON.stringify(infoObject)
-        sendFunction(info)
+        encrypt(info)
 
     } else {
         alert("That email doesn't look right. Please try again.")
     }
+ } 
 }
 
 function sendFunction(info) {
@@ -60,32 +82,28 @@ function sendFunction(info) {
             if (error) {
                 console.log('error in sending email = ' + error)
                 errorFunction()
-
             } else {
-                var data = JSON.parse(response.data.message)
-                var email = data.email
-                var id = data.id
-                var firstOpenDate = data.firstOpenDate
-                var firstOpenShowDate = data.firstOpenShowDate
-                await localStorage.setItem('randomAppId', id)
-                await localStorage.setItem('firstOpenDateRaw', firstOpenDate)
-                await localStorage.setItem('firstOpenDateShow', firstOpenShowDate)
-                await localStorage.setItem('welcomeDone', 'true')
-                document.getElementById('emailMessage').style.display = 'none'
-                document.getElementById('thanksMessage').style.display = 'block'
-                setTimeout(() => {
-                    ipcRenderer.send('welcome-done', '') //close this window. and send note to nav window to do the loop
-                }, 2500);
-
-                //  localStorage.setItem('welcomeDone', true)
-
+                var result = JSON.stringify(response.data.functionResult)
+                console.log('result = ' + result)
+               if (result.length>2){
+                    await localStorage.setItem('randomAppId', randomId)
+                    await localStorage.setItem('firstOpenDateRaw', currentDate)
+                    await localStorage.setItem('firstOpenDateShow', showDate)
+                    await localStorage.setItem('firstAppVersion', appVersion)
+                    await localStorage.setItem('welcomeDone', 'true')
+                    document.getElementById('emailMessage').style.display = 'none'
+                    document.getElementById('thanksMessage').style.display = 'block'
+                   setTimeout(() => {
+                       ipcRenderer.send('welcome-done', '') //close this window. and send note to nav window to do the loop
+                   }, 2500); 
+               } else {
+                   errorFunction()
+               }
+                
             }
-
         }).catch((e) => {
             console.log('error in sending email 2 = ' + e)
-            errorFunction()
-
-
+           errorFunction()
         })
 }
 

@@ -3,12 +3,31 @@
 *General*
 
 # Get email 
+--lambda: call dynamodb func. DONE
+--make sure env variables work on lambda. DONE
+--add "appversion" (from mainjs that you send as param to email window) when send. DONE.
+--change key and iv to environmental variables
+    -electron: part of packaging (just add url to that too)
+    -lambda: env variable in serverless
+--update serverless
+create github repo for serverless
+-reply to sofia re their app
 
---working email process on front end
---make lambda work to send info to dynamoDB and topic on discourse
---move any info in lambda function into environmental variables (see prior examples for that)
---put serverless on github
---put lambda function into environmental variable?
+--SENDING TO DISCOURSE:  UPDATE ON THIS: Decided to just send the data to Lambda and then to DynamoDB--and focus on sending it in encrypted way. And then if want to send to DIscourse, can do that later (when verify it's secure).
+    --some info on sending to discourse (might be able to just use axios in lambda too):
+            data: {
+                title: title,
+                raw: topicContent, 
+                category: category,    //HERE , category is 48 at rts site. just created
+                project_main: projectName,
+                path_for_topic: pathForTopic,
+                summary_text: summaryText,
+                doc_create_time: createTime, //don't need this now but good to have there in case switch db structure in the future.
+                tags: [tagName],
+                },
+                would probably use https module in lambda, and here is a sample of that: https://stackoverflow.com/questions/40537749/how-do-i-make-a-https-post-in-node-js-without-any-third-party-module
+
+
 
 
 # Bug: if open project window, can't get rid of basic window.

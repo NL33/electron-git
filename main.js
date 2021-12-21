@@ -53,8 +53,10 @@ ipcMain.on('already-did-welcome', (args, event) => {
 })
 var welcomeWindow = 'n/a'
 function welcomeWindowFunction() {
+    var appVersion = app.getVersion()
     if ((welcomeWindow === 'n/a') || (welcomeWindow === null) || (welcomeWindow.isDestroyed())) {
         try {
+            var appVersion = app.getVersion()
             var theDisplay = screen.getPrimaryDisplay()
             var width = theDisplay.bounds.width
             var height = theDisplay.bounds.height
@@ -69,9 +71,11 @@ function welcomeWindowFunction() {
                 webPreferences: {
                     nodeIntegration: true,
                     contextIsolation: false,
+                    additionalArguments: [appVersion.toString()]
                     //devTools: false
                 }
             })
+           
             welcomeWindow.loadFile(path.join(__dirname, '/views/email-window.html'));
 
         } catch (e) {
