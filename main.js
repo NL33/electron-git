@@ -12,14 +12,12 @@ const isTrusted = systemPreferences.isTrustedAccessibilityClient(true)
 let navWindow = null
 let projectWindow = null
 let basicWindow = null
-/*** TOOLBAR MENU ICON****** */
 var projectWindowOpen = false
-//const activeWindow = require('active-win');
 let tray = null
-var mainWindow
 var hoverWindowInEffect = true /* save preference with local storage*/
 var hoverWindow
 var welcomeDone = false
+
 function menuApp() {
     try {
         tray = new Tray(__dirname + '/assets/rts-icon2.png')
@@ -71,8 +69,8 @@ function welcomeWindowFunction() {
                 webPreferences: {
                     nodeIntegration: true,
                     contextIsolation: false,
-                    additionalArguments: [appVersion.toString()]
-                    //devTools: false
+                    additionalArguments: [appVersion.toString()],
+                    devTools: false
                 }
             })
            
@@ -114,7 +112,7 @@ const createNavWindow = () => {
             webPreferences: {
                 nodeIntegration: true,
                 contextIsolation: false,
-                //devTools: false
+                devTools: false
             }
         })
         navWindow.loadFile(path.join(__dirname, '/views/navigator-window.html'));

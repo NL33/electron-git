@@ -40,8 +40,8 @@ function confirmedEmailFunction() {
         var timeRaw = new Date()
         var time = timeRaw.getTime()
         var randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-        var randomId = randomString + '***' + time
-        var currentDate = new Date();
+         randomId = randomString + '***' + time
+         currentDate = new Date();
         var displayDate = currentDate.toLocaleDateString('en-us', {
             weekday: 'short',
             year: 'numeric',
@@ -53,7 +53,7 @@ function confirmedEmailFunction() {
         })
         var cleanedTime = displayTime.replace("AM", "am").replace("PM", "pm")
         //generate a random key to associate with the email.
-        var showDate = displayDate + ' ' + cleanedTime
+        showDate = displayDate + ' ' + cleanedTime
         var infoObject = {
             email: enteredEmail,
             id: randomId,
@@ -114,3 +114,14 @@ function errorFunction() {
         ipcRenderer.send('welcome-done', '') //send welcome done anyway, to open the Nav window. So nav window will work. But local storage is not set. So next time close and try to open nav window, we'll ask for email again.
     }, 3500);
 }
+
+/*Retrieving local storage info:
+localStorage.removeItem('welcomeDone')
+console.log('local storage = ')
+console.log(localStorage.getItem('randomAppId'))
+console.log(localStorage.getItem('firstOpenDateRaw'))
+console.log(localStorage.getItem('firstOpenDateShow'))
+console.log(localStorage.getItem('firstAppVersion'))
+console.log(localStorage.getItem('welcomeDone'))
+
+*/

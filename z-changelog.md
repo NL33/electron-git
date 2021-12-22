@@ -1,6 +1,17 @@
 **Changelog**
 *REMINDER: Turn Off Dev Tools Prior to Packaging for Production*
 
+*V .2.9*
+
+### -Added prompt for new users to enter their email
+- This will make it easier for us to let people know about new updates, and it lets us know when someone new gets the app.
+
+- As we note, we won't spam you
+
+- Details:
+    - When user clicks confirm, the email, app version, date, and a unique id for the app are provided to RtS
+    - The information is encrypted in transit
+
 *V .2.8*
 ### -Fixed issue with searching Chrome tabs if multiple windows
 

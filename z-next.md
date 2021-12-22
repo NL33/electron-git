@@ -6,11 +6,17 @@
 --lambda: call dynamodb func. DONE
 --make sure env variables work on lambda. DONE
 --add "appversion" (from mainjs that you send as param to email window) when send. DONE.
---change key and iv to environmental variables
+--change key and iv to environmental variables. DONE
     -electron: part of packaging (just add url to that too)
     -lambda: env variable in serverless
---update serverless
-create github repo for serverless
+--update serverless. DONE
+--create github repo for serverless. DONE
+--REMOVE local storage line from navigator.  DONE.
+--check that local storage is saving there. DONE.
+--remove dev tools
+--update change log
+--package app
+--clear out dynamodb table
 -reply to sofia re their app
 
 --SENDING TO DISCOURSE:  UPDATE ON THIS: Decided to just send the data to Lambda and then to DynamoDB--and focus on sending it in encrypted way. And then if want to send to DIscourse, can do that later (when verify it's secure).
