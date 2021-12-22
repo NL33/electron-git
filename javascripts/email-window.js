@@ -1,10 +1,6 @@
 const { ipcRenderer, app } = require('electron')
 const { default: axios } = require('axios')
-require('dotenv').config();
-
-const sendEmailUrl = process.env.sendEmailUrl
-const sendEmailKey = process.env.sendEmailKey
-const sendEmailIv = process.env.sendEmailIv
+const { sendEmailUrl, sendEmailKey, sendEmailIv } = require('../environments/environments.js')
 
 const algorithm = 'aes256'; // or any other algorithm supported by OpenSSL
 var appVersion = 'n/a'
