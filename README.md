@@ -9,6 +9,10 @@ Notwithstanding anything written elsewhere in the code of this app, any use outs
 This is an app that uses electron and javascript to make it easy to use git when you are doing work, including work beyond code.
 
 ## Package App Commits
+7b8a89b, packaged December 22, 2021. Version .2.9. Posted December 22, 2021. 10:30am US EST.
+
+[?], Version .2.8. Posted December 16, 2021, 6:20pm US EST
+
 0adb063, packaged December 15, 2021. Version .2.7. Posted December 15, 2021. 11:00am US EST.
 
 5edaee1, packaged December 13, 2021. Version .2.6. Posted December 13, 2021, 11:00am US EST.

@@ -10,7 +10,7 @@
 
 - Details:
     - When user clicks confirm, the email, app version, date, and a unique id for the app are provided to RtS
-    - The information is encrypted in transit
+    - The information is encrypted in transit and decrypted in the lambda function
 
 *V .2.8*
 ### -Fixed issue with searching Chrome tabs if multiple windows

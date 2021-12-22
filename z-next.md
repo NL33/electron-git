@@ -1,56 +1,6 @@
 **Next**
 
 *General*
-
-# Get email 
---lambda: call dynamodb func. DONE
---make sure env variables work on lambda. DONE
---add "appversion" (from mainjs that you send as param to email window) when send. DONE.
---change key and iv to environmental variables. DONE
-    -electron: part of packaging (just add url to that too)
-    -lambda: env variable in serverless
---update serverless. DONE
---create github repo for serverless. DONE
---REMOVE local storage line from navigator.  DONE.
---check that local storage is saving there. DONE.
---remove dev tools
---update change log
---package app
---clear out dynamodb table
--reply to sofia re their app
-
---SENDING TO DISCOURSE:  UPDATE ON THIS: Decided to just send the data to Lambda and then to DynamoDB--and focus on sending it in encrypted way. And then if want to send to DIscourse, can do that later (when verify it's secure).
-    --some info on sending to discourse (might be able to just use axios in lambda too):
-            data: {
-                title: title,
-                raw: topicContent, 
-                category: category,    //HERE , category is 48 at rts site. just created
-                project_main: projectName,
-                path_for_topic: pathForTopic,
-                summary_text: summaryText,
-                doc_create_time: createTime, //don't need this now but good to have there in case switch db structure in the future.
-                tags: [tagName],
-                },
-                would probably use https module in lambda, and here is a sample of that: https://stackoverflow.com/questions/40537749/how-do-i-make-a-https-post-in-node-js-without-any-third-party-module
-
-
-
-
-# Bug: if open project window, can't get rid of basic window.
-
-# Bug: navigator keyboard functions, lines 78 and 98
--sometimes doesn't highlight and throws error. depending on where in the update it is.
-
-# dark mode option
--preference in tab bar: toggle dark mode
--when dark mode selected, add class to the following (with !important for each change):
-    -body Id (with background-color: black)
-    -appDetails, windowName, windowSpan, tabOverview: (with border: 2px solid black; color: white)
-    -change hover text to lighter version of #3399ff (maybe can do document.getElementsByClassName(appDetails:hover))?
-    -change search text to white
-
- # microsoft office products (word, excel, powerpoint): close items from navigator   
-
 # through navigator, open any app.
 - this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:
         -right click to save app to navigator. that app name gets saved in local storage, along with icon. when open navigator, create array based on local storage. then load the apps, and check if match in local storage--if match, then remove from the array to show. any remaining app names in array get shown in the navigator. click on those names, and call macFocusAppName, which just requires the app name. 
@@ -66,8 +16,20 @@
 - then, when search in the box, search these names--manipulating the divs in the same way you do right now for the open apps. if there is a hit, show that after the open apps. 
 - if select that item, then open that app.
 
+ # microsoft office products (word, excel, powerpoint): close items from navigator   
+ 
+# Bug: if open project window, can't get rid of basic window.
 
+# Bug: navigator keyboard functions, lines 78 and 98
+-sometimes doesn't highlight and throws error. depending on where in the update it is.
 
+# dark mode option
+-preference in tab bar: toggle dark mode
+-when dark mode selected, add class to the following (with !important for each change):
+    -body Id (with background-color: black)
+    -appDetails, windowName, windowSpan, tabOverview: (with border: 2px solid black; color: white)
+    -change hover text to lighter version of #3399ff (maybe can do document.getElementsByClassName(appDetails:hover))?
+    -change search text to white
 
 
 # change icon?

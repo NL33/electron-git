@@ -1,6 +1,10 @@
 const { ipcRenderer, app } = require('electron')
 const { default: axios } = require('axios')
-const { sendEmailUrl, sendEmailKey, sendEmailIv } = require('../environments/environments.js')
+require('dotenv').config();
+
+const sendEmailUrl = process.env.sendEmailUrl
+const sendEmailKey = process.env.sendEmailKey
+const sendEmailIv = process.env.sendEmailIv
 
 const algorithm = 'aes256'; // or any other algorithm supported by OpenSSL
 var appVersion = 'n/a'
@@ -84,7 +88,7 @@ function sendFunction(info) {
                 errorFunction()
             } else {
                 var result = JSON.stringify(response.data.functionResult)
-                console.log('result = ' + result)
+                console.log('email successful')
                if (result.length>2){
                     await localStorage.setItem('randomAppId', randomId)
                     await localStorage.setItem('firstOpenDateRaw', currentDate)
