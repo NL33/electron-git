@@ -74,6 +74,9 @@ patches/mtime-cache.json
 
 /src/environments/*
 environments
+url-environments
+z-environments
+scripts/environments
 **/z-environments*
 **/z-environments.md
 **/z-environments.js

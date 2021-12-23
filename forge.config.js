@@ -21,7 +21,6 @@ module.exports = {
         "ignore": [
             'forge.config.js',
             '.env',
-            /*'./environments/environments.js', //needs to be there for environment vars*/
            /* '.gitignore', for some reason creates error when include*/
             'z-changelog.md',
             'z-next.md',
@@ -67,7 +66,8 @@ module.exports = {
     ],
     "hooks": {
         packageAfterCopy: async (_, location) => {
-            await uglify(location, 'javascripts').then(console.log('ug done'));
+            await uglify(location, 'javascripts').then(console.log('ug1 done'));
+            await uglify(location, 'scripts').then(console.log('ug2 done'));
             excludeMeta(location, _.packagerConfig.ignorePackageJson);
             console.log('✔ selected package.json properties are excluded');
         },
