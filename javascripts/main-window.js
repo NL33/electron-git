@@ -83,7 +83,7 @@ window.onload = async function () {
         */
         //get last project folder info
         var changeFolderButton = document.getElementById('changeFolder')
-      // localStorage.removeItem('lastProjectFolder')
+
         if (localStorage.getItem('lastProjectFolder')) {
             let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
             if (folderArray) {

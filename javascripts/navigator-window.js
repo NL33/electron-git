@@ -26,7 +26,7 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 }
 ]
 */
-//localStorage.removeItem('welcomeDone')
+
 
 var welcomeStatus = localStorage.getItem('welcomeDone')
 if (welcomeStatus === 'true') {
