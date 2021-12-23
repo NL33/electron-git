@@ -4,7 +4,6 @@
 
 --check just packaged version (in the out folder on desktop from 8:40pm)
 --put on site.
---respond to sofia--send her the stuff. and ahmet 
 
 # through navigator, open any app.
 - this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:
