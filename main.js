@@ -344,7 +344,7 @@ function openBasicWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-           // devTools: false
+            devTools: false
         }
     })
 
@@ -369,7 +369,7 @@ async function createProjectWindow(windowTitle) {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            //devTools: false
+            devTools: false
         }
     })
 

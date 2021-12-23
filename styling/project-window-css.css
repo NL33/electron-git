@@ -149,6 +149,10 @@
             box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 4px 0 rgba(0, 0, 0, 0.19) !important;
         }
 
+        .largerFont {
+            font-size: 13pt !important;
+        }
+
 
         #openNavWindow {
             display: inline-block;

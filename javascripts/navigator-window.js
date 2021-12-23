@@ -26,16 +26,16 @@ var chromeTabResults = [] /*Chrome tab results is an array where we put the tab 
 }
 ]
 */
-//localStorage.removeItem('welcomeDone')
+localStorage.removeItem('welcomeDone')
 
 var welcomeStatus = localStorage.getItem('welcomeDone')
-
 if (welcomeStatus === 'true') {
     startLoop()
     ipcRenderer.send('already-did-welcome', '') //tells mainjs that it's ok to load the nav window
 } else {
     ipcRenderer.send('open-welcome-window', '')
 }
+
 
 window.onload = function () {
     document.getElementById('nameSearch').focus()

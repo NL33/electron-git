@@ -3,6 +3,11 @@
 
 *V .2.9*
 
+### -Project Window: show "click here to choose project window" button 
+- If a user has not selected a project window, they'll now see a button to choose one (previously the button just said "change project window")
+
+- This makes things a little more intuitive 
+
 ### -Added prompt for new users to enter their email
 - This will make it easier for us to let people know about new updates, and it lets us know when someone new gets the app.
 

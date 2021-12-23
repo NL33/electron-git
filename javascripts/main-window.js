@@ -12,6 +12,9 @@ var proj
 
 var projectFolderName
 
+var projectFolderPath
+
+
 //const { promisify } = require('util')
 
 //const { default: axios } = require('axios')
@@ -79,6 +82,8 @@ window.onload = async function () {
                 })
         */
         //get last project folder info
+        var changeFolderButton = document.getElementById('changeFolder')
+       
         if (localStorage.getItem('lastProjectFolder')) {
             let folderArray = JSON.parse(localStorage.getItem('lastProjectFolder'))
             if (folderArray) {
@@ -88,10 +93,14 @@ window.onload = async function () {
                 var divId = "projectDirectory"
                 showFolderContents(divId, projectFolderPath, 0)
             }
+        } else {
+            var changeFolderButton = document.getElementById('changeFolder')
+            changeFolderButton.textContent = 'click here to choose project folder'
+            changeFolderButton.classList.add('largerFont')
         }
 
         //change project folder button
-        var changeFolderButton = document.getElementById('changeFolder')
+        
         changeFolderButton.addEventListener('click', () => {
             console.log('clicked change folder button')
             changeFolder()
@@ -113,7 +122,7 @@ window.onload = async function () {
 
         tabFunction()
     } catch (e) {
-        console.log('error in onload function')
+        console.log('error in onload function = ' + e)
     }
 }   //end window onload
 
@@ -466,6 +475,11 @@ ipcRenderer.on('selected-folder', (event, pathToFolder) => {
         console.log('set local storage')
         let array = [projectFolderPath, projectFolderName]
         localStorage.setItem('lastProjectFolder', JSON.stringify(array))
+        var cfButton = document.getElementById('changeFolder')
+        if (cfButton.classList.contains('largerFont')){
+            cfButton.classList.remove('largerFont')
+            cfButton.textContent = 'change project folder'
+        }
     }
     checkIfDescriptionExists()
 })
