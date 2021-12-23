@@ -1,6 +1,6 @@
 const { ipcRenderer, app } = require('electron')
 const { default: axios } = require('axios')
-const { sendEmailUrl, sendEmailKey, sendEmailIv } = require('../scripts/url-environments/url-info.js')
+const { sendEmailUrl, sendEmailKey, sendEmailIv } = require('../scripts/url-info/url-info.js')
 
 const algorithm = 'aes256'; // or any other algorithm supported by OpenSSL
 var appVersion = 'n/a'

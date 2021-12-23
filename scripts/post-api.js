@@ -257,7 +257,7 @@ function createDiscoursePostFromFile(filePath, createTime, data) {
     var userName = storedUserName;
     var apiKey = userKey;
   } else {
-    const { localSiteKey, localSiteUserName } = require('./url-environments/url-info')
+    const { localSiteKey, localSiteUserName } = require('./url-info/url-info')
     var url = "http://localhost:4200/posts.json";
     var category = 10;
     var userName = localSiteUserName;
@@ -342,7 +342,7 @@ function updateDiscoursePostFromFile(filePath, createTime, data, topicId) {
     var userName = storedUserName;
     var apiKey = userKey;
   } else {
-    const { localSiteKey, localSiteUserName } = require('./url-environments/url-info')
+    const { localSiteKey, localSiteUserName } = require('./url-info/url-info')
     var url = "http://localhost:4200/posts.json";
     var category = 10;
     var userName = localSiteUserName;
