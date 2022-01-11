@@ -2,6 +2,16 @@
 
 *General*
 
+# save configurations
+-Approach
+    -save the info on the config to dexiedb
+    -when select a prior to config to load, load up the icons and names (but don't actually start the programs--just start them when the user clicks on them)
+    -if the user wants to close open files prior to opening the config, they can do that--their choice
+
+# Bug: version saver: in find the sun folder, there is a worktree from several days back--shouldn't that be deleted automatically?
+-why not being deleted automatically?
+
+
 # through navigator, open any app.
 - this can probably replace the need to have set apps in the navigator that are saved there. This accomplishes basically the same thing. Could do that too, would just be:
         -right click to save app to navigator. that app name gets saved in local storage, along with icon. when open navigator, create array based on local storage. then load the apps, and check if match in local storage--if match, then remove from the array to show. any remaining app names in array get shown in the navigator. click on those names, and call macFocusAppName, which just requires the app name. 
