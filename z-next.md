@@ -2,6 +2,11 @@
 
 *General*
 
+# toggle whether to update Navigator every time or whether to do it manually 
+
+-- I have added in updating it manually.
+-- now give users the choice. With default being update every time.
+
 # save configurations
 -Approach
     -save the info on the config to dexiedb
