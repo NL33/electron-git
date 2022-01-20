@@ -1,6 +1,14 @@
 **Changelog**
 *REMINDER: Turn Off Dev Tools Prior to Packaging for Production*
 
+*V .2.10*
+
+### -Update the Navigator only when hit Command+1 or calling it from the top menu icon
+
+- previously, every time the Navigator would appear, it would update and refresh the list of items open
+- when using it, I sometimes found this disruptive--when a lot of the times my tabs and apps and windows were not changing. 
+- So I want to experiment and see how it works to only update when I call for an update, by hitting COmmand+1 or opening the Navigator from the top menu icon.
+
 *V .2.9*
 
 ### -Project Window: show "click here to choose project window" button 

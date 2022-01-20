@@ -22,7 +22,7 @@ function menuApp() {
     try {
         tray = new Tray(__dirname + '/assets/rts-icon2.png')
         const contextMenu = Menu.buildFromTemplate([
-            { label: 'Open / Refresh Navigator Window', accelerator: "CmdOrCtrl+1", click() { openNavWindow() } },
+            { label: 'Open / Refresh Navigator Window', accelerator: "CmdOrCtrl+1", click() { openNavWindow('update') } },
             { label: 'Toggle Columns', click() { columnChoice() } },
             { label: 'Toggle Chrome Position', click() { chromePosition() } },
             { label: 'Toggle Mouse Right to Open', click() { checkHoverFunction() } },
@@ -86,7 +86,7 @@ function welcomeWindowFunction() {
 
 ipcMain.on('welcome-done', (args, event) => {
     welcomeDone = true
-    openNavWindow()
+    openNavWindow('update')
     welcomeWindow.destroy()
 })
 
@@ -129,7 +129,7 @@ const createNavWindow = () => {
 
 function keyBoardShortCut() {
     globalShortcut.register('CommandOrControl+1', () => {
-        openNavWindow()
+        openNavWindow('update')
     })
 
     globalShortcut.register('CommandOrControl+2', () => {
@@ -147,7 +147,7 @@ function keyBoardShortCut() {
 }
 
 ipcMain.on('open-nav-window', () => {
-    openNavWindow()
+    openNavWindow('no-update')
 })
 var okToLoadNavWindow = false
 ipcMain.on('nav-loading-complete', () => {
@@ -155,10 +155,10 @@ ipcMain.on('nav-loading-complete', () => {
 })
 
 ipcMain.on('hover-nav-window', (event, target) => {
-    openNavWindow()
+    openNavWindow('no-update')
 })
 
-function openNavWindow() {
+function openNavWindow(updateOrNot) {
     try {
         if (welcomeDone === true) {
             if (navWindow === null) {
@@ -167,7 +167,9 @@ function openNavWindow() {
                 var isVisible = navWindow.isVisible()
                 if (isVisible === false) {
                     if (okToLoadNavWindow === true) {
-                        navWindow.webContents.send('run-loop-function', '')
+                        if (updateOrNot === 'update'){
+                            navWindow.webContents.send('run-loop-function', '')
+                        }
                         okToLoadNavWindow = false
                         //don't reload nav function until get message that navloading is complete (so don't reload multiple times while it's loading)
                     }
@@ -176,7 +178,9 @@ function openNavWindow() {
                     /*navWindow.webContents.send('focus-search', '')*/
                 } else {
                     if (okToLoadNavWindow === true) {
-                        navWindow.webContents.send('run-loop-function', '')
+                        if (updateOrNot === 'update') {
+                            navWindow.webContents.send('run-loop-function', '')
+                        }
                         okToLoadNavWindow = false
                         //don't reload nav function until get message that navloading is complete (so don't reload multiple times while it's loading)
                     }
