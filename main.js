@@ -3,6 +3,8 @@ const path = require('path');
 const fs = require('fs');
 const sanitizeHtml = require('sanitize-html');
 
+const { openAppleNotes } = require('./scripts/navigator-jxa');
+
 const { systemPreferences } = require('electron')
 // Prompt to access System Preferences by setting the prompt "true"
 
@@ -140,8 +142,19 @@ function keyBoardShortCut() {
         createBasicWindow()
     })
 
-    globalShortcut.register('CommandOrControl+4', () => {
+    globalShortcut.register('CommandOrControl+5', () => {
         openBreatheBigWindow()
+    })
+
+
+    globalShortcut.register('CommandOrControl+4', () => {
+        openAppleNotes().then((result, error)=>{
+            if (result){
+                console.log(result)
+            } else {
+                console.log(error)
+            }
+        })
     })
 
 }

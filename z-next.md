@@ -1,6 +1,16 @@
 **Next**
 
+*Branch Info*
+
+# apple-notes-customizations
+
+additions to make app work awesome with apple notes
+
+- add keyboard shortcut for apple notes.
+
 *General*
+
+# add spotify icon to local electron git
 
 # toggle whether to update Navigator every time or whether to do it manually 
 

@@ -1,6 +1,20 @@
 const { exec, execFile } = require('child_process');
 const fs = require('fs')
 
+
+module.exports.openAppleNotes = async function(){
+    return runJxaFunction(() => {
+        try {
+            var name = 'Notes';
+            Application(name).launch();
+            Application(name).activate();
+            var summary  = 'opened the app = ' + name;
+            return summary;
+        } catch (e) {
+            throw Error('error in opening notes app = ' + e);
+        }
+    })  
+}
 /*****GET LIST OF APPS, WINDOWS, AND TABS********/
 module.exports.macActive = async function (chromePosition) {
     return runJxaFunction(() => {
