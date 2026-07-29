@@ -1,12 +1,9 @@
 # Electron Git
 
-Copyright 2021, Race to Saturn, LLC. All right reserved.
+A desktop application I built with Electron and JavaScript to make Git easier to use for projects beyond traditional software development - including using version control with Microsoft Word.
 
-Notwithstanding anything written elsewhere in the code of this app, any use outside of this app of the code in this app requires the prior express written approval of Race to Saturn, LLC.
+The app provides a graphical workflow for managing repositories, commits, and project files. Built and packaged as a Mac desktop application in 2021.
 
-## About
-
-This is an app that uses electron and javascript to make it easy to use git when you are doing work, including work beyond code.
 
 ## Package App Commits
 42a7750, packaged December 23, 2021. Version .2.9. Posted December 23, 2021. 11:55am US EST.
